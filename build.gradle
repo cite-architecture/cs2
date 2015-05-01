@@ -19,6 +19,8 @@ allprojects {
     println ""
   }
   vmap.description = "Display versions of all dependencies"
+
+  version = "0.0.1"
 }
 
 
@@ -46,8 +48,13 @@ subprojects {
 }
 
 
-project("webapp") {
+project(":webapp") {
   apply plugin: "jetty"
+}
+
+
+project(":hocuspocus") {
+  version = "0.20.0"
 }
 
 
