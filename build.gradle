@@ -1,6 +1,5 @@
 apply plugin: 'base'
 
-
 allprojects {
   apply from: "${rootProject.rootDir}/versions.gradle"
   version = "0.10.0"
@@ -19,7 +18,7 @@ allprojects {
     }
     println ""
   }
-  vmap.description = "Display versions of all dependencies"
+  vmap.description = "Displays versions of all dependencies"
 }
 
 
@@ -38,7 +37,7 @@ subprojects {
     compile group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
   }
   
-  task initProject(description: 'Initialize project directories') << { task ->
+  task initProject(description: 'Initializes project directories') << { task ->
     task.project.sourceSets*.groovy.srcDirs*.each { 
       println "Create directory $it"
       it.mkdirs() 
@@ -68,5 +67,3 @@ project(":sparqlimg") {
     compile project(":common")
   }
 }
-
-
