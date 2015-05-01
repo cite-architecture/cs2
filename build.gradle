@@ -3,6 +3,8 @@ apply plugin: 'base'
 
 allprojects {
   apply from: "${rootProject.rootDir}/versions.gradle"
+  version = "0.10.0"
+  
   task vmap << { task ->
     println "\nDependencies for ${version} in ${task.project.name}:"
     versionMap.keySet().sort().each { k ->
@@ -18,8 +20,6 @@ allprojects {
     println ""
   }
   vmap.description = "Display versions of all dependencies"
-
-  version = "0.10.0"
 }
 
 
@@ -49,6 +49,24 @@ subprojects {
 
 project(":webapp") {
   apply plugin: "jetty"
+}
+
+project(":sparqlcc") {
+  dependencies {
+    compile project(":common")
+  }
+}
+
+project(":sparqlcts") {
+  dependencies {
+    compile project(":common")
+  }
+}
+
+project(":sparqlimg") {
+  dependencies {
+    compile project(":common")
+  }
 }
 
 
