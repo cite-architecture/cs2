@@ -1,0 +1,53 @@
+
+apply plugin: 'base'
+
+
+allprojects {
+  apply from: "${rootProject.rootDir}/versions.gradle"
+  task vmap << { task ->
+    println "\nDependencies for ${version} in ${task.project.name}:"
+    versionMap.keySet().sort().each { k ->
+      print k
+      Integer spaces = 15 - k.size()
+      Integer idx = 0
+      while(idx < spaces) {
+	print " "
+	idx++;
+      }
+      println versionMap[k]
+    }
+    println ""
+  }
+  vmap.description = "Display versions of all dependencies"
+}
+
+
+subprojects {
+  apply plugin: "groovy"
+  configurations.compile.transitive = true
+  
+  repositories {
+    mavenCentral()
+    maven {
+      url "http://beta.hpcc.uh.edu/nexus/content/groups/public"
+    }
+  }
+  dependencies {
+    compile group: 'org.codehaus.groovy', name: 'groovy', version: versionMap['groovy']
+    compile group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
+  }
+  
+  task initProject(description: 'Initialize project directories') << { task ->
+    task.project.sourceSets*.groovy.srcDirs*.each { 
+      println "Create directory $it"
+      it.mkdirs() 
+    }
+  }
+}
+
+
+project("webapp") {
+  apply plugin: "jetty"
+}
+
+

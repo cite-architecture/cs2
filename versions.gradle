@@ -1,0 +1,7 @@
+ext {
+
+    versionMap = [
+      "cite" : "0.94.1",
+      "groovy": "2.3.9"
+    ]
+}
