@@ -68,7 +68,14 @@ project(":webapp") {
   apply plugin: "war"
   apply plugin: "jetty" // replace this w gretty
   dependencies {
-    compile project(":common")
+    compile project(":sparqlcts")
+    // add these as they're implemented:
+    /*
+      compile project(":sparqlcc")
+      compile project(":sparqlimg")
+      compile project(":graph")
+      compile project(":orca")
+     */
   }
 }
 
