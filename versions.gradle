@@ -2,6 +2,11 @@ ext {
 
     versionMap = [
       "cite" : "0.94.1",
-      "groovy": "2.3.9"
+      "groovy": "2.3.9",
+      
+      "commonsio" : "1.4",
+      "icu4j" : "3.4.4",
+
+      "junit" : "4.11"
     ]
 }

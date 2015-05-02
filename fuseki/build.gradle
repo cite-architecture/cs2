@@ -1,10 +1,10 @@
 
-task runFuseki() << {
+task startFuseki() << {
   javaexec {
     main = "org.apache.jena.fuseki.cmd.FusekiCmd"
     classpath =  files("${projectDir}/fuseki-server.jar")
     args([ "--file=/Users/nsmith/repos/cite-architecture-github/cs2/resources/msA100.ttl",  "/ds"])
   }
 }
-runFuseki.description = "Runs fuseki SPARQL endpoint with test data loaded from resources directory."
+startFuseki.description = "Runs fuseki SPARQL endpoint with test data loaded from resources directory."
 

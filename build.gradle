@@ -21,7 +21,6 @@ allprojects {
   vmap.description = "Displays versions of all dependencies"
 }
 
-
 subprojects {
   apply plugin: "groovy"
   configurations.compile.transitive = true
@@ -67,3 +66,7 @@ project(":sparqlimg") {
     compile project(":common")
   }
 }
+
+
+// maybe use a group of tasks?
+//test.dependsOn(":fuseki:runFuseki")
