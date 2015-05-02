@@ -15,4 +15,4 @@ The `fuseki` subproject currently has a task that starts up a SPARQL endpoint wi
 
 
 
-
+Perhaps in the future, this could use something like ant's `exec` task with `spawn=true` but at present, it doesn't.

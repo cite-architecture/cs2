@@ -33,8 +33,18 @@ subprojects {
   }
   dependencies {
     compile group: 'org.codehaus.groovy', name: 'groovy', version: versionMap['groovy']
+
     compile group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
+    compile group: 'commons-io', name: 'commons-io', version: versionMap['commonsio']
+
+
+    
+    testCompile "junit:junit:${versionMap['junit']}"
+    
   }
+
+  // Only appropirate if we run fuseki in the bg -- othewise, blocks.
+ // test.dependsOn ":fuseki:runFuseki"
   
   task initProject(description: 'Initializes project directories') << { task ->
     task.project.sourceSets*.groovy.srcDirs*.each { 
