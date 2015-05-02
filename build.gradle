@@ -19,6 +19,15 @@ allprojects {
     println ""
   }
   vmap.description = "Displays versions of all dependencies"
+
+
+
+  task seesrc << { task ->
+    println "\nSource sets for ${version} in ${task.project.name}:"
+    task.project.runtimeClasspath.getFiles().each {
+      println it
+    }
+  }
 }
 
 subprojects {
@@ -32,9 +41,9 @@ subprojects {
     }
   }
   dependencies {
-    compile group: 'org.codehaus.groovy', name: 'groovy', version: versionMap['groovy']
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
 
-    compile group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
+    //compile group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
     compile group: 'commons-io', name: 'commons-io', version: versionMap['commonsio']
 
 
@@ -56,6 +65,7 @@ subprojects {
 
 
 project(":webapp") {
+  apply plugin: "war"
   apply plugin: "jetty"
 }
 

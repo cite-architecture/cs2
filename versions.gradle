@@ -1,8 +1,9 @@
 ext {
 
     versionMap = [
-      "cite" : "0.94.1",
-      "groovy": "2.3.9",
+      "cite" : "0.95.3",
+      //"groovy": "[2.3,)", // This is correct, but brokekn jetty plugin load 2.3.6. :-(
+	"groovy": "2.3.6",
       
       "commonsio" : "1.4",
       "icu4j" : "3.4.4",
