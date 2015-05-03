@@ -1,29 +1,9 @@
 apply plugin: 'base'
 
-
 buildscript {
   apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
 }
 
-task createGradleWrapper(type: Wrapper) {
-  gradleVersion = "2.3"
-}
-
-
-task checkEnv << {
-  println "FUSEKI_BASE is " + "$System.env.FUSEKI_BASE"
-}
-
-farms {
-  farm "Full", {
-    integrationTestTask = 'servletTests'
-    webapp "${rootDir}/fuseki/fuseki.war"
-    webapp project(":webapp")
-  }
-  farm "Fuse", {
-    webapp "${rootDir}/fuseki/fuseki.war"
-  }
-}
 
 allprojects {
   apply from: "${rootProject.rootDir}/versions.gradle"
@@ -53,6 +33,7 @@ allprojects {
       println it
     }
   }
+  seesrc.description = "See runtime classpath for project."
 }
 
 subprojects {
@@ -77,9 +58,6 @@ subprojects {
     
   }
 
-  // Only appropirate if we run fuseki in the bg -- othewise, blocks.
- // test.dependsOn ":fuseki:runFuseki"
-  
   task initProject(description: 'Initializes project directories') << { task ->
     task.project.sourceSets*.groovy.srcDirs*.each { 
       println "Create directory $it"
@@ -128,4 +106,16 @@ project(":sparqlimg") {
 
 project(":fuseki") {
   apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+}
+
+
+farms {
+  farm "Full", {
+    integrationTestTask = 'servletTests'
+    webapp "${rootDir}/fuseki/fuseki.war"
+    webapp project(":webapp")
+  }
+  farm "Fuse", {
+    webapp "${rootDir}/fuseki/fuseki.war"
+  }
 }
