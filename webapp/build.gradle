@@ -2,10 +2,10 @@
 //apply plugin: 'base'
 
 gretty {
-    contextPath = '/'
+    contextPath = '/citeservlet'
     integrationTestTask = 'intTests'
 }
 
-task intTests << {
-    println 'This task will run in just the right time'
+task servletTests << {
+    println "\n\n\t-->Tests on running citeservlet go here.<--\n\n"
 }

@@ -13,8 +13,9 @@ task checkEnv << {
 
 
 farm {
-  //webapp project(":webapp")
+  integrationTestTask = 'servletTests'
   webapp "${rootDir}/fuseki/fuseki.war"
+  webapp project(":webapp")
 }
 
 allprojects {

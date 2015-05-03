@@ -1,7 +1,0 @@
-
-apply plugin: "java"
-
-
-task servletTests << {
-  println "\n\n\t-->Test running cite servlet here.<--\n\n"
-}
