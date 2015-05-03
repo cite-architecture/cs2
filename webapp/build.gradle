@@ -1,11 +1,17 @@
 
 //apply plugin: 'base'
 
+//import edu.holycross.shot.citeservlet.Sparql
+//import edu.holycross.shot.sparqlcts.Cts
+
 gretty {
     contextPath = '/citeservlet'
     integrationTestTask = 'intTests'
 }
 
 task servletTests << {
-    println "\n\n\t-->Tests on running citeservlet go here.<--\n\n"
+
+  //  Sparql sparql = new Sparql("http://localhost:8080/fuseki/query?")
+  println "\n\n\t-->Tests on running citeservlet go here."
+  println "Successfully made a sparql!<--\n\n"
 }

@@ -5,6 +5,9 @@ buildscript {
   apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
 }
 
+task createGradleWrapper(type: Wrapper) {
+  gradleVersion = "2.3"
+}
 
 
 task checkEnv << {
