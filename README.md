@@ -14,5 +14,8 @@ The `fuseki` subproject currently has a task that starts up a SPARQL endpoint wi
 2. then whatever test(s) you want to run
 
 
+Perhaps in the future, this could use something like ant's `exec` task with `spawn=true` or perhaps `gretty`, but at present, it doesn't.
 
-Perhaps in the future, this could use something like ant's `exec` task with `spawn=true` but at present, it doesn't.
+## Requirements ##
+
+To run fuseki, you must Java 7 or more recent.
