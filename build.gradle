@@ -1,6 +1,22 @@
 apply plugin: 'base'
 
 
+buildscript {
+  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+}
+
+
+
+task checkEnv << {
+  println "FUSEKI_BASE is " + "$System.env.FUSEKI_BASE"
+}
+
+
+farm {
+  //webapp project(":webapp")
+  webapp "${rootDir}/fuseki/fuseki.war"
+}
+
 allprojects {
   apply from: "${rootProject.rootDir}/versions.gradle"
   version = "0.10.0"
@@ -100,6 +116,9 @@ project(":sparqlimg") {
   }
 }
 
+project(":fuseki") {
+  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+}
 
 // maybe use a group of tasks?
 //test.dependsOn(":fuseki:runFuseki")

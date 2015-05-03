@@ -19,3 +19,5 @@ Perhaps in the future, this could use something like ant's `exec` task with `spa
 ## Requirements ##
 
 To run fuseki, you must Java 7 or more recent.
+
+To fuseki as a war, set the environment variable FUSEKI_BASE to point to a writable directory.  Probably we should create one in the build, and specify what you need to set in your environment.

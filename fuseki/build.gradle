@@ -1,4 +1,6 @@
 
+
+/*
 task startFuseki() << {
   javaexec {
     main = "org.apache.jena.fuseki.cmd.FusekiCmd"
@@ -7,4 +9,5 @@ task startFuseki() << {
   }
 }
 startFuseki.description = "Runs fuseki SPARQL endpoint with test data loaded from resources directory."
+*/
 
