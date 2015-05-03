@@ -1,8 +1,6 @@
 ## `fuseki` subproject ##
 
 
-The current 2.x series of jena fuseki does not seem to offer a runnable `jar` or `war` (at least, I cannot make sense of the list of modules accessible from maven, listed at <http://jena.apache.org/download/maven.html>, to suggest that).
+`fuseki.war` is from the current 2.x series of jena fuseki.  `fusekibase` contains a fuseki base directory with data from ttl files in `resources` preloaded.
 
-Consequently, both the binary `.jar` of fuseki server and the `web-app` directory are taken from the 2.0 version of the fuseki distribution, and run from a `JavaExec` gradle task.
-
-
+The environment variable FUSEKI_BASE must point to this directory.
