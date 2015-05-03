@@ -129,6 +129,3 @@ project(":sparqlimg") {
 project(":fuseki") {
   apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
 }
-
-// maybe use a group of tasks?
-//test.dependsOn(":fuseki:runFuseki")
