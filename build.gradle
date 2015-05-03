@@ -15,12 +15,12 @@ task checkEnv << {
 }
 
 farms {
-  farm "full", {
+  farm "Full", {
     integrationTestTask = 'servletTests'
     webapp "${rootDir}/fuseki/fuseki.war"
     webapp project(":webapp")
   }
-  farm "fuse", {
+  farm "Fuse", {
     webapp "${rootDir}/fuseki/fuseki.war"
   }
 }
