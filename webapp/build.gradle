@@ -1,2 +1,11 @@
 
-apply plugin: 'base'
+//apply plugin: 'base'
+
+gretty {
+    contextPath = '/'
+    integrationTestTask = 'intTests'
+}
+
+task intTests << {
+    println 'This task will run in just the right time'
+}

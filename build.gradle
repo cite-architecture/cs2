@@ -1,5 +1,6 @@
 apply plugin: 'base'
 
+
 allprojects {
   apply from: "${rootProject.rootDir}/versions.gradle"
   version = "0.10.0"
@@ -66,7 +67,9 @@ subprojects {
 
 project(":webapp") {
   apply plugin: "war"
-  apply plugin: "jetty" // replace this w gretty
+  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+
+  //apply plugin: "jetty" // replace this w gretty
   dependencies {
     compile project(":sparqlcts")
     // add these as they're implemented:
