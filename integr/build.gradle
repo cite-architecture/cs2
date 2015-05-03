@@ -3,5 +3,5 @@ apply plugin: "java"
 
 
 task servletTests << {
-  println "Test running cite servlet here."
+  println "\n\n\t-->Test running cite servlet here.<--\n\n"
 }
