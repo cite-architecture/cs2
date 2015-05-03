@@ -11,11 +11,15 @@ task checkEnv << {
   println "FUSEKI_BASE is " + "$System.env.FUSEKI_BASE"
 }
 
-
-farm {
-  integrationTestTask = 'servletTests'
-  webapp "${rootDir}/fuseki/fuseki.war"
-  webapp project(":webapp")
+farms {
+  farm "full", {
+    integrationTestTask = 'servletTests'
+    webapp "${rootDir}/fuseki/fuseki.war"
+    webapp project(":webapp")
+  }
+  farm "fuse", {
+    webapp "${rootDir}/fuseki/fuseki.war"
+  }
 }
 
 allprojects {
@@ -89,6 +93,8 @@ project(":webapp") {
   //apply plugin: "jetty" // replace this w gretty
   dependencies {
     compile project(":sparqlcts")
+    testCompile project(":sparqlcts")
+    
     // add these as they're implemented:
     /*
       compile project(":sparqlcc")
