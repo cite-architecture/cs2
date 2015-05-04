@@ -1,23 +1,23 @@
-# cs2
+# `citeservlet`, second generation
 
-Experimental refactoring of cite servlet.
+A servlet running all CITE services.  Currently in development.  
 
-Goals include: 
 
-- folding in the suite of sparql* services as subprojects.
+Goals of the first release version include: 
+
+- folding in the following suite of services as subprojects:
+    - Canonical Text Service
+    - CITE Collection Service
+    - CITE Image Extension
+    - CITE Graph Service
 - sharing common code where appropriate across subprojects
-- end-to-end testing of services
-
-The `fuseki` subproject currently has a task that starts up a SPARQL endpoint with a test data set, but I don't know how to run it in the background, so testing requires:
-
-1. `gradle startFuseki`
-2. then whatever test(s) you want to run
+- end-to-end testing of all services
 
 
-Perhaps in the future, this could use something like ant's `exec` task with `spawn=true` or perhaps `gretty`, but at present, it doesn't.
+
+
+
 
 ## Requirements ##
 
-To run fuseki, you must Java 7 or more recent.
-
-To fuseki as a war, set the environment variable FUSEKI_BASE to point to a writable directory.  Probably we should create one in the build, and specify what you need to set in your environment.
+Integration tests use `gretty` to start up fuseki SPARQL endpoint with a test dataset preloaded.  To run fuseki, you must have Java 7 or more recent.  Fuseki is run from the prebuilt `.war` file that requires an environment variable named `FUSEKI_BASE`.  Set this to point to the directory `fuseki/fusekibase` on your system.
