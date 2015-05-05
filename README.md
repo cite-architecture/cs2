@@ -21,3 +21,10 @@ Goals of the first release version include:
 ## Requirements ##
 
 Integration tests use `gretty` to start up fuseki SPARQL endpoint with a test dataset preloaded.  To run fuseki, you must have Java 7 or more recent.  Fuseki is run from the prebuilt `.war` file that requires an environment variable named `FUSEKI_BASE`.  Set this to point to the directory `fuseki/fusekibase` on your system.
+
+
+## Running tests ##
+
+To run integration tests:
+
+    gradle farmIntegrationTest

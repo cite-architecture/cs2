@@ -1,13 +1,35 @@
+
+buildscript {
+  apply plugin: "groovy"
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath project(":sparqlcts")
+  }
+}
+import edu.holycross.shot.citeservlet.Sparql
+
 gretty {
     contextPath = '/citeservlet'
-    integrationTestTask = 'intTests'
 }
 
 task servletTests << {
 
-  //  Sparql sparql = new Sparql("http://localhost:8080/fuseki/query?")
+  Sparql sparql = new Sparql("http://localhost:8080/fuseki/ds/query")
+
   println "\n\n\t-->Tests on running citeservlet go here."
-  println "Successfully made a sparql!<--\n\n"
+  println "Successfully made a sparql ${sparql}<--\n\n"
+
+  String rep = sparql.getSparqlReply("any","select distinct ?v where { ?s ?v ?o .} ")
+  println rep
+  
+  /*
+  URL url = new URL("http://localhost:8080/fuseki/")
+  println "Testing fuseki root:"
+  println url.getText("UTF-8")
+  */
+  
 }
 servletTests.description "Placeholder for integration testing on citeservlet"
 

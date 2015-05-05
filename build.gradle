@@ -1,4 +1,12 @@
-apply plugin: 'base'
+/*
+Root build file defines plugin usage and dependencies for all subprojects,
+and two server farms for integration testing, one running just fuseki
+with a test data set loaded, the other running both fuseki and the
+current build of citeservlet.
+ */
+
+//apply plugin: 'java'
+
 
 buildscript {
   apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
@@ -25,16 +33,29 @@ allprojects {
   }
   vmap.description = "Displays versions of all dependencies"
 
-
-
   task seesrc << { task ->
-    println "\nSource sets for ${version} in ${task.project.name}:"
+    println "\nFiles on CP for ${version} in ${task.project.name}:"
     task.project.runtimeClasspath.getFiles().each {
       println it
     }
+
+    println "Source sets files:"
+    task.project.sourceSets.each { ss ->
+      println "Source set ${ss} has " + ss.allSource.getSrcDirs() 
+    }
+
+
+    println "configurations:"
+    task.project.configurations.each { c ->
+      println "${c} has ..."
+    }
+    
   }
-  seesrc.description = "See runtime classpath for project."
+  seesrc.description = "See info about some settings for project."
 }
+
+
+
 
 subprojects {
   apply plugin: "groovy"
@@ -48,14 +69,10 @@ subprojects {
   }
   dependencies {
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
-
+    testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
     //compile group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
     compile group: 'commons-io', name: 'commons-io', version: versionMap['commonsio']
-
-
-    
     testCompile "junit:junit:${versionMap['junit']}"
-    
   }
 
   task initProject(description: 'Initializes project directories') << { task ->
@@ -71,42 +88,64 @@ project(":webapp") {
   apply plugin: "war"
   apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
 
-  //apply plugin: "jetty" // replace this w gretty
   dependencies {
     compile project(":sparqlcts")
     testCompile project(":sparqlcts")
     
-    // add these as they're implemented:
-    /*
-      compile project(":sparqlcc")
-      compile project(":sparqlimg")
-      compile project(":graph")
-      compile project(":orca")
-     */
+    // add each of these as they're implemented
+    // for release 1:
+    // compile project(":sparqlcc")
+    // testCompile project(":sparqlcc")
+    // compile project(":sparqlimg")
+    // testCompile project(":sparqlimg")
+    // compile project(":graph")
+    // tesCompile project(":graph")
+    //    
+    // and for planned release 2:
+    // compile project(":orca")
+    // testCompile project(":orca")
+
   }
 }
 
+project(":sparqlcts") {
+  sourceSets {
+    integr {
+    }
+  }
+  dependencies {
+    compile project(":common")
+    
+    integrCompile project(":common")
+    integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
+    integrCompile "junit:junit:${versionMap['junit']}"
+  }
+  
+
+}
+
+
+project(":fuseki") {
+  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+}
+
+/*
 project(":sparqlcc") {
   dependencies {
     compile project(":common")
   }
 }
 
-project(":sparqlcts") {
-  dependencies {
-    compile project(":common")
-  }
-}
+
 
 project(":sparqlimg") {
   dependencies {
     compile project(":common")
   }
 }
+*/
 
-project(":fuseki") {
-  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
-}
+
 
 
 farms {
@@ -116,6 +155,9 @@ farms {
     webapp project(":webapp")
   }
   farm "Fuse", {
+    integrationTestTask = 'integrationTest'
     webapp "${rootDir}/fuseki/fuseki.war"
+    
   }
 }
+
