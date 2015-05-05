@@ -60,7 +60,7 @@ subprojects {
   dependencies {
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
     testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
-    //compile group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
+    compile group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
     compile group: 'commons-io', name: 'commons-io', version: versionMap['commonsio']
     testCompile "junit:junit:${versionMap['junit']}"
   }
@@ -72,7 +72,7 @@ subprojects {
     }
   }
 }
-
+/*
 project(":webapp") {
   apply plugin: "war"
   apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
@@ -96,6 +96,10 @@ project(":webapp") {
 
   }
 }
+*/
+
+
+
 
 project(":sparqlcts") {
   sourceSets {

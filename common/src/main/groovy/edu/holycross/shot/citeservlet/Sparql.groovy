@@ -15,10 +15,17 @@ class Sparql {
   }
 
 
-  /** Submits a query to the SPARQL endpoint.
-   * @param acceptType 
-   * @param query A valid SPARQL query.
-   * @returns Text of SPARQL reply
+  /** Submits a SPARQL query to the configured endpoint
+   * and returns the text of the reply.
+   * @param acceptType  Value to use for headers.Accept in 
+   * http request.  If the value of acceptType is 'application/json'
+   * fuseki's additional 'output' parameter is added to the 
+   * http request string so that the string returned for the
+   * the request will be in JSON format.  This separates the 
+   * concerns of forming SPARQL queries from the decision about
+   * how to parse the reply in a given format.
+   * @param query Text of SPARQL query to submit.
+   * @returns Text content of reply. 
    */
   String getSparqlReply(String acceptType, String query) {
     String replyString
