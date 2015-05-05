@@ -1,5 +1,15 @@
 buildscript {
   apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+  
+  repositories {
+    mavenCentral()
+    maven {
+      url "http://beta.hpcc.uh.edu/nexus/content/groups/public"
+    }
+  }
+  dependencies {
+    classpath group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
+  }
 }
 
 farm {
