@@ -5,8 +5,6 @@ with a test data set loaded, the other running both fuseki and the
 current build of citeservlet.
  */
 
-//apply plugin: 'java'
-
 
 buildscript {
   apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
@@ -53,9 +51,6 @@ allprojects {
   }
   seesrc.description = "See info about some settings for project."
 }
-
-
-
 
 subprojects {
   apply plugin: "groovy"
@@ -155,9 +150,8 @@ farms {
     webapp project(":webapp")
   }
   farm "Fuse", {
-    integrationTestTask = 'integrationTest'
+    //integrationTestTask = 'integrationTest'
     webapp "${rootDir}/fuseki/fuseki.war"
-    
   }
 }
 
