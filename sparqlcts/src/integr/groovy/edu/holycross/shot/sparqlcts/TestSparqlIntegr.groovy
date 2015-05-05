@@ -16,20 +16,8 @@ class TestSparqlIntegr extends GroovyTestCase {
   
   @Test
   void testSetup() {
-    //    URL tst1 = new URL("http://localhost:8080/fuseki/documentation.html")
-
-    URL tst1 = new URL("http://localhost:8080/fuseki/")
-    //    URL tst1 = new URL("http://localhost:8080/")
-    
-    println "Try retrieving docs from ${tst1} "
-    println tst1.getText("UTF-8")
-    /*    
     Sparql sparql = new Sparql(baseUrl)
     String uri = System.getProperty('gretty.baseURI')
-    System.err.println "GRETTY URI " + uri
-    System.err.println "GRETTY context path " + System.getProperty('gretty.contextPath')
-
-    
     def slurper = new groovy.json.JsonSlurper()
     println "RUN verbQuery " + verbQuery
 
@@ -39,7 +27,6 @@ class TestSparqlIntegr extends GroovyTestCase {
       verbList.add(b.v.value)
     }
     assert verbList.size() == expectedNumberVerbs
-    */
   }
   
 }
