@@ -14,6 +14,6 @@ task ctsIntegration(type: Test, dependsOn: 'test') {
   classpath = sourceSets.integr.runtimeClasspath
 }
 ctsIntegration.doFirst {
-  System.out.println "\nINTEGRATE CTS \n"
+  System.out.println "Running CTS integration tests now...."
 }
 

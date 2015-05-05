@@ -7,6 +7,7 @@ current build of citeservlet.
 
 
 buildscript {
+  // needed in buildscript to define server farms
   apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
 }
 
@@ -78,18 +79,6 @@ subprojects {
   }
 }
 
-
-project(":integr") {
-  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
-
-  apply plugin: 'war'
-  
-  dependencies {
-    compile project(":sparqlcts")
-    testCompile project(":sparqlcts")
-  }
-}
-
 project(":webapp") {
   apply plugin: "war"
   apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
@@ -157,23 +146,14 @@ project(":sparqlimg") {
 
 
 farms {
-  farm "Full", {
+  farm "CiteServlet", {
     integrationTestTask = 'servletTests'
     webapp "${rootDir}/fuseki/fuseki.war"
     webapp project(":webapp")
   }
-  /*
-  farm "Cts", {
-    integrationTestTask = 'integrateMe'
-    webapp "${rootDir}/fuseki/fuseki.war"
-    }*/
-
 
   farm "Cts", {
     integrationTestTask = 'ctsIntegration'
-    //integrationTestTask = 'vfr'
-    //integrationTestTask = 'integrationTest'
-    //integrationTestTask = ':integr:test'
     webapp "${rootDir}/fuseki/fuseki.war"
     webapp project(":sparqlcts")
   }
