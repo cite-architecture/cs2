@@ -6,12 +6,6 @@ current build of citeservlet.
  */
 
 
-buildscript {
-  // needed in buildscript to define server farms
-  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
-}
-
-
 allprojects {
   apply from: "${rootProject.rootDir}/versions.gradle"
   version = "0.10.0"
@@ -142,20 +136,4 @@ project(":sparqlimg") {
 }
 */
 
-
-
-
-farms {
-  farm "CiteServlet", {
-    integrationTestTask = 'servletTests'
-    webapp "${rootDir}/fuseki/fuseki.war"
-    webapp project(":webapp")
-  }
-
-  farm "Cts", {
-    integrationTestTask = 'ctsIntegration'
-    webapp "${rootDir}/fuseki/fuseki.war"
-    webapp project(":sparqlcts")
-  }
-}
 

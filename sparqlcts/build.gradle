@@ -1,3 +1,12 @@
+buildscript {
+  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+}
+
+farm {
+    integrationTestTask = 'ctsIntegration'
+    webapp "${rootDir}/fuseki/fuseki.war"
+    webapp project(":sparqlcts")
+}
 
 test {
   include '**/Test*.*'
@@ -7,6 +16,7 @@ test {
 
 
 task ctsIntegration(type: Test, dependsOn: 'test') {
+  description  = "Runs integration tests against test data set served from fuseki."
   outputs.upToDateWhen { false }
   include '**/*Integr.*'
 
