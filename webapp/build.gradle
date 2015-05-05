@@ -23,13 +23,6 @@ task servletTests << {
 
   String rep = sparql.getSparqlReply("any","select distinct ?v where { ?s ?v ?o .} ")
   println rep
-  
-  /*
-  URL url = new URL("http://localhost:8080/fuseki/")
-  println "Testing fuseki root:"
-  println url.getText("UTF-8")
-  */
-  
 }
 servletTests.description "Placeholder for integration testing on citeservlet"
 

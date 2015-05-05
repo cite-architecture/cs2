@@ -1,3 +1,5 @@
 
 
-
+gretty {
+ contextPath = '/fuseki'
+}

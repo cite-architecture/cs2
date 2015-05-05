@@ -79,6 +79,17 @@ subprojects {
 }
 
 
+project(":integr") {
+  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+
+  apply plugin: 'war'
+  
+  dependencies {
+    compile project(":sparqlcts")
+    testCompile project(":sparqlcts")
+  }
+}
+
 project(":webapp") {
   apply plugin: "war"
   apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
@@ -108,15 +119,17 @@ project(":sparqlcts") {
     integr {
     }
   }
+  
+  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+
   dependencies {
     compile project(":common")
+    testCompile project(":common")
     
     integrCompile project(":common")
     integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
     integrCompile "junit:junit:${versionMap['junit']}"
   }
-  
-
 }
 
 
@@ -149,9 +162,20 @@ farms {
     webapp "${rootDir}/fuseki/fuseki.war"
     webapp project(":webapp")
   }
-  farm "Fuse", {
-    //integrationTestTask = 'integrationTest'
+  /*
+  farm "Cts", {
+    integrationTestTask = 'integrateMe'
     webapp "${rootDir}/fuseki/fuseki.war"
+    }*/
+
+
+  farm "Cts", {
+    integrationTestTask = 'ctsIntegration'
+    //integrationTestTask = 'vfr'
+    //integrationTestTask = 'integrationTest'
+    //integrationTestTask = ':integr:test'
+    webapp "${rootDir}/fuseki/fuseki.war"
+    webapp project(":sparqlcts")
   }
 }
 

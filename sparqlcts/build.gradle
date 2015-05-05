@@ -1,2 +1,19 @@
 
-apply plugin: 'base'
+test {
+  include '**/Test*.*'
+  include '**/*Test.*'
+  exclude '**/*Integr.*'
+}
+
+
+task ctsIntegration(type: Test, dependsOn: 'test') {
+  outputs.upToDateWhen { false }
+  include '**/*Integr.*'
+
+  testClassesDir = sourceSets.integr.output.classesDir
+  classpath = sourceSets.integr.runtimeClasspath
+}
+ctsIntegration.doFirst {
+  System.out.println "\nINTEGRATE CTS \n"
+}
+
