@@ -12,6 +12,9 @@ buildscript {
   }
 }
 
+
+
+
 farm {
     integrationTestTask = 'ctsIntegration'
     webapp "${rootDir}/fuseki/fuseki.war"
@@ -30,10 +33,50 @@ task ctsIntegration(type: Test, dependsOn: 'test') {
   outputs.upToDateWhen { false }
   include '**/*Integr.*'
 
-  testClassesDir = sourceSets.integr.output.classesDir
-  classpath = sourceSets.integr.runtimeClasspath
+ testClassesDir = sourceSets.integr.output.classesDir
+ classpath = sourceSets.integr.runtimeClasspath
 }
 ctsIntegration.doFirst {
-  System.out.println "Running CTS integration tests now...."
+  System.out.println "Running CTS integration tests now...."  
 }
 
+
+
+
+/*
+task peekOnce << {
+  println "integration classpath: "
+  ctsIntegration.classpath.getFiles().each {
+    println it
+  }
+}
+
+
+
+
+
+task cfSrcSets << {
+  def ipath = sourceSets.integr.runtimeClasspath.getFiles() 
+  def tpath = sourceSets.test.runtimeClasspath.getFiles() 
+
+  def diffs = (ipath + tpath) - ipath.intersect(tpath)
+  println "ALL DIFFS"
+  diffs.each {
+    println it
+  }
+  println "\nIn tpath but not ipath"
+  def notInI = tpath - ipath
+  notInI.each {
+    println it
+  }
+
+  def notInT = ipath - tpath
+  
+  println "\nIn ipath but not tpath"
+  notInT.each {
+    println it
+  }
+  
+}
+cfSrcSets.description = "Compare classpath for 2 configurations"
+*/

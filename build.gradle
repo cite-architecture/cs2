@@ -27,18 +27,23 @@ allprojects {
   vmap.description = "Displays versions of all dependencies"
 
   task seesrc << { task ->
-    println "\nFiles on CP for ${version} in ${task.project.name}:"
+    println "\nFiles on runtime CP for ${version} in ${task.project.name}:"
     task.project.runtimeClasspath.getFiles().each {
       println it
     }
 
-    println "Source sets files:"
+    println "\nFiles on testCompile CP for ${version} in ${task.project.name}:"
+    task.project.runtimeClasspath.getFiles().each {
+      println it
+    }
+    
+    println "\nSource sets files:"
     task.project.sourceSets.each { ss ->
       println "Source set ${ss} has " + ss.allSource.getSrcDirs() 
     }
 
 
-    println "configurations:"
+    println "\nconfigurations:"
     task.project.configurations.each { c ->
       println "${c} has ..."
     }
@@ -49,6 +54,8 @@ allprojects {
 
 subprojects {
   apply plugin: "groovy"
+  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+  
   configurations.compile.transitive = true
   
   repositories {
@@ -72,6 +79,47 @@ subprojects {
     }
   }
 }
+
+
+
+project(":sparqlcts") {
+  // make integration tests a separate source set:
+  sourceSets {
+    integr {
+    }
+  }
+
+  dependencies {
+    compile project(":common")
+    testCompile project(":common")
+    
+    // Need to define all dependencies for integration tests:
+    integrCompile "junit:junit:${versionMap['junit']}"
+    integrCompile project(":sparqlcts")
+    integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
+  }
+}
+
+
+/*
+project(":sparqlcc") {
+  dependencies {
+    compile project(":common")
+  }
+}
+
+
+
+project(":sparqlimg") {
+  dependencies {
+    compile project(":common")
+  }
+}
+*/
+
+
+
+
 /*
 project(":webapp") {
   apply plugin: "war"
@@ -97,47 +145,3 @@ project(":webapp") {
   }
 }
 */
-
-
-
-
-project(":sparqlcts") {
-  sourceSets {
-    integr {
-    }
-  }
-  
-  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
-
-  dependencies {
-    compile project(":common")
-    testCompile project(":common")
-    
-    integrCompile project(":common")
-    integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
-    integrCompile "junit:junit:${versionMap['junit']}"
-  }
-}
-
-
-project(":fuseki") {
-  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
-}
-
-/*
-project(":sparqlcc") {
-  dependencies {
-    compile project(":common")
-  }
-}
-
-
-
-project(":sparqlimg") {
-  dependencies {
-    compile project(":common")
-  }
-}
-*/
-
-

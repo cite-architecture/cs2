@@ -19,11 +19,4 @@ class Cts {
   Cts(Sparql sparqlService) {
     this.sparql = sparqlService
   }
-
-
-  
-
-  void getPrevNextReply(CtsUrn urn) {
-  }
- 
 }
