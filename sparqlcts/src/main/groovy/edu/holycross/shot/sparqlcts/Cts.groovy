@@ -19,4 +19,7 @@ class Cts {
   Cts(Sparql sparqlService) {
     this.sparql = sparqlService
   }
+
+
+  
 }
