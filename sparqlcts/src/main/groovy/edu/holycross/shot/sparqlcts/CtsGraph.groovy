@@ -11,14 +11,14 @@ import groovy.json.JsonSlurper
  */
 class CtsGraph {
 
+  /** SPARQL endpoint object from citeservlet lib. */
   Sparql sparql
 
+
+  /** Constructor with required SPARQL endpoint object */  
   CtsGraph(Sparql endPoint) {
     sparql = endPoint
   }
-
-
-
   
   /**  Determines whether or not a CTS URN refers to a leaf
    * citation node.  Consults the SPARQL endpoint
@@ -27,16 +27,11 @@ class CtsGraph {
   boolean isLeafNode(CtsUrn requestUrn) {
     String replyText = ""
     CtsUrn urn = resolveVersion(requestUrn)
-    String vQuery = QueryBuilder.getVersionQuery(urn)
-    
-
-    //    println 
-    /*
-    String reply = getSparqlReply("text/xml", qg.getIsLeafQuery(urn))
-    def root = new XmlParser().parseText(reply)
-    def replyNode = root[sparql.boolean][0]
-    replyText = replyNode.text()
-    */
+    String leafQuery = QueryBuilder.getIsLeafQuery(urn)
+    String reply = sparql.getSparqlReply("application/json", leafQuery)
+    JsonSlurper slurper = new groovy.json.JsonSlurper()
+    def parsedReply = slurper.parseText(reply)
+    replyText = parsedReply.boolean
     return (replyText == "true")
   }
 

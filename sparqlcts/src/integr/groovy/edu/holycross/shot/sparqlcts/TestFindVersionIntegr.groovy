@@ -32,6 +32,5 @@ class TestFindVersionIntegr extends GroovyTestCase {
     String expectedUrnStr = "urn:cts:greekLit:tlg0012.tlg001.msA:1.1"
     assert graph.resolveVersion(urn).toString() == expectedUrnStr
   }
-    
-  
+
 }
