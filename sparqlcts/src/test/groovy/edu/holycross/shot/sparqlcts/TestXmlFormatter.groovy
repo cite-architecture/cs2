@@ -25,4 +25,31 @@ class TestXmlFormatter extends GroovyTestCase {
     assert XmlFormatter.citationIndices(xpTemplate) == expectedIndices
   }
 
+  @Test
+  void testDifferingLevels() {
+    String xpTemplate = "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']"
+    String xp1 = "/tei:TEI/tei:text/tei:body/tei:div[@n = '1']/tei:l[@n = '1']"
+
+    // every XPath matches itself:
+    assert XmlFormatter.findDifferingCitationLevel(xp1, xp1, xpTemplate) == 0
+
+    String xp2 = "/tei:TEI/tei:text/tei:body/tei:div[@n = '1']/tei:l[@n = '2']"
+    // xp1 and xp2 differ on the second citation value:
+    assert XmlFormatter.findDifferingCitationLevel(xp1, xp2, xpTemplate) == 2
+
+    String xp3 = "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']/tei:l[@n = '1']"
+    // xp1 and xp3 differ on the first citation value:
+    assert XmlFormatter.findDifferingCitationLevel(xp1, xp3, xpTemplate) == 1
+
+
+    String xp4 = "/tei:TEI/tei:text/tei:body/tei:div[@n = '1']"
+    // xp1 and xp4 are not the same depth:
+    assert shouldFail {
+      assert XmlFormatter.findDifferingCitationLevel(xp1, xp4, xpTemplate) == 1
+    }
+    
+    
+  }
+
+  
 }

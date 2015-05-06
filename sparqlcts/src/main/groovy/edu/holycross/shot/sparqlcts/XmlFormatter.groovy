@@ -28,10 +28,6 @@ abstract class XmlFormatter {
     return formatted.toString()
   }
   
-
-
-  
-
   /**
    * Converts XPath filter expressions to attribute tags for an XML document. 
    * E.g., an expression like "div[@n = '1']" becomes "div n='1'".
@@ -54,6 +50,18 @@ abstract class XmlFormatter {
 
 
 
+
+  /** Removes all filter expressions from an XPath String.
+   * @param xpStr An XPath expression, as a String, from which 
+   * to remove all filter expressions.
+   * @returns An XPath String with no filter expressions.
+   */
+  static String stripFilters(String xpStr) {
+    def emptyStr = ""
+    return xpStr.replaceAll(/\[[^\]]+\]/, emptyStr)
+  }
+
+  
   /** Indexes which elements in the hierarchy of an XPath are
    * citation templates.
    * @param citationTemplate The XPath template to examine.
@@ -76,22 +84,14 @@ abstract class XmlFormatter {
     return citationIndexes
   }
 
-
-
-
-
-  
-
-  
-
   /**
-   * Find the deepest (right-most) level at which two XPath statements differ
-   * in their values for a citation scheme modelled in an XPath template.
-   * The two XPaths must be of the same depth.  A value of 0 means
-   * the two XPaths have identical citation values.
-   *
-   * E.g. XPaths for these citation values would result in:
-   *      XPath for 1     XPath for 2     Result
+   * Finds a 1-origin count of the deepest citation level at which two XPath statements
+   * differ in their values for a citation scheme modelled in an XPath template.
+   * The resulting value can then be used to trim wrapping XML markup to appropriate
+   * depth to create well-formed XML. The two XPaths must be of the same depth.  
+   * A value of 0 means the two XPaths have identical citation values.
+   * Examples: XPaths corresponding to these citations would result in:
+   *       citation 1     citation 2      result
    *      '1.1.1.1.5' and '1.1.1.1.5' --> 0
    *      '1.1.1.2.1' and '1.1.1.1.1' --> 4
    *      '1.1.1.1.1' and '1.1.2.1.1' --> 3
@@ -104,50 +104,56 @@ abstract class XmlFormatter {
    * level where they differ.
    * @throws Exception if two XPaths have different number of levels.
    */
-  static Integer levelDiff ( String xp1, String xp2, String xpTemplate)
+  static Integer findDifferingCitationLevel ( String xp1, String xp2, String xpTemplate)
     throws Exception {
       def pathParts1 = xp1.split(/\//)
       def pathParts2 = xp2.split(/\//)
-
       if (pathParts1.size() != pathParts2.size()){
-	throw new Exception("XmlFormatter:levelDiff: xpaths not same depth ${xp1} and ${xp2}")
+	throw new Exception("XmlFormatter:findDifferingCitationLevel: xpaths not same depth ${xp1} and ${xp2}")
       }
+      Integer differingLevel = 0
 
-
-      String temp1 = ""
-      String temp2 = ""
-      Integer counter
-      def retVal = 0
-      
-      /*      
-      def citeIndex = citationIndices(xpTemplate)
-      Integer howMany = citeIndex.size()
-      Integer lastIndex = citeIndex[howMany - 1].toInteger()
+      // Index of elements containing citation values:
+      ArrayList citeIndex = citationIndices(xpTemplate)
       Integer firstIndex = citeIndex[0].toInteger()
-      lastIndex--
-      firstIndex--
-      counter = 0
-      for (i in firstIndex .. lastIndex){
+      Integer lastIndex = citeIndex[citeIndex.size() - 1].toInteger()
+
+      Integer counter = 0
+      for (i in firstIndex .. lastIndex) {
 	if (pathParts1[i] != pathParts2[i]){
-	  retVal = counter
+	  differingLevel = counter
 	  break
 	}
-	counter++
-	  }
-      if (counter > lastIndex){ retVal = 0 }
+	counter++;
+	if (i == lastIndex) {
+	  // then they matched all the way to the end,
+	  // so are identical:
+	  differingLevel = -1
+	}
       }
-      return retVal
-      */
+      // save 0 value for identical match, and
+      // report level as 1-origin array:
+      return differingLevel + 1
     }
 
 
 
-
-   String trimAncestors(String xpAncestor, String xpt, Integer limit) {
+  /**
+   * Converts an XPath expression for the ancestors of a node
+   * to the opening XML markup of that node in its XML serialization
+   * down to a given number of citation levels defined in an
+   * XPath template.
+   * @param xpAncestor XPath String for a citable node of a document.
+   * @param xpTemplate Citation template for this document.
+   * @param limit Number of citation levels to include.
+   * @returns A containing XML string.
+   */
+  String trimAncestors(String xpAncestor, String xpTemplate, Integer limit) {
     StringBuffer formatted = new StringBuffer()
     def pathParts = xpAncestor.split(/\//)
-    def citeIndex = citationIndices(xpt) 
-    def limitIndex = citeIndex[limit-1] //  
+    ArrayList citeIndex = citationIndices(xpTemplate) 
+    Integer limitIndex = citeIndex[limit-1]
+    
     def pathMax = citeIndex[citeIndex.size() - 2]
     for (i in pathMax .. limitIndex) {
       formatted.insert(0,"<" + filtersToAttrs(pathParts[i]) + ">")
@@ -155,14 +161,20 @@ abstract class XmlFormatter {
     return formatted.toString()
   }
 
+
+
+
+
   
   
-  String trimClose(String xpAncestor, String xpt, Integer limit) {
+  String trimClose(String xpAncestor, String xpTemplate, Integer limit) {
     if (limit < 1) { limit = 1 }
-    StringBuffer formatted = new StringBuffer()
-    def pathParts = xpt.split(/\//)
-    def citeIndex = citationIndices(xpt)
-    if (limit >= citeIndex.size()){ limit = (citeIndex.size() - 1) }
+    StringBuilder formatted = new StringBuilder()
+    ArrayList pathParts = xpTemplate.split(/\//)
+    ArrayList citeIndex = citationIndices(xpTemplate)
+    if (limit >= citeIndex.size()) {
+      limit = (citeIndex.size() - 1)
+    }
     def limitIndex = citeIndex[limit-1]
     def pathMax = citeIndex[citeIndex.size() - 2]
     for (i in pathMax .. limitIndex) {
@@ -279,16 +291,5 @@ abstract class XmlFormatter {
     return formatted.toString()
   }
 
-
-
-  /** Removes all filter expressions from an XPath String.
-   * @param xpStr An XPath expression, as a String, from which 
-   * to remove all filter expressions.
-   * @returns An XPath String with no filter expressions.
-   */
-  String stripFilters(String xpStr) {
-    def emptyStr = ""
-    return xpStr.replaceAll(/\[[^\]]+\]/, emptyStr)
-  }
 
 }

@@ -23,4 +23,9 @@ class TestFilterAttrs extends GroovyTestCase {
     assert   XmlFormatter.filtersToAttrs(filterExpr) == expectedAttrs
   }
 
+  @Test void testStripFilters() {
+    String filterExpr = "div[@n = '1' and @type = 'book']"
+    assert XmlFormatter.stripFilters(filterExpr) == "div"
+  }
+
 }
