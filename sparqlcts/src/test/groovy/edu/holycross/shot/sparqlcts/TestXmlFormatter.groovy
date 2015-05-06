@@ -17,6 +17,18 @@ class TestXmlFormatter extends GroovyTestCase {
     assert  XmlFormatter.openAncestors(openXPath) == expectedXml
   }
 
+
+
+  @Test
+  void testClose() {
+    String openXPath = "/tei:TEI/tei:text/tei:body/tei:div[@n = '1']"
+    String expectedXml = "</tei:div></tei:body></tei:text></tei:TEI>"
+    // conversion of XPath -> XML works:
+    assert  XmlFormatter.closeAncestors(openXPath) == expectedXml
+  }
+
+
+  
   @Test
   void testCitationIndexing() {
     String xpTemplate = "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']"

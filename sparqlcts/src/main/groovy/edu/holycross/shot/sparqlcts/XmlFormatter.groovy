@@ -27,9 +27,31 @@ abstract class XmlFormatter {
     }
     return formatted.toString()
   }
+
+
+  /**
+   * Converts an XPath expression for the ancestors of a node
+   * to the closing XML markup of that node in its XML serialization.
+   * @param ancestorPath An XPath expression representing the full,
+   * explicit path of the nodeset's ancestors.
+   * @returns A String with the XML of the closing element markup
+   * of ancestor elements given in ancestorPath.
+   */
+  static String closeAncestors (String ancestorPath) {
+    StringBuilder formatted = new StringBuilder()
+    def pathParts = ancestorPath.split(/\//)
+    pathParts.reverse().each {
+      if (it != "") {formatted.append("</" + stripFilters(it) + ">")}
+    }
+    return formatted.toString()
+  }
+
+
   
   /**
-   * Converts XPath filter expressions to attribute tags for an XML document. 
+   * Converts XPath filter expressions to attribu    //println "AP: ${ancestorPath}"
+
+te tags for an XML document. 
    * E.g., an expression like "div[@n = '1']" becomes "div n='1'".
    * @param xpStr The XPath expression to convert.
    * @returns A String with XML corresponding to the given XPath expression.
@@ -46,9 +68,6 @@ abstract class XmlFormatter {
     }
     return returnStr
   }	
-    
-
-
 
 
   /** Removes all filter expressions from an XPath String.
@@ -202,6 +221,8 @@ abstract class XmlFormatter {
    * @throws Exception if limit is greater than the number of levels
    * of the citation scheme, or if limit is negative.
    */
+
+  /*
   String openAncestors (String ancestorPath, String citationTemplate, int limit) 
   throws Exception {
     StringBuffer formatted = new StringBuffer()
@@ -237,25 +258,14 @@ abstract class XmlFormatter {
   }
 
 
-
-  /**
-   * @param ancestorPath An XPath expression representing the full,
-   * explicit path of the nodeset's ancestors.
-   * @returns A String with the XML of the closing element markup
-   * of ancestor elements given in ancestorPath
-   */
-  String closeAncestors (String ancestorPath) {
-    StringBuffer formatted = new StringBuffer()
-    //println "AP: ${ancestorPath}"
-
-    def pathParts = ancestorPath.split(/\//)
-    pathParts.reverse().each {
-      if (it != "") {formatted.append("</" + stripFilters(it) + ">")}
-    }
-    return formatted.toString()
-  }
+  */
 
 
+
+  
+
+
+  /*
   String closeAncestors (String ancestorPath, String citationTemplate, int limit) 
   throws Exception {
     StringBuffer formatted = new StringBuffer()
@@ -291,5 +301,6 @@ abstract class XmlFormatter {
     return formatted.toString()
   }
 
-
+  */
+  
 }
