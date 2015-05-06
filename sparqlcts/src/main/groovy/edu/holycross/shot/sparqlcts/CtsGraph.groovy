@@ -126,7 +126,17 @@ class CtsGraph {
 
     String label  = getLabel(leafNode)
     String txtContent = getLeafNodeText(leafNode)
-    return null
+
+    CtsUrn prev = null
+    CtsUrn nxt = null
+    Ohco2Node ond = new Ohco2Node(leafNode, label, prev, nxt, txtContent)
+    if (ond == null) {
+      System.err.println "COULD NOT MAKE Ohco2Node!"
+      System.err.println "${leafNode} (${label}): ${txtContent}"
+    } else {
+      System.err.println "Made node " + ond.toString()
+    }
+    return  ond
   }
 
 
@@ -140,15 +150,11 @@ class CtsGraph {
     JsonSlurper slurper = new groovy.json.JsonSlurper()
     def parsedReply = slurper.parseText(reply)
 
-    
+    String txtNode = ""
     parsedReply.results.bindings.eachWithIndex { bndng, i ->
-      println "Here's results of query for leaf text: ${i}: ${bndng}"
-      println "ANCESTOR converts to : "  + XmlFormatter.openAncestors(bndng.anc.value)
-      println "TEXT: "  + bndng.txt.value
-      println "XPATH TEMPLATE: " + bndng.xpt.value
-
-      
+      txtNode =  XmlFormatter.openAncestors(bndng.anc.value) + bndng.txt.value + XmlFormatter.closeAncestors(bndng.anc.value)
     }
+    return txtNode
   }
 
 
@@ -190,6 +196,11 @@ class CtsGraph {
     }
     break
 
+    case "work":
+    return "WORK LABEL"
+    break
+    
+    
     default:
     System.err.println "LABEL NOT IMPLEMENTED FOR ${urn.labelForWorkLevel()}"
     break

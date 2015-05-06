@@ -20,11 +20,8 @@ class TestObjNodeIntegr extends GroovyTestCase {
 
   @Test
   void testLeafObject() {
-    if (graph.getLeafNodeObject(notionalUrn) ) {
-      println "for ${notionalUrn}, null value"
-    } else {
-      println "for ${notionalUrn}, got object!"
-    }
+    Ohco2Node onode = graph.getLeafNodeObject(notionalUrn)
+    println "for ${notionalUrn}, got ${onode}"
   }
   
 }
