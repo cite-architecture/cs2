@@ -143,9 +143,11 @@ class CtsGraph {
     
     parsedReply.results.bindings.eachWithIndex { bndng, i ->
       println "Here's results of query for leaf text: ${i}: ${bndng}"
-      println "ANCESTOR: "  + bndng.anc.value
+      println "ANCESTOR converts to : "  + XmlFormatter.openAncestors(bndng.anc.value)
       println "TEXT: "  + bndng.txt.value
       println "XPATH TEMPLATE: " + bndng.xpt.value
+
+      
     }
   }
 

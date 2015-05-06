@@ -30,6 +30,7 @@ abstract class XmlFormatter {
   
 
 
+  
 
   /**
    * Converts XPath filter expressions to attribute tags for an XML document. 
@@ -52,58 +53,109 @@ abstract class XmlFormatter {
     
 
 
+
+  /** Indexes which elements in the hierarchy of an XPath are
+   * citation templates.
+   * @param citationTemplate The XPath template to examine.
+   * @returns A list of 1-origin indices into the XPath's
+   * hierarchy of document elements.
+   */
+  static ArrayList citationIndices(String citationTemplate) {
+    def templateParts = citationTemplate.split(/\//)
+    def citationIndexes = []
+    def max = templateParts.size() - 1
+    def startCounting = false
+    for (i in 1..max) {
+      if (templateParts[i] =~ /\?/) {
+	startCounting = true
+      }
+      if (startCounting){ 
+	citationIndexes.add(i)
+      }
+    }
+    return citationIndexes
+  }
+
+
+
+
+
+  
+
   
 
   /**
-   * Given two ancestor xpath statements, report on whether, and report 
-   * the shallowest (furthest left) level at which they are the same.
-   * e.g. 
+   * Find the deepest (right-most) level at which two XPath statements differ
+   * in their values for a citation scheme modelled in an XPath template.
+   * The two XPaths must be of the same depth.  A value of 0 means
+   * the two XPaths have identical citation values.
+   *
+   * E.g. XPaths for these citation values would result in:
+   *      XPath for 1     XPath for 2     Result
    *      '1.1.1.1.5' and '1.1.1.1.5' --> 0
    *      '1.1.1.2.1' and '1.1.1.1.1' --> 4
    *      '1.1.1.1.1' and '1.1.2.1.1' --> 3
    *      '1.1.1.1.1' and '1.2.1.1.1' --> 2
-   *	   An error (xpaths of different length, for example, returns -1
-   * @param anc1 The first Ancestor Xpath
-   * @param anc2 The second Ancestor Xpath
-   * @param xp The XPath template
-   * @returns An integer, -1 for error, 0 for perfect match, otherwise an
-   * integer indicating the level of the shallowest point of difference.
+   *
+   * @param xp1 The first XPath to compare.
+   * @param xp2 The second XPath to compare.
+   * @param xpTemplate An XPath template
+   * @returns 0 for identical paths, otherwise an integer indicating the 
+   * level where they differ.
+   * @throws Exception if two XPaths have different number of levels.
    */
-  Integer levelDiff ( String anc1, String anc2, String xp)
+  static Integer levelDiff ( String xp1, String xp2, String xpTemplate)
     throws Exception {
-      try {
-	def pathParts1 = anc1.split(/\//)
-	def pathParts2 = anc2.split(/\//)
-	String temp1 = ""
-	String temp2 = ""
-	Integer counter
-	def retVal = 0
-	if (pathParts1.size() != pathParts2.size()){
-	  retVal =  -1;
-	} else {
-	  def citeIndex = citationIndices(xp)
-	  Integer howMany = citeIndex.size()
-	  Integer lastIndex = citeIndex[howMany - 1].toInteger()
-	  Integer firstIndex = citeIndex[0].toInteger()
-	  lastIndex--
-	  firstIndex--
-	  counter = 0
-	  for (i in firstIndex .. lastIndex){
-	    if (pathParts1[i] != pathParts2[i]){
-	      retVal = counter
-	      break
-	    }
-	    counter++
-	      }
-	  if (counter > lastIndex){ retVal = 0 }
-	}
-	return retVal
-      } catch (Exception e){
-	throw new Exception("XmlFormatter Exception: levelDiff ${e}")
+      def pathParts1 = xp1.split(/\//)
+      def pathParts2 = xp2.split(/\//)
+
+      if (pathParts1.size() != pathParts2.size()){
+	throw new Exception("XmlFormatter:levelDiff: xpaths not same depth ${xp1} and ${xp2}")
       }
+
+
+      String temp1 = ""
+      String temp2 = ""
+      Integer counter
+      def retVal = 0
+      
+      /*      
+      def citeIndex = citationIndices(xpTemplate)
+      Integer howMany = citeIndex.size()
+      Integer lastIndex = citeIndex[howMany - 1].toInteger()
+      Integer firstIndex = citeIndex[0].toInteger()
+      lastIndex--
+      firstIndex--
+      counter = 0
+      for (i in firstIndex .. lastIndex){
+	if (pathParts1[i] != pathParts2[i]){
+	  retVal = counter
+	  break
+	}
+	counter++
+	  }
+      if (counter > lastIndex){ retVal = 0 }
+      }
+      return retVal
+      */
     }
 
 
+
+
+   String trimAncestors(String xpAncestor, String xpt, Integer limit) {
+    StringBuffer formatted = new StringBuffer()
+    def pathParts = xpAncestor.split(/\//)
+    def citeIndex = citationIndices(xpt) 
+    def limitIndex = citeIndex[limit-1] //  
+    def pathMax = citeIndex[citeIndex.size() - 2]
+    for (i in pathMax .. limitIndex) {
+      formatted.insert(0,"<" + filtersToAttrs(pathParts[i]) + ">")
+    }
+    return formatted.toString()
+  }
+
+  
   
   String trimClose(String xpAncestor, String xpt, Integer limit) {
     if (limit < 1) { limit = 1 }
@@ -119,45 +171,8 @@ abstract class XmlFormatter {
     return formatted.toString()
   }
   
-  String trimAncestors(String xpAncestor, String xpt, Integer limit) {
-    StringBuffer formatted = new StringBuffer()
-    def pathParts = xpAncestor.split(/\//)
-    def citeIndex = citationIndices(xpt) 
-    def limitIndex = citeIndex[limit-1] //  
-    def pathMax = citeIndex[citeIndex.size() - 2]
-    for (i in pathMax .. limitIndex) {
-      formatted.insert(0,"<" + filtersToAttrs(pathParts[i]) + ">")
-    }
-    return formatted.toString()
-  }
 
 
-
-  /** Indexes which elements in the hierarchy of an XPath are
-   * citation templates.
-   * @param citationTemplate The XPath template to examine.
-   * @returns A list of 1-origin indices into the XPath's
-   * hierarchy of document elements.
-   */
-  ArrayList citationIndices(String citationTemplate) {
-    def templateParts = citationTemplate.split(/\//)
-    def citationIndexes = []
-    def max = templateParts.size() - 1
-    // cwb: Perhaps we only skip the initial run of parts-without-citation values?
-    //      That is, skip over the TEI/text/body/ part, but once you have _any_ citation-element,
-    //      Grab all the rest. This seems to work better.
-    def startCounting = false
-    for (i in 1..max) {
-      
-      if (templateParts[i] =~ /\?/) {
-	startCounting = true
-      }
-      if (startCounting){ 
-	citationIndexes.add(i)
-      }
-    }
-    return citationIndexes
-  }
 
 
   /** Converts an XPath expression for the ancestors of a node
