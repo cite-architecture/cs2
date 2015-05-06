@@ -21,8 +21,9 @@ class CtsGraph {
   }
   
   /**  Determines whether or not a CTS URN refers to a leaf
-   * citation node.  Consults the SPARQL endpoint
-   * @returns Boolean true if urn refers to a leaf citation node.
+   * citation node by consulting the SPARQL endpoint to see
+   * if the node has text content or not.
+   * @returns True if urn refers to a leaf citation node.
    */
   boolean isLeafNode(CtsUrn requestUrn) {
     String replyText = ""
@@ -34,8 +35,6 @@ class CtsGraph {
     replyText = parsedReply.boolean
     return (replyText == "true")
   }
-
-
 
   /**  Constructs a version-level CTS URN for a
    * given URN.  If the request URN already has a version,
@@ -63,7 +62,6 @@ class CtsGraph {
 	  System.err.println ("CtsGraph:resolveVersion: error: ${e}")
 	  throw e
 	}
-
 	
       } else {
 	throw new Exception("CtsGraph: resolveVersion: no version found for urn ${urn}")
@@ -110,4 +108,88 @@ class CtsGraph {
     }
   }
 
+
+  /** Constructs an Ohco2Node object for a node 
+   * identified by CtsUrn.
+   * @param leafNode CtsUrn of the node.
+   * @returns An Ohco2Node object.
+   * @throws Exception if leafNode is not a single leaf node.
+   */
+  Ohco2Node getLeafNodeObject(CtsUrn leafNode)
+  throws Exception {
+    if (leafNode.isRange()) {
+      throw new Exception("CtsGraph:getLeafNodeObject: ${leafNode} is a range reference.")
+    }
+    if (! isLeafNode(leafNode) ) {
+      throw new Exception("CtsGraph:getLeafNodeObject: ${leafNode} is not a leaf node.")
+    }
+
+    String label  = getLabel(leafNode)
+    String txtContent = getLeafNodeText(leafNode)
+    return null
+  }
+
+
+  // Applicable only to leaf node...
+  // useful in constructing leafnode object
+  String getLeafNodeText(CtsUrn urnSubmitted) {
+
+    CtsUrn urn = resolveVersion(urnSubmitted)
+    String q = QueryBuilder.getLeafNodeTextQuery(urn, 0)
+    String reply = sparql.getSparqlReply("application/json", q)
+    JsonSlurper slurper = new groovy.json.JsonSlurper()
+    def parsedReply = slurper.parseText(reply)
+
+    
+    parsedReply.results.bindings.eachWithIndex { bndng, i ->
+      println "Here's results of query for leaf text: ${i}: ${bndng}"
+    }
+  }
+
+
+  
+  String getNodeText(CtsUrn urn, Integer context, boolean openXml, boolean closeXml) {
+  
+    String currentWrapper = ""
+    
+    String q = QueryBuilder.getLeafNodeTextQuery(urn, context)
+    String reply = sparql.getSparqlReply("application/json", q)
+    JsonSlurper slurper = new groovy.json.JsonSlurper()
+    def parsedReply = slurper.parseText(reply)
+    parsedReply.results.bindings.eachWithIndex { bndng, i ->
+      println "${i}: ${bndng}"
+    }
+
+    return ""
+  }
+
+
+  
+  String getLabel(CtsUrn urn)
+  throws Exception {
+    
+    switch(urn.labelForWorkLevel()) {
+    case "version":
+    String vQuery = QueryBuilder.getVersionDescrQuery(urn)
+    String reply = sparql.getSparqlReply("application/json", vQuery)
+
+    def slurper = new groovy.json.JsonSlurper()
+    def parsedReply = slurper.parseText(reply)
+
+    def bndng = parsedReply.results.bindings[0]
+    if (bndng) {
+      return "${bndng.gname?.value},${bndng.title?.value},${bndng.lab?.value}"
+    } else {
+      System.err.println "Failed on query:\n ${vQuery}\n"
+      throw new Exception("CtsGraph:getLabel: no results from query on ${urn}.")
+    }
+    break
+
+    default:
+    System.err.println "LABEL NOT IMPLEMENTED FOR ${urn.labelForWorkLevel()}"
+    break
+    }
+    return ""
+  }
+  
 }

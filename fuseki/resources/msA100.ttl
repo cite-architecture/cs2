@@ -17,28 +17,28 @@
 
 <urn:cts:greekLit:tlg0012.tlg001.msA:> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001:> .
 <urn:cts:greekLit:tlg0012.tlg001:> cts:possesses <urn:cts:greekLit:tlg0012.tlg001.msA:> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:> dcterms:title " Venetus A " .
+<urn:cts:greekLit:tlg0012.tlg001.msA:> dcterms:title "Venetus A" .
 
 <urn:cts:greekLit:tlg0012.tlg001.msA:> rdf:type cts:Edition .
 
-<urn:cts:greekLit:tlg0012.tlg001.msA:>  rdf:label " Homeric epic,  Iliad : ( Venetus A )" .
+<urn:cts:greekLit:tlg0012.tlg001.msA:>  rdf:label "Homeric epic,  Iliad : ( Venetus A )" .
 
 <urn:cts:greekLit:tlg0012.tlg001:> rdf:type cts:Work .
-<urn:cts:greekLit:tlg0012.tlg001:> dcterms:title " Iliad " .
+<urn:cts:greekLit:tlg0012.tlg001:> dcterms:title "Iliad" .
 <urn:cts:greekLit:tlg0012.tlg001:> cts:belongsTo <urn:cts:greekLit:tlg0012:> .
 <urn:cts:greekLit:tlg0012:> cts:possesses <urn:cts:greekLit:tlg0012.tlg001:> .
 
 <urn:cts:greekLit:tlg0012.tlg001:> cts:lang "grc" .
 
 
-<urn:cts:greekLit:tlg0012.tlg001:> rdf:label " Homeric epic,  Iliad :" .
+<urn:cts:greekLit:tlg0012.tlg001:> rdf:label "Homeric epic, Iliad" .
 
 <urn:cts:greekLit:tlg0012:> cts:belongsTo <urn:cts:greekLit> .
 <urn:cts:greekLit> cts:possesses <urn:cts:greekLit:tlg0012:> .
 <urn:cts:greekLit:tlg0012:> rdf:type cts:TextGroup .
-<urn:cts:greekLit:tlg0012:> dcterms:title " Homeric epic" .
+<urn:cts:greekLit:tlg0012:> dcterms:title "Homeric epic" .
 
-<urn:cts:greekLit:tlg0012:> rdf:label " Homeric epic" .
+<urn:cts:greekLit:tlg0012:> rdf:label "Homeric epic" .
 
 
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> rdf:label " Homeric epic,  Iliad  ( Venetus A ): 1.1 (urn:cts:greekLit:tlg0012.tlg001.msA:1.1)" .
