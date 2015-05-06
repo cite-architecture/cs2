@@ -1,0 +1,34 @@
+# Dependencies
+#markdown:         redcarpet
+markdown:         kramdown
+pygments:         true
+
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            Citeservlet 2
+tagline:          "CITE services"
+description:      ''
+baseurl: '/cs2/'
+
+
+author:
+  name:           'Neel Smith'
+ 
+
+paginate:         5
+
+github:
+  repo:           https://github.com/neelsmith/cs2
+
+version:          0.12.0
+
+links:
+  - title: Github project
+    url: https://github.com/neelsmith/cs2
+    external: true
+  - title: NS on github
+    url: http://neelsmith.github.io/
+    external: true
+   

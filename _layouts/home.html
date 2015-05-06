@@ -1,0 +1,48 @@
+---
+layout: default
+---
+
+<div>
+
+<img src="http://neelsmith.github.io/ptolemy/imgs/projection2.png" alt="Ptolemy's second projection"/>
+<p style="font-size:80%;text-align:right;">Image: Ptolemy's second projection<sup id="fnref:credit">
+<a href="#fn:credit" class="footnote">1</a></sup>
+</p>
+</div>
+
+
+
+<div class="posts">
+
+
+
+<h3>News</h3>
+<ul>
+  {% for post in site.posts limit: 1 %}
+  <li>
+  <span class="datelabel">{{ post.date | date: "%B %d, %Y" }}:</span>
+      <a href="{{ site.baseurl  }}{{ post.url }}">{{ post.title }}</a>.
+      {{ post.content | strip_html | strip_newlines | truncate: 100 }}
+    </li>
+  {% endfor %}
+</ul>
+
+<a href="{{ site.baseurl  }}/news">Older news</a>
+</div>
+
+
+
+{{ content }}
+
+
+<hr/>
+
+<div class="footnotes">
+<ol>
+<li id="fn:credit">
+<p>Image of Ptolemy's second projection using data from the Ptolemy Machine, by Rainer Simon (<a href ="https://github.com/rsimon/ptolemaic-projections">https://github.com/rsimon/ptolemaic-projections</a>).
+<a href="#fnref:credit" class="reversefootnote">↩</a>
+</p>
+</li>
+</ol>
+</div>
