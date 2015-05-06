@@ -11,8 +11,10 @@ A servlet including implementations of the following suite of services:
 - CITE Graph Service
 
 
+
 ## Technical details ##
 
+- git repository <https://github.com/neelsmith/cs2> with public issue tracker <https://github.com/neelsmith/cs2/issues>.
 - gradle build system with subprojects for each individual CITE service, and for the coordinating servlet.  All configuration of subprojects is managed through the project's root build file.
 - each subproject has distinct unit tests and integration tests.
 - runs integration tests against a SPARQL endpoint with test data.  The fuseki endpoint is automatically booted by gretty.
