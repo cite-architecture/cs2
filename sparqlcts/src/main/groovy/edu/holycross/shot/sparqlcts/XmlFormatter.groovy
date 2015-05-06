@@ -49,9 +49,7 @@ abstract class XmlFormatter {
 
   
   /**
-   * Converts XPath filter expressions to attribu    //println "AP: ${ancestorPath}"
-
-te tags for an XML document. 
+   * Converts XPath filter expressions to attribute tags for an XML document. 
    * E.g., an expression like "div[@n = '1']" becomes "div n='1'".
    * @param xpStr The XPath expression to convert.
    * @returns A String with XML corresponding to the given XPath expression.
@@ -165,142 +163,78 @@ te tags for an XML document.
    * @param xpAncestor XPath String for a citable node of a document.
    * @param xpTemplate Citation template for this document.
    * @param limit Number of citation levels to include.
-   * @returns A containing XML string.
+   * @returns An opening XML string for well-formed containing markup.
    */
-  String trimAncestors(String xpAncestor, String xpTemplate, Integer limit) {
-    StringBuffer formatted = new StringBuffer()
-    def pathParts = xpAncestor.split(/\//)
-    ArrayList citeIndex = citationIndices(xpTemplate) 
-    Integer limitIndex = citeIndex[limit-1]
-    
-    def pathMax = citeIndex[citeIndex.size() - 2]
-    for (i in pathMax .. limitIndex) {
-      formatted.insert(0,"<" + filtersToAttrs(pathParts[i]) + ">")
+  static String trimOpen(String xpAncestor, String xpTemplate, Integer limit) {
+    ArrayList pathParts = xpAncestor.split(/\//)
+    ArrayList templateParts = xpTemplate.split(/\//)
+    if (pathParts.size() != templateParts.size()){
+	throw new Exception("XmlFormatter:trimClose: xpath ${xpAncestor} not same depth as template ${xpTemplate}")
     }
-    return formatted.toString()
-  }
-
-
-
-
-
-  
-  
-  String trimClose(String xpAncestor, String xpTemplate, Integer limit) {
-    if (limit < 1) { limit = 1 }
+    if (limit < 1) {
+      throw new Exception("XmlFormatter:trimClose: must include at least one citation level (limit requested was ${limit}")
+    }
+    
     StringBuilder formatted = new StringBuilder()
-    ArrayList pathParts = xpTemplate.split(/\//)
-    ArrayList citeIndex = citationIndices(xpTemplate)
-    if (limit >= citeIndex.size()) {
-      limit = (citeIndex.size() - 1)
+    ArrayList citationElements = citationIndices(xpTemplate)
+    if (limit > citationElements.size()) {
+      throw new Exception("XmlFormatter:trimClose: ${limit} levels requested, but only ${citationElements.size()} citation elements in this scheme.")
     }
-    def limitIndex = citeIndex[limit-1]
-    def pathMax = citeIndex[citeIndex.size() - 2]
-    for (i in pathMax .. limitIndex) {
-      formatted.append("</" + stripFilters(pathParts[i]) + ">")
+
+    // limit - 1 because values of citationElements are 1-origin,
+    // but we're working with 0-origin arrays
+    Integer firstIndex = citationElements[limit - 1].toInteger()
+    for (i in 1 .. firstIndex)  {
+      formatted.append("<" + filtersToAttrs(pathParts[i]) + ">")
     }
     return formatted.toString()
   }
+
+
+
+
+
   
-
-
-
-
-  /** Converts an XPath expression for the ancestors of a node
-   * to the opening XML markup of that node in the XML serialization of 
-   * a citable node of text, limited to a specified level of the
-   * citation hierarchy.
-   * @param ancestorPath A String specifying an XPath with citation values 
-   * for a citable node of a document.
-   * @param citationTemplate An XPath String with placeholders for citation 
-   * values marked by question marks.
-   * @returns A String with the XML of the opening element markup
-   * of ancestor elements given in xpTemplate.
-   * @limit Number of levels of the citation scheme that the resulting 
-   * XML should be limited to.
-   * @throws Exception if limit is greater than the number of levels
-   * of the citation scheme, or if limit is negative.
+  /**
+   * Converts an XPath expression for the ancestors of a node
+   * to the closing XML markup of that node in its XML serialization,
+   * down to a given number of citation levels defined in an
+   * XPath template.
+   * @param xpAncestor XPath String for a citable node of a document.
+   * @param xpTemplate Citation template for this document.
+   * @param limit Number of citation levels to include.
+   * @returns A closing XML string for well-formed containing markup.
    */
+  static String trimClose(String xpAncestor, String xpTemplate, Integer limit) {
+    ArrayList pathParts = xpAncestor.split(/\//)
+    ArrayList templateParts = xpTemplate.split(/\//)
+    if (pathParts.size() != templateParts.size()){
+	throw new Exception("XmlFormatter:trimClose: xpath ${xpAncestor} not same depth as template ${xpTemplate}")
+    }
+    if (limit < 1) {
+      throw new Exception("XmlFormatter:trimClose: must include at least one citation level (limit requested was ${limit}")
+    }
 
-  /*
-  String openAncestors (String ancestorPath, String citationTemplate, int limit) 
-  throws Exception {
-    StringBuffer formatted = new StringBuffer()
-    def citationIndexes = citationIndices(citationTemplate)
-    // validate limit parameter:
-    if (limit == citationIndexes.size() ) {
-      // valid request:  but needs no wrapper, just the
-      // citation node
-      return "" 
+    
+    StringBuilder formatted = new StringBuilder()
+    ArrayList citationElements = citationIndices(xpTemplate)
 
-    } else if (limit == 0) {
-      // use whole ancestor path:
-      return openAncestors(ancestorPath)
-
-    } else  if (limit > citationIndexes.size() -1) {
-      // invalid: requested limit > number of citation elements!
-      throw new Exception("XmlFormatter exception:  citation template has smaller size (${citationIndexes.size()}) than requested limit (${limit})")
-      
-    } else if (limit < 0) {
-      throw new Exception("XmlFormatter exception:  requested limit (${limit}) cannot be negative.")
+    if (limit > citationElements.size()) {
+      throw new Exception("XmlFormatter:trimClose: ${limit} levels requested, but only ${citationElements.size()} citation elements in this scheme.")
     }
     
-    def limitIndex = citationIndexes[limit-1]
-    // The citation template includes the leaf node, which we want to skip,
-    // so the maximum index of the last element to look it will *not*
-    // be size() - 1, but size() - 2
-    def pathMax = citationIndexes[citationIndexes.size() - 2]
-    def pathParts = ancestorPath.split(/\//)
-    for (i in pathMax .. limitIndex) {
-      formatted.insert(0, "<" + filtersToAttrs(pathParts[i]) + ">")
+
+
+    // limit - 1 because values of citationElements are 1-origin,
+    // but we're working with 0-origin arrays
+    Integer firstIndex = citationElements[limit - 1].toInteger()
+    println "Limit " + limit + " is at 0-origin element " + firstIndex
+    
+    for (i in firstIndex .. 1 )  {
+      println "Element ${i} " + templateParts[i]
+      formatted.append("</" + stripFilters(templateParts[i]) + ">")
     }
     return formatted.toString()
   }
-
-
-  */
-
-
-
-  
-
-
-  /*
-  String closeAncestors (String ancestorPath, String citationTemplate, int limit) 
-  throws Exception {
-    StringBuffer formatted = new StringBuffer()
-    def citationIndexes = citationIndices(citationTemplate)
-    // validate limit parameter:
-    if (limit == citationIndexes.size() ) {
-      // valid request:  but needs no wrapper, just the
-      // citation node
-      return "" 
-      
-    } else if (limit == 0) {
-      // use whole ancestor path:
-      return closeAncestors(ancestorPath)
-
-    } else  if (limit > citationIndexes.size() -1) {
-      // invalid: requested limit > number of citation elements!
-      throw new Exception("XmlFormatter exception:  citation template has smaller size (${citationIndexes.size()}) than requested limit (${limit})")
-
-    } else if (limit < 0) {
-      throw new Exception("XmlFormatter exception:  requested limit (${limit}) cannot be negative.")
-    }
-
-    def limitIndex = citationIndexes[limit-1]
-    // The citation template includes the leaf node, which we want to skip,
-    // so the maximum index of the last element to look it will *not*
-    // be size() - 1, but size() - 2
-    def pathMax = citationIndexes[citationIndexes.size() - 2]
-    def pathParts = ancestorPath.split(/\//)
-    for (i in pathMax..limitIndex) {
-      formatted.append( "</" + stripFilters(pathParts[i]) + ">")
-    }
-
-    return formatted.toString()
-  }
-
-  */
   
 }
