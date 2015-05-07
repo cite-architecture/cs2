@@ -16,6 +16,29 @@ abstract class QueryBuilder {
         }
      """
   }
+
+
+
+
+  /** Builds SPARQL query string to find
+   * URN of leaf node preceding the 
+   * requested leaf node.
+   * @param urn URN at leaf node level.
+   * @returns A complete SPARQL query string.
+   */
+  static String getPrevUrnQuery(CtsUrn urn) {
+    String workUrnStr = urn.getUrnWithoutPassage()
+    return """
+    ${CtsDefinitions.prefixPhrase}
+    SELECT ?prevUrn ?prevSeq WHERE {
+    <${urn}> cts:prev ?prevUrn .
+    ?prevUrn cts:hasSequence ?prevSeq .
+    }
+    """
+  }
+
+
+
   
 
   /** Builds SPARQL query strint to retrieve a 

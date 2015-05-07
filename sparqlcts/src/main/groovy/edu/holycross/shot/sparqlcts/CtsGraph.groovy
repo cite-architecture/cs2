@@ -140,6 +140,63 @@ class CtsGraph {
   }
 
 
+
+  /** Finds the previous URN preceding a given URN.
+   * If the URN is a leaf node, returns the preceeding leaf node.
+   * If the URN is a non-leaf node, returns the URN of the preceeding
+   * citation at that level of the hierarchy ?
+   * @param urn CTS URN to test.
+   * @returns The urn of the preceding citable node, as a String,
+   * or a null String ("") if there is no preceding citable node.
+   * @throws Exception if retrieved value is not a valud CtsUrn string.
+   */
+  String getPrevUrnString(CtsUrn urn) {
+    return getPrevUrn(urn).toString()
+  }
+
+  CtsUrn getPrevUrn(CtsUrn requestUrn)
+  throws Exception {
+    CtsUrn urn = null
+    if (requestUrn.isRange()) {
+	//urn = new CtsUrn("${requestUrn.getUrnWithoutPassage()}${requestUrn.getRangeBegin()}")
+    } else {
+      urn  = requestUrn
+    }
+
+    if (isLeafNode(urn)){
+      StringBuilder reply = new StringBuilder()
+      String ctsReply =  sparql.getSparqlReply("application/json", QueryBuilder.getPrevUrnQuery(urn))
+      def slurper = new groovy.json.JsonSlurper()
+      def parsedReply = slurper.parseText(ctsReply)
+      parsedReply.results.bindings.each { bndng ->
+	urn = new CtsUrn(bndng.prevUrn?.value)
+	
+      }
+
+
+      // What's all this stuff ???
+      //      replyString = reply.toString().replaceAll("::",":")
+
+    } else {
+	/*
+	Integer depthUrn = urn.getCitationDepth()
+	Integer firstSequenceOfUrn = getFirstSequence(urn)
+	String firstSeqUrn = getUrnForSequence(firstSequenceOfUrn, urn.getUrnWithoutPassage())
+	String prevLeafUrnStr= getPrevUrn(new CtsUrn(firstSeqUrn))	
+	if (prevLeafUrnStr != ""){
+	  CtsUrn prevLeafUrn = new CtsUrn(prevLeafUrnStr)
+	  //Janky temp fix which will become irrelevant with update to CITE library
+	  CtsUrn prevUrn = new CtsUrn("${prevLeafUrn.trimPassage(depthUrn).replaceAll('::',':')}")
+	  replyString = prevUrn.toString()
+	} else { replyString = "" }
+	*/
+	
+      }	
+      //      return replyString.replaceAll("::",":")
+    return urn
+  }
+
+
   // Applicable only to leaf node...
   // useful in constructing leafnode object
   String getLeafNodeText(CtsUrn urnSubmitted) {
@@ -174,38 +231,21 @@ class CtsGraph {
     return ""
   }
 
-
-  
+  // calling programs need to be careful.
+  // no rdf:labels on passages on notioanl works, for example.
   String getLabel(CtsUrn urn)
   throws Exception {
-    
-    switch(urn.labelForWorkLevel()) {
-    case "version":
-    String vQuery = QueryBuilder.getVersionDescrQuery(urn)
-    String reply = sparql.getSparqlReply("application/json", vQuery)
-
+    String labelQuery = QueryBuilder.getRdfLabel(urn)
+    String reply = sparql.getSparqlReply("application/json", labelQuery)
     def slurper = new groovy.json.JsonSlurper()
     def parsedReply = slurper.parseText(reply)
-
     def bndng = parsedReply.results.bindings[0]
     if (bndng) {
-      return "${bndng.gname?.value},${bndng.title?.value},${bndng.lab?.value}"
+      return "${bndng.label?.value}"
     } else {
-      System.err.println "Failed on query:\n ${vQuery}\n"
+      System.err.println "Failed on query:\n ${labelQuery}\n"
       throw new Exception("CtsGraph:getLabel: no results from query on ${urn}.")
     }
-    break
-
-    case "work":
-    return "WORK LABEL"
-    break
-    
-    
-    default:
-    System.err.println "LABEL NOT IMPLEMENTED FOR ${urn.labelForWorkLevel()}"
-    break
-    }
-    return ""
   }
   
 }
