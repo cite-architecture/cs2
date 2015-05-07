@@ -5,9 +5,21 @@ import edu.harvard.chs.cite.CtsUrn
 abstract class QueryBuilder {
 
 
+  /** Builds SPARQL query strint to retrieve a 
+   * rdf label fo a URN.
+   */
+  static String getRdfLabel(CtsUrn urn) {
+    return """
+        ${CtsDefinitions.prefixPhrase}
+        SELECT ?label WHERE {
+          <${urn}> rdf:label ?label .
+        }
+     """
+  }
+  
 
   /** Builds SPARQL query strint to retrieve a 
-   * description for a version-level CTS URN.
+   * strcutured description for a version-level CTS URN.
    */
   static String getVersionDescrQuery(CtsUrn psgUrn) {
     def vers = "${psgUrn.getUrnWithoutPassage()}"
