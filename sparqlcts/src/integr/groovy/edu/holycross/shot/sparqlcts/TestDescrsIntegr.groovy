@@ -21,10 +21,9 @@ class TestDescrsIntegr extends GroovyTestCase {
   @Test
   void testVersion() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1")
-    String expectedLabel = "Homeric epic, Iliad, Venetus A"
-    println "Got label of " + graph.getLabel(urn).size() + " chars"
-    println "Expected " + expectedLabel.size()
-    println "But crappy white space management is killing this."
+    String expectedLabel = "Homeric epic,  Iliad  (Venetus A): 1.1 (urn:cts:greekLit:tlg0012.tlg001.msA:1.1)"
+    String actualLabel = graph.getLabel(urn)
+    assert actualLabel == expectedLabel
   }
   
 }
