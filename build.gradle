@@ -5,6 +5,22 @@ with a test data set loaded, the other running both fuseki and the
 current build of citeservlet.
  */
 
+import org.apache.tools.ant.filters.*
+task configure {
+  description = "Generates fuseki configuration file based on current project location."
+  inputs.file "${rootProject.projectDir}/fuseki/config-template.ttl"
+  outputs.file "${rootProject.projectDir}/fuseki/fusekibase/config.ttl"
+  doLast {
+    copy {
+      from (file("${rootProject.projectDir}/fuseki")) {
+        include 'config-template.ttl'
+        rename 'config-template.ttl', 'config.ttl'
+      }
+      filter(ReplaceTokens, tokens : ["projectroot" : "${rootProject.rootDir}".toString() ] )
+      into "${rootProject.projectDir}/fuseki/fusekibase"
+    }
+  }
+}
 
 allprojects {
   apply from: "${rootProject.rootDir}/versions.gradle"
