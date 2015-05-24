@@ -11,10 +11,10 @@ import edu.harvard.chs.cite.CtsUrn
  */
 class Cts {
 
-  /** SPARQL endpoint class from citeservlet common. */
+  /** SPARQL endpoint object from citeservlet common. */
   Sparql sparql
 
-  /** Constructor requires base URL for SPARQL endpoint.
+  /** Constructor requires a citeservlet SPARQL endpoint.
    */
   Cts(Sparql sparqlService) {
     this.sparql = sparqlService

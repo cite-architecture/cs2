@@ -127,8 +127,8 @@ class CtsGraph {
     String label  = getLabel(leafNode)
     String txtContent = getLeafNodeText(leafNode)
 
-    CtsUrn prev = null
-    CtsUrn nxt = null
+    CtsUrn prev = getPrevUrn(leafNode)
+    CtsUrn nxt = getNextUrn(leafNode)
     Ohco2Node ond = new Ohco2Node(leafNode, label, prev, nxt, txtContent)
     if (ond == null) {
       System.err.println "COULD NOT MAKE Ohco2Node!"
@@ -148,36 +148,102 @@ class CtsGraph {
    * @param urn CTS URN to test.
    * @returns The urn of the preceding citable node, as a String,
    * or a null String ("") if there is no preceding citable node.
-   * @throws Exception if retrieved value is not a valud CtsUrn string.
+   * @throws Exception if retrieved value is not a valid CtsUrn string.
    */
-  String getPrevUrnString(CtsUrn urn) {
-    return getPrevUrn(urn).toString()
+  String getPrevUrnString(CtsUrn urn)
+  throws Exception {
+    CtsUrn prev = getPrevUrn(urn)
+    if (prev != null) {
+      return prev.toString()
+    } else {
+      return ""
+    }
   }
 
   CtsUrn getPrevUrn(CtsUrn requestUrn)
   throws Exception {
-    CtsUrn urn = null
+    CtsUrn queryUrn = null
+    CtsUrn replyUrn = null
     if (requestUrn.isRange()) {
-	//urn = new CtsUrn("${requestUrn.getUrnWithoutPassage()}${requestUrn.getRangeBegin()}")
+      // find first node in range and query on that
+        //urn = new CtsUrn("${requestUrn.getUrnWithoutPassage()}${requestUrn.getRangeBegin()}")
+
+      
     } else {
-      urn  = requestUrn
+      queryUrn  = requestUrn
     }
 
-    if (isLeafNode(urn)){
+    if (isLeafNode(queryUrn)){
       StringBuilder reply = new StringBuilder()
-      String ctsReply =  sparql.getSparqlReply("application/json", QueryBuilder.getPrevUrnQuery(urn))
+      String ctsReply =  sparql.getSparqlReply("application/json", QueryBuilder.getPrevUrnQuery(queryUrn))
       def slurper = new groovy.json.JsonSlurper()
       def parsedReply = slurper.parseText(ctsReply)
       parsedReply.results.bindings.each { bndng ->
-	urn = new CtsUrn(bndng.prevUrn?.value)
-	
+	if (bndng.prevUrn) {
+
+	  replyUrn = new CtsUrn(bndng.prevUrn?.value)
+	  println "CTS GRPH PREV: " + bndng.prevUrn?.value + " ylds urn " + replyUrn
+	}
       }
 
 
-      // What's all this stuff ???
-      //      replyString = reply.toString().replaceAll("::",":")
+    } else {
+      // find first node in contain, and query on that.
+	/*
+	Integer depthUrn = urn.getCitationDepth()
+	Integer firstSequenceOfUrn = getFirstSequence(urn)
+	String firstSeqUrn = getUrnForSequence(firstSequenceOfUrn, urn.getUrnWithoutPassage())
+	String prevLeafUrnStr= getPrevUrn(new CtsUrn(firstSeqUrn))	
+	if (prevLeafUrnStr != ""){
+	  CtsUrn prevLeafUrn = new CtsUrn(prevLeafUrnStr)
+	  //Janky temp fix which will become irrelevant with update to CITE library
+	  CtsUrn prevUrn = new CtsUrn("${prevLeafUrn.trimPassage(depthUrn).replaceAll('::',':')}")
+	  replyString = prevUrn.toString()
+	} else { replyString = "" }
+	*/
+	
+      }	
+    return replyUrn
+  }
+
+
+
+
+
+  String getNextUrnString(CtsUrn requestUrn) {
+    CtsUrn nxt = getNextUrn(requestUrn)
+    if (nxt != null) {
+      return nxt.toString()
+    } else {
+      return ""
+    }
+  }
+  
+  CtsUrn getNextUrn(CtsUrn requestUrn)
+  throws Exception {
+    CtsUrn replyUrn = null
+    CtsUrn queryUrn = null
+    if (requestUrn.isRange()) {
+      // find first node in range and query on that
+        //urn = new CtsUrn("${requestUrn.getUrnWithoutPassage()}${requestUrn.getRangeBegin()}")
+
+      
+    } else {
+      queryUrn  = requestUrn
+    }
+
+    if (isLeafNode(queryUrn)){
+      StringBuilder reply = new StringBuilder()
+      String ctsReply =  sparql.getSparqlReply("application/json", QueryBuilder.getNextUrnQuery(queryUrn))
+      def slurper = new groovy.json.JsonSlurper()
+      def parsedReply = slurper.parseText(ctsReply)
+      parsedReply.results.bindings.each { bndng ->
+	replyUrn = new CtsUrn(bndng.prevUrn?.value)
+      }
+
 
     } else {
+      // find first node in contain, and query on that.
 	/*
 	Integer depthUrn = urn.getCitationDepth()
 	Integer firstSequenceOfUrn = getFirstSequence(urn)
@@ -196,6 +262,9 @@ class CtsGraph {
     return urn
   }
 
+
+
+  
 
   // Applicable only to leaf node...
   // useful in constructing leafnode object

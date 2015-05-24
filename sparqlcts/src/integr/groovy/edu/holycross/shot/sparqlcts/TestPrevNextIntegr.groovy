@@ -24,5 +24,30 @@ class TestPrevNextIntegr extends GroovyTestCase {
     String expectedPrev = "urn:cts:greekLit:tlg0012.tlg001.msA:1.1"
     assert  graph.getPrevUrnString(urn) == expectedPrev
   }
+
+
+
+  @Test
+  void testNext() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.2")
+    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.msA:1.3"
+    assert  graph.getNextUrnString(urn) == expectedNext
+  }
+
+
+
+  @Test
+  void testNulls() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1")
+    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.msA:1.2"
+    
+    assert  graph.getNextUrnString(urn) == expectedNext
+    assert  graph.getPrevUrn(urn) == null
+    assert  graph.getPrevUrnString(urn) == ""
+
+
+  }
+
+  
   
 }

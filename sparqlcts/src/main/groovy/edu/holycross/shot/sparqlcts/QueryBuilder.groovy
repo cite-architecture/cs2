@@ -5,7 +5,50 @@ import edu.harvard.chs.cite.CtsUrn
 abstract class QueryBuilder {
 
 
-  /** Builds SPARQL query strint to retrieve a 
+
+
+  /** Builds SPARQL query string to retrieve all 
+   * relevant data about a citable leaf node.
+   */
+  static String getLeafNodeQuery(CtsUrn urn) {
+    return getLeafNodeQuery(urn, 0)
+  }
+  
+  static String getLeafNodeQuery(CtsUrn urn, Integer context) {
+    return """
+    ${CtsDefinitions.prefixPhrase}
+
+    SELECT ?psg ?txt ?anc ?xpt WHERE {
+    ?psg cts:belongsTo <${urn.getUrnWithoutPassage()}> .
+    ?psg cts:hasTextContent ?txt .
+    ?psg cts:hasSequence ?s .
+    ?psg hmt:xpTemplate ?xpt .
+    ?psg hmt:xmlOpen ?anc  .
+
+    {
+      { SELECT (xsd:int(?seq) + ${context} AS ?max)
+       WHERE {
+       <${urn}> cts:hasSequence ?seq .
+       }
+      }
+  
+     { SELECT (xsd:int(?seq) - ${context} AS ?min)
+       WHERE {
+       <${urn}> cts:hasSequence ?seq .
+       }
+     }
+   }
+   FILTER (?s <= ?max) .
+   FILTER (?s >= ?min) .
+  }
+  ORDER BY ?s 
+
+     """
+  }
+
+  
+
+  /** Builds SPARQL query string to retrieve a 
    * rdf label fo a URN.
    */
   static String getRdfLabel(CtsUrn urn) {
@@ -16,8 +59,6 @@ abstract class QueryBuilder {
         }
      """
   }
-
-
 
 
   /** Builds SPARQL query string to find
@@ -39,9 +80,27 @@ abstract class QueryBuilder {
 
 
 
-  
 
-  /** Builds SPARQL query strint to retrieve a 
+    /** Builds SPARQL query string to find
+   * URN of leaf node following the 
+   * requested leaf node.
+   * @param urn URN at leaf node level.
+   * @returns A complete SPARQL query string.
+   */
+  static String getNextUrnQuery(CtsUrn urn) {
+    String workUrnStr = urn.getUrnWithoutPassage()
+    return """
+    ${CtsDefinitions.prefixPhrase}
+    SELECT ?prevUrn ?prevSeq WHERE {
+    <${urn}> cts:next ?prevUrn .
+    ?prevUrn cts:hasSequence ?prevSeq .
+    }
+    """
+  }
+
+
+  
+  /** Builds SPARQL query string to retrieve a 
    * strcutured description for a version-level CTS URN.
    */
   static String getVersionDescrQuery(CtsUrn psgUrn) {
@@ -60,8 +119,6 @@ abstract class QueryBuilder {
   }
 
 
-  
-
   /** Builds SPARQL query string to determine if a 
    * CTS URN refers to a leaf citation node.
    * @param urn The urn to test.
@@ -76,7 +133,6 @@ abstract class QueryBuilder {
          }
     """
   }
-
 
 
   /** Builds SPARQL query string to retrieve
@@ -95,11 +151,6 @@ abstract class QueryBuilder {
         }
     """
   }
-
-
-
-
-
 
   
   /** Builds SPARQL query string to retrieve

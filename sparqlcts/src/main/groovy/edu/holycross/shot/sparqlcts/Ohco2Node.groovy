@@ -2,8 +2,7 @@ package edu.holycross.shot.sparqlcts
 
 import edu.harvard.chs.cite.CtsUrn
 
-/** Class representing a leaf node in the
- * OHCO2 model of text.
+/** Class representing a leaf node in the OHCO2 model of text.
  */
 class Ohco2Node {
 
@@ -19,10 +18,16 @@ class Ohco2Node {
   CtsUrn nextUrn = null
   /** Text content of the node. */
   String textContent
-
   
   
-  /** Constructor requiring all member properties. 
+  /** Constructor for an OHCO2 citable node requiring all member properties. 
+   * @param urn Urn for the node.
+   * @param label Human-readable label.
+   * @param prev URN for preceding node, or null if no preceding node.
+   * @param next URN for following node, or null if no following node.
+   * @param txt Non-null string with text content of the citable node.
+   * @throws Exception if urn, label or txt is empty; or if a non-null
+   * value for prev or next is not a valid URN.
    */
   Ohco2Node(CtsUrn urn, String label, CtsUrn prev, CtsUrn next, String txt)
   throws Exception {
@@ -42,8 +47,10 @@ class Ohco2Node {
     } else {
       this.textContent = txt
     }
+    
     this.prevUrn = prev
     this.nextUrn = next
+
   }
 
 
