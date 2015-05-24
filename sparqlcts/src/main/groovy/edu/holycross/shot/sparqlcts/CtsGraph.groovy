@@ -259,7 +259,7 @@ class CtsGraph {
 	
       }	
       //      return replyString.replaceAll("::",":")
-    return urn
+    return replyUrn
   }
 
 
