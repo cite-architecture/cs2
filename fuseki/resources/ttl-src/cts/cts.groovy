@@ -1,7 +1,7 @@
 /*
 Simple groovy script to convert a CTS repository of local XML files to :
 
-1. tabular representation in structured text files
+1. tabular representation in structured text files 
 2. graph representation in RDF (TTL)
 
 Usage: groovy cts.groovy <INVENTORY> <ARCHIVEROOT> <SCHEMA>
@@ -9,6 +9,11 @@ Usage: groovy cts.groovy <INVENTORY> <ARCHIVEROOT> <SCHEMA>
 where INVENTORY is a CTS TextInventory file, ARCHIVEROOT is the root directory
 where XML editions are stored, and SCHEMA is the Relax NG schema for validating
 the TextInventory.
+
+Run this in a directory where you have write permission; tabular text files
+will be put a in a directory named "cts-tabulated" which will be created if it does
+not exist.  RDF output will be in a file named "cts.ttl" in the current directory.
+
 
 */
 
