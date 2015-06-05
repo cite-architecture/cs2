@@ -13,7 +13,7 @@ the TextInventory.
 */
 
 @GrabResolver(name='beta', root='http://beta.hpcc.uh.edu/nexus/content/repositories/releases')
-@Grab(group='edu.holycross.shot', module='hocuspocus', version='0.13.2')
+@Grab(group='edu.holycross.shot', module='hocuspocus', version='0.13.5')
 
 import edu.holycross.shot.hocuspocus.Corpus
 
