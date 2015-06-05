@@ -20,31 +20,7 @@
       xml:lang="grc">
       <title
         xml:lang="eng"> Iliad </title>
-      <translation
-        urn="urn:cts:greekLit:tlg0012.tlg001.hmt01:"
-        xml:lang="eng">
-        <label
-          xml:lang="eng">English translation of Iliad 10 by Casey Dué and Mary Ebbott</label>
-        <description
-          xml:lang="eng">New line-by-line translation of Iliad 10</description>
-        <online
-          docname="translations/due-ebbott.xml">
-          <namespaceMapping
-            abbreviation="tei"
-            nsURI="http://www.tei-c.org/ns/1.0"/>
-          <citationMapping>
-            <citation
-              label="book"
-              scope="/tei:TEI/tei:text/tei:body"
-              xpath="/tei:div[@n = '?']">
-              <citation
-                label="line"
-                scope="/tei:TEI/tei:text/tei:body/tei:div[@n = '?']"
-                xpath="/tei:l[@n = '?']"/>
-            </citation>
-          </citationMapping>
-        </online>
-      </translation>
+      
       <edition
         urn="urn:cts:greekLit:tlg0012.tlg001.msA:">
         <label
