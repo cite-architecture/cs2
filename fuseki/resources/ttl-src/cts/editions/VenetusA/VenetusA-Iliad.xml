@@ -350,10 +350,81 @@
 					n="100"> ἐς <persName
 						n="urn:cite:hmt:pers.pers44"> Χρύσην</persName> · τότε κέν μιν ἱ̈λασσάμενοι
 					πεπίθοιμεν·</l>
-				
-				
-				
-				
+				<l
+					n="602"> δαίνυντ'· <choice>
+						<corr> οὐδ' ἔτι</corr>
+						<sic> οὐδέ τι</sic>
+					</choice> θυμὸς ἐδεύετο δαιτὸς ἐΐσης·</l>
+				<l
+					n="603"> οὐ <choice>
+						<orig> μὲν</orig>
+						<reg> μὴν</reg>
+					</choice> φόρμιγγος περικαλλέος, ἣν ἔχ' <persName
+						n="urn:cite:hmt:pers.pers40"> Ἀπόλλων</persName> ·</l>
+				<l
+					n="604"> Μουσάων θ', αἳ, ἄειδον ἀμειβόμεναι ὀπὶ καλῇ·</l>
+				<l
+					n="605"> αὐτὰρ ἐπεὶ κατέδυ λαμπρὸν φάος ἠελίοιο·</l>
+				<l
+					n="606"> οἱ μὲν κακκείοντες ἔβαν οἶκον δὲ ἕκαστος·</l>
+				<l
+					n="607"> ᾗχι ἑκάστῳ δῶμα περικλυτὸς ἀμφιγυήεις</l>
+				<l
+					n="608">
+					<persName
+						n="urn:cite:hmt:pers.pers192"> Ἥφαιστος</persName> ποίησεν ϊδυίῃσι
+					πραπίδεσσι·</l>
+				<l
+					n="609">
+					<persName
+						n="urn:cite:hmt:pers.pers8"> Ζεὺς</persName> δὲ πρὸς ὃν, λέχος ἤϊ' <placeName
+						n="urn:cite:hmt:place.place45"> Ὀλύμπιος</placeName> ἀστεροπητής,</l>
+				<l
+					n="610"> ἔνθα πάρος κοιμᾶθ' ὅτε μιν γλυκὺς ὕπνος ἱ̈κάνοι·</l>
+				<l
+					n="611"> ἔνθα κὰθεῦδ' ἀναβὰς, παρ δὲ χρυσόθρονος <persName
+						n="urn:cite:hmt:pers.pers116"> Ἥρη</persName> .</l>
+			</div>
+			<div
+				n="2">
+				<head> ἰλιάδος <num
+						value="2"> β</num></head>
+				<l
+					n="1"> Ἄλλοι μέν ῥα θεοί τε καὶ ἀνέρες ἱπποκορυσταὶ</l>
+				<l
+					n="2"> εὗδον παννύχιοι· <persName
+						n="urn:cite:hmt:pers.pers8"> Δία</persName> δ' οὐκ έχε, νήδυμος ὕπνος·</l>
+				<l
+					n="3"> ἀλλ' ὅ γε μερμήριζε κατα φρένα· ὡς <persName
+						n="urn:cite:hmt:pers.pers1"> Ἀχιλῆα</persName></l>
+				<l
+					n="4">
+					<choice>
+						<reg> τιμήσει</reg>
+						<orig> τιμήσῃ</orig>
+					</choice> · ὀλέσῃ δὲ πολέας ἐπὶ νηυσὶν <rs
+						n="urn:cite:hmt:place.place96"
+						type="ethnic"> Ἀχαιῶν</rs> ·</l>
+				<l
+					n="5"> ἧδε, δέ οι κατα θυμὸν ἀρίστη φαίνετο βουλῆ·</l>
+				<l
+					n="6"> πέμψαι ἐπ' <persName
+						n="urn:cite:hmt:pers.pers22"> Ἀτρείδῃ Ἀγαμέμνονι</persName> οὖλον
+					ὄνειρον.</l>
+				<l
+					n="7"> καί μιν φωνήσας ἔπεα πτερόεντα <choice>
+						<sic> προσῆυδᾱ</sic>
+						<corr> προσήυδᾱ</corr>
+					</choice> ·</l>
+				<l
+					n="8"> βάσκ', ἴ̈θι οὖλε ὄνειρε θοὰς ἐπι νῆας <rs
+						n="urn:cite:hmt:place.place96"
+						type="ethnic"> Ἀχαιῶν</rs> .</l>
+				<l
+					n="9"> ἐλθὼν ἐς κλισίην <persName
+						n="urn:cite:hmt:pers.pers22"> Ἀγαμέμνονος Ἀτρείδαο</persName> .</l>
+				<l
+					n="10"> πάντα μάλ' ἀτρεκέως ἀγορευέμεν ὡς ἐπιτέλλω·</l>
 			</div>
 		</body>
 	</text>
