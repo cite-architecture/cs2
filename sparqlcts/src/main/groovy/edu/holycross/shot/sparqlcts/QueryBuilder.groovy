@@ -175,12 +175,13 @@ abstract class QueryBuilder {
     return """
     ${CtsDefinitions.prefixPhrase}
 
-    SELECT ?psg ?txt ?anc ?xpt WHERE {
+    SELECT ?psg ?txt ?anc ?xpt ?xmlns WHERE {
     ?psg cts:belongsTo <${urn.getUrnWithoutPassage()}> .
     ?psg cts:hasTextContent ?txt .
     ?psg cts:hasSequence ?s .
     ?psg hmt:xpTemplate ?xpt .
     ?psg hmt:xmlOpen ?anc  .
+    ?psg hmt:xmlNsDecl ?xmlns  .
 
     {
       { SELECT (xsd:int(?seq) + ${context} AS ?max)

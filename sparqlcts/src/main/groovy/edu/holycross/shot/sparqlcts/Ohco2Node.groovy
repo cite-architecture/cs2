@@ -62,5 +62,9 @@ class Ohco2Node {
     return "${nodeLabel} (${nodeUrn}): ${textContent}"
   }
 
+  String toXml() {
+    return "<cts:node xmlns:cts='http://chs.harvard.edu/xmlns/cts' urn='" + this.nodeUrn +  "'>${this.textContent}</cts:node>"
+  }
+
  
 }

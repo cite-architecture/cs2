@@ -22,7 +22,8 @@ class TestObjNodeIntegr extends GroovyTestCase {
   void testLeafObject() {
     Ohco2Node onode = graph.getLeafNodeObject(urn)
 
-    String expectedContent = """<tei:TEI><tei:text><tei:body><tei:div n = '1'><l xmlns="http://www.tei-c.org/ns/1.0" n="1"> Μῆνιν ἄειδε θεὰ <persName n="urn:cite:hmt:pers.pers1"> Πηληϊάδεω Ἀχιλῆος</persName></l></tei:div></tei:body></tei:text></tei:TEI>"""
+    // This is wrong because tei ns is not yet declared.
+    String expectedContent = """<tei:TEI  xmlns:tei='http://www.tei-c.org/ns/1.0' ><tei:text><tei:body><tei:div n = '1'><l xmlns="http://www.tei-c.org/ns/1.0" n="1"> Μῆνιν ἄειδε θεὰ <persName n="urn:cite:hmt:pers.pers1"> Πηληϊάδεω Ἀχιλῆος</persName></l></tei:div></tei:body></tei:text></tei:TEI>"""
     String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.msA:1.2"
     CtsUrn expectedUrn = null
 
