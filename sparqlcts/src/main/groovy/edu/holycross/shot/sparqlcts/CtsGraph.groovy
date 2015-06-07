@@ -133,9 +133,7 @@ class CtsGraph {
     if (ond == null) {
       System.err.println "COULD NOT MAKE Ohco2Node!"
       System.err.println "${leafNode} (${label}): ${txtContent}"
-    } else {
-      System.err.println "Made node " + ond.toString()
-    }
+    } 
     return  ond
   }
 
@@ -243,22 +241,9 @@ class CtsGraph {
 
 
     } else {
-      // find first node in contain, and query on that.
-	/*
-	Integer depthUrn = urn.getCitationDepth()
-	Integer firstSequenceOfUrn = getFirstSequence(urn)
-	String firstSeqUrn = getUrnForSequence(firstSequenceOfUrn, urn.getUrnWithoutPassage())
-	String prevLeafUrnStr= getPrevUrn(new CtsUrn(firstSeqUrn))	
-	if (prevLeafUrnStr != ""){
-	  CtsUrn prevLeafUrn = new CtsUrn(prevLeafUrnStr)
-	  //Janky temp fix which will become irrelevant with update to CITE library
-	  CtsUrn prevUrn = new CtsUrn("${prevLeafUrn.trimPassage(depthUrn).replaceAll('::',':')}")
-	  replyString = prevUrn.toString()
-	} else { replyString = "" }
-	*/
-	
-      }	
-      //      return replyString.replaceAll("::",":")
+      // implement
+    }	
+
     return replyUrn
   }
 
@@ -278,7 +263,7 @@ class CtsGraph {
 
     String txtNode = ""
     parsedReply.results.bindings.eachWithIndex { bndng, i ->
-      txtNode =  XmlFormatter.openAncestors(bndng.anc.value) + bndng.txt.value + XmlFormatter.closeAncestors(bndng.anc.value)
+      txtNode =  XmlFormatter.openAncestors(bndng.anc.value, bndng.xmlns.value) + bndng.txt.value + XmlFormatter.closeAncestors(bndng.anc.value)
     }
     return txtNode
   }

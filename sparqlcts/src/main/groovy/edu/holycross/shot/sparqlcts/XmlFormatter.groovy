@@ -19,13 +19,19 @@ abstract class XmlFormatter {
    * @returns A containing XML string corresponding to the given XPath
    * expression.
    */
-  static String openAncestors (String xpAncestor) {
+  static String openAncestors (String xpAncestor, String xmlNs) {
     StringBuilder formatted = new StringBuilder()
     def pathParts = xpAncestor.split(/\//)
-    pathParts.each {
-      if (it != "") {  formatted.append("<" + filtersToAttrs(it) + ">") }
+
+    pathParts.each { pth ->
+      if (pth != "") {
+	formatted.append("<" + filtersToAttrs(pth) + ">")
+      }
     }
-    return formatted.toString()
+    println "INSERT " + xmlNs + " into current formatted " + formatted.toString()
+
+
+    return formatted.toString().replaceFirst(">", " ${xmlNs}>")
   }
 
 
@@ -47,7 +53,6 @@ abstract class XmlFormatter {
   }
 
 
-  
   /**
    * Converts XPath filter expressions to attribute tags for an XML document. 
    * E.g., an expression like "div[@n = '1']" becomes "div n='1'".
