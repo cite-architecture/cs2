@@ -284,5 +284,27 @@ ORDER BY ?s
 """
 }
 
+/* Forms SPARQL query to find all URNs, and their accompanying text 
+*  between two leaf-nodes, identified by their sequence numbers
+*  (@startCount, @endCount). Requires a version-level URN. 
+*/
+static String getRangeNodesQuery(Integer startCount, Integer endCount, String versionUrn) {
+return """
+${CtsDefinitions.prefixPhrase}
+SELECT ?ref ?t 
+WHERE {
+?u cts:belongsTo+ <${versionUrn}> .
+?u cts:containedBy* ?ref .
+?u cts:hasSequence ?s .
+?ref cts:citationDepth ?d .
+?ref cts:hasTextContent ?t .
+
+FILTER (?s >= "${startCount}"^^xsd:integer) .    
+FILTER (?s <= "${endCount}"^^xsd:integer) .
+}
+ORDER BY ?s
+"""
+}
+
 
 }

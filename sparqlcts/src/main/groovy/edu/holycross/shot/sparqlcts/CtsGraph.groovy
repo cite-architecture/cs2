@@ -36,6 +36,100 @@ class CtsGraph {
     return (replyText == "true")
   }
 
+  /** Finds URNs and text-passages for nodes defined by a CTS URN.
+   * If urn is a leaf node, the resulting list will contain one item,
+   * a single rangeNode.  If urn is a range, the list will contain rangeNodes
+   * for all leaf nodes bounded by the range, as well as the
+   * beginning and end nodes identified in the CTS URN. If
+   * urn is a single containing node, the list will contains rangeNodes
+   * for all leaf-nodes contained by that node. Whenever the list contains more than
+   * one leaf-node, they will appear in document order.
+   * @param submittedUrn The CtsUrn in question.
+   * @returns An ordered list of rangeNode objects.
+   */
+  ArrayList getRangeNodes(CtsUrn submittedUrn) {
+
+	StringBuffer reply = new StringBuffer()
+	String listUrnsQuery = ""
+	String ctsReply = ""
+	Integer int1
+	Integer int2
+	Integer startAtStr 
+	Integer endAtStr
+
+	CtsUrn urn = resolveVersion(submittedUrn)
+	ArrayList responseList = []
+
+	// Three Possibilities: node, container, range
+	if (isLeafNode(urn)){
+		
+			String leafUrnQuery = QueryBuilder.getLeafNodeTextQuery(urn)
+            ctsReply =  sparql.getSparqlReply("application/json", leafUrnQuery)
+            def slurper = new groovy.json.JsonSlurper()
+            def parsedReply = slurper.parseText(ctsReply)
+            parsedReply.results.bindings.each { b ->
+                if (b.txt) {
+					RangeNode rn = new RangeNode(urn, b.txt?.value)
+					responseList.add(rn)
+                }
+            }
+	} else {
+
+		if (urn.isRange()){
+			CtsUrn urn1 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
+			CtsUrn urn2 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")
+
+            if (isLeafNode(urn1)) {
+           	     startAtStr =  getSequence(urn1)
+			} else {
+				startAtStr = getFirstSequence(urn1)
+			}
+			
+			if (isLeafNode(urn2)) {
+				endAtStr = getSequence(urn2)
+			} else {
+				endAtStr = getLastSequence(urn2)
+			}
+			// error check these…
+		    int1 = startAtStr.toInteger()
+			int2 = endAtStr.toInteger()
+
+		      
+			listUrnsQuery = QueryBuilder.getRangeNodesQuery(int1, int2, "${urn.getUrnWithoutPassage()}")
+            ctsReply =  sparql.getSparqlReply("application/json", listUrnsQuery)
+            def slurper = new groovy.json.JsonSlurper()
+            def parsedReply = slurper.parseText(ctsReply)
+            parsedReply.results.bindings.each { b ->
+                if (b.ref) {
+					RangeNode rn = new RangeNode(new CtsUrn(b.ref?.value),b.t?.value)
+					responseList.add(rn)
+                }
+            }
+				
+		} else { // must be containing element
+			
+			startAtStr = getFirstSequence(urn)
+			endAtStr = getLastSequence(urn)
+			// error check these…
+			int1 = startAtStr.toInteger()
+			int2 = endAtStr.toInteger()
+			listUrnsQuery = QueryBuilder.getRangeNodesQuery(int1, int2, "${urn.getUrnWithoutPassage()}")
+			ctsReply =  sparql.getSparqlReply("application/json", listUrnsQuery)
+			def slurper = new groovy.json.JsonSlurper()
+			def parsedReply = slurper.parseText(ctsReply)
+			parsedReply.results.bindings.each { b ->
+				if (b.ref) {
+					RangeNode rn = new RangeNode(new CtsUrn(b.ref?.value),b.t?.value)
+					responseList.add(rn)
+				}
+			}
+
+		}
+	}
+
+		return responseList
+  }
+
 
   /** Finds URNs for leaf nodes defined by a CTS URN.
    * If urn is a leaf node, the resulting list will contain one item,
