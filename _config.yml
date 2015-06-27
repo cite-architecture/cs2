@@ -8,7 +8,7 @@ permalink:        pretty
 
 # Setup
 title:            Citeservlet 2
-tagline:          "CITE services"
+tagline:          "CITE services, second generation"
 description:      'A full suite of CITE services in a single servlet, using data from a SPARQL endpoint'
 baseurl: '/cs2/'
 
