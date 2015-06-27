@@ -13,7 +13,7 @@ class RangeNode {
   /** Text content of the node. */
   String textContent
   
-  // ??
+  // ?? for internal stuff ??
   String xmlOpen
 
   
