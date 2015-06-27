@@ -19,11 +19,24 @@ class TestDescrsIntegr extends GroovyTestCase {
   
 
   @Test
-  void testVersion() {
+  void testVersionDescr() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1")
     String expectedLabel = "Homeric epic, Iliad (Venetus A): 1.1 (urn:cts:greekLit:tlg0012.tlg001.msA:1.1)"
     String actualLabel = graph.getLabel(urn)
     assert actualLabel == expectedLabel
+    
   }
-  
+
+  @Test
+  void testWorkDescr() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.1")
+    String expectedLabel = "Homeric epic, Iliad (Venetus A): 1.1 (urn:cts:greekLit:tlg0012.tlg001.msA:1.1)"
+    String actualLabel = graph.getLabel(urn)
+    //assert actualLabel == expectedLabel
+
+    println "For ${urn}: " + actualLabel
+
+
+    
+  }
 }
