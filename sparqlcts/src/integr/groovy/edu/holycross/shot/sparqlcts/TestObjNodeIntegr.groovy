@@ -37,7 +37,6 @@ class TestObjNodeIntegr extends GroovyTestCase {
     assert onode.nextUrn.toString() == expectedNext
     }
 
-
     @Test
   void testNotionalWorkLeaf() {
     Ohco2Node onode = graph.getLeafNodeObject(wkLevelUrn)

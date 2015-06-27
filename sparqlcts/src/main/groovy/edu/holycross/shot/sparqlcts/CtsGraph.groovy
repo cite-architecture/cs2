@@ -150,7 +150,8 @@ class CtsGraph {
    */
   String getPrevUrnString(CtsUrn urn)
   throws Exception {
-    CtsUrn prev = getPrevUrn(urn)
+	CtsUrn rurn = resolveVersion(urn)
+    CtsUrn prev = getPrevUrn(rurn)
     if (prev != null) {
       return prev.toString()
     } else {
@@ -168,7 +169,7 @@ class CtsGraph {
 
       
     } else {
-      queryUrn  = requestUrn
+      queryUrn  = resolveVersion(requestUrn)
     }
 
     if (isLeafNode(queryUrn)){
@@ -209,7 +210,8 @@ class CtsGraph {
 
 
   String getNextUrnString(CtsUrn requestUrn) {
-    CtsUrn nxt = getNextUrn(requestUrn)
+	CtsUrn rurn = resolveVersion(requestUrn)
+    CtsUrn nxt = getNextUrn(rurn)
     if (nxt != null) {
       return nxt.toString()
     } else {
@@ -227,7 +229,7 @@ class CtsGraph {
 
       
     } else {
-      queryUrn  = requestUrn
+      queryUrn  = resolveVersion(requestUrn)
     }
 
     if (isLeafNode(queryUrn)){
@@ -287,8 +289,9 @@ class CtsGraph {
 
   // calling programs need to be careful.
   // no rdf:labels on passages on notioanl works, for example.
-  String getLabel(CtsUrn urn)
+  String getLabel(CtsUrn urnSubmitted)
   throws Exception {
+	CtsUrn urn = resolveVersion(urnSubmitted)
     String labelQuery = QueryBuilder.getRdfLabel(urn)
     String reply = sparql.getSparqlReply("application/json", labelQuery)
     def slurper = new groovy.json.JsonSlurper()
