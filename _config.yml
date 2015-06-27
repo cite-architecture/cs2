@@ -20,7 +20,17 @@ author:
 paginate:         5
 
 links:
-  - title: Github project
+  - title: CTS subproject
+    url: /cts
+  - title: CITE services subproject
+    url: /cite
+  - title: CITE Image service subproject
+    url: /citeimg
+  - title: CITE Graph service subproject
+    url: /graph
+  - title: ORCA subproject
+    url: /orca
+  - title: Github repository
     url: https://github.com/cite-architecture/cs2
     external: true
-   
+

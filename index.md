@@ -1,31 +1,21 @@
 ---
 layout: page
-title: CITE servlet
+title: "CITE servlet, second generation"
 ---
 
 A servlet including implementations of the following suite of services:
 
+
+
+- [goals of the project](goals)
+- [organization of the repository](subprojj )
+
+## CITE services in `cs2` ##
+
+
 - [Canonical Text Services](cts)
-- CITE Collection Services
-- CITE Image Extension
-- CITE Graph Service
+- [CITE Collection Services](cite)
+- [CITE Image Service](citeimg)
+- [CITE Graph Service](graph)
+- [ORCA](graph)
 
-
-
-## Technical details ##
-
-- git repository <https://github.com/cite-architecture/cs2> with public issue tracker <https://github.com/cite-architecture/cs2/issues>.
-- gradle build system with subprojects for each individual CITE service, and for the coordinating servlet.  All configuration of subprojects is managed through the project's root build file.
-- each subproject has distinct unit tests and integration tests.
-- runs integration tests against a SPARQL endpoint with test data.  The fuseki endpoint is automatically booted by gretty.
-
-
-Usage for unit and integration tests, respectively, within a subproject:
-
-    gradle test
-    gradle farmIntegrationTest
-
-
-To be added:
-
-- concordion specifications for each subproject
