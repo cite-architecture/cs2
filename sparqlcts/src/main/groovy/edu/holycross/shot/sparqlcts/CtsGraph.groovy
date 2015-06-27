@@ -36,6 +36,23 @@ class CtsGraph {
     return (replyText == "true")
   }
 
+
+  /** Finds URNs for leaf nodes defined by a CTS URN.
+   * If urn is a leaf node, the resulting list will contain one item,
+   * urn.  If urn is a range, the list will comprise all URNs
+   * for all leaf nodes bounded by the range, as well as the
+   * beginning and end nodes identified in the CTS URN. If
+   * urn is a single containing node, the list will comprise all
+   * URNs contained by that node.
+   * @param urn The CtsUrn in question.
+   * @returns An ordered list of CtsUrns.
+   */
+  ArrayList getUrnList(CtsUrn urn) {
+    ArrayList urns = []
+
+    return urns
+  }
+  
   /**  Constructs a version-level CTS URN for a
    * given URN.  If the request URN already has a version,
    * it is returned unchanged.  If the request URN is at the
@@ -68,9 +85,6 @@ class CtsGraph {
       }
     }
   }
-
-
-
   
   
   /** Determines a valid version value for a CTS URN.
