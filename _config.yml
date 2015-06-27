@@ -19,16 +19,8 @@ author:
 
 paginate:         5
 
-github:
-  repo:           https://github.com/neelsmith/cs2
-
-version:          0.12.0
-
 links:
   - title: Github project
-    url: https://github.com/neelsmith/cs2
-    external: true
-  - title: NS on github
-    url: http://neelsmith.github.io/
+    url: https://github.com/cite-architecture/cs2
     external: true
    
