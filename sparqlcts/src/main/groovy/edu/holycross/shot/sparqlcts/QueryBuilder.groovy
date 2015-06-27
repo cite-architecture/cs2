@@ -203,4 +203,86 @@ abstract class QueryBuilder {
   """        
   }   
 
+
+  /** Builds SPARQL query string to retrieve
+   * the sequence number for a leaf-node URN
+   * based on document order
+   * @param urn The urn of the passage whose sequence we want to find.
+   * @returns A complete SPARQL query string.
+   */
+static String getSeqQuery(CtsUrn urn) {
+return """
+${CtsDefinitions.prefixPhrase}
+SELECT ?urn ?seq
+WHERE  {
+	   <${urn}> cts:hasSequence ?seq .       
+	   BIND( <${urn}> as ?urn )
+	 }
+"""
+}
+
+/** Builds SPARQL query string to find the URN and
+* sequence number of the first citable node contained in
+* a given URN.  If the URN is a leaf node, returns the
+* the query to identify URN and sequence of that node.
+* @param urn The urn to test.
+* @returns A complete SPARQL query string.
+*/
+static String getFirstContainedQuery(CtsUrn containingUrn) {
+  return """
+  ${CtsDefinitions.prefixPhrase}
+  SELECT   ?urn ?seq
+	 WHERE {
+		?urn  cts:containedBy*  <${containingUrn}>  .
+		?urn cts:hasSequence ?seq .        
+	 }
+  ORDER BY ?seq
+  LIMIT 1
+  """
+ }
+
+/** Builds SPARQL query string to find the URN and
+* sequence number of the last citable node contained in
+* a given URN.  If the URN is a leaf node, returns the
+* the query to identify URN and sequence of that node.
+* @param urn The urn to test.
+* @returns A complete SPARQL query string.
+*/
+static String getLastContainedQuery(CtsUrn containingUrn) {
+
+   return """
+	${CtsDefinitions.prefixPhrase}
+	SELECT   ?urn ?seq
+	 WHERE {
+		?urn  cts:containedBy*  <${containingUrn}>  .
+		?urn cts:hasSequence ?seq .        
+	 }
+	ORDER BY DESC(?seq)
+	LIMIT 1
+   """
+  }
+
+/* Forms SPARQL query to find all URNs 
+*  between two leaf-nodes, identified by their sequence numbers
+*  (@startCount, @endCount). Requires a version-level URN. 
+*/
+static String getRangeUrnsQuery(Integer startCount, Integer endCount, String versionUrn) {
+return """
+${CtsDefinitions.prefixPhrase}
+SELECT distinct ?ref 
+WHERE {
+?u cts:belongsTo+ <${versionUrn}> .
+?u cts:containedBy* ?ref .
+?u cts:hasSequence ?s .
+?ref cts:citationDepth ?d .
+?ref cts:hasTextContent ?t .
+
+FILTER (?s >= "${startCount}"^^xsd:integer) .    
+FILTER (?s <= "${endCount}"^^xsd:integer) .
+}
+ORDER BY ?s
+"""
+}
+
+
 }

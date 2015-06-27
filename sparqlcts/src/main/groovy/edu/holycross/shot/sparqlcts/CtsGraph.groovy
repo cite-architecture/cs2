@@ -43,13 +43,82 @@ class CtsGraph {
    * for all leaf nodes bounded by the range, as well as the
    * beginning and end nodes identified in the CTS URN. If
    * urn is a single containing node, the list will comprise all
-   * URNs contained by that node.
+   * URNs contained by that node. Whenever the list contains more than
+   * one URN, they will appear in document order.
    * @param urn The CtsUrn in question.
    * @returns An ordered list of CtsUrns.
    */
-  ArrayList getUrnList(CtsUrn urn) {
+  ArrayList getUrnList(CtsUrn submittedUrn) {
+	StringBuffer reply = new StringBuffer()
+	String listUrnsQuery = ""
+	String ctsReply = ""
+	Integer int1
+	Integer int2
+	Integer startAtStr 
+	Integer endAtStr
+
+	CtsUrn urn = resolveVersion(submittedUrn)
     ArrayList urns = []
 
+	// Three Possibilities: node, container, range
+	if (isLeafNode(urn)){
+		urns.add(urn)	
+	} else {
+
+		if (urn.isRange()){
+			CtsUrn urn1 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
+			CtsUrn urn2 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")
+
+            if (isLeafNode(urn1)) {
+           	     startAtStr =  getSequence(urn1)
+			} else {
+				startAtStr = getFirstSequence(urn1)
+			}
+			
+			if (isLeafNode(urn2)) {
+				endAtStr = getSequence(urn2)
+			} else {
+				endAtStr = getLastSequence(urn2)
+			}
+			// error check these…
+		    int1 = startAtStr.toInteger()
+			int2 = endAtStr.toInteger()
+
+		      
+			listUrnsQuery = QueryBuilder.getRangeUrnsQuery(int1, int2, "${urn.getUrnWithoutPassage()}")
+            ctsReply =  sparql.getSparqlReply("application/json", listUrnsQuery)
+            def slurper = new groovy.json.JsonSlurper()
+            def parsedReply = slurper.parseText(ctsReply)
+            parsedReply.results.bindings.each { b ->
+                if (b.ref) {
+                    urns.add(new CtsUrn(b.ref?.value))
+                }
+            }
+				
+			
+
+			
+		} else { // must be containing element
+			
+			startAtStr = getFirstSequence(urn)
+			endAtStr = getLastSequence(urn)
+			// error check these…
+			int1 = startAtStr.toInteger()
+			int2 = endAtStr.toInteger()
+			listUrnsQuery = QueryBuilder.getRangeUrnsQuery(int1, int2, "${urn.getUrnWithoutPassage()}")
+			ctsReply =  sparql.getSparqlReply("application/json", listUrnsQuery)
+			def slurper = new groovy.json.JsonSlurper()
+			def parsedReply = slurper.parseText(ctsReply)
+			parsedReply.results.bindings.each { b ->
+				if (b.ref) {
+					urns.add(new CtsUrn(b.ref?.value))
+				}
+			}
+
+
+		}
+	}
+	
     return urns
   }
   
@@ -343,7 +412,88 @@ class CtsGraph {
   }
 
 
+    /** Finds the first sequence value for a set of URNs contained 
+    * by a given URN.
+    * @param urn A containing URN.
+    * @returns The sequence property of this URN, as an Integer.
+    */
+    Integer getFirstSequence(CtsUrn urn) {
+        Integer firstInt = null
+		String firstContainedQuery = QueryBuilder.getFirstContainedQuery(urn)
+        String ctsReply = sparql.getSparqlReply("application/json", firstContainedQuery)
+        def slurper = new groovy.json.JsonSlurper()
+        def parsedReply = slurper.parseText(ctsReply)
+        
+        String intStr
+        parsedReply.results.bindings.each { b ->
+            if (b.seq) {
+                intStr = b.seq?.value
+            }
+            try {
+                firstInt = intStr.toInteger()
+            } catch (Exception e) {
+                System.err.println "Could not parse sequence ${intStr} as Integer: ${e}"
+            }
 
+        }
+        return firstInt
+    }
+
+    /** Finds the last sequence value for a set of URNs contained 
+    * by a given URN.
+    * @param urn A containing URN.
+    * @returns The sequence property of this URN, as an Integer.
+    */
+    Integer getLastSequence(CtsUrn urn) {
+        Integer lastInt = null
+		String lastContainedQuery = QueryBuilder.getLastContainedQuery(urn)
+        String ctsReply = sparql.getSparqlReply("application/json", lastContainedQuery )
+        def slurper = new groovy.json.JsonSlurper()
+        def parsedReply = slurper.parseText(ctsReply)
+        
+        String intStr
+        parsedReply.results.bindings.each { b ->
+            if (b.seq) {
+                intStr = b.seq?.value
+            }
+            try {
+                lastInt = intStr.toInteger()
+            } catch (Exception e) {
+                System.err.println "Could not parse sequence ${intStr} as Integer: ${e}"
+            }
+        }
+        return lastInt
+    }
+
+
+    /** Finds sequence number for a requested leaf-node CtsUrn.
+    * @param urn The requested CtsUrn.
+    * @returns The sequence number of the requested URN.
+    * @throws Exception if urn is not a leaf-node URN, or if a
+    * sequence could not be found in the triple store.
+    */
+    Integer getSequence(CtsUrn urn) 
+    throws Exception {
+        if (isLeafNode(urn)) {
+            StringBuffer reply = new StringBuffer()
+			String seqQuery = QueryBuilder.getSeqQuery(urn)
+            String ctsReply =  sparql.getSparqlReply("application/json", seqQuery)
+            def slurper = new groovy.json.JsonSlurper()
+            def parsedReply = slurper.parseText(ctsReply)
+            parsedReply.results.bindings.each { b ->
+                if (b.seq) {
+                    reply.append(b.seq?.value)
+                }
+            }
+            try {
+                return reply.toString().toInteger()
+            } catch (Exception e) {
+                throw new Exception ("CtsGraph:getSequence: could not find sequence for ${urn}. ${e}")
+            }
+        } else {
+            throw new Exception("CtsGraph:getSequence: ${urn} is not a leaf-node URN.")
+        }
+    }
 
   
 }

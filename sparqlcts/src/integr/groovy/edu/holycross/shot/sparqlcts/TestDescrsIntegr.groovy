@@ -23,7 +23,7 @@ class TestDescrsIntegr extends GroovyTestCase {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1")
     String expectedLabel = "Homeric epic, Iliad (Venetus A): 1.1 (urn:cts:greekLit:tlg0012.tlg001.msA:1.1)"
     String actualLabel = graph.getLabel(urn)
-    assert actualLabel == expectedLabel
+    assert actualLabel.replaceAll("\\s","") == expectedLabel.replaceAll("\\s","")
     
   }
 
@@ -32,7 +32,7 @@ class TestDescrsIntegr extends GroovyTestCase {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.1")
     String expectedLabel = "Homeric epic, Iliad (Venetus A): 1.1 (urn:cts:greekLit:tlg0012.tlg001.msA:1.1)"
     String actualLabel = graph.getLabel(urn)
-    assert actualLabel == expectedLabel
+    assert actualLabel.replaceAll("\\s","") == expectedLabel.replaceAll("\\s","")
 
     //println "For ${urn}: " + actualLabel
   }
