@@ -139,6 +139,28 @@ class CtsGraph {
 
 
 
+
+  Ohco2Range getContainerNodeObject(CtsUrn containerNode)
+  throws Exception {
+    // returns OHCO2RANGE object for a containing URN
+  }
+
+  Ohco2Range getLeafNodeRangeObject(CtsUrn rangeUrn)
+  throws Exception {
+    // returns OHCO2RANGE object for a ragne of containing nodes
+  }
+
+
+
+  // DO WE NEED A THIRD CASE?
+  /*
+  Ohco2Range getMixedRangeObject(CtsUrn mixedRangeUrn)
+  throws Exception {
+    // returns OHCO2RANGE object for a ragne of containing node + leaf node
+  }
+
+*/
+
   /** Finds the previous URN preceding a given URN.
    * If the URN is a leaf node, returns the preceeding leaf node.
    * If the URN is a non-leaf node, returns the URN of the preceeding
@@ -289,6 +311,7 @@ class CtsGraph {
 
   // calling programs need to be careful.
   // no rdf:labels on passages on notioanl works, for example.
+  // but shouldn't there be??
   String getLabel(CtsUrn urnSubmitted)
   throws Exception {
 	CtsUrn urn = resolveVersion(urnSubmitted)
@@ -304,5 +327,9 @@ class CtsGraph {
       throw new Exception("CtsGraph:getLabel: no results from query on ${urn}.")
     }
   }
+
+
+
+
   
 }
