@@ -10,4 +10,8 @@ ext {
 
       "junit" : "4.11"
     ]
+
+
+    tokenMap = [:]
+    
 }

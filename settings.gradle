@@ -1,5 +1,6 @@
 include 'common'
 include 'sparqlcts'
+include 'specs'
 //include 'sparqlcc'
 //include 'sparqlimg'
 //include 'graph'
