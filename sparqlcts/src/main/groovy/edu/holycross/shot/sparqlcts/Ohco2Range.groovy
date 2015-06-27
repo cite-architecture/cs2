@@ -29,12 +29,12 @@ class Ohco2Range {
     if (urn == null) {
       throw new Exception("Ohco2Range: URN for node cannot be null.")
     } else {
-      this.nodeUrn = urn
+      this.rangeUrn = urn
     }
     if ((label == null) || (label.size() < 1)) {
       throw new Exception("Ocho2Range: text content of node cannot be null.")
     } else {
-      this.nodeLabel = label
+      this.rangeLabel = label
     }
     
     if (nodeList.size() < 1) {
