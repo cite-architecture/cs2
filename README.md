@@ -1,6 +1,6 @@
 # `citeservlet`, second generation
 
-A servlet running all CITE services.  Currently in development: see web page for current development at <http://neelsmith.github.io/cs2/>.
+A servlet running all CITE services.  Currently in development: see web page for current development at http://cite-architecture.github.io/cs2/>.
 
 
 Goals of the first release version include: 
