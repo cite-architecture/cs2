@@ -3,7 +3,7 @@ package edu.holycross.shot.sparqlcts
 import edu.harvard.chs.cite.CtsUrn
 
 /** Class representing a single node in the ordered
- * of nodes in a range.
+ * list of nodes in a range.
  */
 class RangeNode {
 
