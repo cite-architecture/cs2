@@ -14,6 +14,8 @@ Integration tests use `gretty` to start up a fuseki SPARQL endpoint with a test 
 
 A TTL data set to use with integration tests is in the file `fuseki/resources.ttl`. You can run `:sparqlcts:farmRun` to start fuseki, manually load the data in the `ds` data set, and then proceed to run tests.  (Make sure you load persistent storage.)
 
+You can [rebuild this TTL data set from source](testdata) if you wanted to for some reason.
+
 ## Running tests ##
 
 To run unit tests within a subproject:
