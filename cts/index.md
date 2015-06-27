@@ -5,6 +5,9 @@ title: Canonical Text Services (CTS)
 
 For information about CTS, see <http://cite-architecture.github.io/cts/>.
 
+## Features ##
+
+
 Features planned for this implementation:
 
 - draws data from a SPARQL endpoint
