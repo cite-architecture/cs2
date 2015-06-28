@@ -15,16 +15,12 @@ if (args.size() != 1) {
   System.exit(-1)
 }
 
-// Inputs:
+// Tabulated source data:
 File tabs =  new File(args[0])
-// Outputs:
-File tokens = new File("tabs-tokenized.csv")
-if (! tabs.exists()) {
-  tabs.mkdir()
-}
 HmtEditorialTokenization toker = new HmtEditorialTokenization()
 def tokenizationResults = toker.tokenizeTabFile(tabs,"#")
 
 tokenizationResults.each { res ->
-  tokensFile.append('"' + res[0] + '","' + res[1] + '"\n')
+  String csv = '"' + res[0] + '","' + res[1] + '"'
+  println csv
 }
