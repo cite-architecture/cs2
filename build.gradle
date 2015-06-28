@@ -48,15 +48,7 @@ allprojects {
       println it
     }
 
-    println "\nFiles on testCompile CP for ${version} in ${task.project.name}:"
-    task.project.runtimeClasspath.getFiles().each {
-      println it
-    }
-
     println "\n"
-
-
-    /*
     println "\nSource sets files:"
     task.project.sourceSets.each { ss ->
       println "Source set ${ss} has " + ss.allSource.getSrcDirs() 
@@ -67,7 +59,6 @@ allprojects {
     task.project.configurations.each { c ->
       println "${c} has ..."
     }
-    */
   }
   seesrc.description = "See info about some settings for project."
 }
@@ -121,7 +112,10 @@ subprojects {
 
 project(":specs") {
   apply plugin: "java"
-
+  dependencies {
+    compile project(":sparqlcts")
+    testCompile project(":sparqlcts")
+  }
 }
 
 project(":webapp") {
@@ -148,7 +142,27 @@ project(":sparqlcts") {
   dependencies {
     compile project(":common")
     testCompile project(":common")
-    
+
+    // Need to define all dependencies for integration tests:
+    integrCompile "junit:junit:${versionMap['junit']}"
+    integrCompile project(":sparqlcts")
+    integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
+  }
+}
+
+
+
+project(":orca") {
+  // make integration tests a separate source set:
+  sourceSets {
+    integr {
+    }
+  }
+
+  dependencies {
+    compile project(":common")
+    testCompile project(":common")
+
     // Need to define all dependencies for integration tests:
     integrCompile "junit:junit:${versionMap['junit']}"
     integrCompile project(":sparqlcts")

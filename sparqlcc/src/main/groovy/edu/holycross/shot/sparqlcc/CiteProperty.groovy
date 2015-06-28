@@ -6,6 +6,13 @@ import edu.harvard.chs.cite.CiteUrn
  */
 class CiteProperty {
 
+  enum PropertyType {
+    CITE_URN, CTS_URN, STRING, NUMBER, BOOLEAN, MARKDOWN 
+  }
+  
+  
+  String label
+
 
   CiteProperty()
   throws Exception {
