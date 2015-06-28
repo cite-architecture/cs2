@@ -3,15 +3,21 @@ layout: page
 title: "CITE servlet, second generation"
 ---
 
-A servlet including implementations of the following suite of services:
+
 
 
 
 - [goals of the project](goals)
+
+## Information for developers ##
+
+
 - [organization of the repository](subprojj )
 - [developing and testing](testing)
 
+
 ## CITE services in `cs2` ##
+
 
 
 - [Canonical Text Services](cts)

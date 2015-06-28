@@ -19,3 +19,9 @@ Features planned for this implementation:
 - for text content including XML markup, correctly produces well-formed XML for arbitary citable passages including ranges that span containing elements
 - also works with plain-text content
 
+
+## Documentation ##
+
+
+- out of testing living documentation with concordion
+- API documentation
