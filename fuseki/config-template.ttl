@@ -19,6 +19,7 @@
 
    fuseki:services (
      <#service_tdb_cs>
+     <#service_tdb_orca>
    ) .
 
 # TDB
@@ -47,6 +48,31 @@ tdb:GraphTDB    rdfs:subClassOf  ja:Model .
     tdb:location "@projectroot@/fuseki/fusekibase/databases/ds";
 ##     # Query timeout on this dataset (milliseconds)
        ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "50000,600000" ] ;
+#s#     # Default graph for query is the (read-only) union of all named graphs.
+       tdb:unionDefaultGraph false
+     .
+
+## ---------------------------------------------------------------
+## ORCA Data
+
+<#service_tdb_orca> rdf:type fuseki:Service ;
+    rdfs:label                      "HMT-ORCA (RW)";
+    fuseki:name                     "orca" ;
+    fuseki:serviceQuery             "query" ;
+    fuseki:serviceQuery             "sparql" ;
+    fuseki:serviceUpdate            "update" ;
+    fuseki:serviceUpload            "upload" ;
+    fuseki:serviceReadWriteGraphStore      "data" ;
+    # A separate read-only graph store endpoint:
+    fuseki:serviceReadGraphStore       "get" ;
+    fuseki:dataset           <#tdb_dataset_hmt> ;
+    .
+
+
+<#tdb_dataset_orca> rdf:type      tdb:DatasetTDB ;
+    tdb:location "@projectroot@/fuseki/fusekibase/databases/ds";
+##     # Query timeout on this dataset (milliseconds)
+       ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "50000,50000" ] ;
 #s#     # Default graph for query is the (read-only) union of all named graphs.
        tdb:unionDefaultGraph false
      .
