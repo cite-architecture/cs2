@@ -18,8 +18,11 @@
    # ja:loadClass "your.code.Class" ;
 
    fuseki:services (
-     <#service_tdb_cs>
+     <#service_tdb_cts>
      <#service_tdb_orca>
+     <#service_tdb_cc>
+     <#service_tdb_img>
+     <#service_tdb_citegraph>
    ) .
 
 # TDB
@@ -29,11 +32,12 @@ tdb:GraphTDB    rdfs:subClassOf  ja:Model .
 
 
 ## ---------------------------------------------------------------
+## CTS Data 
 ## Updatable TDB dataset with all services enabled.
 
-<#service_tdb_cs> rdf:type fuseki:Service ;
-    rdfs:label                      "Cite servlet test data";
-    fuseki:name                     "ds" ;
+<#service_tdb_cts> rdf:type fuseki:Service ;
+    rdfs:label                      "CITE Servlet Test Data: CTS" ;
+    fuseki:name                     "cts" ;
     fuseki:serviceQuery             "query" ;
     fuseki:serviceQuery             "sparql" ;
     fuseki:serviceUpdate            "update" ;
@@ -41,11 +45,11 @@ tdb:GraphTDB    rdfs:subClassOf  ja:Model .
     fuseki:serviceReadWriteGraphStore      "data" ;
     # A separate read-only graph store endpoint:
     fuseki:serviceReadGraphStore       "get" ;
-    fuseki:dataset           <#tdb_dataset_cs> ;
+    fuseki:dataset           <#tdb_dataset_cts> ;
     .
 
-<#tdb_dataset_cs> rdf:type      tdb:DatasetTDB ;
-    tdb:location "@projectroot@/fuseki/fusekibase/databases/ds";
+<#tdb_dataset_cts> rdf:type      tdb:DatasetTDB ;
+    tdb:location "@projectroot@/fuseki/fusekibase/databases/cts";
 ##     # Query timeout on this dataset (milliseconds)
        ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "50000,600000" ] ;
 #s#     # Default graph for query is the (read-only) union of all named graphs.
@@ -53,10 +57,87 @@ tdb:GraphTDB    rdfs:subClassOf  ja:Model .
      .
 
 ## ---------------------------------------------------------------
+## CITE Collection Data 
+## Updatable TDB dataset with all services enabled.
+
+<#service_tdb_cc> rdf:type fuseki:Service ;
+    rdfs:label                      "CITE Servlet Data: Collection Service" ;
+    fuseki:name                     "cc" ;
+    fuseki:serviceQuery             "query" ;
+    fuseki:serviceQuery             "sparql" ;
+    fuseki:serviceUpdate            "update" ;
+    fuseki:serviceUpload            "upload" ;
+    fuseki:serviceReadWriteGraphStore      "data" ;
+    # A separate read-only graph store endpoint:
+    fuseki:serviceReadGraphStore       "get" ;
+    fuseki:dataset           <#tdb_dataset_cc> ;
+    .
+
+<#tdb_dataset_cc> rdf:type      tdb:DatasetTDB ;
+    tdb:location "@projectroot@/fuseki/fusekibase/databases/cc";
+##     # Query timeout on this dataset (milliseconds)
+       ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "50000,600000" ] ;
+#s#     # Default graph for query is the (read-only) union of all named graphs.
+       tdb:unionDefaultGraph false
+     .
+
+## ---------------------------------------------------------------
+## CITE Image Data
+## Updatable TDB dataset with all services enabled.
+
+<#service_tdb_img> rdf:type fuseki:Service ;
+    rdfs:label                      "CITE Servlet Data: Image Data" ;
+    fuseki:name                     "img" ;
+    fuseki:serviceQuery             "query" ;
+    fuseki:serviceQuery             "sparql" ;
+    fuseki:serviceUpdate            "update" ;
+    fuseki:serviceUpload            "upload" ;
+    fuseki:serviceReadWriteGraphStore      "data" ;
+    # A separate read-only graph store endpoint:
+    fuseki:serviceReadGraphStore       "get" ;
+    fuseki:dataset           <#tdb_dataset_img> ;
+    .
+
+<#tdb_dataset_img> rdf:type      tdb:DatasetTDB ;
+    tdb:location "@projectroot@/fuseki/fusekibase/databases/img";
+##     # Query timeout on this dataset (milliseconds)
+       ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "50000,600000" ] ;
+#s#     # Default graph for query is the (read-only) union of all named graphs.
+       tdb:unionDefaultGraph false
+     .
+
+## ---------------------------------------------------------------
+## CITE Graph Data
+## Updatable TDB dataset with all services enabled.
+
+<#service_tdb_citegraph> rdf:type fuseki:Service ;
+    rdfs:label                      "CITE Servlet Data: Graph Data" ;
+    fuseki:name                     "citegraph" ;
+    fuseki:serviceQuery             "query" ;
+    fuseki:serviceQuery             "sparql" ;
+    fuseki:serviceUpdate            "update" ;
+    fuseki:serviceUpload            "upload" ;
+    fuseki:serviceReadWriteGraphStore      "data" ;
+    # A separate read-only graph store endpoint:
+    fuseki:serviceReadGraphStore       "get" ;
+    fuseki:dataset           <#tdb_dataset_citegraph> ;
+    .
+
+<#tdb_dataset_citegraph> rdf:type      tdb:DatasetTDB ;
+    tdb:location "@projectroot@/fuseki/fusekibase/databases/citegraph";
+##     # Query timeout on this dataset (milliseconds)
+       ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "50000,600000" ] ;
+#s#     # Default graph for query is the (read-only) union of all named graphs.
+       tdb:unionDefaultGraph false
+     .
+
+
+## ---------------------------------------------------------------
 ## ORCA Data
+## Updatable TDB dataset with all services enabled.
 
 <#service_tdb_orca> rdf:type fuseki:Service ;
-    rdfs:label                      "HMT-ORCA (RW)";
+    rdfs:label                      "CITE Servlet Data: ORCA";
     fuseki:name                     "orca" ;
     fuseki:serviceQuery             "query" ;
     fuseki:serviceQuery             "sparql" ;
@@ -65,12 +146,12 @@ tdb:GraphTDB    rdfs:subClassOf  ja:Model .
     fuseki:serviceReadWriteGraphStore      "data" ;
     # A separate read-only graph store endpoint:
     fuseki:serviceReadGraphStore       "get" ;
-    fuseki:dataset           <#tdb_dataset_hmt> ;
+    fuseki:dataset           <#tdb_dataset_orca> ;
     .
 
 
 <#tdb_dataset_orca> rdf:type      tdb:DatasetTDB ;
-    tdb:location "@projectroot@/fuseki/fusekibase/databases/ds";
+    tdb:location "@projectroot@/fuseki/fusekibase/databases/orca";
 ##     # Query timeout on this dataset (milliseconds)
        ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "50000,50000" ] ;
 #s#     # Default graph for query is the (read-only) union of all named graphs.
