@@ -54,7 +54,8 @@ allprojects {
     }
 
     println "\n"
-    
+
+
     /*
     println "\nSource sets files:"
     task.project.sourceSets.each { ss ->
@@ -87,10 +88,14 @@ subprojects {
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
     testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
 
+    testCompile "org.concordion:concordion:${versionMap['concordion']}"
+    testCompile "junit:junit:${versionMap['junit']}"
+
     compile group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
     compile group: 'commons-io', name: 'commons-io', version: versionMap['commonsio']
 
-    testCompile "junit:junit:${versionMap['junit']}"
+    testCompile group: 'com.github.rjeschke', name: 'txtmark', version: '0.11'
+
   }
 
   task initProject(description: 'Initializes project directories') << { task ->
@@ -116,6 +121,7 @@ subprojects {
 
 project(":specs") {
   apply plugin: "java"
+
 }
 
 project(":webapp") {
