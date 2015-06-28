@@ -1,0 +1,78 @@
+import com.github.rjeschke.txtmark.*
+import org.apache.tools.ant.filters.*
+
+apply from: "conc.gradle"
+
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath group: 'com.github.rjeschke', name: 'txtmark', version: versionMap["txtmark"]
+  }
+}
+
+
+task cpResources(type: Copy) {
+  from "src/md"
+  into "${buildDir}/specs"
+}
+
+
+
+task convertResources(dependsOn: cpResources) {
+}
+convertResources.doLast {
+  println "READING FILE TREE FROM " +"${buildDir}/specs"
+  FileTree tree = fileTree("${buildDir}/specs") {
+    include "**/*.md"
+  }
+  tree.visit { f ->
+    if (f.relativePath.isFile()) {
+      File inFile = new File("${buildDir}/specs/${f.relativePath}")
+      println "Need to work on " + inFile
+      def segs = f.relativePath.getSegments()
+      String treePath = "${buildDir}/specs"
+      Integer limit =  segs.size() - 1
+      segs.eachWithIndex { s, i ->
+	if (i < limit) {
+	  treePath = "${treePath}/${s}"
+	  File nxtDir = new File(treePath)
+	  if (! nxtDir.exists()) {
+	    nxtDir.mkdir()
+	  }
+	}
+      }
+      File outDir = new File(treePath)
+      String htmlFileName = f.relativePath.getLastName().replaceFirst(/.md$/,".html")
+      File htmlFile = new File(outDir, htmlFileName)
+      println "Created ${htmlFile}"
+
+      String body = Processor.process(inFile.getText("UTF-8"),Configuration.DEFAULT)
+      htmlFile.setText("${htmlPreface}${body}${htmlEnd}", "UTF-8")
+    }
+  }
+}
+
+sourceSets {
+    test {
+        java {
+            srcDir 'src/java'
+        }
+        resources {
+            srcDir "${buildDir}/specs"
+        }
+    }
+}
+
+test {
+    systemProperties['concordion.output.dir'] = "${buildDir}/concordion-results"
+}
+
+test.dependsOn convertResources
+
+task conc(type: Copy, dependsOn: [test]) {
+  from "${buildDir}/concordion-results"
+  into "${buildDir}/concordion-formatted"
+  filter(ReplaceTokens, tokens: tokenMap)
+}
