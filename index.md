@@ -13,6 +13,7 @@ title: "CITE servlet, second generation"
 
 
 - [organization of the repository](subprojj )
+- the [fuseki server](fuseki) included for testing
 - [developing and testing](testing)
 
 
