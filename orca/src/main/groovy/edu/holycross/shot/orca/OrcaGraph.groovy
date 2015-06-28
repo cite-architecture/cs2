@@ -3,6 +3,7 @@ package edu.holycross.shot.orca
 import edu.holycross.shot.citeservlet.Sparql
 
 import edu.harvard.chs.cite.CtsUrn
+import edu.harvard.chs.cite.CiteUrn
 import groovy.json.JsonSlurper
 
 /** A class interacting with a SPARQL endpoint to

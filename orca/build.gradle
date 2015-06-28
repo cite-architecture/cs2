@@ -1,2 +1,43 @@
+buildscript {
+  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+  
+  repositories {
+    mavenCentral()
+    maven {
+      url "http://beta.hpcc.uh.edu/nexus/content/groups/public"
+    }
+  }
+  dependencies {
+    classpath group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
+  }
+}
 
-apply plugin: 'base'
+
+
+
+farm {
+    integrationTestTask = 'orcaIntegration'
+    webapp "${rootDir}/fuseki/fuseki.war"
+    webapp project(":orca")
+}
+
+test {
+  include '**/Test*.*'
+  include '**/*Test.*'
+  exclude '**/*Integr.*'
+}
+
+
+task orcaIntegration(type: Test, dependsOn: 'test') {
+  description  = "Runs integration tests against test data set served from fuseki."
+  outputs.upToDateWhen { false }
+  include '**/*Integr.*'
+
+ testClassesDir = sourceSets.integr.output.classesDir
+ classpath = sourceSets.integr.runtimeClasspath
+}
+orcaIntegration.doFirst {
+  System.out.println "Running ORCA integration tests now...."  
+}
+
+
