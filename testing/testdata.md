@@ -36,4 +36,14 @@ In `fuseki/resources/ttl-src/orca`, run
 
 ### Load the RDF data into fuseki ###
 
-Start the fuseki server with  `gradle :orca:farmRun`; load data into the `orca` endpoint from the file you created
+Start the fuseki server with  `gradle :orca:farmRun` if it is not already running.
+
+Load data into the `orca` endpoint at `http://localhost:8080/fuseki` from the file you created:
+
+1. Follow the link to `Manage datasets`
+2. Ad new dataset
+3. check the *persistent* dataset type
+4. name the dataset `orca`
+5. choose "upload data"
+6. leave "Destination graph name" empty, and choose "select files..." 
+7. select the file you created, and choose "upload now"
