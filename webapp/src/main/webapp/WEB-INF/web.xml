@@ -12,10 +12,23 @@
       <servlet-class>groovy.servlet.GroovyServlet</servlet-class>
     </servlet>
 
+    <welcome-file-list>
+      <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    
+    <!-- useful for testing: -->
     <servlet-mapping>
         <servlet-name>GroovyServlet</servlet-name>
         <url-pattern>*.groovy</url-pattern>
     </servlet-mapping>
+
+    <!-- CTS service -->
+    <servlet-mapping>
+      <servlet-name>GroovyServlet</servlet-name>
+      <url-pattern>/texts</url-pattern>
+    </servlet-mapping>
+
 
 <!--
     
@@ -58,10 +71,6 @@
         <url-pattern>/images</url-pattern>
     </servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/texts</url-pattern>
-    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>GroovyServlet</servlet-name>
@@ -75,7 +84,5 @@
     </servlet-mapping>
     -->
     
-    <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
-    </welcome-file-list>
+
 </web-app>

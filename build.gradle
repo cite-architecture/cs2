@@ -52,7 +52,10 @@ allprojects {
     task.project.runtimeClasspath.getFiles().each {
       println it
     }
+
+    println "\n"
     
+    /*
     println "\nSource sets files:"
     task.project.sourceSets.each { ss ->
       println "Source set ${ss} has " + ss.allSource.getSrcDirs() 
@@ -63,7 +66,7 @@ allprojects {
     task.project.configurations.each { c ->
       println "${c} has ..."
     }
-    
+    */
   }
   seesrc.description = "See info about some settings for project."
 }
@@ -83,8 +86,10 @@ subprojects {
   dependencies {
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
     testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
+
     compile group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
     compile group: 'commons-io', name: 'commons-io', version: versionMap['commonsio']
+
     testCompile "junit:junit:${versionMap['junit']}"
   }
 
@@ -94,6 +99,35 @@ subprojects {
       it.mkdirs() 
     }
   }
+
+  task testCompPath () << { task ->
+
+    println "\nFirst, all configs in ${version} in ${task.project.name}:"
+    configurations.each {
+      println it
+    }
+    println "\nFiles on test compile CP for ${version} in ${task.project.name}:"
+    configurations.testCompile.each {
+      println "testCompile: $it"
+    }
+  }
+}
+
+
+project(":specs") {
+  apply plugin: "java"
+}
+
+project(":webapp") {
+  apply plugin: "war"
+
+  repositories {
+    mavenCentral()
+    maven {
+      url "http://beta.hpcc.uh.edu/nexus/content/groups/public"
+    }
+  }
+
 }
 
 
@@ -115,49 +149,3 @@ project(":sparqlcts") {
     integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
   }
 }
-
-
-/*
-project(":sparqlcc") {
-  dependencies {
-    compile project(":common")
-  }
-}
-
-
-
-project(":sparqlimg") {
-  dependencies {
-    compile project(":common")
-  }
-}
-*/
-
-
-
-
-/*
-project(":webapp") {
-  apply plugin: "war"
-  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
-
-  dependencies {
-    compile project(":sparqlcts")
-    testCompile project(":sparqlcts")
-    
-    // add each of these as they're implemented
-    // for release 1:
-    // compile project(":sparqlcc")
-    // testCompile project(":sparqlcc")
-    // compile project(":sparqlimg")
-    // testCompile project(":sparqlimg")
-    // compile project(":graph")
-    // tesCompile project(":graph")
-    //    
-    // and for planned release 2:
-    // compile project(":orca")
-    // testCompile project(":orca")
-
-  }
-}
-*/

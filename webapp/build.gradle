@@ -1,28 +1,4 @@
-
-buildscript {
-  apply plugin: "groovy"
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath project(":sparqlcts")
-  }
-}
-import edu.holycross.shot.citeservlet.Sparql
-
+// Run webapp as /citeservlet:
 gretty {
     contextPath = '/citeservlet'
 }
-
-task servletTests << {
-
-  Sparql sparql = new Sparql("http://localhost:8080/fuseki/ds/query")
-
-  println "\n\n\t-->Tests on running citeservlet go here."
-  println "Successfully made a sparql ${sparql}<--\n\n"
-
-  String rep = sparql.getSparqlReply("any","select distinct ?v where { ?s ?v ?o .} ")
-  println rep
-}
-servletTests.description "Placeholder for integration testing on citeservlet"
-
