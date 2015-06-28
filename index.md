@@ -24,5 +24,5 @@ title: "CITE servlet, second generation"
 - [CITE Collection Services](cite)
 - [CITE Image Service](citeimg)
 - [CITE Graph Service](graph)
-- [ORCA](graph)
+- [ORCA](orca)
 
