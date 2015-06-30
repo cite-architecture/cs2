@@ -18,5 +18,24 @@ class IndexGraph {
   IndexGraph(Sparql endPoint) {
     sparql = endPoint
   }
+
+  /** Find all nodes at one degree of 
+   * relation to the object identified by
+   * urn.
+   * @param urn CITE Object to find in the graph.
+   * @returns ArrayList of Triple objects.
+   */
+  ArrayList findAdjacent(CiteUrn urn) {
+  }
+
+
+  /** Find all nodes at one degree of 
+   * relation to the text passage identified by
+   * urn.
+   * @param urn Text passage to find in the graph.
+   * @returns ArrayList of Triple objects.
+   */
+  ArrayList findAdjacent(CtsUrn urn) {
+  }
   
 }
