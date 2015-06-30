@@ -1,2 +1,40 @@
+buildscript {
+  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+  
+  repositories {
+    mavenCentral()
+    maven {
+      url "http://beta.hpcc.uh.edu/nexus/content/groups/public"
+    }
+  }
+  dependencies {
+    classpath group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
+  }
+}
 
-apply plugin: 'base'
+farm {
+    integrationTestTask = 'graphIntegration'
+    webapp "${rootDir}/fuseki/fuseki.war"
+    webapp project(":graph")
+}
+
+test {
+  include '**/Test*.*'
+  include '**/*Test.*'
+  exclude '**/*Integr.*'
+}
+
+
+task graphIntegration(type: Test, dependsOn: 'test') {
+  description  = "Runs integration tests against test data set served from fuseki."
+  outputs.upToDateWhen { false }
+  include '**/*Integr.*'
+
+ testClassesDir = sourceSets.integr.output.classesDir
+ classpath = sourceSets.integr.runtimeClasspath
+}
+graphIntegration.doFirst {
+  System.out.println "Running graph integration tests now...."  
+}
+
+
