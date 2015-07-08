@@ -17,12 +17,12 @@ class CiteCollectionService {
   /** SPARQL endpoint object from citeservlet common. */
   Sparql sparql
 
-  CtsGraph graph
+  CcGraph graph
   
   /** Constructor requires a citeservlet SPARQL endpoint.
    */
-  CiteCollection(Sparql sparqlService) {
+  CiteCollectionService(Sparql sparqlService) {
     this.sparql = sparqlService
-    this.graph = new CtsGraph(this.sparql)
+    this.graph = new CcGraph(this.sparql)
   }
 }
