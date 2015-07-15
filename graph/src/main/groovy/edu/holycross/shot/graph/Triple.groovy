@@ -12,25 +12,74 @@ class Triple {
   /** Verb of the triple. */
   URI verb
 
-  /** Object of the triple if it is a URI.*/
-  URI objUri
-  /** Object of the triple if it is raw data. */
-  String objString
+  /** Object of the triple may be a  URI or String.*/
+  Object obj
   
   
+ /** Constructor (overloaded) for Triple object requiring all member properties. 
+   * @param subj uri for the subject.
+   * @param verb uri for the verb.
+   * @param obj string data for the verb, if it is raw data.
+   * @throws Exception if subj or verb are empty; or if not in URI form; 
+   * or if obj is null or empty.
+   */
 
-  Triple()
+  Triple(URI subj, URI verb, String obj)
   throws Exception {
-
+    if (subj == null) {
+      throw new Exception("Triple: URI for subject cannot be null.")
+    } else {
+      this.subj = subj
+    }
+    if (verb == null) {
+      throw new Exception("Triple: URI for verb cannot be null.")
+    } else {
+      this.verb = verb
+    }
+    if ((obj == null)||(obj == "")) {
+      throw new Exception("Triple: String value for object cannot be empty or null.")
+    } else {
+      this.obj = obj
+    }
   }
 
+ /** Constructor (overloaded) for Triple object requiring all member properties. 
+   * @param subj uri for the subject.
+   * @param verb uri for the verb.
+   * @param obj uri for the verb, if it is a URI.
+   * @throws Exception if subj or verb are empty; or if not in URI form; 
+   * or if both obj is null or not in URI form.
+   */
+
+  Triple(URI subj, URI verb, URI obj)
+  throws Exception {
+    if (subj == null) {
+      throw new Exception("Triple: URI for subject cannot be null.")
+    } else {
+      this.subj = subj
+    }
+    if (verb == null) {
+      throw new Exception("Triple: URI for verb cannot be null.")
+    } else {
+      this.verb = verb
+    }
+    if (obj == null) {
+      throw new Exception("Triple: URI value for object cannot be null.")
+    } else {
+      this.obj = obj
+    }
+  }
 
   /**
    * Overrides default toString() method.
-   * @returns Description, URN and text content of this node.
+   * @returns .ttl formatted expession, e.g. "<sub> <verb> <obj> ." 
    */
   String toString() {
-    return ""
+	  if (obj.getClass() == URI){
+		return """<${subj}> <${verb}> <${obj.toString()}> ."""
+	  }  else {
+		return """<${subj}> <${verb}> "${obj}" ."""
+	  }
   }
 
 
