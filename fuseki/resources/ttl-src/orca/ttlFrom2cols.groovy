@@ -79,9 +79,9 @@ println """<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedToken
 println """<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText>	cite:propLabel "Analyzed Text" . """
 println """<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> rdf:type cite:Property . """
 println """<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> cite:propType cite:CtsUrn  . \n"""
-println """<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_ResultingText>	cite:propLabel "Resulting Text" . """
-println """<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_ResultingText> rdf:type cite:Property . """
-println """<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_ResultingText> cite:propType "string" . \n"""
+println """<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString>	cite:propLabel "Resulting Text" . """
+println """<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> rdf:type cite:Property . """
+println """<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> cite:propType "string" . \n"""
 
 
 
@@ -114,7 +114,7 @@ tsvFile.eachLine { l ->
 	println "<${ctsUrn}> cite:analyzedBy <${idUrn}> . \n"
 	println "<${idUrn}> cite:hasAnalysis <${analysisUrn}> . \n"
 	println "<${analysisUrn}> cite:analysisFor <${idUrn}> . \n"
-	println """<${idUrn}> cite:textResult "${ctsUrn.getSubref()}" . \n"""
+	println """<${idUrn}> cite:transformedToString "${ctsUrn.getSubref()}" . \n"""
 	println """<${ctsUrn}> cts:isSubstringOf <${citationUrn}> .\n"""
 	println """<${citationUrn}> cts:hasSubstring <${ctsUrn}> .\n"""
 	println "\n"
@@ -127,7 +127,7 @@ println """<${idUrn}>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_clas
 println """<${idUrn}>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> ${count} . \n"""
 println """<${idUrn}>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <${analysisUrn}> . \n"""
 println """<${idUrn}>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <${ctsUrn}> . \n"""
-println """<${idUrn}>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_ResultingText> "${ctsUrn.getSubref()}" . \n\n\n"""
+println """<${idUrn}>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "${ctsUrn.getSubref()}" . \n\n\n"""
 
 
 
