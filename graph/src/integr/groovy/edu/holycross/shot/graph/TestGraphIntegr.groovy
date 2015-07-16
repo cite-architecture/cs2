@@ -21,18 +21,15 @@ class TestGraphIntegr extends GroovyTestCase {
     def slurper = new groovy.json.JsonSlurper()
     println "RUN verbQuery " + verbQuery
 
-    assert shouldFail {
-      // until data are loaded, this will fail!
-      def parsedColls = slurper.parseText(sparql.getSparqlReply("application/json", verbQuery))
-    }
+    def parsedColls = slurper.parseText(sparql.getSparqlReply("application/json", verbQuery))
+	
+	assert parsedColls
 
-    /*
-    def verbList = []
-    parsedColls.results.bindings.each { b ->
-      verbList.add(b.v.value)
-    }
-    assert verbList.size() == expectedNumberVerbs
-    */
+	def verbList = []
+	parsedColls.results.bindings.each { b ->
+		verbList.add(b.v.value)
+	}
+	assert verbList.size() == expectedNumberVerbs
   }
   
 }

@@ -3,6 +3,7 @@ package edu.holycross.shot.graph
 import edu.holycross.shot.citeservlet.Sparql
 
 import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.CtsUrn
 import groovy.json.JsonSlurper
 
 /** A class interacting with a SPARQL endpoint to
@@ -25,8 +26,8 @@ class IndexGraph {
    * @param urn CITE Object to find in the graph.
    * @returns ArrayList of Triple objects.
    */
-  ArrayList findAdjacent(CiteUrn urn) {
-  }
+	ArrayList findAdjacent(CiteUrn urn) {
+	} 
 
 
   /** Find all nodes at one degree of 
@@ -36,6 +37,6 @@ class IndexGraph {
    * @returns ArrayList of Triple objects.
    */
   ArrayList findAdjacent(CtsUrn urn) {
-  }
+  } 
   
 }
