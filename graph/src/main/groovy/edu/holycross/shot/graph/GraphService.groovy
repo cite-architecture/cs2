@@ -3,11 +3,11 @@ package edu.holycross.shot.graph
 import edu.holycross.shot.citeservlet.Sparql
 
 import edu.harvard.chs.cite.CiteUrn
-//import edu.harvard.chs.cite.CtsUrn
+import edu.harvard.chs.cite.CtsUrn
 
 
 
-/** A class representing a CITE Collections Service.
+/** A class representing a CITE Graph Service.
  * It uses a CtsGraph to collect information about CITE URNs
  * in response to CITE Collection Service requests, and then creates appropriate 
  * CITE Collection Service replies.
