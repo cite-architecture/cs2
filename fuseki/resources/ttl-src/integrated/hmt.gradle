@@ -1,0 +1,50 @@
+/* Configuration for dse.
+*/
+
+/* EDIT PATHS TO MATCH LOCAL CHECKOUT OF THIS DATA!!! */
+
+project.ext {
+    // 1. Configuration of text repository.
+    // Path to text inventory file:
+    ctsinventory = "/cite/cs2/fuseki/resources/ttl-src/integrated/editions/inventories/testinventory.xml"
+
+    // Path to directory where XML editions are found:
+    ctsarchive = "/cite/cs2/fuseki/resources/ttl-src/integrated/editions"
+
+    // Name of hocuspocus tokenization system to use
+    // (fully qualified class name)
+tokenSystem = "edu.holycross.shot.hocuspocus.HmtGreekTokenization"
+		tokenEditions = [ 
+		["urn:cts:greekLit:tlg0012.tlg001.msA","tokens","edu.holycross.shot.hocuspocus.HmtGreekTokenization"],
+		]  
+
+	tokenMap = []
+
+
+    pyramids = ""
+
+    // 2. Configuration of image repository.
+    // Path to directory with csv files defining image collections
+    imgcolldir = "/cite/cs2/fuseki/resources/ttl-src/integrated/images/collections"
+    // Path to directory with csv files containing image data
+    imgdatadir = "/cite/cs2/fuseki/resources/ttl-src/integrated/collections/imgcollections"
+
+
+    // 3. Configuration of CITE object repository.
+    // Path to collection inventory file:
+    collinv = "/cite/cs2/fuseki/resources/ttl-src/integrated/collections/inventory/hmtcollections.xml"
+    // Path to directory where XML editions are found:
+    collarchive = "/cite/cs2/fuseki/resources/ttl-src/integrated/collections"
+
+
+    // 4. Configuration of indices.
+    // Path to index inventory file:
+    idxinv = "/cite/cs2/fuseki/resources/ttl-src/integrated/indices/inventory/hmtindices.xml"
+    // Path to directory where tsv or csv files are found
+    idxarchive = "/cite/cs2/fuseki/resources/ttl-src/integrated/indices"
+    
+    // RDF name space abbreviations.
+    prefixString = """ @prefix cts:        <http://www.homermultitext.org/cts/rdf/> .\n@prefix cite:        <http://www.homermultitext.org/cite/rdf/> .\n@prefix hmt:        <http://www.homermultitext.org/hmt/rdf/> .\n@prefix citedata:        <http://www.homermultitext.org/hmt/citedata/> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>. \n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n@prefix olo:     <http://purl.org/ontology/olo/core#> .\n@prefix lex:        <http://data.perseus.org/rdfverbs/> .\n@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix owl:        <http://www.w3.org/2002/07/owl#> .\n@prefix dse:        <http://www.homermultitext.org/dse/rdf> .\n\n"""
+
+
+}

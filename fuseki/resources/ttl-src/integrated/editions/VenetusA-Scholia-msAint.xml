@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI  xmlns="http://www.tei-c.org/ns/1.0">
+<teiHeader> <fileDesc> <titleStmt> <title> Interior scholia of the Venetus A, Marciana 822 (= Marcianus Graecus Z. 454)</title> <editor> Jennifer Adams</editor> <editor> Matthew Angiolillo</editor> <editor> Thomas Arralde</editor> <editor> Christopher Blackwell</editor> <editor> Melissa Browne</editor> <editor> Peter Collins</editor> <editor> Jennifer Curtin</editor> <editor> James D'Amico</editor> <editor> Matthew Davis</editor> <editor> William Dolan</editor> <editor> Scott Dubé</editor> <editor> Casey Dué</editor> <editor> C. Daniel Earley</editor> <editor> Mary Ebbott</editor> <editor> Leah Elder</editor> <editor> Tucker Hannah</editor> <editor> Francis Hartel</editor> <editor> Connor Hayden</editor> <editor> Michael Kinney</editor> <editor> Amy Koenig</editor> <editor> Daniel Libatique</editor> <editor> Stephanie Lindeborg</editor> <editor> Brian Livingston</editor> <editor> George Matthews</editor> <editor> Jessica Nord</editor> <editor> Katie Phillips</editor> <editor> Annalisa Quinn</editor> <editor> Christine Roughan</editor> <editor> Emily Schurr</editor> <editor> Neel Smith</editor> <editor> Melanie Steinhardt</editor> <editor> Megan Whitacre</editor></titleStmt> <publicationStmt> <p> The Homer Multitext. Casey Dué and Mary Ebbott, editors; Christopher
+                Blackwell and Neel Smith, project architects.</p></publicationStmt> <sourceDesc> <p> Text edited directly from photography of the Venetus A manuscript, Marciana 454.</p></sourceDesc></fileDesc></teiHeader>
+<text>
+<body>
+<div n='1'>
+<div type='scholion' n='27'>
+<div type='lemma' ></div><div type='comment' > <p> δασύνεται τὸ ξυνἕηκε⁑</p></div>
+</div>
+
+<div type='scholion' n='28'>
+<div type='lemma' ></div><div type='comment' > <p> οὐ καλῶς γὰρ ἐν τοῖς εξῆς μετετέθησαν⁑</p></div>
+</div>
+
+<div type='scholion' n='29'>
+<div type='lemma' ></div><div type='comment' > <p> εἰ μὲν εἶεν θεοσεβεῖς τὸ στέμμα⁑</p></div>
+</div>
+
+<div type='scholion' n='30'>
+<div type='lemma' ></div><div type='comment' > <p> εἰ δὲ φιλοχρήματοι τὰ ἄποινα⁑</p></div>
+</div>
+
+<div type='scholion' n='31'>
+<div type='lemma' ></div><div type='comment' > <p> εἰ δὲ οἰκτίρμονες τὸ γῆρας αἰδεσθήσονται</p></div>
+</div>
+
+<div type='scholion' n='32'>
+<div type='lemma' ></div><div type='comment' > <p> δέχθαι ἄποινα ἀπαρέμφατον ἀντὶ <choice> <abbr> προστ</abbr> <expan> προστακτικοῦ</expan></choice> ἰστέον ὅτι τὸ παλαιὸν ἡ <placeName n='urn:cite:hmt:place.place36' > Πελοπόννησος</placeName> εἰς <num value='5' > ε</num> διηπεῖτο μοίρας· <placeName n='urn:cite:hmt:place.place40' > Αργολικὴν</placeName> <placeName n='urn:cite:hmt:place.place41' > Πυλικὴν</placeName> <placeName n='urn:cite:hmt:place.place53' > Λακονικὴν</placeName> <placeName n='urn:cite:hmt:place.place42' > Μεσσηνιακήν</placeName> · ἰστεον δὲ ὅτι ἡ <placeName n='urn:cite:hmt:place.place36' > Πελοπόννησος</placeName> τὸ <choice> <abbr> αρχ</abbr> <expan> αρχαῖον</expan></choice> <placeName n='urn:cite:hmt:place.place43' > Αιγιάλεια</placeName> ἐκαλειτο απὸ <persName n='urn:cite:hmt:pers.pers120' > Αιγιαλέως</persName> <unclear> τοῦ υἱοῦ</unclear> <persName n='urn:cite:hmt:pers.pers121' > Ἰνάχου</persName> τοῦ ἐν <placeName n='urn:cite:hmt:place.place44' > Ἄργει</placeName> ποταμοῦ καὶ <persName n='urn:cite:hmt:pers.pers122' > Μελείας</persName> τῆς <persName n='urn:cite:hmt:pers.pers123' > Ωκεανοῦ</persName> .
+                           ὕστερον δὲ <placeName n='urn:cite:hmt:place.place36' > Απία</placeName> πάλιν ἐκλήθη ἀπὸ <persName n='urn:cite:hmt:pers.pers124' > Ἄπιδος</persName> τοῦ <persName n='urn:cite:hmt:pers.pers125' > Φορωνέως</persName> παιδός. εἰθ ούτως <placeName n='urn:cite:hmt:place.place44' > Ἄργος</placeName> ἀπο <persName n='urn:cite:hmt:pers.pers126' > Άργου</persName> τοῦ
+                           πανόπτου· τελευταῖον δὲ πάντων <placeName n='urn:cite:hmt:place.place36' > Πελοπόννος</placeName> ἀπο τοῦ κρατησαι τῆς χώρας τὸν <persName n='urn:cite:hmt:pers.pers46' > Ταντάλου</persName> υἱὸν <persName n='urn:cite:hmt:pers.pers24' > Πελοπα</persName> ⁑</p></div>
+</div>
+
+<div type='scholion' n='55'>
+<div type='lemma' ></div><div type='comment' > <p> καθ' ἑαυτὸ τοῦτο προφερομεθα καὶ γὰρ εμφαντικότερον⁑</p></div>
+</div>
+
+<div type='scholion' n='56'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι παρέλκει ἡ ἐπι⁑</p></div>
+</div>
+
+<div type='scholion' n='57'>
+<div type='lemma' ></div><div type='comment' > <p> <persName n='urn:cite:hmt:pers.pers16' > Ἀρισταρχος</persName> δύο μέρη λόγου τὸ <q> τὸ δέ
+                              μοι</q> <persName n='urn:cite:hmt:pers.pers75' > Ἡρωδιανὸς</persName> ἔν</p></div>
+</div>
+
+<div type='scholion' n='58'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι ορος ὁ <placeName n='urn:cite:hmt:place.place45' > Ολυμπος</placeName> τα γὰρ καρηνα ἐπι
+                           όρους⁑</p></div>
+</div>
+
+<div type='scholion' n='59'>
+<div type='lemma' ></div><div type='comment' > <p> <persName n='urn:cite:hmt:pers.pers16' > Αριστάρχος</persName> ο <rs type='waw' > τόνος</rs> παρα τὴν <rs type='waw' > βιαν</rs> ⁑</p></div>
+</div>
+
+<div type='scholion' n='60'>
+<div type='lemma' ></div><div type='comment' > <p> + <choice> <abbr> φιλανος</abbr> <expan> φιλανθρωπος</expan></choice> ὦν ὁ θεὸς πρῶτον τὰς ἡμιόνους καὶ τοὺς κύνας καὶ τὰ ἄλογα ζῶα
+                           ἀναιρεῖ ἵνα δια τούτων εἰς δεος ἀγαγὼν τοὺς <choice> <abbr> Ἑλλ</abbr> <expan> Ἕλληνας</expan></choice> ἐπι τὸ εὐσεβεῖν παρασκευάσῃ ἥ ὅτι αἱ ἡμίονοι καὶ οἱ κύνες τὴν
+                           αἴσθησιν τῆς ὀσφρήσεως ἐνεργετέραν ἔχουσιν: οἱ μεν γαρ κύνες ἀπο τῆς
+                           ὀσφρήσεως τῶν ἰχνῶν εν αισθήσει τῶν θηρίων γίνονται· αἱ δε <seg type='word' > <unclear> ἡμί</unclear> ονοι</seg> <choice> <abbr> πολλακ</abbr> <expan> πολλάκις</expan></choice> ἀπολειφθεῖσαι <seg type='word' > <unclear> τι</unclear> νων</seg> ἀπο τῆς ὀσφρήσεως καὶ τας ὁδους ἀνευρισκουσι⁑</p></div>
+</div>
+
+<div type='scholion' n='88'>
+<div type='lemma' ></div><div type='comment' > <p> εὐλόγως <choice> <abbr> ἐφρoντιζε</abbr> <expan> ἐφρoντιζεα</expan></choice> τῶν <choice> <abbr> Ἑλλη</abbr> <expan> Ἑλληνων</expan></choice> ἡ <persName n='urn:cite:hmt:pers.pers116' > Ἥρα</persName> ὅτι τὸ <placeName n='urn:cite:hmt:place.place44' > Άργος</placeName> όλον ἱερὸν αὐτῆς· ἄλλως τε καὶ ἦν
+                           ὑβρισθεῖα ὑπὸ <persName n='urn:cite:hmt:pers.pers110' > Ἀλεξάνδρου</persName> · ὡς καὶ ἡ <persName n='urn:cite:hmt:pers.pers67' > Ἀθηνᾶ</persName> ἐν τη τοῦ μήλου κρίσει ἤθελεν
+                           οὖν σώζεσθαι τοὺς <choice> <abbr> Ἕλλ</abbr> <expan> Ἕλληνας</expan></choice> ἵνα γένωνται τοῖς Τρωσὶν όλεθρος⁑</p></div>
+</div>
+
+<div type='scholion' n='89'>
+<div type='lemma' ></div><div type='comment' > <p> δια τὸν <rs type='waw' > μετά</rs> ⁑</p></div>
+</div>
+
+<div type='scholion' n='90'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι <persName n='urn:cite:hmt:pers.pers15' > Ζηνοδοτος</persName> <q> οι κεν</q> γράφει οὐ καλῶς· καλὴ γὰρ ἡ απόγνωσις τῆς σωτηρίας⁑</p></div>
+</div>
+
+<div type='scholion' n='91'>
+<div type='lemma' ></div><div type='comment' > <p> ἑκατόμβης ἠ τῆς ἀπο εκατῶν βοῶν ἠ ἀπὸ <num type='cardinal'  value='100' > ρ</num> βημάτων ὅ <choice> <abbr> εστ</abbr> <expan> εστιν</expan></choice> κέ ζώων⁑</p></div>
+</div>
+
+<div type='scholion' n='92'>
+<div type='lemma' ></div><div type='comment' > <p> οὕτως δια τοῦ ἑνὸς <rs type='waw' > σ</rs> ⁑</p></div>
+</div>
+
+<div type='scholion' n='113'>
+<div type='lemma' ></div><div type='comment' > <p> Ἀχαιῶν οὐκ ενι στρατῷ αι <persName n='urn:cite:hmt:pers.pers16' > Αριστάρχου</persName> ὁμοιως ἡ <persName n='urn:cite:hmt:pers.pers112' > Σωσιγένους</persName> καὶ <persName n='urn:cite:hmt:pers.pers16' > Ἀριστοφάνους</persName> · καὶ ἡ <persName n='urn:cite:hmt:pers.pers15' > Ζηνοδότου</persName> ⁑</p></div>
+</div>
+
+<div type='scholion' n='114'>
+<div type='lemma' ></div><div type='comment' > <p> βραχὺ διασταλτεον ἐπι τὸ <rs type='waw' > εκατομβης</rs> καὶ <rs type='waw' > αρητῆρος</rs> . κοινὸν δὲ τὸ <rs type='waw' > ἕνεκα</rs> ουτε ευχωλῆς
+                           ουτε ἑκατόμβης ἕνεκα· ἀλλ αρητηρος ἕνεκα μεμφεται⁑</p></div>
+</div>
+
+<div type='scholion' n='115'>
+<div type='lemma' ></div><div type='comment' > <p> <cit> <q> Δαναοῖσιν ἀεικέα λοιγὸν απώσει</q> <ref type='urn' > urn:cts:greekLit:tlg0012.tlg001:1.97</ref></cit> οὕτως αι <persName n='urn:cite:hmt:pers.pers16' > Αριστάρχου</persName> ⁑</p></div>
+</div>
+
+<div type='scholion' n='141'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι αμφοτεροι εις τὴν <title> Ὀδύσσειαν</title> <cit> <note> 4.661-4.662</note> <ref type='urn' > urn:cts:greekLit:tlg0012.tlg002:4.661-4.662</ref></cit> μετάκεινται οὐκ ορθῶς</p></div>
+</div>
+
+<div type='scholion' n='142'>
+<div type='lemma' ></div><div type='comment' > <p> τὸ <rs type='waw' > ως</rs> ὁπότε σημαντικόν ἐστι τοῦ <rs type='waw' > όμως</rs> περισπαται</p></div>
+</div>
+
+<div type='scholion' n='431'>
+<div type='lemma' ></div><div type='comment' > <p> ἐσχιματισεν οὐχ’ ὁμοιως τὸ <rs type='waw' > αὐτὸς</rs> ἐπενεγκῶν αὐτὰρ εμ'
+                           αὔτως⁑</p></div>
+</div>
+
+<div type='scholion' n='432'>
+<div type='lemma' ></div><div type='comment' > <p> δια τοῦ <rs type='waw' > ν</rs> <persName n='urn:cite:hmt:pers.pers16' > Ἀρίσταρχος</persName> <q> ἑν δ' ερέτας</q> :</p></div>
+</div>
+
+<div type='scholion' n='502'>
+<div type='lemma' ></div><div type='comment' > <p> <q> σκιόωντα</q> δια τοῦ <rs type='waw' > ω</rs> <persName n='urn:cite:hmt:pers.pers16' > Ἀρισταρχος</persName> ⁑</p></div>
+</div>
+
+<div type='scholion' n='503'>
+<div type='lemma' ></div><div type='comment' > <p> Ϊακῶς τὸ <rs type='waw' > εμόγησα</rs> αι <persName n='urn:cite:hmt:pers.pers16' > Αρισταρχου</persName></p></div>
+</div>
+
+<div type='scholion' n='504'>
+<div type='lemma' ></div><div type='comment' > <p> <abbr> υπο</abbr> <note resp='HMT' > Could it be ὑποθεσις?</note></p></div>
+</div>
+
+<div type='scholion' n='505'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι πτῶσις ἐνήλακται ἀντι γαρ γενικῆς κέχρηται ὀνομαστικῇ αντὶ ουχ ὑπονοῶ
+                           δὲ <rs type='waw' > ἐνθάδε</rs> σοῦ οντος πλουτήσειν⁑</p></div>
+</div>
+
+<div type='scholion' n='506'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι περισὸς ὁ <rs type='waw' > κε</rs> <choice> <abbr> συνδ</abbr> <expan> συνδεσμος</expan></choice> καὶ τὸ <rs type='waw' > τιμήσουσιν</rs> αντὶ τοῦ <rs type='waw' > τιμήσειαν</rs> ⁑</p></div>
+</div>
+
+<div type='scholion' n='568'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι συγκριτικῶ ἀντι ἁπλοῦ ἐχρήσατο⁑</p></div>
+</div>
+
+<div type='scholion' n='569'>
+<div type='lemma' ></div><div type='comment' > <p> οὕτω περισπαστεον τὸ <choice> <abbr> ουδ</abbr> <expan resp='Erbse, Dindorf' > εἰδῇς</expan></choice> ⁑</p></div>
+</div>
+
+<div type='scholion' n='570'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι εκλύεται τὰ τῆς οργῆς δι ὃ ἀθετεῖται⁑</p></div>
+</div>
+
+<div type='scholion' n='571'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι περισσὸς ὁ <rs type='waw' > δε</rs> <choice> <abbr> συνδ</abbr> <expan> σύνδεσμος</expan></choice> ⁑</p></div>
+</div>
+
+<div type='scholion' n='572'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι <choice> <abbr> Ζηνοδ</abbr> <expan> <persName n='urn:cite:hmt:pers.pers15' > Ζηνοδοτος</persName></expan></choice> γράφει <rs type='waw' > ὁρητο</rs> τοῦτο δὲ <placeName n='urn:cite:hmt:place.place78' > Δώριον</placeName></p></div>
+</div>
+
+<div type='scholion' n='616'>
+<div type='lemma' ></div><div type='comment' > <p> τὸ <rs type='waw' > μιν</rs> <placeName n='urn:cite:hmt:place.place79' > Ϊώνων</placeName></p></div>
+</div>
+
+<div type='scholion' n='617'>
+<div type='lemma' ></div><div type='comment' > <p> <q> τελέεσθαι</q> <persName n='urn:cite:hmt:pers.pers16' > Ἀρίσταρχος</persName> οὐ <rs type='waw' > τετελέσθαι</rs></p></div>
+</div>
+
+<div type='scholion' n='618'>
+<div type='lemma' ></div><div type='comment' > <p> τὸ δὲ <num type='cardinal'  value='2' > β</num> <choice> <abbr> με</abbr> <expan> μέρη</expan></choice> λόγου εισίν:</p></div>
+</div>
+
+<div type='scholion' n='619'>
+<div type='lemma' ></div><div type='comment' > <p> λέγεται χολην οὐκ έχειν ἐν τῶ ήπατι περικειμενην τὴν ελαφον⁑</p></div>
+</div>
+
+<div type='scholion' n='672'>
+<div type='lemma' ></div><div type='comment' > <p> θανατος νομιζεται</p></div>
+</div>
+
+<div type='scholion' n='673'>
+<div type='lemma' ></div><div type='comment' > <p> ουτως <persName n='urn:cite:hmt:pers.pers16' > Ἀρισταρχος</persName> <q> τότε δ' ούτι</q> ⁑</p></div>
+</div>
+
+<div type='scholion' n='739'>
+<div type='lemma' ></div><div type='comment' > <p> <abbr> ωδ</abbr> <note resp='HMT' > ?</note></p></div>
+</div>
+
+<div type='scholion' n='740'>
+<div type='lemma' ></div><div type='comment' > <p> οὕτως <persName n='urn:cite:hmt:pers.pers16' > Ἀρισταρχος</persName> τὴν <rs type='waw' > μετα</rs> φυλάσσειν τὸν τόνον⁑</p></div>
+</div>
+
+<div type='scholion' n='741'>
+<div type='lemma' ></div><div type='comment' > <p> οὕτως ἡ <persName n='urn:cite:hmt:pers.pers16' > Αρισταρχειος</persName> δια τοῦ ε ξύνιν ὡς <cit> <q> κόσμιθεν</q> <ref type='urn' > urn:cts:greekLit:tlg0012.tlg001:3.1</ref></cit> :</p></div>
+</div>
+
+<div type='scholion' n='742'>
+<div type='lemma' ></div><div type='comment' > <p> ἐκτατέον τὸ αλφα⁑</p></div>
+</div>
+
+<div type='scholion' n='808'>
+<div type='lemma' ></div><div type='comment' > <p> μέγιστον όνειδος ἡ γεῖται τὴν δειλίαν⁑</p></div>
+</div>
+
+<div type='scholion' n='809'>
+<div type='lemma' ></div><div type='comment' > <p> οὕτως διὰ τοῦ <rs type='waw' > η</rs> μαχησομαι⁑</p></div>
+</div>
+
+<div type='scholion' n='810'>
+<div type='lemma' ></div><div type='comment' > <p> καὶ ὑβρίσατε ἑαυτοuς οὐ γὰρ ἐμέ⁑</p></div>
+</div>
+
+<div type='scholion' n='877'>
+<div type='lemma' ></div><div type='comment' > <p> τὸ <rs type='waw' > πείρησαι</rs> προπαροξυτόνως προστακτικὸν γὰρ ὡς τὸ <q> σὺ δὲ φράσαι</q> ⁑</p></div>
+</div>
+
+<div type='scholion' n='878'>
+<div type='lemma' ></div><div type='comment' > <p> φύσει γὰρ τὸ ύδωρ τῆς <choice> <abbr> θαλα</abbr> <expan> θαλασσης</expan></choice> καθαρτικον⁑</p></div>
+</div>
+
+<div type='scholion' n='942'>
+<div type='lemma' ></div><div type='comment' > <p> ολοῇσι πλονασμῷ τοῦ <rs type='waw' > ϊ</rs></p></div>
+</div>
+
+<div type='scholion' n='943'>
+<div type='lemma' ></div><div type='comment' > <p> οὕτως <rs type='waw' > απείρονα</rs> οὐκ <rs type='waw' > οίνοπα</rs> · ἡ <persName n='urn:cite:hmt:pers.pers16' > Αριστάρχου</persName> ⁑</p></div>
+</div>
+
+<div type='scholion' n='1002'>
+<div type='lemma' ></div><div type='comment' > <p> τῶν σπανίων ἡ τιμὴ κατὰ τὸν ἔβδομον χρόνον</p></div>
+</div>
+
+<div type='scholion' n='1003'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι τὸ <q> βαρυ στενάχων</q> κατα βαρείαν τάσιν⁑</p></div>
+</div>
+
+<div type='scholion' n='1076'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι μακρὸν τὸν <placeName n='urn:cite:hmt:place.place45' > Ὄλυμπον</placeName> ὡς όρος τὸν δὲ <choice> <abbr> οὐνον</abbr> <expan> οὐρανὸν</expan></choice> ευρύν⁑</p></div>
+</div>
+
+<div type='scholion' n='1077'>
+<div type='lemma' ></div><div type='comment' > <p> τὸ <rs type='waw' > νῦν</rs> ἀντὶ <rs type='waw' > δη</rs> διὸ και <persName n='urn:cite:hmt:pers.pers105' > Τυραννίων</persName> <note> fr. 4 p.</note> καὶ ηξίου οξύνειν οὐκ εῦ</p></div>
+</div>
+
+<div type='scholion' n='1078'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι τινὲς γράφουσι <cit> <q> μετα δαίμονας ἄλλους</q> <ref type='urn' > urn:cts:greekLit:tlg0012.tlg001:1.222</ref></cit> διὸ ἀθετειται:</p></div>
+</div>
+
+<div type='scholion' n='1136'>
+<div type='lemma' ></div><div type='comment' > <p> <persName n='urn:cite:hmt:pers.pers16' > Ἀρίσταρχος</persName> <q> ἐγγὺς</q> οἷον πλησίον οὐχὶ εντός⁑</p></div>
+</div>
+
+<div type='scholion' n='1137'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι περισσός⁑</p></div>
+</div>
+
+<div type='scholion' n='1190'>
+<div type='lemma' ></div><div type='comment' > <p> ὑπερ τὸ χειλος ἐπλήρωσαν ὡς δοκεῖν ἐστέφθαι τῷ ὑγρῷ⁑</p></div>
+</div>
+
+<div type='scholion' n='1239'>
+<div type='lemma' ></div><div type='comment' > <p> <choice> <abbr> ἐχθο</abbr> <expan> ἐχθρὸς</expan></choice> γὰρ τῆς ἀργίας ὁ ήρως φιλότιμος δὲ περὶ τὰς πράξεις⁑</p></div>
+</div>
+
+<div type='scholion' n='1240'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι καὶ ἀρσενικῶς τὸ <rs type='waw' > πολυδειραδος</rs> ὡς ἐντεῦθεν⁑</p></div>
+</div>
+
+<div type='scholion' n='1294'>
+<div type='lemma' ></div><div type='comment' > <p> αὐξουσιν έθεν καὶ όφλημα τὸ χρέος δια τὸν τόκον⁑</p></div>
+</div>
+
+<div type='scholion' n='1349'>
+<div type='lemma' ></div><div type='comment' > <p> το δε <rs type='waw' > πῶ</rs> ὀξύνεται δια τὴν <rs type='waw' > μοι</rs> ἀντωνυμιαν ἥτις νῦν ἐγκλητική ἔστιν⁑</p></div>
+</div>
+
+<div type='scholion' n='1455'>
+<div type='lemma' ></div><div type='comment' > <p> ἀντὶ <rs type='waw' > στυφελίξειε</rs> ⁑</p></div>
+</div>
+
+<div type='scholion' n='1456'>
+<div type='lemma' ></div><div type='comment' > <p> ὅτι ελλείπει ἡ παρὰ <choice> <abbr> προθ</abbr> <expan> πρόθεσις</expan></choice> ἵν ῇ παρὰ παιδός⁑</p></div>
+</div>
+
+<div type='scholion' n='1503'>
+<div type='lemma' ></div><div type='comment' > <p> <persName n='urn:cite:hmt:pers.pers16' > Ἀρισταρχος</persName> τὸ ῇχι <choice> <abbr> χω</abbr> <expan> χωρὶς</expan></choice> τοῦ <rs type='waw' > ϊ</rs> γράφει καὶ <persName n='urn:cite:hmt:pers.pers211' > Διονύσιος</persName> <note resp='Erbse' > fr. 31</note> παρατίθεται δὲ ὁ <persName n='urn:cite:hmt:pers.pers211' > Διονυσιος</persName> τοὺς <placeName n='urn:cite:hmt:place.place78' > Δωριεῖς</placeName> λέγοντας ᾶχι⁑</p></div>
+</div>
+
+<div type='scholion' n='1405'>
+<div type='lemma' ></div><div type='comment' > <p> κόσμον περι τὰς ώας ἔχουσα, ἡ δια τοὺς αιγιαλους⁑</p></div>
+</div>
+
+<div type='scholion' n='1406'>
+<div type='lemma' ></div><div type='comment' > <p> γράφεται <q> τὴν δὲ μέγ' ὀχθησας</q></p></div>
+</div>
+
+<div type='scholion' n='1407'>
+<div type='lemma' ></div><div type='comment' > <p> ‡ὅτι <choice> <abbr> Ζηνοδ</abbr> <expan> <persName n='urn:cite:hmt:pers.pers15' > Ζηνοδοτος</persName></expan></choice> γράφει <q> άσσον ϊοντε</q> οὐκ ἔστι δέ ἀλλ' ἀντι <rs type='waw' > ϊόντος</rs> συγχεῖ δὲ καὶ τὸ <choice> <abbr> δκ</abbr> <expan> δυϊκόν</expan></choice> ⁑</p></div>
+</div>
+
+<div type='scholion' n='1408'>
+<div type='lemma' ></div><div type='comment' > <p> βραχὺ διασταλτεον ἐπι τὸ <rs type='waw' > <persName n='urn:cite:hmt:pers.pers8' > Διός</persName></rs> ὁ γὰρ οικος <persName n='urn:cite:hmt:pers.pers8' > Διός</persName> :</p></div>
+</div>
+
+
+</div>
+
+<div n='2'>
+<div type='scholion' n='13'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> βραχὺ διασταλτέον μὲτὰ τὸ <rs type='waw' > φρένα</rs> καὶ <rs type='waw' > τιμήσει</rs> ⁑</p></div>
+</div>
+
+<div type='scholion' n='14'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι οὐ τὸν μαλακόν ἀλλα τὸν ὀλέθριον, πέμπεται γὰρ ἐπ απίστῳ καὶ κακῶ⁑</p></div>
+</div>
+
+<div type='scholion' n='15'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι παραλήλως <rs type='waw' > βάσκε</rs> καὶ <rs type='waw' > ἴθι</rs> ἰσοδυναμοῦσι γὰρ αἱ λέξεις⁑</p></div>
+</div>
+
+<div type='scholion' n='32'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> τὴν <rs type='waw' > λὸς</rs> ὀξυτονητέον δια τὸ <rs type='waw' > ειμι</rs></p></div>
+</div>
+
+<div type='scholion' n='33'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> οὕτως <placeName n='place78' > Ιωνικῶς</placeName> τὸ <rs type='waw' > λίπε</rs> ⁑</p></div>
+</div>
+
+<div type='scholion' n='72'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι οἱ πρὸς ἠὼ ὄνειροι ἀληθεῖς πεπτωμένων τῶν σιτίων⁑</p></div>
+</div>
+
+<div type='scholion' n='73'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> διασταλτεον τὸ ἵζε τὴν ἄρχουσαν⁑</p></div>
+</div>
+
+<div type='scholion' n='74'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> τελεία στιγμὴ΄ ἐπι τὸ φίλοι· αὐτοτελὴς γὰρ ὁ <choice> <abbr> λογ</abbr> <expan> λόγος</expan></choice> ·</p></div>
+</div>
+
+<div type='scholion' n='109'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι ὑπὸ τῆς <persName n='pers282' > Ίριδος</persName> πρὸς <persName n='pers145' > Πρίαμον</persName> δεόντως λέγεται <note resp='Erbse' > sc. Ω
+                           174</note> ⁑</p></div>
+</div>
+
+<div type='scholion' n='110'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι συνεσταλμένως θωρήξομεν ἀντὶ τοῦ <rs type='waw' > θωρήξωμεν</rs> ⁑</p></div>
+</div>
+
+<div type='scholion' n='111'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὑποστιγμὴ ἐπι τὸ <rs type='waw' > ένισπε</rs> δια τὸν <rs type='waw' > ει</rs> σύνδεσμον·</p></div>
+</div>
+
+<div type='scholion' n='139'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὡς <rs type='waw' > π</rs></p></div>
+</div>
+
+<div type='scholion' n='140'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> πυκναὶ καὶ ἐξηρτημέναι ἀλλήλων ὡς ρᾶγες οὕτως δὲ ϊπτανται σκιάζειν θέλουσαι
+                        ἀλλήλας αἱ μέλισσαι ὀχλούμεναι ὑπὸ τοῦ ἡλίου⁑</p></div>
+</div>
+
+<div type='scholion' n='141'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> διεγείρουσα</p></div>
+</div>
+
+<div type='scholion' n='142'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ἤτοι στικτέον ἐπι τὸ ἀγορῆ ἠ διασταλτέον καὶ ἐπ αὐτὸ καὶ ἐπι τὸ γαῖα· ἵν' ᾖ
+                        κοινὸν τὸ λαῶν ἱ¨ζόντων⁑</p></div>
+</div>
+
+<div type='scholion' n='143'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι <rs type='waw' > σπουδῇ</rs> λέγει οὐχ οἶον ἐν τάχει ἀλλα μόγις καὶ
+                        δυσχερῶς ὼς τὸ <cit> <q> ὡς ἄρ' άτερ σπουδῆς τάνυσσεν μέγα τόξον <persName n='pers118' > Ὀδυσσεύς</persName></q> <ref type='urn' > urn:cts:greekLit:tlg0012.tlg002:21.409</ref></cit> ⁑</p></div>
+</div>
+
+<div type='scholion' n='144'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὁ τρόπος κλίμαξ τὸ λῆγος γὰρ τῆς διανοίας ἀρχὴ γίνεται τῷ ἑξῆς⁑</p></div>
+</div>
+
+<div type='scholion' n='145'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> :κλητξ λτν εὐθειας</p></div>
+</div>
+
+<div type='scholion' n='146'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι πρὸς πάντας ἀποτεινόμενος τὸν λόγον ήρωας λέγει ἡ δὲ ἀναφορὰ προς <placeName n='place105' > Ίστρον</placeName> <note resp='Erbse' > fgrhist 334, 69</note> λέγοντα μόνους τοὺς βασιλεῖς ἡρωας
+                        λέγεσθαι: στικτέον δὲ κατὰ τὸ τελος προσαγορευτικὴ γὰρ ἡ περίοδος⁑</p></div>
+</div>
+
+<div type='scholion' n='193'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> συσταλτέον τὸ <rs type='waw' > ϊ</rs> τοῦ <rs type='waw' > ὑπερμενεϊ</rs> ⁑</p></div>
+</div>
+
+<div type='scholion' n='194'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι περισσὸς ὁ <rs type='waw' > κε</rs> <choice> <abbr> σύνδ</abbr> <expan> σύνδεσμος</expan></choice> ·</p></div>
+</div>
+
+<div type='scholion' n='195'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὁ <persName n='pers151' > Ἰ¨ξίων</persName> <note resp='Erbse' > fr. 2 st.</note> δια τοῦ <rs type='waw' > ν</rs> ἕκαστον</p></div>
+</div>
+
+<div type='scholion' n='196'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> πλανῶσι και ἀπείργουσι τῆς <choice> <abbr> πολ</abbr> <expan> πολλῆς</expan></choice> προθυμίας καλὸν δὲ τὸ οικειοῦσθαι τὴν ήτταν καὶ μη λέγειν τὸ
+                        κοινον</p></div>
+</div>
+
+<div type='scholion' n='242'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ἀθετεῖται ὅτι κενῶς ἐπεξηγεῖται τὸ γαρ νοούμενον το αυτό</p></div>
+</div>
+
+<div type='scholion' n='243'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ἀπο τοῦ <rs type='waw' > όρωρε</rs> ὑπέρθεσις χρόνου·</p></div>
+</div>
+
+<div type='scholion' n='244'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> οὕτως <q> νῆας ἐπ’ ἐσσεύοντο</q></p></div>
+</div>
+
+<div type='scholion' n='245'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ‡ἐπιλαμβάνεσθαι ὡς το <cit> <q> εανοῦ απτομένη</q> <ref type='urn' > urn:cts:greekLit:tlg0012.tlg001:16.9</ref></cit></p></div>
+</div>
+
+<div type='scholion' n='246'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> οὐδετέρως τὸ <rs type='waw' > νῶτον</rs> καὶ τα <rs type='waw' > νῶτα</rs> λέγει
+                        ὁ ποιητὴς πανταχοῦ καὶ <persName n='pers4' > Ἡσίοδος</persName> καὶ οὐκ
+                        αρσενικῶς τον <rs type='waw' > νῶτον</rs> ⁑</p></div>
+</div>
+
+<div type='scholion' n='285'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ἡ <placeName n='place53' > Λακωνικὴ</placeName> πέμπτον τῆς όλης <placeName n='place36' > Πελοποννήσου</placeName> ⁑</p></div>
+</div>
+
+<div type='scholion' n='286'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ψιλωτέον τὸ <rs type='waw' > ἀγανὸς</rs> τοιοῦτο γὰρ τὸ <rs type='waw' > α</rs> προ τοῦ <rs type='waw' > γ</rs> ⁑</p></div>
+</div>
+
+<div type='scholion' n='287'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> τελεία ἐπὶ το <rs type='waw' > ἀΐξασα</rs> ασύνδετον γὰρ τὸ ἑξῆς προς τὰ
+                        ἐπανω·</p></div>
+</div>
+
+<div type='scholion' n='288'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> προσαγορευτικη ἡ περίοδος διὃ τελείαν στικτεον⁑</p></div>
+</div>
+
+<div type='scholion' n='289'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> οὐκ εμβάντες ὅτι σύμβουλον ατακτου φυγῆς·</p></div>
+</div>
+
+<div type='scholion' n='290'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ἐνταῦθα καὶ τὸν λόγον ὑποτέθεικεν <persName n='pers16' > Ἀρίσταρχος</persName> οὕτως ὥστε νοεῖσθαι <rs type='waw' > ΐθι</rs> κατὰ <rs type='waw' > λαόν</rs> ⁑</p></div>
+</div>
+
+<div type='scholion' n='291'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> <rs type='waw' > χλαίνα</rs> ἡ τετράγωνος λαμὺς ἡ εἰς ὀξὺ λήγουσα</p></div>
+</div>
+
+<div type='scholion' n='331'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> προς τὴν τάξιν τῶν ἑξῆς <note resp='Erbse' > sc. Β 203-5</note> τὸ
+                        αντισιγμα⁑</p></div>
+</div>
+
+<div type='scholion' n='332'>
+<div type='lemma' > <p> ἀκούσαμεν·</p></div><div type='comment' > <p> μετρίως ἵ¨να μὴ καταισχύνῃ τοὺς ἄλλους· τινὲς δὲ ἐν ἐρωτήσει· μὴ οὐκ
+                        ηκούσαμεν πάντες οἱ βασιλεῖς τί εἶπεν ἐν τη βουλῆ ὁ <persName n='pers22' > Αγαμέμνων</persName> ⁑</p></div>
+</div>
+
+<div type='scholion' n='333'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> καλῶς καὶ ταῦτα· ἵνα δεδοικὼσι μὲν ὡς μεγαλόφρονα, σέβωσι δὲ ὡς θεοφιλῆ τὸν
+                        βασιλέα· καὶ θῶ πειθαρχεῖν δοκῶσιν. ὑποκείμενοι βασιλεῖ⁑</p></div>
+</div>
+
+<div type='scholion' n='334'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> οὕτως ὀρθοτονητέον τὴν σέο αντι γαρ διασταλτικη ἐστιν +</p></div>
+</div>
+
+<div type='scholion' n='335'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> οὐκ εσται δημοκρατία φησίν· ει δὲ τοῖς μείζοσι ταῦτα ελεγεν, εξῆπτε τὴν
+                        στάσιν· σπουδαρχιδῶν ανδρῶν, εν τοσούτῳ θορύβω καθαπτόμενος⁑</p></div>
+</div>
+
+<div type='scholion' n='336'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> τὸ δῶκε <placeName type='ethnic'  n='place79' > Ἰ¨ακῶς</placeName> οὕτως <persName n='pers16' > Ἀρίσταρχος</persName> ⁑</p></div>
+</div>
+
+<div type='scholion' n='337'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> βασιλικὰ διαπραττόμενος ἔργα·</p></div>
+</div>
+
+<div type='scholion' n='338'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ἠχῇ τοῦτο πρὸς τὴν κίνησιν· τὸν δὲ βρόμον <note resp='Erbse' > cf. Β
+                           210</note> , πρὸς τὴν ἀπήχησιν⁑</p></div>
+</div>
+
+<div type='scholion' n='339'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> συμφυῶς τῷ ὑποκειμενῳ, τετράχυνται τὸ ἔπος ταῖς ὀνοματοποιΐαις· καλῶς δὲ καὶ
+                        τὸ <rs type='waw' > μεγάλῳ</rs> · ἐμφηναι θέλων τὴν παρατασιν τῶν κυματων⁑</p></div>
+</div>
+
+<div type='scholion' n='340'>
+<div type='lemma' > <p> <persName n='pers310' > Θερσίτης</persName> ·</p></div><div type='comment' > <p> ὠνοματοπε ποιηται τὸ ὄνομα, παρὰ τὸ θέρσος <placeName type='ethnic'  n='place77' > Αἰολικόν</placeName> ·</p></div>
+</div>
+
+<div type='scholion' n='341'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὁν κακῶς λεγει·</p></div>
+</div>
+
+<div type='scholion' n='394'>
+<div type='lemma' > <p> φολκὸς·</p></div><div type='comment' > <p> ὡς ἀνδριαντοπλάστης, ἀπὸ τοῦ καλλιστου ἄρχεται ὡς <cit> <q> ὄμματα καὶ κεφαλήν</q> <ref type='urn' > urn:cts:greekLit:tlg0012.tlg001:2.478</ref></cit> · <cit> <q> κάρη κομόωντες</q> <ref type='urn' > urn:cts:greekLit:tlg0012.tlg001:2.323</ref></cit> ⁑</p></div>
+</div>
+
+<div type='scholion' n='395'>
+<div type='lemma' > <p> ψεδνή·</p></div><div type='comment' > <p> πιθανῶς· ὁπως μη λανθάνη τὸ φοξὸν τῆ κόμη καλυπτόμενον⁑</p></div>
+</div>
+
+<div type='scholion' n='396'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι περισσὸς ὁ <rs type='waw' > και</rs> ⁑</p></div>
+</div>
+
+<div type='scholion' n='440'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι αντὶ <rs type='waw' > πλήσσων</rs> τὸ <rs type='waw' > <choice> <abbr> παθητ</abbr> <expan> παθητικὸν</expan></choice></rs> παρειληφεν⁑</p></div>
+</div>
+
+<div type='scholion' n='461'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὁμοίως τὸν <rs type='waw' > η</rs> περισπαστέον⁑</p></div>
+</div>
+
+<div type='scholion' n='462'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ἀπὸ ἧς τῆ γενικῇ δεῖ συντάττειν⁑</p></div>
+</div>
+
+<div type='scholion' n='500'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ἕν ἐστι τὸ τοῦσδε διὸ προπερισπαστέον·⁑</p></div>
+</div>
+
+<div type='scholion' n='501'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> τὸ σχημα ἀποστροφη⁑</p></div>
+</div>
+
+<div type='scholion' n='541'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> μελαθρον</p></div>
+</div>
+
+<div type='scholion' n='542'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ἀντὶ <rs type='waw' > γαίης</rs></p></div>
+</div>
+
+<div type='scholion' n='561'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> δασύνειν δὲ καὶ παροξύνειν τὸ <rs type='waw' > <choice> <abbr> αθρ</abbr> <expan> ἁθρόοι</expan></choice></rs> ἐνθάδε</p></div>
+</div>
+
+<div type='scholion' n='562'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ἵ¨να μὴ απιστοῖτο τὸ τάχος, την θεον παρέλαβεν· καὶ ὡς ἄξια τῆς θεοῦ
+                        μελλόντων αυτῶν κατορθοῦν</p></div>
+</div>
+
+<div type='scholion' n='563'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ἀντὶ <rs type='waw' > πολλοί</rs> · ἢ τῶ αριθμῷ, πίστιν πεπόρισται·</p></div>
+</div>
+
+<div type='scholion' n='564'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> πάντη τὰ φάη ἀΐσσουσα·</p></div>
+</div>
+
+<div type='scholion' n='565'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> φῶ το <rs type='waw' > φαίνω</rs> · ἀναδιπλασιασμὸς <rs type='waw' > πεφασσω</rs> · καὶ <choice> <abbr> πλεονα</abbr> <expan> πλεονασμὸς</expan></choice> <rs type='waw' > παιφασσω</rs> . οἱονεὶ <rs type='waw' > φανερῶ</rs> · ὡς <rs type='waw' > πταίνω</rs> <rs type='waw' > παπταίνω</rs> · <rs type='waw' > πάσσω</rs> <rs type='waw' > πάλη</rs> . <rs type='waw' > παιπάλη</rs> ·</p></div>
+</div>
+
+<div type='scholion' n='582'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> πλατέα μεγάλα ἡ ὅτι ἐν διάστήματι καὶ πλάτει νέμονται αἱ αῖγες⁑</p></div>
+</div>
+
+<div type='scholion' n='661'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὡς <persName n='pers443' > Εὔμηλον</persName> <note resp='Erbse' > cf. Β 714 al.</note> ΐδιον γὰρ⁑</p></div>
+</div>
+
+<div type='scholion' n='684'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ἐπι τοῦ <persName n='pers480' > Θόαντος</persName> <note resp='Erbse' > cf. Β 638</note> ἵν ῆ τούτω·</p></div>
+</div>
+
+<div type='scholion' n='702'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὡς καλάθας ἀναγνωστέον⁑</p></div>
+</div>
+
+<div type='scholion' n='703'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> <placeName type='ethnic'  n='place79' > Ἰακῶς</placeName> τὸ ἐνέμοντο: <persName n='pers16' > Αρισταρχος</persName> ⁑</p></div>
+</div>
+
+<div type='scholion' n='712'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> βαρυτονητεον τὸ <rs type='waw' > <choice> <sic> Φυλὰκην</sic> <corr> Φυλάκην</corr></choice></rs> πρὸς <choice> <abbr> ἀντιδιαστο</abbr> <expan> ἀντιδιαστολὴν</expan></choice> τοῦ ὀξυνομένου⁑</p></div>
+</div>
+
+<div type='scholion' n='713'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> οὕτως αἱ <persName n='pers16' > Αριστάρχου</persName> <rs type='waw' > ἅμα</rs> οὐ δια τοῦ <rs type='waw' > ρ</rs> <rs type='waw' > ἄρα</rs> ⁑</p></div>
+</div>
+
+<div type='scholion' n='749'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> χωρὶς τοῦ <rs type='waw' > ν</rs> τὸ <rs type='waw' > ῆρχε</rs> δια τὸ <rs type='waw' > ἐπιφέρεσθαι</rs> δύο <choice> <abbr> σύμφω</abbr> <expan> σύμφωνα</expan></choice> ⁑</p></div>
+</div>
+
+<div type='scholion' n='770'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> τὸν <rs type='waw' > η</rs> περισπαστέον ἔστι γὰρ βεβαιωτικοί⁑</p></div>
+</div>
+
+<div type='scholion' n='771'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι περισσεύει ὁ <rs type='waw' > δὲ</rs> <choice> <abbr> σύνδ</abbr> <expan> σύνδεσμος</expan></choice> ⁑</p></div>
+</div>
+
+<div type='scholion' n='801'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι <persName n='pers15' > Ζηνοδοτος</persName> γράφει <q> ἐξ <placeName n='place227' > Ενέτης</placeName></q> ⁑</p></div>
+</div>
+
+
+</div>
+
+<div n='3'>
+<div type='scholion' n='4'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι ἀντὶ τοῦ μετὰ κλαγγῆς καὶ ἐνοπῆς. ἄμφω δὲ ἤχου ὀνόματα ⁑</p></div>
+</div>
+
+<div type='scholion' n='22'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὁτι τὸ εὖτε οὐκ έστιν χρονικὸν ἀλλ ὁμοιωματικὸν ἀναλογούν τω <q> ἠΰτε
+                        ⁑</q></p></div>
+</div>
+
+<div type='scholion' n='28'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὁτι οὐ λεγει ὑπο ποδων ἀελλὴς αλλα κονισαλος ἀελλης ἀελλοδης ⁑</p></div>
+</div>
+
+<div type='scholion' n='31'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ἀντι του τρώων πτωτικὸν τὸ σχῆμα ταῖς δοτικαῖς γὰρ ἀντι γενικῶν χρῶνται οἱ
+                        ποιεται ⁑</p></div>
+</div>
+
+<div type='scholion' n='43'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ουτως ὁ αρισταρχος προπερισπα δεϊοτητι ὡς ἀπο ὀξυτόνου <choice> <abbr> ευ</abbr> <expan> ευθειας</expan></choice> τὸ δε κεφάλαιον ἐκτέταται ἐν τῆι ιλιακη <choice> <abbr> προσα</abbr> <expan> προσωδια</expan></choice> ⁑</p></div>
+</div>
+
+<div type='scholion' n='49'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> νεκροῦ γὰρ φασὶ σώματος μὴ ἄπτεσθαι λέοντα ⁑</p></div>
+</div>
+
+<div type='scholion' n='55'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὁτι τὸ εἴπερ ἂν αυτον ἀντι του ει καὶ ἀυτον ὡς ὅταν <choice> <abbr> λεγ</abbr> <expan> λεγη</expan></choice> εἴπερ ἂν αὐταὶ μοῦσαι αείδοιεν ἀντι τοῦ καὶ αὐταὶ· και ὅτι ὁ τὲ <choice> <abbr> συν</abbr> <expan> συνδεσμος</expan></choice> περισσός ⁑</p></div>
+</div>
+
+<div type='scholion' n='72'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> μεταπλασμός ⁑</p></div>
+</div>
+
+<div type='scholion' n='165'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> διὰ τοῦ <rs type='waw' > α</rs> τὸ <choice> <abbr> πεπασ</abbr> <expan> πεπασθε</expan></choice> <persName> Ἀρίσταρχος</persName> ⁑</p></div>
+</div>
+
+<div type='scholion' n='176'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι τὸ ἄξετε οὐ τὸν μελλοντα <choice> <abbr> σημ</abbr> <expan> σημαίνει</expan></choice> αλλ᾽ ΐσον τῷ ἄγετε ⁑</p></div>
+</div>
+
+<div type='scholion' n='192'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> δια τὸ γαλόω ⁑</p></div>
+</div>
+
+<div type='scholion' n='692'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι παραλέλειπται τὸ κύριον ἡ χλαῖνα λέγει δὲ δίπλακα χλαῖναν ἣν ἔστι
+                        διπλῆν ἀμφιέσασθαι ⁑</p></div>
+</div>
+
+<div type='scholion' n='209'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> <rs> Ιωνικὰ</rs> νύμφα τόλμα ⁑</p></div>
+</div>
+
+<div type='scholion' n='250'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι Ζηνόδοτος <choice> <abbr> γ</abbr> <expan> γράφει</expan></choice> δενδρει</p></div>
+</div>
+
+<div type='scholion' n='259'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ‡ ἑν εστι διο προπερισπαστέον το τοιῇδε ⁑</p></div>
+</div>
+
+<div type='scholion' n='260'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ‡ αινῶς ἀθανατησι ὡς <quote> αἰνῶς γὰρ κεφαλήν τε καὶ <choice> <abbr> ὄμματ</abbr> <expan> ὄμματα</expan></choice></quote> ⁑</p></div>
+</div>
+
+<div type='scholion' n='262'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> περισπαστέον τὸ <rs type='waw' > ως</rs> ἀντὶ γὰρ τοῦ ὅμως ⁑</p></div>
+</div>
+
+<div type='scholion' n='268'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι <choice> <abbr> χωρὶς</abbr> <expan> χωρὶς</expan></choice> τοῦ <rs type='waw' > ς</rs> γραφειν ὁμηρικώτερον ⁑ ⁑ ⁑</p></div>
+</div>
+
+<div type='scholion' n='287'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> δια του κέ συνδεσμου συνειλειπται <quote> τά κε</quote> <choice> <abbr> γράφετ</abbr> <expan> γράφεται</expan></choice> δὲ καὶ τά γε</p></div>
+</div>
+
+<div type='scholion' n='241'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ασυναλνπτως τῷ γηραϊ αναγνωστεον ⁑</p></div>
+</div>
+
+<div type='scholion' n='322'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι παραλληλως τὸ ηδη τῷ ποτέ ⁑</p></div>
+</div>
+
+<div type='scholion' n='327'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> οτι παραλληλως ἐξείνισα καὶ ἐφίλησα· το γὰρ φιλεῖν ενιοτε αντὶ του ξενίζειν
+                        τιθησιν ⁑</p></div>
+</div>
+
+<div type='scholion' n='343'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> σημειωτέον δὲ ὅτι εκαστος τῶν ηγεμονων σκῆπτρον εῖχεν ΐδιον ὡς καὶ <persName> ᾿Αχιλλεὺς</persName> ἐν τῇ αλφα ὄμνυσι κατ αυτοῦ ⁑</p></div>
+</div>
+
+<div type='scholion' n='387'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> τελεία στικτέον μετὰ τὴν κλητικήν καὶ γαρ τὰ εξῆς ἀσύνδετα <quote> καλεουσιν <choice> <abbr> ἀρ</abbr> <expan> ἀριστοι</expan></choice></quote> ⁑</p></div>
+</div>
+
+<div type='scholion' n='394'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> οὕτως τοῖς ἑτέροις κατα δοτικὴν αἱ <persName> Ἀριστάρχου</persName> συνεφώνει καὶ ἡ <persName> Ζηνόδοτου</persName> ⁑</p></div>
+</div>
+
+<div type='scholion' n='397'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> προκρίνει μὲν τὴν δια τοῦ <rs type='waw' > ε</rs> γραφὴν βήσετο πλὴν οὐ μετατίθησι αλλα δια τοῦ <rs type='waw' > α</rs> <choice> <abbr> γρ</abbr> <expan> γράφει</expan></choice> ὁ <persName> Ἀρίσταρχος</persName> ⁑</p></div>
+</div>
+
+<div type='scholion' n='403'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ‡ <persName> Ἀρίσταρχος</persName> δια τοῦ <rs type='waw' > ο</rs> καὶ ἀναλογεῖ τὸ μίσγον ⁑</p></div>
+</div>
+
+<div type='scholion' n='469'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> αντι τοῦ <persName> ΄Ιδης</persName> μεδέων ⁑</p></div>
+</div>
+
+<div type='scholion' n='478'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> τὸ ἧχι χωρὶς τοῦ <rs type='waw' > ι</rs> ἡ <persName> Αρισταρχου</persName> ⁑</p></div>
+</div>
+
+<div type='scholion' n='504'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> οι μὲν παρα το κίειν ἐν πλεονασμῶ οἱ δὲ παρα τὴν σκιαν ⁑</p></div>
+</div>
+
+<div type='scholion' n='754'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ὅτι ξίφος εχει πρὸς <persName> Ζηνόδοτον</persName> ⁑</p></div>
+</div>
+
+<div type='scholion' n='532'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> περισπᾶται ὁ ῆ βεβαιωτικὸς γὰρ ῆν ⁑</p></div>
+</div>
+
+<div type='scholion' n='545'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> ἐν τῇ <persName> Ἀριστοφάνους</persName> <quote> καὶ νύκεν ἐξείρυσεν</quote> ⁑</p></div>
+</div>
+
+<div type='scholion' n='608'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> <persName> Ἀρίσταρχος</persName> <persName> Ϊακῶς</persName> <quote> ἔκπαγλα φίλησα</quote> ⁑</p></div>
+</div>
+
+<div type='scholion' n='639'>
+<div type='lemma' > <p></p></div><div type='comment' > <p> <persName> Ἀρίσταρχος</persName> <quote> δαμείης</quote> ⁑</p></div>
+</div>
+
+
+</div>
+
+
+</body>
+</text>
+</TEI>
