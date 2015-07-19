@@ -13,6 +13,8 @@ class TestTriple extends GroovyTestCase {
   URI testVerbWithUriObj = new URI("cite:analyzes")
   URI testVerbWithStringObj = new URI("cite:transformsToString")
   Object testObjString = "·"
+  Number testObjInteger = 2
+  Number testObjFloat = 2.5
   Object testObjUri = new URI("urn:cts:greekLit:tlg0012.tlg001.msA:1.2@·[1]")
 
   String expectedStringWithStringObject = """<urn:cite:hmt:VenAIliad_classifiedTokens.6> <cite:transformsToString> "·" ."""
@@ -25,6 +27,18 @@ class TestTriple extends GroovyTestCase {
 	  assert testVerbWithStringObj.getClass() == URI
 	  assert testObjString.getClass() == String
 	  assert testObjUri.getClass() == URI
+	  assert testObjInteger.toString().isNumber()
+	  assert testObjFloat.toString().isNumber()
+  }
+
+  @Test
+  void testConstructorWithIngeterObject() {
+    Triple  t = new Triple(testSubj, testVerbWithStringObj, testObjInteger)
+  }
+
+  @Test
+  void testConstructorWithFloatObject() {
+    Triple  t = new Triple(testSubj, testVerbWithStringObj, testObjFloat)
   }
 
   @Test

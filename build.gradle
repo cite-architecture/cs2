@@ -196,10 +196,12 @@ project(":graph") {
 
   dependencies {
     compile project(":common")
+    compile project(":sparqlcts")
     testCompile project(":common")
 
     // Need to define all dependencies for integration tests:
     integrCompile "junit:junit:${versionMap['junit']}"
+    integrCompile project(":graph")
     integrCompile project(":sparqlcts")
     integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
   }

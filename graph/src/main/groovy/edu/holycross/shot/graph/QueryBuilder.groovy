@@ -3,6 +3,7 @@ package edu.holycross.shot.graph
 import edu.harvard.chs.cite.CiteUrn
 import edu.harvard.chs.cite.CtsUrn
 
+
 abstract class QueryBuilder {
 
 	static String getExampleQuery(CiteUrn urn) {
@@ -27,5 +28,20 @@ abstract class QueryBuilder {
 		"""
 		return q
 	}
+	
+  /** Builds SPARQL query string to determine if a 
+   * CTS URN refers to a leaf citation node.
+   * @param urn The urn to test.
+   * @returns A complete SPARQL query string.
+   */
+  static String getIsLeafQuery(CtsUrn urn) {
+    return """
+    ${GraphDefinitions.prefixPhrase}
+        ASK
+         WHERE {
+           <${urn}> cts:hasTextContent ?txt .
+         }
+    """
+  }
 
 }

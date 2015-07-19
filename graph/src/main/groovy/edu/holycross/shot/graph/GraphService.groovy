@@ -23,6 +23,6 @@ class GraphService {
    */
   GraphService(Sparql sparqlService) {
     this.sparql = sparqlService
-    this.graph = new GraphService(this.sparql)
+    this.graph = new IndexGraph(this.sparql)
   }
 }

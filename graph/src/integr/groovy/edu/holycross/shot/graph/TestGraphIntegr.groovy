@@ -4,14 +4,16 @@ import static org.junit.Assert.*
 import org.junit.Test
 
 import edu.holycross.shot.citeservlet.Sparql
+import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.CtsUrn
 
 
 class TestGraphIntegr extends GroovyTestCase {
 
 
-  String baseUrl = "http://localhost:8080/fuseki/ds/query"
-  String verbQuery = "SELECT DISTINCT ?v WHERE {?s ?v ?o . } "
-  Integer expectedNumberVerbs = 18
+  String baseUrl = "http://localhost:8080/fuseki/graph/query"
+  String verbQuery = "SELECT distinct ?v WHERE { <urn:cite:hmt:msA.12r> ?v ?o .  }"
+  Integer expectedNumberVerbs = 11
 
   
   @Test
@@ -31,5 +33,6 @@ class TestGraphIntegr extends GroovyTestCase {
 	}
 	assert verbList.size() == expectedNumberVerbs
   }
+
   
 }
