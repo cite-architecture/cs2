@@ -10,7 +10,7 @@ import edu.holycross.shot.citeservlet.Sparql
 
 class TestCtsIntegr extends GroovyTestCase {
 
-  String baseUrl = "http://localhost:8080/fuseki/ds/query"
+  String baseUrl = "http://localhost:8080/fuseki/graph/query"
   Sparql sparql = new Sparql(baseUrl)
   GraphService gs = new GraphService(sparql)
 
@@ -34,6 +34,8 @@ class TestCtsIntegr extends GroovyTestCase {
   String ctsSubjNotionalMixedRange1 = "urn:cts:greekLit:tlg0012.tlg001:1-2.10"
   String ctsSubjNotionalMixedRange2 = "urn:cts:greekLit:tlg0012.tlg001:1.2-2"
 
+  String ctsSubjLeafWithSubstr = "urn:cts:greekLit:tlg0012.tlg001.msA:1.15@πάντας[1]"
+
   /* End Sample URNs */
 
 
@@ -42,6 +44,13 @@ class TestCtsIntegr extends GroovyTestCase {
     CtsUrn urn = new CtsUrn(ctsSubjLeaf)
  	println "${urn}: ${gs.graph.findAdjacent(urn)}"
   }
+
+   @Test
+  void testVersionLeafWithSubstring() {
+    CtsUrn urn = new CtsUrn(ctsSubjLeafWithSubstr)
+ 	println "${urn}: ${gs.graph.findAdjacent(urn)}"
+  }
+
 
   @Test
   void testVersionContainer() {
@@ -65,7 +74,7 @@ class TestCtsIntegr extends GroovyTestCase {
   void testNotionalLeaf() {
     CtsUrn urn = new CtsUrn(ctsSubjNotionalLeaf)
  	println gs.graph.findAdjacent(urn)   
-  }
+  } 
 
 
 }

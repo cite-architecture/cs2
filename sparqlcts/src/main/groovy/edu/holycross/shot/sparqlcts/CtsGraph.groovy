@@ -271,11 +271,11 @@ class CtsGraph {
 
       JsonSlurper slurper = new groovy.json.JsonSlurper()
       def parsedReply = slurper.parseText(reply)
-      parsedReply.results.bindings.each { bndng ->
-	if (bndng.vers) {
-	  CtsUrn versionUrn = new CtsUrn(bndng.vers?.value)
-	  vers = versionUrn.getVersion(false)
-	}
+	  parsedReply.results.bindings.each { bndng ->
+		  if (bndng.vers) {
+			  CtsUrn versionUrn = new CtsUrn(bndng.vers?.value)
+				  vers = versionUrn.getVersion(false)
+		  }
       }
     }
     if (vers == null) {

@@ -78,7 +78,12 @@ class IndexGraph {
 		} else {
 			al << "isnotrange"
 			if (ctsgraph.isLeafNode(urn)){
-				al << "leafNode"
+				if (workLevel == "VERSION"){
+					al = getSingleLeafNodeGraph(urn)
+			    } else {
+					ArrayList versionUrns = getVersionsForNotionalUrn(urn)
+					al = versionUrns
+				}
 			} else {
 				al << "container"
 			}
@@ -86,6 +91,60 @@ class IndexGraph {
 	    return al
 	} 
 
+  /** Find all nodes at one degree of 
+   * relation to the object identified by
+   * a CTS leaf-node, version- or exemplar-level urn.
+   * @param urn CTS Object to find in the graph.
+   * @returns ArrayList of Triple objects.
+   */
 
+   ArrayList getSingleLeafNodeGraph(urn){
+	CtsUrn requestUrn
+	if (urn.hasSubref()){
+		requestUrn = new CtsUrn(urn.getUrnWithoutSubreference())
+	} else {
+		requestUrn = urn
+	}
+	ArrayList replyArray = []
+    String replyText = ""
+    String leafQuery = QueryBuilder.getSingleLeafNodeQuery(urn)
+    String reply = sparql.getSparqlReply("application/json", leafQuery)
+    JsonSlurper slurper = new groovy.json.JsonSlurper()
+    def parsedReply = slurper.parseText(reply)
+    parsedReply.each{ jo ->
+		replyArray << jo // work to be done here!
+	}
+
+    
+
+	return replyArray
+
+   }
+
+  /** Given a work-level URN with a citation
+   * return an ArrayList of version-level URNs.
+   * @param urn CTS Object to find in the graph.
+   * @returns ArrayList of Triple objects.
+   */
+   ArrayList getVersionsForNotionalUrn(urn){
+	CtsUrn requestUrn
+	requestUrn = new CtsUrn(urn.getUrnWithoutPassage())
+	ArrayList replyArray = []
+    String replyText = ""
+    String versionQuery = QueryBuilder.getVersionsForWork(requestUrn)
+    String reply = sparql.getSparqlReply("application/json", versionQuery)
+    JsonSlurper slurper = new groovy.json.JsonSlurper()
+    def parsedReply = slurper.parseText(reply)
+    parsedReply.results.bindings.each{ jo ->
+		if (jo.version){
+			replyArray << jo.version?.value // work to be done here!
+		}
+	}
+
+	return replyArray
+
+   }
+
+		
 
 }
