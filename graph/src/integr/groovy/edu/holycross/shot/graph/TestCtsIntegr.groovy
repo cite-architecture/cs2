@@ -39,7 +39,7 @@ class TestCtsIntegr extends GroovyTestCase {
   /* End Sample URNs */
 
 
-  @Test
+/*  @Test
   void testVersionLeaf() {
     CtsUrn urn = new CtsUrn(ctsSubjLeaf)
  	println "${urn}: ${gs.graph.findAdjacent(urn)}"
@@ -68,7 +68,7 @@ class TestCtsIntegr extends GroovyTestCase {
   void testGroup() {
     CtsUrn urn = new CtsUrn(ctsSubjGroup)
  	println gs.graph.findAdjacent(urn)   
-  }
+  } */
 
   @Test
   void testNotionalLeaf() {

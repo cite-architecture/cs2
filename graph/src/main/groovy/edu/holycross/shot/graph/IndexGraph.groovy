@@ -115,7 +115,6 @@ class IndexGraph {
 		replyArray << jo // work to be done here!
 	}
 
-    
 
 	return replyArray
 
@@ -129,16 +128,27 @@ class IndexGraph {
    ArrayList getVersionsForNotionalUrn(urn){
 	CtsUrn requestUrn
 	requestUrn = new CtsUrn(urn.getUrnWithoutPassage())
+	ArrayList versionArray = []
 	ArrayList replyArray = []
-    String replyText = ""
+
     String versionQuery = QueryBuilder.getVersionsForWork(requestUrn)
     String reply = sparql.getSparqlReply("application/json", versionQuery)
+    JsonSlurper versionSlurper = new groovy.json.JsonSlurper()
+    def versionParsedReply = versionSlurper.parseText(reply)
+    versionParsedReply.results.bindings.each{ jo ->
+		if (jo.version){
+			versionArray << jo.version?.value // work to be done here!
+		}
+	}
+
+    String notionalQuery = QueryBuilder.getQueryNotionalCitation(urn, versionArray)  
+    reply = sparql.getSparqlReply("application/json", notionalQuery)
     JsonSlurper slurper = new groovy.json.JsonSlurper()
     def parsedReply = slurper.parseText(reply)
-    parsedReply.results.bindings.each{ jo ->
-		if (jo.version){
-			replyArray << jo.version?.value // work to be done here!
-		}
+	replyArray << "${urn}"
+	replyArray << "${urn.passageComponent}"
+    parsedReply.each{ jo ->
+		replyArray << jo // work to be done here!
 	}
 
 	return replyArray

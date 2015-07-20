@@ -80,8 +80,8 @@ abstract class QueryBuilder {
   static String getQueryNotionalCitation(CtsUrn urn, ArrayList urnArray){
 	  String returnString = """ ${GraphDefinitions.prefixPhrase} SELECT ?s ?v ?o ?label where { """
       returnString += """   { bind (<${urn}> as ?s ) .  ?s ?v ?o . optional { ?o rdf:label ?label . } } """
-	  ArrayList.each { u ->
-			returnString += """union {  bind (<${u}${urn.getPassageNode()}> as ?s ) . ?s ?v ?o . optional { ?o rdf:label ?label . } } """
+	  urnArray.each { u ->
+			returnString += """union {  bind (<${u}${urn.passageComponent}> as ?s ) . ?s ?v ?o . optional { ?o rdf:label ?label . } } """
 	  }
 	  returnString += """} order by ?s ?v ?o """
 
