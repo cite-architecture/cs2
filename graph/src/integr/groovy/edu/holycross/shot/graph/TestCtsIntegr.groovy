@@ -34,7 +34,7 @@ class TestCtsIntegr extends GroovyTestCase {
   String ctsSubjNotionalMixedRange1 = "urn:cts:greekLit:tlg0012.tlg001:1-2.10"
   String ctsSubjNotionalMixedRange2 = "urn:cts:greekLit:tlg0012.tlg001:1.2-2"
 
-  String ctsSubjLeafWithSubstr = "urn:cts:greekLit:tlg0012.tlg001.msA:1.15@πάντας[1]"
+  String ctsSubjLeafWithSubstr = "urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί'[1]"
 
   /* End Sample URNs */
 
@@ -63,11 +63,14 @@ class TestCtsIntegr extends GroovyTestCase {
 	assert al.size() == 56 
   }
 
-/*   @Test
+  @Test
   void testVersionLeafWithSubstring() {
     CtsUrn urn = new CtsUrn(ctsSubjLeafWithSubstr)
- 	println "${urn}: ${gs.graph.findAdjacent(urn)}"
-  } */
+	ArrayList al = gs.graph.findAdjacent(urn)
+	println "${urn} testing for version leaf with substring"
+ 	//println "${urn}: ${gs.graph.findAdjacent(urn)}"
+	assert al.size() == 56 
+  } 
 
 
  /* @Test

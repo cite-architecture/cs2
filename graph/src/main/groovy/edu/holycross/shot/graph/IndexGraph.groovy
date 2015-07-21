@@ -45,7 +45,8 @@ class IndexGraph {
    */
 	ArrayList findAdjacent(CtsUrn urn) {
 		ArrayList al = []
-		String workLevel = urn.getWorkLevel()
+		CtsUrn testUrn = new CtsUrn(urn.reduceToNode())
+		String workLevel = testUrn.getWorkLevel()
 
 		/* Possibilities:
 			I.  Version- or Exemplar-level URN
@@ -77,12 +78,12 @@ class IndexGraph {
 			}
 		} else {
 			al << "isnotrange"
-			if (ctsgraph.isLeafNode(urn)){
+			if (ctsgraph.isLeafNode(testUrn)){
 				if (workLevel == "VERSION"){
-					al = getSingleLeafNodeGraph(urn)
+					al = getSingleLeafNodeGraph(testUrn)
 			    } else {
-					ArrayList versionUrns = getVersionsForNotionalUrn(urn)
-					al = getAdjacentForNotionalLeaf(urn,versionUrns)
+					ArrayList versionUrns = getVersionsForNotionalUrn(testUrn)
+					al = getAdjacentForNotionalLeaf(testUrn,versionUrns)
 				}
 			} else {
 				al << "container"
