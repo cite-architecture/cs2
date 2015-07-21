@@ -82,7 +82,7 @@ class IndexGraph {
 					al = getSingleLeafNodeGraph(urn)
 			    } else {
 					ArrayList versionUrns = getVersionsForNotionalUrn(urn)
-					al = versionUrns
+					al = getAdjacentForNotionalLeaf(urn,versionUrns)
 				}
 			} else {
 				al << "container"
@@ -101,7 +101,7 @@ class IndexGraph {
    ArrayList getSingleLeafNodeGraph(urn){
 	CtsUrn requestUrn
 	if (urn.hasSubref()){
-		requestUrn = new CtsUrn(urn.getUrnWithoutSubreference())
+		requestUrn = new CtsUrn(urn.reduceToNode())
 	} else {
 		requestUrn = urn
 	}
@@ -111,10 +111,7 @@ class IndexGraph {
     String reply = sparql.getSparqlReply("application/json", leafQuery)
     JsonSlurper slurper = new groovy.json.JsonSlurper()
     def parsedReply = slurper.parseText(reply)
-    parsedReply.each{ jo ->
-		replyArray << jo // work to be done here!
-	}
-
+	replyArray = parsedJsonToTriples(parsedReply)
 
 	return replyArray
 
@@ -129,7 +126,6 @@ class IndexGraph {
 	CtsUrn requestUrn
 	requestUrn = new CtsUrn(urn.getUrnWithoutPassage())
 	ArrayList versionArray = []
-	ArrayList replyArray = []
 
     String versionQuery = QueryBuilder.getVersionsForWork(requestUrn)
     String reply = sparql.getSparqlReply("application/json", versionQuery)
@@ -140,20 +136,76 @@ class IndexGraph {
 			versionArray << jo.version?.value // work to be done here!
 		}
 	}
+	return versionArray
+   }
 
-    String notionalQuery = QueryBuilder.getQueryNotionalCitation(urn, versionArray)  
-    reply = sparql.getSparqlReply("application/json", notionalQuery)
-    JsonSlurper slurper = new groovy.json.JsonSlurper()
-    def parsedReply = slurper.parseText(reply)
-	replyArray << "${urn}"
-	replyArray << "${urn.passageComponent}"
-    parsedReply.each{ jo ->
-		replyArray << jo // work to be done here!
-	}
 
-	return replyArray
+  /** Given a work-level URN with a citation
+   * and an ArrayList of Version-level URNs of that work, return adjacent nodes
+   * @param urn CTS Object to find in the graph.
+   * @param versionArray An ArrayList of Version-level urns.
+   * @returns ArrayList of Triple objects.
+   */
+	
+   ArrayList getAdjacentForNotionalLeaf(CtsUrn urn, ArrayList versionArray) {
+
+	   String notionalQuery = QueryBuilder.getQueryNotionalCitation(urn, versionArray)  
+	   String reply = sparql.getSparqlReply("application/json", notionalQuery)
+	   JsonSlurper slurper = new groovy.json.JsonSlurper()
+	   def parsedReply = slurper.parseText(reply)
+
+	   ArrayList replyArray = []
+
+	   replyArray = parsedJsonToTriples(parsedReply)
+
+	   return replyArray
 
    }
+
+ /** Given a JSON reply from SPARQL
+   * construct a ListArray of Triple objects, 
+   * including the work of sorting out object-types, and
+   * catching labels on URI objects, and making them into Triples, too.
+   * @param parsedReply Object, the parsed JSON text
+   * @returns ArrayList of Triple objects.
+   */
+	ArrayList parsedJsonToTriples(Object parsedReply){
+		ArrayList replyArray = []
+
+		URI tempSubject
+		URI tempVerb
+		Object tempObject
+
+		parsedReply.results.bindings.each{ jo ->
+			tempSubject = new URI(jo.s.value)
+				tempVerb = new URI(jo.v.value)
+
+				switch (jo.o.type){
+					case "uri":
+						tempObject = new URI(jo.o.value)
+							break;
+					case "literal":
+						tempObject = jo.o.value
+							break;
+					case "typed-literal":
+						tempObject = jo.o.value.toInteger()
+							break;
+				}
+
+			Triple tempTriple = new Triple(tempSubject, tempVerb, tempObject)
+				replyArray << tempTriple 
+				// We also want rdf:labels for all URI objects, to be nice
+				if (jo.label){
+					tempVerb = new URI("rdf:label")
+						tempSubject = tempObject
+						tempTriple = new Triple(tempSubject,tempVerb,jo.label?.value)	
+						replyArray << tempTriple
+				}
+		}
+
+		return replyArray
+	}
+
 
 		
 

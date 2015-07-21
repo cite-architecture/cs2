@@ -81,7 +81,18 @@ abstract class QueryBuilder {
 	  String returnString = """ ${GraphDefinitions.prefixPhrase} SELECT ?s ?v ?o ?label where { """
       returnString += """   { bind (<${urn}> as ?s ) .  ?s ?v ?o . optional { ?o rdf:label ?label . } } """
 	  urnArray.each { u ->
-			returnString += """union {  bind (<${u}${urn.passageComponent}> as ?s ) . ?s ?v ?o . optional { ?o rdf:label ?label . } } """
+	 	returnString +=  """ 
+			union {  
+				bind (<${u}${urn.passageComponent}> as ?s ) . 
+				?s ?v ?o . 
+				optional { ?o rdf:label ?label . } 
+			} union { 
+			    <${u}${urn.passageComponent}> cts:hasSubstring ?substr .  
+			    bind (?substr as ?s) .  
+			    ?s ?v ?o .  
+			    optional { ?o rdf:label ?label . } 
+			}
+			"""
 	  }
 	  returnString += """} order by ?s ?v ?o """
 

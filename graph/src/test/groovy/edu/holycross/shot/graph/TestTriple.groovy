@@ -11,6 +11,8 @@ class TestTriple extends GroovyTestCase {
 
   URI testSubj = new URI("urn:cite:hmt:VenAIliad_classifiedTokens.6")
   URI testVerbWithUriObj = new URI("cite:analyzes")
+  URI testVerbWithIntegerObj = new URI("olo:item")
+  URI testVerbWithFloatObj = new URI("hmt:value")
   URI testVerbWithStringObj = new URI("cite:transformsToString")
   Object testObjString = "·"
   Number testObjInteger = 2
@@ -19,6 +21,8 @@ class TestTriple extends GroovyTestCase {
 
   String expectedStringWithStringObject = """<urn:cite:hmt:VenAIliad_classifiedTokens.6> <cite:transformsToString> "·" ."""
   String expectedStringWithUriObject = "<urn:cite:hmt:VenAIliad_classifiedTokens.6> <cite:analyzes> <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@·[1]> ."
+  String expectedStringWithIntegerObject = """<urn:cite:hmt:VenAIliad_classifiedTokens.6> <olo:item> 2 ."""
+  String expectedStringWithFloatObject = """<urn:cite:hmt:VenAIliad_classifiedTokens.6> <hmt:value> 2.5 ."""
 
   @Test
   void testObjectTypes() {
@@ -32,35 +36,28 @@ class TestTriple extends GroovyTestCase {
   }
 
   @Test
-  void testConstructorWithIngeterObject() {
-    Triple  t = new Triple(testSubj, testVerbWithStringObj, testObjInteger)
+  void testConstructorWithIntegerObject() {
+    Triple  t = new Triple(testSubj, testVerbWithIntegerObj, testObjInteger)
+	assert t.toString() == expectedStringWithIntegerObject
   }
 
   @Test
   void testConstructorWithFloatObject() {
-    Triple  t = new Triple(testSubj, testVerbWithStringObj, testObjFloat)
+    Triple  t = new Triple(testSubj, testVerbWithFloatObj, testObjFloat)
+	assert t.toString() == expectedStringWithFloatObject
   }
 
   @Test
   void testConstructorWithStringObject() {
     Triple  t = new Triple(testSubj, testVerbWithStringObj, testObjString)
+	assert t.toString() == expectedStringWithStringObject
   }
 
   @Test
   void testConstructorWithUriObject() {
     Triple  t = new Triple(testSubj, testVerbWithUriObj, testObjUri)
-  }
-
-  @Test
-  void testStringOutputWithUriObject() {
-    Triple  t = new Triple(testSubj, testVerbWithUriObj, testObjUri)
 	assert t.toString() == expectedStringWithUriObject
   }
 
-  @Test
-  void testStringOutputWithStringObject() {
-    Triple  t = new Triple(testSubj, testVerbWithStringObj, testObjString)
-	assert t.toString() == expectedStringWithStringObject
-  }
   
 }

@@ -38,43 +38,55 @@ class TestCtsIntegr extends GroovyTestCase {
 
   /* End Sample URNs */
 
-
-/*  @Test
-  void testVersionLeaf() {
-    CtsUrn urn = new CtsUrn(ctsSubjLeaf)
- 	println "${urn}: ${gs.graph.findAdjacent(urn)}"
+@Test
+  void testGetVersions() {
+    CtsUrn urn = new CtsUrn(ctsSubjNotionalLeaf)
+	ArrayList al = gs.graph.getVersionsForNotionalUrn(urn)
+	println "al.size() == ${al.size()}"
+	assert al.size() == 3
   }
 
-   @Test
+@Test
+  void testNotionalLeaf() {
+    CtsUrn urn = new CtsUrn(ctsSubjNotionalLeaf)
+	ArrayList al = gs.graph.findAdjacent(urn)
+	// println "al.size() == ${al.size()}"
+	assert al.size() == 75
+  }
+
+
+  @Test
+  void testVersionLeaf() {
+    CtsUrn urn = new CtsUrn(ctsSubjLeaf)
+	ArrayList al = gs.graph.findAdjacent(urn)
+ 	// println "${urn}: ${gs.graph.findAdjacent(urn)}"
+	assert al.size() == 56 
+  }
+
+/*   @Test
   void testVersionLeafWithSubstring() {
     CtsUrn urn = new CtsUrn(ctsSubjLeafWithSubstr)
  	println "${urn}: ${gs.graph.findAdjacent(urn)}"
-  }
+  } */
 
 
-  @Test
+ /* @Test
   void testVersionContainer() {
     CtsUrn urn = new CtsUrn(ctsSubjContaining)
  	println "${urn}: ${gs.graph.findAdjacent(urn)}"   
-  }
+  } */
 
-  @Test
+  /* @Test
   void testVersionLeafRange() {
     CtsUrn urn = new CtsUrn(ctsSubjLeafRange)
  	println gs.graph.findAdjacent(urn)   
-  }
+  } */
   
-  @Test
+  /* @Test
   void testGroup() {
     CtsUrn urn = new CtsUrn(ctsSubjGroup)
  	println gs.graph.findAdjacent(urn)   
-  } */
-
-  @Test
-  void testNotionalLeaf() {
-    CtsUrn urn = new CtsUrn(ctsSubjNotionalLeaf)
- 	println gs.graph.findAdjacent(urn)   
-  } 
+  } */ 
 
 
 }

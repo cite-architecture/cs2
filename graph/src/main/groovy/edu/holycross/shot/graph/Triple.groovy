@@ -105,8 +105,10 @@ class Triple {
   String toString() {
 	  if (obj.getClass() == URI){
 		return """<${subj}> <${verb}> <${obj.toString()}> ."""
-	  }  else {
+	  }  else if (obj.getClass() == String) {
 		return """<${subj}> <${verb}> "${obj}" ."""
+	  } else {
+		return """<${subj}> <${verb}> ${obj} ."""
 	  }
   }
 
