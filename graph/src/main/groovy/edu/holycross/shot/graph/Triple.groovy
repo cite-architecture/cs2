@@ -104,11 +104,11 @@ class Triple {
    */
   String toString() {
 	  if (obj.getClass() == URI){
-		return """<${subj}> <${verb}> <${obj.toString()}> ."""
+		return """<${URLDecoder.decode(subj.toString(),"UTF-8")}> <${URLDecoder.decode(verb.toString(),"UTF-8")}> <${URLDecoder.decode(obj.toString(),"UTF-8")}> ."""
 	  }  else if (obj.getClass() == String) {
-		return """<${subj}> <${verb}> "${obj}" ."""
+		return """<${URLDecoder.decode(subj.toString(),"UTF-8")}> <${URLDecoder.decode(verb.toString(),"UTF-8")}> "${obj}" ."""
 	  } else {
-		return """<${subj}> <${verb}> ${obj} ."""
+		return """<${URLDecoder.decode(subj.toString(),"UTF-8")}> <${URLDecoder.decode(verb.toString(),"UTF-8")}> ${obj} ."""
 	  }
   }
 

@@ -316,16 +316,20 @@ class CtsGraph {
 
 
 
+  // I THINK THESE ARE UNNECESSARY
+  /*
 
   Ohco2Range getContainerNodeObject(CtsUrn containerNode)
   throws Exception {
     // returns OHCO2RANGE object for a containing URN
   }
 
-  Ohco2Range getLeafNodeRangeObject(CtsUrn rangeUrn)
+  Ohco2Range getContainerNodeObject(CtsUrn rangeUrn)
   throws Exception {
     // returns OHCO2RANGE object for a ragne of containing nodes
   }
+
+  */
 
 
 

@@ -20,15 +20,15 @@ class TestQBuilder extends GroovyTestCase {
   }
 
   @Test
-  void testLabelQueryCite() {
-    String urnStr = citeSubj.toString()
-    println QueryBuilder.labelQuery(urnStr)
+  void testGeneralQueryCite() {
+    CiteUrn urn = new CiteUrn(citeSubj.toString())
+    println QueryBuilder.generalQuery(urn)
   }
 
   @Test
   void testLabelQueryCts() {
-    String urnStr = ctsSubj.toString()
-    println QueryBuilder.labelQuery(urnStr)
+    CtsUrn urn = new CtsUrn(ctsSubj.toString())
+    println QueryBuilder.generalQuery(urn)
   }
 
   

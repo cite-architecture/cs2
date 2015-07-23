@@ -86,11 +86,66 @@ class IndexGraph {
 					al = getAdjacentForNotionalLeaf(testUrn,versionUrns)
 				}
 			} else {
-				al << "container"
+				if (workLevel == "VERSION"){
+					al = getAdjacentForVersionContainer(urn)
+				} else {
+					al = getAdjacentForWorkLevelContainer(urn)
+				}
 			}
 		}
 	    return al
 	} 
+
+   /** Finds  data adjacent to a version-level containing (non-leaf-node) URN 
+   * @param urn The URN to test.
+   * @returns ArrayList of Triple objects.
+   */
+
+	ArrayList getAdjacentForVersionContainer(CtsUrn urn){
+	    ArrayList replyArray = []
+        String replyText = ""
+		String containerQuery = QueryBuilder.getQueryVersionLevelContaining(urn)
+        String reply = sparql.getSparqlReply("application/json", containerQuery)
+
+        JsonSlurper slurper = new groovy.json.JsonSlurper()
+		def parsedReply = slurper.parseText(reply)
+		replyArray = parsedJsonToTriples(parsedReply)
+
+		return replyArray
+	}
+
+/** Finds  data adjacent to a work-level containing (non-leaf-node) URN 
+   * @param urn The URN to test.
+   * @returns ArrayList of Triple objects.
+   */
+
+	ArrayList getAdjacentForWorkLevelContainer(CtsUrn urn){
+		ArrayList versionArray = []
+	    ArrayList replyArray = []
+		ArrayList TempArray = []
+		versionArray = getVersionsForNotionalUrn(urn)
+
+        String replyText = ""
+		String generalQuery = QueryBuilder.generalQuery(urn)
+        String reply = sparql.getSparqlReply("application/json", generalQuery)
+
+        JsonSlurper slurper = new groovy.json.JsonSlurper()
+		def parsedReply = slurper.parseText(reply)
+		replyArray = parsedJsonToTriples(parsedReply)
+
+		String tempQuery = ""
+
+		versionArray.each { u ->
+			TempArray = getAdjacentForVersionContainer(new CtsUrn("${u}${urn.passageComponent}"))	
+			TempArray.each { ttt ->
+				replyArray << ttt
+			}
+		}
+
+		return replyArray
+	}
+
+
 
   /** Find all nodes at one degree of 
    * relation to the object identified by
@@ -108,8 +163,8 @@ class IndexGraph {
 	}
 	ArrayList replyArray = []
     String replyText = ""
-    String leafQuery = QueryBuilder.getSingleLeafNodeQuery(urn)
-    String reply = sparql.getSparqlReply("application/json", leafQuery)
+    String leafQuery = QueryBuilder.getSingleLeafNodeQuery(urn)    
+	String reply = sparql.getSparqlReply("application/json", leafQuery)
     JsonSlurper slurper = new groovy.json.JsonSlurper()
     def parsedReply = slurper.parseText(reply)
 	replyArray = parsedJsonToTriples(parsedReply)
@@ -178,12 +233,12 @@ class IndexGraph {
 		Object tempObject
 
 		parsedReply.results.bindings.each{ jo ->
-			tempSubject = new URI(jo.s.value)
-				tempVerb = new URI(jo.v.value)
+			tempSubject = new URI(URLEncoder.encode(jo.s.value, "UTF-8"))
+				tempVerb = new URI(URLEncoder.encode(jo.v.value, "UTF-8"))
 
 				switch (jo.o.type){
 					case "uri":
-						tempObject = new URI(jo.o.value)
+						tempObject = new URI(URLEncoder.encode(jo.o.value, "UTF-8"))
 							break;
 					case "literal":
 						tempObject = jo.o.value

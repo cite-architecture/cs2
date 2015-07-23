@@ -10,7 +10,47 @@
     <description
       xml:lang="eng"> The CHS inventory of Greek texts. </description>
   </ctsnamespace>
- 
+  <textgroup
+    urn="urn:cts:greekLit:tlg7000:">
+    <groupname
+      xml:lang="eng">The Greek Anthology</groupname>
+    <work
+      urn="urn:cts:greekLit:tlg7000.tlg001:"
+      xml:lang="grc">
+      <title
+        xml:lang="eng">The Anthology</title>
+      <edition
+        urn="urn:cts:greekLit:tlg7000.tlg001.msA:">
+        <label
+          xml:lang="eng">VenetusA</label>
+        <description
+          xml:lang="eng">Metrical summaries of each book [= 9.385], and an epigram attributed to
+          Hadrian [= 9.387], from the Venetus A manuscript (Marciana 454 = 822)</description>
+        <online
+          docname="VenetusA-Anthology.xml">
+          <namespaceMapping
+            abbreviation="tei"
+            nsURI="http://www.tei-c.org/ns/1.0"/>
+          <citationMapping>
+            <citation
+              label="book"
+              scope="/tei:TEI/tei:text/tei:body"
+              xpath="/tei:div[@n = '?']">
+              <citation
+                label="poem"
+                scope="/tei:TEI/tei:text/tei:body/tei:div[@n = '?']"
+                xpath="/tei:div[@n = '?']">
+                <citation
+                  label="line"
+                  scope="/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:div[@n = '?']"
+                  xpath="/tei:l[@n = '?']"/>
+              </citation>
+            </citation>
+          </citationMapping>
+        </online>
+      </edition>
+    </work>
+  </textgroup>
   <textgroup
     urn="urn:cts:greekLit:tlg0012:">
     <groupname

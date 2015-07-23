@@ -21,7 +21,7 @@ class TestCtsIntegr extends GroovyTestCase {
   String ctsSubjVersion = "urn:cts:greekLit:tlg0012.tlg001.msA:"
 
   String ctsSubjLeaf = "urn:cts:greekLit:tlg0012.tlg001.msA:1.2"
-  String ctsSubjContaining = "urn:cts:greekLit:tlg0012.tlg001.msA:1"
+  String ctsSubjContaining = "urn:cts:greekLit:tlg7000.tlg001.msA:9.387"
   String ctsSubjLeafRange = "urn:cts:greekLit:tlg0012.tlg001.msA:1.2-1.10"
   String ctsSubjContainingRange = "urn:cts:greekLit:tlg0012.tlg001.msA:1-2"
   String ctsSubjMixedRange1 = "urn:cts:greekLit:tlg0012.tlg001.msA:1-2.10"
@@ -42,7 +42,7 @@ class TestCtsIntegr extends GroovyTestCase {
   void testGetVersions() {
     CtsUrn urn = new CtsUrn(ctsSubjNotionalLeaf)
 	ArrayList al = gs.graph.getVersionsForNotionalUrn(urn)
-	println "al.size() == ${al.size()}"
+	//println "al.size() == ${al.size()}"
 	assert al.size() == 3
   }
 
@@ -51,7 +51,7 @@ class TestCtsIntegr extends GroovyTestCase {
     CtsUrn urn = new CtsUrn(ctsSubjNotionalLeaf)
 	ArrayList al = gs.graph.findAdjacent(urn)
 	// println "al.size() == ${al.size()}"
-	assert al.size() == 75
+	assert al.size() == 84
   }
 
 
@@ -59,7 +59,7 @@ class TestCtsIntegr extends GroovyTestCase {
   void testVersionLeaf() {
     CtsUrn urn = new CtsUrn(ctsSubjLeaf)
 	ArrayList al = gs.graph.findAdjacent(urn)
- 	// println "${urn}: ${gs.graph.findAdjacent(urn)}"
+ 	println "${urn}: ${gs.graph.findAdjacent(urn)}"
 	assert al.size() == 56 
   }
 
@@ -73,11 +73,21 @@ class TestCtsIntegr extends GroovyTestCase {
   } 
 
 
- /* @Test
+  @Test
   void testVersionContainer() {
     CtsUrn urn = new CtsUrn(ctsSubjContaining)
- 	println "${urn}: ${gs.graph.findAdjacent(urn)}"   
-  } */
+	ArrayList al = gs.graph.findAdjacent(urn)
+	println "${urn} testing for container "
+	assert al.size() == 95
+  } 
+
+  @Test
+  void testWorkContainer() {
+    CtsUrn urn = new CtsUrn(ctsSubjNotionalContaining)
+	ArrayList al = gs.graph.findAdjacent(urn)
+	println "${urn} testing for container "
+	println "Found ${al.size()}"
+  } 
 
   /* @Test
   void testVersionLeafRange() {

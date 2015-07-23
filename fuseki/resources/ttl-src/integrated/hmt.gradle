@@ -13,7 +13,7 @@ project.ext {
 
     // Name of hocuspocus tokenization system to use
     // (fully qualified class name)
-tokenSystem = "edu.holycross.shot.hocuspocus.HmtGreekTokenization"
+    tokenSystem = "edu.holycross.shot.hocuspocus.HmtGreekTokenization"
 		tokenEditions = [ 
 		["urn:cts:greekLit:tlg0012.tlg001.msA","tokens","edu.holycross.shot.hocuspocus.HmtGreekTokenization"],
 		]  
@@ -25,7 +25,7 @@ tokenSystem = "edu.holycross.shot.hocuspocus.HmtGreekTokenization"
 
     // 2. Configuration of image repository.
     // Path to directory with csv files defining image collections
-    imgcolldir = "/cite/cs2/fuseki/resources/ttl-src/integrated/images/collections"
+    imgcolldir = "/cite/cs2/fuseki/resources/ttl-src/integrated/images"
     // Path to directory with csv files containing image data
     imgdatadir = "/cite/cs2/fuseki/resources/ttl-src/integrated/collections/imgcollections"
 
@@ -44,7 +44,18 @@ tokenSystem = "edu.holycross.shot.hocuspocus.HmtGreekTokenization"
     idxarchive = "/cite/cs2/fuseki/resources/ttl-src/integrated/indices"
     
     // RDF name space abbreviations.
-    prefixString = """ @prefix cts:        <http://www.homermultitext.org/cts/rdf/> .\n@prefix cite:        <http://www.homermultitext.org/cite/rdf/> .\n@prefix hmt:        <http://www.homermultitext.org/hmt/rdf/> .\n@prefix citedata:        <http://www.homermultitext.org/hmt/citedata/> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>. \n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n@prefix olo:     <http://purl.org/ontology/olo/core#> .\n@prefix lex:        <http://data.perseus.org/rdfverbs/> .\n@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix owl:        <http://www.w3.org/2002/07/owl#> .\n@prefix dse:        <http://www.homermultitext.org/dse/rdf> .\n\n"""
+    prefixString = """@prefix cts:        <http://www.homermultitext.org/cts/rdf/> .\n
+					  @prefix cite:        <http://www.homermultitext.org/cite/rdf/> .\n
+					  @prefix hmt:        <http://www.homermultitext.org/hmt/rdf/> .\n
+					  @prefix citedata:        <http://www.homermultitext.org/hmt/citedata/> .\n
+					  @prefix dcterms: <http://purl.org/dc/terms/> .\n
+					  @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>. \n
+					  @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n
+					  @prefix olo:     <http://purl.org/ontology/olo/core#> .\n
+					  @prefix lex:        <http://data.perseus.org/rdfverbs/> .\n
+					  @prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .\n
+					  @prefix owl:        <http://www.w3.org/2002/07/owl#> .\n
+					  @prefix dse:        <http://www.homermultitext.org/dse/rdf> .\n\n"""
 
 
 }

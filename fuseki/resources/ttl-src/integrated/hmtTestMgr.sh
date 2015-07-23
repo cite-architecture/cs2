@@ -7,11 +7,12 @@ echo $CONF_PATH;
  
 cd $MGR_PATH gradle clean;
 gradle -Pconf=$CONF_PATH ttl;
-cat $TTL_PATH ttl-additions/*.ttl > test-all.ttl;
-cd -;
+cd -
+rm ../../test-all.ttl
+cat $TTL_PATH ttl-additions/*.ttl > ../../test-all.ttl;
 
 echo "Done. TTL file:";
-wc -l test-all.ttl;
+wc -l ../../test-all.ttl;
 
 
 
