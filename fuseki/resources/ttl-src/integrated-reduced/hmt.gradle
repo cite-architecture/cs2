@@ -6,10 +6,10 @@
 project.ext {
     // 1. Configuration of text repository.
     // Path to text inventory file:
-    ctsinventory = "/cite/cs2/fuseki/resources/ttl-src/integrated/editions/inventories/testinventory.xml"
+    ctsinventory = "/cite/cs2/fuseki/resources/ttl-src/integrated-reduced/editions/inventories/testinventory.xml"
 
     // Path to directory where XML editions are found:
-    ctsarchive = "/cite/cs2/fuseki/resources/ttl-src/integrated/editions"
+    ctsarchive = "/cite/cs2/fuseki/resources/ttl-src/integrated-reduced/editions"
 
     // Name of hocuspocus tokenization system to use
     // (fully qualified class name)
@@ -25,23 +25,23 @@ project.ext {
 
     // 2. Configuration of image repository.
     // Path to directory with csv files defining image collections
-    imgcolldir = "/cite/cs2/fuseki/resources/ttl-src/integrated/images"
+    imgcolldir = "/cite/cs2/fuseki/resources/ttl-src/integrated-reduced/images"
     // Path to directory with csv files containing image data
-    imgdatadir = "/cite/cs2/fuseki/resources/ttl-src/integrated/collections/imgcollections"
+    imgdatadir = "/cite/cs2/fuseki/resources/ttl-src/integrated-reduced/collections/imgcollections"
 
 
     // 3. Configuration of CITE object repository.
     // Path to collection inventory file:
-    collinv = "/cite/cs2/fuseki/resources/ttl-src/integrated/collections/inventory/hmtcollections.xml"
+    collinv = "/cite/cs2/fuseki/resources/ttl-src/integrated-reduced/collections/inventory/hmtcollections.xml"
     // Path to directory where XML editions are found:
-    collarchive = "/cite/cs2/fuseki/resources/ttl-src/integrated/collections"
+    collarchive = "/cite/cs2/fuseki/resources/ttl-src/integrated-reduced/collections"
 
 
     // 4. Configuration of indices.
     // Path to index inventory file:
-    idxinv = "/cite/cs2/fuseki/resources/ttl-src/integrated/indices/inventory/hmtindices.xml"
+    idxinv = "/cite/cs2/fuseki/resources/ttl-src/integrated-reduced/indices/inventory/hmtindices.xml"
     // Path to directory where tsv or csv files are found
-    idxarchive = "/cite/cs2/fuseki/resources/ttl-src/integrated/indices"
+    idxarchive = "/cite/cs2/fuseki/resources/ttl-src/integrated-reduced/indices"
     
     // RDF name space abbreviations.
     prefixString = """@prefix cts:        <http://www.homermultitext.org/cts/rdf/> .\n

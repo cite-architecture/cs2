@@ -1,0 +1,3231 @@
+<http://www.homermultitext.org/hmt/rdf> cite:abbreviatedBy "hmt" .  
+<http://www.homermultitext.org/hmt/rdf> rdf:type cite:DataNs .  
+<urn:cite:hmt:VenAIliad_classifiedTokens> rdf:type	cite:CiteCollection .  
+<urn:cite:hmt:VenAIliad_classifiedTokens> rdf:type	cite:ORCA .  
+<urn:cite:hmt:VenAIliad_classifiedTokens> rdf:label "Classified Tokenization of diplomatic editions from the Homer Multitext." .  
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:ordered "true" .  
+<urn:cite:hmt:VenAIliad_classifiedTokens>	cite:collProperty		<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_URN> . 
+<urn:cite:hmt:VenAIliad_classifiedTokens>	cite:collProperty		<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> . 
+<urn:cite:hmt:VenAIliad_classifiedTokens>	cite:collProperty		<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> . 
+<urn:cite:hmt:VenAIliad_classifiedTokens>	cite:collProperty		<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> . 
+<urn:cite:hmt:VenAIliad_classifiedTokens>	cite:collProperty		<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> . 
+
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_URN>	cite:propLabel "Object URN" . 
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_URN> rdf:type cite:Property . 
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_URN> cite:propType cite:CiteUrn  . 
+
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label>	cite:propLabel "Label" . 
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> rdf:type cite:Property . 
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> cite:propType "string" . 
+
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence>	cite:propLabel "Sequence" . 
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> rdf:type cite:Property . 
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> cite:propType "number" . 
+
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis>	cite:propLabel "Analysis" . 
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> rdf:type cite:Property . 
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> cite:propType cite:CiteUrn  . 
+
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText>	cite:propLabel "Analyzed Text" . 
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> rdf:type cite:Property . 
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> cite:propType cite:CtsUrn  . 
+
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString>	cite:propLabel "Transformed String" . 
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> rdf:type cite:Property . 
+<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> cite:propType "string" . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens>	cite:canonicalId		<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_URN> . 
+<urn:cite:hmt:VenAIliad_classifiedTokens>	cite:orderedBy <http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.1> olo:item 1 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.1> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Μῆνιν[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Μῆνιν[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.1> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.1> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.1> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.1> cite:transformedToString "Μῆνιν" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Μῆνιν[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Μῆνιν[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.1> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.1> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.1> rdf:label "Classified Token #1." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.1>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #1." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.1>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 1 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.1>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.1>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Μῆνιν[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.1>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "Μῆνιν" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.2> olo:item 2 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.2> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.1> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.1> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.2> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.2> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@ἄειδε[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@ἄειδε[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.2> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.2> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.2> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.2> cite:transformedToString "ἄειδε" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@ἄειδε[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@ἄειδε[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.2> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.2> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.2> rdf:label "Classified Token #2." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.2>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #2." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.2>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 2 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.2>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.2>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@ἄειδε[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.2>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ἄειδε" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.3> olo:item 3 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.3> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.2> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.2> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.3> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.3> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@θεὰ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@θεὰ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.3> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.3> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.3> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.3> cite:transformedToString "θεὰ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@θεὰ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@θεὰ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.3> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.3> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.3> rdf:label "Classified Token #3." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.3>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #3." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.3>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 3 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.3>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.3>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@θεὰ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.3>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "θεὰ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.4> olo:item 4 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.4> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.3> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.3> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.4> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.4> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Πηληϊάδεω Ἀχιλῆος[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Πηληϊάδεω Ἀχιλῆος[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.4> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.4> cite:hasAnalysis <urn:cite:hmt:pers.pers1> . 
+
+<urn:cite:hmt:pers.pers1> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.4> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.4> cite:transformedToString "Πηληϊάδεω Ἀχιλῆος" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Πηληϊάδεω Ἀχιλῆος[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Πηληϊάδεω Ἀχιλῆος[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.4> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.4> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.4> rdf:label "Classified Token #4." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.4>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #4." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.4>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 4 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.4>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:pers.pers1> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.4>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Πηληϊάδεω Ἀχιλῆος[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.4>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "Πηληϊάδεω Ἀχιλῆος" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.5> olo:item 5 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.5> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.4> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.4> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.5> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.5> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.5> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.5> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.5> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.5> cite:transformedToString "οὐλομένην" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.5> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.5> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.5> rdf:label "Classified Token #5." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.5>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #5." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.5>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 5 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.5>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.5>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.5>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "οὐλομένην" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.6> olo:item 6 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.6> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.5> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.5> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.6> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.6> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@·[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@·[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.6> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.6> cite:hasAnalysis <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:tokentypes.punctuation> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.6> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.6> cite:transformedToString "·" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@·[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@·[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.6> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.6> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.6> rdf:label "Classified Token #6." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.6>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #6." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.6>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 6 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.6>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.6>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@·[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.6>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "·" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.7> olo:item 7 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.7> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.6> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.6> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.7> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.7> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.7> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.7> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.7> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.7> cite:transformedToString "ἡ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.7> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.7> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.7> rdf:label "Classified Token #7." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.7>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #7." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.7>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 7 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.7>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.7>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.7>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ἡ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.8> olo:item 8 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.8> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.7> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.7> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.8> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.8> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί'[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί'[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.8> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.8> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.8> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.8> cite:transformedToString "μυρί'" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί'[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί'[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.8> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.8> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.8> rdf:label "Classified Token #8." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.8>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #8." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.8>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 8 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.8>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.8>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί'[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.8>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "μυρί'" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.9> olo:item 9 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.9> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.8> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.8> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.9> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.9> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.9> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.9> cite:hasAnalysis <urn:cite:hmt:peoples.place96> . 
+
+<urn:cite:hmt:peoples.place96> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.9> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.9> cite:transformedToString "Ἀχαιοῖς" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.9> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.9> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.9> rdf:label "Classified Token #9." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.9>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #9." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.9>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 9 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.9>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:peoples.place96> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.9>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.9>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "Ἀχαιοῖς" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.10> olo:item 10 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.10> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.9> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.9> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.10> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.10> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε'[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε'[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.10> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.10> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.10> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.10> cite:transformedToString "ἄλγε'" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε'[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε'[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.10> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.10> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.10> rdf:label "Classified Token #10." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.10>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #10." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.10>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 10 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.10>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.10>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε'[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.10>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ἄλγε'" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.11> olo:item 11 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.11> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.10> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.10> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.11> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.11> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.11> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.11> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.11> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.11> cite:transformedToString "ἔθηκεν" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.11> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.11> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.11> rdf:label "Classified Token #11." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.11>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #11." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.11>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 11 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.11>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.11>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.11>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ἔθηκεν" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.12> olo:item 12 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.12> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.11> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.11> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.12> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.12> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@·[2]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@·[2]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.12> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.12> cite:hasAnalysis <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:tokentypes.punctuation> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.12> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.12> cite:transformedToString "·" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@·[2]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@·[2]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.12> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.12> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.12> rdf:label "Classified Token #12." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.12>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #12." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.12>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 12 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.12>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.12>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@·[2]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.12>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "·" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.13> olo:item 13 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.13> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.12> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.12> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.13> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.13> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@πολλὰς[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3@πολλὰς[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.13> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.13> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.13> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.13> cite:transformedToString "πολλὰς" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3@πολλὰς[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.3> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@πολλὰς[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.13> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.13> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.13> rdf:label "Classified Token #13." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.13>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #13." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.13>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 13 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.13>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.13>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@πολλὰς[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.13>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "πολλὰς" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.14> olo:item 14 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.14> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.13> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.13> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.14> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.14> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@δ'[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3@δ'[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.14> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.14> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.14> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.14> cite:transformedToString "δ'" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3@δ'[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.3> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@δ'[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.14> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.14> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.14> rdf:label "Classified Token #14." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.14>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #14." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.14>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 14 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.14>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.14>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@δ'[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.14>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "δ'" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.15> olo:item 15 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.15> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.14> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.14> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.15> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.15> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@ἰφθίμους[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3@ἰφθίμους[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.15> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.15> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.15> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.15> cite:transformedToString "ἰφθίμους" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3@ἰφθίμους[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.3> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@ἰφθίμους[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.15> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.15> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.15> rdf:label "Classified Token #15." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.15>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #15." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.15>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 15 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.15>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.15>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@ἰφθίμους[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.15>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ἰφθίμους" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.16> olo:item 16 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.16> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.15> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.15> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.16> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.16> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@ψυχὰς[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3@ψυχὰς[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.16> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.16> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.16> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.16> cite:transformedToString "ψυχὰς" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3@ψυχὰς[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.3> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@ψυχὰς[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.16> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.16> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.16> rdf:label "Classified Token #16." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.16>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #16." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.16>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 16 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.16>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.16>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@ψυχὰς[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.16>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ψυχὰς" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.17> olo:item 17 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.17> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.16> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.16> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.17> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.17> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@Ἄϊδι[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3@Ἄϊδι[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.17> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.17> cite:hasAnalysis <urn:cite:hmt:place.place67> . 
+
+<urn:cite:hmt:place.place67> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.17> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.17> cite:transformedToString "Ἄϊδι" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3@Ἄϊδι[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.3> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@Ἄϊδι[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.17> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.17> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.17> rdf:label "Classified Token #17." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.17>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #17." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.17>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 17 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.17>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:place.place67> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.17>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@Ἄϊδι[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.17>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "Ἄϊδι" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.18> olo:item 18 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.18> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.17> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.17> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.18> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.18> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@προΐαψεν[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3@προΐαψεν[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.18> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.18> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.18> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.18> cite:transformedToString "προΐαψεν" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3@προΐαψεν[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.3> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.3> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@προΐαψεν[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.18> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.18> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.18> rdf:label "Classified Token #18." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.18>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #18." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.18>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 18 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.18>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.18>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.3@προΐαψεν[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.18>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "προΐαψεν" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.19> olo:item 19 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.19> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.18> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.18> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.19> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.19> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@ἡρώων[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4@ἡρώων[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.19> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.19> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.19> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.19> cite:transformedToString "ἡρώων" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4@ἡρώων[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.4> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@ἡρώων[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.19> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.19> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.19> rdf:label "Classified Token #19." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.19>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #19." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.19>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 19 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.19>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.19>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@ἡρώων[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.19>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ἡρώων" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.20> olo:item 20 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.20> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.19> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.19> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.20> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.20> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@·[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4@·[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.20> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.20> cite:hasAnalysis <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:tokentypes.punctuation> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.20> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.20> cite:transformedToString "·" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4@·[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.4> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@·[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.20> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.20> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.20> rdf:label "Classified Token #20." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.20>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #20." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.20>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 20 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.20>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.20>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@·[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.20>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "·" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.21> olo:item 21 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.21> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.20> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.20> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.21> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.21> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@αὐτοὺς[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4@αὐτοὺς[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.21> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.21> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.21> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.21> cite:transformedToString "αὐτοὺς" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4@αὐτοὺς[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.4> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@αὐτοὺς[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.21> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.21> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.21> rdf:label "Classified Token #21." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.21>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #21." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.21>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 21 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.21>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.21>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@αὐτοὺς[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.21>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "αὐτοὺς" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.22> olo:item 22 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.22> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.21> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.21> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.22> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.22> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@δὲ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4@δὲ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.22> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.22> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.22> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.22> cite:transformedToString "δὲ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4@δὲ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.4> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@δὲ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.22> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.22> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.22> rdf:label "Classified Token #22." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.22>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #22." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.22>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 22 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.22>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.22>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@δὲ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.22>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "δὲ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.23> olo:item 23 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.23> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.22> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.22> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.23> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.23> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@ἑλώρια[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4@ἑλώρια[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.23> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.23> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.23> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.23> cite:transformedToString "ἑλώρια" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4@ἑλώρια[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.4> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@ἑλώρια[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.23> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.23> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.23> rdf:label "Classified Token #23." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.23>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #23." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.23>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 23 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.23>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.23>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@ἑλώρια[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.23>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ἑλώρια" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.24> olo:item 24 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.24> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.23> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.23> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.24> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.24> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@τεῦχε[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4@τεῦχε[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.24> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.24> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.24> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.24> cite:transformedToString "τεῦχε" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4@τεῦχε[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.4> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@τεῦχε[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.24> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.24> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.24> rdf:label "Classified Token #24." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.24>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #24." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.24>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 24 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.24>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.24>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@τεῦχε[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.24>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "τεῦχε" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.25> olo:item 25 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.25> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.24> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.24> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.25> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.25> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@κύνεσσιν[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4@κύνεσσιν[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.25> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.25> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.25> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.25> cite:transformedToString "κύνεσσιν" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4@κύνεσσιν[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.4> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.4> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@κύνεσσιν[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.25> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.25> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.25> rdf:label "Classified Token #25." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.25>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #25." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.25>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 25 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.25>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.25>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.4@κύνεσσιν[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.25>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "κύνεσσιν" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.26> olo:item 26 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.26> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.25> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.25> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.26> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.26> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@οἰωνοῖσί[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@οἰωνοῖσί[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.26> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.26> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.26> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.26> cite:transformedToString "οἰωνοῖσί" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@οἰωνοῖσί[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@οἰωνοῖσί[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.26> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.26> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.26> rdf:label "Classified Token #26." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.26>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #26." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.26>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 26 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.26>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.26>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@οἰωνοῖσί[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.26>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "οἰωνοῖσί" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.27> olo:item 27 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.27> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.26> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.26> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.27> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.27> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@τε[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@τε[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.27> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.27> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.27> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.27> cite:transformedToString "τε" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@τε[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@τε[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.27> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.27> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.27> rdf:label "Classified Token #27." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.27>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #27." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.27>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 27 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.27>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.27>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@τε[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.27>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "τε" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.28> olo:item 28 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.28> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.27> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.27> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.28> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.28> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@πᾶσι[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@πᾶσι[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.28> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.28> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.28> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.28> cite:transformedToString "πᾶσι" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@πᾶσι[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@πᾶσι[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.28> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.28> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.28> rdf:label "Classified Token #28." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.28>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #28." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.28>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 28 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.28>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.28>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@πᾶσι[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.28>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "πᾶσι" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.29> olo:item 29 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.29> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.28> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.28> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.29> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.29> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@·[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@·[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.29> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.29> cite:hasAnalysis <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:tokentypes.punctuation> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.29> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.29> cite:transformedToString "·" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@·[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@·[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.29> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.29> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.29> rdf:label "Classified Token #29." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.29>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #29." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.29>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 29 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.29>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.29>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@·[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.29>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "·" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.30> olo:item 30 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.30> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.29> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.29> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.30> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.30> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@Διὸς[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@Διὸς[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.30> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.30> cite:hasAnalysis <urn:cite:hmt:pers.pers8> . 
+
+<urn:cite:hmt:pers.pers8> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.30> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.30> cite:transformedToString "Διὸς" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@Διὸς[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@Διὸς[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.30> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.30> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.30> rdf:label "Classified Token #30." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.30>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #30." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.30>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 30 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.30>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:pers.pers8> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.30>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@Διὸς[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.30>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "Διὸς" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.31> olo:item 31 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.31> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.30> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.30> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.31> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.31> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@δ'[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@δ'[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.31> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.31> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.31> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.31> cite:transformedToString "δ'" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@δ'[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@δ'[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.31> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.31> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.31> rdf:label "Classified Token #31." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.31>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #31." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.31>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 31 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.31>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.31>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@δ'[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.31>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "δ'" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.32> olo:item 32 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.32> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.31> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.31> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.32> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.32> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@ἐτελείετο[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@ἐτελείετο[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.32> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.32> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.32> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.32> cite:transformedToString "ἐτελείετο" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@ἐτελείετο[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@ἐτελείετο[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.32> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.32> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.32> rdf:label "Classified Token #32." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.32>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #32." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.32>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 32 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.32>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.32>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@ἐτελείετο[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.32>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ἐτελείετο" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.33> olo:item 33 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.33> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.32> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.32> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.33> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.33> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@βουλή[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@βουλή[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.33> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.33> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.33> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.33> cite:transformedToString "βουλή" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@βουλή[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@βουλή[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.33> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.33> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.33> rdf:label "Classified Token #33." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.33>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #33." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.33>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 33 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.33>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.33>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@βουλή[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.33>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "βουλή" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.34> olo:item 34 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.34> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.33> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.33> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.34> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.34> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@·[2]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@·[2]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.34> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.34> cite:hasAnalysis <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:tokentypes.punctuation> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.34> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.34> cite:transformedToString "·" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5@·[2]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.5> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@·[2]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.34> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.34> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.34> rdf:label "Classified Token #34." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.34>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #34." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.34>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 34 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.34>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.34>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.5@·[2]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.34>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "·" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.35> olo:item 35 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.35> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.34> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.34> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.35> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.35> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@ἐξ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6@ἐξ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.35> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.35> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.35> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.35> cite:transformedToString "ἐξ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6@ἐξ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.6> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@ἐξ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.35> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.35> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.35> rdf:label "Classified Token #35." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.35>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #35." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.35>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 35 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.35>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.35>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@ἐξ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.35>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ἐξ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.36> olo:item 36 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.36> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.35> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.35> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.36> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.36> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@οὗ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6@οὗ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.36> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.36> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.36> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.36> cite:transformedToString "οὗ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6@οὗ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.6> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@οὗ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.36> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.36> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.36> rdf:label "Classified Token #36." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.36>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #36." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.36>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 36 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.36>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.36>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@οὗ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.36>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "οὗ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.37> olo:item 37 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.37> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.36> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.36> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.37> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.37> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@δὴ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6@δὴ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.37> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.37> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.37> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.37> cite:transformedToString "δὴ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6@δὴ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.6> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@δὴ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.37> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.37> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.37> rdf:label "Classified Token #37." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.37>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #37." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.37>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 37 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.37>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.37>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@δὴ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.37>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "δὴ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.38> olo:item 38 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.38> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.37> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.37> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.38> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.38> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@τὰ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6@τὰ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.38> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.38> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.38> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.38> cite:transformedToString "τὰ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6@τὰ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.6> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@τὰ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.38> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.38> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.38> rdf:label "Classified Token #38." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.38>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #38." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.38>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 38 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.38>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.38>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@τὰ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.38>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "τὰ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.39> olo:item 39 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.39> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.38> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.38> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.39> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.39> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@πρῶτα[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6@πρῶτα[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.39> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.39> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.39> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.39> cite:transformedToString "πρῶτα" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6@πρῶτα[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.6> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@πρῶτα[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.39> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.39> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.39> rdf:label "Classified Token #39." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.39>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #39." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.39>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 39 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.39>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.39>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@πρῶτα[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.39>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "πρῶτα" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.40> olo:item 40 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.40> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.39> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.39> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.40> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.40> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@διαστήτην[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6@διαστήτην[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.40> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.40> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.40> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.40> cite:transformedToString "διαστήτην" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6@διαστήτην[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.6> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@διαστήτην[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.40> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.40> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.40> rdf:label "Classified Token #40." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.40>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #40." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.40>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 40 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.40>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.40>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@διαστήτην[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.40>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "διαστήτην" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.41> olo:item 41 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.41> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.40> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.40> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.41> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.41> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@ἐρίσαντε[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6@ἐρίσαντε[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.41> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.41> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.41> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.41> cite:transformedToString "ἐρίσαντε" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6@ἐρίσαντε[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.6> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.6> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@ἐρίσαντε[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.41> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.41> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.41> rdf:label "Classified Token #41." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.41>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #41." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.41>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 41 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.41>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.41>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.6@ἐρίσαντε[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.41>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ἐρίσαντε" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.42> olo:item 42 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.42> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.41> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.41> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.42> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.42> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@Ἀτρείδης[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@Ἀτρείδης[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.42> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.42> cite:hasAnalysis <urn:cite:hmt:pers.pers22> . 
+
+<urn:cite:hmt:pers.pers22> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.42> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.42> cite:transformedToString "Ἀτρείδης" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@Ἀτρείδης[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.7> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@Ἀτρείδης[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.42> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.42> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.42> rdf:label "Classified Token #42." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.42>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #42." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.42>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 42 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.42>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:pers.pers22> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.42>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@Ἀτρείδης[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.42>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "Ἀτρείδης" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.43> olo:item 43 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.43> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.42> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.42> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.43> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.43> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@τε[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@τε[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.43> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.43> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.43> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.43> cite:transformedToString "τε" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@τε[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.7> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@τε[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.43> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.43> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.43> rdf:label "Classified Token #43." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.43>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #43." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.43>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 43 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.43>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.43>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@τε[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.43>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "τε" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.44> olo:item 44 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.44> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.43> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.43> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.44> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.44> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@ἄναξ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@ἄναξ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.44> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.44> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.44> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.44> cite:transformedToString "ἄναξ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@ἄναξ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.7> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@ἄναξ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.44> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.44> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.44> rdf:label "Classified Token #44." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.44>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #44." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.44>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 44 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.44>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.44>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@ἄναξ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.44>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ἄναξ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.45> olo:item 45 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.45> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.44> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.44> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.45> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.45> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@ἀνδρῶν[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@ἀνδρῶν[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.45> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.45> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.45> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.45> cite:transformedToString "ἀνδρῶν" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@ἀνδρῶν[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.7> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@ἀνδρῶν[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.45> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.45> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.45> rdf:label "Classified Token #45." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.45>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #45." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.45>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 45 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.45>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.45>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@ἀνδρῶν[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.45>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ἀνδρῶν" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.46> olo:item 46 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.46> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.45> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.45> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.46> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.46> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@καὶ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@καὶ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.46> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.46> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.46> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.46> cite:transformedToString "καὶ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@καὶ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.7> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@καὶ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.46> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.46> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.46> rdf:label "Classified Token #46." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.46>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #46." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.46>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 46 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.46>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.46>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@καὶ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.46>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "καὶ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.47> olo:item 47 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.47> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.46> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.46> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.47> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.47> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@δῖος[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@δῖος[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.47> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.47> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.47> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.47> cite:transformedToString "δῖος" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@δῖος[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.7> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@δῖος[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.47> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.47> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.47> rdf:label "Classified Token #47." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.47>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #47." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.47>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 47 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.47>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.47>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@δῖος[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.47>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "δῖος" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.48> olo:item 48 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.48> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.47> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.47> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.48> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.48> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@Ἀχιλλεύς[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@Ἀχιλλεύς[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.48> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.48> cite:hasAnalysis <urn:cite:hmt:pers.pers1> . 
+
+<urn:cite:hmt:pers.pers1> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.48> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.48> cite:transformedToString "Ἀχιλλεύς" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@Ἀχιλλεύς[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.7> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@Ἀχιλλεύς[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.48> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.48> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.48> rdf:label "Classified Token #48." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.48>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #48." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.48>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 48 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.48>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:pers.pers1> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.48>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@Ἀχιλλεύς[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.48>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "Ἀχιλλεύς" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.49> olo:item 49 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.49> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.48> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.48> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.49> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.49> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@·[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@·[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.49> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.49> cite:hasAnalysis <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:tokentypes.punctuation> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.49> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.49> cite:transformedToString "·" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7@·[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.7> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.7> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@·[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.49> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.49> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.49> rdf:label "Classified Token #49." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.49>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #49." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.49>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 49 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.49>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.49>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.7@·[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.49>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "·" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.50> olo:item 50 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.50> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.49> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.49> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.50> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.50> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@τίς[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@τίς[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.50> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.50> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.50> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.50> cite:transformedToString "τίς" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@τίς[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.8> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@τίς[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.50> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.50> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.50> rdf:label "Classified Token #50." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.50>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #50." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.50>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 50 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.50>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.50>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@τίς[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.50>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "τίς" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.51> olo:item 51 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.51> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.50> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.50> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.51> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.51> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@τάρ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@τάρ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.51> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.51> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.51> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.51> cite:transformedToString "τάρ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@τάρ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.8> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@τάρ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.51> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.51> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.51> rdf:label "Classified Token #51." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.51>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #51." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.51>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 51 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.51>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.51>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@τάρ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.51>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "τάρ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.52> olo:item 52 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.52> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.51> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.51> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.52> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.52> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@σφωε[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@σφωε[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.52> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.52> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.52> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.52> cite:transformedToString "σφωε" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@σφωε[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.8> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@σφωε[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.52> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.52> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.52> rdf:label "Classified Token #52." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.52>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #52." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.52>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 52 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.52>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.52>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@σφωε[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.52>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "σφωε" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.53> olo:item 53 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.53> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.52> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.52> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.53> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.53> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@θεῶν[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@θεῶν[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.53> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.53> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.53> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.53> cite:transformedToString "θεῶν" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@θεῶν[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.8> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@θεῶν[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.53> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.53> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.53> rdf:label "Classified Token #53." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.53>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #53." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.53>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 53 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.53>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.53>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@θεῶν[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.53>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "θεῶν" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.54> olo:item 54 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.54> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.53> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.53> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.54> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.54> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@ἔριδι[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@ἔριδι[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.54> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.54> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.54> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.54> cite:transformedToString "ἔριδι" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@ἔριδι[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.8> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@ἔριδι[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.54> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.54> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.54> rdf:label "Classified Token #54." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.54>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #54." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.54>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 54 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.54>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.54>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@ἔριδι[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.54>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ἔριδι" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.55> olo:item 55 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.55> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.54> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.54> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.55> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.55> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@ξυνἕηκε[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@ξυνἕηκε[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.55> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.55> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.55> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.55> cite:transformedToString "ξυνἕηκε" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@ξυνἕηκε[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.8> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@ξυνἕηκε[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.55> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.55> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.55> rdf:label "Classified Token #55." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.55>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #55." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.55>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 55 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.55>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.55>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@ξυνἕηκε[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.55>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ξυνἕηκε" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.56> olo:item 56 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.56> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.55> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.55> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.56> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.56> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@μάχεσθαι[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@μάχεσθαι[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.56> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.56> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.56> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.56> cite:transformedToString "μάχεσθαι" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@μάχεσθαι[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.8> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@μάχεσθαι[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.56> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.56> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.56> rdf:label "Classified Token #56." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.56>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #56." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.56>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 56 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.56>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.56>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@μάχεσθαι[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.56>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "μάχεσθαι" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.57> olo:item 57 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.57> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.56> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.56> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.57> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.57> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@·[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@·[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.57> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.57> cite:hasAnalysis <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:tokentypes.punctuation> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.57> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.57> cite:transformedToString "·" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8@·[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.8> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.8> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@·[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.57> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.57> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.57> rdf:label "Classified Token #57." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.57>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #57." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.57>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 57 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.57>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.57>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.8@·[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.57>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "·" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.58> olo:item 58 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.58> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.57> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.57> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.58> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.58> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@Λητοῦς[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@Λητοῦς[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.58> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.58> cite:hasAnalysis <urn:cite:hmt:pers.pers35> . 
+
+<urn:cite:hmt:pers.pers35> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.58> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.58> cite:transformedToString "Λητοῦς" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@Λητοῦς[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.9> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@Λητοῦς[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.58> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.58> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.58> rdf:label "Classified Token #58." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.58>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #58." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.58>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 58 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.58>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:pers.pers35> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.58>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@Λητοῦς[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.58>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "Λητοῦς" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.59> olo:item 59 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.59> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.58> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.58> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.59> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.59> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@καὶ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@καὶ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.59> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.59> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.59> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.59> cite:transformedToString "καὶ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@καὶ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.9> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@καὶ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.59> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.59> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.59> rdf:label "Classified Token #59." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.59>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #59." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.59>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 59 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.59>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.59>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@καὶ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.59>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "καὶ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.60> olo:item 60 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.60> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.59> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.59> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.60> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.60> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@Διὸς[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@Διὸς[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.60> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.60> cite:hasAnalysis <urn:cite:hmt:pers.pers8> . 
+
+<urn:cite:hmt:pers.pers8> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.60> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.60> cite:transformedToString "Διὸς" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@Διὸς[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.9> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@Διὸς[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.60> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.60> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.60> rdf:label "Classified Token #60." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.60>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #60." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.60>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 60 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.60>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:pers.pers8> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.60>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@Διὸς[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.60>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "Διὸς" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.61> olo:item 61 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.61> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.60> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.60> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.61> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.61> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@υἱός[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@υἱός[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.61> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.61> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.61> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.61> cite:transformedToString "υἱός" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@υἱός[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.9> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@υἱός[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.61> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.61> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.61> rdf:label "Classified Token #61." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.61>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #61." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.61>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 61 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.61>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.61>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@υἱός[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.61>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "υἱός" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.62> olo:item 62 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.62> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.61> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.61> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.62> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.62> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@·[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@·[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.62> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.62> cite:hasAnalysis <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:tokentypes.punctuation> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.62> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.62> cite:transformedToString "·" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@·[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.9> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@·[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.62> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.62> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.62> rdf:label "Classified Token #62." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.62>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #62." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.62>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 62 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.62>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.62>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@·[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.62>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "·" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.63> olo:item 63 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.63> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.62> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.62> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.63> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.63> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@ὁ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@ὁ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.63> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.63> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.63> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.63> cite:transformedToString "ὁ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@ὁ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.9> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@ὁ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.63> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.63> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.63> rdf:label "Classified Token #63." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.63>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #63." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.63>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 63 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.63>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.63>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@ὁ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.63>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ὁ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.64> olo:item 64 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.64> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.63> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.63> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.64> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.64> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@γὰρ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@γὰρ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.64> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.64> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.64> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.64> cite:transformedToString "γὰρ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@γὰρ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.9> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@γὰρ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.64> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.64> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.64> rdf:label "Classified Token #64." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.64>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #64." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.64>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 64 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.64>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.64>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@γὰρ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.64>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "γὰρ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.65> olo:item 65 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.65> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.64> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.64> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.65> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.65> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@βασιλῆϊ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@βασιλῆϊ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.65> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.65> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.65> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.65> cite:transformedToString "βασιλῆϊ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@βασιλῆϊ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.9> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@βασιλῆϊ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.65> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.65> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.65> rdf:label "Classified Token #65." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.65>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #65." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.65>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 65 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.65>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.65>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@βασιλῆϊ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.65>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "βασιλῆϊ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.66> olo:item 66 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.66> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.65> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.65> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.66> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.66> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@χολωθεὶς[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@χολωθεὶς[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.66> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.66> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.66> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.66> cite:transformedToString "χολωθεὶς" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9@χολωθεὶς[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.9> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.9> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@χολωθεὶς[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.66> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.66> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.66> rdf:label "Classified Token #66." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.66>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #66." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.66>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 66 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.66>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.66>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.9@χολωθεὶς[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.66>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "χολωθεὶς" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.67> olo:item 67 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.67> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.66> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.66> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.67> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.67> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@νοῦσον[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@νοῦσον[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.67> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.67> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.67> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.67> cite:transformedToString "νοῦσον" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@νοῦσον[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@νοῦσον[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.67> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.67> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.67> rdf:label "Classified Token #67." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.67>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #67." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.67>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 67 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.67>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.67>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@νοῦσον[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.67>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "νοῦσον" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.68> olo:item 68 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.68> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.67> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.67> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.68> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.68> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@ἀνὰ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@ἀνὰ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.68> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.68> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.68> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.68> cite:transformedToString "ἀνὰ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@ἀνὰ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@ἀνὰ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.68> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.68> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.68> rdf:label "Classified Token #68." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.68>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #68." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.68>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 68 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.68>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.68>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@ἀνὰ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.68>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ἀνὰ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.69> olo:item 69 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.69> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.68> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.68> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.69> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.69> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@στρατὸν[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@στρατὸν[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.69> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.69> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.69> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.69> cite:transformedToString "στρατὸν" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@στρατὸν[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@στρατὸν[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.69> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.69> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.69> rdf:label "Classified Token #69." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.69>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #69." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.69>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 69 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.69>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.69>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@στρατὸν[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.69>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "στρατὸν" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.70> olo:item 70 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.70> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.69> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.69> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.70> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.70> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@ὦρσε[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@ὦρσε[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.70> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.70> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.70> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.70> cite:transformedToString "ὦρσε" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@ὦρσε[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@ὦρσε[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.70> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.70> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.70> rdf:label "Classified Token #70." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.70>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #70." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.70>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 70 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.70>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.70>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@ὦρσε[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.70>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ὦρσε" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.71> olo:item 71 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.71> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.70> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.70> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.71> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.71> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@κακήν[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@κακήν[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.71> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.71> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.71> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.71> cite:transformedToString "κακήν" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@κακήν[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@κακήν[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.71> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.71> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.71> rdf:label "Classified Token #71." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.71>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #71." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.71>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 71 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.71>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.71>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@κακήν[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.71>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "κακήν" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.72> olo:item 72 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.72> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.71> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.71> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.72> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.72> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@·[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@·[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.72> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.72> cite:hasAnalysis <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:tokentypes.punctuation> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.72> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.72> cite:transformedToString "·" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@·[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@·[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.72> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.72> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.72> rdf:label "Classified Token #72." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.72>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #72." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.72>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 72 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.72>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.72>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@·[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.72>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "·" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.73> olo:item 73 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.73> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.72> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.72> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.73> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.73> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@ὀλέκοντο[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@ὀλέκοντο[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.73> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.73> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.73> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.73> cite:transformedToString "ὀλέκοντο" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@ὀλέκοντο[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@ὀλέκοντο[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.73> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.73> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.73> rdf:label "Classified Token #73." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.73>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #73." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.73>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 73 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.73>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.73>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@ὀλέκοντο[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.73>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "ὀλέκοντο" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.74> olo:item 74 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.74> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.73> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.73> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.74> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.74> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@δὲ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@δὲ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.74> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.74> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.74> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.74> cite:transformedToString "δὲ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@δὲ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@δὲ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.74> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.74> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.74> rdf:label "Classified Token #74." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.74>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #74." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.74>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 74 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.74>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.74>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@δὲ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.74>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "δὲ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.75> olo:item 75 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.75> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.74> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.74> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.75> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.75> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@λαοὶ[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@λαοὶ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.75> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.75> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.75> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.75> cite:transformedToString "λαοὶ" . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@λαοὶ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@λαοὶ[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.75> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.75> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.75> rdf:label "Classified Token #75." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.75>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #75." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.75>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 75 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.75>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.lexical> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.75>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@λαοὶ[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.75>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "λαοὶ" . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.76> olo:item 76 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.76> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.75> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.75> olo:next <urn:cite:hmt:VenAIliad_classifiedTokens.76> . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.76> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@.[1]> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@.[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.76> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.76> cite:hasAnalysis <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:tokentypes.punctuation> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.76> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.76> cite:transformedToString "." . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10@.[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.10> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@.[1]> .
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens> cite:possesses <urn:cite:hmt:VenAIliad_classifiedTokens.76> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.76> cite:belongsTo <urn:cite:hmt:VenAIliad_classifiedTokens> .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.76> rdf:label "Classified Token #76." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.76>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Label> "Classified Token #76." .
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.76>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> 76 . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.76>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Analysis> <urn:cite:hmt:tokentypes.punctuation> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.76>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_AnalyzedText> <urn:cts:greekLit:tlg0012.tlg001.msA:1.10@.[1]> . 
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.76>	<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_TransformedString> "." . 
+
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.77> olo:item 77 . 
+
+
+<urn:cite:hmt:VenAIliad_classifiedTokens.77> olo:previous <urn:cite:hmt:VenAIliad_classifiedTokens.76> . 
+

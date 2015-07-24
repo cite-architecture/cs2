@@ -1,0 +1,397 @@
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001:> .
+<urn:cts:greekLit:tlg0012.tlg001:> cts:possesses <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:> dcterms:title "Iliad" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:> rdf:type cts:Translation .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:> rdf:label "Furman/Perseus Text, based on Butler's Translation" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:> cts:translationLang "eng" .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> rdf:label "Furman/Perseus Text, based on Butler's Translation: 1.1" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> cts:hasSequence 1 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-4">Sing, O goddess, the anger [<term xml:lang="xgreek">mēnis</term>] of Achilles son of Peleus, that brought countless ills upon the Achaeans. Many a brave soul [<term xml:lang="xgreek">psukhē</term>] did it send hurrying down to Hades, and many a hero did it yield a prey to dogs </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> cts:citationDepth 1 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> rdf:label "Furman/Perseus Text, based on Butler's Translation: 1.2" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> cts:hasSequence 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-4">Sing, O goddess, the anger [<term xml:lang="xgreek">mēnis</term>] of Achilles son of Peleus, that brought countless ills upon the Achaeans. Many a brave soul [<term xml:lang="xgreek">psukhē</term>] did it send hurrying down to Hades, and many a hero did it yield a prey to dogs </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.3> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.3> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.3> rdf:label "Furman/Perseus Text, based on Butler's Translation: 1.3" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.3> cts:hasSequence 3 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.3> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-4">Sing, O goddess, the anger [<term xml:lang="xgreek">mēnis</term>] of Achilles son of Peleus, that brought countless ills upon the Achaeans. Many a brave soul [<term xml:lang="xgreek">psukhē</term>] did it send hurrying down to Hades, and many a hero did it yield a prey to dogs </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.3> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.3> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.3> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.3> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.3> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.4> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.4> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.4> rdf:label "Furman/Perseus Text, based on Butler's Translation: 1.4" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.4> cts:hasSequence 4 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.4> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-4">Sing, O goddess, the anger [<term xml:lang="xgreek">mēnis</term>] of Achilles son of Peleus, that brought countless ills upon the Achaeans. Many a brave soul [<term xml:lang="xgreek">psukhē</term>] did it send hurrying down to Hades, and many a hero did it yield a prey to dogs </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.4> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.4> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.4> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.4> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.4> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> rdf:label "Furman/Perseus Text, based on Butler's Translation: 1.5" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> cts:hasSequence 5 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="5" synch="5-9">and vultures, for so was the will of Zeus fulfilled from the day on which the son of Atreus, king of men, and great Achilles, first fell out with one another. And which of the gods was it that set them on to quarrel? It was the son of Zeus and Leto; for he was angry with the king </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.6> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.6> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.6> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.6> rdf:label "Furman/Perseus Text, based on Butler's Translation: 1.6" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.6> cts:hasSequence 6 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.6> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="5" synch="5-9">and vultures, for so was the will of Zeus fulfilled from the day on which the son of Atreus, king of men, and great Achilles, first fell out with one another. And which of the gods was it that set them on to quarrel? It was the son of Zeus and Leto; for he was angry with the king </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.6> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.6> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.6> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.6> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.6> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.7> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.7> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.7> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.7> rdf:label "Furman/Perseus Text, based on Butler's Translation: 1.7" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.7> cts:hasSequence 7 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.7> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="5" synch="5-9">and vultures, for so was the will of Zeus fulfilled from the day on which the son of Atreus, king of men, and great Achilles, first fell out with one another. And which of the gods was it that set them on to quarrel? It was the son of Zeus and Leto; for he was angry with the king </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.7> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.7> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.7> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.7> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.7> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.8> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.8> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.8> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.8> rdf:label "Furman/Perseus Text, based on Butler's Translation: 1.8" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.8> cts:hasSequence 8 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.8> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="5" synch="5-9">and vultures, for so was the will of Zeus fulfilled from the day on which the son of Atreus, king of men, and great Achilles, first fell out with one another. And which of the gods was it that set them on to quarrel? It was the son of Zeus and Leto; for he was angry with the king </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.8> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.8> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.8> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.8> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.8> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.9> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.9> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.9> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.9> rdf:label "Furman/Perseus Text, based on Butler's Translation: 1.9" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.9> cts:hasSequence 9 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.9> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="5" synch="5-9">and vultures, for so was the will of Zeus fulfilled from the day on which the son of Atreus, king of men, and great Achilles, first fell out with one another. And which of the gods was it that set them on to quarrel? It was the son of Zeus and Leto; for he was angry with the king </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.9> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.9> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.9> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.9> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.9> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.5> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> rdf:label "Furman/Perseus Text, based on Butler's Translation: 1.10" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> cts:hasSequence 10 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="10" synch="10-14">and sent a pestilence upon the host to plague the people, because the son of Atreus had dishonored Chryses his priest. Now Chryses had come to the ships of the Achaeans to free his daughter, and had brought with him a great ransom: moreover he bore in his hand the scepter of Apollo wreathed with a suppliant's wreath </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.10> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> rdf:label "Furman/Perseus Text, based on Butler's Translation: 2.1" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> cts:hasSequence 612 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-4">Now the other gods and the armed warriors on the plain slept soundly, but Zeus was wakeful, for he was thinking how to do honor to Achilles, and destroyed many people at the ships of the Achaeans. </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> rdf:label "Furman/Perseus Text, based on Butler's Translation: 2.2" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> cts:hasSequence 613 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-4">Now the other gods and the armed warriors on the plain slept soundly, but Zeus was wakeful, for he was thinking how to do honor to Achilles, and destroyed many people at the ships of the Achaeans. </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> cts:citationDepth 1 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.3> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.50> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.3> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.3> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.3> rdf:label "Furman/Perseus Text, based on Butler's Translation: 2.3" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.3> cts:hasSequence 614 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.3> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-4">Now the other gods and the armed warriors on the plain slept soundly, but Zeus was wakeful, for he was thinking how to do honor to Achilles, and destroyed many people at the ships of the Achaeans. </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.3> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.3> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.3> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.3> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.3> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.4> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.50> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.4> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.4> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.4> rdf:label "Furman/Perseus Text, based on Butler's Translation: 2.4" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.4> cts:hasSequence 615 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.4> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-4">Now the other gods and the armed warriors on the plain slept soundly, but Zeus was wakeful, for he was thinking how to do honor to Achilles, and destroyed many people at the ships of the Achaeans. </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.4> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.4> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.4> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.4> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.4> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> rdf:label "Furman/Perseus Text, based on Butler's Translation: 2.5" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> cts:hasSequence 616 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="5" synch="5-9">In the end he deemed it would be best to send a lying dream to King Agamemnon; so he called one to him and said to it, "Lying Dream, go to the ships of the Achaeans, </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.6> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.6> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.6> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.6> rdf:label "Furman/Perseus Text, based on Butler's Translation: 2.6" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.6> cts:hasSequence 617 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.6> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="5" synch="5-9">In the end he deemed it would be best to send a lying dream to King Agamemnon; so he called one to him and said to it, "Lying Dream, go to the ships of the Achaeans, </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.6> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.6> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.6> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.6> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.6> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.7> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.7> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.7> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.7> rdf:label "Furman/Perseus Text, based on Butler's Translation: 2.7" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.7> cts:hasSequence 618 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.7> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="5" synch="5-9">In the end he deemed it would be best to send a lying dream to King Agamemnon; so he called one to him and said to it, "Lying Dream, go to the ships of the Achaeans, </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.7> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.7> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.7> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.7> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.7> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.8> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.8> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.8> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.8> rdf:label "Furman/Perseus Text, based on Butler's Translation: 2.8" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.8> cts:hasSequence 619 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.8> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="5" synch="5-9">In the end he deemed it would be best to send a lying dream to King Agamemnon; so he called one to him and said to it, "Lying Dream, go to the ships of the Achaeans, </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.8> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.8> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.8> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.8> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.8> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.9> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.9> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.9> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.9> rdf:label "Furman/Perseus Text, based on Butler's Translation: 2.9" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.9> cts:hasSequence 620 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.9> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="5" synch="5-9">In the end he deemed it would be best to send a lying dream to King Agamemnon; so he called one to him and said to it, "Lying Dream, go to the ships of the Achaeans, </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.9> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.9> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.9> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.9> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.9> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.5> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.1> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> rdf:label "Furman/Perseus Text, based on Butler's Translation: 2.10" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> cts:hasSequence 621 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="10" synch="10-14">into the tent of Agamemnon, and say to him word to word as I now bid you. Tell him to get the Achaeans instantly under arms, for he shall take <placeName key="perseus,Troy">Troy</placeName>. There are no longer divided counsels among the gods; </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> .
+
+
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.1> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.1> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.1> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.1> rdf:label "Furman/Perseus Text, based on Butler's Translation: 3.1" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.1> cts:hasSequence 1489 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.1> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-9">When the companies were thus arrayed, each under its own leader, the Trojans advanced as a flight of wild fowl or cranes that scream overhead when rain and winter drive them over the flowing waters of Okeanos to bring death and destruction on the Pygmies, and they wrangle in the air as they fly; but the Achaeans marched silently, in high heart, and minded to stand by one another. </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.1> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.1> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='3']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.1> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.1> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.1> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.2> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.2> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.2> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.2> rdf:label "Furman/Perseus Text, based on Butler's Translation: 3.2" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.2> cts:hasSequence 1490 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.2> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-9">When the companies were thus arrayed, each under its own leader, the Trojans advanced as a flight of wild fowl or cranes that scream overhead when rain and winter drive them over the flowing waters of Okeanos to bring death and destruction on the Pygmies, and they wrangle in the air as they fly; but the Achaeans marched silently, in high heart, and minded to stand by one another. </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.2> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.2> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='3']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.2> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> cts:citationDepth 1 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.2> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.3> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.3> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.3> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.3> rdf:label "Furman/Perseus Text, based on Butler's Translation: 3.3" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.3> cts:hasSequence 1491 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.3> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-9">When the companies were thus arrayed, each under its own leader, the Trojans advanced as a flight of wild fowl or cranes that scream overhead when rain and winter drive them over the flowing waters of Okeanos to bring death and destruction on the Pygmies, and they wrangle in the air as they fly; but the Achaeans marched silently, in high heart, and minded to stand by one another. </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.3> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.3> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='3']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.3> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.3> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.3> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.4> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.4> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.4> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.4> rdf:label "Furman/Perseus Text, based on Butler's Translation: 3.4" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.4> cts:hasSequence 1492 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.4> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-9">When the companies were thus arrayed, each under its own leader, the Trojans advanced as a flight of wild fowl or cranes that scream overhead when rain and winter drive them over the flowing waters of Okeanos to bring death and destruction on the Pygmies, and they wrangle in the air as they fly; but the Achaeans marched silently, in high heart, and minded to stand by one another. </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.4> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.4> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='3']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.4> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.4> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.4> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.5> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.5> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.5> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.5> rdf:label "Furman/Perseus Text, based on Butler's Translation: 3.5" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.5> cts:hasSequence 1493 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.5> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-9">When the companies were thus arrayed, each under its own leader, the Trojans advanced as a flight of wild fowl or cranes that scream overhead when rain and winter drive them over the flowing waters of Okeanos to bring death and destruction on the Pygmies, and they wrangle in the air as they fly; but the Achaeans marched silently, in high heart, and minded to stand by one another. </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.5> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.5> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='3']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.5> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.5> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.6> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.6> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.6> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.6> rdf:label "Furman/Perseus Text, based on Butler's Translation: 3.6" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.6> cts:hasSequence 1494 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.6> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-9">When the companies were thus arrayed, each under its own leader, the Trojans advanced as a flight of wild fowl or cranes that scream overhead when rain and winter drive them over the flowing waters of Okeanos to bring death and destruction on the Pygmies, and they wrangle in the air as they fly; but the Achaeans marched silently, in high heart, and minded to stand by one another. </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.6> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.6> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='3']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.6> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.6> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.6> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.7> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.7> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.7> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.7> rdf:label "Furman/Perseus Text, based on Butler's Translation: 3.7" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.7> cts:hasSequence 1495 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.7> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-9">When the companies were thus arrayed, each under its own leader, the Trojans advanced as a flight of wild fowl or cranes that scream overhead when rain and winter drive them over the flowing waters of Okeanos to bring death and destruction on the Pygmies, and they wrangle in the air as they fly; but the Achaeans marched silently, in high heart, and minded to stand by one another. </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.7> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.7> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='3']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.7> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.7> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.7> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.8> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.8> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.8> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.8> rdf:label "Furman/Perseus Text, based on Butler's Translation: 3.8" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.8> cts:hasSequence 1496 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.8> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-9">When the companies were thus arrayed, each under its own leader, the Trojans advanced as a flight of wild fowl or cranes that scream overhead when rain and winter drive them over the flowing waters of Okeanos to bring death and destruction on the Pygmies, and they wrangle in the air as they fly; but the Achaeans marched silently, in high heart, and minded to stand by one another. </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.8> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.8> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='3']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.8> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.8> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.8> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.9> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.10> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.9> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.9> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.9> rdf:label "Furman/Perseus Text, based on Butler's Translation: 3.9" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.9> cts:hasSequence 1497 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.9> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="1" synch="1-9">When the companies were thus arrayed, each under its own leader, the Trojans advanced as a flight of wild fowl or cranes that scream overhead when rain and winter drive them over the flowing waters of Okeanos to bring death and destruction on the Pygmies, and they wrangle in the air as they fly; but the Achaeans marched silently, in high heart, and minded to stand by one another. </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.9> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.9> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='3']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.9> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.9> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.9> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.1> .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> rdf:label "Furman/Perseus Text, based on Butler's Translation: 3.10" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> cts:hasSequence 1498 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> cts:hasTextContent """<p xmlns="http://www.tei-c.org/ns/1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" n="10" synch="10-14">As when the south wind spreads a curtain of mist upon the mountain tops, bad for shepherds but better than night for thieves, and a man can see no further than he can throw a stone, even so rose the dust from under their feet as they made all speed over the plain. </p>""" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> cts:citationDepth 2 .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div1[@n='3']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div1[@n='?']/tei:p[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:3> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:3.10> .

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> Main scholia of the Venetus A, Marciana 822 (= Marcianus Graecus Z. 454)</title>
+            <editor> Jennifer Adams</editor>
+            <editor> Matthew Angiolillo</editor>
+            <editor> Thomas Arralde</editor>
+            <editor> Christopher Blackwell</editor>
+            <editor> Melissa Browne</editor>
+            <editor> Peter Collins</editor>
+            <editor> Jennifer Curtin</editor>
+            <editor> James D'Amico</editor>
+            <editor> Matthew Davis</editor>
+            <editor> William Dolan</editor>
+            <editor> Scott Dubé</editor>
+            <editor> Casey Dué</editor>
+            <editor> C. Daniel Earley</editor>
+            <editor> Mary Ebbott</editor>
+            <editor> Leah Elder</editor>
+            <editor> Tucker Hannah</editor>
+            <editor> Francis Hartel</editor>
+            <editor> Connor Hayden</editor>
+            <editor> Michael Kinney</editor>
+            <editor> Amy Koenig</editor>
+            <editor> Daniel Libatique</editor>
+            <editor> Stephanie Lindeborg</editor>
+            <editor> Brian Livingston</editor>
+            <editor> George Matthews</editor>
+            <editor> Jessica Nord</editor>
+            <editor> Katie Phillips</editor>
+            <editor> Annalisa Quinn</editor>
+            <editor> Christine Roughan</editor>
+            <editor> Emily Schurr</editor>
+            <editor> Neel Smith</editor>
+            <editor> Melanie Steinhardt</editor>
+            <editor> Megan Whitacre</editor>
+         </titleStmt>
+         <publicationStmt>
+            <p> The Homer Multitext. Casey Dué and Mary Ebbott, editors; Christopher Blackwell and
+               Neel Smith, project architects.</p>
+         </publicationStmt>
+         <sourceDesc>
+            <p> Text edited directly from photography of the Venetus A manuscript, Marciana 454.</p>
+         </sourceDesc>
+      </fileDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div n="1">
+            <div type="scholion" n="1">
+               <div type="lemma">
+                  <p> μῆνιν ἄειδε</p>
+               </div>
+               <div type="comment">
+                  <p> ζητοῦσι δια τί ἀπὸ τῆς μήνιδος ἤρξατο οὕτως δυσφήμου ὀνόματος· δια δύο ταῦτα·
+                     πρῶτον μὲν ἵν' ἐκ τοῦ πάθους ἀπκαταῥρεύσῃ τὸ τοιοῦτο μόριον τῆς ψυχῆς καὶ
+                     προσεκτικωτέρους τοὺς ἀκροατὰς ἐπι τοῦ μεγέθους ποιήσῃ καὶ προσεθίζῃ φέρειν
+                     γενναίως ἡμᾶς τὰ πάθη. μέλλων πολλέμους ἀπαγγέλλειν· δεύτερον. ἵνα τὰ ἐγκώμια
+                     τῶν Ἑλλήνων πιθανώτερα ποιήσῃ· ἐπεὶ δὲ ἔμελλε, νικωντας ἀποφαίνειν τοὺς
+                     Ἑλληνας, εἰκότως οὐ κατατρέχει ἀξιοπιστότερον ἐκ τοῦ μὴ παντα χαρίζεσθαι τῷ
+                     εκείνων ἐπαίνῳ· ἤρξατο μὲν ἀπὸ μήνιδος ἐπείπερ αὕτη τοῖς πρακτικοῖς ὑπόθεσις
+                     γέγονεν· ἄλλῳς τε καὶ τραγῳδίαις τραγικὸν ἐξεῦρε προοίμιον· καὶ γὰρ
+                     προσεκτικοὺς ἡμᾶς ἡ τῶν ἀτυχημάτων διήγησις ἐργάζεται· καὶ ὡς ἄριστος ϊατρὸς,
+                     πρῶτον ἀναστέλλων τὰ νοσήματα τῆς ψυχῆς ὕστερον τὴν ΐασιν ἐπάγει. <placeName
+                        n="urn:cite:hmt:place.place3"> Ἑλληνικὸν</placeName> δὲ τὸ προ τέλει τὰς
+                     ηδονὰς ἐπάγειν· ῾ϊστέον δέ, ὥσπερ ἐπι συκῆς πρωτον μέν ἐστιν όλυνθος εἶτα φίλιξ
+                     σύκον ϊσχάς. οὕτω πρῶτον· <rs type="waw"> ὀργή</rs> · <rs type="waw">
+                        θυμός</rs> · <rs type="waw"> χόλος</rs> · <rs type="waw"> κότος</rs> · <rs
+                        type="waw"> μῆνις</rs> · ὅμως ὁ ποιητὴς ὡς συνωνύμοις ὀνόμασιν ἐπὶ <persName
+                        n="urn:cite:hmt:pers.pers1"> Ἀχιλλεως</persName> χρῆται <cit>
+                        <q> ἢἐ <seg type="word"> χόλ <unclear> ο</unclear> ν</seg> παύσειεν,
+                           ἐρητύσειε τε θυμόν</q>
+                        <ref type="urn"> urn:cts:greekLit:tlg0012.tlg001:1.192</ref>
+                     </cit> · <cit>
+                        <q> οὐδ' ὄθομαι κοτέοντος</q>
+                        <ref type="urn"> urn:cts:greekLit:tlg0012.tlg001:1.181</ref>
+                     </cit> , <cit>
+                        <q> αὐτὰρ ὁ μήνιε νηυσίν</q>
+                        <ref type="urn"> urn:cts:greekLit:tlg0012.tlg001:1.488</ref>
+                     </cit> ·</p>
+               </div>
+            </div>
+
+            <div type="scholion" n="2">
+               <div type="lemma">
+                  <p> μῆνις</p>
+               </div>
+               <div type="comment">
+                  <p> παρὰ τὸ <rs type="waw"> μένω</rs>
+                     <rs type="waw"> μῆνις</rs> ὡς <rs type="waw"> ἐνὸς</rs>
+                     <rs type="waw"> ἦνις</rs> · οἱ δὲ περὶ <persName n="urn:cite:hmt:pers.pers3">
+                        Γλαύκωνα</persName> τὸν <placeName n="urn:cite:hmt:place.place47">
+                        <seg type="word"> Ταρ <unclear> σέα</unclear></seg></placeName> ἠξίουν
+                     ὀξύνειν τὸ ὄνομα οὐκ ὀρθῶς.</p>
+               </div>
+            </div>
+
+            <div type="scholion" n="3">
+               <div type="lemma">
+                  <p> ἄειδε</p>
+               </div>
+               <div type="comment">
+                  <p> ὅτι κατὰ τὴν ποιητικὴν ἤτοι άδειαν ἠ συνήθειαν λαμβάνει τὰ προστακτικὰ ἀντι
+                     εὐκτικῶν· καὶ γὰρ <persName n="urn:cite:hmt:pers.pers4"> Ἡσίοδός</persName>
+                     φησι· <q> δεῦτε δὴ ἐννέπετε <note resp="Erbse"> opp.2</note></q> , καὶ
+                        <persName n="urn:cite:hmt:pers.pers5"> Πίνδαρος</persName> · <q> μαντεύο
+                           <persName n="urn:cite:hmt:pers.pers6"> Μοῦσα</persName>
+                        <note resp="Erbse"> fr. 150 sn.</note></q> , καὶ <persName
+                        n="urn:cite:hmt:pers.pers7"> Ἀντίμαχος</persName> ὁ <placeName
+                        n="urn:cite:hmt:place.place54">
+                        <seg type="word"> Κολοφ <unclear> ώνιος.</unclear></seg></placeName>
+                     <q> ἐννέπετε <persName n="urn:cite:hmt:pers.pers8">
+                           <seg type="word"> Κρονί <unclear> ανος</unclear></seg> Διὸς</persName>
+                        μεγάλοιο θύγατρες <note resp="Erbse"> fr. 1 w</note></q> · δευτερον δὲ ὅτι
+                     οὐ κατὰ ἀλήθειαν ταῖς <persName n="urn:cite:hmt:pers.pers6"> Μούσαις</persName>
+                     ἐπιτάσσουσιν, ἀλλ' ἑαυτοῖς⁑</p>
+               </div>
+            </div>
+
+           
+
+
+         </div>
+
+         <div n="2">
+            <div type="scholion" n="1">
+               <div type="lemma">
+                  <p> ἄλλοι μέν ῥα</p>
+               </div>
+               <div type="comment">
+                  <p> ὅτι <persName n="pers15">
+                        <choice>
+                           <abbr> ζηνοδ</abbr>
+                           <expan> Ζηνόδοτος</expan>
+                        </choice></persName> γράφει <rs type="waw"> ὦλλοι</rs> ὁ δὲ ποιητὴς
+                     ἀσυνάρθρως ἐκφέρει· διδάσκει δὲ ὅτι καὶ θεοῖς πρὸς σκέψιν εὔθετον νύξ τούς τε
+                     ἄρχοντας οὓς παννυχίζειν δεῖ καὶ παντὶ τρόπω τὰς ὑποσχέσεις πληροῦν·</p>
+               </div>
+            </div>
+
+            <div type="scholion" n="2">
+               <div type="lemma">
+                  <p> παννύχιοι</p>
+               </div>
+               <div type="comment">
+                  <p> πῶς εν τῆ <ref n="urn:cts:greekLit:tlg0012.tlg001:1" type="ctsurn"> Α</ref>
+                     εἰπὼν τὸν <persName n="pers8"> δία</persName> καθεύδειν· νῦν φησὶ <q>
+                        <persName n="pers8"> δία</persName> δ’ οὐκ έχε, νήδυμος ὕπνος·</q> λεγομεν
+                     δὲ ἡμεῖς ὅτι ἐκαθευδε μὲν ἀλλ’ ἐπ ολίγον ἐκαθεύδησεν καὶ οὐ δια πάσης τῆς
+                     νυκτὸς ὡς οἱ ἄλλοι μεριμνῶν⁑</p>
+               </div>
+            </div>
+
+            <div type="scholion" n="3">
+               <div type="lemma">
+                  <p> εὖδον παννύχιοι</p>
+               </div>
+               <div type="comment">
+                  <p> ὅτι τὸ <rs type="waw"> νήδυμος</rs> μετα τοῦ <rs type="waw"> ν</rs> καὶ οὐχὶ
+                        <rs type="waw"> ἥδυμος</rs> ὡς ἔννιοι παρα τὸ <rs type="waw"> ἡδύς</rs> ὡς
+                     δηλον εκ τοῦ <cit>
+                        <q> νήδυμος ἀμφιχυθείς</q>
+                        <ref type="urn"> urn:cts:greekLit:tlg0012.tlg001:14.253</ref>
+                     </cit> · οἱ δὲ μεθ’ <persName n="pers17"> Ὅμηρον</persName> καὶ <choice>
+                        <abbr> χω</abbr>
+                        <expan> χωρὶς</expan>
+                     </choice> τοῦ <rs type="waw"> ν</rs> λέγουσι· καὶ <persName n="pers7">
+                        Ἀντίμαχος</persName>
+                     <note resp="Erbse"> fr.94 W.</note> · <q> ἐπεί’ ῥά οι ἥδυμος ἐλθών</q> καὶ
+                        <persName n="pers279"> Σιμωνίδης</persName>
+                     <note resp="Erbse"> fr. 94 P.</note> . <q> οὗτος δέ τοι ἥδυμον ὕπνον ἔχων</q> .
+                     ἵσως οὖν ἐνόμισαν ἀπο τοῦ <rs type="waw"> ἡδὺς</rs> εἶναι παράγωγον τὸ <rs
+                        type="waw"> ἥδυμος</rs> ὡς <rs type="waw"> ἔτυμος</rs>
+                     <rs type="waw"> ἐτήτυμος</rs> ὁ δὲ ποιητὴς ἐπι τοῦ ἀνεκδύτου τίθησι τὴν λέξιν.
+                     καὶ δῆλον ὅτι παρὰ τὸ · <rs type="waw"> δύω</rs> ἢ <rs type="waw"> δύνω</rs>
+                     ἐξεπίπτε ῥηματικὸν τὸ <rs type="waw"> δυμος</rs> καὶ κατα στερήσιν τοῦ <rs
+                        type="waw"> νη</rs>
+                     <rs type="waw"> ὁ νήδυμος</rs> ἐγίνετο· ὅθεν καὶ οἱ δίδυμοι δύο εκ μιᾶς
+                     καταδυσεως τῆς γαστρός καὶ οὐ παρὰ το <rs type="waw"> ἡδύς</rs> · λέξις γὰρ
+                     δασυνομένῃ οὐ συντίθησι τὸ <rs type="waw"> νη</rs> οἱ δὲ ὃν οὐ δυνατὸν
+                     ἀποδύσασθαι ἠ ὁ βαθὺς παρὰ τὴν νηδύν ἢ ὁ ἀνώδυνος⁑</p>
+               </div>
+            </div>
+
+
+         </div>
+
+         <div n="3">
+            <div type="scholion" n="5">
+               <div type="lemma">
+                  <p> ‡ αὐτὰρ ἐπεὶ</p>
+               </div>
+               <div type="comment">
+                  <p> ἀμφω τὰς στρατιὰς διατυποῖ καὶ μέχρι τέλους οὐκ εξίσταται τοῦ ἤθους ὥστ‘ὄϊες
+                     πολυπάμμονος καὶ ἐς <rs> τρώων</rs> όμαδον κίεν ⁑</p>
+               </div>
+            </div>
+
+            <div type="scholion" n="1">
+               <div type="lemma">
+                  <p/>
+               </div>
+               <div type="comment">
+                  <p>
+                     <choice>
+                        <abbr> διαφε</abbr>
+                        <expan> διαφέρει</expan>
+                     </choice> δὲ ὁ <rs type="waw"> ἀυτὰρ</rs> τοῦ <rs type="waw"> δὲ</rs> . καθὸ ὁ
+                     μὲν <rs type="waw"> αὐτὰρ</rs> προτάσσεται ὁ δὲ <rs type="waw"> δὲ</rs>
+                     ὑποτάσσεται· ζητεῖται δὲ πῶς δὴ τὸν <rs type="waw"> αὐτὰρ</rs>
+                     <choice>
+                        <expan> σύνδεσμον</expan>
+                        <abbr> συνδ</abbr>
+                     </choice> προφέρεσθαι πότερον ὀξυτόνως ἢ βαρυτόνως· οἱ μὲν οὖν ὀξυτόνως
+                     ἀνεγνώκασιν ὡς <persName> Καλλίμαχος</persName> οἱ δὲ βαρυτόνως λόγῳ τῶδε· πᾶσα
+                     λέξις εἰς <rs type="waw"> αρ</rs> λήγουσα βαρύνεται οἷον <rs type="waw">
+                        ἄφαρ</rs>
+                     <rs type="waw"> εἴθαρ</rs>
+                     <rs type="waw"> δάμαρ</rs>
+                     <rs type="waw"> στέαρ</rs>
+                     <rs type="waw"> οὖθαρ</rs> · ῥητέον δὲ ὅτι οὐδεὶς συμπλεκτικὸς ἢ περισπᾶται ῆ
+                     βαρύνεται πάντες δὲ οξύνονται ⁑</p>
+               </div>
+            </div>
+
+            <div type="scholion" n="671">
+               <div type="lemma">
+                  <p> κόσμηθεν</p>
+               </div>
+               <div type="comment">
+                  <p> ὁ τρόπος μεταφορά ἄπο τοῦ κόσμου ὅθεν καὶ ἡ τῶν όλων τάξις κόσμος ὑπο
+                     πυθαγόρου εἴρηται ἡ δε διάλεκτος δωρὶς εὐταξία δὲ μάλιστα πόλεμος κατορθοῦται
+                     ⁑</p>
+               </div>
+            </div>
+
+           
+
+
+         </div>
+
+
+      </body>
+   </text>
+</TEI>
