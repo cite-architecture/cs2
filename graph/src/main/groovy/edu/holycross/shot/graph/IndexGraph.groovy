@@ -103,14 +103,16 @@ class IndexGraph {
 
 	ArrayList getAdjacentForVersionContainer(CtsUrn urn){
 	    ArrayList replyArray = []
+		ArrayList workingArray = []
         String replyText = ""
 		String containerQuery = QueryBuilder.getQueryVersionLevelContaining(urn)
         String reply = sparql.getSparqlReply("application/json", containerQuery)
 
         JsonSlurper slurper = new groovy.json.JsonSlurper()
 		def parsedReply = slurper.parseText(reply)
-		replyArray = parsedJsonToTriples(parsedReply)
+		workingArray = parsedJsonToTriples(parsedReply)
 
+		replyArray = uniqueTriples(workingArray) 
 		return replyArray
 	}
 
@@ -121,8 +123,9 @@ class IndexGraph {
 
 	ArrayList getAdjacentForWorkLevelContainer(CtsUrn urn){
 		ArrayList versionArray = []
+		ArrayList workingArray = []
 	    ArrayList replyArray = []
-		ArrayList TempArray = []
+		ArrayList tempArray = []
 		versionArray = getVersionsForNotionalUrn(urn)
 
         String replyText = ""
@@ -131,20 +134,22 @@ class IndexGraph {
 
         JsonSlurper slurper = new groovy.json.JsonSlurper()
 		def parsedReply = slurper.parseText(reply)
-		replyArray = parsedJsonToTriples(parsedReply)
+		workingArray = parsedJsonToTriples(parsedReply)
 
 		String tempQuery = ""
 
 		versionArray.each { u ->
-			TempArray = getAdjacentForVersionContainer(new CtsUrn("${u}${urn.passageComponent}"))	
-			TempArray.each { ttt ->
-				replyArray << ttt
+			tempArray = getAdjacentForVersionContainer(new CtsUrn("${u}${urn.passageComponent}"))	
+			tempArray.each { ttt ->
+				workingArray << ttt
 			}
 		}
 
+
+		replyArray = uniqueTriples(workingArray) 
+
 		return replyArray
 	}
-
 
 
   /** Find all nodes at one degree of 
@@ -162,13 +167,15 @@ class IndexGraph {
 		requestUrn = urn
 	}
 	ArrayList replyArray = []
+	ArrayList workingArray = []
     String replyText = ""
     String leafQuery = QueryBuilder.getSingleLeafNodeQuery(urn)    
 	String reply = sparql.getSparqlReply("application/json", leafQuery)
     JsonSlurper slurper = new groovy.json.JsonSlurper()
     def parsedReply = slurper.parseText(reply)
-	replyArray = parsedJsonToTriples(parsedReply)
+	workingArray = parsedJsonToTriples(parsedReply)
 
+	replyArray = uniqueTriples(replyArray) 
 	return replyArray
 
    }
@@ -211,8 +218,10 @@ class IndexGraph {
 	   def parsedReply = slurper.parseText(reply)
 
 	   ArrayList replyArray = []
+	   ArrayList workingArray = []
 
-	   replyArray = parsedJsonToTriples(parsedReply)
+	   workingArray = parsedJsonToTriples(parsedReply)
+	   replyArray = uniqueTriples(replyArray) 
 
 	   return replyArray
 
@@ -260,6 +269,24 @@ class IndexGraph {
 		}
 
 		return replyArray
+	}
+
+
+   /** Given an ArrayList of Triple objects
+   * eliminate duplicates and return a new ArrayList
+   * @param al ArrayList of Triple object
+   * @returns ArrayList of Triple objects.
+   */
+
+	ArrayList uniqueTriples(ArrayList al){
+		def tripleComparator = [
+			equals: { delegate.equals(it) },
+			compare: { first, second ->
+			first.toString() <=> second.toString()
+			}
+		] as Comparator
+	    def tsub = al.unique(tripleComparator)
+		return tsub
 	}
 
 

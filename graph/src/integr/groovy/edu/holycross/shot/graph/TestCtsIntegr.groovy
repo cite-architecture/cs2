@@ -46,13 +46,13 @@ class TestCtsIntegr extends GroovyTestCase {
 	assert al.size() == 3
   } */
 
-@Test
+/* @Test
   void testNotionalLeaf() {
     CtsUrn urn = new CtsUrn(ctsSubjNotionalLeaf)
 	ArrayList al = gs.graph.findAdjacent(urn)
 	//println "${al}"
 	assert al.size() == 78
-  }
+  } */
 
 /* 
   @Test
@@ -81,13 +81,14 @@ class TestCtsIntegr extends GroovyTestCase {
 	assert al.size() == 95
   } */
 
-  /* @Test
+   @Test
   void testWorkContainer() {
     CtsUrn urn = new CtsUrn(ctsSubjNotionalContaining)
 	ArrayList al = gs.graph.findAdjacent(urn)
 	println "${urn} testing for container "
-	println "Found ${al.size()}"
-  } */ 
+	println "${al}"
+	assert al.size() == 694
+  }  
 
   /* @Test
   void testVersionLeafRange() {

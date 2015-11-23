@@ -21,7 +21,7 @@
       <title
         xml:lang="eng"> Iliad </title>
       
-      <edition
+       <edition
         urn="urn:cts:greekLit:tlg0012.tlg001.msA:">
         <label
           xml:lang="eng"> Venetus A </label>
@@ -44,6 +44,13 @@
             </citation>
           </citationMapping>
         </online>
+       </edition>
+      <edition
+        urn="urn:cts:greekLit:tlg0012.tlg001.fuEng:">
+        <label
+          xml:lang="eng"> Venetus A </label>
+        <description
+          xml:lang="eng"> English translation; aligned to the Greek. </description>
       </edition>
       
     </work>
