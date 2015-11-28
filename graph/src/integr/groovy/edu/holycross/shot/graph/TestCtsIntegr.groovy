@@ -14,30 +14,49 @@ class TestCtsIntegr extends GroovyTestCase {
   Sparql sparql = new Sparql(baseUrl)
   GraphService gs = new GraphService(sparql)
 
-  /* Some CTS URNs */
+  /* URNs for Testing (based on test dataset */
+  def ctsGroupUrn = "uren:ctrs:greekLirt:tlg0012:"
+  def ctsWorkUrn = "urn:cts:greekLit:tlg0012.tlg001:1.1"
+  def ctsVersionUrn = "urn:cts:greekLit:tlg0012.tlg001.msA:1.1"
+  def ctsExemplarUrn = "urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1"
 
-  String ctsSubjGroup = "urn:cts:greekLit:tlg0012:"
-  String ctsSubjWork = "urn:cts:greekLit:tlg0012.tlg001:"
-  String ctsSubjVersion = "urn:cts:greekLit:tlg0012.tlg001.msA:"
+   @Test
+  void testWorkContainer() {
+    CtsUrn urn = new CtsUrn(ctsGroupUrn)
+	ArrayList al = gs.graph.findAdjacent(urn)
+	println "${urn} testing for container "
+	println "${al}"
+	println al
+	assert al.size() == 694
+  }  
 
-  String ctsSubjLeaf = "urn:cts:greekLit:tlg0012.tlg001.msA:1.2"
-  String ctsSubjContaining = "urn:cts:greekLit:tlg7000.tlg001.msA:9.387"
-  String ctsSubjLeafRange = "urn:cts:greekLit:tlg0012.tlg001.msA:1.2-1.10"
-  String ctsSubjContainingRange = "urn:cts:greekLit:tlg0012.tlg001.msA:1-2"
-  String ctsSubjMixedRange1 = "urn:cts:greekLit:tlg0012.tlg001.msA:1-2.10"
-  String ctsSubjMixedRange2 = "urn:cts:greekLit:tlg0012.tlg001.msA:1.2-2"
-  
-  String ctsSubjNotionalLeaf = "urn:cts:greekLit:tlg0012.tlg001:1.2"
-  String ctsSubjNotionalContaining = "urn:cts:greekLit:tlg0012.tlg001:1"
-  String ctsSubjNotionalLeafRange = "urn:cts:greekLit:tlg0012.tlg001:1.2-1.10"
-  String ctsSubjNotionalContainingRange = "urn:cts:greekLit:tlg0012.tlg001:1-2"
-  String ctsSubjNotionalMixedRange1 = "urn:cts:greekLit:tlg0012.tlg001:1-2.10"
-  String ctsSubjNotionalMixedRange2 = "urn:cts:greekLit:tlg0012.tlg001:1.2-2"
+  void testWorkContainer() {
+    CtsUrn urn = new CtsUrn(ctsWorkUrn)
+	ArrayList al = gs.graph.findAdjacent(urn)
+	println "${urn} testing for container "
+	println "${al}"
+	println al
+	assert al.size() == 694
+  }  
 
-  String ctsSubjLeafWithSubstr = "urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί'[1]"
+   @Test
+  void testVersionContainer() {
+    CtsUrn urn = new CtsUrn(ctsVersionUrn)
+	ArrayList al = gs.graph.findAdjacent(urn)
+	println "${urn} testing for container "
+	println "${al}"
+	println al
+	assert al.size() == 694
+  }  
 
-  /* End Sample URNs */
-
+  void testExemplarContainer() {
+    CtsUrn urn = new CtsUrn(ctsExemplarUrn)
+	ArrayList al = gs.graph.findAdjacent(urn)
+	println "${urn} testing for container "
+	println "${al}"
+	println al
+	assert al.size() == 694
+  }  
 /* @Test
   void testGetVersions() {
     CtsUrn urn = new CtsUrn(ctsSubjNotionalLeaf)
@@ -81,14 +100,6 @@ class TestCtsIntegr extends GroovyTestCase {
 	assert al.size() == 95
   } */
 
-   @Test
-  void testWorkContainer() {
-    CtsUrn urn = new CtsUrn(ctsSubjNotionalContaining)
-	ArrayList al = gs.graph.findAdjacent(urn)
-	println "${urn} testing for container "
-	println "${al}"
-	assert al.size() == 694
-  }  
 
   /* @Test
   void testVersionLeafRange() {

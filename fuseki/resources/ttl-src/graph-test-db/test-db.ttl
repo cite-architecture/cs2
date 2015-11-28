@@ -301,7 +301,7 @@ citedata:msA_Label cite:propType "string".
 <urn:cite:hmt:msA.24r> rdf:label "Marcianus Graecus Z. 454 (= 822) (Venetus A), folio 24r" .
 <urn:cite:hmt:msA.24r> citedata:msA_Label "Marcianus Graecus Z. 454 (= 822) (Venetus A), folio 24r" .
 
-# ORCA Word-Tokens for 2.1
+# ORCA Word-Tokens for 1.2
 
 <urn:cite:hmt:VenAIliad_classifiedTokens> rdf:type	cite:CiteCollection .  
 <urn:cite:hmt:VenAIliad_classifiedTokens> rdf:type	cite:ORCA .  
@@ -340,8 +340,7 @@ citedata:msA_Label cite:propType "string".
 <urn:cite:hmt:VenAIliad_classifiedTokens>	cite:canonicalId		<http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_URN> . 
 <urn:cite:hmt:VenAIliad_classifiedTokens>	cite:orderedBy <http://www.homermultitext.org/hmt/citedata/VenAIliad_classifiedTokens_Sequence> . 
 
-
-# <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasTextContent """<l xmlns="http://www.tei-c.org/ns/1.0" n="2"> οὐλομένην· ἡ μυρί' <rs n="urn:cite:hmt:place.place96" type="ethnic"> Ἀχαιοῖς</rs> ἄλγε' ἔθηκεν·</l>""" .
+# ORCA Analysis Records
 
 <urn:cite:hmt:VenAIliad_classifiedTokens.1> olo:item 1 . 
 <urn:cite:hmt:VenAIliad_classifiedTokens.1> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> . 
@@ -469,3 +468,412 @@ citedata:msA_Label cite:propType "string".
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> cts:citationDepth 1 .
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> .
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> .
+
+# Analytical Exemplar Derived from the Venetus A edition
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.tw:> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA:> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:> cts:possesses <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:> rdf:type cts:Exemplar .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:>  rdf:label "Homeric Epic, Iliad: (Venetus A): word-token analytical edition" .
+
+# Let's get these out of the way
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 1.1.1 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> cts:hasSequence 1 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="1">Μῆνιν</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '1']:tei:l[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 1.1.2 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> cts:hasSequence 2 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="2">ἄειδε</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '1']:tei:l[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 1.1.3 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> cts:hasSequence 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="3">θεὰ</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '1']:tei:l[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 1.1.4 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> cts:hasSequence 4 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="4">Πηληϊάδεω</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '1']:tei:l[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 1.1.5 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> cts:hasSequence 5 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="5">Ἀχιλῆος</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '1']:tei:l[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 1.2.1 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> cts:hasSequence 6 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="1">οὐλομένην</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '1']:tei:l[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 1.2.2 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> cts:hasSequence 7 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="2">ἡ</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '1']:tei:l[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 1.2.3 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> cts:hasSequence 8 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="3">μυρί'</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '1']:tei:l[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 1.2.4 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> cts:hasSequence 9 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="4">Ἀχαιοῖς</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '1']:tei:l[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 1.2.5 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> cts:hasSequence 10 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="5">ἄλγε'</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '1']:tei:l[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 1.2.6 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> cts:hasSequence 11 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="6">ἔθηκεν</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '1']:tei:l[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.1.1 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> cts:hasSequence 12 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="1">Ἄλλοι</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.1.2 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> cts:hasSequence 13 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="2">μέν</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.1.3 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> cts:hasSequence 14 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="3">ῥα</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.1.4 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> cts:hasSequence 15 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="4">θεοί</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.1.5 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> cts:hasSequence 16 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="5">τε</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.1.6 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> cts:hasSequence 17 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="6">καὶ</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.1.7 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> cts:hasSequence 18 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="7">ἀνέρες</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.1.8 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> cts:hasSequence 19 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="8">ἱπποκορυσταὶ</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='1']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.2.1 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> cts:hasSequence 20 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="1">εὗδον</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.2.2 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> cts:hasSequence 21 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="2">παννύχιοι</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.2.3 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> cts:hasSequence 22 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="3">Δία</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.2.4 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> cts:hasSequence 23 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="4">δ'</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.2.5 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> cts:hasSequence 24 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="5">οὐκ</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.2.6 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> cts:hasSequence 25 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="6">έχε</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.2.7 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> cts:hasSequence 26 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="7">νήδυμος</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.2.8 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> cts:hasSequence 27 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> cts:hasTextContent """<seg xmlns="http://www.tei-c.org/ns/1.0" n="8">ὕπνος</seg>""" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> cts:citationDepth 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> hmt:xmlOpen "/tei:TEI/tei:text/tei:body/tei:div[@n = '2']:tei:l[@n='2']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> hmt:xpTemplate "/tei:TEI/tei:text/tei:body/tei:div[@n = '?']/tei:l[@n = '?']/tei:seg[@n='?']" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> .
+
+# Sequence for Analytical Exemplar
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1>  . 
+
+# Analysis Alignment
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Μῆνιν[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@ἄειδε[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@θεὰ[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Πηληϊάδεω[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Ἀχιλῆος[1]> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1>  orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@Ἄλλοι[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2>  orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@μέν[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3>  orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@ῥα[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4>  orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@θεοί[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5>  orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@τε[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6>  orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@καὶ[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7>  orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@ἀνέρες[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8>  orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@ἱπποκορυσταὶ[1]> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@εὗδον[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@παννύχιοι[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@Δία[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@δ[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@οὐκ[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@έχε[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@νήδυμος[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> orca:exemplifies <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@ὕπνος[1]> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Μῆνιν[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@ἄειδε[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@θεὰ[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Πηληϊάδεω[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Ἀχιλῆος[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@Ἄλλοι[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@μέν[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@ῥα[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@θεοί[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@τε[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@καὶ[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@ἀνέρες[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@ἱπποκορυσταὶ[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@εὗδον[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@παννύχιοι[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@Δία[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@δ[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@οὐκ[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@έχε[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@νήδυμος[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@ὕπνος[1]> orca:exemplifiedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> .
+

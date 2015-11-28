@@ -40,7 +40,7 @@ class IndexGraph {
   /** Overloaded method. Find all nodes at one degree of 
    * relation to the object identified by
    * a CITE urn.
-   * @param urn CITE Object to find in the graph.
+   * @param urn CTS Object to find in the graph.
    * @returns ArrayList of Triple objects.
    */
 	ArrayList findAdjacent(CtsUrn urn) {
@@ -64,9 +64,26 @@ class IndexGraph {
 
 		*/
 
-        if (workLevel == "GROUP"){
-			al << "groupLevel"	
-			/* group-level URNs have no passage component */
+		switch (workLevel){
+			case "GROUP":
+				al << "groupLevel"				
+				break;
+			case "WORK":
+				al << "workLevel"
+				break;
+			case "VERSION":
+				al<< "versionLevel"
+				break;
+			case "EXEMPLAR":
+				al << "exemplarLevel"
+				break;
+			default: 
+				al << "error ${workLevel}"		
+
+
+		}
+
+			/*
 		} else if (urn.isRange()){
 			al << "isRange"
 			CtsUrn rangeStartUrn = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")	
@@ -93,6 +110,7 @@ class IndexGraph {
 				}
 			}
 		}
+		*/
 	    return al
 	} 
 
