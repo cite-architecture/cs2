@@ -624,6 +624,16 @@ citedata:msA_Label cite:propType "string".
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> .
 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2>  . 
+
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.1.1 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1)" .
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> .
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> cts:possesses <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> . 

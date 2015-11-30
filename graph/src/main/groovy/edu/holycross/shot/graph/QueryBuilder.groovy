@@ -47,6 +47,99 @@ abstract class QueryBuilder {
 		return q
 	}
 
+/** Builds SPARQL query string to find urns and data adjacent
+* to a textGroup-lecvel CTS URN. Returns anything directly
+* indexed to the URN, as well as work, all versions, and all
+* derived exemplars (as version- or exemplar- level URNs), with 
+* types and labels.
+* @param urn The urn to test.
+* @returns a completre SPARQL query string.
+*/
+static String getTextGroupAdjacentQuery(CtsUrn urn){
+
+    return """${GraphDefinitions.prefixPhrase}
+SELECT ?s ?v ?o
+WHERE {
+	{
+		bind(<${urn}> as ?s)
+			?s ?v ?o  .
+
+	} union {
+		bind(<${urn}> as ?parent)
+
+			?parent cts:possesses ?s .
+			bind (rdf:type as ?v )
+			?s ?v ?o  .
+	} union {
+		bind(<${urn}> as ?parent)
+
+			?parent cts:possesses ?s .
+			bind (rdf:label as ?v )
+			?s ?v ?o  .    
+
+	} union {
+		bind(<${urn}> as ?s)
+			bind(cts:possesses as ?v)
+			?s cts:possesses+ ?o .
+			?o rdf:type cts:Edition .
+	} union {
+		bind(<${urn}> as ?s)
+			?s cts:possesses+ ?o .
+			?o rdf:type cts:Edition .
+			bind (cts:possesses as ?v )
+			?s ?v ?o .
+	} union {
+		bind(<${urn}> as ?parent)
+			?parent cts:possesses+ ?s .
+			?s rdf:type cts:Edition .
+			bind (rdf:type as ?v)
+			?s ?v ?o .
+	} union {
+		bind(<${urn}> as ?parent)
+			?parent cts:possesses+ ?s .
+			?s rdf:type cts:Edition .
+			bind (rdf:label as ?v)
+			?s ?v ?o .
+	} union {
+		bind(<${urn}> as ?parent)
+			?parent cts:possesses+ ?o .
+			?o rdf:type cts:Translation .
+			bind (cts:possesses as ?v )
+			?s ?v ?o .
+	} union {
+		bind(<${urn}> as ?parent)
+			?parent cts:possesses+ ?s .
+			?s rdf:type cts:Translation .
+			bind (rdf:type as ?v)
+			?s ?v ?o .
+	} union {
+		bind(<${urn}> as ?parent)
+			?parent cts:possesses+ ?s .
+			?s rdf:type cts:Translation .
+			bind (rdf:label as ?v)
+			?s ?v ?o .
+	} union {
+		bind(<${urn}> as ?parent)
+			?parent cts:possesses+ ?o .
+			?o rdf:type cts:Exemplar .
+			bind (cts:possesses as ?v )
+			?s ?v ?o .
+	} union {
+		bind(<${urn}> as ?parent)
+			?parent cts:possesses+ ?s .
+			?s rdf:type cts:Exemplar .
+			bind (rdf:type as ?v)
+			?s ?v ?o .
+	} union {
+		bind(<${urn}> as ?parent)
+			?parent cts:possesses+ ?s .
+			?s rdf:type cts:Exemplar .
+			bind (rdf:label as ?v)
+			?s ?v ?o .
+	}
+}
+	"""
+}
 	
   /** Builds SPARQL query string to find urns and data adjacent
    * to a  version-level CTS URN leaf citation node. Also includes

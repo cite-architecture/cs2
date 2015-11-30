@@ -13,7 +13,7 @@ class TestGraphIntegr extends GroovyTestCase {
 
   String baseUrl = "http://localhost:8080/fuseki/graph/query"
   String verbQuery = "SELECT distinct ?v WHERE { <urn:cite:hmt:msA.12r> ?v ?o .  }"
-  Integer expectedNumberVerbs = 11
+  Integer expectedNumberVerbs = 6 
 
   
   @Test

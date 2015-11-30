@@ -66,7 +66,7 @@ class IndexGraph {
 
 		switch (workLevel){
 			case "GROUP":
-				al << "groupLevel"				
+				al = getAdjacentForTextGroup(urn)
 				break;
 			case "WORK":
 				al << "workLevel"
@@ -113,6 +113,25 @@ class IndexGraph {
 		*/
 	    return al
 	} 
+
+
+/** Finds data adjacent to a TextGroup-level URN.
+* @param urn The URN to test.
+* @returns ArrayList of Triple objects.
+*/
+ArrayList getAdjacentForTextGroup(CtsUrn urn){
+	    ArrayList replyArray = []
+		ArrayList workingArray = []
+        String replyText = ""
+		String textgroupQuery = QueryBuilder.getTextGroupAdjacentQuery(urn)
+        String reply = sparql.getSparqlReply("application/json", textgroupQuery)
+
+        JsonSlurper slurper = new groovy.json.JsonSlurper()
+		def parsedReply = slurper.parseText(reply)
+		workingArray = parsedJsonToTriples(parsedReply)
+		replyArray = uniqueTriples(workingArray) 
+		return replyArray
+}
 
    /** Finds  data adjacent to a version-level containing (non-leaf-node) URN 
    * @param urn The URN to test.
@@ -307,7 +326,5 @@ class IndexGraph {
 		return tsub
 	}
 
-
 		
-
 }

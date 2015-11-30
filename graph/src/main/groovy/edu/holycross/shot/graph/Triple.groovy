@@ -1,5 +1,6 @@
 package edu.holycross.shot.graph
 
+import edu.harvard.chs.cite.CtsUrn
 import edu.harvard.chs.cite.CiteUrn
 
 /** Class representing a triple in a directed

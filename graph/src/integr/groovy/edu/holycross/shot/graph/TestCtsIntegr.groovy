@@ -14,104 +14,96 @@ class TestCtsIntegr extends GroovyTestCase {
   Sparql sparql = new Sparql(baseUrl)
   GraphService gs = new GraphService(sparql)
 
-  /* URNs for Testing (based on test dataset */
-  def ctsGroupUrn = "uren:ctrs:greekLirt:tlg0012:"
-  def ctsWorkUrn = "urn:cts:greekLit:tlg0012.tlg001:1.1"
-  def ctsVersionUrn = "urn:cts:greekLit:tlg0012.tlg001.msA:1.1"
-  def ctsExemplarUrn = "urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1"
+  /* Test Group-level CTS URNs */
 
-   @Test
-  void testWorkContainer() {
-    CtsUrn urn = new CtsUrn(ctsGroupUrn)
-	ArrayList al = gs.graph.findAdjacent(urn)
-	println "${urn} testing for container "
-	println "${al}"
-	println al
-	assert al.size() == 694
-  }  
 
-  void testWorkContainer() {
-    CtsUrn urn = new CtsUrn(ctsWorkUrn)
-	ArrayList al = gs.graph.findAdjacent(urn)
-	println "${urn} testing for container "
-	println "${al}"
-	println al
-	assert al.size() == 694
-  }  
-
-   @Test
-  void testVersionContainer() {
-    CtsUrn urn = new CtsUrn(ctsVersionUrn)
-	ArrayList al = gs.graph.findAdjacent(urn)
-	println "${urn} testing for container "
-	println "${al}"
-	println al
-	assert al.size() == 694
-  }  
-
-  void testExemplarContainer() {
-    CtsUrn urn = new CtsUrn(ctsExemplarUrn)
-	ArrayList al = gs.graph.findAdjacent(urn)
-	println "${urn} testing for container "
-	println "${al}"
-	println al
-	assert al.size() == 694
-  }  
-/* @Test
-  void testGetVersions() {
-    CtsUrn urn = new CtsUrn(ctsSubjNotionalLeaf)
-	ArrayList al = gs.graph.getVersionsForNotionalUrn(urn)
-	//println "al.size() == ${al.size()}"
-	assert al.size() == 3
-  } */
-
-/* @Test
-  void testNotionalLeaf() {
-    CtsUrn urn = new CtsUrn(ctsSubjNotionalLeaf)
-	ArrayList al = gs.graph.findAdjacent(urn)
-	//println "${al}"
-	assert al.size() == 78
-  } */
-
-/* 
+	/* We expect 16 hits from this dataset */
   @Test
-  void testVersionLeaf() {
-    CtsUrn urn = new CtsUrn(ctsSubjLeaf)
-	ArrayList al = gs.graph.findAdjacent(urn)
- 	println "${urn}: ${gs.graph.findAdjacent(urn)}"
-	assert al.size() == 56 
-  } */
-
-  /* @Test
-  void testVersionLeafWithSubstring() {
-    CtsUrn urn = new CtsUrn(ctsSubjLeafWithSubstr)
-	ArrayList al = gs.graph.findAdjacent(urn)
-	println "${urn} testing for version leaf with substring"
- 	//println "${urn}: ${gs.graph.findAdjacent(urn)}"
-	assert al.size() == 56 
-  } */
+  void testTextGroupURN() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012:")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 16
+  }  
 
 
-  /* @Test
-  void testVersionContainer() {
-    CtsUrn urn = new CtsUrn(ctsSubjContaining)
-	ArrayList al = gs.graph.findAdjacent(urn)
-	println "${urn} testing for container "
-	assert al.size() == 95
-  } */
+   /* We expect to find one work, one edition, one translation, and one exemplar */
+  @Test
+	  void testTextGroupURN2() {
+		  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012:")
+			  ArrayList al = gs.graph.findAdjacent(urn)
+			  String failedUrns = ""
+			  String testUriString = "urn:cts:greekLit:tlg0012.tlg001:"
+			  URI testUri = new URI(URLEncoder.encode(testUriString, "UTF-8"))
+			  Boolean uriPresent = false
+			  al.each{ 
+				if (it.subj == testUri){ uriPresent = true }
+			  }
+			  if (uriPresent == false){
+				failedUrns += testUriString
+			  }
+			  testUriString = "urn:cts:greekLit:tlg0012.tlg001.msA:"
+			  testUri = new URI(URLEncoder.encode(testUriString, "UTF-8"))
+			  uriPresent = false
+			  al.each{ 
+				if (it.subj == testUri){ uriPresent = true }
+			  }
+			  if (uriPresent == false){
+				failedUrns += testUriString
+			  }
+			  testUriString = "urn:cts:greekLit:tlg0012.tlg001.alignedEng:"
+			  testUri = new URI(URLEncoder.encode(testUriString, "UTF-8"))
+			  uriPresent = false
+			  al.each{ 
+				if (it.subj == testUri){ uriPresent = true }
+			  }
+			  if (uriPresent == false){
+				failedUrns += testUriString
+			  }
+			  testUriString = "urn:cts:greekLit:tlg0012.tlg001.msA.wt:"
+			  testUri = new URI(URLEncoder.encode(testUriString, "UTF-8"))
+			  uriPresent = false
+			  al.each{ 
+				if (it.subj == testUri){ uriPresent = true }
+			  }
+			  if (uriPresent == false){
+				failedUrns += testUriString
+			  }
+		  assert failedUrns == ""
+	  }  
+
+	/* Test Work-level CTS-URNs */
+
+	/* Test Version-level CTS-URNs */
+
+	/* We expect 20 results from the original URN dataset */
+	/* We also expect 8 analytical exemplar citations */
+  @Test
+  void testVersionLeafNodeURN() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:2.1")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 28
+  }  
+
+/* Fun Facts from the test dataset:
+	urn:cts:greekLit:tlg0012.tlg001.msA:1.1 (including .wt:1.1) = 22 (+ 1 analytical exmplar from version)
+	urn:cts:greekLit:tlg0012.tlg001.msA:1.2 (including .wt:1.2) = 26 (+ 1 analytical exmplar from version)
+	urn:cts:greekLit:tlg0012.tlg001.msA:1.2 (including .wt:2.1) = 28 (+ 1 analytical exmplar from version)
+	urn:cts:greekLit:tlg0012.tlg001.msA:1.2 (including .wt:2.2) = 28 (+ 1 analytical exmplar from version)
+
+	urn:cts:greekLit:tlg0012.tlg001.msA:1 (including .tw:1) = 6 (+ 1 analytical exemplar) 
+	urn:cts:greekLit:tlg0012.tlg001.msA:2 (including .tw:2) = 6 (+ 1 analytical exemplar) 
+*/
 
 
-  /* @Test
-  void testVersionLeafRange() {
-    CtsUrn urn = new CtsUrn(ctsSubjLeafRange)
- 	println gs.graph.findAdjacent(urn)   
-  } */
   
-  /* @Test
-  void testGroup() {
-    CtsUrn urn = new CtsUrn(ctsSubjGroup)
- 	println gs.graph.findAdjacent(urn)   
-  } */ 
+	/* We expect 20 results from the original URN dataset */
+	/* We also expect 8 analytical exemplar citations */
+  @Test
+  void testVersionLeafRangeURN() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1-2.1")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 28
+  }  
 
 
 }
