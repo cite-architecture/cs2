@@ -326,5 +326,20 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
 		return tsub
 	}
 
+	/** Given a CITE or CTS URN, 
+	* encode it to work with Fuseki; that is
+	* encode everything after "urn:"
+	* @param urn String a CTS or CITE URN
+	* @returns String of the encoded URN, begining with "urn:"
+	*/
+
+String fusekiEncodeUrn(String urn){
+	def uriString = ~/<urn:([^>]+)>/
+	String tempString = urn.replaceAll(urn){ fullMatch, justString ->
+		return "<urn:${URLEncoder.encode(justString,'UTF-8')}>"
+	}
+	return tempString
+}
+
 		
 }

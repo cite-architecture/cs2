@@ -24,6 +24,31 @@ class TestTriple extends GroovyTestCase {
   String expectedStringWithIntegerObject = """<urn:cite:hmt:VenAIliad_classifiedTokens.6> <olo:item> 2 ."""
   String expectedStringWithFloatObject = """<urn:cite:hmt:VenAIliad_classifiedTokens.6> <hmt:value> 2.5 ."""
 
+  String encodedUrn = "<urn:cts%3AgreekLit%3Atlg0012.tlg001.msA%3A2.1%40%E1%BC%B1%CF%80%CF%80%CE%BF%CE%BA%CE%BF%CF%81%CF%85%CF%83%CF%84%CE%B1%E1%BD%B6%5B1%5D>"
+
+  @Test
+  void testEncodeDecodeURI(){
+
+	println "Encoded Urn"
+	println encodedUrn
+	println "Decoded"
+	println URLDecoder.decode(encodedUrn,"UTF-8")
+		
+    Triple  t = new Triple(testSubj, testVerbWithUriObj, testObjUri)
+	println "Original URI"
+	println testObjUri
+	println "Encoded URI"
+	String enco = URLEncoder.encode(testObjUri.toString(), "UTF-8")
+	println enco
+	String deco = URLDecoder.decode(enco,"UTF-8")
+	assert deco == testObjUri.toString()
+	println "Triple Object"
+	println t.obj
+	println "Triple"
+	println t
+	assert t.toString() == expectedStringWithUriObject
+  }
+
   @Test
   void testObjectTypes() {
 	  assert testSubj.getClass() == URI

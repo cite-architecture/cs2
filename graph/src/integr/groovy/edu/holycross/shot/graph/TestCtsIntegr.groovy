@@ -14,8 +14,23 @@ class TestCtsIntegr extends GroovyTestCase {
   Sparql sparql = new Sparql(baseUrl)
   GraphService gs = new GraphService(sparql)
 
-  /* Test Group-level CTS URNs */
+	/* Test some basic CTS URN stuff */
+	@Test
+	void testBasicURN(){
+		CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε[1]")
+		println "urn as entered"	
+		println urn.toString()
+		
+	    URI tempSubject = new URI(URLEncoder.encode(urn.toString(), "UTF-8"))
+		println "encoded"
+		println tempSubject.toString()
+		println "decoded"
+		println URLDecoder.decode(tempSubject.toString(), "UTF-8")
+	}
 
+
+
+  /* Test Group-level CTS URNs */
 
 	/* We expect 16 hits from this dataset */
   @Test
