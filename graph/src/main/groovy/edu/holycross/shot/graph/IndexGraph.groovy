@@ -72,7 +72,18 @@ class IndexGraph {
 				al << "workLevel"
 				break;
 			case "VERSION":
-				al<< "versionLevel"
+				/* Can be range or not */
+				if (urn.isRange()){
+					al << "version; range"
+				} else {
+					/* Can be leaf-node */
+					if (ctsgraph.isLeafNode(urn)){
+						al = getSingleLeafNodeGraph(urn)
+					} else {
+						/* is non-leaf-node citation */
+						al = getAdjacentForVersionContainer(urn)
+					}
+				}
 				break;
 			case "EXEMPLAR":
 				al << "exemplarLevel"
@@ -120,10 +131,12 @@ class IndexGraph {
 * @returns ArrayList of Triple objects.
 */
 ArrayList getAdjacentForTextGroup(CtsUrn urn){
+		println "getAdjacentForTextGroup ${urn}"
+		println urn.encodeSubref() 
 	    ArrayList replyArray = []
 		ArrayList workingArray = []
         String replyText = ""
-		String textgroupQuery = QueryBuilder.getTextGroupAdjacentQuery(urn)
+		String textgroupQuery = QueryBuilder.getTextGroupAdjacentQuery(urn.encodeSubref())
         String reply = sparql.getSparqlReply("application/json", textgroupQuery)
 
         JsonSlurper slurper = new groovy.json.JsonSlurper()
@@ -134,6 +147,8 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
 }
 
    /** Finds  data adjacent to a version-level containing (non-leaf-node) URN 
+   * We want anything indexed to the citation itself, all contained leaf-node citations,
+   * and the same for any exemplars.
    * @param urn The URN to test.
    * @returns ArrayList of Triple objects.
    */
@@ -141,8 +156,18 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
 	ArrayList getAdjacentForVersionContainer(CtsUrn urn){
 	    ArrayList replyArray = []
 		ArrayList workingArray = []
+	
+		// Get Exemplars
+		
+		// Get adjacents for this version
+		
+		// Get adjacents for exemplars
+		
+		// Assemble	
+
+
         String replyText = ""
-		String containerQuery = QueryBuilder.getQueryVersionLevelContaining(urn)
+		String containerQuery = QueryBuilder.getQueryVersionLevelContaining(urn.encodeSubref())
         String reply = sparql.getSparqlReply("application/json", containerQuery)
 
         JsonSlurper slurper = new groovy.json.JsonSlurper()
@@ -206,12 +231,11 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
 	ArrayList replyArray = []
 	ArrayList workingArray = []
     String replyText = ""
-    String leafQuery = QueryBuilder.getSingleLeafNodeQuery(urn)    
+    String leafQuery = QueryBuilder.getSingleLeafNodeQuery(urn.encodeSubref())    
 	String reply = sparql.getSparqlReply("application/json", leafQuery)
     JsonSlurper slurper = new groovy.json.JsonSlurper()
     def parsedReply = slurper.parseText(reply)
 	workingArray = parsedJsonToTriples(parsedReply)
-
 	replyArray = uniqueTriples(replyArray) 
 	return replyArray
 
@@ -277,14 +301,17 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
 		URI tempSubject
 		URI tempVerb
 		Object tempObject
+		String tempString = ""
 
 		parsedReply.results.bindings.each{ jo ->
-			tempSubject = new URI(URLEncoder.encode(jo.s.value, "UTF-8"))
-				tempVerb = new URI(URLEncoder.encode(jo.v.value, "UTF-8"))
+			tempString = URLDecoder.decode(jo.s.value,"UTF-8")
+			tempSubject = new URI(URLEncoder.encode(tempString, "UTF-8")) // decode the URL encoding from Fuseki
+				tempVerb = new URI(URLEncoder.encode(jo.v.value, "UTF-8")) // re-encode as URI
 
 				switch (jo.o.type){
 					case "uri":
-						tempObject = new URI(URLEncoder.encode(jo.o.value, "UTF-8"))
+						tempString = URLDecoder.decode(jo.o.value,"UTF-8") // decode the URL encoding from Fuseki
+						tempObject = new URI(URLEncoder.encode(tempString, "UTF-8")) // Encode as URI
 							break;
 					case "literal":
 						tempObject = jo.o.value
@@ -308,6 +335,40 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
 		return replyArray
 	}
 
+	/** Given a version-level URN, returns all exemplar-level URNs
+	* @param urn CTS-URN
+	* @returns ArrayList of CTS-URNs
+	*/
+	ArrayList exemplarsForVersion(CtsUrn urn){
+	    ArrayList replyArray = []
+        String replyText = ""
+		String exemplarQuery = QueryBuilder.getQueryExemplarsForVersion(urn.encodeSubref())
+        String reply = sparql.getSparqlReply("application/json", exemplarQuery)
+		println "Work level: ${urn.getWorkLevel()}" 
+		if ("${urn.getWorkLevel()}" == "VERSION"){	
+
+			JsonSlurper slurper = new groovy.json.JsonSlurper()
+			def parsedReply = slurper.parseText(reply)
+			parsedReply.results.bindings.each{ jo ->
+				replyArray << jo.o?.value		
+			}
+		} else {
+			replyArray << "ERROR: URN must point to a version-level URN"	
+		}
+
+		return replyArray
+	}
+
+	/** Given a work-level URN, returns all version and exemplar-level URNs
+	* @param urn CTS-URN
+	* @returns ArrayList of CTS-URNs
+	*/
+	ArrayList versionsAndExemplarForWork(CtsUrn urn){
+		ArrayList replyArray = []
+		replyArray << "Not implemented"
+		return replyArray
+	}
+
 
    /** Given an ArrayList of Triple objects
    * eliminate duplicates and return a new ArrayList
@@ -326,20 +387,6 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
 		return tsub
 	}
 
-	/** Given a CITE or CTS URN, 
-	* encode it to work with Fuseki; that is
-	* encode everything after "urn:"
-	* @param urn String a CTS or CITE URN
-	* @returns String of the encoded URN, begining with "urn:"
-	*/
-
-String fusekiEncodeUrn(String urn){
-	def uriString = ~/<urn:([^>]+)>/
-	String tempString = urn.replaceAll(urn){ fullMatch, justString ->
-		return "<urn:${URLEncoder.encode(justString,'UTF-8')}>"
-	}
-	return tempString
-}
 
 		
 }

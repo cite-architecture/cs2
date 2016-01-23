@@ -6,7 +6,7 @@ import edu.harvard.chs.cite.CtsUrn
 
 abstract class QueryBuilder {
 
-	static String getExampleQuery(CiteUrn urn) {
+	static String getExampleQuery(String urn) {
 		return "Query about ${urn}"
 	}
 
@@ -19,7 +19,7 @@ abstract class QueryBuilder {
 	 * @param URN, as a String, of the object to label.
 	 * @returns Text of a SPARQL query.
 	 */
-	static String generalQuery(CtsUrn urn) {
+	static String generalQuery(String urn) {
 		String q = """
 			${GraphDefinitions.prefixPhrase}
 			select ?s ?v ?o ?label ?seq where {
@@ -33,19 +33,6 @@ abstract class QueryBuilder {
 		return q
 	}
 
-	static String generalQuery(CiteUrn urn) {
-		String q = """
-			${GraphDefinitions.prefixPhrase}
-			select ?s ?v ?o ?label ?seq where {
-				BIND ( <${urn}> as ?s ) .
-				?s ?v ?o .
-				optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?seq . }
-			    optional { ?o <http://purl.org/ontology/olo/core#item> ?seq . }
-				optional { ?o rdf:label ?label . }
-			}
-		"""
-		return q
-	}
 
 /** Builds SPARQL query string to find urns and data adjacent
 * to a textGroup-lecvel CTS URN. Returns anything directly
@@ -55,7 +42,7 @@ abstract class QueryBuilder {
 * @param urn The urn to test.
 * @returns a completre SPARQL query string.
 */
-static String getTextGroupAdjacentQuery(CtsUrn urn){
+static String getTextGroupAdjacentQuery(String urn){
 
     return """${GraphDefinitions.prefixPhrase}
 SELECT ?s ?v ?o
@@ -147,7 +134,7 @@ WHERE {
    * @param urn The urn to test.
    * @returns A complete SPARQL query string.
    */
-  static String getSingleLeafNodeQuery(CtsUrn urn) {
+  static String getSingleLeafNodeQuery(String urn) {
     return """
     ${GraphDefinitions.prefixPhrase}
 	SELECT ?s ?v ?o ?label ?obSeq WHERE {  
@@ -185,7 +172,7 @@ WHERE {
    * @param urn The urn to test.
    * @returns A complete SPARQL query string.
    */
-  static String getVersionsForWork(CtsUrn urn) {
+  static String getVersionsForWork(String urn) {
 		return """
 		${GraphDefinitions.prefixPhrase}
 		SELECT ?version WHERE {  
@@ -204,7 +191,7 @@ WHERE {
    * @param urnArray An ArrayList of version-level URNs
    * @returns A complete SPARQL query string.
    */
-  static String getQueryNotionalCitation(CtsUrn urn, ArrayList urnArray){
+  static String getQueryNotionalCitation(String urn, ArrayList urnArray){
 	  String returnString = """ ${GraphDefinitions.prefixPhrase} 
 	  							SELECT ?s ?v ?o ?label ?subSeq ?obSeq where {     """
       returnString += """       { bind (<${urn}> as ?s ) .
@@ -262,7 +249,7 @@ WHERE {
    * @param urn The URN to test.
    * @returns A complete SPARQL query string.
    */
-  static String getQueryVersionLevelContaining(CtsUrn urn){
+  static String getQueryVersionLevelContaining(String urn){
 
   String returnString = """ ${GraphDefinitions.prefixPhrase} 
 	SELECT ?s ?v ?o ?label ?primarySeq ?secondarySeq  WHERE {
@@ -301,6 +288,24 @@ WHERE {
 	order by ?primarySeq ?s ?o ?secondarySeq
 	"""
 
+
+  }
+
+
+  /** Builds SPARQL query string to find all exemplars
+   * derived from a version
+   * @param urn The URN to test.
+   * @returns A complete SPARQL query string.
+   */
+  static String getQueryExemplarsForVersion(String urn){
+
+	  String returnString = """ ${GraphDefinitions.prefixPhrase} 
+		SELECT ?o WHERE {
+		bind (<${urn}> as ?s) .
+		        ?s orca:exemplifiedBy ?o .
+		}
+
+	  """
 
   }
 
