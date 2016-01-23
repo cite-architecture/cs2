@@ -49,6 +49,12 @@
 <urn:cts:greekLit:tlg0012.tlg001.msA:1> cts:citationDepth 1 .
 <urn:cts:greekLit:tlg0012.tlg001.msA:2> cts:citationDepth 1 .
 
+<urn:cts:greekLit:tlg0012.tlg001.msA:1> cts:hasSequence 1 .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2> cts:hasSequence 2 .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1> rdf:label "Homeric Epic, Iliad ( Venetus A ): 1 (urn:cts:greekLit:tlg0012.tlg001.msA:1)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2> rdf:label "Homeric Epic, Iliad ( Venetus A ): 2 (urn:cts:greekLit:tlg0012.tlg001.msA:2)" .
+
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> rdf:label "Homeric Epic, Iliad ( Venetus A ): 1.1 (urn:cts:greekLit:tlg0012.tlg001.msA:1.1)" .
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA:> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:> cts:possesses <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> . 
@@ -100,7 +106,10 @@
 <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> . 
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> . 
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA:2> . 
+<urn:cts:greekLit:tlg0012.tlg001.msA:2> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA:1> . 
 
 # Three scholia
 
@@ -498,6 +507,22 @@ citedata:msA_Label cite:propType "string".
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:>  rdf:label "Homeric Epic, Iliad: (Venetus A): word-token analytical edition" .
 
 # Let's get these out of the way
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 1 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:1)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 1.1 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 1.2 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.1 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1)" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 2.2 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2)" .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1> cts:hasSequence 1 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2> cts:hasSequence 1 .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> cts:hasSequence 1 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> cts:hasSequence 2 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cts:hasSequence 3 .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> cts:hasSequence 4 .
+
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> .
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
@@ -811,6 +836,14 @@ citedata:msA_Label cite:propType "string".
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> .
 
 # Sequence for Analytical Exemplar
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> .
 
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> .
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> .
