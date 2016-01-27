@@ -121,9 +121,20 @@ class TestCtsIntegr extends GroovyTestCase {
 	urn:cts:greekLit:tlg0012.tlg001.msA:1.2 (including .wt:2.2) = 28 (+ 1 analytical exmplar from version)
 
 	urn:cts:greekLit:tlg0012.tlg001.msA:1 (including .tw:1) = 6 (+ 1 analytical exemplar) 
-	urn:cts:greekLit:tlg0012.tlg001.msA:2 (including .tw:2) = 6 (+ 1 analytical exemplar) but *2 because we want labels for everything. So 14
+	urn:cts:greekLit:tlg0012.tlg001.msA:2 (including .tw:2) = 24:
+		- Version: citation depth, sequence, label, 2 Iliad lines (each with a ctsSeq and a label), a "prev" (with a ctsSeq and a label)
+		- Exemplar: citation depth, sequence, label, 2 iliad lines (each with a ctsSeq and a label), a "prev" (with a ctsSeq and a label)
 
 */
+
+	/* 		We expect 24 results from the dataset : */
+			
+  @Test
+  void testVersionContainerURN() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:2")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 24 
+  }  
 
 
 	/* Test Work-level CTS-URNs */
@@ -166,14 +177,6 @@ class TestCtsIntegr extends GroovyTestCase {
 	  assert al.size() == 28
   }  
 
-	/* 		We expect 7 results from the dataset : */
-			
-  @Test
-  void testVersionContainerURN() {
-	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:2")
-	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 14 
-  }  
 
   
 	/* We expect 20 results from the original URN dataset */

@@ -154,17 +154,19 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
    */
 
 	ArrayList getAdjacentForVersionContainer(CtsUrn urn){
+		ArrayList exemplarArray = []
 	    ArrayList replyArray = []
 		ArrayList workingArray = []
+
 	
 		// Get Exemplars
-		
-		// Get adjacents for this version
-		
-		// Get adjacents for exemplars
-		
-		// Assemble	
+		String versionUrnString = urn.getUrnWithoutPassage()
+		String passageString = urn.getPassageNode()
 
+		CtsUrn bareVersionUrn = new CtsUrn(versionUrnString)
+		exemplarArray = exemplarsForVersion(bareVersionUrn)
+			
+		// Get adjacents for this version
 
         String replyText = ""
 		String containerQuery = QueryBuilder.getQueryVersionLevelContaining(urn.encodeSubref())
@@ -172,10 +174,31 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
 
         JsonSlurper slurper = new groovy.json.JsonSlurper()
 		def parsedReply = slurper.parseText(reply)
-		workingArray = parsedJsonToTriples(parsedReply)
+
+		parsedJsonToTriples(parsedReply).each { workingArray << it }
+
+		
+		// Get adjacents for exemplars
+
+		exemplarArray.each{ exemInstance ->
+			println "Exemplar Instance: ${exemInstance}${passageString}"	 
+			CtsUrn exemplarUrn = new CtsUrn("${exemInstance}${passageString}")
+			replyText = ""
+		    containerQuery = QueryBuilder.getQueryVersionLevelContaining(exemplarUrn.encodeSubref())
+            reply = sparql.getSparqlReply("application/json", containerQuery)
+
+			slurper = new groovy.json.JsonSlurper()
+			parsedReply = slurper.parseText(reply)
+
+		    parsedJsonToTriples(parsedReply).each { workingArray << it }
+		}
+
+		
+		// Assemble	
 
 		replyArray = uniqueTriples(workingArray) 
 		return replyArray
+
 	}
 
 /** Finds  data adjacent to a work-level containing (non-leaf-node) URN 
@@ -328,6 +351,20 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
 					tempVerb = new URI("rdf:label")
 						tempSubject = tempObject
 						tempTriple = new Triple(tempSubject,tempVerb,jo.label?.value)	
+						replyArray << tempTriple
+				}
+				// We also want cts:hasSequence for all URI objects, to be nice
+				if (jo.ctsSeq){
+					tempVerb = new URI("cts:hasSequence")
+						tempSubject = tempObject
+						tempTriple = new Triple(tempSubject,tempVerb,jo.ctsSeq?.value)	
+						replyArray << tempTriple
+				}
+				// We also want olo:item sequencing for all URI objects, to be nice
+				if (jo.objSeq){
+					tempVerb = new URI("olo:item")
+						tempSubject = tempObject
+						tempTriple = new Triple(tempSubject,tempVerb,jo.objSeq?.value)	
 						replyArray << tempTriple
 				}
 		}

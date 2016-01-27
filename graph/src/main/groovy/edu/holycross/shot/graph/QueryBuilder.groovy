@@ -15,18 +15,21 @@ abstract class QueryBuilder {
 
 
 	/** Constructs SPARQL query find the value of an rdf:label statement
-	 * for a specified object.
+	 * for a specified object. 
+	 * N.b. the SparQl variable names are significant.
+	 * ?ctsSeq captures sequencing information for the CTS hierarchy.
+	 * ?objSeq captures olo:item sequencing for CITE ordered collections.
 	 * @param URN, as a String, of the object to label.
 	 * @returns Text of a SPARQL query.
 	 */
 	static String generalQuery(String urn) {
 		String q = """
 			${GraphDefinitions.prefixPhrase}
-			select ?s ?v ?o ?label ?seq where {
+			select ?s ?v ?o ?label ?ctsSeq ?objSeq where {
 				BIND ( <${urn}> as ?s ) .
 				?s ?v ?o .
-				optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?seq . }
-			    optional { ?o <http://purl.org/ontology/olo/core#item> ?seq . }
+				optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?ctsSeq . }
+			    optional { ?o <http://purl.org/ontology/olo/core#item> ?objSeq . }
 				optional { ?o rdf:label ?label . }
 			}
 		"""
@@ -131,25 +134,28 @@ WHERE {
   /** Builds SPARQL query string to find urns and data adjacent
    * to a  version-level CTS URN leaf citation node. Also includes
    * any versions of the parameter URN with sub-references.
+	 * N.b. the SparQl variable names are significant.
+	 * ?ctsSeq captures sequencing information for the CTS hierarchy.
+	 * ?objSeq captures olo:item sequencing for CITE ordered collections.
    * @param urn The urn to test.
    * @returns A complete SPARQL query string.
    */
   static String getSingleLeafNodeQuery(String urn) {
     return """
     ${GraphDefinitions.prefixPhrase}
-	SELECT ?s ?v ?o ?label ?obSeq WHERE {  
+	SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq WHERE {  
 		{
 			bind ( <${urn}> as ?s ) .
 			?s ?v ?o .
-			optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?obSeq . }
-			optional { ?o <http://purl.org/ontology/olo/core#item> ?obSeq . }
+			optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?ctsSeq . }
+			optional { ?o <http://purl.org/ontology/olo/core#item> ?objSeq . }
 
 		} union {
 			<${urn}> cts:hasSubstring ?substr .
 			bind (?substr as ?s) .
 			?s ?v ?o .
-			optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?obSeq . }
-			optional { ?o <http://purl.org/ontology/olo/core#item> ?obSeq . }
+			optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?ctsSeq . }
+			optional { ?o <http://purl.org/ontology/olo/core#item> ?objSeq . }
 			optional { ?o rdf:label ?label . }
 			optional { 
 				?o cite:isExtendedRef ?citeRef .
@@ -161,7 +167,7 @@ WHERE {
 			}	
 		}
 	}
-	order by ?s  ?obSeq ?v 
+	order by ?s ctsSeq ?objSeq ?v 
 
 
     """
@@ -187,13 +193,16 @@ WHERE {
  
   /** Builds SPARQL query string to find data
    * adjacent to a work-level leaf-node URN (with a citation value)
+	 * N.b. the SparQl variable names are significant.
+	 * ?ctsSeq captures sequencing information for the CTS hierarchy.
+	 * ?objSeq captures olo:item sequencing for CITE ordered collections.
    * @param urn The work-level URN to test.
    * @param urnArray An ArrayList of version-level URNs
    * @returns A complete SPARQL query string.
    */
   static String getQueryNotionalCitation(String urn, ArrayList urnArray){
 	  String returnString = """ ${GraphDefinitions.prefixPhrase} 
-	  							SELECT ?s ?v ?o ?label ?subSeq ?obSeq where {     """
+	  							SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq where {     """
       returnString += """       { bind (<${urn}> as ?s ) .
 	  							?s ?v ?o . 
 								optional { ?o rdf:label ?label . } } """
@@ -202,10 +211,10 @@ WHERE {
 			union {  
 				bind (<${u}${urn.passageComponent}> as ?s ) . 
 				?s ?v ?o . 
-				optional { ?s <http://www.homermultitext.org/cts/rdf/hasSequence> ?subSeq . }
-				optional { ?s <http://purl.org/ontology/olo/core#item> ?subSeq .}
-				optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?obSeq . }
-				optional { ?o <http://purl.org/ontology/olo/core#item> ?obSeq .}
+				optional { ?s <http://www.homermultitext.org/cts/rdf/hasSequence> ?ctsSeq . }
+				optional { ?s <http://purl.org/ontology/olo/core#item> ?objSeq .}
+				optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?ctsSeq . }
+				optional { ?o <http://purl.org/ontology/olo/core#item> ?objSeq .}
 				optional { ?o rdf:label ?label . } 
 				optional { 
 				  ?o cite:isExtendedRef ?citeRef .
@@ -219,11 +228,11 @@ WHERE {
 			    <${u}${urn.passageComponent}> cts:hasSubstring ?substr .  
 			    bind (?substr as ?s) .  
 			    ?s ?v ?o .  
-				optional { ?s <http://www.homermultitext.org/cts/rdf/hasSequence> ?subSeq . }    
-				optional { <${u}${urn.passageComponent}> <http://www.homermultitext.org/cts/rdf/hasSequence> ?subSeq .}
-				optional { ?s <http://purl.org/ontology/olo/core#item> ?subSeq .}
-				optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?obSeq . }
-				optional { ?o <http://purl.org/ontology/olo/core#item> ?obSeq .}
+				optional { ?s <http://www.homermultitext.org/cts/rdf/hasSequence> ?ctsSeq . }    
+				optional { <${u}${urn.passageComponent}> <http://www.homermultitext.org/cts/rdf/hasSequence> ?ctsSeq .}
+				optional { ?s <http://purl.org/ontology/olo/core#item> ?objSeq .}
+				optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?ctsSeq . }
+				optional { ?o <http://purl.org/ontology/olo/core#item> ?objSeq .}
 			    optional { ?o rdf:label ?label . } 
 				optional { 
 				  ?o cite:isExtendedRef ?citeRef .
@@ -236,7 +245,7 @@ WHERE {
 			}
 			"""
 	  }
-	  returnString += """} order by ?s ?subSeq ?v ?obSeq ?o"""
+	  returnString += """} order by ?s ?ctsSeq ?v ?objSeq ?o"""
 
 
 		  return returnString
@@ -246,48 +255,26 @@ WHERE {
       
   /** Builds SPARQL query string to find data
    * adjacent to a version-level containing (non-leaf-node) URN 
+	 * N.b. the SparQl variable names are significant.
+	 * ?ctsSeq captures sequencing information for the CTS hierarchy.
+	 * ?objSeq captures olo:item sequencing for CITE ordered collections.
    * @param urn The URN to test.
    * @returns A complete SPARQL query string.
    */
   static String getQueryVersionLevelContaining(String urn){
 
   String returnString = """ ${GraphDefinitions.prefixPhrase} 
-	SELECT ?s ?v ?o ?label ?primarySeq ?secondarySeq  WHERE {
-	{
-	 bind (<${urn}> as ?s) .
-	  ?s ?v ?o .
-	  optional { ?o rdf:label ?label . }
-		optional { 
-		  ?o cite:isExtendedRef ?citeRef .
-		  ?citeRef rdf:label ?label .
-		}
-		 optional { 
-		  ?o cts:isSubstringOf ?ctsRef .
-		  ?ctsRef rdf:label ?label .
-		}
-	  optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?primarySeq . }
-	  } union {
-		bind (<${urn}> as ?container) .
-		?container cts:contains ?s .
-		?s ?v ?o .
-		optional { ?s <http://www.homermultitext.org/cts/rdf/hasSequence> ?primarySeq . }
-		optional { ?o rdf:label ?label . }
-		optional { 
-		  ?o cite:isExtendedRef ?citeRef .
-		  ?citeRef rdf:label ?label .
-		}
-		 optional { 
-		  ?o cts:isSubstringOf ?ctsRef .
-		  ?ctsRef rdf:label ?label .
-		}
-		optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?secondarySeq . }
-	  }
+	  SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq
+	  WHERE {
 
-	  }
-
-	order by ?primarySeq ?s ?o ?secondarySeq
+		  bind (<${urn}> as ?s)
+			  ?s ?v ?o .
+			  optional { ?o rdf:label ?label . }
+		  optional { ?o cts:hasSequence ?ctsSeq . }
+		  optional { ?o olo:item ?objSeq . }
+	  } 
 	"""
-
+	return returnString
 
   }
 
