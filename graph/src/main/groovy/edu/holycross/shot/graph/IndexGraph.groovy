@@ -131,8 +131,6 @@ class IndexGraph {
 * @returns ArrayList of Triple objects.
 */
 ArrayList getAdjacentForTextGroup(CtsUrn urn){
-		println "getAdjacentForTextGroup ${urn}"
-		println urn.encodeSubref() 
 	    ArrayList replyArray = []
 		ArrayList workingArray = []
         String replyText = ""
@@ -181,7 +179,6 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
 		// Get adjacents for exemplars
 
 		exemplarArray.each{ exemInstance ->
-			println "Exemplar Instance: ${exemInstance}${passageString}"	 
 			CtsUrn exemplarUrn = new CtsUrn("${exemInstance}${passageString}")
 			replyText = ""
 		    containerQuery = QueryBuilder.getQueryVersionLevelContaining(exemplarUrn.encodeSubref())
@@ -244,22 +241,65 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
    * @returns ArrayList of Triple objects.
    */
 
-   ArrayList getSingleLeafNodeGraph(urn){
+   ArrayList getSingleLeafNodeGraph(CtsUrn urn){
 	CtsUrn requestUrn
+	ArrayList exemplarArray = []
+	ArrayList replyArray = []
+	ArrayList workingArray = []
+
+	println "${urn} is at ${urn.getWorkLevel()} level."
+
 	if (urn.hasSubref()){
 		requestUrn = new CtsUrn(urn.reduceToNode())
 	} else {
 		requestUrn = urn
 	}
-	ArrayList replyArray = []
-	ArrayList workingArray = []
+
+    // Get Exemplars
+	String versionUrnString = requestUrn.getUrnWithoutPassage()
+	String passageString = requestUrn.getPassageNode()
+
+	CtsUrn bareVersionUrn = new CtsUrn(versionUrnString)
+	exemplarArray = exemplarsForVersion(bareVersionUrn)
+
+	// Get adjacents for this version, minus any subref
+	
     String replyText = ""
-    String leafQuery = QueryBuilder.getSingleLeafNodeQuery(urn.encodeSubref())    
+    String leafQuery = QueryBuilder.getSingleLeafNodeQuery(requestUrn.encodeSubref())    
 	String reply = sparql.getSparqlReply("application/json", leafQuery)
     JsonSlurper slurper = new groovy.json.JsonSlurper()
     def parsedReply = slurper.parseText(reply)
 	workingArray = parsedJsonToTriples(parsedReply)
-	replyArray = uniqueTriples(replyArray) 
+
+	// Get adjacents for this version, with subref
+
+	replyText = ""
+    leafQuery = QueryBuilder.getSingleLeafNodeQuery(requestUrn.encodeSubref())    
+	reply = sparql.getSparqlReply("application/json", leafQuery)
+    slurper = new groovy.json.JsonSlurper()
+    parsedReply = slurper.parseText(reply)
+	if (parsedReply.results.size() > 0 ){
+		parsedJsonToTriples(parsedReply).each { workingArray << it }
+	}
+
+
+    // Get adjacents for exemplars
+
+	exemplarArray.each{ exemInstance ->
+		CtsUrn exemplarUrn = new CtsUrn("${exemInstance}${passageString}")
+		replyText = ""
+		String containerQuery = QueryBuilder.getSingleLeafNodeQuery(exemplarUrn.encodeSubref())
+		reply = sparql.getSparqlReply("application/json", containerQuery)
+
+		slurper = new groovy.json.JsonSlurper()
+		parsedReply = slurper.parseText(reply)
+
+		parsedJsonToTriples(parsedReply).each { workingArray << it }
+	}
+
+	println "workingArray.size() = ${workingArray.size()}"
+	replyArray = uniqueTriples(workingArray) 
+	println "replyArray.size() = ${replyArray.size()}"
 	return replyArray
 
    }
@@ -325,48 +365,51 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
 		URI tempVerb
 		Object tempObject
 		String tempString = ""
+	
+		if (parsedReply?.results && (parsedReply?.results.bindings.size() > 0)){	
+			println "got here."
+			parsedReply.results.bindings.each{ jo ->
+				tempString = URLDecoder.decode(jo.s.value,"UTF-8")
+				tempSubject = new URI(URLEncoder.encode(tempString, "UTF-8")) // decode the URL encoding from Fuseki
+					tempVerb = new URI(URLEncoder.encode(jo.v.value, "UTF-8")) // re-encode as URI
 
-		parsedReply.results.bindings.each{ jo ->
-			tempString = URLDecoder.decode(jo.s.value,"UTF-8")
-			tempSubject = new URI(URLEncoder.encode(tempString, "UTF-8")) // decode the URL encoding from Fuseki
-				tempVerb = new URI(URLEncoder.encode(jo.v.value, "UTF-8")) // re-encode as URI
+					switch (jo.o.type){
+						case "uri":
+							tempString = URLDecoder.decode(jo.o.value,"UTF-8") // decode the URL encoding from Fuseki
+							tempObject = new URI(URLEncoder.encode(tempString, "UTF-8")) // Encode as URI
+								break;
+						case "literal":
+							tempObject = jo.o.value
+								break;
+						case "typed-literal":
+							tempObject = jo.o.value.toInteger()
+								break;
+					}
 
-				switch (jo.o.type){
-					case "uri":
-						tempString = URLDecoder.decode(jo.o.value,"UTF-8") // decode the URL encoding from Fuseki
-						tempObject = new URI(URLEncoder.encode(tempString, "UTF-8")) // Encode as URI
-							break;
-					case "literal":
-						tempObject = jo.o.value
-							break;
-					case "typed-literal":
-						tempObject = jo.o.value.toInteger()
-							break;
-				}
-
-			Triple tempTriple = new Triple(tempSubject, tempVerb, tempObject)
-				replyArray << tempTriple 
-				// We also want rdf:labels for all URI objects, to be nice
-				if (jo.label){
-					tempVerb = new URI("rdf:label")
-						tempSubject = tempObject
-						tempTriple = new Triple(tempSubject,tempVerb,jo.label?.value)	
-						replyArray << tempTriple
-				}
-				// We also want cts:hasSequence for all URI objects, to be nice
-				if (jo.ctsSeq){
-					tempVerb = new URI("cts:hasSequence")
-						tempSubject = tempObject
-						tempTriple = new Triple(tempSubject,tempVerb,jo.ctsSeq?.value)	
-						replyArray << tempTriple
-				}
-				// We also want olo:item sequencing for all URI objects, to be nice
-				if (jo.objSeq){
-					tempVerb = new URI("olo:item")
-						tempSubject = tempObject
-						tempTriple = new Triple(tempSubject,tempVerb,jo.objSeq?.value)	
-						replyArray << tempTriple
-				}
+				Triple tempTriple = new Triple(tempSubject, tempVerb, tempObject)
+					replyArray << tempTriple 
+					// We also want rdf:labels for all URI objects, to be nice
+					if (jo.label){
+						tempVerb = new URI("rdf:label")
+							tempSubject = tempObject
+							tempTriple = new Triple(tempSubject,tempVerb,jo.label?.value)	
+							replyArray << tempTriple
+					}
+					// We also want cts:hasSequence for all URI objects, to be nice
+					if (jo.ctsSeq){
+						tempVerb = new URI("cts:hasSequence")
+							tempSubject = tempObject
+							tempTriple = new Triple(tempSubject,tempVerb,jo.ctsSeq?.value)	
+							replyArray << tempTriple
+					}
+					// We also want olo:item sequencing for all URI objects, to be nice
+					if (jo.objSeq){
+						tempVerb = new URI("olo:item")
+							tempSubject = tempObject
+							tempTriple = new Triple(tempSubject,tempVerb,jo.objSeq?.value)	
+							replyArray << tempTriple
+					}
+			}
 		}
 
 		return replyArray
@@ -381,7 +424,6 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
         String replyText = ""
 		String exemplarQuery = QueryBuilder.getQueryExemplarsForVersion(urn.encodeSubref())
         String reply = sparql.getSparqlReply("application/json", exemplarQuery)
-		println "Work level: ${urn.getWorkLevel()}" 
 		if ("${urn.getWorkLevel()}" == "VERSION"){	
 
 			JsonSlurper slurper = new groovy.json.JsonSlurper()

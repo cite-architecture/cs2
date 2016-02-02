@@ -127,7 +127,6 @@ class TestCtsIntegr extends GroovyTestCase {
 
 */
 
-	/* 		We expect 24 results from the dataset : */
 			
   @Test
   void testVersionContainerURN() {
@@ -138,6 +137,10 @@ class TestCtsIntegr extends GroovyTestCase {
 
 
 	/* Test Work-level CTS-URNs */
+	/* Version msA:2.1 =  30, including labels and object-sequence info 
+	   Version alignedEng:2.1 = 9
+	   Exemplar wt:2.1 =  13 */
+
   @Test
   void testWorkLeafNodeURN() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:2.1")
@@ -168,13 +171,13 @@ class TestCtsIntegr extends GroovyTestCase {
 
 	/* Test Version-level CTS-URNs */
 
-	/* We expect 20 results from the original URN dataset */
-	/* We also expect 8 analytical exemplar citations */
+	/* We expect 20 results from the original URN dataset, yielding 30 triples */
+	/* We also expect 35 analytical exemplar citations */
   @Test
   void testVersionLeafNodeURN() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:2.1")
 	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 28
+	  assert al.size() == 65
   }  
 
 

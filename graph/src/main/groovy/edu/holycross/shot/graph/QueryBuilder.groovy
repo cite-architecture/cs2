@@ -143,32 +143,16 @@ WHERE {
   static String getSingleLeafNodeQuery(String urn) {
     return """
     ${GraphDefinitions.prefixPhrase}
-	SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq WHERE {  
-		{
+	SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq  WHERE {  
+
 			bind ( <${urn}> as ?s ) .
 			?s ?v ?o .
-			optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?ctsSeq . }
-			optional { ?o <http://purl.org/ontology/olo/core#item> ?objSeq . }
-
-		} union {
-			<${urn}> cts:hasSubstring ?substr .
-			bind (?substr as ?s) .
-			?s ?v ?o .
-			optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?ctsSeq . }
-			optional { ?o <http://purl.org/ontology/olo/core#item> ?objSeq . }
-			optional { ?o rdf:label ?label . }
-			optional { 
-				?o cite:isExtendedRef ?citeRef .
-				?citeRef rdf:label ?label .
-			}
-			optional { 
-				?o cts:isSubstringOf ?ctsRef .
-				?ctsRef rdf:label ?label .
-			}	
-		}
+		  optional { ?o cts:hasSequence ?ctsSeq . }
+		  optional { ?o rdf:label ?label . }
+		  optional { ?o olo:item ?objSeq . }
 	}
-	order by ?s ctsSeq ?objSeq ?v 
 
+	order by ?s ?v ?o ?ctsSeq ?objSeq 
 
     """
   }
