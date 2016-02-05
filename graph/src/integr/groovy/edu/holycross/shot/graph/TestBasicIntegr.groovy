@@ -17,7 +17,7 @@ class TestBasicIntegr extends GroovyTestCase {
 
   @Test
   void testBasic() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.2")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.2")
  	println gs.graph.findAdjacent(urn)   
   }
   

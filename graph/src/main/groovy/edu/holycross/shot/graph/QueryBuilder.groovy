@@ -36,6 +36,21 @@ abstract class QueryBuilder {
 		return q
 	}
 
+/** Builds SPARQL query string to find the existance of a URN
+* in a graph.
+* @param urn The urn to test.
+* @returns a completre SPARQL query string.
+*/
+static String existsInGraph(String urn){
+
+    return """${GraphDefinitions.prefixPhrase}
+		SELECT ?s ?v ?o
+		WHERE {
+			BIND(<${urn}> as ?s)
+			?s ?v ?o .
+		}"""
+
+}
 
 /** Builds SPARQL query string to find urns and data adjacent
 * to a textGroup-lecvel CTS URN. Returns anything directly

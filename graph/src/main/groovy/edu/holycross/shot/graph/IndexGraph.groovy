@@ -64,73 +64,91 @@ class IndexGraph {
 
 		*/
 
-		switch (workLevel){
-			case "GROUP":
-				al = getAdjacentForTextGroup(urn)
-				break;
-			case "WORK":
-				al << "workLevel"
-				break;
-			case "VERSION":
-				/* Can be range or not */
-				if (urn.isRange()){
-					al << "version; range"
-				} else {
-					/* Can be leaf-node */
-					if (ctsgraph.isLeafNode(urn)){
-						al = getSingleLeafNodeGraph(urn)
+		// First, is this URN represented at all in our graph? If not, don't waste time looking.
+		if (existsInGraph(urn)){
+
+			switch (workLevel){
+				case "GROUP":
+					al = getForGroup(urn)
+					break;
+				case "WORK":
+					if (urn.isRange()){
+						al = "work-level; range"
 					} else {
-						/* is non-leaf-node citation */
-						al = getAdjacentForVersionContainer(urn)
+						if (ctsgraph.isLeafNode(urn)){
+							al = getForWorkLeaf(testUrn)
+						} else {
+							al = getForWorkContaining(testUrn)
+						}
 					}
-				}
-				break;
-			case "EXEMPLAR":
-				al << "exemplarLevel"
-				break;
-			default: 
-				al << "error ${workLevel}"		
-
+					break;
+				case "VERSION":
+					/* Can be range or not */
+					if (urn.isRange()){
+						al << "version; range"
+					} else {
+						/* Can be leaf-node */
+						if (ctsgraph.isLeafNode(urn)){
+							al = getForVersionLeaf(urn)
+						} else {
+							/* is non-leaf-node citation */
+							al = getForVersionContainer(urn)
+						}
+					}
+					break;
+				case "EXEMPLAR":
+					if (urn.isRange()){
+						al << "exemplarLevel; range"
+					} else {
+						if (ctsgraph.isLeafNode(urn)){
+							al = getForExemplarLeaf(urn)
+						} else {
+							al = getForExemplarContainer(urn)
+						}
+					}
+					break;
+				default: 
+					al << "error ${workLevel}"		
+			}
 
 		}
 
-			/*
-		} else if (urn.isRange()){
-			al << "isRange"
-			CtsUrn rangeStartUrn = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")	
-			CtsUrn rangeEndUrn = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")	
-			if ((ctsgraph.isLeafNode(rangeStartUrn)) && (ctsgraph.isLeafNode(rangeEndUrn))){
-				al << "leafNodeRange"
-			} else if ((ctsgraph.isLeafNode(rangeStartUrn)) || (ctsgraph.isLeafNode(rangeEndUrn))) {
-				al << "mixedRange"
-			}
-		} else {
-			al << "isnotrange"
-			if (ctsgraph.isLeafNode(testUrn)){
-				if (workLevel == "VERSION"){
-					al = getSingleLeafNodeGraph(testUrn)
-			    } else {
-					ArrayList versionUrns = getVersionsForNotionalUrn(testUrn)
-					al = getAdjacentForNotionalLeaf(testUrn,versionUrns)
-				}
-			} else {
-				if (workLevel == "VERSION"){
-					al = getAdjacentForVersionContainer(urn)
-				} else {
-					al = getAdjacentForWorkLevelContainer(urn)
-				}
-			}
-		}
-		*/
 	    return al
 	} 
+
+/** A quick check to see if the URN exists in our graph at all **/
+Boolean existsInGraph(CtsUrn urn){
+		Boolean response = false	
+	    ArrayList replyArray = []
+		ArrayList workingArray = []
+        String replyText = ""
+		String textgroupQuery = QueryBuilder.existsInGraph(urn.encodeSubref())
+        String reply = sparql.getSparqlReply("application/json", textgroupQuery)
+
+        JsonSlurper slurper = new groovy.json.JsonSlurper()
+		def parsedReply = slurper.parseText(reply)
+		workingArray = parsedJsonToTriples(parsedReply)
+		replyArray = uniqueTriples(workingArray) 
+		replyArray.each { ttt ->
+			if (ttt.subj.toString() == urn){
+				response = true
+			}
+		}
+
+		return response
+}
+
+Boolean existsInGraph(CiteUrn urn){
+		return false
+}
+
 
 
 /** Finds data adjacent to a TextGroup-level URN.
 * @param urn The URN to test.
 * @returns ArrayList of Triple objects.
 */
-ArrayList getAdjacentForTextGroup(CtsUrn urn){
+ArrayList getForGroup(CtsUrn urn){
 	    ArrayList replyArray = []
 		ArrayList workingArray = []
         String replyText = ""
@@ -151,7 +169,7 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
    * @returns ArrayList of Triple objects.
    */
 
-	ArrayList getAdjacentForVersionContainer(CtsUrn urn){
+	ArrayList getForVersionContainer(CtsUrn urn){
 		ArrayList exemplarArray = []
 	    ArrayList replyArray = []
 		ArrayList workingArray = []
@@ -203,12 +221,12 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
    * @returns ArrayList of Triple objects.
    */
 
-	ArrayList getAdjacentForWorkLevelContainer(CtsUrn urn){
+	ArrayList getForWorkContainer(CtsUrn urn){
 		ArrayList versionArray = []
 		ArrayList workingArray = []
 	    ArrayList replyArray = []
 		ArrayList tempArray = []
-		versionArray = getVersionsForNotionalUrn(urn)
+		versionArray = getVersionsForWork(urn)
 
         String replyText = ""
 		String generalQuery = QueryBuilder.generalQuery(urn)
@@ -221,7 +239,7 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
 		String tempQuery = ""
 
 		versionArray.each { u ->
-			tempArray = getAdjacentForVersionContainer(new CtsUrn("${u}${urn.passageComponent}"))	
+			tempArray = getForVersionContainer(new CtsUrn("${u}${urn.passageComponent}"))	
 			tempArray.each { ttt ->
 				workingArray << ttt
 			}
@@ -241,7 +259,7 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
    * @returns ArrayList of Triple objects.
    */
 
-   ArrayList getSingleLeafNodeGraph(CtsUrn urn){
+   ArrayList getForVersionLeaf(CtsUrn urn){
 	CtsUrn requestUrn
 	ArrayList exemplarArray = []
 	ArrayList replyArray = []
@@ -287,14 +305,8 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
 
 	exemplarArray.each{ exemInstance ->
 		CtsUrn exemplarUrn = new CtsUrn("${exemInstance}${passageString}")
-		replyText = ""
-		String containerQuery = QueryBuilder.getSingleLeafNodeQuery(exemplarUrn.encodeSubref())
-		reply = sparql.getSparqlReply("application/json", containerQuery)
 
-		slurper = new groovy.json.JsonSlurper()
-		parsedReply = slurper.parseText(reply)
-
-		parsedJsonToTriples(parsedReply).each { workingArray << it }
+		getForExemplarLeaf(exemplarUrn).each { workingArray << it }
 	}
 
 	println "workingArray.size() = ${workingArray.size()}"
@@ -304,17 +316,71 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
 
    }
 
+/** Find all nodes at one degree of 
+   * relation to the object identified by
+   * a CTS leaf-node, exemplar-level urn.
+   * @param urn CTS Object to find in the graph.
+   * @returns ArrayList of Triple objects.
+   */
+
+	ArrayList getForExemplarLeaf(CtsUrn urn){
+		
+	    ArrayList exemplarArray = []
+
+		String replyText = ""
+		String containerQuery = QueryBuilder.getSingleLeafNodeQuery(urn.encodeSubref())
+		String reply = sparql.getSparqlReply("application/json", containerQuery)
+
+		JsonSlurper slurper = new groovy.json.JsonSlurper()
+		def parsedReply = slurper.parseText(reply)
+
+		if (parsedReply.results.size() > 0 ){
+			parsedJsonToTriples(parsedReply).each { exemplarArray << it }
+		}
+
+		return exemplarArray
+
+	}
+
+/** Find all nodes at one degree of 
+   * relation to the object identified by
+   * a CTS non-leaf-node, exemplar-level urn.
+   * @param urn CTS Object to find in the graph.
+   * @returns ArrayList of Triple objects.
+   */
+
+	ArrayList getForExemplarContainer(CtsUrn urn){
+		
+	    ArrayList exemplarArray = []
+
+		String replyText = ""
+		String containerQuery = QueryBuilder.getSingleLeafNodeQuery(urn.encodeSubref())
+		String reply = sparql.getSparqlReply("application/json", containerQuery)
+
+		JsonSlurper slurper = new groovy.json.JsonSlurper()
+		def parsedReply = slurper.parseText(reply)
+
+		if (parsedReply.results.size() > 0 ){
+			parsedJsonToTriples(parsedReply).each { exemplarArray << it }
+		}
+
+		return exemplarArray
+
+	}
+
+
+
   /** Given a work-level URN with a citation
    * return an ArrayList of version-level URNs.
    * @param urn CTS Object to find in the graph.
    * @returns ArrayList of Triple objects.
    */
-   ArrayList getVersionsForNotionalUrn(urn){
+   ArrayList getVersionsForWork(urn){
 	CtsUrn requestUrn
 	requestUrn = new CtsUrn(urn.getUrnWithoutPassage())
 	ArrayList versionArray = []
 
-    String versionQuery = QueryBuilder.getVersionsForWork(requestUrn)
+    String versionQuery = QueryBuilder.getVersionsForWork(requestUrn.toString())
     String reply = sparql.getSparqlReply("application/json", versionQuery)
     JsonSlurper versionSlurper = new groovy.json.JsonSlurper()
     def versionParsedReply = versionSlurper.parseText(reply)
@@ -326,26 +392,49 @@ ArrayList getAdjacentForTextGroup(CtsUrn urn){
 	return versionArray
    }
 
-
-  /** Given a work-level URN with a citation
-   * and an ArrayList of Version-level URNs of that work, return adjacent nodes
+  /** Given a work-level URN with a citation to a non-leaf node
+   * return adjacent nodes for all versions (editions and translations), and all derived exemplars
    * @param urn CTS Object to find in the graph.
-   * @param versionArray An ArrayList of Version-level urns.
    * @returns ArrayList of Triple objects.
    */
 	
-   ArrayList getAdjacentForNotionalLeaf(CtsUrn urn, ArrayList versionArray) {
-
-	   String notionalQuery = QueryBuilder.getQueryNotionalCitation(urn, versionArray)  
-	   String reply = sparql.getSparqlReply("application/json", notionalQuery)
-	   JsonSlurper slurper = new groovy.json.JsonSlurper()
-	   def parsedReply = slurper.parseText(reply)
-
+   ArrayList getForWorkContaining(CtsUrn urn) {
+	   println "Starting getForWorkContaining: ${urn}"
+	   ArrayList versionArray = []
 	   ArrayList replyArray = []
 	   ArrayList workingArray = []
 
-	   workingArray = parsedJsonToTriples(parsedReply)
-	   replyArray = uniqueTriples(replyArray) 
+	   // Get all versions
+	   versionArray = getVersionsForWork()
+	   println versionArray
+        
+
+	   // For each version, get adjacents 
+
+
+	   return replyArray
+
+   }
+
+  /** Given a work-level URN with a citation
+   * return adjacent nodes for all versions (editions and translatin), and all derived exemplars
+   * @param urn CTS Object to find in the graph.
+   * @returns ArrayList of Triple objects.
+   */
+	
+   ArrayList getForWorkLeaf(CtsUrn urn) {
+	   println "Starting getForWorkLeaf: ${urn}"
+	   ArrayList versionArray = []
+	   ArrayList replyArray = []
+	   ArrayList workingArray = []
+
+	   // Get all versions
+	   versionArray = getVersionsForWork()
+	   println versionArray
+        
+
+	   // For each version, get adjacents 
+
 
 	   return replyArray
 
