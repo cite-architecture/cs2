@@ -39,20 +39,22 @@ class TestCtsIntegr extends GroovyTestCase {
 		String encodedUrn = urn.encodeSubref()
 		String decodedUrn = urn.toString()
 		assert urn.toString() == decodedUrn
-	}
+	} 
 
 
 	/* Test Group-level CTS URNs */
 	/* We expect 16 hits from this dataset */
 	@Test
-	void testTextGroupURN() {
+	void testTextGroup() {
+	  println "Testing testTextGroup"
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012:")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 16
-	}  
+	} 
 
 
 	/* We expect to find one work, one edition, one translation, and one exemplar */
+	
 	@Test
 	void testTextGroupURN2() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012:")
@@ -97,8 +99,10 @@ class TestCtsIntegr extends GroovyTestCase {
 	  assert failedUrns == ""
 	}  
 
+
 	/* Test finding exemplars for a version. For "urn:cts:greekLit:tlg0012.tlg001.msA:"
 		in the test data we expect one exemplar. */
+
 	@Test
 	void testFindExemplarsForVersion(){
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:")
@@ -111,6 +115,7 @@ class TestCtsIntegr extends GroovyTestCase {
 	  assert al2[0] == "ERROR: URN must point to a version-level URN"
 	}
 
+
 	@Test
 	void testFindExemplarsForVersion_nonexantUrn(){
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002.test:")
@@ -122,13 +127,17 @@ class TestCtsIntegr extends GroovyTestCase {
 	  assert al2[0] == "ERROR: URN must point to a version-level URN"
 	}
 
+
 	/* Test containing URN, e.g. "Book 2", at the version-level */		
+
 	@Test
 	void testVersionContainer() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:2")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 24 
 	}  
+
+
 
 	@Test
 	void testVersionContainer_nonextantUrn() {
@@ -139,10 +148,12 @@ class TestCtsIntegr extends GroovyTestCase {
 
 
 
+
 	/* Test Version-level CTS-URNs */
 
 	/* We expect 20 results from the original URN dataset, yielding 30 triples */
 	/* We also expect 35 analytical exemplar citations */
+
   @Test
   void testVersionLeaf() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:2.1")
@@ -150,12 +161,15 @@ class TestCtsIntegr extends GroovyTestCase {
 	  assert al.size() == 65
   }  
 
+
+
   @Test
   void testVersionLeaf_nonextantUrn() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002.test:2.1")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 0
   }  
+
 
 
   /* -------------------------------------
@@ -167,54 +181,70 @@ class TestCtsIntegr extends GroovyTestCase {
 	   Version alignedEng:2.1 = 12, including labels and object-sequence info
 	   Exemplar wt:2.1 =  35, including labels and sequence info */
 
+
+/*
 	@Test
 	void testWorkLeaf() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:2.1")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 77
 	}  
+	*/
 
+/*
 	@Test
 	void testWorkLeaf_nonextantUrn() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002:2.1")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 0
 	}  
+	*/
 
+/*
 	@Test
 	void testWorkContainer() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:2")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 1000 
 	}  
+	*/
 
+/*
 	@Test
 	void testWorkContainer_nonextantUrn() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002:2")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 0 
 	}  
+	*/
 
+/*
 	@Test
 	void testWorkRange1() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:2.1-2.2")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 1000 
 	}  
+	*/
 
+/*
 	@Test
 	void testWorkRange2() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.1-2.2")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 1000 
 	}  
+	*/
 
+/*
 	@Test
 	void testExemplarRange1() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4-1.2.2")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 1000 
 	}  
+*/
+
 /*
 	@Test
 	void testExemplarRange2() {
@@ -253,11 +283,13 @@ class TestCtsIntegr extends GroovyTestCase {
 
 	/* We expect 20 results from the original URN dataset */
 	/* We also expect 8 analytical exemplar citations */
+	/*
 	@Test
 	void testVersionLeafRange() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1-2.1")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 28
 	}  
+	*/
 
 }

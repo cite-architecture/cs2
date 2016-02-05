@@ -111,6 +111,8 @@ class IndexGraph {
 					al << "error ${workLevel}"		
 			}
 
+		} else {
+			println "${urn} not found in db."
 		}
 
 	    return al
@@ -122,6 +124,7 @@ Boolean existsInGraph(CtsUrn urn){
 	    ArrayList replyArray = []
 		ArrayList workingArray = []
         String replyText = ""
+		String testString
 		String textgroupQuery = QueryBuilder.existsInGraph(urn.encodeSubref())
         String reply = sparql.getSparqlReply("application/json", textgroupQuery)
 
@@ -130,7 +133,8 @@ Boolean existsInGraph(CtsUrn urn){
 		workingArray = parsedJsonToTriples(parsedReply)
 		replyArray = uniqueTriples(workingArray) 
 		replyArray.each { ttt ->
-			if (ttt.subj.toString() == urn){
+			testString = URLDecoder.decode(ttt.subj.toString(),"UTF-8")
+			if (urn.toString() == testString){
 				response = true
 			}
 		}
@@ -149,6 +153,7 @@ Boolean existsInGraph(CiteUrn urn){
 * @returns ArrayList of Triple objects.
 */
 ArrayList getForGroup(CtsUrn urn){
+		println "getForGroup ${urn}"
 	    ArrayList replyArray = []
 		ArrayList workingArray = []
         String replyText = ""
@@ -430,10 +435,14 @@ ArrayList getForGroup(CtsUrn urn){
 
 	   // Get all versions
 	   versionArray = getVersionsForWork()
+	   println "getForWorkLeaf: versionArray: ${versionArray}"
 	   println versionArray
         
 
 	   // For each version, get adjacents 
+	   versionArray.each { vers ->
+			println "getForWorkLeaf: version: ${vers}"
+	   }
 
 
 	   return replyArray
@@ -456,7 +465,6 @@ ArrayList getForGroup(CtsUrn urn){
 		String tempString = ""
 	
 		if (parsedReply?.results && (parsedReply?.results.bindings.size() > 0)){	
-			println "got here."
 			parsedReply.results.bindings.each{ jo ->
 				tempString = URLDecoder.decode(jo.s.value,"UTF-8")
 				tempSubject = new URI(URLEncoder.encode(tempString, "UTF-8")) // decode the URL encoding from Fuseki

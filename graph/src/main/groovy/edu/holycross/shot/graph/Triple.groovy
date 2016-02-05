@@ -104,13 +104,31 @@ class Triple {
    * @returns .ttl formatted expession, e.g. "<sub> <verb> <obj> ." 
    */
   String toString() {
-	  if (obj.getClass() == URI){
-		return """<${URLDecoder.decode(subj.toString(),"UTF-8")}> <${URLDecoder.decode(verb.toString(),"UTF-8")}> <${URLDecoder.decode(obj.toString(),"UTF-8")}> ."""
-	  }  else if (obj.getClass() == String) {
-		return """<${URLDecoder.decode(subj.toString(),"UTF-8")}> <${URLDecoder.decode(verb.toString(),"UTF-8")}> "${obj}" ."""
+	  String ss
+	  String os
+	  String vs
+	  String returnString
+
+	  if (subj.getClass() == URI){
+			ss = """<${URLDecoder.decode(subj.toString(),"UTF-8")}>"""
 	  } else {
-		return """<${URLDecoder.decode(subj.toString(),"UTF-8")}> <${URLDecoder.decode(verb.toString(),"UTF-8")}> ${obj} ."""
+			ss = """ "${subj}" """
 	  }
+
+	  vs = """<${URLDecoder.decode(verb.toString(),"UTF-8")}>"""
+
+	  if (obj.getClass() == URI){
+			os = """<${URLDecoder.decode(obj.toString(),"UTF-8")}>"""
+	  } else if (obj.getClass() == String) {
+			os = /"${obj}"/
+	  } else {
+		    os = "${obj}"
+	  }
+
+	  returnString = """${ss} ${vs} ${os} .""" 
+
+	  return returnString
+
   }
 
 
