@@ -462,6 +462,8 @@ ArrayList getForGroup(CtsUrn urn){
 	   ArrayList versionArray = []
 	   ArrayList replyArray = []
 	   ArrayList workingArray = []
+	   CtsUrn tempUrn
+	   String thisPassage = urn.passageComponent
 
 	   // Get all versions
 	   versionArray = getVersionsForWork(urn)
@@ -471,9 +473,11 @@ ArrayList getForGroup(CtsUrn urn){
 
 	   // For each version, get adjacents 
 	   versionArray.each { vers ->
-			println "getForWorkLeaf: version: ${vers}"
+			println "getForWorkLeaf: version: ${vers} ${vers.getClass()}"
+			println "looking for: ${vers}${thisPassage}"
+			tempUrn = new CtsUrn("${vers}${thisPassage}")
+			getForVersionLeaf(tempUrn).each { replyArray << it }
 	   }
-
 
 	   return replyArray
 
