@@ -1026,4 +1026,10 @@ citedata:msA_Label cite:propType "string".
 <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@ὕπνος[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
 <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@ὕπνος[1]> .
 
+# Some one-off CTS URNs. That is, URNs indexed to data, but not as part of a fully edited CTS document
 
+<urn:cts:greekLit:tlg5026.msA.hmt:1.1> cts:commentsOn <urn:cts:greekLit:tlg0012.tlg001.msA:1.192> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.192> cts:commentedOnBy <urn:cts:greekLit:tlg5026.msA.hmt:1.1> .
+
+<urn:cts:greekLit:tlg0012.tlg002:1.1> cts:commentedOnBy <urn:cts:greekLit:tlg5026.msA.hmt:1.1> . 
+<urn:cts:greekLit:tlg5026.msA.hmt:1.1> cts:commentsOn <urn:cts:greekLit:tlg0012.tlg002:1.1> .

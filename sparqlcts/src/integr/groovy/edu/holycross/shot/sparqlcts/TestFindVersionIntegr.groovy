@@ -17,6 +17,7 @@ class TestFindVersionIntegr extends GroovyTestCase {
 
   
   CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.1")
+  CtsUrn nonextant_urn = new CtsUrn("urn:cts:greekLit:tlgXXX.tlgXX:1.1")
   
   @Test
   void testFindVersion() {
@@ -25,6 +26,20 @@ class TestFindVersionIntegr extends GroovyTestCase {
     // for that version:
     String expectedVersion = "msA"
     assert graph.findVersion(urn) == expectedVersion
+  }
+
+  @Test
+  void testFindVersion_nonextantUrn() {
+    // because there is only one version in the test data set, we
+    // can safely expect to resolve a work-level URN to the identifier
+    // for that version:
+    String expectedVersion = "msA"
+	try {
+		expectedVersion = graph.findVesion(nonextant_urn)
+	} catch (Exception e) {
+	    expectedVersion = ""	
+	}
+    assert expectedVersion == ""
   }
 
   @Test

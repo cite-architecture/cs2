@@ -64,25 +64,35 @@ class IndexGraph {
 
 		*/
 
-		// First, is this URN represented at all in our graph? If not, don't waste time looking.
-		if (existsInGraph(urn)){
 
 			switch (workLevel){
 				case "GROUP":
+					println "${urn} is GROUP"
 					al = getForGroup(urn)
 					break;
 				case "WORK":
-					if (urn.isRange()){
-						al = "work-level; range"
+					println "${urn} is WORK"
+					if (urn.passageComponent == null){
+						al << "not implemented; work without passage"
 					} else {
-						if (ctsgraph.isLeafNode(urn)){
-							al = getForWorkLeaf(testUrn)
-						} else {
-							al = getForWorkContaining(testUrn)
+						try {
+							if (urn.isRange()){
+								al = "work-level; range"
+							} else {
+								if (ctsgraph.isLeafNode(urn)){
+									al = getForWorkLeaf(testUrn)
+								} else {
+									al = getForWorkContaining(testUrn)
+								}
+							}
+						} catch (Exception e) {
+							al = getOneOffCtsUrn(urn)
 						}
+
 					}
 					break;
 				case "VERSION":
+					println "${urn} is VERSION"
 					/* Can be range or not */
 					if (urn.isRange()){
 						al << "version; range"
@@ -97,6 +107,7 @@ class IndexGraph {
 					}
 					break;
 				case "EXEMPLAR":
+					println "${urn} is EXEMPLAR"
 					if (urn.isRange()){
 						al << "exemplarLevel; range"
 					} else {
@@ -111,14 +122,14 @@ class IndexGraph {
 					al << "error ${workLevel}"		
 			}
 
-		} else {
-			println "${urn} not found in db."
-		}
 
 	    return al
 	} 
 
-/** A quick check to see if the URN exists in our graph at all **/
+/** A quick check to see if a URN exists in our data.
+*   @param urn The URN to test.
+*   @returns Boolean
+**/
 Boolean existsInGraph(CtsUrn urn){
 		Boolean response = false	
 	    ArrayList replyArray = []
@@ -146,7 +157,24 @@ Boolean existsInGraph(CiteUrn urn){
 		return false
 }
 
+/** For CTS URNs that are present in the graph, but not as part of CTS texts
+*   do a very simple, stupid search.
+*   @param urn The URN to test.
+*   @returns ArrayList of Triple objects.
+**/
+ArrayList getOneOffCtsUrn(CtsUrn urn){
+	ArrayList replyArray = []
+	ArrayList workingArray = []
+	String replyText = ""
+	String textgroupQuery = QueryBuilder.getSimpleCtsQuery(urn.encodeSubref())
+	String reply = sparql.getSparqlReply("application/json", textgroupQuery)
 
+	JsonSlurper slurper = new groovy.json.JsonSlurper()
+	def parsedReply = slurper.parseText(reply)
+	workingArray = parsedJsonToTriples(parsedReply)
+	replyArray = uniqueTriples(workingArray) 
+	return replyArray
+}
 
 /** Finds data adjacent to a TextGroup-level URN.
 * @param urn The URN to test.
@@ -382,7 +410,9 @@ ArrayList getForGroup(CtsUrn urn){
    */
    ArrayList getVersionsForWork(urn){
 	CtsUrn requestUrn
+	println "got here… ${urn}"
 	requestUrn = new CtsUrn(urn.getUrnWithoutPassage())
+	println "…and past"
 	ArrayList versionArray = []
 
     String versionQuery = QueryBuilder.getVersionsForWork(requestUrn.toString())
@@ -434,7 +464,7 @@ ArrayList getForGroup(CtsUrn urn){
 	   ArrayList workingArray = []
 
 	   // Get all versions
-	   versionArray = getVersionsForWork()
+	   versionArray = getVersionsForWork(urn)
 	   println "getForWorkLeaf: versionArray: ${versionArray}"
 	   println versionArray
         

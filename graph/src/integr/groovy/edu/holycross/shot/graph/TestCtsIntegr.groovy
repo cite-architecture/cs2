@@ -182,23 +182,50 @@ class TestCtsIntegr extends GroovyTestCase {
 	   Exemplar wt:2.1 =  35, including labels and sequence info */
 
 
-/*
+
 	@Test
 	void testWorkLeaf() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:2.1")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 77
 	}  
-	*/
 
-/*
+
+
 	@Test
 	void testWorkLeaf_nonextantUrn() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002:2.1")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 0
 	}  
-	*/
+
+	@Test
+	void testWorkWithoutPassage() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 1000000 
+	}
+
+	@Test
+	void testWorkWithoutPassage_nonextantUrn() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002:")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 1000000 
+	}
+
+	@Test
+	void testOneOffCtsUrn1() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.192")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 1
+	}
+
+	@Test
+	void testOneOffCtsUrn2() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002:1.1")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 3 // One scholion, which has one label ond one sequence
+	}
 
 /*
 	@Test

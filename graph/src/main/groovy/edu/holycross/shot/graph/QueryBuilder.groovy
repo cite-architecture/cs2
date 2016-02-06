@@ -277,6 +277,29 @@ WHERE {
 
   }
 
+  /** Builds SPARQL query string to find anything
+   * indexed to a Cts URN that is not represented
+   * in the data as a full CTS text.
+   * @param urn The URN to test.
+   * @returns A complete SPARQL query string.
+   */
+  static String getSimpleCtsQuery(String urn){
+
+	  String returnString = """ ${GraphDefinitions.prefixPhrase} 
+	  SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq
+	  WHERE {
+
+		  bind (<${urn}> as ?s)
+			  ?s ?v ?o .
+			  optional { ?o rdf:label ?label . }
+		  optional { ?o cts:hasSequence ?ctsSeq . }
+		  optional { ?o olo:item ?objSeq . }
+	  } 
+
+	  """
+
+  }
+
 
   /** Builds SPARQL query string to find all exemplars
    * derived from a version
