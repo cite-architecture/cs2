@@ -251,6 +251,37 @@ WHERE {
 	  }
 
 
+  /** Builds SPARQL query string to find data
+   * adjacent to a work, version, or exemplar, without a passage component
+	 * N.b. the SparQl variable names are significant.
+	 * ?ctsSeq captures sequencing information for the CTS hierarchy.
+	 * ?objSeq captures olo:item sequencing for CITE ordered collections.
+   * @param urn The URN to test.
+   * @returns A complete SPARQL query string.
+   */
+
+  static String getWorkVersionExemplarWithoutPassage(String urn){
+
+  String returnString = """ ${GraphDefinitions.prefixPhrase} 
+SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq
+WHERE {
+  
+  bind (<${urn}> as ?s)
+?s ?v ?o .
+  optional { ?o rdf:label ?label . }
+  optional { ?o cts:hasSequence ?ctsSeq . }
+  optional { ?o olo:item ?objSeq . }
+  
+} 
+
+order by ?o ?ctsSeq ?objSeq
+"""
+	return returnString
+
+  }
+
+
+
       
   /** Builds SPARQL query string to find data
    * adjacent to a version-level containing (non-leaf-node) URN 

@@ -46,7 +46,6 @@ class TestCtsIntegr extends GroovyTestCase {
 	/* We expect 16 hits from this dataset */
 	@Test
 	void testTextGroup() {
-	  println "Testing testTextGroup"
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012:")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 16
@@ -194,6 +193,55 @@ class TestCtsIntegr extends GroovyTestCase {
 	  assert al.size() == 0
 	}  
 
+	@Test
+	void testOneOffCtsUrn2() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002:1.1")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 3 // One scholion, which has one label ond one sequence
+	}
+
+	@Test
+	void testWorkWithoutPassage() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 10
+	}
+
+	@Test
+	void testWorkWithoutPassage_nonextantUrn() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.NOWORK:")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 0 
+	} 
+
+	@Test
+	void testVersionWithoutPassage() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 20
+	}
+
+	@Test
+	void testVersionWithoutPassage_nonextantUrn() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002.NOVERSION:")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 0 
+	} 
+
+	@Test
+	void testExemplarWithoutPassage() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 87
+	}
+
+	@Test
+	void testExemplarWithoutPassage_nonextantUrn() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002.msA.NOEXEMPLAR:")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 0 
+	} 
+
   /* -------------------------------------
      FAILING
 	 ------------------------------------- */
@@ -204,21 +252,6 @@ class TestCtsIntegr extends GroovyTestCase {
 	   Exemplar wt:2.1 =  35, including labels and sequence info */
 
 
-
-	/* @Test
-	void testWorkWithoutPassage() {
-	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:")
-	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 1000000 
-	} */
-
-/*	@Test
-	void testWorkWithoutPassage_nonextantUrn() {
-	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002:")
-	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 1000000 
-	} */
-
 /*	@Test
 	void testOneOffCtsUrn1() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.192")
@@ -226,12 +259,6 @@ class TestCtsIntegr extends GroovyTestCase {
 	  assert al.size() == 1
 	} */
 
-	@Test
-	void testOneOffCtsUrn2() {
-	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002:1.1")
-	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 3 // One scholion, which has one label ond one sequence
-	}
 
 /*
 	@Test
