@@ -246,18 +246,13 @@ class TestCtsIntegr extends GroovyTestCase {
      FAILING
 	 ------------------------------------- */
 
-	/* Test Work-level CTS-URNs */
-	/* Version msA:2.1 =  30, including labels and object-sequence info 
-	   Version alignedEng:2.1 = 12, including labels and object-sequence info
-	   Exemplar wt:2.1 =  35, including labels and sequence info */
 
-
-/*	@Test
+	@Test
 	void testOneOffCtsUrn1() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.192")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 1
-	} */
+	} 
 
 
 /*
