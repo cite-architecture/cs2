@@ -105,11 +105,23 @@ class TestCtsIntegr extends GroovyTestCase {
 	@Test
 	void testFindExemplarsForVersion(){
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:")
-	  ArrayList al = gs.graph.exemplarsForVersion(urn)
+	  ArrayList al = gs.graph.getExemplarsForVersion(urn)
 	  assert al.size() == 1
 	  assert al[0] == "urn:cts:greekLit:tlg0012.tlg001.msA.wt:"
 	  CtsUrn urn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:")
-	  ArrayList al2 = gs.graph.exemplarsForVersion(urn2)
+	  ArrayList al2 = gs.graph.getExemplarsForVersion(urn2)
+	  assert al2.size() == 1
+	  assert al2[0] == "ERROR: URN must point to a version-level URN"
+	}
+
+	@Test
+	void testFindExemplarsForVersion2(){
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1")
+	  ArrayList al = gs.graph.getExemplarsForVersion(urn)
+	  assert al.size() == 1
+	  assert al[0] == "urn:cts:greekLit:tlg0012.tlg001.msA.wt:"
+	  CtsUrn urn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:")
+	  ArrayList al2 = gs.graph.getExemplarsForVersion(urn2)
 	  assert al2.size() == 1
 	  assert al2[0] == "ERROR: URN must point to a version-level URN"
 	}
@@ -118,10 +130,10 @@ class TestCtsIntegr extends GroovyTestCase {
 	@Test
 	void testFindExemplarsForVersion_nonexantUrn(){
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002.test:")
-	  ArrayList al = gs.graph.exemplarsForVersion(urn)
+	  ArrayList al = gs.graph.getExemplarsForVersion(urn)
 	  assert al.size() == 0
 	  CtsUrn urn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002:")
-	  ArrayList al2 = gs.graph.exemplarsForVersion(urn2)
+	  ArrayList al2 = gs.graph.getExemplarsForVersion(urn2)
 	  assert al2.size() == 1
 	  assert al2[0] == "ERROR: URN must point to a version-level URN"
 	}
@@ -194,13 +206,6 @@ class TestCtsIntegr extends GroovyTestCase {
 	}  
 
 	@Test
-	void testOneOffCtsUrn2() {
-	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002:1.1")
-	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 3 // One scholion, which has one label ond one sequence
-	}
-
-	@Test
 	void testWorkWithoutPassage() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:")
 	  ArrayList al = gs.graph.findAdjacent(urn)
@@ -251,7 +256,21 @@ class TestCtsIntegr extends GroovyTestCase {
 	void testOneOffCtsUrn1() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.192")
 	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 1
+	  assert al.size() == 3 // One scholion, which has one label ond one sequence
+	} 
+
+	@Test
+	void testOneOffCtsUrn2() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.192")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 3 // One scholion, which has one label ond one sequence
+	} 
+
+	@Test
+	void testOneOffCtsUrn3() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002:1.1")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 3 // One scholion, which has one label ond one sequence
 	} 
 
 

@@ -66,11 +66,9 @@ class IndexGraph {
 
 			switch (workLevel){
 				case "GROUP":
-					println "${urn} is GROUP"
 					al = getForGroup(urn)
 					break;
 				case "WORK":
-					println "${urn} is WORK"
 					if (urn.passageComponent == null){
 						al = getForWorkWithoutPassage(urn)
 					} else {
@@ -90,7 +88,6 @@ class IndexGraph {
 					}
 					break;
 				case "VERSION":
-					println "${urn} is VERSION"
 					if (urn.passageComponent == null){
 						al = getForWorkWithoutPassage(urn)
 					} else {
@@ -113,7 +110,6 @@ class IndexGraph {
 					}
 					break;
 				case "EXEMPLAR":
-					println "${urn} is EXEMPLAR"
 					if (urn.passageComponent == null){
 						al = getForWorkWithoutPassage(urn)
 					} else {
@@ -204,10 +200,10 @@ ArrayList getVersionsForWork(urn){
  * @param urn CTS-URN
  * @returns ArrayList of CTS-URNs
  */
-ArrayList exemplarsForVersion(CtsUrn urn){
+ArrayList getExemplarsForVersion(CtsUrn urn){
 	ArrayList replyArray = []
 		String replyText = ""
-		String exemplarQuery = QueryBuilder.getQueryExemplarsForVersion(urn.encodeSubref())
+		String exemplarQuery = QueryBuilder.getQueryExemplarsForVersion(urn.getUrnWithoutPassage())
 		String reply = sparql.getSparqlReply("application/json", exemplarQuery)
 		if ("${urn.getWorkLevel()}" == "VERSION"){	
 
@@ -244,16 +240,56 @@ ArrayList versionsAndExemplarForWork(CtsUrn urn){
  *   @returns ArrayList of Triple objects.
  **/
 ArrayList getOneOffCtsUrn(CtsUrn urn){
+	String workLevel = urn.getWorkLevel()
 	ArrayList replyArray = []
-		ArrayList workingArray = []
-		String replyText = ""
-		String textgroupQuery = QueryBuilder.getSimpleCtsQuery(urn.encodeSubref())
-		String reply = sparql.getSparqlReply("application/json", textgroupQuery)
+	ArrayList workingArray = []
+	ArrayList versionArray = []
+	ArrayList exemplarArray = []
+	ArrayList tempArray = []
+	String replytext = ""
+	String oneOffQuery = ""
+	String reply = ""
+	JsonSlurper slurper = null
+	def parsedReply = null
 
-		JsonSlurper slurper = new groovy.json.JsonSlurper()
-		def parsedReply = slurper.parseText(reply)
-		workingArray = parsedJsonToTriples(parsedReply)
+	switch (workLevel){
+		case "WORK":
+			println "Work: getting simple for ${urn}"
+			versionArray = getVersionsForWork(urn)
+			versionArray.each { u ->
+				tempArray = getOneOffCtsUrn(new CtsUrn("${u}${urn.passageComponent}"))	
+					tempArray.each { ttt ->
+						workingArray << ttt
+					}
+			}
+		break;
+		case "VERSION":
+			println "Version: getting simple for ${urn}"
+			exemplarArray = getExemplarsForVersion(urn)
+			println "exemplarArray size = ${exemplarArray.size()}"
+			exemplarArray.each { u ->
+				tempArray = getOneOffCtsUrn(new CtsUrn("${u}${urn.passageComponent}"))	
+					tempArray.each { ttt ->
+						workingArray << ttt
+					}
+				}
+		}
+
+		println "Default: getting simple for ${urn}"
+		oneOffQuery = QueryBuilder.getSimpleCtsQuery(urn.encodeSubref())
+		println "${urn}"
+		println oneOffQuery
+		reply = sparql.getSparqlReply("application/json", oneOffQuery)
+		println reply
+		slurper = new groovy.json.JsonSlurper()
+		parsedReply = slurper.parseText(reply)
+		parsedJsonToTriples(parsedReply).each{ 
+			println it
+			workingArray << it 
+			
+		}
 		replyArray = uniqueTriples(workingArray) 
+
 		return replyArray
 }
 
@@ -281,7 +317,6 @@ ArrayList getForGroup(CtsUrn urn){
 */
 
 ArrayList getForWorkWithoutPassage(CtsUrn urn){
-		println "getForWorkWithoutPassage ${urn}"
 		ArrayList replyArray = []
 		ArrayList workingArray = []
 		String replyText = ""
@@ -375,7 +410,7 @@ ArrayList getForVersionContainer(CtsUrn urn){
 		String passageString = urn.getPassageNode()
 
 		CtsUrn bareVersionUrn = new CtsUrn(versionUrnString)
-		exemplarArray = exemplarsForVersion(bareVersionUrn)
+		exemplarArray = getExemplarsForVersion(bareVersionUrn)
 
 		// Get adjacents for this version
 
@@ -433,7 +468,7 @@ ArrayList getForVersionLeaf(CtsUrn urn){
 		String passageString = requestUrn.getPassageNode()
 
 		CtsUrn bareVersionUrn = new CtsUrn(versionUrnString)
-		exemplarArray = exemplarsForVersion(bareVersionUrn)
+		exemplarArray = getExemplarsForVersion(bareVersionUrn)
 
 		// Get adjacents for this version, minus any subref
 
