@@ -247,11 +247,6 @@ class TestCtsIntegr extends GroovyTestCase {
 	  assert al.size() == 0 
 	} 
 
-  /* -------------------------------------
-     FAILING
-	 ------------------------------------- */
-
-
 	@Test
 	void testOneOffCtsUrn1() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.192")
@@ -272,6 +267,10 @@ class TestCtsIntegr extends GroovyTestCase {
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 3 // One scholion, which has one label ond one sequence
 	} 
+
+  /* -------------------------------------
+     FAILING
+	 ------------------------------------- */
 
 
 /*
