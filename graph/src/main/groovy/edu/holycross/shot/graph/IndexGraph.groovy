@@ -110,6 +110,7 @@ class IndexGraph {
 					}
 					break;
 				case "EXEMPLAR":
+					println "Filtered to here: ${urn}"
 					if (urn.passageComponent == null){
 						al = getForWorkWithoutPassage(urn)
 					} else {
@@ -118,7 +119,9 @@ class IndexGraph {
 								al << "exemplarLevel; range"
 							} else {
 								if (ctsgraph.isLeafNode(urn)){
+									println "About to query ${urn}"
 									al = getForExemplarLeaf(urn)
+									println "Back: ${al}"
 								} else {
 									al = getForExemplarContainer(urn)
 								}
@@ -254,7 +257,6 @@ ArrayList getOneOffCtsUrn(CtsUrn urn){
 
 	switch (workLevel){
 		case "WORK":
-			println "Work: getting simple for ${urn}"
 			versionArray = getVersionsForWork(urn)
 			versionArray.each { u ->
 				tempArray = getOneOffCtsUrn(new CtsUrn("${u}${urn.passageComponent}"))	
@@ -264,9 +266,7 @@ ArrayList getOneOffCtsUrn(CtsUrn urn){
 			}
 		break;
 		case "VERSION":
-			println "Version: getting simple for ${urn}"
 			exemplarArray = getExemplarsForVersion(urn)
-			println "exemplarArray size = ${exemplarArray.size()}"
 			exemplarArray.each { u ->
 				tempArray = getOneOffCtsUrn(new CtsUrn("${u}${urn.passageComponent}"))	
 					tempArray.each { ttt ->
@@ -275,16 +275,11 @@ ArrayList getOneOffCtsUrn(CtsUrn urn){
 				}
 		}
 
-		println "Default: getting simple for ${urn}"
 		oneOffQuery = QueryBuilder.getSimpleCtsQuery(urn.encodeSubref())
-		println "${urn}"
-		println oneOffQuery
 		reply = sparql.getSparqlReply("application/json", oneOffQuery)
-		println reply
 		slurper = new groovy.json.JsonSlurper()
 		parsedReply = slurper.parseText(reply)
 		parsedJsonToTriples(parsedReply).each{ 
-			println it
 			workingArray << it 
 			
 		}
@@ -531,6 +526,7 @@ ArrayList getForExemplarContainer(CtsUrn urn){
 }
 
 
+
 /** Find all nodes at one degree of 
  * relation to the object identified by
  * a CTS leaf-node, exemplar-level urn.
@@ -539,6 +535,7 @@ ArrayList getForExemplarContainer(CtsUrn urn){
  */
 
 ArrayList getForExemplarLeaf(CtsUrn urn){
+	println "Got to getForExemplarLeaf: ${urn}"
 
 	ArrayList exemplarArray = []
 

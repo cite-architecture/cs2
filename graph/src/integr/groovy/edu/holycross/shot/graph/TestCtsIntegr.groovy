@@ -288,9 +288,23 @@ class TestCtsIntegr extends GroovyTestCase {
 	  assert al.size() == 0 
 	}  
 
+	@Test
+	void testExemplarLeaf() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 18
+	}  
+
+	void testExemplarLeaf_nonextantUrn() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002.msA.wt:2.1.1")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 0  
+	}  
+
   /* -------------------------------------
      FAILING
 	 ------------------------------------- */
+
 
 /*
 	@Test
@@ -327,19 +341,6 @@ class TestCtsIntegr extends GroovyTestCase {
 	  assert al.size() == 1000 
 	}  
 	
-	@Test
-	void testExemplarLeaf() {
-	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.wt:2.1.1")
-	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 11
-	}  
-
-	void testExemplarLeaf_nonextantUrn() {
-	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002.wt:2.1.1")
-	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 0  
-	}  
-
 	@Test
 	void testExemplarContainer() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.wt:2.1")
