@@ -222,7 +222,7 @@ ArrayList getExemplarsForVersion(CtsUrn urn){
  * @param urn CTS-URN
  * @returns ArrayList of CTS-URNs
  */
-ArrayList versionsAndExemplarForWork(CtsUrn urn){
+ArrayList getVersionsAndExemplarForWork(CtsUrn urn){
 	ArrayList replyArray = []
 		replyArray << "Not implemented"
 		return replyArray

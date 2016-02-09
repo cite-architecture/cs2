@@ -268,28 +268,29 @@ class TestCtsIntegr extends GroovyTestCase {
 	  assert al.size() == 3 // One scholion, which has one label ond one sequence
 	} 
 
-  /* -------------------------------------
-     FAILING
-	 ------------------------------------- */
- 
-
-/*
+	/* Results for testWorkContainer with <urn:cts:greekLit:tlg0012:tlg001:2>:
+		for .msA:2 			=	12
+		for .alignedEng:2   =  	7	
+		for .msA.wt:2		=	12
+	*/
 	@Test
 	void testWorkContainer() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:2")
 	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 1000 
+	  assert al.size() == 31
 	}  
-	*/
 
-/*
+
 	@Test
 	void testWorkContainer_nonextantUrn() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg002:2")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 0 
 	}  
-	*/
+
+  /* -------------------------------------
+     FAILING
+	 ------------------------------------- */
 
 /*
 	@Test
