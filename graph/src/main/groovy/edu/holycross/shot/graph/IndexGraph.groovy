@@ -116,12 +116,11 @@ class IndexGraph {
 					} else {
 						try {
 							if (urn.isRange()){
-								al << "exemplarLevel; range"
+								println "Fixin' to do exemplar-range ${urn}"
+								al << getForExemplarRange(urn)
 							} else {
 								if (ctsgraph.isLeafNode(urn)){
-									println "About to query ${urn}"
 									al = getForExemplarLeaf(urn)
-									println "Back: ${al}"
 								} else {
 									al = getForExemplarContainer(urn)
 								}
@@ -535,7 +534,6 @@ ArrayList getForExemplarContainer(CtsUrn urn){
  */
 
 ArrayList getForExemplarLeaf(CtsUrn urn){
-	println "Got to getForExemplarLeaf: ${urn}"
 
 	ArrayList exemplarArray = []
 
@@ -555,6 +553,22 @@ ArrayList getForExemplarLeaf(CtsUrn urn){
 }
 
 
+/** Find all nodes at one degree of 
+ * relation to _all_ leaf-node elements in a
+ * a range specified by an exemplar-level CTS leaf-node.
+ * Also, incidentally, anything mapped to that particular range, itself.
+ * @param urn CTS Object to find in the graph.
+ * @returns ArrayList of Triple objects.
+ */
+
+ArrayList getForExemplarRange(CtsUrn urn){
+
+	ArrayList exemplarArray = []
+
+	// See if there is anything mapped to this explicit range
+
+
+}
 
 
 /* -------------------------------------------------------------------------------- */

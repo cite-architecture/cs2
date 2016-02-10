@@ -304,6 +304,12 @@ class TestCtsIntegr extends GroovyTestCase {
   /* -------------------------------------
      FAILING
 	 ------------------------------------- */
+	@Test
+	void testExemplarRange1() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4-1.2.2")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 10000 
+	}  
 
 
 /*
