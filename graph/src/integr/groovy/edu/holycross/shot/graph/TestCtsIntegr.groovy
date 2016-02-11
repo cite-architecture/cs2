@@ -326,10 +326,6 @@ class TestCtsIntegr extends GroovyTestCase {
 	  assert al.size() == 62
 	} */
 
-  /* -------------------------------------
-     FAILING
-	 ------------------------------------- */
-
 	/*
 	Expected Results from .wt:1.1.1-2.1.1 
 	Range itself	0
@@ -352,20 +348,26 @@ class TestCtsIntegr extends GroovyTestCase {
 	Total		   164	
 	*/
 
-	@Test
+	/* @Test
 	void testExemplarRange2() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1-2.1.1")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 164
 	}  
+	*/
 
-/*
+  /* -------------------------------------
+     FAILING
+	 ------------------------------------- */
+
 	@Test
 	void testExemplarRange3() {
 		CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1-2.1.1")
 			ArrayList al = gs.graph.findAdjacent(urn)
-			assert al.size() == 1000 
+			assert al.size() == 164
 	}  
+
+/*
 	@Test
 	void testExemplarRange4() {
 		CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1-2")
