@@ -48,91 +48,74 @@ class IndexGraph {
 		CtsUrn testUrn = new CtsUrn(urn.reduceToNode())
 		String workLevel = testUrn.getWorkLevel()
 
-		/* Possibilities:
-			I.  Version- or Exemplar-level URN
-					a. leaf-node
-					b. containing element
-					c. range (including ranges of containing elements)
-			II. Work-level URN
-					a. leaf-node
-					b. containing element
-					c. range
-			III. Group-level URN
-
-			n.b. Drop sub-refs from parameter URN, but find all triple-subject with the same citation-value,
-				 including those with sub-references.
-
-		*/
-
-			switch (workLevel){
-				case "GROUP":
-					al = getForGroup(urn)
-					break;
-				case "WORK":
-					if (urn.passageComponent == null){
-						al = getForWorkWithoutPassage(urn)
-					} else {
-						try {
-							if (urn.isRange()){
-								al = "work-level; range"
+		switch (workLevel){
+			case "GROUP":
+				al = getForGroup(urn)
+				break;
+			case "WORK":
+				if (urn.passageComponent == null){
+					al = getForWorkWithoutPassage(urn)
+				} else {
+					try {
+						if (urn.isRange()){
+							al = "work-level; range"
+						} else {
+							if (ctsgraph.isLeafNode(urn)){
+								al = getForWorkLeaf(testUrn)
 							} else {
-								if (ctsgraph.isLeafNode(urn)){
-									al = getForWorkLeaf(testUrn)
-								} else {
-									al = getForWorkContainerk(testUrn)
-								}
+								al = getForWorkContainerk(testUrn)
 							}
-						} catch (Exception e) {
-							al = getOneOffCtsUrn(urn)
 						}
+					} catch (Exception e) {
+						al = getOneOffCtsUrn(urn)
 					}
-					break;
-				case "VERSION":
-					if (urn.passageComponent == null){
-						al = getForWorkWithoutPassage(urn)
-					} else {
-						try {
-							/* Can be range or not */
-							if (urn.isRange()){
-								al << "version; range"
+				}
+				break;
+			case "VERSION":
+				if (urn.passageComponent == null){
+					al = getForWorkWithoutPassage(urn)
+				} else {
+					try {
+						/* Can be range or not */
+						if (urn.isRange()){
+							al << "version; range"
+						} else {
+							/* Can be leaf-node */
+							if (ctsgraph.isLeafNode(urn)){
+								al = getForVersionLeaf(urn)
 							} else {
-								/* Can be leaf-node */
-								if (ctsgraph.isLeafNode(urn)){
-									al = getForVersionLeaf(urn)
-								} else {
-									/* is non-leaf-node citation */
-									al = getForVersionContainer(urn)
-								}
+								/* is non-leaf-node citation */
+								al = getForVersionContainer(urn)
 							}
-						} catch (Exception e) {
-							al = getOneOffCtsUrn(urn)
 						}
+					} catch (Exception e) {
+						al = getOneOffCtsUrn(urn)
 					}
-					break;
-				case "EXEMPLAR":
-					println "Filtered to here: ${urn}"
-					if (urn.passageComponent == null){
-						al = getForWorkWithoutPassage(urn)
-					} else {
-						try {
-							if (urn.isRange()){
-								println "Fixin' to do exemplar-range ${urn}"
-								al << getForExemplarRange(urn)
+				}
+				break;
+			case "EXEMPLAR":
+				if (urn.passageComponent == null){
+					al = getForWorkWithoutPassage(urn)
+				} else {
+					try {
+						if (urn.isRange()){
+							println "Fixin' to do exemplar-range ${urn}"
+							al = getForExemplarRange(urn)
+						} else {
+							if (ctsgraph.isLeafNode(urn)){
+								al = getForExemplarLeaf(urn)
 							} else {
-								if (ctsgraph.isLeafNode(urn)){
-									al = getForExemplarLeaf(urn)
-								} else {
-									al = getForExemplarContainer(urn)
-								}
+								al = getForExemplarContainer(urn)
 							}
-						} catch (Exception e) {
-							al = getOneOffCtsUrn(urn)
 						}
+					} catch (Exception e) {
+						al = getOneOffCtsUrn(urn)
 					}
-					break;
-				default: 
-					al << "error ${workLevel}"		
-			}
+				}
+				break;
+			default: 
+				al << "error ${workLevel}"		
+		}
 
 	    return al
 	} 
@@ -309,7 +292,6 @@ ArrayList getForGroup(CtsUrn urn){
 * @param urn The URN to test.
 * @returns ArrayList of Triple objects.
 */
-
 ArrayList getForWorkWithoutPassage(CtsUrn urn){
 		ArrayList replyArray = []
 		ArrayList workingArray = []
@@ -329,7 +311,6 @@ ArrayList getForWorkWithoutPassage(CtsUrn urn){
  * @param urn The URN to test.
  * @returns ArrayList of Triple objects.
  */
-
 ArrayList getForWorkContainer(CtsUrn urn){
 	ArrayList versionArray = []
 		ArrayList workingArray = []
@@ -364,7 +345,6 @@ ArrayList getForWorkContainer(CtsUrn urn){
  * @param urn CTS Object to find in the graph.
  * @returns ArrayList of Triple objects.
  */
-
 ArrayList getForWorkLeaf(CtsUrn urn) {
 		ArrayList versionArray = []
 		ArrayList replyArray = []
@@ -393,7 +373,6 @@ ArrayList getForWorkLeaf(CtsUrn urn) {
  * @param urn The URN to test.
  * @returns ArrayList of Triple objects.
  */
-
 ArrayList getForVersionContainer(CtsUrn urn){
 	ArrayList exemplarArray = []
 		ArrayList replyArray = []
@@ -444,7 +423,6 @@ ArrayList getForVersionContainer(CtsUrn urn){
  * @param urn CTS Object to find in the graph.
  * @returns ArrayList of Triple objects.
  */
-
 ArrayList getForVersionLeaf(CtsUrn urn){
 	CtsUrn requestUrn
 		ArrayList exemplarArray = []
@@ -504,7 +482,6 @@ ArrayList getForVersionLeaf(CtsUrn urn){
  * @param urn CTS Object to find in the graph.
  * @returns ArrayList of Triple objects.
  */
-
 ArrayList getForExemplarContainer(CtsUrn urn){
 
 	ArrayList exemplarArray = []
@@ -532,7 +509,6 @@ ArrayList getForExemplarContainer(CtsUrn urn){
  * @param urn CTS Object to find in the graph.
  * @returns ArrayList of Triple objects.
  */
-
 ArrayList getForExemplarLeaf(CtsUrn urn){
 
 	ArrayList exemplarArray = []
@@ -560,14 +536,26 @@ ArrayList getForExemplarLeaf(CtsUrn urn){
  * @param urn CTS Object to find in the graph.
  * @returns ArrayList of Triple objects.
  */
-
 ArrayList getForExemplarRange(CtsUrn urn){
 
-	ArrayList exemplarArray = []
+	ArrayList workingArray = []
+	ArrayList uniquedArray = []
+	ArrayList leafArray = []
+	CtsUrn tempUrn
 
 	// See if there is anything mapped to this explicit range
+	getOneOffCtsUrn(urn).each{ workingArray << it }
 
+	// Get
+	leafArray = ctsgraph.getUrnList(urn)	
+	leafArray.each{ lai ->
+		findAdjacent(lai).each{ 
+			workingArray << it
+		}
+	}
+	uniquedArray = uniqueTriples(workingArray)
 
+	return uniquedArray
 }
 
 
@@ -648,7 +636,6 @@ ArrayList parsedJsonToTriples(Object parsedReply){
  * @param al ArrayList of Triple object
  * @returns ArrayList of Triple objects.
  */
-
 ArrayList uniqueTriples(ArrayList al){
 	def tripleComparator = [
 		equals: { delegate.equals(it) },
