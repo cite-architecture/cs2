@@ -548,11 +548,13 @@ ArrayList getForExemplarRange(CtsUrn urn){
 
 	// Get
 	leafArray = ctsgraph.getUrnList(urn)	
+	println leafArray
 	leafArray.each{ lai ->
 		findAdjacent(lai).each{ 
 			workingArray << it
 		}
 	}
+	println workingArray
 	uniquedArray = uniqueTriples(workingArray)
 
 	return uniquedArray

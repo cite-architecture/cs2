@@ -317,24 +317,46 @@ class TestCtsIntegr extends GroovyTestCase {
 	Total			62		
 	*/
 
-	@Test
+	/* @Test
 	void testExemplarRange1() {
 	  println "Starting testExemplarRange"
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4-1.2.2")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  println "al.size() = ${al.size()}"
 	  assert al.size() == 62
-	}  
+	} */
 
   /* -------------------------------------
      FAILING
 	 ------------------------------------- */
 
+	/*
+	Expected Results from .wt:1.1.1-2.1.1 
+	Range itself	0
+	1.1.1			15 (as first leaf-node, lacks <prev>, <prev>'s label and sequence)
+	1.1.2			18
+	1.1.3			18
+	1.1.4			18
+	1.1.5			18	
+	1.2.1			18	
+	1.2.2			18	
+	1.2.3			18	
+	1.2.4			18	
+	1.2.5			18	
+	1.2.6			18	
+	1.2.1			18
+	-------------------
+					213
+	Uniqued		    -49 (labels, sequences for containers, etc.)
+	-------------------
+	Total		   164	
+	*/
+
 	@Test
 	void testExemplarRange2() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1-2.1.1")
 	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 1000 
+	  assert al.size() == 164
 	}  
 
 /*
