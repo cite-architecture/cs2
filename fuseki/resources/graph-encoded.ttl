@@ -1033,3 +1033,14 @@ citedata:msA_Label cite:propType "string".
 
 <urn:cts:greekLit:tlg0012.tlg002:1.1> cts:commentedOnBy <urn:cts:greekLit:tlg5026.msA.hmt:1.1> . 
 <urn:cts:greekLit:tlg5026.msA.hmt:1.1> cts:commentsOn <urn:cts:greekLit:tlg0012.tlg002:1.1> .
+
+# Some fake images, indexed (unaccountably) to _ranges_
+
+<urn:cts:greekLit:tlg0012.tlg001:1-2> cite:illustratedBy <urn:cite:hmt:vaimg.FAKEIMAGE%400.1642%2C0.2237%2C0.3604%2C0.0338> .
+<urn:cite:hmt:vaimg.FAKEIMAGE%400.1642%2C0.2237%2C0.3604%2C0.0338> cite:illustrates <urn:cts:greekLit:tlg0012.tlg001:1-2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1-1.2> cite:illustratedBy <urn:cite:hmt:vaimg.FAKEIMAGE%400.1642%2C0.2237%2C0.3604%2C0.0338> .
+<urn:cite:hmt:vaimg.FAKEIMAGE%400.1642%2C0.2237%2C0.3604%2C0.0338> cite:illustrates <urn:cts:greekLit:tlg0012.tlg001.msA:1.1-1.2> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4-1.2.2> cite:illustratedBy <urn:cite:hmt:vaimg.FAKEIMAGE%400.1642%2C0.2237%2C0.3604%2C0.0338> .
+<urn:cite:hmt:vaimg.FAKEIMAGE%400.1642%2C0.2237%2C0.3604%2C0.0338> cite:illustrates <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4-1.2.2> .
