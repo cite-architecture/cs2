@@ -875,6 +875,7 @@ citedata:msA_Label cite:propType "string".
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> .
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> .
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> .
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> .
 
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7>  . 

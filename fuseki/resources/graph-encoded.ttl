@@ -178,10 +178,10 @@
 <urn:cts:greekLit:tlg5026.msA.hmt:2> cts:contains <urn:cts:greekLit:tlg5026.msA.hmt:2.1>  .
 <urn:cts:greekLit:tlg5026.msA.hmt:2> cts:citationDepth 1 .
 
-<urn:cts:greekLit:tlg5026.msA.hmt:1.1> cite:next <urn:cts:greekLit:tlg5026.msA.hmt:1.2> . 
-<urn:cts:greekLit:tlg5026.msA.hmt:1.2> cite:next <urn:cts:greekLit:tlg5026.msA.hmt:2.1> . 
-<urn:cts:greekLit:tlg5026.msA.hmt:2.1> cite:prev <urn:cts:greekLit:tlg5026.msA.hmt:1.2> . 
-<urn:cts:greekLit:tlg5026.msA.hmt:1.2> cite:prev <urn:cts:greekLit:tlg5026.msA.hmt:1.1> . 
+<urn:cts:greekLit:tlg5026.msA.hmt:1.1> cts:next <urn:cts:greekLit:tlg5026.msA.hmt:1.2> . 
+<urn:cts:greekLit:tlg5026.msA.hmt:1.2> cts:next <urn:cts:greekLit:tlg5026.msA.hmt:2.1> . 
+<urn:cts:greekLit:tlg5026.msA.hmt:2.1> cts:prev <urn:cts:greekLit:tlg5026.msA.hmt:1.2> . 
+<urn:cts:greekLit:tlg5026.msA.hmt:1.2> cts:prev <urn:cts:greekLit:tlg5026.msA.hmt:1.1> . 
 
 # Connection Scholia to Iliad
 
@@ -843,66 +843,67 @@ citedata:msA_Label cite:propType "string".
 
 # Sequence for Analytical Exemplar
 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> .
 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1> .
 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> .
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> cite:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> cts:next <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> .
 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2>  . 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> cite:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.7> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.6> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.5> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.4> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.3> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.2> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.1> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2>  . 
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> cts:prev <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1>  . 
 
 # Analysis Alignment
 
