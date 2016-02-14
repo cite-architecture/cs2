@@ -153,7 +153,10 @@ class CtsGraph {
 	Integer startAtStr 
 	Integer endAtStr
 
-	CtsUrn urn = resolveVersion(submittedUrn)
+	
+
+	CtsUrn urn = resolveVersion(new CtsUrn (submittedUrn.reduceToNode()))
+	println "${submittedUrn} resolveVersion = ${urn}"
     ArrayList urns = []
 
 	// Three Possibilities: node, container, range
@@ -163,7 +166,9 @@ class CtsGraph {
 
 		if (urn.isRange()){
 			CtsUrn urn1 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
+			println "urn1 = ${urn1}"
 			CtsUrn urn2 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")
+			println "urn2 = ${urn2}"
 
             if (isLeafNode(urn1)) {
            	     startAtStr =  getSequence(urn1)

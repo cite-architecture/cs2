@@ -1,5 +1,6 @@
 buildscript {
-  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+//  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+  apply from: "${rootProject.rootDir}/common/gretty.plugin"
   
   repositories {
     mavenCentral()

@@ -28,7 +28,25 @@ class TestGetUrnListIntegr extends GroovyTestCase {
 
     assert expectedList.size() == 1
     assert answerList.size() == 1
-    assert expectedList == answerList
+	println "expectedList[0] class = ${expectedList[0].getClass()}"
+	println "answerList[0] class = ${answerList[0].getClass()}"
+    assert expectedList[0].toString() == answerList[0].toString()
+    
+  }
+
+  @Test
+  void testListLeafNodeSubref() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1@μῆνιν[1]")
+    ArrayList expectedList = []
+    expectedList.add(new CtsUrn(urn.reduceToNode()))
+    ArrayList answerList = []
+    answerList = graph.getUrnList(urn)
+
+    assert expectedList.size() == 1
+    assert answerList.size() == 1
+	println "expectedList[0] class = ${expectedList[0].getClass()}"
+	println "answerList[0] class = ${answerList[0].getClass()}"
+    assert expectedList[0].toString() == answerList[0].toString()
     
   }
 
@@ -53,6 +71,29 @@ class TestGetUrnListIntegr extends GroovyTestCase {
     assert expectedList[2].toString() == answerList[2].toString()
     
   }
+
+   @Test
+  void testListRangeSubref() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.3@ψυχὰς[1]-1.5@πᾶσι[1]")
+    CtsUrn answerUrn1 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.3")
+    CtsUrn answerUrn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.4")
+    CtsUrn answerUrn3 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.5")
+
+    ArrayList expectedList = []
+    expectedList.add(answerUrn1)
+    expectedList.add(answerUrn2)
+    expectedList.add(answerUrn3)
+    ArrayList answerList = []
+    answerList = graph.getUrnList(urn)
+
+    assert expectedList.size() == 3
+    assert answerList.size() == 3
+    assert expectedList[0].toString() == answerList[0].toString()
+    assert expectedList[1].toString() == answerList[1].toString()
+    assert expectedList[2].toString() == answerList[2].toString()
+    
+  }
+
 
   @Test
   void testListContainer() {

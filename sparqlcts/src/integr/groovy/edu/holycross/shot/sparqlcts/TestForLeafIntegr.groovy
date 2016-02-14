@@ -23,9 +23,8 @@ class TestForLeafIntegr extends GroovyTestCase {
   CtsUrn bookUrn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1")
   CtsUrn leafWithSubstr = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.1@μῆνιν[1]")
   
-
   @Test
-  void testDummy() {
+  void testLine() {
     assert  graph.isLeafNode(lineUrn)
     assertFalse(graph.isLeafNode(leafWithSubstr))
     assertFalse(graph.isLeafNode(bookUrn) )

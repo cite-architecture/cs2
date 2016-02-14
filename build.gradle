@@ -6,6 +6,7 @@ current build of citeservlet.
  */
 
 import org.apache.tools.ant.filters.*
+
 task configure {
   description = "Generates fuseki configuration file based on current project location."
   inputs.file "${rootProject.projectDir}/fuseki/config-template.ttl"
@@ -25,6 +26,7 @@ task configure {
 allprojects {
   apply from: "${rootProject.rootDir}/versions.gradle"
   version = "0.10.0"
+
   
   task vmap << { task ->
     println "\nDependencies for ${version} in ${task.project.name}:"
@@ -65,7 +67,8 @@ allprojects {
 
 subprojects {
   apply plugin: "groovy"
-  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+ // apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+  apply from: "${rootProject.rootDir}/common/gretty.plugin"
   
   configurations.compile.transitive = true
   
@@ -81,6 +84,7 @@ subprojects {
 
     testCompile "org.concordion:concordion:${versionMap['concordion']}"
     testCompile "junit:junit:${versionMap['junit']}"
+
 
     compile group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
     compile group: 'commons-io', name: 'commons-io', version: versionMap['commonsio']
