@@ -23,9 +23,7 @@ Image URN: anything it illustrates (including versions with ROIs); all ROIs.
 
 Image URN w/ ROI: the image, any other image-ROI that touches this; anything indexed to any of those!
 
-
-
-## Testing
+### Testing
 
 Integration tests based on the dataset at `../fuseki/graph.ttl`
 
@@ -33,3 +31,8 @@ Run `gradle farmIntegrationTest`.
 
 <urn:cts:greekLit:tlg0012.tlg001:> : returns six records.
 
+### Notes to Self
+
+There is a problem with cts:possesses. Need to add some Exemplars to the SparqlCTS test data, test getUrnList(urn) against it, and see.
+
+Need to subref-encode the SparqlCts test data and re-run the tests, including tests for encoding and decoding. 

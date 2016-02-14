@@ -506,8 +506,8 @@ citedata:msA_Label cite:propType "string".
 
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> cts:xmlns <http://www.tei-c.org/ns/1.0> .
 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA:> .
 <urn:cts:greekLit:tlg0012.tlg001.msA:> cts:possesses <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA:> .
 
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> rdf:type cts:Exemplar .
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:>  rdf:label "Homeric Epic, Iliad: (Venetus A): word-token analytical edition" .

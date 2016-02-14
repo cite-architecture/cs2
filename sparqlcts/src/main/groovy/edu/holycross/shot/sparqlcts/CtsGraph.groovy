@@ -97,6 +97,8 @@ class CtsGraph {
 		      
 			listUrnsQuery = QueryBuilder.getRangeNodesQuery(int1, int2, "${urn.getUrnWithoutPassage()}")
             ctsReply =  sparql.getSparqlReply("application/json", listUrnsQuery)
+			println "getRangeNodes; isRange; did getRangeNodesQuery(${int1},${int2}, ${urn.getUrnWithoutPassage()} )"
+			println ctsReply
             def slurper = new groovy.json.JsonSlurper()
             def parsedReply = slurper.parseText(ctsReply)
             parsedReply.results.bindings.each { b ->

@@ -271,7 +271,7 @@ return """
 ${CtsDefinitions.prefixPhrase}
 SELECT distinct ?ref 
 WHERE {
-?u cts:belongsTo+ <${versionUrn}> .
+?u cts:belongsTo <${versionUrn}> .
 ?u cts:containedBy* ?ref .
 ?u cts:hasSequence ?s .
 ?ref cts:citationDepth ?d .
@@ -293,7 +293,7 @@ return """
 ${CtsDefinitions.prefixPhrase}
 SELECT ?ref ?t 
 WHERE {
-?u cts:belongsTo+ <${versionUrn}> .
+?u cts:belongsTo <${versionUrn}> .
 ?u cts:containedBy* ?ref .
 ?u cts:hasSequence ?s .
 ?ref cts:citationDepth ?d .

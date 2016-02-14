@@ -302,6 +302,7 @@ class TestCtsIntegr extends GroovyTestCase {
 	  assert al.size() == 0  
 	}  
 
+
 	/*
 	Expected Results from .wt:1.1.4-1.2.2
 
@@ -355,6 +356,13 @@ class TestCtsIntegr extends GroovyTestCase {
 	  assert al.size() == 164
 	}  
 	*/
+	/* @Test
+	void testExemplarRange2() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1-2.1.1")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 164
+	}  
+	*/
 
 	/* Should produce the same results as ….wt:1.1.1-2.1.1 */
 	/*
@@ -365,10 +373,6 @@ class TestCtsIntegr extends GroovyTestCase {
 			assert al.size() == 164
 	}  
 	*/
-
-  /* -------------------------------------
-     FAILING
-	 ------------------------------------- */
 
 	/*
 	Expected Results from .wt:1.1-2
@@ -382,6 +386,7 @@ class TestCtsIntegr extends GroovyTestCase {
 	-------------------
 	Total		    358
 	*/
+	/*
 	@Test
 	void testExemplarRange4() {
 		CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1-2")
@@ -389,21 +394,18 @@ class TestCtsIntegr extends GroovyTestCase {
 			assert al.size() == 358
 	}  
 
-/*
-	@Test
-	void testExemplarRange5() {
-		CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:1-2.1.1")
-			ArrayList al = gs.graph.findAdjacent(urn)
-			assert al.size() == 1000 
-	}  
 	@Test
 	void testExemplarRange6() {
 		CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:1-2")
 			ArrayList al = gs.graph.findAdjacent(urn)
-			assert al.size() == 1000 
+			assert al.size() == 358
 	}  
-*/
+	*/
 
+
+  /* -------------------------------------
+     FAILING
+	 ------------------------------------- */
 
 
 /*
@@ -441,16 +443,24 @@ class TestCtsIntegr extends GroovyTestCase {
 	}  
 	*/
 
-
-	/* We expect 20 results from the original URN dataset */
-	/* We also expect 8 analytical exemplar citations */
 	/*
+	Expected Results from .msA:1.1-2.1
+	Range itself	0
+	1.1	    		13 (as first leaf-node, lacks <prev>, <prev>'s label and sequence)
+	1.2				16 
+	2.1				16
+	-------------------
+					45
+	Exemplar		255
+	Uniqued		   -122 (labels, sequences for containers, etc.)
+	-------------------
+	Total		    358
+	*/
 	@Test
 	void testVersionLeafRange() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1-2.1")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 28
 	}  
-	*/
 
 }

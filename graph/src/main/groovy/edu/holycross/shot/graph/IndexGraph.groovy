@@ -78,7 +78,7 @@ class IndexGraph {
 					try {
 						/* Can be range or not */
 						if (urn.isRange()){
-							al << "version; range"
+							al = getForVersionRange(urn)
 						} else {
 							/* Can be leaf-node */
 							if (ctsgraph.isLeafNode(urn)){
@@ -473,6 +473,61 @@ ArrayList getForVersionLeaf(CtsUrn urn){
 
 		replyArray = uniqueTriples(workingArray) 
 		return replyArray
+
+}
+
+/** Find all nodes at one degree of 
+ * relation to the object identified by
+ * a CTS version-level urn with a range citation.
+ * @param urn CTS Object to find in the graph.
+ * @returns ArrayList of Triple objects.
+ */
+ArrayList getForVersionRange(CtsUrn urn){
+
+	ArrayList workingArray = []
+	ArrayList exemplarArray = []
+	ArrayList uniquedArray = []
+	ArrayList leafArray = []
+	CtsUrn tempUrn
+
+	// See if there is anything mapped to this explicit range
+	getOneOffCtsUrn(urn).each{ workingArray << it }
+
+	// Get All Exemplars
+
+	exemplarArray = getExemplarsForVersion(urn)
+	println "Exemplars:"
+	println exemplarArray
+	exemplarArray.each{ exempItem ->
+		println "ExempItem: ${exempItem}"
+		tempUrn = new CtsUrn("${exempItem}${urn.passageComponent}")
+		println tempUrn
+		leafArray = ctsgraph.getUrnList(tempUrn)
+		println "LeafArray:"
+		println leafArray
+		leafArray.each{ lai ->
+			println lai
+			findAdjacent(lai).each{ 
+				workingArray << it
+			}
+		}
+	}
+
+
+	// Get leaves for Version
+	leafArray = ctsgraph.getUrnList(urn)	
+	println "Getting version-leaf-array for ${urn}"
+	println leafArray
+	leafArray.each{ lai ->
+		println "Leaf for version: ${lai}"
+		findAdjacent(lai).each{ 
+			workingArray << it
+		}
+	}
+	println workingArray
+	uniquedArray = uniqueTriples(workingArray)
+
+	return uniquedArray
 
 }
 
