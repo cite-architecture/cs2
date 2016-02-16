@@ -9,12 +9,6 @@ import edu.harvard.chs.cite.CiteUrn
 import edu.holycross.shot.citeservlet.Sparql
 
 
-
-/* Fun Facts from the test dataset:
-
-
-*/
-
 class TestCtsIntegr extends GroovyTestCase {
 
   String baseUrl = "http://localhost:8080/fuseki/graph/query"
@@ -401,27 +395,58 @@ class TestCtsIntegr extends GroovyTestCase {
 			assert al.size() == 358
 	}  
 	*/
-	/* 
 
+	/*
+	msA:1.1 = 25
+	msA:1.2 = 31
+	msA:2.1 = 30
+
+	msA.wt:1.1 = 32
+	msA.wt:1.2 = 29
+	msA.wt:2.1 = 35
+
+	Total: 182
+	Uniqued: 163
+
+	*/
+	
 	@Test
 	void testVersionLeafRange() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1-2.1")
 	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 373
+	  assert al.size() == 162
 	}  
+
+
+	/* for tlg001:2.1-2.2
+	.msA:2.1 = 30
+	.msA:2.2 = 22
+	.msA.wt:2.1 = 35
+	.msA.wt:2.2 = 32
+	.alignedEng:2.1 = 12
+	.alignedEng:2.2 = 12
+	-----------------------
+	= 143
+
+	Uniqued =  134
+
+
 	*/
 
-
-  /* -------------------------------------
-     FAILING
-	 ------------------------------------- */
 
 	@Test
 	void testWorkRange1() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:2.1-2.2")
 	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 1000 
+	  assert al.size() == 134
 	}  
+
+  /* -------------------------------------
+     FAILING
+	 ------------------------------------- */
+
+
+
 
 /*
 	@Test

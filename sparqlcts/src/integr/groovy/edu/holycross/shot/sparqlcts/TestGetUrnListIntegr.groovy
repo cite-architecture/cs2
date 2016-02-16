@@ -16,8 +16,6 @@ class TestGetUrnListIntegr extends GroovyTestCase {
   CtsGraph graph = new CtsGraph(sparql)
 
 
-  
-
   @Test
   void testListLeafNode() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1")

@@ -233,7 +233,7 @@ static String getFirstContainedQuery(CtsUrn containingUrn) {
   ${CtsDefinitions.prefixPhrase}
   SELECT   ?urn ?seq
 	 WHERE {
-		?urn  cts:containedBy*  <${containingUrn}>  .
+		?urn  cts:containedBy  <${containingUrn}>  .
 		?urn cts:hasSequence ?seq .        
 	 }
   ORDER BY ?seq

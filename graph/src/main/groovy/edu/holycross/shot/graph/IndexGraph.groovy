@@ -58,7 +58,7 @@ class IndexGraph {
 				} else {
 					try {
 						if (urn.isRange()){
-							al = "work-level; range"
+							al = getForWorkRange(urn)
 						} else {
 							if (ctsgraph.isLeafNode(urn)){
 								al = getForWorkLeaf(testUrn)
@@ -365,6 +365,37 @@ ArrayList getForWorkLeaf(CtsUrn urn) {
 
 }
 
+/** Find all nodes at one degree of 
+ * relation to the object identified by
+ * a CTS work-level urn with a range citation.
+ * @param urn CTS Object to find in the graph.
+ * @returns ArrayList of Triple objects.
+ */
+ArrayList getForWorkRange(CtsUrn urn){
+
+	ArrayList workingArray = []
+	ArrayList versionArray = []
+	ArrayList uniquedArray = []
+	CtsUrn tempUrn
+
+	// See if there is anything mapped to this explicit range
+	getOneOffCtsUrn(urn).each{ workingArray << it }
+
+	// Get Versions
+	versionArray = getVersionsForWork(urn)
+	// Construct URN for each version & recurse
+	versionArray.each{ versionItem ->
+		tempUrn = new CtsUrn("${versionItem}${urn.passageComponent}")
+		findAdjacent(tempUrn).each{
+			workingArray << it
+		}
+	}
+	
+	uniquedArray = uniqueTriples(workingArray)
+
+	return uniquedArray
+
+}
 
 /** Finds  data adjacent to a version-level containing (non-leaf-node) URN 
  * We want anything indexed to the citation itself, all contained leaf-node citations,
@@ -492,18 +523,6 @@ ArrayList getForVersionRange(CtsUrn urn){
 	// See if there is anything mapped to this explicit range
 	getOneOffCtsUrn(urn).each{ workingArray << it }
 
-	// Get All Exemplars
-
-	exemplarArray = getExemplarsForVersion(urn)
-	exemplarArray.each{ exempItem ->
-		tempUrn = new CtsUrn("${exempItem}${urn.passageComponent}")
-		leafArray = ctsgraph.getUrnList(tempUrn)
-		leafArray.each{ lai ->
-			findAdjacent(lai).each{ 
-				workingArray << it
-			}
-		}
-	}
 
 	// Get leaves for Version
 	leafArray = ctsgraph.getUrnList(urn)	
@@ -512,7 +531,20 @@ ArrayList getForVersionRange(CtsUrn urn){
 			workingArray << it
 		}
 	}
-	println workingArray
+
+	// Get All Exemplars
+	//     Here, we don't want a full CTS report for the Exemplars.
+	//	   We really just want the URNs that belong to each version-leaf-node citation
+
+	exemplarArray = getExemplarsForVersion(urn)
+	exemplarArray.each{ exempItem ->
+		leafArray.each{ lai ->
+			getOneOffCtsUrn(new CtsUrn("${exempItem}${lai.getPassageNode()}")).each{
+				workingArray << it
+			}
+		}
+	}
+
 	uniquedArray = uniqueTriples(workingArray)
 	
 
@@ -592,13 +624,11 @@ ArrayList getForExemplarRange(CtsUrn urn){
 
 	// Get
 	leafArray = ctsgraph.getUrnList(urn)	
-	println leafArray
 	leafArray.each{ lai ->
 		findAdjacent(lai).each{ 
 			workingArray << it
 		}
 	}
-	println workingArray
 	uniquedArray = uniqueTriples(workingArray)
 
 	return uniquedArray

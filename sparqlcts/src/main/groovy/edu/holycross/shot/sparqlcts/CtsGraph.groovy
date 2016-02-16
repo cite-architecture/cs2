@@ -97,8 +97,6 @@ class CtsGraph {
 		      
 			listUrnsQuery = QueryBuilder.getRangeNodesQuery(int1, int2, "${urn.getUrnWithoutPassage()}")
             ctsReply =  sparql.getSparqlReply("application/json", listUrnsQuery)
-			println "getRangeNodes; isRange; did getRangeNodesQuery(${int1},${int2}, ${urn.getUrnWithoutPassage()} )"
-			println ctsReply
             def slurper = new groovy.json.JsonSlurper()
             def parsedReply = slurper.parseText(ctsReply)
             parsedReply.results.bindings.each { b ->
@@ -156,7 +154,6 @@ class CtsGraph {
 	
 
 	CtsUrn urn = resolveVersion(new CtsUrn (submittedUrn.reduceToNode()))
-	println "${submittedUrn} resolveVersion = ${urn}"
     ArrayList urns = []
 
 	// Three Possibilities: node, container, range
@@ -166,9 +163,7 @@ class CtsGraph {
 
 		if (urn.isRange()){
 			CtsUrn urn1 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
-			println "urn1 = ${urn1}"
 			CtsUrn urn2 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")
-			println "urn2 = ${urn2}"
 
             if (isLeafNode(urn1)) {
            	     startAtStr =  getSequence(urn1)
@@ -391,7 +386,6 @@ class CtsGraph {
 	if (bndng.prevUrn) {
 
 	  replyUrn = new CtsUrn(bndng.prevUrn?.value)
-	  println "CTS GRPH PREV: " + bndng.prevUrn?.value + " ylds urn " + replyUrn
 	}
       }
 
