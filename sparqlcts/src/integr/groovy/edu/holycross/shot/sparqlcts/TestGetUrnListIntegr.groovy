@@ -127,6 +127,21 @@ class TestGetUrnListIntegr extends GroovyTestCase {
   }
 
   @Test
+  void testListMixedRangePlusSubref() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1-2.5@α[2]")
+    CtsUrn answerUrn1 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1")
+    CtsUrn answerUrn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:2.5")
+
+    ArrayList answerList = []
+    answerList = graph.getUrnList(urn)
+
+    assert answerList.size() == 615
+    assert answerList[0].toString() == answerUrn1.toString()
+    assert answerList[614].toString() == answerUrn2.toString()
+    
+  }
+
+  @Test
   void testListMixedRange2() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.610-2")
     CtsUrn answerUrn1 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.610")

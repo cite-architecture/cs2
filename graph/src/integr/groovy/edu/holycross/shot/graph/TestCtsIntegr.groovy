@@ -401,21 +401,27 @@ class TestCtsIntegr extends GroovyTestCase {
 			assert al.size() == 358
 	}  
 	*/
+	/* 
+
+	@Test
+	void testVersionLeafRange() {
+	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1-2.1")
+	  ArrayList al = gs.graph.findAdjacent(urn)
+	  assert al.size() == 373
+	}  
+	*/
 
 
   /* -------------------------------------
      FAILING
 	 ------------------------------------- */
 
-
-/*
 	@Test
 	void testWorkRange1() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:2.1-2.2")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  assert al.size() == 1000 
 	}  
-	*/
 
 /*
 	@Test
@@ -443,24 +449,5 @@ class TestCtsIntegr extends GroovyTestCase {
 	}  
 	*/
 
-	/*
-	Expected Results from .msA:1.1-2.1
-	Range itself	0
-	1.1	    		13 (as first leaf-node, lacks <prev>, <prev>'s label and sequence)
-	1.2				16 
-	2.1				16
-	-------------------
-					45
-	Exemplar		255
-	Uniqued		   -122 (labels, sequences for containers, etc.)
-	-------------------
-	Total		    358
-	*/
-	@Test
-	void testVersionLeafRange() {
-	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1-2.1")
-	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 28
-	}  
 
 }

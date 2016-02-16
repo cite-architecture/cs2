@@ -99,7 +99,6 @@ class IndexGraph {
 				} else {
 					try {
 						if (urn.isRange()){
-							println "Fixin' to do exemplar-range ${urn}"
 							al = getForExemplarRange(urn)
 						} else {
 							if (ctsgraph.isLeafNode(urn)){
@@ -496,36 +495,26 @@ ArrayList getForVersionRange(CtsUrn urn){
 	// Get All Exemplars
 
 	exemplarArray = getExemplarsForVersion(urn)
-	println "Exemplars:"
-	println exemplarArray
 	exemplarArray.each{ exempItem ->
-		println "ExempItem: ${exempItem}"
 		tempUrn = new CtsUrn("${exempItem}${urn.passageComponent}")
-		println tempUrn
 		leafArray = ctsgraph.getUrnList(tempUrn)
-		println "LeafArray:"
-		println leafArray
 		leafArray.each{ lai ->
-			println lai
 			findAdjacent(lai).each{ 
 				workingArray << it
 			}
 		}
 	}
 
-
 	// Get leaves for Version
 	leafArray = ctsgraph.getUrnList(urn)	
-	println "Getting version-leaf-array for ${urn}"
-	println leafArray
 	leafArray.each{ lai ->
-		println "Leaf for version: ${lai}"
 		findAdjacent(lai).each{ 
 			workingArray << it
 		}
 	}
 	println workingArray
 	uniquedArray = uniqueTriples(workingArray)
+	
 
 	return uniquedArray
 
