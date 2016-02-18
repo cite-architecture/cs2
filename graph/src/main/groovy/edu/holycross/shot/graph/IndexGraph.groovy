@@ -94,6 +94,7 @@ class IndexGraph {
 				}
 				break;
 			case "EXEMPLAR":
+				println "got here ${urn}"
 				if (urn.passageComponent == null){
 					al = getForWorkWithoutPassage(urn)
 				} else {
@@ -562,16 +563,16 @@ ArrayList getForExemplarContainer(CtsUrn urn){
 
 	ArrayList exemplarArray = []
 
-		String replyText = ""
-		String containerQuery = QueryBuilder.getSingleLeafNodeQuery(urn.encodeSubref())
-		String reply = sparql.getSparqlReply("application/json", containerQuery)
+	String replyText = ""
+	String containerQuery = QueryBuilder.getSingleLeafNodeQuery(urn.encodeSubref())
+	String reply = sparql.getSparqlReply("application/json", containerQuery)
 
-		JsonSlurper slurper = new groovy.json.JsonSlurper()
-		def parsedReply = slurper.parseText(reply)
+	JsonSlurper slurper = new groovy.json.JsonSlurper()
+	def parsedReply = slurper.parseText(reply)
 
-		if (parsedReply.results.size() > 0 ){
-			parsedJsonToTriples(parsedReply).each { exemplarArray << it }
-		}
+	if (parsedReply.results.size() > 0 ){
+		parsedJsonToTriples(parsedReply).each { exemplarArray << it }
+	}
 
 	return exemplarArray
 
