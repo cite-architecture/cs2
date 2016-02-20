@@ -374,8 +374,8 @@ citedata:msA_Label cite:propType "string".
 <urn:cite:hmt:VenAIliad_classifiedTokens.1> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.1> . 
 <urn:cite:hmt:VenAIliad_classifiedTokens.1> cite:transformedToString "οὐλομένην" . 
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> .
 <urn:cite:hmt:VenAIliad_classifiedTokens.1> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
 <urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.1> . 
 
@@ -383,8 +383,8 @@ citedata:msA_Label cite:propType "string".
 <urn:cite:hmt:VenAIliad_classifiedTokens.2> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.2> . 
 <urn:cite:hmt:VenAIliad_classifiedTokens.2> cite:transformedToString "ἡ" . 
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> .
 <urn:cite:hmt:VenAIliad_classifiedTokens.2> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
 <urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.2> . 
 
@@ -392,8 +392,8 @@ citedata:msA_Label cite:propType "string".
 <urn:cite:hmt:VenAIliad_classifiedTokens.3> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί[1]> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.3> . 
 <urn:cite:hmt:VenAIliad_classifiedTokens.3> cite:transformedToString "ἡμυρί'" . 
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί[1]> .
 <urn:cite:hmt:VenAIliad_classifiedTokens.3> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
 <urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.3> . 
 
@@ -401,8 +401,8 @@ citedata:msA_Label cite:propType "string".
 <urn:cite:hmt:VenAIliad_classifiedTokens.4> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.4> . 
 <urn:cite:hmt:VenAIliad_classifiedTokens.4> cite:transformedToString "Ἀχαιοῖς" . 
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> .
 <urn:cite:hmt:VenAIliad_classifiedTokens.4> cite:hasAnalysis <urn:cite:hmt:peoples.place96> . 
 <urn:cite:hmt:peoples.place96> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.4> . 
 
@@ -410,8 +410,8 @@ citedata:msA_Label cite:propType "string".
 <urn:cite:hmt:VenAIliad_classifiedTokens.5> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε[1]> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.5> . 
 <urn:cite:hmt:VenAIliad_classifiedTokens.5> cite:transformedToString "ἄλγε'" . 
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε[1]> .
 <urn:cite:hmt:VenAIliad_classifiedTokens.5> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
 <urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.5> . 
 
@@ -419,8 +419,8 @@ citedata:msA_Label cite:propType "string".
 <urn:cite:hmt:VenAIliad_classifiedTokens.6> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.6> . 
 <urn:cite:hmt:VenAIliad_classifiedTokens.6> cite:transformedToString "ἔθηκεν" . 
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> .
 <urn:cite:hmt:VenAIliad_classifiedTokens.6> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
 <urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.6> . 
 
@@ -974,58 +974,58 @@ citedata:msA_Label cite:propType "string".
 
 # Get all those substrings!
 
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Μῆνιν[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Μῆνιν[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@ἄειδε[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@ἄειδε[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@θεὰ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@θεὰ[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Πηληϊάδεω[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Πηληϊάδεω[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Ἀχιλῆος[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Ἀχιλῆος[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@Ἄλλοι[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@Ἄλλοι[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@μέν[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@μέν[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@ῥα[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@ῥα[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@θεοί[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@θεοί[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@τε[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@τε[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@καὶ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@καὶ[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@ἀνέρες[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@ἀνέρες[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@εὗδον[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@εὗδον[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@παννύχιοι[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@παννύχιοι[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@Δία[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@Δία[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@δ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@δ[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@οὐκ[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@οὐκ[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@έχε[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@έχε[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@νήδυμος[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@νήδυμος[1]> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@ὕπνος[1]> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@ὕπνος[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Μῆνιν[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Μῆνιν[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@ἄειδε[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@ἄειδε[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@θεὰ[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@θεὰ[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Πηληϊάδεω[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Πηληϊάδεω[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Ἀχιλῆος[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.1@Ἀχιλῆος[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@οὐλομένην[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἡ[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@μυρί[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@Ἀχαιοῖς[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἄλγε[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2@ἔθηκεν[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@Ἄλλοι[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@Ἄλλοι[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@μέν[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@μέν[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@ῥα[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@ῥα[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@θεοί[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@θεοί[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@τε[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@τε[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@καὶ[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@καὶ[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1@ἀνέρες[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.1@ἀνέρες[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@εὗδον[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@εὗδον[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@παννύχιοι[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@παννύχιοι[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@Δία[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@Δία[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@δ[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@δ[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@οὐκ[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@οὐκ[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@έχε[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@έχε[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@νήδυμος[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@νήδυμος[1]> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2@ὕπνος[1]> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2@ὕπνος[1]> .
 
 # Some one-off CTS URNs. That is, URNs indexed to data, but not as part of a fully edited CTS document
 

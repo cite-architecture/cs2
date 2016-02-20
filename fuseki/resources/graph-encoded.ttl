@@ -374,8 +374,8 @@ citedata:msA_Label cite:propType "string".
 <urn:cite:hmt:VenAIliad_classifiedTokens.1> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BF%E1%BD%90%CE%BB%CE%BF%CE%BC%E1%BD%B3%CE%BD%CE%B7%CE%BD%5B1%5D> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BF%E1%BD%90%CE%BB%CE%BF%CE%BC%E1%BD%B3%CE%BD%CE%B7%CE%BD%5B1%5D> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.1> . 
 <urn:cite:hmt:VenAIliad_classifiedTokens.1> cite:transformedToString "οὐλομένην" . 
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BF%E1%BD%90%CE%BB%CE%BF%CE%BC%E1%BD%B3%CE%BD%CE%B7%CE%BD%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BF%E1%BD%90%CE%BB%CE%BF%CE%BC%E1%BD%B3%CE%BD%CE%B7%CE%BD%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BF%E1%BD%90%CE%BB%CE%BF%CE%BC%E1%BD%B3%CE%BD%CE%B7%CE%BD%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BF%E1%BD%90%CE%BB%CE%BF%CE%BC%E1%BD%B3%CE%BD%CE%B7%CE%BD%5B1%5D> .
 <urn:cite:hmt:VenAIliad_classifiedTokens.1> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
 <urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.1> . 
 
@@ -383,8 +383,8 @@ citedata:msA_Label cite:propType "string".
 <urn:cite:hmt:VenAIliad_classifiedTokens.2> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%A1%5B1%5D> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%A1%5B1%5D> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.2> . 
 <urn:cite:hmt:VenAIliad_classifiedTokens.2> cite:transformedToString "ἡ" . 
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%A1%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%A1%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%A1%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%A1%5B1%5D> .
 <urn:cite:hmt:VenAIliad_classifiedTokens.2> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
 <urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.2> . 
 
@@ -392,8 +392,8 @@ citedata:msA_Label cite:propType "string".
 <urn:cite:hmt:VenAIliad_classifiedTokens.3> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BC%CF%85%CF%81%E1%BD%B7%5B1%5D> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BC%CF%85%CF%81%E1%BD%B7%5B1%5D> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.3> . 
 <urn:cite:hmt:VenAIliad_classifiedTokens.3> cite:transformedToString "ἡμυρί'" . 
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BC%CF%85%CF%81%E1%BD%B7%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BC%CF%85%CF%81%E1%BD%B7%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BC%CF%85%CF%81%E1%BD%B7%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BC%CF%85%CF%81%E1%BD%B7%5B1%5D> .
 <urn:cite:hmt:VenAIliad_classifiedTokens.3> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
 <urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.3> . 
 
@@ -401,8 +401,8 @@ citedata:msA_Label cite:propType "string".
 <urn:cite:hmt:VenAIliad_classifiedTokens.4> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%88%CF%87%CE%B1%CE%B9%CE%BF%E1%BF%96%CF%82%5B1%5D> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%88%CF%87%CE%B1%CE%B9%CE%BF%E1%BF%96%CF%82%5B1%5D> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.4> . 
 <urn:cite:hmt:VenAIliad_classifiedTokens.4> cite:transformedToString "Ἀχαιοῖς" . 
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%88%CF%87%CE%B1%CE%B9%CE%BF%E1%BF%96%CF%82%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%88%CF%87%CE%B1%CE%B9%CE%BF%E1%BF%96%CF%82%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%88%CF%87%CE%B1%CE%B9%CE%BF%E1%BF%96%CF%82%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%88%CF%87%CE%B1%CE%B9%CE%BF%E1%BF%96%CF%82%5B1%5D> .
 <urn:cite:hmt:VenAIliad_classifiedTokens.4> cite:hasAnalysis <urn:cite:hmt:peoples.place96> . 
 <urn:cite:hmt:peoples.place96> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.4> . 
 
@@ -410,8 +410,8 @@ citedata:msA_Label cite:propType "string".
 <urn:cite:hmt:VenAIliad_classifiedTokens.5> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%84%CE%BB%CE%B3%CE%B5%5B1%5D> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%84%CE%BB%CE%B3%CE%B5%5B1%5D> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.5> . 
 <urn:cite:hmt:VenAIliad_classifiedTokens.5> cite:transformedToString "ἄλγε'" . 
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%84%CE%BB%CE%B3%CE%B5%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%84%CE%BB%CE%B3%CE%B5%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%84%CE%BB%CE%B3%CE%B5%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%84%CE%BB%CE%B3%CE%B5%5B1%5D> .
 <urn:cite:hmt:VenAIliad_classifiedTokens.5> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
 <urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.5> . 
 
@@ -419,8 +419,8 @@ citedata:msA_Label cite:propType "string".
 <urn:cite:hmt:VenAIliad_classifiedTokens.6> cite:analyzes <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%94%CE%B8%CE%B7%CE%BA%CE%B5%CE%BD%5B1%5D> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%94%CE%B8%CE%B7%CE%BA%CE%B5%CE%BD%5B1%5D> cite:analyzedBy <urn:cite:hmt:VenAIliad_classifiedTokens.6> . 
 <urn:cite:hmt:VenAIliad_classifiedTokens.6> cite:transformedToString "ἔθηκεν" . 
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%94%CE%B8%CE%B7%CE%BA%CE%B5%CE%BD%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%94%CE%B8%CE%B7%CE%BA%CE%B5%CE%BD%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%94%CE%B8%CE%B7%CE%BA%CE%B5%CE%BD%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%94%CE%B8%CE%B7%CE%BA%CE%B5%CE%BD%5B1%5D> .
 <urn:cite:hmt:VenAIliad_classifiedTokens.6> cite:hasAnalysis <urn:cite:hmt:tokentypes.lexical> . 
 <urn:cite:hmt:tokentypes.lexical> cite:analysisFor <urn:cite:hmt:VenAIliad_classifiedTokens.6> . 
 
@@ -974,66 +974,66 @@ citedata:msA_Label cite:propType "string".
 
 # Get all those substrings!
 
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%CE%9C%E1%BF%86%CE%BD%CE%B9%CE%BD%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%CE%9C%E1%BF%86%CE%BD%CE%B9%CE%BD%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%E1%BC%84%CE%B5%CE%B9%CE%B4%CE%B5%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%E1%BC%84%CE%B5%CE%B9%CE%B4%CE%B5%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%CE%B8%CE%B5%E1%BD%B0%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%CE%B8%CE%B5%E1%BD%B0%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%CE%A0%CE%B7%CE%BB%CE%B7%CF%8A%E1%BD%B1%CE%B4%CE%B5%CF%89%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%CE%A0%CE%B7%CE%BB%CE%B7%CF%8A%E1%BD%B1%CE%B4%CE%B5%CF%89%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%E1%BC%88%CF%87%CE%B9%CE%BB%E1%BF%86%CE%BF%CF%82%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%E1%BC%88%CF%87%CE%B9%CE%BB%E1%BF%86%CE%BF%CF%82%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BF%E1%BD%90%CE%BB%CE%BF%CE%BC%E1%BD%B3%CE%BD%CE%B7%CE%BD%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BF%E1%BD%90%CE%BB%CE%BF%CE%BC%E1%BD%B3%CE%BD%CE%B7%CE%BD%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%A1%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%A1%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BC%CF%85%CF%81%E1%BD%B7%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BC%CF%85%CF%81%E1%BD%B7%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%88%CF%87%CE%B1%CE%B9%CE%BF%E1%BF%96%CF%82%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%88%CF%87%CE%B1%CE%B9%CE%BF%E1%BF%96%CF%82%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%84%CE%BB%CE%B3%CE%B5%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%84%CE%BB%CE%B3%CE%B5%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%94%CE%B8%CE%B7%CE%BA%CE%B5%CE%BD%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%94%CE%B8%CE%B7%CE%BA%CE%B5%CE%BD%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%E1%BC%8C%CE%BB%CE%BB%CE%BF%CE%B9%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%E1%BC%8C%CE%BB%CE%BB%CE%BF%CE%B9%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CE%BC%E1%BD%B3%CE%BD%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CE%BC%E1%BD%B3%CE%BD%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%E1%BF%A5%CE%B1%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%E1%BF%A5%CE%B1%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CE%B8%CE%B5%CE%BF%E1%BD%B7%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CE%B8%CE%B5%CE%BF%E1%BD%B7%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CF%84%CE%B5%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CF%84%CE%B5%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CE%BA%CE%B1%E1%BD%B6%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CE%BA%CE%B1%E1%BD%B6%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%E1%BC%80%CE%BD%E1%BD%B3%CF%81%CE%B5%CF%82%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%E1%BC%80%CE%BD%E1%BD%B3%CF%81%CE%B5%CF%82%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%B5%E1%BD%97%CE%B4%CE%BF%CE%BD%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%B5%E1%BD%97%CE%B4%CE%BF%CE%BD%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CF%80%CE%B1%CE%BD%CE%BD%E1%BD%BB%CF%87%CE%B9%CE%BF%CE%B9%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CF%80%CE%B1%CE%BD%CE%BD%E1%BD%BB%CF%87%CE%B9%CE%BF%CE%B9%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%94%E1%BD%B7%CE%B1%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%94%E1%BD%B7%CE%B1%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%B4%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%B4%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%BF%E1%BD%90%CE%BA%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%BF%E1%BD%90%CE%BA%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%E1%BD%B3%CF%87%CE%B5%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%E1%BD%B3%CF%87%CE%B5%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%BD%E1%BD%B5%CE%B4%CF%85%CE%BC%CE%BF%CF%82%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%BD%E1%BD%B5%CE%B4%CF%85%CE%BC%CE%BF%CF%82%5B1%5D> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%E1%BD%95%CF%80%CE%BD%CE%BF%CF%82%5B1%5D> cts:isSubstringOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubstring <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%E1%BD%95%CF%80%CE%BD%CE%BF%CF%82%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%CE%9C%E1%BF%86%CE%BD%CE%B9%CE%BD%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%CE%9C%E1%BF%86%CE%BD%CE%B9%CE%BD%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%E1%BC%84%CE%B5%CE%B9%CE%B4%CE%B5%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%E1%BC%84%CE%B5%CE%B9%CE%B4%CE%B5%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%CE%B8%CE%B5%E1%BD%B0%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%CE%B8%CE%B5%E1%BD%B0%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%CE%A0%CE%B7%CE%BB%CE%B7%CF%8A%E1%BD%B1%CE%B4%CE%B5%CF%89%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%CE%A0%CE%B7%CE%BB%CE%B7%CF%8A%E1%BD%B1%CE%B4%CE%B5%CF%89%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%E1%BC%88%CF%87%CE%B9%CE%BB%E1%BF%86%CE%BF%CF%82%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.1%40%E1%BC%88%CF%87%CE%B9%CE%BB%E1%BF%86%CE%BF%CF%82%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BF%E1%BD%90%CE%BB%CE%BF%CE%BC%E1%BD%B3%CE%BD%CE%B7%CE%BD%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BF%E1%BD%90%CE%BB%CE%BF%CE%BC%E1%BD%B3%CE%BD%CE%B7%CE%BD%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%A1%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%A1%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BC%CF%85%CF%81%E1%BD%B7%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%CE%BC%CF%85%CF%81%E1%BD%B7%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%88%CF%87%CE%B1%CE%B9%CE%BF%E1%BF%96%CF%82%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%88%CF%87%CE%B1%CE%B9%CE%BF%E1%BF%96%CF%82%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%84%CE%BB%CE%B3%CE%B5%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%84%CE%BB%CE%B3%CE%B5%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%94%CE%B8%CE%B7%CE%BA%CE%B5%CE%BD%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:1.2%40%E1%BC%94%CE%B8%CE%B7%CE%BA%CE%B5%CE%BD%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%E1%BC%8C%CE%BB%CE%BB%CE%BF%CE%B9%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%E1%BC%8C%CE%BB%CE%BB%CE%BF%CE%B9%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CE%BC%E1%BD%B3%CE%BD%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CE%BC%E1%BD%B3%CE%BD%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%E1%BF%A5%CE%B1%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%E1%BF%A5%CE%B1%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CE%B8%CE%B5%CE%BF%E1%BD%B7%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CE%B8%CE%B5%CE%BF%E1%BD%B7%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CF%84%CE%B5%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CF%84%CE%B5%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CE%BA%CE%B1%E1%BD%B6%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%CE%BA%CE%B1%E1%BD%B6%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%E1%BC%80%CE%BD%E1%BD%B3%CF%81%CE%B5%CF%82%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.1%40%E1%BC%80%CE%BD%E1%BD%B3%CF%81%CE%B5%CF%82%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%B5%E1%BD%97%CE%B4%CE%BF%CE%BD%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%B5%E1%BD%97%CE%B4%CE%BF%CE%BD%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CF%80%CE%B1%CE%BD%CE%BD%E1%BD%BB%CF%87%CE%B9%CE%BF%CE%B9%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CF%80%CE%B1%CE%BD%CE%BD%E1%BD%BB%CF%87%CE%B9%CE%BF%CE%B9%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%94%E1%BD%B7%CE%B1%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%94%E1%BD%B7%CE%B1%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%B4%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%B4%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%BF%E1%BD%90%CE%BA%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%BF%E1%BD%90%CE%BA%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%E1%BD%B3%CF%87%CE%B5%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%E1%BD%B3%CF%87%CE%B5%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%BD%E1%BD%B5%CE%B4%CF%85%CE%BC%CE%BF%CF%82%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%CE%BD%E1%BD%B5%CE%B4%CF%85%CE%BC%CE%BF%CF%82%5B1%5D> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%E1%BD%95%CF%80%CE%BD%CE%BF%CF%82%5B1%5D> cts:isSubrefOf <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:hasSubref <urn:cts:greekLit:tlg0012.tlg001.msA:2.2%40%E1%BD%95%CF%80%CE%BD%CE%BF%CF%82%5B1%5D> .
 
 # Some one-off CTS URNs. That is, URNs indexed to data, but not as part of a fully edited CTS document
 
-<urn:cts:greekLit:tlg5026.msA.hmt:1.1> cts:commentsOn <urn:cts:greekLit:tlg0012.tlg001.msA:1.192> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.192> cts:commentedOnBy <urn:cts:greekLit:tlg5026.msA.hmt:1.1> .
+<urn:cts:greekLit:tlg5026.msA.hmt:1.1> hmt:commentsOn <urn:cts:greekLit:tlg0012.tlg001.msA:1.192> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.192> hmt:commentedOnBy <urn:cts:greekLit:tlg5026.msA.hmt:1.1> .
 
-<urn:cts:greekLit:tlg0012.tlg002:1.1> cts:commentedOnBy <urn:cts:greekLit:tlg5026.msA.hmt:1.1> . 
-<urn:cts:greekLit:tlg5026.msA.hmt:1.1> cts:commentsOn <urn:cts:greekLit:tlg0012.tlg002:1.1> .
+<urn:cts:greekLit:tlg0012.tlg002:1.1> hmt:commentedOnBy <urn:cts:greekLit:tlg5026.msA.hmt:1.1> . 
+<urn:cts:greekLit:tlg5026.msA.hmt:1.1> hmt:commentsOn <urn:cts:greekLit:tlg0012.tlg002:1.1> .
 
 # Some fake images, indexed (unaccountably) to _ranges_
 
