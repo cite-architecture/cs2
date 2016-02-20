@@ -1029,11 +1029,11 @@ citedata:msA_Label cite:propType "string".
 
 # Some one-off CTS URNs. That is, URNs indexed to data, but not as part of a fully edited CTS document
 
-<urn:cts:greekLit:tlg5026.msA.hmt:1.1> cts:commentsOn <urn:cts:greekLit:tlg0012.tlg001.msA:1.192> .
-<urn:cts:greekLit:tlg0012.tlg001.msA:1.192> cts:commentedOnBy <urn:cts:greekLit:tlg5026.msA.hmt:1.1> .
+<urn:cts:greekLit:tlg5026.msA.hmt:1.1> hmt:commentsOn <urn:cts:greekLit:tlg0012.tlg001.msA:1.192> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.192> hmt:commentedOnBy <urn:cts:greekLit:tlg5026.msA.hmt:1.1> .
 
-<urn:cts:greekLit:tlg0012.tlg002:1.1> cts:commentedOnBy <urn:cts:greekLit:tlg5026.msA.hmt:1.1> . 
-<urn:cts:greekLit:tlg5026.msA.hmt:1.1> cts:commentsOn <urn:cts:greekLit:tlg0012.tlg002:1.1> .
+<urn:cts:greekLit:tlg0012.tlg002:1.1> hmt:commentedOnBy <urn:cts:greekLit:tlg5026.msA.hmt:1.1> . 
+<urn:cts:greekLit:tlg5026.msA.hmt:1.1> hmt:commentsOn <urn:cts:greekLit:tlg0012.tlg002:1.1> .
 
 # Some fake images, indexed (unaccountably) to _ranges_
 
