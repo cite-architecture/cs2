@@ -1,5 +1,6 @@
-## Notes and Questions
+# RDF Verbs
 
+A list of RDF verbs used by the [Homer Multitext](http://homermultitext.org) for implementing CITE/CTS services with a Sparql backend.
 
 ## General
 
