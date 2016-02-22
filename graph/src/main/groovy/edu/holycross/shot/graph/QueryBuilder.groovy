@@ -25,12 +25,15 @@ abstract class QueryBuilder {
 	static String generalQuery(String urn) {
 		String q = """
 			${GraphDefinitions.prefixPhrase}
-			select ?s ?v ?o ?label ?ctsSeq ?objSeq where {
+			select ?s ?v ?o ?label ?ctsSeq ?objSeq ?verbLabel ?ctsSeqLabel ?objSeqLabel where {
 				BIND ( <${urn}> as ?s ) .
 				?s ?v ?o .
 				optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?ctsSeq . }
 			    optional { ?o <http://purl.org/ontology/olo/core#item> ?objSeq . }
 				optional { ?o rdf:label ?label . }
+				optional { ?v rdf:label ?verbLabel . }
+		  optional { <http://www.homermultitext.org/cts/rdf/hasSequence> rdf:label ?ctsSeqLabel . }
+          optional { <http://purl.org/ontology/olo/core#item> rdf:label ?objSeqLabel . }
 			}
 		"""
 		return q
@@ -63,11 +66,14 @@ static String existsInGraph(String urn){
 static String getTextGroupAdjacentQuery(String urn){
 
     return """${GraphDefinitions.prefixPhrase}
-SELECT ?s ?v ?o
+SELECT ?s ?v ?o ?verbLabel ?ctsSeqLabel ?objSeqLabel 
 WHERE {
 	{
 		bind(<${urn}> as ?s)
 			?s ?v ?o  .
+			optional { ?v rdf:label ?verbLabel . }
+		  optional { <http://www.homermultitext.org/cts/rdf/hasSequence> rdf:label ?ctsSeqLabel . }
+          optional { <http://purl.org/ontology/olo/core#item> rdf:label ?objSeqLabel . }
 
 	} union {
 		bind(<${urn}> as ?parent)
@@ -158,13 +164,16 @@ WHERE {
   static String getSingleLeafNodeQuery(String urn) {
     return """
     ${GraphDefinitions.prefixPhrase}
-	SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq  WHERE {  
+	SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq ?verbLabel  ?ctsSeqLabel ?objSeqLabel  WHERE {  
 
 			bind ( <${urn}> as ?s ) .
 			?s ?v ?o .
 		  optional { ?o cts:hasSequence ?ctsSeq . }
 		  optional { ?o rdf:label ?label . }
 		  optional { ?o olo:item ?objSeq . }
+		  optional { ?v rdf:label ?verbLabel . }
+		  optional { <http://www.homermultitext.org/cts/rdf/hasSequence> rdf:label ?ctsSeqLabel . }
+          optional { <http://purl.org/ontology/olo/core#item> rdf:label ?objSeqLabel . }
 	}
 
 	order by ?s ?v ?o ?ctsSeq ?objSeq 
@@ -201,10 +210,14 @@ WHERE {
    */
   static String getQueryNotionalCitation(String urn, ArrayList urnArray){
 	  String returnString = """ ${GraphDefinitions.prefixPhrase} 
-	  							SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq where {     """
+	  							SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq ?verbLabel  ?ctsSeqLabel ?objSeqLabel where {     """
       returnString += """       { bind (<${urn}> as ?s ) .
 	  							?s ?v ?o . 
-								optional { ?o rdf:label ?label . } } """
+								optional { ?o rdf:label ?label . 
+								optional { ?v rdf:label ?verbLabel . }
+							  optional { <http://www.homermultitext.org/cts/rdf/hasSequence> rdf:label ?ctsSeqLabel . }
+							  optional { <http://purl.org/ontology/olo/core#item> rdf:label ?objSeqLabel . }
+								} } """
 	  urnArray.each { u ->
 	 	returnString +=  """ 
 			union {  
@@ -214,6 +227,9 @@ WHERE {
 				optional { ?s <http://purl.org/ontology/olo/core#item> ?objSeq .}
 				optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?ctsSeq . }
 				optional { ?o <http://purl.org/ontology/olo/core#item> ?objSeq .}
+				optional { ?v rdf:label ?verbLabel . }
+		  optional { <http://www.homermultitext.org/cts/rdf/hasSequence> rdf:label ?ctsSeqLabel . }
+          optional { <http://purl.org/ontology/olo/core#item> rdf:label ?objSeqLabel . }
 				optional { ?o rdf:label ?label . } 
 				optional { 
 				  ?o cite:isExtendedRef ?citeRef .
@@ -232,6 +248,9 @@ WHERE {
 				optional { ?s <http://purl.org/ontology/olo/core#item> ?objSeq .}
 				optional { ?o <http://www.homermultitext.org/cts/rdf/hasSequence> ?ctsSeq . }
 				optional { ?o <http://purl.org/ontology/olo/core#item> ?objSeq .}
+				optional { ?v rdf:label ?verbLabel . }
+		  optional { <http://www.homermultitext.org/cts/rdf/hasSequence> rdf:label ?ctsSeqLabel . }
+          optional { <http://purl.org/ontology/olo/core#item> rdf:label ?objSeqLabel . }
 			    optional { ?o rdf:label ?label . } 
 				optional { 
 				  ?o cite:isExtendedRef ?citeRef .
@@ -263,7 +282,7 @@ WHERE {
   static String getWorkVersionExemplarWithoutPassage(String urn){
 
   String returnString = """ ${GraphDefinitions.prefixPhrase} 
-SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq
+SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq ?verbLabel ?ctsSeqLabel ?objSeqLabel 
 WHERE {
   
   bind (<${urn}> as ?s)
@@ -271,6 +290,9 @@ WHERE {
   optional { ?o rdf:label ?label . }
   optional { ?o cts:hasSequence ?ctsSeq . }
   optional { ?o olo:item ?objSeq . }
+	optional { ?v rdf:label ?verbLabel . }
+		  optional { <http://www.homermultitext.org/cts/rdf/hasSequence> rdf:label ?ctsSeqLabel . }
+          optional { <http://purl.org/ontology/olo/core#item> rdf:label ?objSeqLabel . }
   
 } 
 
@@ -294,7 +316,7 @@ order by ?o ?ctsSeq ?objSeq
   static String getQueryVersionLevelContaining(String urn){
 
   String returnString = """ ${GraphDefinitions.prefixPhrase} 
-	  SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq
+	  SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq ?verbLabel ?ctsSeqLabel ?objSeqLabel 
 	  WHERE {
 
 		  bind (<${urn}> as ?s)
@@ -302,6 +324,9 @@ order by ?o ?ctsSeq ?objSeq
 			  optional { ?o rdf:label ?label . }
 		  optional { ?o cts:hasSequence ?ctsSeq . }
 		  optional { ?o olo:item ?objSeq . }
+				optional { ?v rdf:label ?verbLabel . }
+		  optional { <http://www.homermultitext.org/cts/rdf/hasSequence> rdf:label ?ctsSeqLabel . }
+          optional { <http://purl.org/ontology/olo/core#item> rdf:label ?objSeqLabel . }
 	  } 
 	"""
 	return returnString
@@ -317,7 +342,7 @@ order by ?o ?ctsSeq ?objSeq
   static String getSimpleCtsQuery(String urn){
 
 	  String returnString = """ ${GraphDefinitions.prefixPhrase} 
-	  SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq
+	  SELECT ?s ?v ?o ?label ?ctsSeq ?objSeq ?verbLabel ?ctsSeqLabel ?objSeqLabel 
 	  WHERE {
 
 		  bind (<${urn}> as ?s)
@@ -325,6 +350,9 @@ order by ?o ?ctsSeq ?objSeq
 			  optional { ?o rdf:label ?label . }
 		  optional { ?o cts:hasSequence ?ctsSeq . }
 		  optional { ?o olo:item ?objSeq . }
+		  optional { ?v rdf:label ?verbLabel . }
+		  optional { <http://www.homermultitext.org/cts/rdf/hasSequence> rdf:label ?ctsSeqLabel . }
+          optional { <http://purl.org/ontology/olo/core#item> rdf:label ?objSeqLabel . }
 	  } 
 
 	  """
@@ -342,7 +370,7 @@ order by ?o ?ctsSeq ?objSeq
 	  String returnString = """ ${GraphDefinitions.prefixPhrase} 
 		SELECT ?o WHERE {
 		bind (<${urn}> as ?s) .
-		        ?s orca:exemplifiedBy ?o .
+		        ?s cts:possesses ?o .
 		}
 
 	  """

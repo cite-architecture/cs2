@@ -19,7 +19,7 @@ abstract class QueryBuilder {
     ${CtsDefinitions.prefixPhrase}
 
     SELECT ?psg ?txt ?anc ?xpt ?xmlns WHERE {
-    ?psg cts:belongsTo <${urn.getUrnWithoutPassage()}> .
+    ?psg cts:isPassageOf <${urn.getUrnWithoutPassage()}> .
     ?psg cts:hasTextContent ?txt .
     ?psg cts:hasSequence ?s .
     ?psg hmt:xpTemplate ?xpt .
@@ -176,7 +176,7 @@ abstract class QueryBuilder {
     ${CtsDefinitions.prefixPhrase}
 
     SELECT ?psg ?txt ?anc ?xpt ?xmlns WHERE {
-    ?psg cts:belongsTo <${urn.getUrnWithoutPassage()}> .
+    ?psg cts:isPassageOf <${urn.getUrnWithoutPassage()}> .
     ?psg cts:hasTextContent ?txt .
     ?psg cts:hasSequence ?s .
     ?psg hmt:xpTemplate ?xpt .
@@ -233,7 +233,7 @@ static String getFirstContainedQuery(CtsUrn containingUrn) {
   ${CtsDefinitions.prefixPhrase}
   SELECT   ?urn ?seq
 	 WHERE {
-		?urn  cts:containedBy  <${containingUrn}>  .
+		?urn  cts:containedBy*  <${containingUrn}>  .
 		?urn cts:hasSequence ?seq .        
 	 }
   ORDER BY ?seq
@@ -271,7 +271,7 @@ return """
 ${CtsDefinitions.prefixPhrase}
 SELECT distinct ?ref 
 WHERE {
-?u cts:belongsTo <${versionUrn}> .
+?u cts:isPassageOf <${versionUrn}> .
 ?u cts:containedBy* ?ref .
 ?u cts:hasSequence ?s .
 ?ref cts:citationDepth ?d .
@@ -293,7 +293,7 @@ return """
 ${CtsDefinitions.prefixPhrase}
 SELECT ?ref ?t 
 WHERE {
-?u cts:belongsTo <${versionUrn}> .
+?u cts:isPassageOf <${versionUrn}> .
 ?u cts:containedBy* ?ref .
 ?u cts:hasSequence ?s .
 ?ref cts:citationDepth ?d .

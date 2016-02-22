@@ -152,8 +152,10 @@ class CtsGraph {
 	Integer endAtStr
 
 	
+	println "getUrnList ${submittedUrn}"
 
 	CtsUrn urn = resolveVersion(new CtsUrn (submittedUrn.reduceToNode()))
+	println "resolved version: ${urn}"
     ArrayList urns = []
 
 	// Three Possibilities: node, container, range
@@ -163,19 +165,24 @@ class CtsGraph {
 
 		if (urn.isRange()){
 			CtsUrn urn1 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
+			println "urn1: ${urn1}"
 			CtsUrn urn2 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")
+			println "urn2: ${urn1}"
 
             if (isLeafNode(urn1)) {
            	     startAtStr =  getSequence(urn1)
 			} else {
 				startAtStr = getFirstSequence(urn1)
 			}
+			 println "startAtStr = ${startAtStr}"
 			
 			if (isLeafNode(urn2)) {
 				endAtStr = getSequence(urn2)
 			} else {
 				endAtStr = getLastSequence(urn2)
 			}
+			println "endAtStr = ${endAtStr}"
+
 			// error check these…
 		    int1 = startAtStr.toInteger()
 			int2 = endAtStr.toInteger()
@@ -519,7 +526,9 @@ class CtsGraph {
     Integer getFirstSequence(CtsUrn urn) {
         Integer firstInt = null
 		String firstContainedQuery = QueryBuilder.getFirstContainedQuery(urn)
+		println "${firstContainedQuery}"
         String ctsReply = sparql.getSparqlReply("application/json", firstContainedQuery)
+		println ctsReply
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(ctsReply)
         

@@ -94,7 +94,6 @@ class IndexGraph {
 				}
 				break;
 			case "EXEMPLAR":
-				println "got here ${urn}"
 				if (urn.passageComponent == null){
 					al = getForWorkWithoutPassage(urn)
 				} else {
@@ -362,7 +361,7 @@ ArrayList getForWorkLeaf(CtsUrn urn) {
 				getForVersionLeaf(tempUrn).each { replyArray << it }
 		}
 
-	return replyArray
+	return uniqueTriples(replyArray)
 
 }
 
@@ -523,7 +522,8 @@ ArrayList getForVersionRange(CtsUrn urn){
 
 	// See if there is anything mapped to this explicit range
 	getOneOffCtsUrn(urn).each{ workingArray << it }
-
+	println "Doing getForVersionRange ${urn}"
+	
 
 	// Get leaves for Version
 	leafArray = ctsgraph.getUrnList(urn)	
@@ -573,8 +573,9 @@ ArrayList getForExemplarContainer(CtsUrn urn){
 	if (parsedReply.results.size() > 0 ){
 		parsedJsonToTriples(parsedReply).each { exemplarArray << it }
 	}
+	
 
-	return exemplarArray
+	return uniqueTriples(exemplarArray)
 
 }
 
@@ -601,7 +602,7 @@ ArrayList getForExemplarLeaf(CtsUrn urn){
 			parsedJsonToTriples(parsedReply).each { exemplarArray << it }
 		}
 
-	return exemplarArray
+	return uniqueTriples(exemplarArray)
 
 }
 
@@ -615,6 +616,7 @@ ArrayList getForExemplarLeaf(CtsUrn urn){
  */
 ArrayList getForExemplarRange(CtsUrn urn){
 
+	println "getForExemplarRange ${urn}"
 	ArrayList workingArray = []
 	ArrayList uniquedArray = []
 	ArrayList leafArray = []
@@ -625,6 +627,9 @@ ArrayList getForExemplarRange(CtsUrn urn){
 
 	// Get
 	leafArray = ctsgraph.getUrnList(urn)	
+	println "leafArray:"
+	println leafArray
+	println "---------------------"
 	leafArray.each{ lai ->
 		findAdjacent(lai).each{ 
 			workingArray << it
@@ -698,8 +703,27 @@ ArrayList parsedJsonToTriples(Object parsedReply){
 				// We also want olo:item sequencing for all URI objects, to be nice
 				if (jo.objSeq){
 					tempVerb = new URI("olo:item")
-						tempSubject = tempObject
+						tempSubject = jo.v.value
 						tempTriple = new Triple(tempSubject,tempVerb,jo.objSeq?.value)	
+						replyArray << tempTriple
+				}
+				// And we want triples with verbs and their labels
+				if (jo.verbLabel){
+					tempVerb = new URI("rdf:label")
+					tempSubject = new URI(jo.v.value)
+						tempTriple = new Triple(tempSubject,tempVerb,jo.verbLabel?.value)	
+						replyArray << tempTriple
+				}
+				if (jo.ctsSeqLabel){
+					tempVerb = new URI("rdf:label")
+					tempSubject = new URI("http://www.homermultitext.org/cts/rdf/hasSequence")
+						tempTriple = new Triple(tempSubject,tempVerb,jo.ctsSeqLabel?.value)	
+						replyArray << tempTriple
+				}
+				if (jo.objSeqLabel){
+					tempVerb = new URI("rdf:label")
+					tempSubject = new URI("http://purl.org/ontology/olo/core#item")
+						tempTriple = new Triple(tempSubject,tempVerb,jo.objSeqLabel?.value)	
 						replyArray << tempTriple
 				}
 			}
