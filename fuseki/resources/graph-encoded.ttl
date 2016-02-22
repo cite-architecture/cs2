@@ -16,6 +16,7 @@
 <http://www.tei-c.org/ns/1.0> cts:abbreviatedBy "tei" .
 <http://www.homermultitext.org/hmt/rdf> cite:abbreviatedBy "hmt" .  
 <http://www.homermultitext.org/hmt/rdf> rdf:type cite:DataNs .  
+<urn:cts:greekLit:> cts:fullUri <http://chs.harvard.edu/f1k/greekLit> .
 
 # CTS Iliad
 
