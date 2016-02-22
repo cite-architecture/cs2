@@ -1,7 +1,7 @@
 ext {
 
     versionMap = [
-      "cite" : "1.0.4",
+      "cite" : "1.1.0",
       //"groovy": "[2.3,)", // This is correct, but need lower version for gretty
       "groovy": "2.4.1",
       
