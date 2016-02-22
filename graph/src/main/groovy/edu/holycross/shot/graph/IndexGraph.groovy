@@ -695,33 +695,33 @@ ArrayList parsedJsonToTriples(Object parsedReply){
 					}
 				// We also want cts:hasSequence for all URI objects, to be nice
 				if (jo.ctsSeq){
-					tempVerb = new URI("cts:hasSequence")
+					tempVerb = new URI("http://www.homermultitext.org/cts/rdf/hasSequence")
 						tempSubject = tempObject
 						tempTriple = new Triple(tempSubject,tempVerb,jo.ctsSeq?.value)	
 						replyArray << tempTriple
 				}
 				// We also want olo:item sequencing for all URI objects, to be nice
 				if (jo.objSeq){
-					tempVerb = new URI("olo:item")
+					tempVerb = new URI("http://purl.org/ontology/olo/core#item")
 						tempSubject = jo.v.value
 						tempTriple = new Triple(tempSubject,tempVerb,jo.objSeq?.value)	
 						replyArray << tempTriple
 				}
 				// And we want triples with verbs and their labels
 				if (jo.verbLabel){
-					tempVerb = new URI("rdf:label")
+					tempVerb = new URI("http://www.w3.org/1999/02/22-rdf-syntax-ns#label")
 					tempSubject = new URI(jo.v.value)
 						tempTriple = new Triple(tempSubject,tempVerb,jo.verbLabel?.value)	
 						replyArray << tempTriple
 				}
 				if (jo.ctsSeqLabel){
-					tempVerb = new URI("rdf:label")
+					tempVerb = new URI("http://www.w3.org/1999/02/22-rdf-syntax-ns#label")
 					tempSubject = new URI("http://www.homermultitext.org/cts/rdf/hasSequence")
 						tempTriple = new Triple(tempSubject,tempVerb,jo.ctsSeqLabel?.value)	
 						replyArray << tempTriple
 				}
 				if (jo.objSeqLabel){
-					tempVerb = new URI("rdf:label")
+					tempVerb = new URI("http://www.w3.org/1999/02/22-rdf-syntax-ns#label")
 					tempSubject = new URI("http://purl.org/ontology/olo/core#item")
 						tempTriple = new Triple(tempSubject,tempVerb,jo.objSeqLabel?.value)	
 						replyArray << tempTriple
