@@ -54,7 +54,7 @@ class TestSampleGraphDataIntegr extends GroovyTestCase {
   void testMasterVerbs() {
   String baseUrl = "http://localhost:8080/fuseki/justverbs/query"
   String verbQuery = "SELECT distinct ?s WHERE { ?s ?v ?o .  }"
-  Integer expectedNumberVerbs = 47 
+  Integer expectedNumberVerbs = 48 
 
   Sparql sparql = new Sparql(baseUrl)
   String uri = System.getProperty('gretty.baseURI')
@@ -75,7 +75,7 @@ class TestSampleGraphDataIntegr extends GroovyTestCase {
 	@Test
 	void testGetVerbList(){
 		ArrayList verbList = getMasterVerbList()
-		assert verbList.size() == 47
+		assert verbList.size() == 48
 	}
 
 	@Test

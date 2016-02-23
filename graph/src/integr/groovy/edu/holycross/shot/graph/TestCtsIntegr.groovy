@@ -159,7 +159,7 @@ class TestCtsIntegr extends GroovyTestCase {
 		void testVersionLeaf() {
 			CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:2.1")
 				ArrayList al = gs.graph.findAdjacent(urn)
-				assert al.size() == 71
+				assert al.size() == 75
 		}  
 
   @Test
@@ -174,7 +174,7 @@ class TestCtsIntegr extends GroovyTestCase {
 	void testWorkLeaf() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:2.1")
 	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 83
+	  assert al.size() == 89
 	  // 56 for version and exemplar; 12 for translation. 
 	}  
 
@@ -212,7 +212,7 @@ class TestCtsIntegr extends GroovyTestCase {
 	void testVersionWithoutPassage() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:")
 	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 25
+	  assert al.size() == 23
 	}
 
 	@Test
@@ -226,7 +226,7 @@ class TestCtsIntegr extends GroovyTestCase {
 	void testExemplarWithoutPassage() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:")
 	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 91
+	  assert al.size() == 89
 	}
 
 	@Test
@@ -315,7 +315,7 @@ class TestCtsIntegr extends GroovyTestCase {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4-1.2.2")
 	  ArrayList al = gs.graph.findAdjacent(urn)
 	  println "al.size() = ${al.size()}"
-	  assert al.size() == 72
+	  assert al.size() == 82
 	} 
 
 
@@ -323,7 +323,7 @@ class TestCtsIntegr extends GroovyTestCase {
 	void testExemplarRange2() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1-2.1.1")
 	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 172
+	  assert al.size() == 198
 	}  
 	
 
@@ -332,14 +332,14 @@ class TestCtsIntegr extends GroovyTestCase {
 	void testExemplarRange3() {
 		CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1-2.1.1")
 			ArrayList al = gs.graph.findAdjacent(urn)
-			assert al.size() == 172
+			assert al.size() == 198
 	}  
 
 	@Test
 	void testExemplarRange4() {
 		CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1-2")
 			ArrayList al = gs.graph.findAdjacent(urn)
-			assert al.size() == 365
+			assert al.size() == 407
 	}  
 
 	@Test
@@ -350,7 +350,7 @@ class TestCtsIntegr extends GroovyTestCase {
 		println " ExemplarRange6 ${urn} "
 		println "-----------------------------------"
 			ArrayList al = gs.graph.findAdjacent(urn)
-			assert al.size() == 365
+			assert al.size() == 407
 	}  
 
 
@@ -358,7 +358,7 @@ class TestCtsIntegr extends GroovyTestCase {
 	void testVersionLeafRange() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1-2.1")
 	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 157
+	  assert al.size() == 165
 	}  
 
 	/* for tlg001:2.1-2.2
@@ -380,7 +380,7 @@ class TestCtsIntegr extends GroovyTestCase {
 	void testWorkRange1() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:2.1-2.2")
 	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 136
+	  assert al.size() == 146
 	}  
 
 	@Test
@@ -396,7 +396,7 @@ class TestCtsIntegr extends GroovyTestCase {
 	void testWorkRange2() {
 	  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1-2.1")
 	  ArrayList al = gs.graph.findAdjacent(urn)
-	  assert al.size() == 189
+	  assert al.size() == 203
 	}  
 
 	void testExemplarContainer_nonextantUrn() {

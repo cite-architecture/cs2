@@ -35,7 +35,6 @@
 
 # Venetus A edition
 
-<urn:cts:greekLit:tlg0012.tlg001.msA:> cts:xmlns <http://www.tei-c.org/ns/1.0> .
 
 <urn:cts:greekLit:tlg0012.tlg001.msA:> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001:> .
 <urn:cts:greekLit:tlg0012.tlg001:> cts:possesses <urn:cts:greekLit:tlg0012.tlg001.msA:> .
@@ -56,6 +55,8 @@
 <urn:cts:greekLit:tlg0012.tlg001.msA:1> rdf:label "Homeric Epic, Iliad ( Venetus A ): 1 (urn:cts:greekLit:tlg0012.tlg001.msA:1)" .
 <urn:cts:greekLit:tlg0012.tlg001.msA:2> rdf:label "Homeric Epic, Iliad ( Venetus A ): 2 (urn:cts:greekLit:tlg0012.tlg001.msA:2)" .
 
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:xmlnsabbr "tei" .
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> rdf:label "Homeric Epic, Iliad ( Venetus A ): 1.1 (urn:cts:greekLit:tlg0012.tlg001.msA:1.1)" .
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:isPassageOf <urn:cts:greekLit:tlg0012.tlg001.msA:> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:> cts:hasPassage <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> . 
@@ -67,6 +68,8 @@
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA:1> .
 <urn:cts:greekLit:tlg0012.tlg001.msA:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .
 
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:xmlnsabbr "tei" .
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> rdf:label "Homeric Epic, Iliad ( Venetus A ): 1.2 (urn:cts:greekLit:tlg0012.tlg001.msA:1.2)" .
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:isPassageOf <urn:cts:greekLit:tlg0012.tlg001.msA:> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:> cts:hasPassage <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> . 
@@ -78,6 +81,8 @@
 <urn:cts:greekLit:tlg0012.tlg001.msA:1.2> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA:1> .
 <urn:cts:greekLit:tlg0012.tlg001.msA:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA:1.2>  .
 
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:xmlnsabbr "tei" .
 <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> rdf:label "Homeric Epic,  Iliad  ( Venetus A ): 2.1 (urn:cts:greekLit:tlg0012.tlg001.msA:2.1)" .
 <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:isPassageOf <urn:cts:greekLit:tlg0012.tlg001.msA:> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:> cts:hasPassage <urn:cts:greekLit:tlg0012.tlg001.msA:2.1>  . 
@@ -89,6 +94,8 @@
 <urn:cts:greekLit:tlg0012.tlg001.msA:2.1> cts:containedBy <urn:cts:greekLit:tlg0012.tlg001.msA:2> .
 <urn:cts:greekLit:tlg0012.tlg001.msA:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA:2.1>  .
 
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:xmlnsabbr "tei" .
 <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> rdf:label "Homeric Epic, Iliad  ( Venetus A ): 2.2 (urn:cts:greekLit:tlg0012.tlg001.msA:2.2)" .
 <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> cts:isPassageOf <urn:cts:greekLit:tlg0012.tlg001.msA:> . 
 <urn:cts:greekLit:tlg0012.tlg001.msA:> cts:hasPassage <urn:cts:greekLit:tlg0012.tlg001.msA:2.2> . 
@@ -130,11 +137,12 @@
 
 <urn:cts:greekLit:tlg5026.msA:> cts:possesses <urn:cts:greekLit:tlg5026.msA.hmt:> .
 <urn:cts:greekLit:tlg5026.msA.hmt:> cts:belongsTo <urn:cts:greekLit:tlg5026.msA:> .
-<urn:cts:greekLit:tlg5026.msA.hmt:> cts:xmlns <http://www.tei-c.org/ns/1.0> .
 <urn:cts:greekLit:tlg5026.msA.hmt:> dcterms:title "msA" .
 <urn:cts:greekLit:tlg5026.msA.hmt:> rdf:type cts:Edition .
 <urn:cts:greekLit:tlg5026.msA.hmt:>  rdf:label "Scholia to the Iliad, Main marginal scholia (msA)" .
 
+<urn:cts:greekLit:tlg5026.msA.hmt:1.1> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg5026.msA.hmt:1.1> cts:xmlnsabbr "tei" .
 <urn:cts:greekLit:tlg5026.msA.hmt:1.1> rdf:label "Scholia to the Iliad, Main marginal scholia (msA): 1.1 (urn:cts:greekLit:tlg5026.msA.hmt:1.1)" .
 <urn:cts:greekLit:tlg5026.msA.hmt:1.1> cts:isPassageOf <urn:cts:greekLit:tlg5026.msA.htm:> .
 <urn:cts:greekLit:tlg5026.msA.htm:> cts:hasPassage <urn:cts:greekLit:tlg5026.msA.hmt:1.1> . 
@@ -146,6 +154,8 @@
 <urn:cts:greekLit:tlg5026.msA.hmt:1.1> cts:containedBy <urn:cts:greekLit:tlg5026.msA.hmt:1> .
 <urn:cts:greekLit:tlg5026.msA.hmt:1> cts:contains <urn:cts:greekLit:tlg5026.msA.hmt:1.1>  .
 
+<urn:cts:greekLit:tlg5026.msA.hmt:1.6> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg5026.msA.hmt:1.6> cts:xmlnsabbr "tei" .
 <urn:cts:greekLit:tlg5026.msA.hmt:1.6> rdf:label "Scholia to the Iliad, Main marginal scholia (msA): 1.6 (urn:cts:greekLit:tlg5026.msA.hmt:1.6)" .
 <urn:cts:greekLit:tlg5026.msA.hmt:1.6> cts:isPassageOf <urn:cts:greekLit:tlg5026.msA.htm:> .
 <urn:cts:greekLit:tlg5026.msA.hmt:> cts:hasPassage <urn:cts:greekLit:tlg5026.msA.hmt:1.6> . 
@@ -158,6 +168,8 @@
 <urn:cts:greekLit:tlg5026.msA.hmt:1> cts:contains <urn:cts:greekLit:tlg5026.msA.hmt:1.6>  .
 <urn:cts:greekLit:tlg5026.msA.hmt:1> cts:citationDepth 1 .
 
+<urn:cts:greekLit:tlg5026.msA.hmt:2.1> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg5026.msA.hmt:2.1> cts:xmlnsabbr "tei" .
 <urn:cts:greekLit:tlg5026.msA.hmt:2.1> rdf:label "Scholia to the Iliad, Main marginal scholia (msA): 2.1 (urn:cts:greekLit:tlg5026.msA.hmt:2.1)" .
 <urn:cts:greekLit:tlg5026.msA.hmt:2.1> cts:isPassageOf <urn:cts:greekLit:tlg5026.msA.htm:> .
 <urn:cts:greekLit:tlg5026.msA.hmt:> cts:hasPassage <urn:cts:greekLit:tlg5026.msA.hmt:2.1> . 
@@ -431,7 +443,6 @@ citedata:msA_Label cite:propType "string".
 
 # Translation (aligned) of the Iliad: 1.1, 1.2, 2.1, 2,2
 
-<urn:cts:greekLit:tlg0012.tlg001.alignedEng:> cts:xmlns <http://www.tei-c.org/ns/1.0> .
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001:> .
 <urn:cts:greekLit:tlg0012.tlg001:> cts:possesses <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001:> .
@@ -439,6 +450,9 @@ citedata:msA_Label cite:propType "string".
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> rdf:type cts:Translation .
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> rdf:label "Furman/Perseus Text, based on Butler's Translation" .
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> cts:translationLang "eng" .
+
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> cts:xmlnsabbr "tei" .
 
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.1> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> .
 
@@ -456,6 +470,8 @@ citedata:msA_Label cite:propType "string".
 
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> cts:next <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> .
 
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> cts:xmlnsabbr "tei" .
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> cts:isPassageOf <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> cts:hasPassage <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> .
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> rdf:label "Furman/Perseus Text, based on Butler's Translation: 1.2" .
@@ -469,6 +485,8 @@ citedata:msA_Label cite:propType "string".
 
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> .
 
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> cts:xmlnsabbr "tei" .
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> cts:isPassageOf <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> cts:hasPassage <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> .
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.1> rdf:label "Furman/Perseus Text, based on Butler's Translation: 2.1" .
@@ -482,6 +500,8 @@ citedata:msA_Label cite:propType "string".
 
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> cts:prev <urn:cts:greekLit:tlg0012.tlg001.alignedEng:1.2> .
 
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> cts:xmlnsabbr "tei" .
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> cts:isPassageOf <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> .
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:> cts:hasPassage <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> .
 <urn:cts:greekLit:tlg0012.tlg001.alignedEng:2.2> rdf:label "Furman/Perseus Text, based on Butler's Translation: 2.2" .
@@ -496,7 +516,6 @@ citedata:msA_Label cite:propType "string".
 
 # Analytical Exemplar Derived from the Venetus A edition
 
-<urn:cts:greekLit:tlg0012.tlg001.msA.wt:> cts:xmlns <http://www.tei-c.org/ns/1.0> .
 
 <urn:cts:greekLit:tlg0012.tlg001.msA:> cts:possesses <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> .
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> cts:belongsTo <urn:cts:greekLit:tlg0012.tlg001.msA:> .
@@ -519,6 +538,63 @@ citedata:msA_Label cite:propType "string".
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2> .
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1> .
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2> cts:contains <urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2> .
+
+# Do these all at once.
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2,2.1> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2,2.2> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2,2.3> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2,2.4> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2,2.5> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2,2.6> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2,2.7> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> cts:xmlns <http://www.tei-c.org/ns/1.0> .
+
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.2> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.3> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.4> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.5> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.1> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.2> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.3> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.4> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.5> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.2.6> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.1> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.2> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.3> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.4> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.5> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.6> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.7> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.1.8> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2,2.1> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2,2.2> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2,2.3> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2,2.4> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2,2.5> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2,2.6> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2,2.7> cts:xmlnsabbr "tei" .
+<urn:cts:greekLit:tlg0012.tlg001.msA.wt:2.2.8> cts:xmlnsabbr "tei" .
 
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> rdf:label "Homeric Epic, Iliad (Venetus A) word-tokens: 1.1.1 (urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1)" .
 <urn:cts:greekLit:tlg0012.tlg001.msA.wt:1.1.1> cts:isPassageOf <urn:cts:greekLit:tlg0012.tlg001.msA.wt:> .
@@ -1046,7 +1122,8 @@ citedata:msA_Label cite:propType "string".
 <http://www.homermultitext.org/cts/rdf/prev> <http://www.w3.org/1999/02/22-rdf-syntax-ns#label> "The preceding leaf-node, by document order. CTS-URN <--> CTS-URN." .
 
 <http://www.homermultitext.org/cts/rdf/translationLang> <http://www.w3.org/1999/02/22-rdf-syntax-ns#label> "The language of a Translation. CTS-URN <--> String." .
-<http://www.homermultitext.org/cts/rdf/xmlns> <http://www.w3.org/1999/02/22-rdf-syntax-ns#label> "The XML Namespace for the XML fragment in a passage leaf-node's text-content. CTS-URN <--> String" .
+<http://www.homermultitext.org/cts/rdf/xmlns> <http://www.w3.org/1999/02/22-rdf-syntax-ns#label> "The XML Namespace for the XML fragment in a passage leaf-node's text-content. CTS-URN <--> URI" .
+<http://www.homermultitext.org/cts/rdf/xmlnsabbr> <http://www.w3.org/1999/02/22-rdf-syntax-ns#label> "The abbreviation for an XML Namespace on the XML fragment in a passage leaf-node's text-content. CTS-URN <--> String" .
 <http://www.homermultitext.org/hmt/rdf/xmlOpen> <http://www.w3.org/1999/02/22-rdf-syntax-ns#label> "Specific to the HMT implementation. XML content necessary to capture the full citation hierarchy for a leaf-node. CTS-URN <--> String." .
 <http://www.homermultitext.org/hmt/rdf/xpTemplate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#label> "Specific to the HMT implementation. XML content necessary to add values at the correct points of the full citation hierarchy for a leaf-node. CTS-URN <--> String." .
 
