@@ -1,0 +1,100 @@
+package edu.holycross.shot.sparqlcts
+import edu.holycross.shot.sparqlcts.CtsGraph
+import edu.holycross.shot.sparqlcts.CtsDefinitions
+import edu.holycross.shot.citeservlet.Sparql
+import edu.harvard.chs.cite.CtsUrn
+
+String contentType = "text/xml"
+response.setContentType(contentType)
+response.setHeader( "Access-Control-Allow-Origin", "*")
+
+
+boolean done = false
+
+
+
+String req = request.getParameter("request")
+String urnStr = request.getParameter("urn")
+if (req == "GetCapabilities") {
+	println "GetCapabilities Reply Goes Here."
+		done = true
+
+
+} else  if (req == "GetVersion") {
+	println "<version>@version@</version>"
+		done = true
+
+} else {
+	// guarantee that URN parameter is syntactically valid
+	try {
+		CtsUrn urn = new CtsUrn(urnStr)
+	} catch (Exception e) {
+		println """<CTSError xmlns:cts="http:chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">\n"""
+			def errorNum
+			switch (e) {
+				case 'java.lang.Exception: Bad URN syntax: #BADSYNTAX#':
+										   errorNum = 2
+											   println """<message>BAD URN SYNTAX: ${urnStr}</message>\n"""
+											   println """<code>${errorNum}</code>\n"""
+											   break
+
+				case 'java.lang.Exception: Bad URN syntax: ##':
+										   errorNum = 1
+											   println """<message>INVALID REQUEST. Missing required parameter: 'urn'</message>\n"""
+											   println """<code>${errorNum}</code>\n"""
+											   break
+
+				default:
+											   errorNum = 0
+												   break
+			}
+		println """</CTSError>\n"""
+			done = true
+	}
+}
+
+Integer context = 0
+if (request.getParameter("context")) {
+	String contextStr = request.getParameter("context")
+		try {
+			context = contextStr.toInteger()
+		} catch (Exception e) {
+			System.err.println "Value of context parameter must be an integer: ${contextStr}"
+		}
+}
+
+if (!done) {
+	String baseUrl = "http://localhost:8080/fuseki/ds/query"
+		Sparql sparql = new Sparql(baseUrl)
+		CtsGraph graph = new CtsGraph(sparql)
+		switch(req) {
+
+			case "GetDescription":
+					println "<CTSError>Get Description ${urnStr}</CTSError>"
+					break
+
+			case "GetPassagePlus":
+					println "<CTSError>GetPassagePlus ${urnStr}</CTSError>"
+					break
+
+			case "GetPassage":
+					println "<CTSError>GetPassage ${urnStr}</CTSError>"
+					break
+
+			case "GetPrevNextUrn":
+					println "<CTSError>GetPrevNextUrn ${urnStr}</CTSError>"
+					break
+
+			case "GetValidReff":
+					println "<CTSError>GetValidReff ${urnStr}</CTSError>"
+					break
+
+			default :
+					// break with "undefined request" excetpion
+					println "<error>Unrecognized request: ${req}.  \n(Add properly name-spaced reply here.)</error>"
+					break
+		}
+}
+
+
+
