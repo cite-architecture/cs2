@@ -18,7 +18,7 @@ class TestGetUrnListIntegr extends GroovyTestCase {
 
   @Test
   void testListLeafNode() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1")
     ArrayList expectedList = []
     expectedList.add(urn)
     ArrayList answerList = []
@@ -34,7 +34,7 @@ class TestGetUrnListIntegr extends GroovyTestCase {
 
   @Test
   void testListLeafNodeSubref() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1@μῆνιν[1]")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1@μῆνιν[1]")
     ArrayList expectedList = []
     expectedList.add(new CtsUrn(urn.reduceToNode()))
     ArrayList answerList = []
@@ -50,10 +50,10 @@ class TestGetUrnListIntegr extends GroovyTestCase {
 
   @Test
   void testListRange() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.3-1.5")
-    CtsUrn answerUrn1 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.3")
-    CtsUrn answerUrn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.4")
-    CtsUrn answerUrn3 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.5")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.3-1.5")
+    CtsUrn answerUrn1 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.3")
+    CtsUrn answerUrn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.4")
+    CtsUrn answerUrn3 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.5")
 
     ArrayList expectedList = []
     expectedList.add(answerUrn1)
@@ -72,10 +72,10 @@ class TestGetUrnListIntegr extends GroovyTestCase {
 
    @Test
   void testListRangeSubref() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.3@ψυχὰς[1]-1.5@πᾶσι[1]")
-    CtsUrn answerUrn1 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.3")
-    CtsUrn answerUrn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.4")
-    CtsUrn answerUrn3 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.5")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.3@ψυχὰς[1]-1.5@πᾶσι[1]")
+    CtsUrn answerUrn1 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.3")
+    CtsUrn answerUrn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.4")
+    CtsUrn answerUrn3 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.5")
 
     ArrayList expectedList = []
     expectedList.add(answerUrn1)
@@ -95,71 +95,71 @@ class TestGetUrnListIntegr extends GroovyTestCase {
 
   @Test
   void testListContainer() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1")
-    CtsUrn answerUrnFirst = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1")
-    CtsUrn answerUrnMiddle = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.100")
-    CtsUrn answerUrnLast = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.611")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1")
+    CtsUrn answerUrnFirst = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1")
+    CtsUrn answerUrnMiddle = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.5")
+    CtsUrn answerUrnLast = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.10")
 
     ArrayList answerList = []
     answerList = graph.getUrnList(urn)
 
-    assert answerList.size() == 610
+    assert answerList.size() == 10
     assert answerList[0].toString() == answerUrnFirst.toString()
-    assert answerList[99].toString() == answerUrnMiddle.toString()
-    assert answerList[609].toString() == answerUrnLast.toString()
+    assert answerList[4].toString() == answerUrnMiddle.toString()
+    assert answerList[9].toString() == answerUrnLast.toString()
   }
 
   @Test
   void testListMixedRange1() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1-2.5")
-    CtsUrn answerUrn1 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1")
-    CtsUrn answerUrn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:2.5")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1-2.5")
+    CtsUrn answerUrn1 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1")
+    CtsUrn answerUrn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:2.5")
 
     ArrayList answerList = []
     answerList = graph.getUrnList(urn)
 
-    assert answerList.size() == 615
+    assert answerList.size() == 15
     assert answerList[0].toString() == answerUrn1.toString()
-    assert answerList[614].toString() == answerUrn2.toString()
+    assert answerList[14].toString() == answerUrn2.toString()
     
   }
 
   @Test
   void testListMixedRangePlusSubref() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1-2.5@α[2]")
-    CtsUrn answerUrn1 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1")
-    CtsUrn answerUrn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:2.5")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1-2.5@α[2]")
+    CtsUrn answerUrn1 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1")
+    CtsUrn answerUrn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:2.5")
 
     ArrayList answerList = []
     answerList = graph.getUrnList(urn)
 
-    assert answerList.size() == 615
+    assert answerList.size() == 15
     assert answerList[0].toString() == answerUrn1.toString()
-    assert answerList[614].toString() == answerUrn2.toString()
+    assert answerList[14].toString() == answerUrn2.toString()
     
   }
 
   @Test
   void testListMixedRange2() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.610-2")
-    CtsUrn answerUrn1 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.610")
-    CtsUrn answerUrn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:2.877")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.10-2")
+    CtsUrn answerUrn1 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.10")
+    CtsUrn answerUrn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:2.10")
 
     ArrayList answerList = []
     answerList = graph.getUrnList(urn)
     
-    assert answerList.size() == 876
+    assert answerList.size() == 11
     assert answerList[0].toString() == answerUrn1.toString()
-    assert answerList[875].toString() == answerUrn2.toString()
+    assert answerList[10].toString() == answerUrn2.toString()
     
   }
 
   @Test
   void testListRangeNotional() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.3-1.5")
-    CtsUrn answerUrn1 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.3")
-    CtsUrn answerUrn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.4")
-    CtsUrn answerUrn3 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.5")
+    CtsUrn answerUrn1 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.3")
+    CtsUrn answerUrn2 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.4")
+    CtsUrn answerUrn3 = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.5")
 
     ArrayList expectedList = []
     expectedList.add(answerUrn1)

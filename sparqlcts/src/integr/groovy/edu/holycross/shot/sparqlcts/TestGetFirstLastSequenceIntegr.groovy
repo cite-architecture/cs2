@@ -20,7 +20,7 @@ class TestGetFirstLastSequenceIntegr extends GroovyTestCase {
 
   @Test
   void testGetFirstSequence() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1")
 	Integer seq = graph.getFirstSequence(urn)
 	
 	assert seq == 1
@@ -29,10 +29,10 @@ class TestGetFirstLastSequenceIntegr extends GroovyTestCase {
 
   @Test
   void testGetLastSequence() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1")
 	Integer seq = graph.getLastSequence(urn)
 	
-	assert seq == 610 
+	assert seq == 10
     
   }
 

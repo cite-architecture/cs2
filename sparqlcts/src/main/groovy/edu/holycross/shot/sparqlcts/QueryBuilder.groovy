@@ -18,13 +18,17 @@ abstract class QueryBuilder {
     return """
     ${CtsDefinitions.prefixPhrase}
 
-    SELECT ?psg ?txt ?anc ?xpt ?xmlns WHERE {
+    SELECT ?psg ?txt ?anc ?xpt ?xmlns ?xmlnsabbr ?nxt WHERE {
     ?psg cts:isPassageOf <${urn.getUrnWithoutPassage()}> .
     ?psg cts:hasTextContent ?txt .
     ?psg cts:hasSequence ?s .
-    ?psg hmt:xpTemplate ?xpt .
-    ?psg hmt:xmlOpen ?anc  .
-    ?psg hmt:xmlNsDecl ?xmlns  .
+	optional {
+		?psg cts:xmlnsabbr ?xmlnsabbr .
+		?psg cts:xmlns ?xmlns .
+		?psg hmt:xpTemplate ?xpt .
+		?psg hmt:xmlOpen ?anc  .
+		?psg cts:next ?nxt  .
+	}
 
     {
       { SELECT (xsd:int(?seq) + ${context} AS ?max)
@@ -175,13 +179,17 @@ abstract class QueryBuilder {
     return """
     ${CtsDefinitions.prefixPhrase}
 
-    SELECT ?psg ?txt ?anc ?xpt ?xmlns WHERE {
+    SELECT ?psg ?txt ?anc ?xpt ?nxt ?xmlns ?xmlnsabbr WHERE {
     ?psg cts:isPassageOf <${urn.getUrnWithoutPassage()}> .
     ?psg cts:hasTextContent ?txt .
     ?psg cts:hasSequence ?s .
-    ?psg hmt:xpTemplate ?xpt .
-    ?psg hmt:xmlOpen ?anc  .
-    ?psg hmt:xmlNsDecl ?xmlns  .
+	optional {
+		?psg hmt:xpTemplate ?xpt .
+		?psg hmt:xmlOpen ?anc  .
+		?psg cts:xmlns ?xmlns  .
+		?psg cts:xmlnsabbr ?xmlnsabbr  .
+		?psg cts:next ?nxt  .
+	}
 
     {
       { SELECT (xsd:int(?seq) + ${context} AS ?max)
@@ -291,13 +299,20 @@ ORDER BY ?s
 static String getRangeNodesQuery(Integer startCount, Integer endCount, String versionUrn) {
 return """
 ${CtsDefinitions.prefixPhrase}
-SELECT ?ref ?t 
+SELECT ?ref ?t ?anc ?xpt ?nxt ?xmlns ?xmlnsabbr   
 WHERE {
 ?u cts:isPassageOf <${versionUrn}> .
 ?u cts:containedBy* ?ref .
 ?u cts:hasSequence ?s .
 ?ref cts:citationDepth ?d .
 ?ref cts:hasTextContent ?t .
+optional { 
+	?u hmt:xmlOpen ?anc .
+	?u hmt:xpTemplate ?xpt .
+		?u cts:xmlnsabbr ?xmlnsabbr .
+		?u cts:xmlns ?xmlns .
+	?u cts:next ?nxt .
+}
 
 FILTER (?s >= "${startCount}"^^xsd:integer) .    
 FILTER (?s <= "${endCount}"^^xsd:integer) .

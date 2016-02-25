@@ -44,10 +44,13 @@ class CtsGraph {
    * urn is a single containing node, the list will contains rangeNodes
    * for all leaf-nodes contained by that node. Whenever the list contains more than
    * one leaf-node, they will appear in document order.
+   * Returns an ArrayList , consisting of Map ['rangeNode'] is rangeNode, and ['typeExtras'] a typeExtras map, for now
+   * containing the XML stuff necessary for reconstructing an XML reply.
    * @param submittedUrn The CtsUrn in question.
-   * @returns An ordered list of rangeNode objects.
+   * @returns An ordered list of pairs: [0] is rangeNode, [1] is typeExtras
    */
   ArrayList getRangeNodes(CtsUrn submittedUrn) {
+	println "Starting getRangeNodes ${submittedUrn}"
 
 	StringBuffer reply = new StringBuffer()
 	String listUrnsQuery = ""
@@ -57,11 +60,13 @@ class CtsGraph {
 	Integer startAtStr 
 	Integer endAtStr
 
+
 	CtsUrn urn = resolveVersion(submittedUrn)
 	ArrayList responseList = []
 
 	// Three Possibilities: node, container, range
 	if (isLeafNode(urn)){
+		println "RangeNode ${submittedUrn} is leafnode."
 		
 			String leafUrnQuery = QueryBuilder.getLeafNodeTextQuery(urn)
             ctsReply =  sparql.getSparqlReply("application/json", leafUrnQuery)
@@ -70,12 +75,25 @@ class CtsGraph {
             parsedReply.results.bindings.each { b ->
                 if (b.txt) {
 					RangeNode rn = new RangeNode(urn, b.txt?.value)
-					responseList.add(rn)
+					def typeExtras = [:]
+					if (b.anc){
+						typeExtras['type'] = "xml"
+						typeExtras['anc'] = b.anc?.value
+						typeExtras['xpt'] = b.xpt?.value
+						typeExtras['nxt'] = b.nxt?.value
+						typeExtras['xmlns'] = b.xmlns?.value
+						typeExtras['xmlnsabbr'] = b.xmlnsabbr?.value
+					} else {
+						typeExtras['type'] = "unknown"				
+					}
+					Map tempMap = [ 'rangeNode':rn, 'typeExtras':typeExtras ]
+					responseList.add(tempMap)
                 }
             }
 	} else {
 
 		if (urn.isRange()){
+			println "RangeNode ${submittedUrn} is range."
 			CtsUrn urn1 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
 			CtsUrn urn2 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")
 
@@ -102,12 +120,25 @@ class CtsGraph {
             parsedReply.results.bindings.each { b ->
                 if (b.ref) {
 					RangeNode rn = new RangeNode(new CtsUrn(b.ref?.value),b.t?.value)
-					responseList.add(rn)
+					def typeExtras = [:]
+					if (b.anc){
+						typeExtras['type'] = "xml"
+						typeExtras['anc'] = b.anc?.value
+						typeExtras['xpt'] = b.xpt?.value
+						typeExtras['nxt'] = b.nxt?.value
+						typeExtras['xmlns'] = b.xmlns?.value
+						typeExtras['xmlnsabbr'] = b.xmlnsabbr?.value
+					} else {
+						typeExtras['type'] = "unknown"				
+					}
+					Map tempMap = [ 'rangeNode':rn, 'typeExtras':typeExtras ]
+					responseList.add(tempMap)
                 }
             }
 				
 		} else { // must be containing element
 			
+			println "RangeNode ${submittedUrn} is container."
 			startAtStr = getFirstSequence(urn)
 			endAtStr = getLastSequence(urn)
 			// error check these…
@@ -120,7 +151,19 @@ class CtsGraph {
 			parsedReply.results.bindings.each { b ->
 				if (b.ref) {
 					RangeNode rn = new RangeNode(new CtsUrn(b.ref?.value),b.t?.value)
-					responseList.add(rn)
+					def typeExtras = [:]
+					if (b.anc){
+						typeExtras['type'] = "xml"
+						typeExtras['anc'] = b.anc?.value
+						typeExtras['xpt'] = b.xpt?.value
+						typeExtras['nxt'] = b.nxt?.value
+						typeExtras['xmlns'] = b.xmlns?.value
+						typeExtras['xmlnsabbr'] = b.xmlnsabbr?.value
+					} else {
+						typeExtras['type'] = "unknown"				
+					}
+					Map tempMap = [ 'rangeNode':rn, 'typeExtras':typeExtras ]
+					responseList.add(tempMap)
 				}
 			}
 
@@ -152,10 +195,10 @@ class CtsGraph {
 	Integer endAtStr
 
 	
-	println "getUrnList ${submittedUrn}"
+	//println "getUrnList ${submittedUrn}"
 
 	CtsUrn urn = resolveVersion(new CtsUrn (submittedUrn.reduceToNode()))
-	println "resolved version: ${urn}"
+	//println "resolved version: ${urn}"
     ArrayList urns = []
 
 	// Three Possibilities: node, container, range
@@ -165,23 +208,23 @@ class CtsGraph {
 
 		if (urn.isRange()){
 			CtsUrn urn1 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
-			println "urn1: ${urn1}"
+			//println "urn1: ${urn1}"
 			CtsUrn urn2 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")
-			println "urn2: ${urn1}"
+			//println "urn2: ${urn1}"
 
             if (isLeafNode(urn1)) {
            	     startAtStr =  getSequence(urn1)
 			} else {
 				startAtStr = getFirstSequence(urn1)
 			}
-			 println "startAtStr = ${startAtStr}"
+			 //println "startAtStr = ${startAtStr}"
 			
 			if (isLeafNode(urn2)) {
 				endAtStr = getSequence(urn2)
 			} else {
 				endAtStr = getLastSequence(urn2)
 			}
-			println "endAtStr = ${endAtStr}"
+			//println "endAtStr = ${endAtStr}"
 
 			// error check these…
 		    int1 = startAtStr.toInteger()
@@ -295,27 +338,20 @@ class CtsGraph {
   }
 
 
-  /** Constructs an Ohco2Node object for a node 
+  /** Constructs an Ohco2Node object for a passage
    * identified by CtsUrn.
    * @param leafNode CtsUrn of the node.
    * @returns An Ohco2Node object.
    * @throws Exception if leafNode is not a single leaf node.
    */
-  Ohco2Node getLeafNodeObject(CtsUrn leafNode)
-  throws Exception {
-    if (leafNode.isRange()) {
-      throw new Exception("CtsGraph:getLeafNodeObject: ${leafNode} is a range reference.")
-    }
-    if (! isLeafNode(leafNode) ) {
-      throw new Exception("CtsGraph:getLeafNodeObject: ${leafNode} is not a leaf node.")
-    }
+  Ohco2Node getOhco2Node(CtsUrn urn) {
 
-    String label  = getLabel(leafNode)
-    String txtContent = getLeafNodeText(leafNode)
+    String label  = getLabel(urn)
+    ArrayList leafNodes = getRangeNodes(urn)
 
-    CtsUrn prev = getPrevUrn(leafNode)
-    CtsUrn nxt = getNextUrn(leafNode)
-    Ohco2Node ond = new Ohco2Node(leafNode, label, prev, nxt, txtContent)
+    CtsUrn prev = getPrevUrn(urn)
+    CtsUrn nxt = getNextUrn(urn)
+    Ohco2Node ond = new Ohco2Node(urn, label, prev, nxt, leafNodes)
     if (ond == null) {
       System.err.println "COULD NOT MAKE Ohco2Node!"
       System.err.println "${leafNode} (${label}): ${txtContent}"
@@ -324,32 +360,6 @@ class CtsGraph {
   }
 
 
-
-  // I THINK THESE ARE UNNECESSARY
-  /*
-
-  Ohco2Range getContainerNodeObject(CtsUrn containerNode)
-  throws Exception {
-    // returns OHCO2RANGE object for a containing URN
-  }
-
-  Ohco2Range getContainerNodeObject(CtsUrn rangeUrn)
-  throws Exception {
-    // returns OHCO2RANGE object for a ragne of containing nodes
-  }
-
-  */
-
-
-
-  // DO WE NEED A THIRD CASE?
-  /*
-  Ohco2Range getMixedRangeObject(CtsUrn mixedRangeUrn)
-  throws Exception {
-    // returns OHCO2RANGE object for a ragne of containing node + leaf node
-  }
-
-*/
 
   /** Finds the previous URN preceding a given URN.
    * If the URN is a leaf node, returns the preceeding leaf node.
@@ -476,45 +486,54 @@ class CtsGraph {
 
     String txtNode = ""
     parsedReply.results.bindings.eachWithIndex { bndng, i ->
-      txtNode =  XmlFormatter.openAncestors(bndng.anc.value, bndng.xmlns.value) + bndng.txt.value + XmlFormatter.closeAncestors(bndng.anc.value)
+      //txtNode =  XmlFormatter.openAncestors(bndng.anc.value, bndng.xmlns.value) + bndng.txt.value + XmlFormatter.closeAncestors(bndng.anc.value)
+	  txtNode = bndng.txt.value
     }
     return txtNode
   }
 
-
   
-  String getNodeText(CtsUrn urn, Integer context, boolean openXml, boolean closeXml) {
-  
-    String currentWrapper = ""
-    
-    String q = QueryBuilder.getLeafNodeTextQuery(urn, context)
-    String reply = sparql.getSparqlReply("application/json", q)
-    JsonSlurper slurper = new groovy.json.JsonSlurper()
-    def parsedReply = slurper.parseText(reply)
-    parsedReply.results.bindings.eachWithIndex { bndng, i ->
-      println "${i}: ${bndng}"
-    }
-
-    return ""
-  }
 
   // calling programs need to be careful.
   // no rdf:labels on passages on notioanl works, for example.
   // but shouldn't there be??
   String getLabel(CtsUrn urnSubmitted)
   throws Exception {
-	CtsUrn urn = resolveVersion(urnSubmitted)
-    String labelQuery = QueryBuilder.getRdfLabel(urn)
-    String reply = sparql.getSparqlReply("application/json", labelQuery)
-    def slurper = new groovy.json.JsonSlurper()
-    def parsedReply = slurper.parseText(reply)
-    def bndng = parsedReply.results.bindings[0]
-    if (bndng) {
-      return "${bndng.label?.value}"
-    } else {
-      System.err.println "Failed on query:\n ${labelQuery}\n"
-      throw new Exception("CtsGraph:getLabel: no results from query on ${urn}.")
-    }
+
+		String workLevel = urnSubmitted.getWorkLevel()
+		String labelQuery = ""
+		if (urnSubmitted.passageComponent){
+
+			CtsUrn urn = resolveVersion(urnSubmitted)
+			if (urnSubmitted.isRange()){
+				return "range label."
+			} else {
+				labelQuery = QueryBuilder.getRdfLabel(urn)
+				String reply = sparql.getSparqlReply("application/json", labelQuery)
+				def slurper = new groovy.json.JsonSlurper()
+				def parsedReply = slurper.parseText(reply)
+				def bndng = parsedReply.results.bindings[0]
+				if (bndng) {
+				  return "${bndng.label?.value}"
+				} else {
+				  System.err.println "Failed on query:\n ${labelQuery}\n"
+				  throw new Exception("CtsGraph:getLabel: no results from query on ${urn}.")
+				}
+			}
+
+		} else {
+				labelQuery = QueryBuilder.getRdfLabel(urnSubmitted)
+				String reply = sparql.getSparqlReply("application/json", labelQuery)
+				def slurper = new groovy.json.JsonSlurper()
+				def parsedReply = slurper.parseText(reply)
+				def bndng = parsedReply.results.bindings[0]
+				if (bndng) {
+				  return "${bndng.label?.value}"
+				} else {
+				  System.err.println "Failed on query:\n ${labelQuery}\n"
+				  throw new Exception("CtsGraph:getLabel: no results from query on ${urn}.")
+				}
+		}
   }
 
 
@@ -526,9 +545,9 @@ class CtsGraph {
     Integer getFirstSequence(CtsUrn urn) {
         Integer firstInt = null
 		String firstContainedQuery = QueryBuilder.getFirstContainedQuery(urn)
-		println "${firstContainedQuery}"
+		//println "${firstContainedQuery}"
         String ctsReply = sparql.getSparqlReply("application/json", firstContainedQuery)
-		println ctsReply
+		//println ctsReply
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(ctsReply)
         

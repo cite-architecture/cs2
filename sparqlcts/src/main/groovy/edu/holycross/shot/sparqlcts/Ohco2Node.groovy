@@ -16,8 +16,9 @@ class Ohco2Node {
   CtsUrn prevUrn = null
   /** Possibly null URN for following leaf node. */
   CtsUrn nextUrn = null
-  /** Text content of the node. */
-  String textContent
+  /** Ordered list of RangeNode objects. */
+  /** N.b. a RangeNode is a map, consisting of 'rangeNode' and 'typeExtras' **/
+  ArrayList leafNodes
   
   
   /** Constructor for an OHCO2 citable node requiring all member properties. 
@@ -29,7 +30,7 @@ class Ohco2Node {
    * @throws Exception if urn, label or txt is empty; or if a non-null
    * value for prev or next is not a valid URN.
    */
-  Ohco2Node(CtsUrn urn, String label, CtsUrn prev, CtsUrn next, String txt)
+  Ohco2Node(CtsUrn urn, String label, CtsUrn prev, CtsUrn next, ArrayList rangeNodeMap)
   throws Exception {
     if (urn == null) {
       throw new Exception("Ohco2Node: URN for node cannot be null.")
@@ -42,10 +43,10 @@ class Ohco2Node {
       this.nodeLabel = label
     }
     
-    if ((txt == null) || (txt.size() < 1)) {
+    if ((rangeNodeMap == null) || (rangeNodeMap.size() < 1)) {
       throw new Exception("Ocho2Node: text content of node cannot be null.")
     } else {
-      this.textContent = txt
+      this.leafNodes = rangeNodeMap
     }
     
     this.prevUrn = prev
@@ -59,7 +60,12 @@ class Ohco2Node {
    * @returns Description, URN and text content of this node.
    */
   String toString() {
-    return "${nodeLabel} (${nodeUrn}): ${textContent}"
+	String tempString = "" 
+	leafNodes.each{ 
+		tempString += "${it}\r"
+	}
+
+    return "${nodeLabel} (${nodeUrn}): ${tempString}"
   }
 
   String toXml() {

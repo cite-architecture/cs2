@@ -18,8 +18,8 @@ class TestPrevNextIntegr extends GroovyTestCase {
 
   @Test
   void testPrev() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.2")
-    String expectedPrev = "urn:cts:greekLit:tlg0012.tlg001.msA:1.1"
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.2")
+    String expectedPrev = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1"
     assert  graph.getPrevUrnString(urn) == expectedPrev
   }
 
@@ -27,8 +27,8 @@ class TestPrevNextIntegr extends GroovyTestCase {
 
   @Test
   void testNext() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.2")
-    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.msA:1.3"
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.2")
+    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.3"
     assert  graph.getNextUrnString(urn) == expectedNext
   }
 
@@ -36,8 +36,8 @@ class TestPrevNextIntegr extends GroovyTestCase {
 
   @Test
   void testNulls() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1")
-    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.msA:1.2"
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1")
+    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.2"
     
     assert  graph.getNextUrnString(urn) == expectedNext
     assert  graph.getPrevUrn(urn) == null

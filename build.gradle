@@ -84,7 +84,7 @@ subprojects {
 
     testCompile "org.concordion:concordion:${versionMap['concordion']}"
     testCompile "junit:junit:${versionMap['junit']}"
-
+	compile group: 'xmlunit', name: 'xmlunit', version: '1.6'
 
     compile group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
     compile group: 'commons-io', name: 'commons-io', version: versionMap['commonsio']

@@ -20,7 +20,7 @@ class TestPrevNextNotionalIntegr extends GroovyTestCase {
   @Test
   void testNotionalPrev() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.2")
-    String expectedPrev = "urn:cts:greekLit:tlg0012.tlg001.msA:1.1"
+    String expectedPrev = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1"
     assert  graph.getPrevUrnString(urn).toString() == expectedPrev
   }
 
@@ -29,7 +29,7 @@ class TestPrevNextNotionalIntegr extends GroovyTestCase {
   @Test
   void testNotionalNext() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.2")
-    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.msA:1.3"
+    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.3"
     assert  graph.getNextUrnString(urn).toString() == expectedNext
   }
 
@@ -38,7 +38,7 @@ class TestPrevNextNotionalIntegr extends GroovyTestCase {
   @Test
   void testNotionalNulls() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.1")
-    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.msA:1.2"
+    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.2"
     
     assert  graph.getNextUrnString(urn) == expectedNext
     assert  graph.getPrevUrn(urn) == null

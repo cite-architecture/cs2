@@ -20,7 +20,7 @@ class TestGetSequenceIntegr extends GroovyTestCase {
 
   @Test
   void testGetSequence() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.3")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.3")
 	Integer seq = graph.getSequence(urn)
 	
 	assert seq == 3
@@ -29,7 +29,7 @@ class TestGetSequenceIntegr extends GroovyTestCase {
 
   @Test
   void testGetSequenceForInvalidUrn() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1")
 	assert shouldFail { 
 		integer i = graph.getSequence(urn)
 	}

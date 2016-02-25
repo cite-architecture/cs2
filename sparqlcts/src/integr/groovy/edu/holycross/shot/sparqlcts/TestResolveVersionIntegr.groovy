@@ -20,14 +20,14 @@ class TestResolveVersionIntegr extends GroovyTestCase {
   @Test
   void testResolveNotional() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.1")
-    String expectedUrn = "urn:cts:greekLit:tlg0012.tlg001.msA:1.1"
+    String expectedUrn = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1"
     assert  graph.resolveVersion(urn).toString() == expectedUrn
   }
 
   @Test
   void testResolveVersionLevel() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1")
-    String expectedUrn = "urn:cts:greekLit:tlg0012.tlg001.msA:1.1"
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1")
+    String expectedUrn = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1"
     assert  graph.resolveVersion(urn).toString() == expectedUrn
   }
 

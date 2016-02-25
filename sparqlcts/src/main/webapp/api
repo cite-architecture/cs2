@@ -12,6 +12,10 @@ response.setHeader( "Access-Control-Allow-Origin", "*")
 boolean done = false
 
 
+String responseType = request.getParameter("type")
+if ( (responseType == "") || (responseType == null)){
+	responseType = "xml"
+}
 
 String req = request.getParameter("request")
 String urnStr = request.getParameter("urn")
@@ -70,23 +74,23 @@ if (!done) {
 		switch(req) {
 
 			case "GetDescription":
-					println "<CTSError>Get Description ${urnStr}</CTSError>"
+					println "<CTSError>Get Description ${urnStr}; type ${responseType}</CTSError>"
 					break
 
 			case "GetPassagePlus":
-					println "<CTSError>GetPassagePlus ${urnStr}</CTSError>"
+					println "<CTSError>GetPassagePlus ${urnStr}; type ${responseType}</CTSError>"
 					break
 
 			case "GetPassage":
-					println "<CTSError>GetPassage ${urnStr}</CTSError>"
+					println "<CTSError>GetPassage ${urnStr}; type ${responseType}</CTSError>"
 					break
 
 			case "GetPrevNextUrn":
-					println "<CTSError>GetPrevNextUrn ${urnStr}</CTSError>"
+					println "<CTSError>GetPrevNextUrn ${urnStr}; type ${responseType}</CTSError>"
 					break
 
 			case "GetValidReff":
-					println "<CTSError>GetValidReff ${urnStr}</CTSError>"
+					println "<CTSError>GetValidReff ${urnStr}; type ${responseType}</CTSError>"
 					break
 
 			default :

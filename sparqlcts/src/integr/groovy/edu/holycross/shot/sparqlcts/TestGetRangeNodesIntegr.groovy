@@ -18,65 +18,66 @@ class TestGetRangeNodesIntegr extends GroovyTestCase {
 
   @Test
   void testGetRangeNodesLeaf() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1")
 	ArrayList response = graph.getRangeNodes(urn)
 
 	assert response.size() == 1
-	assert response[0].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.msA:1.1"
-	assert response[0].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" n="1"> Μῆνιν ἄειδε θεὰ <persName n="urn:cite:hmt:pers.pers1"> Πηληϊάδεω Ἀχιλῆος</persName></l>""" 
+	// response is [node,typeExtras]
+	assert response[0]['rangeNode'].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1"
+	assert response[0]['rangeNode'].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" n="1">Μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος </l>""" 
 	}    
 
   @Test
   void testGetRangeNodesRange() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1-1.10")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1-1.10")
 	ArrayList response = graph.getRangeNodes(urn)
 
 	assert response.size() == 10
-	assert response[0].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.msA:1.1"
-	assert response[0].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" n="1"> Μῆνιν ἄειδε θεὰ <persName n="urn:cite:hmt:pers.pers1"> Πηληϊάδεω Ἀχιλῆος</persName></l>""" 
-	assert response[9].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.msA:1.10"
-	assert response[9].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" n="10"> νοῦσον ἀνὰ στρατὸν ὦρσε κακήν· ὀλέκοντο δὲ λαοὶ. </l>"""
+	assert response[0]['rangeNode'].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1"
+	assert response[0]['rangeNode'].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" n="1">Μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος </l>""" 
+	assert response[9]['rangeNode'].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.10"
+	assert response[9]['rangeNode'].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" n="10">νοῦσον ἀνὰ στρατὸν ὄρσε κακήν, ὀλέκοντο δὲ λαοί, </l>"""
  
 	}    
 
   @Test
   void testGetRangeNodesContainer() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1")
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1")
 	ArrayList response = graph.getRangeNodes(urn)
 
-	assert response.size() == 610 
-	assert response[0].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.msA:1.1"
-	assert response[0].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" n="1"> Μῆνιν ἄειδε θεὰ <persName n="urn:cite:hmt:pers.pers1"> Πηληϊάδεω Ἀχιλῆος</persName></l>""" 
-	assert response[609].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.msA:1.611"
-	assert response[609].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" n="611"> ἔνθα κὰθεῦδ' ἀναβὰς, παρ δὲ χρυσόθρονος <persName n="urn:cite:hmt:pers.pers116"> Ἥρη</persName> . </l>""" 
+	assert response.size() == 10 
+	assert response[0]['rangeNode'].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1"
+	assert response[0]['rangeNode'].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" n="1">Μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος </l>""" 
+	assert response[9]['rangeNode'].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.10"
+	assert response[9]['rangeNode'].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" n="10">νοῦσον ἀνὰ στρατὸν ὄρσε κακήν, ὀλέκοντο δὲ λαοί, </l>"""
  
 	}    
 
   @Test
-	  void testGetRangeNodesMixesRange1() {
-		  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.610-2")
+	  void testGetRangeNodesMixedRange1() {
+		  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.10-2")
 			  ArrayList response = graph.getRangeNodes(urn)
 
-			  assert response.size() == 876
-			  assert response[0].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.msA:1.610"
-			  assert response[0].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" n="610"> ἔνθα πάρος κοιμᾶθ' ὅτε μιν γλυκὺς ὕπνος ἱ̈κάνοι· </l>""" 
+			  assert response.size() == 11 
+			  assert response[0]['rangeNode'].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.10"
+		      assert response[0]['rangeNode'].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" n="10">νοῦσον ἀνὰ στρατὸν ὄρσε κακήν, ὀλέκοντο δὲ λαοί, </l>"""
 
-			  assert response[875].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.msA:2.877"
-			  assert response[875].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" n="877"> τηλόθεν ἐκ <placeName n="urn:cite:hmt:place.place75"> Λυκίης</placeName> <placeName n="urn:cite:hmt:place.place93"> Ξάνθου</placeName> ἄπο δινήεντος· </l>""" 
+			  assert response[10]['rangeNode'].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:2.10"
+			  assert response[10]['rangeNode'].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" n="10">πάντα μάλ᾽ ἀτρεκέως ἀγορευέμεν ὡς ἐπιτέλλω· </l>""" 
 
 	  }
 
   @Test
-	  void testGetRangeNodesMixesRange2() {
-		  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1-2.5")
+	  void testGetRangeNodesMixedRange2() {
+		  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1-2.5")
 
 			  ArrayList response = graph.getRangeNodes(urn)
 
-			  assert response.size() == 615 
-			  assert response[0].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.msA:1.1"
-			  assert response[0].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" n="1"> Μῆνιν ἄειδε θεὰ <persName n="urn:cite:hmt:pers.pers1"> Πηληϊάδεω Ἀχιλῆος</persName></l>""" 
-			  assert response[614].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.msA:2.5"
-			  assert response[614].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" n="5"> ἧδε, δέ οι κατα θυμὸν ἀρίστη φαίνετο βουλῆ· </l>""" 
+			  assert response.size() == 15 
+			  assert response[0]['rangeNode'].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1"
+			  assert response[0]['rangeNode'].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" n="1">Μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος </l>""" 
+			  assert response[14]['rangeNode'].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:2.5"
+			  assert response[14]['rangeNode'].textContent == """<l xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" n="5">ἧδε δέ οἱ κατὰ θυμὸν ἀρίστη φαίνετο βουλή, </l>""" 
 
 	  }
 

@@ -1099,7 +1099,6 @@ citedata:msA_Label cite:propType "string".
 
 # General Verbs
 <http://www.homermultitext.org/cts/rdf/fullUri>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#label> "Relates the full URI value for a CTS namespace with a namespace-level CTS-URN. URI <--> CTS URN" .
-<http://www.homermultitext.org/cite/rdf/abbreviatedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#label> "Relates a CITE or CTS Namespace URI to an abbreviation. URI <--> String." .
 
 # CTS Verbs
 <http://www.homermultitext.org/cts/rdf/contains> <http://www.w3.org/1999/02/22-rdf-syntax-ns#label> "Relates two levels of a passage hierarchy. CTS-URN <--> CTS-URN." .

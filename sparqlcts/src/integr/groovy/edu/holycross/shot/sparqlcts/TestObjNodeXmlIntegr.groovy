@@ -15,7 +15,7 @@ class TestObjNodeXmlIntegr extends GroovyTestCase {
   Sparql sparql = new Sparql(baseUrl)
   CtsGraph graph = new CtsGraph(sparql)
 
-  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.1")
+  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1")
   
   @Test
   void testLeafObjectXML() {
