@@ -50,7 +50,6 @@ class CtsGraph {
    * @returns An ordered list of pairs: [0] is rangeNode, [1] is typeExtras
    */
   ArrayList getRangeNodes(CtsUrn submittedUrn) {
-	println "Starting getRangeNodes ${submittedUrn}"
 
 	StringBuffer reply = new StringBuffer()
 	String listUrnsQuery = ""
@@ -66,7 +65,6 @@ class CtsGraph {
 
 	// Three Possibilities: node, container, range
 	if (isLeafNode(urn)){
-		println "RangeNode ${submittedUrn} is leafnode."
 		
 			String leafUrnQuery = QueryBuilder.getLeafNodeTextQuery(urn)
             ctsReply =  sparql.getSparqlReply("application/json", leafUrnQuery)
@@ -93,7 +91,6 @@ class CtsGraph {
 	} else {
 
 		if (urn.isRange()){
-			println "RangeNode ${submittedUrn} is range."
 			CtsUrn urn1 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
 			CtsUrn urn2 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")
 
@@ -138,7 +135,6 @@ class CtsGraph {
 				
 		} else { // must be containing element
 			
-			println "RangeNode ${submittedUrn} is container."
 			startAtStr = getFirstSequence(urn)
 			endAtStr = getLastSequence(urn)
 			// error check these…
@@ -195,10 +191,8 @@ class CtsGraph {
 	Integer endAtStr
 
 	
-	//println "getUrnList ${submittedUrn}"
 
 	CtsUrn urn = resolveVersion(new CtsUrn (submittedUrn.reduceToNode()))
-	//println "resolved version: ${urn}"
     ArrayList urns = []
 
 	// Three Possibilities: node, container, range
@@ -208,23 +202,19 @@ class CtsGraph {
 
 		if (urn.isRange()){
 			CtsUrn urn1 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
-			//println "urn1: ${urn1}"
 			CtsUrn urn2 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")
-			//println "urn2: ${urn1}"
 
             if (isLeafNode(urn1)) {
            	     startAtStr =  getSequence(urn1)
 			} else {
 				startAtStr = getFirstSequence(urn1)
 			}
-			 //println "startAtStr = ${startAtStr}"
 			
 			if (isLeafNode(urn2)) {
 				endAtStr = getSequence(urn2)
 			} else {
 				endAtStr = getLastSequence(urn2)
 			}
-			//println "endAtStr = ${endAtStr}"
 
 			// error check these…
 		    int1 = startAtStr.toInteger()
@@ -573,9 +563,7 @@ class CtsGraph {
     Integer getFirstSequence(CtsUrn urn) {
         Integer firstInt = null
 		String firstContainedQuery = QueryBuilder.getFirstContainedQuery(urn)
-		println "${firstContainedQuery}"
         String ctsReply = sparql.getSparqlReply("application/json", firstContainedQuery)
-		println ctsReply
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(ctsReply)
         
@@ -600,12 +588,9 @@ class CtsGraph {
     * @returns The sequence property of this URN, as an Integer.
     */
     Integer getLastSequence(CtsUrn urn) {
-		println "getLastSequence for ${urn}"
         Integer lastInt = null
 		String lastContainedQuery = QueryBuilder.getLastContainedQuery(urn)
-		println lastContainedQuery
         String ctsReply = sparql.getSparqlReply("application/json", lastContainedQuery )
-		println ctsReply
 
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(ctsReply)

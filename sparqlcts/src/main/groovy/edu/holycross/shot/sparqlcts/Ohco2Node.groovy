@@ -1,5 +1,6 @@
 package edu.holycross.shot.sparqlcts
 
+import groovy.json.*
 import edu.harvard.chs.cite.CtsUrn
 
 /** Class representing a leaf node in the OHCO2 model of text.
@@ -8,7 +9,7 @@ class Ohco2Node {
 
 
   /** Machine-actionable URN for the node. */
-  CtsUrn nodeUrn
+  CtsUrn requestUrn
   /** Human-readable label for the node*/
   String nodeLabel
   
@@ -35,7 +36,7 @@ class Ohco2Node {
     if (urn == null) {
       throw new Exception("Ohco2Node: URN for node cannot be null.")
     } else {
-      this.nodeUrn = urn
+      this.requestUrn = urn
     }
     if ((label == null) || (label.size() < 1)) {
       throw new Exception("Ocho2Node: text content of node cannot be null.")
@@ -65,11 +66,20 @@ class Ohco2Node {
 		tempString += "${it}\r"
 	}
 
-    return "${nodeLabel} (${nodeUrn}): ${tempString}"
+    return "${nodeLabel} (${requestUrn}): ${tempString}"
+  }
+
+
+	/**
+	* Outputs a pretty JSON representation of the Ohco2Node
+	* @returns String.
+	*/
+  String toJson() {
+		return new JsonBuilder(this).toPrettyString()
   }
 
   String toXml() {
-    return "<cts:node xmlns:cts='http://chs.harvard.edu/xmlns/cts' urn='" + this.nodeUrn +  "'>${this.textContent}</cts:node>"
+    return "<cts:node xmlns:cts='http://chs.harvard.edu/xmlns/cts' urn='" + this.requestUrn +  "'>${this.textContent}</cts:node>"
   }
 
  

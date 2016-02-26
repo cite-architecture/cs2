@@ -33,11 +33,12 @@ class CtsReply {
 		Map ctsRequestMap = [:]
 		Map ctsReplyMap = [:]
 
-		ArrayList rangeNodesMap = graph.getRangeNodes(urn)
+		Ohco2Node o2n = graph.Ohch2Node(urn)
+
 
 		
 		ctsRequestMap.put('request','GetPassagePlus')
-		ctsRequestMap.put('urn',urn.toString())
+		ctsRequestMap.put('urn',o2n.requestUrn.toString())
 		ctsReplyMap.put('urn',graph.resolveVersion(urn).toString())
 		ctsReplyMap.put('label',graph.getLabel(urn))
 		ctsReplyMap.put('rangeNodesMap',rangeNodesMap)
