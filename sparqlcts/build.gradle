@@ -34,9 +34,11 @@ task ctsIntegration(type: Test, dependsOn: 'test') {
   description  = "Runs integration tests against test data set served from fuseki."
   outputs.upToDateWhen { false }
 //  include '**/*Integr.*'
-	include '**/TestReply*Integr.*'
-	include '**/TestOHCO2ConstructionIntegr.*'
-	include '**/TestDescrsIntegr.*'
+	//include '**/TestReply*Integr.*'
+	//include '**/TestOHCO2ConstructionIntegr.*'
+	include '**/TestPrevIntegr.*'
+	include '**/TestNextIntegr.*'
+//	include '**/TestDescrsIntegr.*'
 
  testClassesDir = sourceSets.integr.output.classesDir
  classpath = sourceSets.integr.runtimeClasspath

@@ -96,9 +96,9 @@ abstract class QueryBuilder {
     String workUrnStr = urn.getUrnWithoutPassage()
     return """
     ${CtsDefinitions.prefixPhrase}
-    SELECT ?prevUrn ?prevSeq WHERE {
-    <${urn}> cts:next ?prevUrn .
-    ?prevUrn cts:hasSequence ?prevSeq .
+    SELECT ?nextUrn ?nextSeq WHERE {
+    <${urn}> cts:next ?nextUrn .
+    ?nextUrn cts:hasSequence ?nextSeq .
     }
     """
   }
@@ -248,6 +248,25 @@ static String getFirstContainedQuery(CtsUrn containingUrn) {
   LIMIT 1
   """
  }
+
+  /** Builds SPARQL query string to find URN at a given sequence
+    * @param seq The sequence number.
+	* @param versionUrnStr a version-level URN.
+    * @returns A complete SPARQL query string.
+    */
+
+static String urnForSequence(Integer seq, String versionUrnStr){
+
+return """
+${CtsDefinitions.prefixPhrase}
+
+SELECT ?urn WHERE {
+	?urn cts:isPassageOf <${versionUrnStr}> .
+	?urn cts:hasSequence ${seq} .
+}
+"""
+}
+
 
 /** Builds SPARQL query string to find the URN and
 * sequence number of the last citable node contained in

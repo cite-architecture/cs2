@@ -279,8 +279,8 @@ class CtsGraph {
    */
   CtsUrn resolveVersion(CtsUrn urn) 
   throws Exception {
-    String workLevel = urn.labelForWorkLevel()
-    if ((workLevel == 'version')|(workLevel == 'exemplar')) {
+    String workLevel = urn.getWorkLevel()
+    if ((workLevel == 'VERSION')|(workLevel == 'EXEMPLAR')) {
       return urn
 
     } else {
@@ -382,93 +382,107 @@ class CtsGraph {
   }
 
   CtsUrn getPrevUrn(CtsUrn requestUrn)
-  throws Exception {
-    CtsUrn queryUrn = null
-    CtsUrn replyUrn = null
-    if (requestUrn.isRange()) {
-      // find first node in range and query on that
-        //urn = new CtsUrn("${requestUrn.getUrnWithoutPassage()}${requestUrn.getRangeBegin()}")
+	  throws Exception {
+		  CtsUrn replyUrn = null
+			  CtsUrn queryUrn = null
+			  if (requestUrn.isRange()) {
+					  // find first node in range and query on that
+					  CtsUrn tempUrn = new CtsUrn("${requestUrn.getUrnWithoutPassage()}${requestUrn.getRangeBegin()}")
+					  queryUrn  = resolveVersion(tempUrn)
 
-      
-    } else {
-      queryUrn  = resolveVersion(requestUrn)
-    }
+			  } else {
+				  queryUrn  = resolveVersion(requestUrn)
+			  }
 
-    if (isLeafNode(queryUrn)){
-      StringBuilder reply = new StringBuilder()
-      String ctsReply =  sparql.getSparqlReply("application/json", QueryBuilder.getPrevUrnQuery(queryUrn))
-      def slurper = new groovy.json.JsonSlurper()
-      def parsedReply = slurper.parseText(ctsReply)
-      parsedReply.results.bindings.each { bndng ->
-	if (bndng.prevUrn) {
+			  if (isLeafNode(queryUrn)){
+				  StringBuilder reply = new StringBuilder()
+					  String ctsReply =  sparql.getSparqlReply("application/json", QueryBuilder.getPrevUrnQuery(queryUrn))
+					  def slurper = new groovy.json.JsonSlurper()
+					  def parsedReply = slurper.parseText(ctsReply)
+					  parsedReply.results.bindings.each { bndng ->
+						  replyUrn = new CtsUrn(bndng.prevUrn?.value)
+					  }
+			  } else {
+				  // Must be a container
+					  Integer firstSequenceOfUrn = getFirstSequence(queryUrn)
+					  String firstSeqUrn = getUrnForSequence(firstSequenceOfUrn, queryUrn.getUrnWithoutPassage())
+					  replyUrn = getPrevUrn(new CtsUrn(firstSeqUrn))
+			  }	
+		  return replyUrn
+	  }
 
-	  replyUrn = new CtsUrn(bndng.prevUrn?.value)
+
+   /** Finds the URN for a given work, with a given sequence
+	* Returns only one value, if there are more than one.
+    * @param urn A work-level URN.
+	* @param a sequence number.
+    * @returns A urn, as string.
+    */
+	String getUrnForSequence(Integer seq, String versionUrnStr ){
+
+        String ctsReply = sparql.getSparqlReply("application/json", QueryBuilder.urnForSequence(seq, versionUrnStr))
+        def slurper = new groovy.json.JsonSlurper()
+        def parsedReply = slurper.parseText(ctsReply)
+
+        String urnStr
+        parsedReply.results.bindings.each { b ->
+            if (b.urn) {
+                urnStr = b.urn?.value
+            }
+        }
+        return urnStr
 	}
-      }
 
-
-    } else {
-      // find first node in contain, and query on that.
-	/*
-	Integer depthUrn = urn.getCitationDepth()
-	Integer firstSequenceOfUrn = getFirstSequence(urn)
-	String firstSeqUrn = getUrnForSequence(firstSequenceOfUrn, urn.getUrnWithoutPassage())
-	String prevLeafUrnStr= getPrevUrn(new CtsUrn(firstSeqUrn))	
-	if (prevLeafUrnStr != ""){
-	  CtsUrn prevLeafUrn = new CtsUrn(prevLeafUrnStr)
-	  //Janky temp fix which will become irrelevant with update to CITE library
-	  CtsUrn prevUrn = new CtsUrn("${prevLeafUrn.trimPassage(depthUrn).replaceAll('::',':')}")
-	  replyString = prevUrn.toString()
-	} else { replyString = "" }
-	*/
-	
-      }	
-    return replyUrn
-  }
-
-
-
-
+  /** Finds the next URN preceding a given URN.
+   * If the URN is a leaf node, returns the preceeding leaf node.
+   * If the URN is a non-leaf node, returns the URN of the preceeding
+   * citation at that level of the hierarchy ?
+   * @param urn CTS URN to test.
+   * @returns The urn of the preceding citable node, as a String,
+   * or a null String ("") if there is no preceding citable node.
+   * @throws Exception if retrieved value is not a valid CtsUrn string.
+   */
 
   String getNextUrnString(CtsUrn requestUrn) {
-	CtsUrn rurn = resolveVersion(requestUrn)
-    CtsUrn nxt = getNextUrn(rurn)
-    if (nxt != null) {
-      return nxt.toString()
-    } else {
-      return ""
-    }
+	  CtsUrn rurn = resolveVersion(requestUrn)
+		  CtsUrn nxt = getNextUrn(rurn)
+		  if (nxt != null) {
+			  return nxt.toString()
+		  } else {
+			  return ""
+		  }
   }
-  
+
   CtsUrn getNextUrn(CtsUrn requestUrn)
-  throws Exception {
-    CtsUrn replyUrn = null
-    CtsUrn queryUrn = null
-    if (requestUrn.isRange()) {
-      // find first node in range and query on that
-        //urn = new CtsUrn("${requestUrn.getUrnWithoutPassage()}${requestUrn.getRangeBegin()}")
+	  throws Exception {
+		  CtsUrn replyUrn = null
+			  CtsUrn queryUrn = null
+			  if (requestUrn.isRange()) {
+					  // find first node in range and query on that
+					  CtsUrn tempUrn = new CtsUrn("${requestUrn.getUrnWithoutPassage()}${requestUrn.getRangeEnd()}")
+					  queryUrn  = resolveVersion(tempUrn)
 
-      
-    } else {
-      queryUrn  = resolveVersion(requestUrn)
-    }
+			  } else {
+				  queryUrn  = resolveVersion(requestUrn)
+			  }
 
-    if (isLeafNode(queryUrn)){
-      StringBuilder reply = new StringBuilder()
-      String ctsReply =  sparql.getSparqlReply("application/json", QueryBuilder.getNextUrnQuery(queryUrn))
-      def slurper = new groovy.json.JsonSlurper()
-      def parsedReply = slurper.parseText(ctsReply)
-      parsedReply.results.bindings.each { bndng ->
-	replyUrn = new CtsUrn(bndng.prevUrn?.value)
-      }
+			  if (isLeafNode(queryUrn)){
+				  StringBuilder reply = new StringBuilder()
+					  String ctsReply =  sparql.getSparqlReply("application/json", QueryBuilder.getNextUrnQuery(queryUrn))
+					  def slurper = new groovy.json.JsonSlurper()
+					  def parsedReply = slurper.parseText(ctsReply)
+					  parsedReply.results.bindings.each { bndng ->
+						  replyUrn = new CtsUrn(bndng.nextUrn?.value)
+					  }
+			  } else {
+				  // Must be a container
+					  Integer lastSequenceOfUrn = getLastSequence(queryUrn)
+					  String lastSeqUrn = getUrnForSequence(lastSequenceOfUrn, queryUrn.getUrnWithoutPassage())
+					  replyUrn = getNextUrn(new CtsUrn(lastSeqUrn))
+			  }	
 
-
-    } else {
-      // implement
-    }	
-
-    return replyUrn
-  }
+		  return replyUrn
+	  }
 
 
 
@@ -506,6 +520,20 @@ class CtsGraph {
 
 			CtsUrn urn = resolveVersion(urnSubmitted)
 			if (urnSubmitted.isRange()){
+				String tempString = ""
+				labelQuery = QueryBuilder.getRdfLabel(new CtsUrn(urnSubmitted.getUrnWithoutPassage()))
+				String reply = sparql.getSparqlReply("application/json", labelQuery)
+				def slurper = new groovy.json.JsonSlurper()
+				def parsedReply = slurper.parseText(reply)
+				def bndng = parsedReply.results.bindings[0]
+				if (bndng) {
+				  tempString += "Range request: ${urnSubmitted.passageComponent}, from "
+				  tempString +=  "${bndng.label?.value}. (${urnSubmitted})."
+				  return tempString
+				} else {
+				  System.err.println "Failed on query:\n ${labelQuery}\n"
+				  throw new Exception("CtsGraph:getLabel: no results from query on ${urn}.")
+				}
 				return "range label."
 			} else {
 				labelQuery = QueryBuilder.getRdfLabel(urn)
@@ -545,9 +573,9 @@ class CtsGraph {
     Integer getFirstSequence(CtsUrn urn) {
         Integer firstInt = null
 		String firstContainedQuery = QueryBuilder.getFirstContainedQuery(urn)
-		//println "${firstContainedQuery}"
+		println "${firstContainedQuery}"
         String ctsReply = sparql.getSparqlReply("application/json", firstContainedQuery)
-		//println ctsReply
+		println ctsReply
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(ctsReply)
         
@@ -572,9 +600,13 @@ class CtsGraph {
     * @returns The sequence property of this URN, as an Integer.
     */
     Integer getLastSequence(CtsUrn urn) {
+		println "getLastSequence for ${urn}"
         Integer lastInt = null
 		String lastContainedQuery = QueryBuilder.getLastContainedQuery(urn)
+		println lastContainedQuery
         String ctsReply = sparql.getSparqlReply("application/json", lastContainedQuery )
+		println ctsReply
+
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(ctsReply)
         
