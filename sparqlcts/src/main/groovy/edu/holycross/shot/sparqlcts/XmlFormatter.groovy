@@ -10,7 +10,7 @@ import edu.harvard.chs.cite.CtsUrn
 * for the opening and closing elements of well-formed XML corresponding 
 * to given XPath expressions and templates.
 */
-abstract class XmlFormatter {
+class XmlFormatter {
 
   /**
    * Converts an XPath expression for the ancestors of a node
@@ -19,7 +19,7 @@ abstract class XmlFormatter {
    * @returns A containing XML string corresponding to the given XPath
    * expression.
    */
-  static String openAncestors (String xpAncestor, String xmlNs) {
+  static String openAncestors (String xpAncestor, String xmlNs, String xmlNsAbbr) {
     StringBuilder formatted = new StringBuilder()
     def pathParts = xpAncestor.split(/\//)
 
@@ -31,7 +31,19 @@ abstract class XmlFormatter {
     println "INSERT " + xmlNs + " into current formatted " + formatted.toString()
 
 
-    return formatted.toString().replaceFirst(">", " ${xmlNs}>")
+    return formatted.toString().replaceFirst(">", " xmlns:${xmlNsAbbr}='${xmlNs}'>")
+  }
+
+  String trimAncestors(String xpAncestor, String xpt, Integer limit) {
+	  StringBuffer formatted = new StringBuffer()
+	  def pathParts = xpAncestor.split(/\//)
+	  def citeIndex = citationIndices(xpt) 
+	  def limitIndex = citeIndex[limit-1] //  
+	  def pathMax = citeIndex[citeIndex.size() - 2]
+	  for (i in pathMax .. limitIndex) {
+		  formatted.insert(0,"<" + filtersToAttrs(pathParts[i]) + ">")
+	  }
+	  return formatted.toString()
   }
 
 
@@ -127,36 +139,50 @@ abstract class XmlFormatter {
    * @throws Exception if two XPaths have different number of levels.
    */
   static Integer findDifferingCitationLevel ( String xp1, String xp2, String xpTemplate)
-    throws Exception {
-      def pathParts1 = xp1.split(/\//)
-      def pathParts2 = xp2.split(/\//)
-      if (pathParts1.size() != pathParts2.size()){
-	throw new Exception("XmlFormatter:findDifferingCitationLevel: xpaths not same depth ${xp1} and ${xp2}")
-      }
-      Integer differingLevel = 0
+	  throws Exception {
+		  System.err.println "xp1: ${xp1}"
+		  System.err.println "xp2: ${xp2}"
+		  System.err.println "xpTemplate: ${xpTemplate}"
+		  def pathParts1 = xp1.split(/\//)
+		  def pathParts2 = xp2.split(/\//)
+		  if (pathParts1.size() != pathParts2.size()){
+			  throw new Exception("XmlFormatter:findDifferingCitationLevel: xpaths not same depth ${xp1} and ${xp2}")
+		  }
+		  Integer differingLevel = 0
 
-      // Index of elements containing citation values:
-      ArrayList citeIndex = citationIndices(xpTemplate)
-      Integer firstIndex = citeIndex[0].toInteger()
-      Integer lastIndex = citeIndex[citeIndex.size() - 1].toInteger()
+		  // Index of elements containing citation values:
+		  ArrayList citeIndex = citationIndices(xpTemplate)
+		  System.err.println xpTemplate
+		  System.err.println "citeIndex: ${citeIndex}"
+		  System.err.println "pathParts1: ${pathParts1}, size=${pathParts1.size()}"
+		  System.err.println "pathParts2: ${pathParts2}, size=${pathParts2.size()}"
+		  System.err.println "Hi!"
 
-      Integer counter = 0
-      for (i in firstIndex .. lastIndex) {
-	if (pathParts1[i] != pathParts2[i]){
-	  differingLevel = counter
-	  break
-	}
-	counter++;
-	if (i == lastIndex) {
-	  // then they matched all the way to the end,
-	  // so are identical:
-	  differingLevel = -1
-	}
-      }
-      // save 0 value for identical match, and
-      // report level as 1-origin array:
-      return differingLevel + 1
-    }
+		  System.err.println "firstIndex should be ${citeIndex[0].toInteger()}"
+		  Integer firstIndex = citeIndex[0].toInteger()
+		  System.err.println "lastIndex should be ${citeIndex[citeIndex.size() - 2].toInteger()}"
+		  Integer lastIndex = citeIndex[citeIndex.size() - 2].toInteger()
+		  System.err.println "firstIndex: ${firstIndex}"
+		  System.err.println "lastIndex: ${lastIndex}"
+
+		  Integer counter = 0
+		  for (i in firstIndex .. lastIndex) {
+			  System.err.println "i=${i}, [${pathParts1[i]}],[${pathParts2[i]}]"
+			  if (pathParts1[i] != pathParts2[i]){
+				  differingLevel = counter
+					  break
+			  }
+			  counter++;
+			  if (i == lastIndex) {
+				  // then they matched all the way to the end,
+				  // so are identical:
+				  differingLevel = -1
+			  }
+		  }
+		  // save 0 value for identical match, and
+		  // report level as 1-origin array:
+		  return differingLevel + 1
+	  }
 
 
 
@@ -173,23 +199,24 @@ abstract class XmlFormatter {
   static String trimOpen(String xpAncestor, String xpTemplate, Integer limit) {
     ArrayList pathParts = xpAncestor.split(/\//)
     ArrayList templateParts = xpTemplate.split(/\//)
-    if (pathParts.size() != templateParts.size()){
-	throw new Exception("XmlFormatter:trimClose: xpath ${xpAncestor} not same depth as template ${xpTemplate}")
+    if (pathParts.size() != (templateParts.size()--)){
+	throw new Exception("XmlFormatter:trimOpen: xpath ${xpAncestor} not same depth as template ${xpTemplate}")
     }
     if (limit < 1) {
-      throw new Exception("XmlFormatter:trimClose: must include at least one citation level (limit requested was ${limit}")
+      throw new Exception("XmlFormatter:trimOpen: must include at least one citation level (limit requested was ${limit}")
     }
     
     StringBuilder formatted = new StringBuilder()
     ArrayList citationElements = citationIndices(xpTemplate)
     if (limit > citationElements.size()) {
-      throw new Exception("XmlFormatter:trimClose: ${limit} levels requested, but only ${citationElements.size()} citation elements in this scheme.")
+      throw new Exception("XmlFormatter:trimOpen: ${limit} levels requested, but only ${citationElements.size()} citation elements in this scheme.")
     }
 
+	Integer pathMax = citationElements[citationElements.size() - 2]
     // limit - 1 because values of citationElements are 1-origin,
     // but we're working with 0-origin arrays
     Integer firstIndex = citationElements[limit - 1].toInteger()
-    for (i in 1 .. firstIndex)  {
+    for (i in pathMax .. firstIndex)  {
       formatted.append("<" + filtersToAttrs(pathParts[i]) + ">")
     }
     return formatted.toString()
@@ -213,14 +240,13 @@ abstract class XmlFormatter {
   static String trimClose(String xpAncestor, String xpTemplate, Integer limit) {
     ArrayList pathParts = xpAncestor.split(/\//)
     ArrayList templateParts = xpTemplate.split(/\//)
-    if (pathParts.size() != templateParts.size()){
+    if (pathParts.size() != (templateParts.size()-1)){
 	throw new Exception("XmlFormatter:trimClose: xpath ${xpAncestor} not same depth as template ${xpTemplate}")
     }
     if (limit < 1) {
       throw new Exception("XmlFormatter:trimClose: must include at least one citation level (limit requested was ${limit}")
     }
 
-    
     StringBuilder formatted = new StringBuilder()
     ArrayList citationElements = citationIndices(xpTemplate)
 
@@ -229,13 +255,14 @@ abstract class XmlFormatter {
     }
     
 
-
+	Integer pathMax = citationElements[citationElements.size() - 2]
+	println "btw, pathMax is ${pathMax}"
     // limit - 1 because values of citationElements are 1-origin,
     // but we're working with 0-origin arrays
     Integer firstIndex = citationElements[limit - 1].toInteger()
     println "Limit " + limit + " is at 0-origin element " + firstIndex
     
-    for (i in firstIndex .. 1 )  {
+    for (i in firstIndex .. pathMax )  {
       println "Element ${i} " + templateParts[i]
       formatted.append("</" + stripFilters(templateParts[i]) + ">")
     }

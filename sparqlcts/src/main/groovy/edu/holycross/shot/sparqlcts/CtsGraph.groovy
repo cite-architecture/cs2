@@ -334,7 +334,9 @@ class CtsGraph {
    * @returns An Ohco2Node object.
    * @throws Exception if leafNode is not a single leaf node.
    */
-  Ohco2Node getOhco2Node(CtsUrn urn) {
+  Ohco2Node getOhco2Node(CtsUrn requestUrn) {
+
+	CtsUrn urn = resolveVersion(requestUrn)
 
     String label  = getLabel(urn)
     ArrayList leafNodes = getRangeNodes(urn)

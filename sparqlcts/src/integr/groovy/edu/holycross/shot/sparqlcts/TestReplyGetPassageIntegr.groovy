@@ -16,9 +16,9 @@ class TestReplyGetPassageIntegr extends GroovyTestCase {
   String baseUrl = "http://localhost:8080/fuseki/ds/query"
   Sparql sparql = new Sparql(baseUrl)
   CtsGraph graph = new CtsGraph(sparql)
-  CtsReply reply = new CtsReply(sparql, graph)
+  CtsReply reply = new CtsReply( sparql, graph)
 
-
+/*
   @Test
   void testSetup() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:3.4")
@@ -26,7 +26,19 @@ class TestReplyGetPassageIntegr extends GroovyTestCase {
 	Map testReply = reply.getPassagePlusReply(urn)
 
 	assert testReply
-//	println new JsonBuilder(testReply).toPrettyString()
+	println new JsonBuilder(testReply).toPrettyString()
+    
+  }
+  */
+
+  @Test
+  void testXML() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.10-3.1")
+
+	String testReply = reply.getPassagePlusToXML(urn)
+
+	assert testReply
+	println testReply
     
   }
 

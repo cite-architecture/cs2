@@ -39,7 +39,7 @@ class TestOHCO2ConstructionIntegr extends GroovyTestCase {
 
 		  Ohco2Node response = graph.getOhco2Node(urn)
 		
-		  assert response.requestUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.4"
+		  assert response.nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.4"
 		  assert response.prevUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.3"
 		  assert response.nextUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.5"
 		  assert response.nodeLabel == "Homeric Epic, Iliad (Allen's Iliad (test ed.)): 3.4 (urn:cts:greekLit:tlg0012.tlg001.testAllen:3.4)"
@@ -62,7 +62,7 @@ class TestOHCO2ConstructionIntegr extends GroovyTestCase {
 
 		  Ohco2Node response = graph.getOhco2Node(urn)
 		
-		  assert response.requestUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.1-3.3"
+		  assert response.nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.1-3.3"
 		  assert response.prevUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:2.10"
 		  assert response.nextUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.4"
 		  assert response.nodeLabel == "Range request: 3.1-3.3, from Allen's Iliad (test ed.). (urn:cts:greekLit:tlg0012.tlg001.testAllen:3.1-3.3)."
@@ -86,7 +86,7 @@ class TestOHCO2ConstructionIntegr extends GroovyTestCase {
 
 		  Ohco2Node response = graph.getOhco2Node(urn)
 		
-		  assert response.requestUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001:3.4"
+		  assert response.nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.4"
 		  assert response.leafNodes[0]['rangeNode'].nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.4"
 		  assert response.prevUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.3"
 		  assert response.nextUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.5"
@@ -110,10 +110,10 @@ class TestOHCO2ConstructionIntegr extends GroovyTestCase {
 
 		  Ohco2Node response = graph.getOhco2Node(urn)
 		
-		  assert response.requestUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001:3.1-3.3"
+		  assert response.nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.1-3.3"
 		  assert response.prevUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:2.10"
 		  assert response.nextUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.4"
-		  assert response.nodeLabel == "Range request: 3.1-3.3, from Iliad. (urn:cts:greekLit:tlg0012.tlg001:3.1-3.3)."
+		  assert response.nodeLabel == "Range request: 3.1-3.3, from Allen's Iliad (test ed.). (urn:cts:greekLit:tlg0012.tlg001.testAllen:3.1-3.3)."
 		  
 		  assert response.leafNodes.size() == 3
 

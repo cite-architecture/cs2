@@ -9,7 +9,7 @@ class Ohco2Node {
 
 
   /** Machine-actionable URN for the node. */
-  CtsUrn requestUrn
+  CtsUrn nodeUrn
   /** Human-readable label for the node*/
   String nodeLabel
   
@@ -36,7 +36,7 @@ class Ohco2Node {
     if (urn == null) {
       throw new Exception("Ohco2Node: URN for node cannot be null.")
     } else {
-      this.requestUrn = urn
+      this.nodeUrn = urn
     }
     if ((label == null) || (label.size() < 1)) {
       throw new Exception("Ocho2Node: text content of node cannot be null.")
@@ -66,7 +66,7 @@ class Ohco2Node {
 		tempString += "${it}\r"
 	}
 
-    return "${nodeLabel} (${requestUrn}): ${tempString}"
+    return "${nodeLabel} (${nodeUrn}): ${tempString}"
   }
 
 
@@ -79,7 +79,7 @@ class Ohco2Node {
   }
 
   String toXml() {
-    return "<cts:node xmlns:cts='http://chs.harvard.edu/xmlns/cts' urn='" + this.requestUrn +  "'>${this.textContent}</cts:node>"
+    return "<cts:node xmlns:cts='http://chs.harvard.edu/xmlns/cts' urn='" + this.nodeUrn +  "'>${this.textContent}</cts:node>"
   }
 
  
