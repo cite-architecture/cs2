@@ -77,6 +77,25 @@ class TestDescrsIntegr extends GroovyTestCase {
     println "For ${urn}: " + actualLabel
   }
 
+  @Test
+  void testContainerDescr1() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1")
+    String expectedLabel = "Containing-element request: 1, from Allen's Iliad (test ed.). (urn:cts:greekLit:tlg0012.tlg001.testAllen:1)."
+    String actualLabel = graph.getLabel(urn)
+    assert actualLabel.replaceAll("\\s","") == expectedLabel.replaceAll("\\s","")
+
+    println "For ${urn}: " + actualLabel
+  }
+
+  @Test
+  void testContainerDescr2() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1")
+    String expectedLabel = "Containing-element request: 1, from Iliad. (urn:cts:greekLit:tlg0012.tlg001:1)."
+    String actualLabel = graph.getLabel(urn)
+    assert actualLabel.replaceAll("\\s","") == expectedLabel.replaceAll("\\s","")
+
+    println "For ${urn}: " + actualLabel
+  }
 
 
 }

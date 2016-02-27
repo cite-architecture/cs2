@@ -28,6 +28,9 @@ class CtsReply {
 * GetPassage Replies
    ****************************************** */
 
+  /**  Given a URN, constructs a getPassagePlus reply data-object
+   * @returns ctsReply as Map
+   */
 	Map getPassagePlusReply(CtsUrn requestUrn){
 		Map ctsReply = [:]
 		Map ctsReplyObject = [:]
@@ -53,15 +56,22 @@ class CtsReply {
 		return ctsReply
 	}
 
+	/**  Given a URN, constructs a getPassagePlus reply as
+	 * an XML fragment, by first making a getPassagePlus reply Map.
+	 * @returns ctsReply as Map
+	 */
 	String getPassagePlusToXML(CtsUrn requestUrn){
-		 String xmlString = "holding"
-		 Map gppObject = getPassagePlusReply(requestUrn)
-		 println "gpp object"
-		 println gppObject['GetPassagePlus']['reply']['rangeNodesMap'] 
-		 xmlString = getFillText(gppObject['GetPassagePlus']['reply']['rangeNodesMap'])
-		 return xmlString
+		String xmlString = "holding"
+			Map gppObject = getPassagePlusReply(requestUrn)
+			xmlString = getFillText(gppObject['GetPassagePlus']['reply']['rangeNodesMap'])
+			return xmlString
 	}
 
+	/**  Crazy complicated invokating on XmlFormatter, to 
+	* ensure a well-formed XML fragment. Highly implementation-specific.
+	* Fragile as hell. Don't mess withis lightly.
+	 * @returns String
+	 */
 	String getFillText(ArrayList leafNodes){
         StringBuffer passageString = new StringBuffer()
 
@@ -87,43 +97,22 @@ class CtsReply {
 			Boolean firstNode = true
 
 			leafNodes.each { b ->
-				println "-----------------------------"
-				println "Iteration ${b['rangeNode']['nodeUrn']}"
-				println "TempText: ${tempText}"
-				println "Current wrapper: ${currentWrapper}"
-				println "currentXpt: ${currentXpt}"
-				println "currentNext: ${currentNext}"
-				println "citeDiffLevel: ${citeDiffLevel}"
-				println "FIRST NODE: ${firstNode}"
+
 				if (b['typeExtras']['nxt'] != currentNext){
-					println "next != currentNext"
 					
 					currentNext = b['typeExtras']['nxt']
 					if ((b['typeExtras']['anc'] != currentWrapper)||(firstNode)) {
-						println "Got here: ${b['typeExtras']['anc'] != currentWrapper}, ${firstNode}"
-						println "this xpt: ${b['typeExtras']['xpt']}"
 						citeDiffLevel = formatter.findDifferingCitationLevel(b['typeExtras']['anc'], currentWrapper, b['typeExtras']['xpt'])
-						println "New citeDiffLevel: ${citeDiffLevel}"
 						if (firstNode) {
 								firstNode = false
 								passageString.append(formatter.openAncestors(b['typeExtras']['anc'],b['typeExtras']['xmlns'],b['typeExtras']['xmlnsabbr']))
-								println "First pass: appending…"
-								println ">>>>>>> ${passageString}"
 						} else  {
-								println "Subsequent pass…"
 								if (citeDiffLevel < 0){
-									println "citeLevels less than zero. appending trimClose and trimAncestors."
 								passageString.append(formatter.trimClose(b['typeExtras']['anc'], currentXpt,1))
 								passageString.append(formatter.trimAncestors(b['typeExtras']['anc'], b['typeExtras']['xpt'], 1))
 								} else {
 								// We might need to change 'b.xpt?.value' in the line below to 'currentXpt'
-								println "citeLevels NOT less than zero."
-								println "CiteDiffLevel is currently: ${citeDiffLevel}"
-								println "fixin to append…"
-								println "${formatter.trimClose(b['typeExtras']['anc'], b['typeExtras']['xpt'],citeDiffLevel)}"
 								passageString.append(formatter.trimClose(b['typeExtras']['anc'], b['typeExtras']['xpt'],citeDiffLevel))
-								println "fixin to append…"
-								println "${formatter.trimAncestors(b['typeExtras']['anc'], b['typeExtras']['xpt'], citeDiffLevel)}"
 								passageString.append(formatter.trimAncestors(b['typeExtras']['anc'], b['typeExtras']['xpt'], citeDiffLevel))
 								}
 						}
@@ -140,8 +129,6 @@ class CtsReply {
                     }
 				}
 			}
-				println "------------------------------"
-				println "Appending Close Ancestors."
 				passageString.append(formatter.closeAncestors(currentWrapper))
 
 		} else {

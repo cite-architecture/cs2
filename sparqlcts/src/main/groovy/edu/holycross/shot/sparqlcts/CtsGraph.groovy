@@ -526,18 +526,34 @@ class CtsGraph {
 				  System.err.println "Failed on query:\n ${labelQuery}\n"
 				  throw new Exception("CtsGraph:getLabel: no results from query on ${urn}.")
 				}
-				return "range label."
 			} else {
-				labelQuery = QueryBuilder.getRdfLabel(urn)
-				String reply = sparql.getSparqlReply("application/json", labelQuery)
-				def slurper = new groovy.json.JsonSlurper()
-				def parsedReply = slurper.parseText(reply)
-				def bndng = parsedReply.results.bindings[0]
-				if (bndng) {
-				  return "${bndng.label?.value}"
-				} else {
-				  System.err.println "Failed on query:\n ${labelQuery}\n"
-				  throw new Exception("CtsGraph:getLabel: no results from query on ${urn}.")
+				if (isLeafNode(urn)){
+					labelQuery = QueryBuilder.getRdfLabel(urn)
+					String reply = sparql.getSparqlReply("application/json", labelQuery)
+					def slurper = new groovy.json.JsonSlurper()
+					def parsedReply = slurper.parseText(reply)
+					def bndng = parsedReply.results.bindings[0]
+					if (bndng) {
+					  return "${bndng.label?.value}"
+					} else {
+					  System.err.println "Failed on query:\n ${labelQuery}\n"
+					  throw new Exception("CtsGraph:getLabel: no results from query on ${urn}.")
+					}
+				} else { // must be a container
+					String tempString = ""
+					labelQuery = QueryBuilder.getRdfLabel(new CtsUrn(urnSubmitted.getUrnWithoutPassage()))
+					String reply = sparql.getSparqlReply("application/json", labelQuery)
+					def slurper = new groovy.json.JsonSlurper()
+					def parsedReply = slurper.parseText(reply)
+					def bndng = parsedReply.results.bindings[0]
+					if (bndng) {
+					  tempString += "Containing-element request: ${urnSubmitted.passageComponent}, from "
+					  tempString +=  "${bndng.label?.value}. (${urnSubmitted})."
+					  return tempString
+					} else {
+					  System.err.println "Failed on query:\n ${labelQuery}\n"
+					  throw new Exception("CtsGraph:getLabel: no results from query on ${urn}.")
+					}
 				}
 			}
 

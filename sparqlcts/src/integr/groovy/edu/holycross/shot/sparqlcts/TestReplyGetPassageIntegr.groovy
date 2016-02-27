@@ -32,8 +32,8 @@ class TestReplyGetPassageIntegr extends GroovyTestCase {
   */
 
   @Test
-  void testXML() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.10-3.1")
+  void testXML1() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:1.2.3")
 
 	String testReply = reply.getPassagePlusToXML(urn)
 
@@ -42,5 +42,60 @@ class TestReplyGetPassageIntegr extends GroovyTestCase {
     
   }
 
+  @Test
+  void testXML2() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:1.2")
+
+	String testReply = reply.getPassagePlusToXML(urn)
+
+	assert testReply
+	println testReply
+    
+  }
+
+  @Test
+  void testXML3() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:1")
+
+	String testReply = reply.getPassagePlusToXML(urn)
+
+	assert testReply
+	println testReply
+    
+  }
+
+
+  @Test
+  void testXML4() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1")
+
+	String testReply = reply.getPassagePlusToXML(urn)
+
+	assert testReply
+	println testReply
+    
+  }
+
+  @Test
+  void testXML5() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.10-2.1")
+
+	String testReply = reply.getPassagePlusToXML(urn)
+
+	assert testReply
+	println testReply
+    
+  }
+
+  @Test
+  void testXML6() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.10-3.1")
+
+	String testReply = reply.getPassagePlusToXML(urn)
+
+	assert testReply
+	println testReply
+    
+  }
 
 }

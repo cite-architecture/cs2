@@ -38,7 +38,7 @@ task ctsIntegration(type: Test, dependsOn: 'test') {
 //	include '**/TestOHCO2ConstructionIntegr.*'
 	//include '**/TestPrevIntegr.*'
 	//include '**/TestNextIntegr.*'
-//	include '**/TestDescrsIntegr.*'
+	include '**/TestDescrsIntegr.*'
 
  testClassesDir = sourceSets.integr.output.classesDir
  classpath = sourceSets.integr.runtimeClasspath

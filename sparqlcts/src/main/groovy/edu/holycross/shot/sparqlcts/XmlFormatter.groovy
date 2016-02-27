@@ -15,6 +15,7 @@ class XmlFormatter {
   /**
    * Converts an XPath expression for the ancestors of a node
    * to the opening XML markup of that node in its XML serialization.
+   * N.b. We are NOT interested in the last, leaf-node element!
    * @param xpAncestor A XPath String for a citable node of a document.
    * @returns A containing XML string corresponding to the given XPath
    * expression.
@@ -28,17 +29,24 @@ class XmlFormatter {
 	formatted.append("<" + filtersToAttrs(pth) + ">")
       }
     }
-    println "INSERT " + xmlNs + " into current formatted " + formatted.toString()
-
 
     return formatted.toString().replaceFirst(">", " xmlns:${xmlNsAbbr}='${xmlNs}'>")
   }
 
+  /**
+   * Converts an XPath expression for the ancestors of a node
+   * to the CLOSING XML markup of that node in its XML serialization.
+   * N.b. We are NOT interested in the last, leaf-node element!
+   * @param xpAncestor A XPath String for a citable node of a document.
+   * @returns A containing XML string corresponding to the given XPath
+   * expression.
+   */
   String trimAncestors(String xpAncestor, String xpt, Integer limit) {
 	  StringBuffer formatted = new StringBuffer()
 	  def pathParts = xpAncestor.split(/\//)
 	  def citeIndex = citationIndices(xpt) 
 	  def limitIndex = citeIndex[limit-1] //  
+	  // pathMax, because we are not closing ALL the hierarchy, just the bits that need closing.
 	  def pathMax = citeIndex[citeIndex.size() - 2]
 	  for (i in pathMax .. limitIndex) {
 		  formatted.insert(0,"<" + filtersToAttrs(pathParts[i]) + ">")
@@ -131,6 +139,8 @@ class XmlFormatter {
    *      '1.1.1.1.1' and '1.1.2.1.1' --> 3
    *      '1.1.1.1.1' and '1.2.1.1.1' --> 2
    *
+   * N.b. We are NOT interested in the last, leaf-node element!
+   *
    * @param xp1 The first XPath to compare.
    * @param xp2 The second XPath to compare.
    * @param xpTemplate An XPath template
@@ -140,9 +150,6 @@ class XmlFormatter {
    */
   static Integer findDifferingCitationLevel ( String xp1, String xp2, String xpTemplate)
 	  throws Exception {
-		  System.err.println "xp1: ${xp1}"
-		  System.err.println "xp2: ${xp2}"
-		  System.err.println "xpTemplate: ${xpTemplate}"
 		  def pathParts1 = xp1.split(/\//)
 		  def pathParts2 = xp2.split(/\//)
 		  if (pathParts1.size() != pathParts2.size()){
@@ -152,22 +159,12 @@ class XmlFormatter {
 
 		  // Index of elements containing citation values:
 		  ArrayList citeIndex = citationIndices(xpTemplate)
-		  System.err.println xpTemplate
-		  System.err.println "citeIndex: ${citeIndex}"
-		  System.err.println "pathParts1: ${pathParts1}, size=${pathParts1.size()}"
-		  System.err.println "pathParts2: ${pathParts2}, size=${pathParts2.size()}"
-		  System.err.println "Hi!"
 
-		  System.err.println "firstIndex should be ${citeIndex[0].toInteger()}"
 		  Integer firstIndex = citeIndex[0].toInteger()
-		  System.err.println "lastIndex should be ${citeIndex[citeIndex.size() - 2].toInteger()}"
-		  Integer lastIndex = citeIndex[citeIndex.size() - 2].toInteger()
-		  System.err.println "firstIndex: ${firstIndex}"
-		  System.err.println "lastIndex: ${lastIndex}"
+		  Integer lastIndex = citeIndex[citeIndex.size() - 2].toInteger() // -2 because we are ignoring the leaf-node element.
 
 		  Integer counter = 0
 		  for (i in firstIndex .. lastIndex) {
-			  System.err.println "i=${i}, [${pathParts1[i]}],[${pathParts2[i]}]"
 			  if (pathParts1[i] != pathParts2[i]){
 				  differingLevel = counter
 					  break
@@ -183,55 +180,13 @@ class XmlFormatter {
 		  // report level as 1-origin array:
 		  return differingLevel + 1
 	  }
-
-
-
-  /**
-   * Converts an XPath expression for the ancestors of a node
-   * to the opening XML markup of that node in its XML serialization
-   * down to a given number of citation levels defined in an
-   * XPath template.
-   * @param xpAncestor XPath String for a citable node of a document.
-   * @param xpTemplate Citation template for this document.
-   * @param limit Number of citation levels to include.
-   * @returns An opening XML string for well-formed containing markup.
-   */
-  static String trimOpen(String xpAncestor, String xpTemplate, Integer limit) {
-    ArrayList pathParts = xpAncestor.split(/\//)
-    ArrayList templateParts = xpTemplate.split(/\//)
-    if (pathParts.size() != (templateParts.size()--)){
-	throw new Exception("XmlFormatter:trimOpen: xpath ${xpAncestor} not same depth as template ${xpTemplate}")
-    }
-    if (limit < 1) {
-      throw new Exception("XmlFormatter:trimOpen: must include at least one citation level (limit requested was ${limit}")
-    }
-    
-    StringBuilder formatted = new StringBuilder()
-    ArrayList citationElements = citationIndices(xpTemplate)
-    if (limit > citationElements.size()) {
-      throw new Exception("XmlFormatter:trimOpen: ${limit} levels requested, but only ${citationElements.size()} citation elements in this scheme.")
-    }
-
-	Integer pathMax = citationElements[citationElements.size() - 2]
-    // limit - 1 because values of citationElements are 1-origin,
-    // but we're working with 0-origin arrays
-    Integer firstIndex = citationElements[limit - 1].toInteger()
-    for (i in pathMax .. firstIndex)  {
-      formatted.append("<" + filtersToAttrs(pathParts[i]) + ">")
-    }
-    return formatted.toString()
-  }
-
-
-
-
-
   
   /**
    * Converts an XPath expression for the ancestors of a node
    * to the closing XML markup of that node in its XML serialization,
    * down to a given number of citation levels defined in an
    * XPath template.
+   * N.b. We are NOT interested in the last, leaf-node element!
    * @param xpAncestor XPath String for a citable node of a document.
    * @param xpTemplate Citation template for this document.
    * @param limit Number of citation levels to include.
@@ -254,16 +209,13 @@ class XmlFormatter {
       throw new Exception("XmlFormatter:trimClose: ${limit} levels requested, but only ${citationElements.size()} citation elements in this scheme.")
     }
     
-
+	// pathMax is because we are not closing the whoe hierarchy up to the root node, but only the ones that need closing.
 	Integer pathMax = citationElements[citationElements.size() - 2]
-	println "btw, pathMax is ${pathMax}"
     // limit - 1 because values of citationElements are 1-origin,
     // but we're working with 0-origin arrays
     Integer firstIndex = citationElements[limit - 1].toInteger()
-    println "Limit " + limit + " is at 0-origin element " + firstIndex
     
     for (i in firstIndex .. pathMax )  {
-      println "Element ${i} " + templateParts[i]
       formatted.append("</" + stripFilters(templateParts[i]) + ">")
     }
     return formatted.toString()
