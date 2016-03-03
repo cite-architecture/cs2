@@ -12,6 +12,22 @@ class Ohco2Node {
   CtsUrn nodeUrn
   /** Human-readable label for the node*/
   String nodeLabel
+
+  /** An Ohco2Node must be either at the verion- or exemplar-level **/
+  String workLevel
+
+  /** An Ohco2Node must be either an Edition or a Translation, or an exampler from one or the other **/
+  String versionType
+
+  /** An Ohco2Node must have a language **/
+  String nodeLang
+
+  /** Human-readable label for bibliographic components **/
+  String groupLabel
+  String workLabel
+  String versionLabel
+  String exemplarLabel
+
   
   /** Possibly null URN for preceding leaf node. */
   CtsUrn prevUrn = null
@@ -31,7 +47,7 @@ class Ohco2Node {
    * @throws Exception if urn, label or txt is empty; or if a non-null
    * value for prev or next is not a valid URN.
    */
-  Ohco2Node(CtsUrn urn, String label, CtsUrn prev, CtsUrn next, ArrayList rangeNodeMap)
+  Ohco2Node(CtsUrn urn, String label, String nodeLang, CtsUrn prev, CtsUrn next, ArrayList rangeNodeMap)
   throws Exception {
     if (urn == null) {
       throw new Exception("Ohco2Node: URN for node cannot be null.")
@@ -43,6 +59,8 @@ class Ohco2Node {
     } else {
       this.nodeLabel = label
     }
+
+    this.nodeLang = nodeLang 
     
     if ((rangeNodeMap == null) || (rangeNodeMap.size() < 1)) {
       throw new Exception("Ocho2Node: text content of node cannot be null.")

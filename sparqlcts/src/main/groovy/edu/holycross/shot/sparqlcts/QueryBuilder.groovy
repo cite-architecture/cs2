@@ -340,5 +340,58 @@ ORDER BY ?s
 """
 }
 
+/* Forms SPARQL query to find the type of an version-level URN (Translation or Edition); 
+* if the URN points to an exemplar, returns the type of the parent Version.
+* @returns a Sparql query as String
+**/
+static String getVersionTypeQuery(String urn) {
+	return """
+		${CtsDefinitions.prefixPhrase}
+	SELECT ?t
+		WHERE {
 
+			bind (<${urn}> as ?s)
+			{
+				?s rdf:type ?t .
+			} union {
+				?s cts:belongsTo ?v .
+					?v rdf:type ?t .
+			}
+
+		} """
 }
+
+
+/* Forms SPARQL query to find the language of an Edition, Translation, or 
+* derived Exemplar.
+* @returns a Sparql query as String
+**/
+static String getLangQuery(String urn) {
+	return """
+		${CtsDefinitions.prefixPhrase}
+SELECT ?l
+WHERE {
+   
+  bind (<${urn}> as ?s)
+  {
+    ?s cts:belongsTo ?v .
+    ?s rdf:type <http://www.homermultitext.org/cts/rdf/Edition> .
+   ?v cts:lang ?l .
+  } union {
+   ?s cts:belongsTo ?v .
+    ?v rdf:type <http://www.homermultitext.org/cts/rdf/Edition> .
+    ?v cts:belongsTo ?w .
+   ?w cts:lang ?l .
+  } union {
+    ?s cts:belongsTo ?v .
+    ?v rdf:type <http://www.homermultitext.org/cts/rdf/Translation> .
+    ?v cts:lang ?l .
+   } union {
+     ?s rdf:type <http://www.homermultitext.org/cts/rdf/Translation> .
+    ?s cts:lang ?l .
+  }
+}"""
+}
+  
+} 
+

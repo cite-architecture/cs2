@@ -63,7 +63,7 @@ if (request.getParameter("context")) {
 		try {
 			context = contextStr.toInteger()
 		} catch (Exception e) {
-			System.err.println "Value of context parameter must be an integer: ${contextStr}"
+			System.err.println "Value of context parameter must be an integer: ${contextStr}. And by the way, this implementation will ignore the context parameter."
 		}
 }
 

@@ -18,18 +18,16 @@ class TestReplyGetPassageIntegr extends GroovyTestCase {
   CtsGraph graph = new CtsGraph(sparql)
   CtsReply reply = new CtsReply( sparql, graph)
 
-/*
   @Test
   void testSetup() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:3.4")
 
-	Map testReply = reply.getPassagePlusReply(urn)
+	Map testReply = reply.getPassagePlusObject(urn)
 
 	assert testReply
 	println new JsonBuilder(testReply).toPrettyString()
     
   }
-  */
 
   @Test
   void testXML1() {
@@ -90,6 +88,28 @@ class TestReplyGetPassageIntegr extends GroovyTestCase {
   @Test
   void testXML6() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.10-3.1")
+
+	String testReply = reply.getPassagePlusToXML(urn)
+
+	assert testReply
+	println testReply
+    
+  }
+
+  @Test
+  void testXML7() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0016.tlg001.engTest:1.2-1.3")
+
+	String testReply = reply.getPassagePlusToXML(urn)
+
+	assert testReply
+	println testReply
+    
+  }
+
+  @Test
+  void testXML8() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0016.tlg001.engTest.wt:1.2.1-1.2.5")
 
 	String testReply = reply.getPassagePlusToXML(urn)
 

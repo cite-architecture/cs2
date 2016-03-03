@@ -40,7 +40,7 @@ class TestDescrsIntegr extends GroovyTestCase {
   @Test
   void testJustWorkDescr() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:")
-    String expectedLabel = "Iliad"
+    String expectedLabel = "Iliad (urn:cts:greekLit:tlg0012.tlg001:)."
     String actualLabel = graph.getLabel(urn)
     assert actualLabel.replaceAll("\\s","") == expectedLabel.replaceAll("\\s","")
 
@@ -50,7 +50,7 @@ class TestDescrsIntegr extends GroovyTestCase {
   @Test
   void testJustGroupDescr() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012:")
-    String expectedLabel = "Homeric Epic"
+    String expectedLabel = "Homeric Epic (urn:cts:greekLit:tlg0012:)."
     String actualLabel = graph.getLabel(urn)
     assert actualLabel.replaceAll("\\s","") == expectedLabel.replaceAll("\\s","")
 
@@ -91,6 +91,26 @@ class TestDescrsIntegr extends GroovyTestCase {
   void testContainerDescr2() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1")
     String expectedLabel = "Containing-element request: 1, from Iliad. (urn:cts:greekLit:tlg0012.tlg001:1)."
+    String actualLabel = graph.getLabel(urn)
+    assert actualLabel.replaceAll("\\s","") == expectedLabel.replaceAll("\\s","")
+
+    println "For ${urn}: " + actualLabel
+  }
+
+  @Test
+  void testExemplarDescr1() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:")
+    String expectedLabel = "Allen. Iliad. Greek. 3 books of 10 lines. Word-tokens wrapped and citable. (urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:)."
+    String actualLabel = graph.getLabel(urn)
+    assert actualLabel.replaceAll("\\s","") == expectedLabel.replaceAll("\\s","")
+
+    println "For ${urn}: " + actualLabel
+  }
+
+  @Test
+  void testExemplarDescr2() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:1.1.1")
+    String expectedLabel = "Homeric Epic, Iliad (null): 1.1.1 (urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:1.1.1)"
     String actualLabel = graph.getLabel(urn)
     assert actualLabel.replaceAll("\\s","") == expectedLabel.replaceAll("\\s","")
 

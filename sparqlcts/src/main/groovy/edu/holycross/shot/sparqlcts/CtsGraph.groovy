@@ -42,12 +42,12 @@ class CtsGraph {
    * for all leaf nodes bounded by the range, as well as the
    * beginning and end nodes identified in the CTS URN. If
    * urn is a single containing node, the list will contains rangeNodes
-   * for all leaf-nodes contained by that node. Whenever the list contains more than
+ q  * for all leaf-nodes contained by that node. Whenever the list contains more than
    * one leaf-node, they will appear in document order.
    * Returns an ArrayList , consisting of Map ['rangeNode'] is rangeNode, and ['typeExtras'] a typeExtras map, for now
    * containing the XML stuff necessary for reconstructing an XML reply.
    * @param submittedUrn The CtsUrn in question.
-   * @returns An ordered list of pairs: [0] is rangeNode, [1] is typeExtras
+   * @returns An ordered list of Map: ['rangeNode'], ['typeExtras']
    */
   ArrayList getRangeNodes(CtsUrn submittedUrn) {
 
@@ -339,11 +339,14 @@ class CtsGraph {
 	CtsUrn urn = resolveVersion(requestUrn)
 
     String label  = getLabel(urn)
+	String nodeLang = getLanguage(urn)
+
+	
     ArrayList leafNodes = getRangeNodes(urn)
 
     CtsUrn prev = getPrevUrn(urn)
     CtsUrn nxt = getNextUrn(urn)
-    Ohco2Node ond = new Ohco2Node(urn, label, prev, nxt, leafNodes)
+    Ohco2Node ond = new Ohco2Node(urn, label, nodeLang, prev, nxt, leafNodes)
     if (ond == null) {
       System.err.println "COULD NOT MAKE Ohco2Node!"
       System.err.println "${leafNode} (${label}): ${txtContent}"
@@ -425,7 +428,7 @@ class CtsGraph {
         return urnStr
 	}
 
-  /** Finds the next URN preceding a given URN.
+  /** Finds the next URN preceding a given URN. Returns a string.
    * If the URN is a leaf node, returns the preceeding leaf node.
    * If the URN is a non-leaf node, returns the URN of the preceeding
    * citation at that level of the hierarchy ?
@@ -445,6 +448,14 @@ class CtsGraph {
 		  }
   }
 
+  /** Finds the next URN preceding a given URN.
+   * If the URN is a leaf node, returns the preceeding leaf node.
+   * If the URN is a non-leaf node, returns the URN of the preceeding
+   * citation at that level of the hierarchy ?
+   * @param urn CTS URN to test.
+   * @returns CtsUrn of the preceding citable node.
+   * @throws Exception if retrieved value is not a valid CtsUrn string.
+   */
   CtsUrn getNextUrn(CtsUrn requestUrn)
 	  throws Exception {
 		  CtsUrn replyUrn = null
@@ -480,8 +491,10 @@ class CtsGraph {
 
   
 
-  // Applicable only to leaf node...
-  // useful in constructing leafnode object
+  /** Gets the TextContent for a CTS Leaf node.
+   * @param urn CTS URN 
+   * @returns String. The Text Content of the CTS Leaf Node.
+   */
   String getLeafNodeText(CtsUrn urnSubmitted) {
 
     CtsUrn urn = resolveVersion(urnSubmitted)
@@ -500,9 +513,10 @@ class CtsGraph {
 
   
 
-  // calling programs need to be careful.
-  // no rdf:labels on passages on notioanl works, for example.
-  // but shouldn't there be??
+  /** Gets a label for a Cts URN
+   * @param urn CTS URN 
+   * @returns String. A human-readable label for group, work, version, or leaf-node pointed to by the URN.
+   */
   String getLabel(CtsUrn urnSubmitted)
   throws Exception {
 
@@ -564,7 +578,7 @@ class CtsGraph {
 				def parsedReply = slurper.parseText(reply)
 				def bndng = parsedReply.results.bindings[0]
 				if (bndng) {
-				  return "${bndng.label?.value}"
+				  return "${bndng.label?.value} (${urnSubmitted})."
 				} else {
 				  System.err.println "Failed on query:\n ${labelQuery}\n"
 				  throw new Exception("CtsGraph:getLabel: no results from query on ${urn}.")
@@ -658,4 +672,54 @@ class CtsGraph {
     }
 
   
+  /** Given a Cts URN, returns its language, as a string. The language of a Translation (or exemplar
+  * derived from a Translation, or for an Edition, or Edition-exemplar, the language of the Work.
+   * @param urn CTS URN 
+   * @returns String. The language of the text.
+   */
+	String getLanguage(CtsUrn urn){
+		String langString
+		String langQueryString = QueryBuilder.getLangQuery(urn.getUrnWithoutPassage().toString())
+        String ctsReply = sparql.getSparqlReply("application/json", langQueryString )
+
+        def slurper = new groovy.json.JsonSlurper()
+        def parsedReply = slurper.parseText(ctsReply)
+        
+        parsedReply.results.bindings.each { b ->
+			langString = b.l?.value
+		}
+		return langString
+	}
+
+  /** Given a Cts URN, returns a string identifying it as Edition or Translation.
+  * If it is an Exemplar, it will return the type of the parent Version.
+   * @param urn CTS URN 
+   * @returns String. "Edition" or "Translation".
+   */
+   String getVersionType(CtsUrn urn){
+		String typeString = ""
+		String versionTypeQueryString = QueryBuilder.getVersionTypeQuery(urn.getUrnWithoutPassage().toString())
+        String ctsReply = sparql.getSparqlReply("application/json", versionTypeQueryString )
+
+        def slurper = new groovy.json.JsonSlurper()
+        def parsedReply = slurper.parseText(ctsReply)
+        
+        parsedReply.results.bindings.each { b ->
+				switch(b.t?.value) {
+					case "http://www.homermultitext.org/cts/rdf/Exemplar"	:
+						  break;
+					case "http://www.homermultitext.org/cts/rdf/Edition"	:
+						  typeString = "Edition"
+							  break;
+					case "http://www.homermultitext.org/cts/rdf/Translation"	:
+						  typeString = "Translation"
+							  break;
+					default:
+						  break;
+				}
+			}
+		return typeString
+   }
+
+
 }

@@ -22,10 +22,10 @@ class TestOhco2 extends GroovyTestCase {
 
 	  ArrayList rangeNodes = new ArrayList()
 	  rangeNodes.push(tempMap1)
-	  Ohco2Node o2nodeLeaf = new Ohco2Node(firstNode, "Iliad 1.1", null, thirdNode, rangeNodes)
+	  Ohco2Node o2nodeLeaf = new Ohco2Node(firstNode, "Iliad 1.1", "grc", null, thirdNode, rangeNodes)
 	  rangeNodes.push(tempMap2)
 	  rangeNodes.push(tempMap3)
-	  Ohco2Node o2nodeRange = new Ohco2Node(rangeUrn, "Iliad 1.1-1.3", null, null, rangeNodes)
+	  Ohco2Node o2nodeRange = new Ohco2Node(rangeUrn, "Iliad 1.1-1.3", "grc", null, null, rangeNodes)
     assert o2nodeLeaf
 	assert o2nodeRange
 

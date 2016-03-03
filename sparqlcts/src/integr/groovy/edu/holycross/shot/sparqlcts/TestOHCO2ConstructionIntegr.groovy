@@ -43,6 +43,7 @@ class TestOHCO2ConstructionIntegr extends GroovyTestCase {
 		  assert response.prevUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.3"
 		  assert response.nextUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.5"
 		  assert response.nodeLabel == "Homeric Epic, Iliad (Allen's Iliad (test ed.)): 3.4 (urn:cts:greekLit:tlg0012.tlg001.testAllen:3.4)"
+		  assert response.nodeLang == "grc"
 		  
 		  assert response.leafNodes.size() == 1
 
@@ -128,4 +129,48 @@ class TestOHCO2ConstructionIntegr extends GroovyTestCase {
 		  Diff xmlDiff3 = new Diff(xmlString3, response.leafNodes[2]['rangeNode'].textContent)
 		  assert xmlDiff3.identical()
   }
+
+  @Test
+  void testOhco2Node_translation_exemp_leaf_Integr() {
+		XMLUnit.setNormalizeWhitespace(true)
+
+		  String xmlString = """<w xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" n="1">αἵ</w>"""
+		  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:3.4.1")
+
+		  Ohco2Node response = graph.getOhco2Node(urn)
+		
+		  assert response.nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:3.4.1"
+		  assert response.prevUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:3.3.7"
+		  assert response.nextUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:3.4.2"
+		  assert response.nodeLabel == "Homeric Epic, Iliad (null): 3.4.1 (urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:3.4.1)"
+		  assert response.nodeLang == "grc"
+		  
+		  assert response.leafNodes.size() == 1
+
+		  Diff xmlDiff = new Diff(xmlString, response.leafNodes[0]['rangeNode'].textContent)
+		  assert xmlDiff.identical()
+  }
+
+  @Test
+  void testOhco2Node_nodeLang1() {
+
+		  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:3.1-3.3")
+
+		  Ohco2Node response = graph.getOhco2Node(urn)
+	      assert response.nodeLang == "grc"
+
+  }
+
+  @Test
+  void testOhco2Node_nodeLang2() {
+
+		  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0016.tlg001:3.3")
+
+		  Ohco2Node response = graph.getOhco2Node(urn)
+	      assert response.nodeLang == "eng"
+
+  }
+
 }
+
+
