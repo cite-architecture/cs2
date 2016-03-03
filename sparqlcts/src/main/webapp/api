@@ -4,7 +4,18 @@ import edu.holycross.shot.sparqlcts.CtsDefinitions
 import edu.holycross.shot.citeservlet.Sparql
 import edu.harvard.chs.cite.CtsUrn
 
-String contentType = "text/xml"
+String contentType 
+
+String responseType = request.getParameter("type")
+if ( (responseType == "") || (responseType == null)){
+	responseType = "xml"
+}
+
+if (responseType == "json"){
+	contentType = "text/json"
+} else {
+	contentType = "text/xml"
+}
 response.setContentType(contentType)
 response.setHeader( "Access-Control-Allow-Origin", "*")
 
@@ -12,10 +23,6 @@ response.setHeader( "Access-Control-Allow-Origin", "*")
 boolean done = false
 
 
-String responseType = request.getParameter("type")
-if ( (responseType == "") || (responseType == null)){
-	responseType = "xml"
-}
 
 String req = request.getParameter("request")
 String urnStr = request.getParameter("urn")
@@ -71,6 +78,7 @@ if (!done) {
 	String baseUrl = "http://localhost:8080/fuseki/ds/query"
 		Sparql sparql = new Sparql(baseUrl)
 		CtsGraph graph = new CtsGraph(sparql)
+		CtsReply reply = new CtsReply( sparql, graph)
 		switch(req) {
 
 			case "GetDescription":
@@ -78,7 +86,11 @@ if (!done) {
 					break
 
 			case "GetPassagePlus":
-					println "<CTSError>GetPassagePlus ${urnStr}; type ${responseType}</CTSError>"
+					if (responseType == "json"){
+						println reply.getPassagePlusToJSON(urnStr)
+					} else {
+						println reply.getPassagePlusToXML(urnStr)
+					}
 					break
 
 			case "GetPassage":

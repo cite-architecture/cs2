@@ -2,6 +2,7 @@ package edu.holycross.shot.sparqlcts
 
 import edu.holycross.shot.citeservlet.Sparql
 
+import groovy.json.*
 import edu.harvard.chs.cite.CtsUrn
 import groovy.json.JsonSlurper
 import edu.holycross.shot.sparqlcts.CtsGraph
@@ -48,8 +49,8 @@ class CtsReply {
 		ctsReplyMap.put('urn',urn.toString())
 		ctsReplyMap.put('label',o2n.nodeLabel)
 		ctsReplyMap.put('lang',o2n.nodeLang)
-		ctsReplyMap.put('prev',o2n.prevUrn)
-		ctsReplyMap.put('nxt',o2n.nextUrn)
+		ctsReplyMap.put('prev',o2n.prevUrn.toString())
+		ctsReplyMap.put('nxt',o2n.nextUrn.toString())
 		//ctsReplyMap.put('rangeNodesMap',o2n.leafNodes)
 
 		// Insert passage component
@@ -67,9 +68,19 @@ class CtsReply {
 		return ctsReply
 	}
 
+
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * an XML fragment, by first making a getPassagePlus reply Map.
+	 * @returns String
+	 */
+	String getPassagePlusToXML(String requestUrn){
+			CtsUrn urn = new CtsUrn(requestUrn)
+			return getPassagePlusToXML(urn)
+	}
+
 	/**  Given a URN, constructs a getPassagePlus reply as
 	 * an XML fragment, by first making a getPassagePlus reply Map.
-	 * @returns ctsReply as Map
+	 * @returns String
 	 */
 	String getPassagePlusToXML(CtsUrn requestUrn){
         StringBuffer xmlString = new StringBuffer()
@@ -111,17 +122,22 @@ class CtsReply {
 		return xmlString
 	}
 
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * a JSOH fragment, by first making a getPassagePlus reply Map.
+	 * @returns String
+	 */
+	String getPassagePlusToJSON(String requestUrn){
+			CtsUrn urn = new CtsUrn(requestUrn)
+			return getPassagePlusToJSON(urn)
+	}
+
 	/**  Given a URN, constructs a getPassagePlus reply as
 	 * an XML fragment, by first making a getPassagePlus reply Map.
 	 * @returns ctsReply as Map
 	 */
 	String getPassagePlusToJSON(CtsUrn requestUrn){
-        StringBuffer xmlString = new StringBuffer()
-		Map gppObject = getPassagePlusReply(requestUrn)
-
-		// Format for CTS Reply
-		xmlString.append(gppObject['GetPassagePlus']['reply']['passageComponent'])
-		return xmlString
+		Map gppObject = getPassagePlusObject(requestUrn)
+	    return new JsonBuilder(gppObject).toPrettyString()
 	}
 
 

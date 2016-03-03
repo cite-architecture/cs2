@@ -721,5 +721,13 @@ class CtsGraph {
 		return typeString
    }
 
+	/* Switch to return CtsReplies
+	* @param urn CtsUrn
+	* @param String request
+	* @param String type
+	* @returns String 
+	**/
+
+
 
 }
