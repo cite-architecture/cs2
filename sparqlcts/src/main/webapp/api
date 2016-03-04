@@ -23,12 +23,12 @@ response.setHeader( "Access-Control-Allow-Origin", "*")
 boolean done = false
 
 
-
 String req = request.getParameter("request")
 String urnStr = request.getParameter("urn")
 if (req == "GetCapabilities") {
-	println "GetCapabilities Reply Goes Here."
-		done = true
+	  println getCapsReply()
+	  done = true
+
 
 
 } else  if (req == "GetVersion") {
@@ -112,5 +112,24 @@ if (!done) {
 		}
 }
 
+String getCapsReply() {
+    String inv = "inventory.xml"
+    if (request.getParameter("inv")) {
+        inv = request.getParameter("inv")
+    }
 
+    try  {
+        File invFile = new File("${request.getRealPath('/')}/invs/${inv}")
+        // temporary kludge:  strip XML PIs, and hope they're isolated on
+        // a single line ...
+        String capsText = invFile.getText("UTF-8").replaceAll(/<[?].+[?]>/, '')
+        return "<GetCapabilities xmlns='http://chs.harvard.edu/xmlns/cts' xmlns:cts='http://chs.harvard.edu/xmlns/cts'>\n<cts:request><request>GetCapabilities</request>\n<inventory>${inv}</inventory>\n\n</cts:request>\n<cts:reply>\n${capsText}\n</cts:reply>\n</GetCapabilities>"
+
+	//return "<debug>FILE ${invFile} had text of length ${capsText.size()}</debug>"
+
+    } catch (Exception e) {
+        return ("<error>Exception reading inventory file:  ${e}</error>")
+    }
+
+}
 
