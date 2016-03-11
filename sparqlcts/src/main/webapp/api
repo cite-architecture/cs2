@@ -44,20 +44,20 @@ if (req == "GetCapabilities") {
 			def errorNum
 			switch (e) {
 				case 'java.lang.Exception: Bad URN syntax: #BADSYNTAX#':
-										   errorNum = 2
-											   println """<message>BAD URN SYNTAX: ${urnStr}</message>\n"""
-											   println """<code>${errorNum}</code>\n"""
-											   break
+				   errorNum = 2
+				   println """<message>BAD URN SYNTAX: ${urnStr}</message>\n"""
+				   println """<code>${errorNum}</code>\n"""
+				   break
 
 				case 'java.lang.Exception: Bad URN syntax: ##':
-										   errorNum = 1
-											   println """<message>INVALID REQUEST. Missing required parameter: 'urn'</message>\n"""
-											   println """<code>${errorNum}</code>\n"""
-											   break
+				   errorNum = 1
+				   println """<message>INVALID REQUEST. Missing required parameter: 'urn'</message>\n"""
+				   println """<code>${errorNum}</code>\n"""
+				   break
 
 				default:
-											   errorNum = 0
-												   break
+			   	   errorNum = 0
+				   break
 			}
 		println """</CTSError>\n"""
 			done = true
@@ -98,7 +98,11 @@ if (!done) {
 					break
 
 			case "GetPrevNextUrn":
-					println "<CTSError>GetPrevNextUrn ${urnStr}; type ${responseType}</CTSError>"
+					if (responseType == "json"){
+						println reply.getPrevNextToJSON(urnStr)
+					} else {
+						println reply.getPrevNextToXML(urnStr)
+					}
 					break
 
 			case "GetValidReff":

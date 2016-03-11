@@ -33,8 +33,12 @@ test {
 task ctsIntegration(type: Test, dependsOn: 'test') {
   description  = "Runs integration tests against test data set served from fuseki."
   outputs.upToDateWhen { false }
-  include '**/*Integr.*'
+  //include '**/*Integr.*'
 	//include '**/TestReply*Integr.*'
+//	include '**/TestURNCheckIntegr.*'
+//	include '**/TestReplyGetPrevNextIntegr.*'
+	include '**/TestGVRIntegr.*'
+	include '**/TestReplyGetValidReffIntegr.*'
 	//include '**/TestOHCO2ConstructionIntegr.*'
 	//include '**/TestMetadataIntegr.*'
 	//include '**/TestPrevIntegr.*'

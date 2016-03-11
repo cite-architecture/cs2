@@ -190,8 +190,6 @@ class CtsGraph {
 	Integer startAtStr 
 	Integer endAtStr
 
-	
-
 	CtsUrn urn = resolveVersion(new CtsUrn (submittedUrn.reduceToNode()))
     ArrayList urns = []
 
@@ -488,9 +486,6 @@ class CtsGraph {
 	  }
 
 
-
-  
-
   /** Gets the TextContent for a CTS Leaf node.
    * @param urn CTS URN 
    * @returns String. The Text Content of the CTS Leaf Node.
@@ -721,13 +716,221 @@ class CtsGraph {
 		return typeString
    }
 
-	/* Switch to return CtsReplies
-	* @param urn CtsUrn
-	* @param String request
-	* @param String type
-	* @returns String 
-	**/
+  /** Given a Cts URN, returns a string, "okay" if the URN successfully resolves to a version.
+  * Otherwise, returns an error code.
+   * @param urn CTS URN 
+   * @returns String. "okay", or error code.
+   */
+   String checkUrn(CtsUrn urn){
+	    String responseString = ""
+
+		try {
+			CtsUrn resolvedUrn = resolveVersion(urn)
+			responseString =  "okay"
+		} catch (Exception e) {
+			responseString = "Invalid URN reference: ${urn}"
+		}
+			
+		return responseString
+   }
+
+  /** Overloaded method
+   * @param urnString String
+   * @returns ArrayList of CtsUrns
+   */
+   ArrayList getValidReff(String urnString){ 
+		CtsUrn urn = new CtsUrn(urnString)
+		return getValidReff(urn)
+   }
+
+  /** Overloaded method
+   * @param urnString String
+   * @returns ArrayList of CtsUrns
+   */
+   ArrayList getValidReff(String urnString, Integer level){ 
+		CtsUrn urn = new CtsUrn(urnString)
+		return getValidReff(urn, level)
+   }
+
+  /** Overloaded method
+   * @param urnString String
+   * @returns ArrayList of CtsUrns
+   */
+   ArrayList getValidReff(CtsUrn urn){ 
+	   Integer maxLevel = getLeafDepth(urn)
+	   return getValidReff(urn, maxLevel)
+   }
+
+  /** Given a Cts URN, returns a valid reffs for that urn.
+   * @param urn CTS URN 
+   * @returns ArrayList of CtsUrns
+   */
+   ArrayList getValidReff(CtsUrn requestUrn, Integer level){ 
+	   CtsUrn urn = resolveVersion(requestUrn)
+	   ArrayList returnList = []
+	   // 3 cases to consider:
+        if (urn.getPassageComponent() == null) {
+            // 1. no limiting passage reference:
+            returnList = getValidReffForWork(urn, level)
+
+        } else if (urn.isRange()) {
+            // 2. range request
+            returnList = getValidReffForRange(urn, level)
+        } else {
+            // 3. single citation node (leaf or container)
+            if (isLeafNode(urn)) {
+			   returnList << urn.toString()
+            } else {
+                returnList = getValidReffForNode(urn, level)
+            }
+        }
+	   return returnList
+   }
+
+  /** Gets valid references for a work-level, version-level, or exemplar-level 
+  * CTS URN, without a passage reference.
+  * @param CtsUrn urn
+  * @param Integer level
+  * @returns ArrayList of CtsUrns
+  **/
+  ArrayList getValidReffForWork(CtsUrn workUrn, Integer level) {
+	  	
+		ArrayList reply = []
+        CtsUrn urn = resolveVersion(workUrn)
+        if (isLeafNode(urn)) {
+            reply << "${urn}"
+        } else {
+    		String gvrQuery = QueryBuilder.getWorkGVRQuery(urn, level)
+            String ctsReply = sparql.getSparqlReply("application/json", gvrQuery)
+            JsonSlurper slurper = new groovy.json.JsonSlurper()
+            def parsedReply = slurper.parseText(ctsReply)
+            parsedReply.results.bindings.each { b ->
+                if (b.ref) {
+                    reply << "${b.ref?.value}"
+                }
+            }
+        }
+        return reply
+    }
+
+  /** Gets valid references for a work-level, version-level, or exemplar-level 
+  * CTS URN, with a (single) passage reference.
+  * @param CtsUrn urn
+  * @param Integer level
+  * @returns ArrayList of CtsUrns
+  **/
+    ArrayList getValidReffForNode(CtsUrn urn, Integer level) {
+	// two possible query forms: when level is at max depth,
+    // and when is higher in citation hierarchy
+        ArrayList reply = []
+        String ctsReply
+
+        ctsReply = sparql.getSparqlReply("application/json", QueryBuilder.getGVRNodeQuery(urn, level))
+        JsonSlurper slurper = new groovy.json.JsonSlurper()
+        def parsedReply = slurper.parseText(ctsReply)
+		if (parsedReply.results.bindings.size() < 1){
+				  throw new Exception("CtsGraph:getGetValidReff: invalid URN. (${urn})")
+		} else if ((parsedReply.results.bindings.size() == 1) && (parsedReply.results.bindings[0].ref?.value.size() < 1)  ){
+				  throw new Exception("CtsGraph:getGetValidReff: invalid URN. (${urn})")
+		} else { 
+				parsedReply.results.bindings.each { b ->
+					if (b.ref) {
+						reply << "${b.ref?.value}"
+					}
+				}
+		}
+        return reply
+    }
 
 
+
+    ArrayList getValidReffForRange(CtsUrn urn, Integer level) {
+		println "in getValidReffForRange"
+        ArrayList reply = []
+        //reply.append getValidReffForNode(new CtsUrn("${urn.getUrnWithoutPassage()}:${urn.getRangeBegin()}"), level)
+
+        CtsUrn urn1 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
+        CtsUrn urn2 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")
+
+        Integer startAtStr 
+        Integer endAtStr
+
+        if (isLeafNode(urn1)) {
+            startAtStr =  getSequence(urn1)
+        } else {
+            startAtStr = getFirstSequence(urn1)
+        }
+		
+        if (isLeafNode(urn2)) {
+            endAtStr = getSequence(urn2)
+        } else {
+            endAtStr = getLastSequence(urn2)
+        }
+        // error check these...
+        Integer int1 = startAtStr.toInteger()
+        Integer int2 = endAtStr.toInteger()
+		println "${int1} : ${int2} : ${level} : ${urn.getUrnWithoutPassage()}"
+        reply = getFillVR(int1, int2, level, "${urn.getUrnWithoutPassage()}")
+
+        //reply.append getValidReffForNode(new CtsUrn("${urn.getUrnWithoutPassage()}:${urn.getRangeEnd()}"), level)
+
+        return reply
+    }
+
+
+    /** Retrieves valid references filling a range.	*/
+    ArrayList getFillVR(Integer start, Integer end, Integer level, String workUrnStr) {
+        ArrayList reply = []
+		String fillVRQuery = QueryBuilder.getFillGVRQuery(start, end, level, workUrnStr)
+        String fillReply = sparql.getSparqlReply("application/json", fillVRQuery)
+        def slurper = new groovy.json.JsonSlurper()
+        def parsedReply = slurper.parseText(fillReply)
+		if (parsedReply.results.bindings.size() < 2){
+			throw new Exception ("invalid urn")
+		} else { 
+				parsedReply.results.bindings.each { b ->
+					if (b.ref) {
+						reply << "${b.ref?.value}"
+					}
+				    return reply
+				}
+		}
+		return reply
+    }
+
+/** Finds the maximum citation depth of CTS URNs
+    * contained by a given CtsUrn.
+    * @param urn The containing URN at any level
+    * (work, or passage).
+    * @returns Depth of citation hierarchy of this URN, or
+    * null if no depth could be determined.
+    */
+    Integer getLeafDepth(CtsUrn requestUrn) {
+        Integer deepestInt = null
+        CtsUrn urn = resolveVersion(requestUrn)
+        String ctsReply 
+        if (urn.getPassageComponent() == null) {
+            ctsReply = sparql.getSparqlReply("application/json", QueryBuilder.getLeafDepthForWorkQuery(urn))
+        } else {
+            ctsReply = sparql.getSparqlReply("application/json", QueryBuilder.getLeafDepthQuery(urn))
+        }
+        def slurper = new groovy.json.JsonSlurper()
+        def parsedReply = slurper.parseText(ctsReply)
+        
+        String intStr
+        parsedReply.results.bindings.each { b ->
+            if (b.deepest) {
+                intStr = b.deepest?.value
+            } else {
+                System.err.println "No deepest node found for query " + QueryBuilder.getLeafDepthQuery(urn)
+            }
+            try {
+                deepestInt = intStr.toInteger()
+            } catch (Exception e) {
+                System.err.println "Could not parse sequence ${intStr} as Integer: ${e}"
+            }
+        }
+        return deepestInt
+    }
 
 }
