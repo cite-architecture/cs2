@@ -25,7 +25,7 @@ class TestReplyGetValidReffIntegr extends GroovyTestCase {
 	Map testReply = reply.getValidReffObject(urn,2)
 
 	assert testReply
-	//println new JsonBuilder(testReply).toPrettyString()
+	println new JsonBuilder(testReply).toPrettyString()
     
   }
 
@@ -41,10 +41,82 @@ class TestReplyGetValidReffIntegr extends GroovyTestCase {
   }
 
   @Test
+  void testObject2() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:")
+
+	Map testReply = reply.getValidReffObject(urn,1)
+
+	assert testReply
+	println new JsonBuilder(testReply).toPrettyString()
+    
+  }
+
+  @Test
+  void testObject3() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:")
+
+	Map testReply = reply.getValidReffObject(urn)
+
+	assert testReply
+	println new JsonBuilder(testReply).toPrettyString()
+    
+  }
+
+  @Test
   void testXML1() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0016.tlg001.engTest:")
 
 	String testReply = reply.getValidReffToXML(urn,1)
+
+	assert testReply
+	println testReply
+  }
+
+  @Test
+  void testXML2() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:")
+
+	String testReply = reply.getValidReffToXML(urn,1)
+
+	assert testReply
+	println testReply
+  }
+
+  @Test
+  void testXML3() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:")
+
+	String testReply = reply.getValidReffToXML(urn)
+
+	assert testReply
+	println testReply
+  }
+
+  @Test
+  void testJSON1() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0016.tlg001.engTest:")
+
+	String testReply = reply.getValidReffToJSON(urn,1)
+
+	assert testReply
+	println testReply
+  }
+
+  @Test
+  void testJSON2() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:")
+
+	String testReply = reply.getValidReffToJSON(urn,1)
+
+	assert testReply
+	println testReply
+  }
+
+  @Test
+  void testJSON3() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:")
+
+	String testReply = reply.getValidReffToJSON(urn)
 
 	assert testReply
 	println testReply

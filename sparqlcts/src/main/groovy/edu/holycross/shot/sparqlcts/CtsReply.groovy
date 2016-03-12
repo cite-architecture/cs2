@@ -218,7 +218,7 @@ GetPrevNext Request
 	}
 
 	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
-	 * a JSOH fragment, by first making a getPrevNext reply Map.
+	 * a JSON fragment, by first making a getPrevNext reply Map.
 	 * @returns String
 	 */
 	String getPrevNextToJSON(String requestUrn){
@@ -239,10 +239,21 @@ GetPrevNext Request
 GetValidReff Request
 ***************************** */
 
-  /**  Given a URN, constructs a getValidReff reply data-object
+  /**  Overloaded method. 
+  * @param CtsUrn requestUrn
    * @returns ctsReply as Map
    */
-	Map getValidReffObject(CtsUrn requestUrn, Integer level){
+   Map getValidReffObject(CtsUrn requestUrn){
+		return getValidReffObject(requestUrn, null)
+   }
+
+  /**  Given a URN, constructs a getValidReff reply data-object
+  * @param CtsUrn requestUrn
+  * @param Integer requestLevel
+   * @returns ctsReply as Map
+   */
+	Map getValidReffObject(CtsUrn requestUrn, Integer requestLevel){
+		Integer level = requestLevel
 		Map ctsReply = [:]
 		Map ctsReplyObject = [:]
 		Map ctsRequestMap = [:]
@@ -255,10 +266,8 @@ GetValidReff Request
 		ctsRequestMap.put('urn',requestUrn.toString())
 	
 		if ((level != null) || (level > 1)){
-			println "level ${level}"
 			ctsReplyMap.put("reff",graph.getValidReff(urn,level))
 		} else {
-			println "null level ${level}"
 			ctsReplyMap.put("reff",graph.getValidReff(urn))
 		}
 
@@ -268,6 +277,33 @@ GetValidReff Request
 
 
 		return ctsReply
+	}
+
+/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * an XML fragment, by first making a getValidReff reply Map.
+	 * @returns String
+	 */
+	String getValidReffToXML(String requestUrn){
+			CtsUrn urn = new CtsUrn(requestUrn)
+			return getValidReffToXML(urn, null)
+	}
+
+/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * an XML fragment, by first making a getValidReff reply Map.
+	 * @returns String
+	 */
+	String getValidReffToXML(CtsUrn requestUrn){
+			return getValidReffToXML(requestUrn, null)
+	}
+
+
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * an XML fragment, by first making a getValidReff reply Map.
+	 * @returns String
+	 */
+	String getValidReffToXML(String requestUrn,Integer level){
+			CtsUrn urn = new CtsUrn(requestUrn)
+			return getValidReffToXML(urn, level)
 	}
   
 	/**  Given a URN, constructs a getValidReff reply as
@@ -279,7 +315,6 @@ GetValidReff Request
 		Map gvrObject = getValidReffObject(requestUrn, level)
 		String reff = ""
 		gvrObject['GetValidReff']['reply']['reff'].each { rrr ->
-			println "here: ${rrr}"
 			reff += "<urn>${rrr}</urn>\n"
 		}
 		
@@ -307,5 +342,39 @@ GetValidReff Request
 		// Format for CTS Reply
 		// xmlString.append(gpnObject['GetPassagePlus']['reply']['passageComponent'])
 		return xmlString
+	}
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * a JSON fragment, by first making a getValidRefft reply Map.
+	 * @returns String
+	 */
+	String getValidReffToJSON(String requestUrn,Integer level){
+			CtsUrn urn = new CtsUrn(requestUrn)
+			return getValidReffToJSON(urn,level)
+	}
+
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * a JSON fragment, by first making a getValidRefft reply Map.
+	 * @returns String
+	 */
+	String getValidReffToJSON(String requestUrn){
+			CtsUrn urn = new CtsUrn(requestUrn)
+			return getValidReffToJSON(urn,null)
+	}
+
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * a JSON fragment, by first making a getValidRefft reply Map.
+	 * @returns String
+	 */
+	String getValidReffToJSON(CtsUrn requestUrn){
+			return getValidReffToJSON(requestUrn,null)
+	}
+
+	/**  Given a URN, constructs a getValidRefft reply as
+	 * an XML fragment, by first making a getValidRefft reply Map.
+	 * @returns ctsReply as Map
+	 */
+	String getValidReffToJSON(CtsUrn requestUrn,Integer level){
+		Map gvrObject = getValidReffObject(requestUrn,level)
+	    return new JsonBuilder(gvrObject).toPrettyString()
 	}
 }

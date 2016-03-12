@@ -74,6 +74,16 @@ if (request.getParameter("context")) {
 		}
 }
 
+Integer level = null
+if (request.getParameter("level")) {
+	String levelStr = request.getParameter("level")
+		try {
+			level = levelStr.toInteger()
+		} catch (Exception e) {
+			System.err.println "Value of level parameter must be an integer: ${levelStr}."
+		}
+}
+
 if (!done) {
 	String baseUrl = "http://localhost:8080/fuseki/ds/query"
 		Sparql sparql = new Sparql(baseUrl)
@@ -106,7 +116,12 @@ if (!done) {
 					break
 
 			case "GetValidReff":
-					println "<CTSError>GetValidReff ${urnStr}; type ${responseType}</CTSError>"
+					if (responseType == "json"){
+						println reply.getValidReffToJSON(urnStr,level)
+					} else {
+						println reply.getValidReffToXML(urnStr,level)
+					}
+					break
 					break
 
 			default :

@@ -274,7 +274,11 @@ class CtsGraph {
     } else {
       String version = findVersion(urn)
       if (version) {
-	String resolvedStr  = "urn:cts:${urn.getCtsNamespace()}:${urn.getTextGroup()}.${urn.getWork()}.${version}:${urn.getPassageComponent()}"
+
+		String resolvedStr  = "urn:cts:${urn.getCtsNamespace()}:${urn.getTextGroup()}.${urn.getWork()}.${version}:"
+		if (urn.getPassageComponent() != null){
+			resolvedStr += urn.getPassageComponent()
+		}
 	
 	try {
 	  return (new CtsUrn(resolvedStr))
@@ -769,7 +773,7 @@ class CtsGraph {
 	   CtsUrn urn = resolveVersion(requestUrn)
 	   ArrayList returnList = []
 	   // 3 cases to consider:
-        if (urn.getPassageComponent() == null) {
+        if (requestUrn.getPassageComponent() == null) {
             // 1. no limiting passage reference:
             returnList = getValidReffForWork(urn, level)
 
@@ -845,7 +849,6 @@ class CtsGraph {
 
 
     ArrayList getValidReffForRange(CtsUrn urn, Integer level) {
-		println "in getValidReffForRange"
         ArrayList reply = []
         //reply.append getValidReffForNode(new CtsUrn("${urn.getUrnWithoutPassage()}:${urn.getRangeBegin()}"), level)
 
@@ -869,7 +872,6 @@ class CtsGraph {
         // error check these...
         Integer int1 = startAtStr.toInteger()
         Integer int2 = endAtStr.toInteger()
-		println "${int1} : ${int2} : ${level} : ${urn.getUrnWithoutPassage()}"
         reply = getFillVR(int1, int2, level, "${urn.getUrnWithoutPassage()}")
 
         //reply.append getValidReffForNode(new CtsUrn("${urn.getUrnWithoutPassage()}:${urn.getRangeEnd()}"), level)
