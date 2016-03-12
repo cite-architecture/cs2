@@ -241,8 +241,13 @@ abstract class QueryBuilder {
 			${CtsDefinitions.prefixPhrase}
 		SELECT   ?urn ?seq
 			WHERE {
-				?urn  cts:containedBy*  <${containingUrn}>  .
+				{
+     				?urn  cts:containedBy*  <${containingUrn}>  .
 					?urn cts:hasSequence ?seq .        
+				} union {
+     				?urn  cts:isPassageOf*  <${containingUrn}>  .
+					?urn cts:hasSequence ?seq .        
+				}
 			}
 		ORDER BY ?seq
 			LIMIT 1

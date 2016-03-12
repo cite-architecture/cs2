@@ -122,8 +122,14 @@ if (!done) {
 						println reply.getValidReffToXML(urnStr,level)
 					}
 					break
-					break
 
+			case "GetFirstUrn":
+					if (responseType == "json"){
+						println reply.getFirstUrnToJSON(urnStr)
+					} else {
+						println reply.getFirstUrnToXML(urnStr)
+					}
+					break
 			default :
 					// break with "undefined request" excetpion
 					println "<error>Unrecognized request: ${req}.  \n(Add properly name-spaced reply here.)</error>"

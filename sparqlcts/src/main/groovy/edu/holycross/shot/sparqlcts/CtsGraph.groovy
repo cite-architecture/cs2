@@ -594,6 +594,7 @@ class CtsGraph {
     Integer getFirstSequence(CtsUrn urn) {
         Integer firstInt = null
 		String firstContainedQuery = QueryBuilder.getFirstContainedQuery(urn)
+		println firstContainedQuery
         String ctsReply = sparql.getSparqlReply("application/json", firstContainedQuery)
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(ctsReply)
@@ -934,5 +935,55 @@ class CtsGraph {
         }
         return deepestInt
     }
+
+	/** Finds the first citable leaf-node of a text, given a CtsUrn (at any level).
+	*   If an exemplar- or version-level URN without a passage component, returns the first
+	*   citable leaf-node. If a work-level URN without a passage-component, resolves the work
+	*   to a version and returns the first citeable leaf node of the resolved version. If
+	*   a containing element, returns the first citable node of that element. If a leaf-node,
+	*   returns that. For ranges, returns values based on the first citation of the range.
+	*   @param CtsUrn requestUrn
+	*   @returns CtsUrn
+    **/
+	CtsUrn getFirstUrn(CtsUrn requestUrn){
+	   String replyUrnString = "urn:cts:greekLit:dogs.cats:1.1"
+	   Integer thisSequence
+
+		println "-------"
+	   CtsUrn urn = resolveVersion(requestUrn)
+	   // 3 cases to consider:
+        if (urn.getPassageComponent() == null) {
+            // 1. no limiting passage reference:
+
+			println "no passage ref"
+			println "Working with this: ${urn.getUrnWithoutPassage()}"
+			thisSequence = getFirstSequence(urn) 
+		    replyUrnString = getUrnForSequence(thisSequence, urn.getUrnWithoutPassage())
+
+        } else if (urn.isRange()) {
+            // 2. range request
+			CtsUrn urn1 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
+			thisSequence = getFirstSequence(urn1)
+			replyUrnString = getUrnForSequence(thisSequence, urn.getUrnWithoutPassage())
+
+        } else {
+            // 3. single citation node (leaf or container)
+            if (isLeafNode(urn)) {
+				// 3a. Just return it
+				replyUrnString = urn.toString()
+
+            } else {
+				// 3b. Containing element
+				thisSequence = getFirstSequence(urn)
+			    replyUrnString = getUrnForSequence(thisSequence, urn.getUrnWithoutPassage())
+
+            }
+        }
+		println "Trying to resolve ${requestUrn}"
+		println "Got ${replyUrnString}"
+		CtsUrn replyUrn = new CtsUrn(replyUrnString)
+		return replyUrn
+	}
+
 
 }

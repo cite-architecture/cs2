@@ -26,10 +26,11 @@ class CtsReply {
 
   
 /* ******************************************
-* GetPassage Replies
+* GetPassagePlus Replies
    ****************************************** */
 
   /**  Given a URN, constructs a getPassagePlus reply data-object
+   * @param CtsUrn requestUrn
    * @returns ctsReply as Map
    */
 	Map getPassagePlusObject(CtsUrn requestUrn){
@@ -144,7 +145,7 @@ class CtsReply {
 GetPrevNext Request
 ***************************** */
 
-  /**  Given a URN, constructs a getPassagePlus reply data-object
+  /**  Given a URN, constructs a getPrevNext reply data-object
    * @returns ctsReply as Map
    */
 	Map getPrevNextObject(CtsUrn requestUrn){
@@ -159,8 +160,8 @@ GetPrevNext Request
 		ctsRequestMap.put('request','GetPrevNextUrn')
 		ctsRequestMap.put('urn',requestUrn.toString())
 
-		ctsReplyMap.put("prev",graph.getPrevUrn(urn))
-		ctsReplyMap.put("next",graph.getNextUrn(urn))
+		ctsReplyMap.put("prev",graph.getPrevUrn(urn).toString())
+		ctsReplyMap.put("next",graph.getNextUrn(urn).toString())
 
 		ctsReplyObject.put('request',ctsRequestMap)
 		ctsReplyObject.put('reply',ctsReplyMap)	
@@ -377,4 +378,92 @@ GetValidReff Request
 		Map gvrObject = getValidReffObject(requestUrn,level)
 	    return new JsonBuilder(gvrObject).toPrettyString()
 	}
+
+/* *****************************************
+GetFirstUrn Request
+***************************** */
+  /**  Given a URN, constructs a getFirstUrn reply data-object
+   * @param CtsUrn requestUrn
+   * @returns ctsReply as Map
+   */
+	Map getFirstUrnObject(CtsUrn requestUrn){
+		Map ctsReply = [:]
+		Map ctsReplyObject = [:]
+		Map ctsRequestMap = [:]
+		Map ctsReplyMap = [:]
+
+		CtsUrn urn = graph.resolveVersion(requestUrn)
+
+		
+		ctsRequestMap.put('request','GetFirstUrn')
+		ctsRequestMap.put('urn',requestUrn.toString())
+
+		ctsReplyMap.put("urn",graph.getFirstUrn(urn).toString())
+
+		ctsReplyObject.put('request',ctsRequestMap)
+		ctsReplyObject.put('reply',ctsReplyMap)	
+		ctsReply.put('GetFirstUrn',ctsReplyObject)
+
+
+		return ctsReply
+	}
+		
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * an XML fragment, by first making a getFirstUrn reply Map.
+	 * @returns String
+	 */
+	String getFirstUrnToXML(String requestUrn){
+			CtsUrn urn = new CtsUrn(requestUrn)
+			return getFirstUrnToXML(urn)
+	}
+
+	/**  Given a URN, constructs a getFirstUrn reply as
+	 * an XML fragment, by first making a getFirstUrn reply Map.
+	 * @returns String
+	 */
+	String getFirstUrnToXML(CtsUrn requestUrn){
+        StringBuffer xmlString = new StringBuffer()
+		Map gfuObject = getFirstUrnObject(requestUrn)
+		
+
+		xmlString.append("""
+			<GetFirstUrn xmlns:cts="http://chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">
+			""")
+		xmlString.append("""
+			<cts:request>
+				<requestName>GetFirstUrn</requestName>
+				<requestUrn>${requestUrn}</requestUrn>
+			</cts:request>
+			""")
+		xmlString.append("""
+			<cts:reply>
+					<urn>${gfuObject['GetFirstUrn']['reply']['urn']}</urn>
+				</cts:reply>
+			</GetFirstUrn>
+			""")
+
+
+		// Format for CTS Reply
+		// xmlString.append(gpnObject['GetPassagePlus']['reply']['passageComponent'])
+		return xmlString
+	}
+
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * a JSON fragment, by first making a getFirstUrn reply Map.
+	 * @returns String
+	 */
+	String getFirstUrnToJSON(String requestUrn){
+			CtsUrn urn = new CtsUrn(requestUrn)
+			return getFirstUrnToJSON(urn)
+	}
+
+	/**  Given a URN, constructs a getFirstUrn reply as
+	 * an XML fragment, by first making a getFirstUrn reply Map.
+	 * @returns ctsReply as Map
+	 */
+	String getFirstUrnToJSON(CtsUrn requestUrn){
+		Map gfuObject = getFirstUrnObject(requestUrn)
+	    return new JsonBuilder(gfuObject).toPrettyString()
+	}
+
 }
