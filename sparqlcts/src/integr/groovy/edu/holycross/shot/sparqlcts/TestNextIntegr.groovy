@@ -99,6 +99,32 @@ class TestNextIntegr extends GroovyTestCase {
 
   }
 
-  
+ 
+ /* test RangeNext methods */ 
+
+
+/*
+  @Test
+  void testRangeNext1() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.4-1.6")
+    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.7-1.9"
+    assert  graph.getRangeNextUrnStr(urn) == expectedNext
+  }
+
+  @Test
+  void testRangeNext2() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.5-1.9")
+    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.10-2.4"
+    assert  graph.getRangeNextUrnStr(urn) == expectedNext
+  }
+
+  @Test
+  void testRangeNext3() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:3.5-3.8")
+    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.9-3.10"
+    assert  graph.getRangeNextUrnStr(urn) == expectedNext
+  }
+  */
+
   
 }

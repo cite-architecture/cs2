@@ -989,6 +989,7 @@ class CtsGraph {
    */
 
 	String getRangePrevUrnStr(CtsUrn requestUrn){
+		String replyString
 		println "--------------"
 		CtsUrn urn = resolveVersion(requestUrn)
 		println "Working with ${urn}"
@@ -1032,21 +1033,37 @@ class CtsGraph {
 			println "Second option: ${(firstSequenceOfRange - howManyIdeally)} >= ${firstSequenceOfText}"
 			howMany = howManyIdeally
 		}
-		println "howMany = ${howMany}"
-		startSeq = firstSequenceOfRange - howMany
-		println "startSeq = ${startSeq}"
-		endSeq = (startSeq) + (howMany -1)
-		println "endSeq = ${endSeq}"
-		Integer leafDepth = getLeafDepth(urn) 
-
-		ArrayList fillVR =  getFillVR(startSeq, endSeq, leafDepth, "${urn.getUrnWithoutPassage()}") 
-		String startPassage = new CtsUrn(fillVR[0]).passageComponent 
-		println "startPassage = ${startPassage}"
-		String endPassage  = new CtsUrn(fillVR[-1]).passageComponent
-		println "endPassage = ${endPassage}"
-		String replyString = "${urn.getUrnWithoutPassage()}${startPassage}-${endPassage}"
+		if (howMany < 1){
+			replyString = ""	
+		} else {
+			println "howMany = ${howMany}"
+			startSeq = firstSequenceOfRange - howMany
+			println "startSeq = ${startSeq}"
+			endSeq = (startSeq) + (howMany -1)
+			println "endSeq = ${endSeq}"
+			if (startSeq == endSeq){
+				replyString = "${getUrnForSequence(startSeq,urn.getUrnWithoutPassage())}"
+			} else {
+				Integer leafDepth = getLeafDepth(urn) 
+				ArrayList fillVR =  getFillVR(startSeq, endSeq, leafDepth, "${urn.getUrnWithoutPassage()}") 
+				String startPassage = new CtsUrn(fillVR[0]).passageComponent 
+				println "startPassage = ${startPassage}"
+				String endPassage  = new CtsUrn(fillVR[-1]).passageComponent
+				println "endPassage = ${endPassage}"
+				replyString = "${urn.getUrnWithoutPassage()}${startPassage}-${endPassage}"
+			}
+		}
 		println "replying ${replyString}"
 		return replyString
 	}
+
+  /** Given a range-urn defining N leaf-nodes, returns a CtsUrn, as String 
+   * defining the next N leaf-nodes, or all followin leaf nodes if
+   * the text ends fewer than N nodes after the param URN's ending citation.
+   * @param urn CTS URN to test.
+   * @returns The urn of the preceding citable node, as a String,
+   * or a null String ("") if there is no following citable node.
+   * @throws Exception if retrieved value is not a valid CtsUrn string.
+   */
 
 }
