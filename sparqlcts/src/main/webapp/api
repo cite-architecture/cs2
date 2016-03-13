@@ -57,6 +57,8 @@ if (req == "GetCapabilities") {
 
 				default:
 			   	   errorNum = 0
+				   println """<message>???</message>"""
+				   println """<code>${errorNum}</code>"""
 				   break
 			}
 		println """</CTSError>\n"""
@@ -104,7 +106,11 @@ if (!done) {
 					break
 
 			case "GetPassage":
-					println "<CTSError>GetPassage ${urnStr}; type ${responseType}</CTSError>"
+					if (responseType == "json"){
+						println reply.getPassageToJSON(urnStr)
+					} else {
+						println reply.getPassageToXML(urnStr)
+					}
 					break
 
 			case "GetPrevNextUrn":

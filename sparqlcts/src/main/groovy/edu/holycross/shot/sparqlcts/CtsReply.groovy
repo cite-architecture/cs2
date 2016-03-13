@@ -466,4 +466,107 @@ GetFirstUrn Request
 	    return new JsonBuilder(gfuObject).toPrettyString()
 	}
 
+/* ******************************************
+* GetPassage Replies
+   ****************************************** */
+
+  /**  Given a URN, constructs a getPassage reply data-object
+   * @param CtsUrn requestUrn
+   * @returns ctsReply as Map
+   */
+	Map getPassageObject(CtsUrn requestUrn){
+		Map ctsReply = [:]
+		Map ctsReplyObject = [:]
+		Map ctsRequestMap = [:]
+		Map ctsReplyMap = [:]
+
+		CtsUrn urn = graph.resolveVersion(requestUrn)
+
+		Ohco2Node o2n = graph.getOhco2Node(urn)
+
+
+		
+		ctsRequestMap.put('request','GetPassage')
+		ctsRequestMap.put('urn',requestUrn.toString())
+		ctsReplyMap.put('urn',urn.toString())
+		ctsReplyMap.put('lang',o2n.nodeLang)
+
+		// Insert passage component
+		//    - Will be XML Formatted, if the source-text in RDF requires,
+		//      otherwise will be a two-line separated list of leaf-nodes
+		String xmlCtsFragString = ""
+		xmlCtsFragString = formatter.buildXmlFragment(o2n.leafNodes)
+		ctsReplyMap.put('passageComponent',xmlCtsFragString)
+
+		ctsReplyObject.put('request',ctsRequestMap)
+		ctsReplyObject.put('reply',ctsReplyMap)	
+		ctsReply.put('GetPassage',ctsReplyObject)
+
+
+		return ctsReply
+	}
+
+
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * an XML fragment, by first making a getPassage reply Map.
+	 * @returns String
+	 */
+	String getPassageToXML(String requestUrn){
+			CtsUrn urn = new CtsUrn(requestUrn)
+			return getPassageToXML(urn)
+	}
+
+	/**  Given a URN, constructs a getPassage reply as
+	 * an XML fragment, by first making a getPassage reply Map.
+	 * @returns String
+	 */
+	String getPassageToXML(CtsUrn requestUrn){
+        StringBuffer xmlString = new StringBuffer()
+		Map gpObject = getPassageObject(requestUrn)
+		
+
+		xmlString.append("""
+			<GetPassage xmlns:cts="http://chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">
+			""")
+		xmlString.append("""
+			<cts:request>
+				<requestName>GetPassage</requestName>
+				<requestUrn>${requestUrn}</requestUrn>
+				<requestContext>0</requestContext>
+			</cts:request>
+			""")
+		xmlString.append("""
+			<cts:reply>
+					<urn>${gpObject['GetPassage']['reply']['urn']}</urn>
+					<passage xml:lang="${gpObject['GetPassage']['reply']['lang']}">
+					${gpObject['GetPassage']['reply']['passageComponent']}
+					</passage>
+				</cts:reply>
+			</GetPassage>
+			""")
+
+
+		// Format for CTS Reply
+		// xmlString.append(gpObject['GetPassage']['reply']['passageComponent'])
+		return xmlString
+	}
+
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * a JSOH fragment, by first making a getPassage reply Map.
+	 * @returns String
+	 */
+	String getPassageToJSON(String requestUrn){
+			CtsUrn urn = new CtsUrn(requestUrn)
+			return getPassageToJSON(urn)
+	}
+
+	/**  Given a URN, constructs a getPassage reply as
+	 * an XML fragment, by first making a getPassage reply Map.
+	 * @returns ctsReply as Map
+	 */
+	String getPassageToJSON(CtsUrn requestUrn){
+		Map gpObject = getPassageObject(requestUrn)
+	    return new JsonBuilder(gpObject).toPrettyString()
+	}
+
 }
