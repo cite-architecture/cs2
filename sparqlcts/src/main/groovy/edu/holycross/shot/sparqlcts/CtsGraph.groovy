@@ -613,6 +613,29 @@ class CtsGraph {
         return firstInt
     }
 
+    /** Finds the last URN of a version- or exemplar.
+    * @param urn A version- or exemplar-URN.
+    * @returns CtsUrn 
+    */
+    CtsUrn getLastUrn(CtsUrn requestUrn) {
+		CtsUrn lastUrn
+		CtsUrn urn = resolveVersion(requestUrn)	
+		String lastUrnQuery = QueryBuilder.getLastUrnQuery(urn)
+        String ctsReply = sparql.getSparqlReply("application/json", lastUrnQuery )
+
+        def slurper = new groovy.json.JsonSlurper()
+        def parsedReply = slurper.parseText(ctsReply)
+        
+        String urnStr
+        parsedReply.results.bindings.each { b ->
+            if (b.seq) {
+                urnStr = b.urn?.value
+            }
+        }
+		lastUrn = new CtsUrn(urnStr)
+        return lastUrn
+    }
+
     /** Finds the last sequence value for a set of URNs contained 
     * by a given URN.
     * @param urn A containing URN.
@@ -990,70 +1013,52 @@ class CtsGraph {
 
 	String getRangePrevUrnStr(CtsUrn requestUrn){
 		String replyString
-		println "--------------"
 		CtsUrn urn = resolveVersion(requestUrn)
-		println "Working with ${urn}"
 		// Calculate how many leaf-nodes are defined by the range
 		ArrayList rangeList = getUrnList(urn)
 		Integer howManyIdeally = rangeList.size() // Close to the beginning, we may not be able to return this many
-		println "howManyIdeally = ${howManyIdeally}"
 		Integer howMany // this will be number of leaf-nodes we actually return
 		Integer startSeq
 		Integer endSeq
 		// Calculate the sequence number of the first leaf-node of the text
 		CtsUrn firstUrnOfText = getFirstUrn(new CtsUrn("${urn.getUrnWithoutPassage()}"))
 		Integer firstSequenceOfText = getSequence(firstUrnOfText)
-		println "firstSequenceOfText = ${firstSequenceOfText}"
 		// Calculate the first sequence number of the param Urn
 		CtsUrn firstUrnOfRange
 		if (urn.isRange()){
-			println "Got here with ${urn}. isRange(). "
 			CtsUrn testFirstUrnOfRange = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
 			if (isLeafNode(testFirstUrnOfRange)){
 				firstUrnOfRange = testFirstUrnOfRange
 			} else {
 				firstUrnOfRange = getFirstUrn(testFirstUrnOfRange)
 			}
-			println "firstUrnOfRange = ${firstUrnOfRange}"
 		} else if (isLeafNode(urn)) {
-			println "Got here with ${urn}. else if"
 		    firstUrnOfRange = urn	
 		} else {
-			println "Got here with ${urn}. else"
 			firstUrnOfRange = getFirstUrn(urn)
 		}
-		println "firstUrnOfRange = ${firstUrnOfRange}"
 		Integer firstSequenceOfRange = getSequence(firstUrnOfRange)
-		println "firstSequenceOfRange = ${firstSequenceOfRange}"
 		// Calculate how many we go back
 		if ((firstSequenceOfRange - howManyIdeally) < firstSequenceOfText){
-			println "First option: ${(firstSequenceOfRange - howManyIdeally)} < ${firstSequenceOfText}"
 			howMany = firstSequenceOfRange - firstSequenceOfText
 		} else {
-			println "Second option: ${(firstSequenceOfRange - howManyIdeally)} >= ${firstSequenceOfText}"
 			howMany = howManyIdeally
 		}
 		if (howMany < 1){
 			replyString = ""	
 		} else {
-			println "howMany = ${howMany}"
 			startSeq = firstSequenceOfRange - howMany
-			println "startSeq = ${startSeq}"
 			endSeq = (startSeq) + (howMany -1)
-			println "endSeq = ${endSeq}"
 			if (startSeq == endSeq){
 				replyString = "${getUrnForSequence(startSeq,urn.getUrnWithoutPassage())}"
 			} else {
 				Integer leafDepth = getLeafDepth(urn) 
 				ArrayList fillVR =  getFillVR(startSeq, endSeq, leafDepth, "${urn.getUrnWithoutPassage()}") 
 				String startPassage = new CtsUrn(fillVR[0]).passageComponent 
-				println "startPassage = ${startPassage}"
 				String endPassage  = new CtsUrn(fillVR[-1]).passageComponent
-				println "endPassage = ${endPassage}"
 				replyString = "${urn.getUrnWithoutPassage()}${startPassage}-${endPassage}"
 			}
 		}
-		println "replying ${replyString}"
 		return replyString
 	}
 
@@ -1065,5 +1070,55 @@ class CtsGraph {
    * or a null String ("") if there is no following citable node.
    * @throws Exception if retrieved value is not a valid CtsUrn string.
    */
+	String getRangeNextUrnStr(CtsUrn requestUrn){
+		String replyString
+		CtsUrn urn = resolveVersion(requestUrn)
+		// Calculate how many leaf-nodes are defined by the range
+		ArrayList rangeList = getUrnList(urn)
+		Integer howManyIdeally = rangeList.size() // Close to the beginning, we may not be able to return this many
+		Integer howMany // this will be number of leaf-nodes we actually return
+		Integer startSeq
+		Integer endSeq
+		// Calculate the sequence number of the last leaf-node of the text
+		CtsUrn lastUrnOfText = getLastUrn(new CtsUrn("${urn.getUrnWithoutPassage()}"))
+		Integer lastSequenceOfText = getSequence(lastUrnOfText)
+		// Calculate the last sequence number of the param Urn
+		CtsUrn lastUrnOfRange
+		if (urn.isRange()){
+			CtsUrn testLastUrnOfRange = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")
+			if (isLeafNode(testLastUrnOfRange)){
+				lastUrnOfRange = testLastUrnOfRange
+			} else {
+				lastUrnOfRange = new CtsUrn(getUrnForSequence(getLastSequence(testLastUrnOfRange)))
+			}
+		} else if (isLeafNode(urn)) {
+		    lastUrnOfRange = urn	
+		} else {
+			lastUrnOfRange = new CtsUrn(getUrnForSequence(getLastSequence(urn),urn.getUrnWithoutPassage()))
+		}
+		Integer lastSequenceOfRange = getSequence(lastUrnOfRange)
+		// Calculate how many we go forward
+		if ((lastSequenceOfRange + howManyIdeally) > lastSequenceOfText){
+			howMany = lastSequenceOfText - lastSequenceOfRange
+		} else {
+			howMany = howManyIdeally
+		}
+		if (howMany < 1){
+			replyString = ""	
+		} else {
+			startSeq = lastSequenceOfRange + 1
+			endSeq = (startSeq) + (howMany-1)
+			if (startSeq == endSeq){
+				replyString = "${getUrnForSequence(startSeq,urn.getUrnWithoutPassage())}"
+			} else {
+				Integer leafDepth = getLeafDepth(urn) 
+				ArrayList fillVR =  getFillVR(startSeq, endSeq, leafDepth, "${urn.getUrnWithoutPassage()}") 
+				String startPassage = new CtsUrn(fillVR[0]).passageComponent 
+				String endPassage  = new CtsUrn(fillVR[-1]).passageComponent
+				replyString = "${urn.getUrnWithoutPassage()}${startPassage}-${endPassage}"
+			}
+		}
+		return replyString
+	}
 
 }

@@ -102,8 +102,6 @@ class TestNextIntegr extends GroovyTestCase {
  
  /* test RangeNext methods */ 
 
-
-/*
   @Test
   void testRangeNext1() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.4-1.6")
@@ -118,13 +116,41 @@ class TestNextIntegr extends GroovyTestCase {
     assert  graph.getRangeNextUrnStr(urn) == expectedNext
   }
 
+
   @Test
   void testRangeNext3() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:3.5-3.8")
     String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.9-3.10"
     assert  graph.getRangeNextUrnStr(urn) == expectedNext
   }
-  */
+
+  @Test
+  void testRangeNext4() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1")
+    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.testAllen:2.1-2.10"
+    assert  graph.getRangeNextUrnStr(urn) == expectedNext
+  }
+ 
+  @Test
+  void testRangeNext5() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:3.1-3.10")
+    String expectedNext = ""
+    assert  graph.getRangeNextUrnStr(urn) == expectedNext
+  }
+  
+  @Test
+  void testRangeNext6() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:3.1-3.9")
+    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.10"
+    assert  graph.getRangeNextUrnStr(urn) == expectedNext
+  }
+  @Test
+  void testRangeNext7() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1-2.1")
+    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.testAllen:2.2-3.2"
+    assert  graph.getRangeNextUrnStr(urn) == expectedNext
+  }
+
 
   
 }

@@ -294,6 +294,25 @@ abstract class QueryBuilder {
 			"""
 	}
 
+	/** Builds SPARQL query string to find the URN 
+	 * of the last citable node of a work.
+	 * @param urn The urn to test.
+	 * @returns A complete SPARQL query string.
+	 */
+	static String getLastUrnQuery(CtsUrn versionUrn) {
+
+		return """
+			${CtsDefinitions.prefixPhrase}
+		SELECT   ?urn ?seq
+			WHERE {
+				?urn  cts:isPassageOf  <${versionUrn}>  .
+					?urn cts:hasSequence ?seq .        
+			}
+		ORDER BY DESC(?seq)
+			LIMIT 1
+			"""
+	}
+
 	/* Forms SPARQL query to find all URNs 
 	 *  between two leaf-nodes, identified by their sequence numbers
 	 *  (@startCount, @endCount). Requires a version-level URN. 
