@@ -99,7 +99,7 @@ class TestPrevIntegr extends GroovyTestCase {
   }
 
 /* Testing RangePrev functions */
-/*
+
   @Test
   void testRangePrev1() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.3-1.6")
@@ -147,8 +147,8 @@ class TestPrevIntegr extends GroovyTestCase {
     String expectedPrev = "urn:cts:greekLit:tlg0016.tlg001.engTest:1.0-1.2"
     assert  graph.getRangePrevUrnStr(urn) == expectedPrev
   }
-  */
-/*
+  
+
   @Test
   void testRangePrev8() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1-1.5")
@@ -162,7 +162,7 @@ class TestPrevIntegr extends GroovyTestCase {
     String expectedPrev = ""
     assert  graph.getRangePrevUrnStr(urn) == expectedPrev
   }
-  */
+  
 
   @Test
   void testRangePrev10() {
