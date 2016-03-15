@@ -19,10 +19,11 @@ class TestReplyGetPassageIntegr extends GroovyTestCase {
   CtsReply reply = new CtsReply( sparql, graph)
 
   @Test
-  void testSetup() {
+  void testSetup1() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:3.4")
+	Integer context = 0
 
-	Map testReply = reply.getPassagePlusObject(urn)
+	Map testReply = reply.getPassageObject(urn,context)
 
 	assert testReply
 	println new JsonBuilder(testReply).toPrettyString()
@@ -30,92 +31,56 @@ class TestReplyGetPassageIntegr extends GroovyTestCase {
   }
 
   @Test
-  void testXML1() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:1.2.3")
+  void testSetup2() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:3.4")
+	Integer context = 0
 
-	String testReply = reply.getPassagePlusToXML(urn)
+	String testReply = reply.getPassageToXML(urn)
 
 	assert testReply
+	println "-----------------------------------------"
 	println testReply
     
   }
 
   @Test
-  void testXML2() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:1.2")
+  void testSetup3() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:2")
+	Integer context = 0
 
-	String testReply = reply.getPassagePlusToXML(urn)
+	String testReply = reply.getPassageToXML("urn:cts:greekLit:tlg0012.tlg001:3.4",context)
 
 	assert testReply
+	println "-----------------------------------------"
 	println testReply
     
   }
 
   @Test
-  void testXML3() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:1")
+  void testSetup4() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.3")
+	Integer context = 1
 
-	String testReply = reply.getPassagePlusToXML(urn)
-
-	assert testReply
-	println testReply
-    
-  }
-
-
-  @Test
-  void testXML4() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1")
-
-	String testReply = reply.getPassagePlusToXML(urn)
+	String testReply = reply.getPassageToXML("urn:cts:greekLit:tlg0012.tlg001:3.4",context)
 
 	assert testReply
+	println "-----------------------------------------"
 	println testReply
     
   }
 
   @Test
-  void testXML5() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.10-2.1")
+  void testSetup5() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:2")
+	Integer context = 5
 
-	String testReply = reply.getPassagePlusToXML(urn)
+	String testReply = reply.getPassageToXML(urn,context)
 
 	assert testReply
+	println "-----------------------------------------"
 	println testReply
     
   }
 
-  @Test
-  void testXML6() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.10-3.1")
-
-	String testReply = reply.getPassagePlusToXML(urn)
-
-	assert testReply
-	println testReply
-    
-  }
-
-  @Test
-  void testXML7() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0016.tlg001.engTest:1.2-1.3")
-
-	String testReply = reply.getPassagePlusToXML(urn)
-
-	assert testReply
-	println testReply
-    
-  }
-
-  @Test
-  void testXML8() {
-    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0016.tlg001.engTest.wt:1.2.1-1.2.5")
-
-	String testReply = reply.getPassagePlusToXML(urn)
-
-	assert testReply
-	println testReply
-    
-  }
 
 }

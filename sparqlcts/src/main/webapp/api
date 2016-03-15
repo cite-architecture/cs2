@@ -99,17 +99,17 @@ if (!done) {
 
 			case "GetPassagePlus":
 					if (responseType == "json"){
-						println reply.getPassagePlusToJSON(urnStr)
+						println reply.getPassagePlusToJSON(urnStr,context)
 					} else {
-						println reply.getPassagePlusToXML(urnStr)
+						println reply.getPassagePlusToXML(urnStr,context)
 					}
 					break
 
 			case "GetPassage":
 					if (responseType == "json"){
-						println reply.getPassageToJSON(urnStr)
+						println reply.getPassageToJSON(urnStr,context)
 					} else {
-						println reply.getPassageToXML(urnStr)
+						println reply.getPassageToXML(urnStr,context)
 					}
 					break
 

@@ -1121,4 +1121,72 @@ class CtsGraph {
 		return replyString
 	}
 
+	/** Given a CtsUrn and a context-integer, returns a range reflecting 
+	* the urn's passage, plus context
+	* @param CtsUrn requestUrn
+	* @param Integer context
+	* @returns A range-URN as CtsUrn
+	*/
+
+	CtsUrn getRangeForContext(CtsUrn requestUrn, Integer context){
+		CtsUrn urn = resolveVersion(requestUrn)
+
+		CtsUrn responseUrn
+		Integer startSeq
+		Integer endSeq
+		// Calculate the sequence number of the first leaf-node of the text
+		CtsUrn firstUrnOfText = getFirstUrn(new CtsUrn("${urn.getUrnWithoutPassage()}"))
+		Integer firstSequenceOfText = getSequence(firstUrnOfText)
+		// Calculate the sequence number of the last leaf-node of the text
+		CtsUrn lastUrnOfText = getLastUrn(new CtsUrn("${urn.getUrnWithoutPassage()}"))
+		Integer lastSequenceOfText = getSequence(lastUrnOfText)
+		// Sequences of param urn
+		Integer firstSequence
+		Integer lastSequence
+		// Ideal first and last sequence of resulting range urn
+		Integer idealFirstSequence
+		Integer idealLastSequence
+
+
+		// Different solutions for ranges, leaves, and containers
+		if (urn.isRange()){
+			CtsUrn testFirstUrnOfRange = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
+			CtsUrn testLastUrnOfRange = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")
+			if (isLeafNode(testFirstUrnOfRange)){
+				firstSequence = getSequence(testFirstUrnOfRange)
+			} else {
+				firstSequence = getFirstSequence(testFirstUrnOfRange)
+			}
+			if (isLeafNode(testLastUrnOfRange)){
+				lastSequence = getSequence(testLastUrnOfRange)
+			} else {
+				lastSequence = getLastSequence(testLastSequenceOfRange)
+			}
+		} else if (isLeafNode(urn)) {
+		   firstSequence = getSequence(urn) 
+		   lastSequence = firstSequence
+		} else {
+			firstSequence = getFirstSequence(urn)
+			lastSequence = getLastSequence(urn)	
+		}
+		idealFirstSequence = firstSequence - context
+		idealLastSequence = lastSequence + context
+		if (idealFirstSequence < firstSequenceOfText){ 
+			startSeq = firstSequenceOfText 
+		} else {
+			startSeq = idealFirstSequence
+		}
+		if (idealLastSequence > lastSequenceOfText){ 
+			endSeq = lastSequenceOfText 
+		} else {
+			endSeq = idealLastSequence
+		}
+
+	    CtsUrn firstSeqUrn = new CtsUrn(getUrnForSequence(startSeq, urn.getUrnWithoutPassage()))
+	    CtsUrn lastSeqUrn = new CtsUrn(getUrnForSequence(endSeq, urn.getUrnWithoutPassage()))
+		responseUrn = new CtsUrn("${urn.getUrnWithoutPassage()}${firstSeqUrn.passageComponent}-${lastSeqUrn.passageComponent}")
+
+		return responseUrn
+	}
+
 }

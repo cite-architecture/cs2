@@ -29,29 +29,43 @@ class CtsReply {
 * GetPassagePlus Replies
    ****************************************** */
 
+   /** Overloaded function. 
+   @param CtsUrn requestUrn
+   @returns ctsReply as Map
+   */
+
+   Map getPassagePlusObject(CtsUrn requestUrn){
+	   return getPassagePlusObject(requestUrn, 0)
+   }
+
   /**  Given a URN, constructs a getPassagePlus reply data-object
    * @param CtsUrn requestUrn
    * @returns ctsReply as Map
    */
-	Map getPassagePlusObject(CtsUrn requestUrn){
+	Map getPassagePlusObject(CtsUrn requestUrn, Integer requestContext){
 		Map ctsReply = [:]
 		Map ctsReplyObject = [:]
 		Map ctsRequestMap = [:]
 		Map ctsReplyMap = [:]
 
-		CtsUrn urn = graph.resolveVersion(requestUrn)
+		CtsUrn urn 
 
-		Ohco2Node o2n = graph.getOhco2Node(urn)
+		if (requestContext > 0){
+			urn = graph.getRangeForContext(requestUrn,requestContext)
+		} else {
+			urn = graph.resolveVersion(requestUrn)
+		}
 
-
+			Ohco2Node o2n = graph.getOhco2Node(urn)
 		
 		ctsRequestMap.put('request','GetPassagePlus')
 		ctsRequestMap.put('urn',requestUrn.toString())
+		ctsRequestMap.put('context',requestContext)
 		ctsReplyMap.put('urn',urn.toString())
 		ctsReplyMap.put('label',o2n.nodeLabel)
 		ctsReplyMap.put('lang',o2n.nodeLang)
-		ctsReplyMap.put('prev',o2n.prevUrn.toString())
-		ctsReplyMap.put('next',o2n.nextUrn.toString())
+		ctsReplyMap.put('prev',graph.getRangePrevUrnStr(urn))
+		ctsReplyMap.put('next',graph.getRangeNextUrnStr(urn))
 		//ctsReplyMap.put('rangeNodesMap',o2n.leafNodes)
 
 		// Insert passage component
@@ -69,6 +83,15 @@ class CtsReply {
 		return ctsReply
 	}
 
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * an XML fragment, by first making a getPassagePlus reply Map.
+	 * @returns String
+	 */
+	String getPassagePlusToXML(String requestUrn, Integer context){
+			CtsUrn urn = new CtsUrn(requestUrn)
+			return getPassagePlusToXML(urn,context)
+	}
+
 
 	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
 	 * an XML fragment, by first making a getPassagePlus reply Map.
@@ -76,16 +99,25 @@ class CtsReply {
 	 */
 	String getPassagePlusToXML(String requestUrn){
 			CtsUrn urn = new CtsUrn(requestUrn)
-			return getPassagePlusToXML(urn)
+			return getPassagePlusToXML(urn,0)
+	}
+
+
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * an XML fragment, by first making a getPassagePlus reply Map.
+	 * @returns String
+	 */
+	String getPassagePlusToXML(CtsUrn requestUrn){
+			return getPassagePlusToXML(requestUrn,0)
 	}
 
 	/**  Given a URN, constructs a getPassagePlus reply as
 	 * an XML fragment, by first making a getPassagePlus reply Map.
 	 * @returns String
 	 */
-	String getPassagePlusToXML(CtsUrn requestUrn){
+	String getPassagePlusToXML(CtsUrn requestUrn, Integer context){
         StringBuffer xmlString = new StringBuffer()
-		Map gppObject = getPassagePlusObject(requestUrn)
+		Map gppObject = getPassagePlusObject(requestUrn, context)
 		
 
 		xmlString.append("""
@@ -95,13 +127,13 @@ class CtsReply {
 			<cts:request>
 				<requestName>GetPassagePlus</requestName>
 				<requestUrn>${requestUrn}</requestUrn>
-				<requestContext>0</requestContext>
+				<requestContext>${gppObject['GetPassagePlus']['request']['context']}</requestContext>
 			</cts:request>
 			""")
 		xmlString.append("""
 			<cts:reply>
 					<urn>${gppObject['GetPassagePlus']['reply']['urn']}</urn>
-					<label> ${gppObject['GetPassagePlus']['reply']['label']} </label>
+					<label>${gppObject['GetPassagePlus']['reply']['label']}</label>
 					<passage xml:lang="${gppObject['GetPassagePlus']['reply']['lang']}">
 					${gppObject['GetPassagePlus']['reply']['passageComponent']}
 					</passage>
@@ -474,13 +506,19 @@ GetFirstUrn Request
    * @param CtsUrn requestUrn
    * @returns ctsReply as Map
    */
-	Map getPassageObject(CtsUrn requestUrn){
+	Map getPassageObject(CtsUrn requestUrn, Integer requestContext){
 		Map ctsReply = [:]
 		Map ctsReplyObject = [:]
 		Map ctsRequestMap = [:]
 		Map ctsReplyMap = [:]
 
-		CtsUrn urn = graph.resolveVersion(requestUrn)
+		CtsUrn urn
+
+		if (requestContext > 0){
+			urn = graph.getRangeForContext(requestUrn,requestContext)
+		} else {
+			urn = graph.resolveVersion(requestUrn)
+		}
 
 		Ohco2Node o2n = graph.getOhco2Node(urn)
 
@@ -488,6 +526,7 @@ GetFirstUrn Request
 		
 		ctsRequestMap.put('request','GetPassage')
 		ctsRequestMap.put('urn',requestUrn.toString())
+		ctsRequestMap.put('context',requestContext)
 		ctsReplyMap.put('urn',urn.toString())
 		ctsReplyMap.put('lang',o2n.nodeLang)
 
@@ -506,6 +545,14 @@ GetFirstUrn Request
 		return ctsReply
 	}
 
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * an XML fragment, by first making a getPassage reply Map.
+	 * @returns String
+	 */
+	String getPassageToXML(CtsUrn requestUrn){
+			Integer context = 0 
+			return getPassageToXML(requestUrn,context)
+	}
 
 	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
 	 * an XML fragment, by first making a getPassage reply Map.
@@ -513,16 +560,26 @@ GetFirstUrn Request
 	 */
 	String getPassageToXML(String requestUrn){
 			CtsUrn urn = new CtsUrn(requestUrn)
-			return getPassageToXML(urn)
+			Integer context = 0 
+			return getPassageToXML(urn,context)
+	}
+
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * an XML fragment, by first making a getPassage reply Map.
+	 * @returns String
+	 */
+	String getPassageToXML(String requestUrn, Integer context){
+			CtsUrn urn = new CtsUrn(requestUrn)
+			return getPassageToXML(urn,context)
 	}
 
 	/**  Given a URN, constructs a getPassage reply as
 	 * an XML fragment, by first making a getPassage reply Map.
 	 * @returns String
 	 */
-	String getPassageToXML(CtsUrn requestUrn){
+	String getPassageToXML(CtsUrn requestUrn, Integer context){
         StringBuffer xmlString = new StringBuffer()
-		Map gpObject = getPassageObject(requestUrn)
+		Map gpObject = getPassageObject(requestUrn,context)
 		
 
 		xmlString.append("""
@@ -532,7 +589,7 @@ GetFirstUrn Request
 			<cts:request>
 				<requestName>GetPassage</requestName>
 				<requestUrn>${requestUrn}</requestUrn>
-				<requestContext>0</requestContext>
+				<requestContext>${gpObject['GetPassage']['request']['context']}</requestContext>
 			</cts:request>
 			""")
 		xmlString.append("""
