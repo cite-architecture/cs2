@@ -94,7 +94,11 @@ if (!done) {
 		switch(req) {
 
 			case "GetDescription":
-					println "<CTSError>Get Description ${urnStr}; type ${responseType}</CTSError>"
+					if (responseType == "json"){
+						println reply.getDescriptionToJSON(urnStr)
+					} else {
+						println reply.getDescriptionToXML(urnStr)
+					}
 					break
 
 			case "GetPassagePlus":

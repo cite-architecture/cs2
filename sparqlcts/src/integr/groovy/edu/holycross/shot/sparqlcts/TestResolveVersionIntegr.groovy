@@ -31,6 +31,41 @@ class TestResolveVersionIntegr extends GroovyTestCase {
     assert  graph.resolveVersion(urn).toString() == expectedUrn
   }
 
+  @Test
+  void testResolveVersionSubstr1() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1@μῆνιν[1]")
+    String expectedUrn = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1"
+    assert  graph.resolveVersion(urn).toString() == expectedUrn
+  }
+
+
+  @Test
+  void testResolveVersionSubstr2() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1@μῆνιν[1]-1.1@ἄειδε[1]")
+    String expectedUrn = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1"
+    assert  graph.resolveVersion(urn).toString() == expectedUrn
+  }
+
+  @Test
+  void testResolveVersionSubstr3() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1-1.2@οὐλομένην[1]")
+    String expectedUrn = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1-1.2"
+    assert  graph.resolveVersion(urn).toString() == expectedUrn
+  }
+
+  @Test
+  void testResolveVersionSubstr4() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1@μῆνιν[1]-1.2")
+    String expectedUrn = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1-1.2"
+    assert  graph.resolveVersion(urn).toString() == expectedUrn
+  }
+
+  @Test
+  void testResolveVersionSubstr5() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1@μῆνιν[1]-2")
+    String expectedUrn = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1-2"
+    assert  graph.resolveVersion(urn).toString() == expectedUrn
+  }
   
   
 }

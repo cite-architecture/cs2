@@ -626,4 +626,98 @@ GetFirstUrn Request
 	    return new JsonBuilder(gpObject).toPrettyString()
 	}
 
+/* ******************************************
+* GetDescription Replies
+   ****************************************** */
+
+  /**  Given a URN, constructs a getDescription reply data-object
+   * @param CtsUrn requestUrn
+   * @returns ctsReply as Map
+   */
+
+	Map getDescriptionObject(CtsUrn requestUrn){
+		Map ctsReply = [:]
+			Map ctsReplyObject = [:]
+			Map ctsRequestMap = [:]
+			Map ctsReplyMap = [:]
+
+			CtsUrn urn = graph.resolveVersion(requestUrn)
+
+
+			ctsRequestMap.put('request','GetDescription')
+			ctsRequestMap.put('urn',requestUrn.toString())
+
+
+			ctsReplyMap.put("urn",urn.toString())
+			ctsReplyMap.put("description",graph.getLabel(urn).toString())
+
+			ctsReplyObject.put('request',ctsRequestMap)
+			ctsReplyObject.put('reply',ctsReplyMap)	
+			ctsReply.put('GetDescription',ctsReplyObject)
+
+
+			return ctsReply
+	}
+		
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * an XML fragment, by first making a getDescription reply Map.
+	 * @returns String
+	 */
+	String getDescriptionToXML(String requestUrn){
+			CtsUrn urn = new CtsUrn(requestUrn)
+			return getDescriptionToXML(urn)
+	}
+
+	/**  Given a URN, constructs a getDescription reply as
+	 * an XML fragment, by first making a getDescription reply Map.
+	 * @returns String
+	 */
+	String getDescriptionToXML(CtsUrn requestUrn){
+        StringBuffer xmlString = new StringBuffer()
+		Map gDObject = getDescriptionObject(requestUrn)
+		
+
+		xmlString.append("""
+			<GetDescription xmlns:cts="http://chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">
+			""")
+		xmlString.append("""
+			<cts:request>
+				<requestName>GetDescription</requestName>
+				<requestUrn>${requestUrn}</requestUrn>
+			</cts:request>
+			""")
+		xmlString.append("""
+			<cts:reply>
+					<urn>${gDObject['GetDescription']['reply']['urn']}</urn>
+					<label>${gDObject['GetDescription']['reply']['description']}</label>
+				</cts:reply>
+			</GetDescription>
+			""")
+
+
+		// Format for CTS Reply
+		// xmlString.append(gpnObject['GetPassagePlus']['reply']['passageComponent'])
+		return xmlString
+	}
+
+	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
+	 * a JSON fragment, by first making a getDescription reply Map.
+	 * @returns String
+	 */
+	String getDescriptionToJSON(String requestUrn){
+			CtsUrn urn = new CtsUrn(requestUrn)
+			return getDescriptionToJSON(urn)
+	}
+
+	/**  Given a URN, constructs a getDescription reply as
+	 * an XML fragment, by first making a getDescription reply Map.
+	 * @returns ctsReply as Map
+	 */
+	String getDescriptionToJSON(CtsUrn requestUrn){
+		Map gDObject = getDescriptionObject(requestUrn)
+	    return new JsonBuilder(gDObject).toPrettyString()
+	}
+
+
+   
 }

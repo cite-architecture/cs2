@@ -269,7 +269,22 @@ class CtsGraph {
   throws Exception {
     String workLevel = urn.getWorkLevel()
     if ((workLevel == 'VERSION')|(workLevel == 'EXEMPLAR')) {
-      return urn
+	  if (urn.isRange()){
+				String ref1 = urn.getRangeBegin()
+				String ref2 = urn.getRangeEnd()
+				if (ref1 == ref2){
+					  return new CtsUrn("${urn.getUrnWithoutPassage()}${ref1.tokenize("@")[0]}")
+				} else {
+					  return new CtsUrn("${urn.getUrnWithoutPassage()}${ref1.tokenize("@")[0]}-${ref2.tokenize("@")[0]}")
+				}
+		  
+	  } else {
+		  if (urn.hasSubref()){
+			  return new CtsUrn("${urn.getUrnWithoutPassage()}${urn.passageComponent.tokenize("@")[0]}")
+		  } else {
+			  return urn 
+		  }
+	  }
 
     } else {
       String version = findVersion(urn)
