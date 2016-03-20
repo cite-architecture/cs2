@@ -37,32 +37,45 @@ if (req == "GetCapabilities") {
 
 } else {
 	// guarantee that URN parameter is syntactically valid
-	try {
-		CtsUrn urn = new CtsUrn(urnStr)
-	} catch (Exception e) {
-		println """<CTSError xmlns:cts="http:chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">\n"""
-			def errorNum
-			switch (e) {
-				case 'java.lang.Exception: Bad URN syntax: #BADSYNTAX#':
-				   errorNum = 2
-				   println """<message>BAD URN SYNTAX: ${urnStr}</message>\n"""
-				   println """<code>${errorNum}</code>\n"""
-				   break
+    if (request.getParameter("urn"))	{
+		try {
+			System.err.println "First attempt at constructing."
+			CtsUrn urn = new CtsUrn(urnStr)
+			System.err.println "Done."
 
-				case 'java.lang.Exception: Bad URN syntax: ##':
-				   errorNum = 1
-				   println """<message>INVALID REQUEST. Missing required parameter: 'urn'</message>\n"""
-				   println """<code>${errorNum}</code>\n"""
-				   break
+		} catch (Exception e) {
+			System.err.println e
+			println """<CTSError xmlns:cts="http:chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">\n"""
+				def errorNum
+				switch (e) {
+					case ~/java.lang.Exception: Bad URN syntax.*/:
+					   errorNum = 2
+					   println """<message>BAD URN SYNTAX: "${urnStr}"</message>\n"""
+					   println """<code>${errorNum}</code>\n"""
+					   break
 
-				default:
-			   	   errorNum = 0
-				   println """<message>???</message>"""
-				   println """<code>${errorNum}</code>"""
-				   break
-			}
-		println """</CTSError>\n"""
-			done = true
+					case "java.lang.NullPointerException":
+						errorNum = 1
+					   println """<message>INVALID REQUEST. Missing parameter: 'urn'</message>\n"""
+					   println """<code>${errorNum}</code>\n"""
+					   break
+
+					default:
+					   errorNum = 0
+					   println """<message>Undefined error: ${e}</message>"""
+					   println """<code>${errorNum}</code>"""
+					   break
+				}
+			println """</CTSError>\n"""
+				done = true
+		}
+	} else {
+		   errorNum = 1
+			println """<CTSError xmlns:cts="http:chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">\n"""
+		   println """<message>INVALID REQUEST. Missing parameter: 'urn'</message>\n"""
+		   println """<code>${errorNum}</code>\n"""
+			println """</CTSError>\n"""
+		   done = true
 	}
 }
 
@@ -71,8 +84,15 @@ if (request.getParameter("context")) {
 	String contextStr = request.getParameter("context")
 		try {
 			context = contextStr.toInteger()
+			try {
+				assert context >= 0
+				} catch (AssertionError e){
+					println badIntegerParamReply("context",contextStr)
+					done = true
+				}
 		} catch (Exception e) {
-			System.err.println "Value of context parameter must be an integer: ${contextStr}. And by the way, this implementation will ignore the context parameter."
+			println badIntegerParamReply("context",contextStr)
+			done = true
 		}
 }
 
@@ -81,8 +101,15 @@ if (request.getParameter("level")) {
 	String levelStr = request.getParameter("level")
 		try {
 			level = levelStr.toInteger()
+			try {
+				assert level >= 0
+			} catch (AssertionError e){
+				println badIntegerParamReply("level",levelStr)
+				done = true
+			}
 		} catch (Exception e) {
-			System.err.println "Value of level parameter must be an integer: ${levelStr}."
+			println badIntegerParamReply("level",levelStr)
+			done = true
 		}
 }
 
@@ -95,56 +122,132 @@ if (!done) {
 
 			case "GetDescription":
 					if (responseType == "json"){
+						try {
 						println reply.getDescriptionToJSON(urnStr)
+						} catch (Exception e){
+							println invalidUrnReply(urnStr)
+						}
+
 					} else {
-						println reply.getDescriptionToXML(urnStr)
+						try {
+							println reply.getDescriptionToXML(urnStr)
+						} catch (Exception e){
+							println invalidUrnReply(urnStr)
+						}
 					}
 					break
 
 			case "GetPassagePlus":
 					if (responseType == "json"){
-						println reply.getPassagePlusToJSON(urnStr,context)
+						try {
+							println reply.getPassagePlusToJSON(urnStr,context)
+						} catch (Exception e){
+							println invalidUrnReply(urnStr)
+						}
 					} else {
-						println reply.getPassagePlusToXML(urnStr,context)
+						try {
+							println reply.getPassagePlusToXML(urnStr,context)
+						} catch (Exception e){
+							println invalidUrnReply(urnStr)
+						}
 					}
 					break
 
 			case "GetPassage":
 					if (responseType == "json"){
+						try {
 						println reply.getPassageToJSON(urnStr,context)
+						} catch (Exception e){
+							println invalidUrnReply(urnStr)
+						}
 					} else {
+						try {
 						println reply.getPassageToXML(urnStr,context)
+						} catch (Exception e){
+							println invalidUrnReply(urnStr)
+						}
 					}
 					break
 
 			case "GetPrevNextUrn":
 					if (responseType == "json"){
+						try {
 						println reply.getPrevNextToJSON(urnStr)
+						} catch (Exception e){
+							println invalidUrnReply(urnStr)
+						}
 					} else {
+						try {
 						println reply.getPrevNextToXML(urnStr)
+						} catch (Exception e){
+							println invalidUrnReply(urnStr)
+						}
 					}
 					break
 
 			case "GetValidReff":
 					if (responseType == "json"){
+						try {
 						println reply.getValidReffToJSON(urnStr,level)
+						} catch (Exception e){
+							println invalidUrnReply(urnStr)
+						}
 					} else {
+						try {
 						println reply.getValidReffToXML(urnStr,level)
+						} catch (Exception e){
+							println invalidUrnReply(urnStr)
+						}
 					}
 					break
 
 			case "GetFirstUrn":
 					if (responseType == "json"){
+						try {
 						println reply.getFirstUrnToJSON(urnStr)
+						} catch (Exception e){
+							println invalidUrnReply(urnStr)
+						}
 					} else {
+						try {
 						println reply.getFirstUrnToXML(urnStr)
+						} catch (Exception e){
+							println invalidUrnReply(urnStr)
+						}
 					}
 					break
 			default :
 					// break with "undefined request" excetpion
-					println "<error>Unrecognized request: ${req}.  \n(Add properly name-spaced reply here.)</error>"
+					println unknownRequestReply()
 					break
 		}
+}
+
+String invalidUrnReply(urnStr){
+		Integer	errorNum = 3
+		String errorString =  """<CTSError xmlns:cts="http:chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">\n"""
+		errorString += """<message>INVALID REQUEST. No text found matching: "${urnStr}"</message>\n"""
+		errorString += """<code>${errorNum}</code>\n"""
+		errorString += """</CTSError>\n"""
+		return errorString
+}
+
+String unknownRequestReply(){
+		Integer	errorNum = 4
+		String errorString =  """<CTSError xmlns:cts="http:chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">\n"""
+		errorString += """<message>UNKNOWN REQUEST. Must be one of: "GetCapabilities", "GetValidReff", "GetPassage", "GetPassagePlus", "GetPrevNextUrn", "GetFirstUrn", "GetDescription".</message>\n"""
+		errorString += """<code>${errorNum}</code>\n"""
+		errorString += """</CTSError>\n"""
+		return errorString
+}
+
+String badIntegerParamReply(String paramName, String paramValue){
+			Integer errorNum = 1
+			errorString =  """<CTSError xmlns:cts="http:chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">\n"""
+		    errorString += """<message>INVALID REQUEST. Value of parameter "${paramName}" must be a positive integer: "${paramValue}."</message>\n"""
+		    errorString +=  """<code>${errorNum}</code>\n"""
+			errorString +=  """</CTSError>\n"""
+			return errorString
 }
 
 String getCapsReply() {

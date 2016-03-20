@@ -303,7 +303,7 @@ class CtsGraph {
 	}
 	
       } else {
-	throw new Exception("CtsGraph: resolveVersion: no version found for urn ${urn}")
+		throw new Exception("CtsGraph: resolveVersion: no version found for urn ${urn}")
       }
     }
   }
