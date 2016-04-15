@@ -110,7 +110,7 @@ class TestDescrsIntegr extends GroovyTestCase {
   @Test
   void testExemplarDescr2() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:1.1.1")
-    String expectedLabel = "Homeric Epic, Iliad (null): 1.1.1 (urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:1.1.1)"
+    String expectedLabel = "Homeric Epic, Iliad (Allen. Iliad. Greek. 3 books of 10 lines. Word-tokens wrapped and citable.): 1.1.1 (urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:1.1.1)"
     String actualLabel = graph.getLabel(urn)
     assert actualLabel.replaceAll("\\s","") == expectedLabel.replaceAll("\\s","")
 

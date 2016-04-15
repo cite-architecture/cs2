@@ -142,7 +142,7 @@ class TestOHCO2ConstructionIntegr extends GroovyTestCase {
 		  assert response.nodeUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:3.4.1"
 		  assert response.prevUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:3.3.7"
 		  assert response.nextUrn.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:3.4.2"
-		  assert response.nodeLabel == "Homeric Epic, Iliad (null): 3.4.1 (urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:3.4.1)"
+		  assert response.nodeLabel == "Homeric Epic, Iliad (Allen. Iliad. Greek. 3 books of 10 lines. Word-tokens wrapped and citable.): 3.4.1 (urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:3.4.1)"
 		  assert response.nodeLang == "grc"
 		  
 		  assert response.leafNodes.size() == 1

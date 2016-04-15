@@ -138,6 +138,7 @@ project(":webapp") {
 
 project(":sparqlcts") {
   // make integration tests a separate source set:
+  version="0.11.0"
   sourceSets {
     integr {
     }
