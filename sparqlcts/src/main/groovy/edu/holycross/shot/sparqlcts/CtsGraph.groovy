@@ -1,5 +1,6 @@
 package edu.holycross.shot.sparqlcts
-
+import groovy.time.TimeCategory 
+import groovy.time.TimeDuration
 import edu.holycross.shot.citeservlet.Sparql
 
 import edu.harvard.chs.cite.CtsUrn
@@ -58,7 +59,6 @@ class CtsGraph {
 	Integer int2
 	Integer startAtStr 
 	Integer endAtStr
-
 
 	CtsUrn urn = resolveVersion(submittedUrn)
 	ArrayList responseList = []
@@ -363,11 +363,15 @@ class CtsGraph {
 
     CtsUrn prev = getPrevUrn(urn)
     CtsUrn nxt = getNextUrn(urn)
+
+
     Ohco2Node ond = new Ohco2Node(urn, label, nodeLang, prev, nxt, leafNodes)
     if (ond == null) {
       System.err.println "COULD NOT MAKE Ohco2Node!"
       System.err.println "${leafNode} (${label}): ${txtContent}"
     } 
+
+
     return  ond
   }
 

@@ -2,6 +2,8 @@ package edu.holycross.shot.sparqlcts
 
 import edu.holycross.shot.citeservlet.Sparql
 
+import groovy.time.TimeCategory 
+import groovy.time.TimeDuration
 import groovy.json.*
 import edu.harvard.chs.cite.CtsUrn
 import groovy.json.JsonSlurper
@@ -58,6 +60,7 @@ class CtsReply {
 
 			Ohco2Node o2n = graph.getOhco2Node(urn)
 		
+
 		ctsRequestMap.put('request','GetPassagePlus')
 		ctsRequestMap.put('urn',requestUrn.toString())
 		ctsRequestMap.put('context',requestContext)
@@ -78,7 +81,6 @@ class CtsReply {
 		ctsReplyObject.put('request',ctsRequestMap)
 		ctsReplyObject.put('reply',ctsReplyMap)	
 		ctsReply.put('GetPassagePlus',ctsReplyObject)
-
 
 		return ctsReply
 	}
@@ -116,7 +118,7 @@ class CtsReply {
 	 * @returns String
 	 */
 	String getPassagePlusToXML(CtsUrn requestUrn, Integer context){
-        StringBuffer xmlString = new StringBuffer()
+        StringBuilder xmlString = new StringBuilder()
 		Map gppObject = getPassagePlusObject(requestUrn, context)
 		
 
@@ -134,8 +136,9 @@ class CtsReply {
 			<cts:reply>
 					<urn>${gppObject['GetPassagePlus']['reply']['urn']}</urn>
 					<label>${gppObject['GetPassagePlus']['reply']['label']}</label>
-					<passage xml:lang="${gppObject['GetPassagePlus']['reply']['lang']}">
-					${gppObject['GetPassagePlus']['reply']['passageComponent']}
+					<passage xml:lang="${gppObject['GetPassagePlus']['reply']['lang']}">""")
+		xmlString.append(gppObject['GetPassagePlus']['reply']['passageComponent'].toString())
+		xmlString.append("""
 					</passage>
 					<prevnext>
 						<prev>
@@ -364,8 +367,9 @@ GetValidReff Request
 			""")
 		xmlString.append("""
 			<cts:reply>
-					<reff>
-					${reff}
+					<reff>""")
+		xmlString.append(reff.toString())
+		xmlString.append("""
 					</reff>
 				</cts:reply>
 			</GetValidReff>
@@ -578,9 +582,12 @@ GetFirstUrn Request
 	 * @returns String
 	 */
 	String getPassageToXML(CtsUrn requestUrn, Integer context){
-        StringBuffer xmlString = new StringBuffer()
+        StringBuilder xmlString = new StringBuilder()
+
+
 		Map gpObject = getPassageObject(requestUrn,context)
 		
+
 
 		xmlString.append("""
 			<GetPassage xmlns:cts="http://chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">
@@ -592,11 +599,20 @@ GetFirstUrn Request
 				<requestContext>${gpObject['GetPassage']['request']['context']}</requestContext>
 			</cts:request>
 			""")
+
+
 		xmlString.append("""
 			<cts:reply>
-					<urn>${gpObject['GetPassage']['reply']['urn']}</urn>
-					<passage xml:lang="${gpObject['GetPassage']['reply']['lang']}">
-					${gpObject['GetPassage']['reply']['passageComponent']}
+					<urn>${gpObject['GetPassage']['reply']['urn']}</urn> """)
+
+
+		xmlString.append("""
+					<passage xml:lang="${gpObject['GetPassage']['reply']['lang']}"> """)
+
+
+		xmlString.append(gpObject['GetPassage']['reply']['passageComponent'].toString())
+
+		xmlString.append("""
 					</passage>
 				</cts:reply>
 			</GetPassage>
