@@ -227,6 +227,7 @@ class XmlFormatter {
 	 * @returns String
 	 */
 	String buildXmlFragment(ArrayList leafNodes){
+		CtsUrn tempUrn
         StringBuffer passageString = new StringBuffer()
 
 		// Check for XML
@@ -276,7 +277,8 @@ class XmlFormatter {
                     if (b['rangeNode']['textContent']) {
 						//Here we are going to wrap the leaf-node in an element, 
 						//with the URN as an attribute
-						tempText = """<cts:node xmlns:cts="http://chs.harvard.edu/xmlns/cts" urn="${b['rangeNode']['nodeUrn']}">${b['rangeNode']['textContent']}</cts:node>"""
+					    tempUrn = new CtsUrn("${b['rangeNode']['nodeUrn']}")
+						tempText = """<cts:node xmlns:cts="http://chs.harvard.edu/xmlns/cts" urn="${b['rangeNode']['nodeUrn']}" passage="${tempUrn.passageComponent}">${b['rangeNode']['textContent']}</cts:node>"""
 						
 						//passageString.append(b.txt?.value)
 						passageString.append(tempText)
