@@ -19,10 +19,10 @@
 
    fuseki:services (
      <#service_tdb_cts>
+     <#service_tdb_ctsTest>
      <#service_tdb_orca>
      <#service_tdb_cc>
      <#service_tdb_img>
-     <#service_tdb_citegraph>
    ) .
 
 # TDB
@@ -36,7 +36,7 @@ tdb:GraphTDB    rdfs:subClassOf  ja:Model .
 ## Updatable TDB dataset with all services enabled.
 
 <#service_tdb_cts> rdf:type fuseki:Service ;
-    rdfs:label                      "CITE Servlet Test Data: CTS" ;
+    rdfs:label                      "CITE Servlet Data: CTS" ;
     fuseki:name                     "cts" ;
     fuseki:serviceQuery             "query" ;
     fuseki:serviceQuery             "sparql" ;
@@ -50,6 +50,31 @@ tdb:GraphTDB    rdfs:subClassOf  ja:Model .
 
 <#tdb_dataset_cts> rdf:type      tdb:DatasetTDB ;
     tdb:location "@projectroot@/fuseki/fusekibase/databases/cts";
+##     # Query timeout on this dataset (milliseconds)
+       ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "50000,600000" ] ;
+#s#     # Default graph for query is the (read-only) union of all named graphs.
+       tdb:unionDefaultGraph false
+     .
+
+## ---------------------------------------------------------------
+## CTS Test Data 
+## Updatable TDB dataset with all services enabled.
+
+<#service_tdb_ctsTest> rdf:type fuseki:Service ;
+    rdfs:label                      "CITE Servlet Test Data: CTS" ;
+    fuseki:name                     "ctsTest" ;
+    fuseki:serviceQuery             "query" ;
+    fuseki:serviceQuery             "sparql" ;
+    fuseki:serviceUpdate            "update" ;
+    fuseki:serviceUpload            "upload" ;
+    fuseki:serviceReadWriteGraphStore      "data" ;
+    # A separate read-only graph store endpoint:
+    fuseki:serviceReadGraphStore       "get" ;
+    fuseki:dataset           <#tdb_dataset_ctsTest> ;
+    .
+
+<#tdb_dataset_ctsTest> rdf:type      tdb:DatasetTDB ;
+    tdb:location "@projectroot@/fuseki/fusekibase/databases/ctsTest";
 ##     # Query timeout on this dataset (milliseconds)
        ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "50000,600000" ] ;
 #s#     # Default graph for query is the (read-only) union of all named graphs.
@@ -157,3 +182,4 @@ tdb:GraphTDB    rdfs:subClassOf  ja:Model .
 #s#     # Default graph for query is the (read-only) union of all named graphs.
        tdb:unionDefaultGraph false
      .
+

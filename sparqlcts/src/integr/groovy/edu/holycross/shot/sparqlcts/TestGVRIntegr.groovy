@@ -11,7 +11,7 @@ import edu.holycross.shot.sparqlcts.CtsGraph
 
 class TestGVRIntegr extends GroovyTestCase {
 
-  String baseUrl = "http://localhost:8080/fuseki/ds/query"
+  String baseUrl = "http://localhost:8080/fuseki/ctsTest/query"
   Sparql sparql = new Sparql(baseUrl)
   CtsGraph graph = new CtsGraph(sparql)
 

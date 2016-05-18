@@ -39,9 +39,7 @@ if (req == "GetCapabilities") {
 	// guarantee that URN parameter is syntactically valid
     if (request.getParameter("urn"))	{
 		try {
-			System.err.println "First attempt at constructing."
 			CtsUrn urn = new CtsUrn(urnStr)
-			System.err.println "Done."
 
 		} catch (Exception e) {
 			System.err.println e
@@ -113,8 +111,13 @@ if (request.getParameter("level")) {
 		}
 }
 
+String stylesheet = null
+if (request.getParameter("stylesheet")){
+	stylesheet = request.getParameter("stylesheet")
+}
+
 if (!done) {
-	String baseUrl = "http://localhost:8080/fuseki/ds/query"
+	String baseUrl = "http://localhost:8080/fuseki/ctsTest/query"
 		Sparql sparql = new Sparql(baseUrl)
 		CtsGraph graph = new CtsGraph(sparql)
 		CtsReply reply = new CtsReply( sparql, graph)
@@ -146,6 +149,9 @@ if (!done) {
 						}
 					} else {
 						try {
+							if (stylesheet != null){
+								println """<?xml-stylesheet type="text/xsl" href="xslt/${stylesheet}.xsl"?>\r"""
+							}
 							println reply.getPassagePlusToXML(urnStr,context)
 						} catch (Exception e){
 							println invalidUrnReply(urnStr)
@@ -162,7 +168,10 @@ if (!done) {
 						}
 					} else {
 						try {
-						println reply.getPassageToXML(urnStr,context)
+							if (stylesheet != null){
+								println """<?xml-stylesheet type="text/xsl" href="xslt/${stylesheet}.xsl"?>\r"""
+							}
+							println reply.getPassageToXML(urnStr,context)
 						} catch (Exception e){
 							println invalidUrnReply(urnStr)
 						}

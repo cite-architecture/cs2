@@ -9,7 +9,7 @@ import edu.holycross.shot.citeservlet.Sparql
 class TestSparqlIntegr extends GroovyTestCase {
 
 
-  String baseUrl = "http://localhost:8080/fuseki/ds/query"
+  String baseUrl = "http://localhost:8080/fuseki/ctsTest/query"
   String verbQuery = "SELECT DISTINCT ?v WHERE {?s ?v ?o . } "
   Integer expectedNumberVerbs = 21 
 
