@@ -37,26 +37,26 @@ The steps for testing SparqlCTS are summarized here:
 ~~~
 
 - Navigate in a browser to: `http://localhost:8080/fuseki`.
-- Click on "ctsTest", and choose **Upload
+- Click on "ctsTest", and choose **add data**.
+- On the screen that appears, be sure that "/ctsTest" is listed as the Dataset.
+- Choose "select files…".
+- Navigate to `[path to]/cite_test_ttl/testsuite/textcorpus/ttl`.
+- Choose `testcorpus.ttl`.
+- Click "upload all".
+- Back in the terminal, type `control-c` to halt CS2.
 
-
-
-
-
-
-A TTL data set to use with integration tests is in the file `fuseki/resources.ttl`. You can run `:sparqlcts:farmRun` to start fuseki, manually load the data in the `ds` data set, and then proceed to run tests.  (Make sure you load persistent storage.)
-
-You can [rebuild this TTL data set from source](testdata) if you wanted to for some reason.
+You can [rebuild this TTL data set from source](testdata) if you wanted to for some reason. See instructions below.
 
 ## Running tests ##
 
-To run unit tests within a subproject:
+To run tests within the sparqlcts subproject, first make sure FUSEKI_BASE is set (see above), then:
 
-    gradle test
+~~~
+	> cd .../cs2/sparqlcts
+	> gradle jettyFarmIntegrationTest
+~~~
 
-To run integration tests within a subproject, make sure FUSEKI_BASE is set, then
-
-    gradle farmIntegrationTest
+This will run all unit test and integration tests.
 
 
 ### Known issues ###
