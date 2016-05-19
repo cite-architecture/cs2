@@ -12,7 +12,10 @@ Integration tests use `gretty` to start up a fuseki SPARQL endpoint.  This requi
 
 - Java 7 or more recent
 - set the variable named `FUSEKI_BASE` to point to the directory `cs2/fuseki/fusekibase` on your system
-- before testing any of the `cs2` services, you must run  `gradle configure` to configure the fuseki database
+
+Before testing any of the `cs2` services, you must configure the fuseki database by running
+
+    gradle configure
 
 ## Testing `cts2:sparqlcts` ##
 
