@@ -1,7 +1,5 @@
 buildscript {
-//  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
-  apply from: "${rootProject.rootDir}/common/gretty.plugin"
-  
+
   repositories {
     mavenCentral()
     maven {
@@ -38,7 +36,5 @@ task orcaIntegration(type: Test, dependsOn: 'test') {
  classpath = sourceSets.integr.runtimeClasspath
 }
 orcaIntegration.doFirst {
-  System.out.println "Running ORCA integration tests now...."  
+  System.out.println "Running ORCA integration tests now...."
 }
-
-
