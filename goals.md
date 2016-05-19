@@ -4,7 +4,7 @@ layout: page
 ---
 
 
-This is a complete, ground-up redesign of the original `citeservlet`.  It includes the complete source for building the following services as subprojects:
+This is a complete, ground-up redesign of the original `citeservlet`.  It includes the complete source for building the following services as gradle subprojects:
 
 - Canonical Text Service
 - CITE Collection Service
@@ -29,4 +29,3 @@ The main goals of this redesign are:
 4.  documentation published on this site for each service:
     - concordion living documentation
     - API documentation
-
