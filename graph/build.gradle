@@ -1,7 +1,6 @@
 buildscript {
-//  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
-  apply from: "${rootProject.rootDir}/common/gretty.plugin"
-  
+
+
   repositories {
     mavenCentral()
     maven {
@@ -35,7 +34,5 @@ task graphIntegration(type: Test, dependsOn: 'test') {
  classpath = sourceSets.integr.runtimeClasspath
 }
 graphIntegration.doFirst {
-  System.out.println "Running graph integration tests now...."  
+  System.out.println "Running graph integration tests now...."
 }
-
-
