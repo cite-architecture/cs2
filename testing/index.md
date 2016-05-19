@@ -31,7 +31,7 @@ Then, prepare fuseki with the test data set:
     1. Point a web browser at <http://localhost:8080/fuseki>.
     2. For the `ctsTest` dataset,  choose `add data`.
     3. On the following screen, choose `select files…`, and choose the `testcorpus.ttl` you  downloaded or cloned.
-    4. Choose `upload all`.  When your upload is complete, you should see something like this, with `ctsTest` chosen as your dataset, and `testcorpus.ttl` as your uploaded file: ![](imgs/fuseki-upload.png)  
+    4. Choose `upload all`.  When your upload is complete, you should see something like this, with `ctsTest` chosen as your dataset, and `testcorpus.ttl` as your uploaded file: ![](imgs/fuseki-upload.png)
 3. Stop sparql from your terminal with `control-c`
 
 
@@ -51,7 +51,7 @@ The shiro security environment where the server farm runs does not fully release
 
     INFO  Cleaning up Shiro Environment
 
-your tests have completed successfully, and you can safely use ^C  in your terminal to stop the test process.
+your tests have completed successfully, and you can safely use  `control-c`  in your terminal to stop the test process.
 
 ### 3. Optional
 
