@@ -1,7 +1,7 @@
 # Dependencies
 #markdown:         redcarpet
 markdown:         kramdown
-pygments:         true
+highlighter:      rouge
 
 # Permalinks
 permalink:        pretty
@@ -15,7 +15,7 @@ baseurl: '/cs2/'
 
 author:
   name:           'Neel Smith'
- 
+
 
 paginate:         5
 
@@ -36,5 +36,3 @@ links:
   - title: CITE architecture
     url: http://cite-architecture.github.io/
     external: true
-
-
