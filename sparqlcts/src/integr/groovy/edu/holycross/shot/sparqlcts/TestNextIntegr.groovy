@@ -144,10 +144,18 @@ class TestNextIntegr extends GroovyTestCase {
     String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.testAllen:3.10"
     assert  graph.getRangeNextUrnStr(urn) == expectedNext
   }
+
   @Test
   void testRangeNext7() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1-2.1")
     String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.testAllen:2.2-3.2"
+    assert  graph.getRangeNextUrnStr(urn) == expectedNext
+  }
+
+  @Test
+  void testRangeNext8() {
+    CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:1.2-1.3")
+    String expectedNext = "urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:1.4.1-1.5.7"
     assert  graph.getRangeNextUrnStr(urn) == expectedNext
   }
 

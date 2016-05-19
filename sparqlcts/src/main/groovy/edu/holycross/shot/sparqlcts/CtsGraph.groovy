@@ -1108,7 +1108,7 @@ class CtsGraph {
 			if (isLeafNode(testLastUrnOfRange)){
 				lastUrnOfRange = testLastUrnOfRange
 			} else {
-				lastUrnOfRange = new CtsUrn(getUrnForSequence(getLastSequence(testLastUrnOfRange)))
+				lastUrnOfRange = new CtsUrn(getUrnForSequence(getLastSequence(testLastUrnOfRange),urn.getUrnWithoutPassage()))
 			}
 		} else if (isLeafNode(urn)) {
 		    lastUrnOfRange = urn	

@@ -150,7 +150,7 @@ if (!done) {
 					} else {
 						try {
 							if (stylesheet != null){
-								println """<?xml-stylesheet type="text/xsl" href="xslt/${stylesheet}.xsl"?>\r"""
+								println """<?xml-stylesheet type="text/xsl" href="cts-ui/xslt/${stylesheet}.xsl"?>\r"""
 							}
 							println reply.getPassagePlusToXML(urnStr,context)
 						} catch (Exception e){
