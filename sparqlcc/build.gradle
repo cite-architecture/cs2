@@ -1,7 +1,5 @@
 buildscript {
-//  apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
-  apply from: "${rootProject.rootDir}/common/gretty.plugin"
-  
+
   repositories {
     mavenCentral()
     maven {
@@ -38,7 +36,5 @@ task sparqlccIntegration(type: Test, dependsOn: 'test') {
  classpath = sourceSets.integr.runtimeClasspath
 }
 sparqlccIntegration.doFirst {
-  System.out.println "Running SparqlCc integration tests now...."  
+  System.out.println "Running SparqlCc integration tests now...."
 }
-
-
