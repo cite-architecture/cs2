@@ -354,11 +354,13 @@ abstract class QueryBuilder {
 							?u hmt:xpTemplate ?xpt .
 							?u cts:xmlnsabbr ?xmlnsabbr .
 							?u cts:xmlns ?xmlns .
-							?u cts:next ?nxt .
+					}
+					optional {
+						?u cts:next ?nxt .
 					}
 
 				FILTER (?s >= "${startCount}"^^xsd:integer) .    
-					FILTER (?s <= "${endCount}"^^xsd:integer) .
+				FILTER (?s <= "${endCount}"^^xsd:integer) .
 			}
 		ORDER BY ?s
 			"""

@@ -41,7 +41,7 @@ class XmlFormatter {
    * @returns A containing XML string corresponding to the given XPath
    * expression.
    */
-  String trimAncestors(String xpAncestor, String xpt, Integer limit) {
+  static String trimAncestors(String xpAncestor, String xpt, Integer limit) {
 	  StringBuffer formatted = new StringBuffer()
 	  def pathParts = xpAncestor.split(/\//)
 	  def citeIndex = citationIndices(xpt) 
@@ -193,6 +193,7 @@ class XmlFormatter {
    * @returns A closing XML string for well-formed containing markup.
    */
   static String trimClose(String xpAncestor, String xpTemplate, Integer limit) {
+
     ArrayList pathParts = xpAncestor.split(/\//)
     ArrayList templateParts = xpTemplate.split(/\//)
     if (pathParts.size() != (templateParts.size()-1)){
@@ -215,7 +216,8 @@ class XmlFormatter {
     // but we're working with 0-origin arrays
     Integer firstIndex = citationElements[limit - 1].toInteger()
     
-    for (i in firstIndex .. pathMax )  {
+    //for (i in firstIndex .. pathMax )  {
+    for (i in pathMax .. firstIndex )  {
       formatted.append("</" + stripFilters(templateParts[i]) + ">")
     }
     return formatted.toString()
@@ -235,11 +237,11 @@ class XmlFormatter {
 		leafNodes.each{ b ->
 			properXML = (properXML && (b['typeExtras']['type'] == 'xml'))
 			properXML = (properXML && (b['typeExtras']['anc']))
-			properXML = (properXML && (b['typeExtras']['nxt']))
 			properXML = (properXML && (b['typeExtras']['xpt']))
 		}
 
 		if (properXML){
+
 
 		//	String currentWrapper = leafNodes[0]['typeExtras']['anc']
 			String currentWrapper = leafNodes[0]['typeExtras']['anc']
@@ -263,12 +265,12 @@ class XmlFormatter {
 								passageString.append(openAncestors(b['typeExtras']['anc'],b['typeExtras']['xmlns'],b['typeExtras']['xmlnsabbr']))
 						} else  {
 								if (citeDiffLevel < 0){
-								passageString.append(trimClose(b['typeExtras']['anc'], currentXpt,1))
-								passageString.append(trimAncestors(b['typeExtras']['anc'], b['typeExtras']['xpt'], 1))
+									passageString.append(trimClose(b['typeExtras']['anc'], currentXpt,1))
+									passageString.append(trimAncestors(b['typeExtras']['anc'], b['typeExtras']['xpt'], 1))
 								} else {
-								// We might need to change 'b.xpt?.value' in the line below to 'currentXpt'
-								passageString.append(trimClose(b['typeExtras']['anc'], b['typeExtras']['xpt'],citeDiffLevel))
-								passageString.append(trimAncestors(b['typeExtras']['anc'], b['typeExtras']['xpt'], citeDiffLevel))
+									// We might need to change 'b.xpt?.value' in the line below to 'currentXpt'
+									passageString.append(trimClose(b['typeExtras']['anc'], b['typeExtras']['xpt'],citeDiffLevel))
+									passageString.append(trimAncestors(b['typeExtras']['anc'], b['typeExtras']['xpt'], citeDiffLevel))
 								}
 						}
 						currentWrapper = b['typeExtras']['anc']
