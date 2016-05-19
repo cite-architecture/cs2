@@ -25,9 +25,9 @@ task configure {
 
 allprojects {
   apply from: "${rootProject.rootDir}/versions.gradle"
-  version = "0.10.0"
+  version = "1.0.0"
 
-  
+
   task vmap << { task ->
     println "\nDependencies for ${version} in ${task.project.name}:"
     versionMap.keySet().sort().each { k ->
@@ -53,7 +53,7 @@ allprojects {
     println "\n"
     println "\nSource sets files:"
     task.project.sourceSets.each { ss ->
-      println "Source set ${ss} has " + ss.allSource.getSrcDirs() 
+      println "Source set ${ss} has " + ss.allSource.getSrcDirs()
     }
 
 
@@ -67,25 +67,30 @@ allprojects {
 
 subprojects {
   apply plugin: "groovy"
- // apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
-  apply from: "${rootProject.rootDir}/common/gretty.plugin"
-  
+  // plugins shared across subprojects:
+  apply from: "${rootProject.rootDir}/common/common.plugin"
+
+
   configurations.compile.transitive = true
-  
+
   repositories {
     mavenCentral()
     maven {
       url "http://beta.hpcc.uh.edu/nexus/content/groups/public"
     }
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
   }
+
   dependencies {
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
     testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
 
     testCompile "org.concordion:concordion:${versionMap['concordion']}"
     testCompile "junit:junit:${versionMap['junit']}"
-	compile group: 'xmlunit', name: 'xmlunit', version: '1.6'
 
+    compile group: 'xmlunit', name: 'xmlunit', version: '1.6'
     compile group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
     compile group: 'commons-io', name: 'commons-io', version: versionMap['commonsio']
 
@@ -94,9 +99,9 @@ subprojects {
   }
 
   task initProject(description: 'Initializes project directories') << { task ->
-    task.project.sourceSets*.groovy.srcDirs*.each { 
+    task.project.sourceSets*.groovy.srcDirs*.each {
       println "Create directory $it"
-      it.mkdirs() 
+      it.mkdirs()
     }
   }
 
@@ -112,6 +117,7 @@ subprojects {
     }
   }
 }
+
 
 
 project(":specs") {
@@ -137,8 +143,9 @@ project(":webapp") {
 
 
 project(":sparqlcts") {
+  apply plugin: 'war'
   // make integration tests a separate source set:
-  version="0.11.0"
+  version="1.0.0"
   sourceSets {
     integr {
     }

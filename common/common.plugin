@@ -1,0 +1,29 @@
+buildscript {
+  repositories {
+    jcenter()
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+				  
+  dependencies {
+    classpath 'org.akhikhl.gretty:gretty:1.2.4'
+    classpath "gradle.plugin.com.dorongold.plugins:task-tree:1.2.1"
+  }
+}
+
+repositories {
+  jcenter()
+}
+
+if (!project.plugins.findPlugin(org.akhikhl.gretty.GrettyPlugin)) {
+  project.apply(plugin: org.akhikhl.gretty.GrettyPlugin)
+}
+
+
+
+if (!project.plugins.findPlugin(com.dorongold.gradle.tasktree.TaskTreePlugin)) {
+  project.apply(plugin: com.dorongold.gradle.tasktree.TaskTreePlugin)
+}
+
+
