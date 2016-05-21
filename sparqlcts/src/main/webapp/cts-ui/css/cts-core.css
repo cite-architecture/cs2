@@ -164,7 +164,7 @@ code {
 
 @media screen and (min-width: 1200px) /* Big Desktop */ {
 	body {
-		background-image: url(badge_small.png);
+		background-image: url(cts-badge.png);
 		background-repeat: no-repeat;
 		background-position: left 1000px top 10px;
 	}
@@ -175,7 +175,7 @@ code {
 
 @media screen and (min-width: 980px) and (max-width: 1199px) /* Desktop */ {
 	body {
-		background-image: url(badge_small.png);
+		background-image: url(cts-badge.png);
 		background-repeat: no-repeat;
 		background-position: right 40px top 10px;
 	}
@@ -189,11 +189,13 @@ code {
 
 @media screen  and (max-width: 979px) /* Tablet */ {
   body {
-		background-image: url(badge_small.png);
+		background-image: url(cts-badge-small.png);
 		background-repeat: no-repeat;
-		background-position: center bottom;
-		min-height: 650px;
+		background-position: right 40px top 10px;
   }
+	header {
+		margin-right: 100px;
+	}
   footer{
 		margin-bottom: 200px;
   }
@@ -205,11 +207,13 @@ code {
 
 @media screen and (max-width: 500px) /* Mobile */ {
   body {
-		background-image: url(badge_small.png);
+		background-image: url(cts-badge-small.png);
 		background-repeat: no-repeat;
-		background-position: center bottom;
-		min-height: 650px;
+		background-position: right 40px top 10px;
   }
+	header {
+		margin-right: 100px;
+	}
   footer{
 		margin-bottom: 200px;
   }
