@@ -1,0 +1,71 @@
+
+@namespace xml "http://example.com/q-markup";
+
+/* This should be limited to TEI namespace 
+and needs to be completely replaced when corresponding
+XSLT tagging of class value is done.
+*/
+
+mark.cts_node {
+	margin-top: 1em;
+    display : block;
+	background-color: white;
+}
+
+mark.cts_inline {
+	display : inline;
+	line-height: 2.5em;
+}
+
+mark.cts_node:before {
+    font-family: Helvetica, sans-serif;
+	font-size: 80%;
+	content: attr(data-ctspassage) ;
+	padding-right: 1em;
+    color: #676767;
+}
+
+
+mark.cts_inline:before {
+    font-family: Helvetica, sans-serif;
+	font-size: 50%;
+	content: attr(data-ctspassage) ;
+	position: relative;
+	left: 2em;
+	bottom: 2em;
+    color: #676767;
+}
+
+/*
+----------------------------------
+Handle TEI elements (constructed by getPassage.xsl)
+----------------------------------
+*/
+
+#cts-textReply{
+	padding: 1em;
+}
+
+
+
+
+[xml|lang=ara] p, [xml|lang=ara] l{
+	text-align: right;
+}
+
+[xml|lang=ara] .tei_l .citation_value{
+	float: right;
+	margin-left: 3em;
+}
+
+[lang=ara] p, [lang=ara] l{
+	text-align: right;
+}
+
+[lang=ara] .tei_l .citation_value, [lang=ara] .tei_lineNumber{
+	float: right;
+	margin-left: 3em;
+	margin-right: -1em;
+}
+
+
