@@ -19,6 +19,10 @@ if (responseType == "json"){
 response.setContentType(contentType)
 response.setHeader( "Access-Control-Allow-Origin", "*")
 
+String stylesheet = null
+if (request.getParameter("stylesheet")){
+	stylesheet = request.getParameter("stylesheet")
+}
 
 boolean done = false
 
@@ -26,6 +30,9 @@ boolean done = false
 String req = request.getParameter("request")
 String urnStr = request.getParameter("urn")
 if (req == "GetCapabilities") {
+	if (stylesheet != null){
+		println """<?xml-stylesheet type="text/xsl" href="cts-ui/xslt/${stylesheet}.xsl"?>\r"""
+	}
 	  println getCapsReply()
 	  done = true
 
@@ -111,10 +118,6 @@ if (request.getParameter("level")) {
 		}
 }
 
-String stylesheet = null
-if (request.getParameter("stylesheet")){
-	stylesheet = request.getParameter("stylesheet")
-}
 
 if (!done) {
 	String baseUrl = "http://localhost:8080/fuseki/ctsTest/query"
@@ -169,7 +172,7 @@ if (!done) {
 					} else {
 						try {
 							if (stylesheet != null){
-								println """<?xml-stylesheet type="text/xsl" href="xslt/${stylesheet}.xsl"?>\r"""
+								println """<?xml-stylesheet type="text/xsl" href="cts-ui/xslt/${stylesheet}.xsl"?>\r"""
 							}
 							println reply.getPassageToXML(urnStr,context)
 						} catch (Exception e){
@@ -203,7 +206,10 @@ if (!done) {
 						}
 					} else {
 						try {
-						println reply.getValidReffToXML(urnStr,level)
+							if (stylesheet != null){
+								println """<?xml-stylesheet type="text/xsl" href="cts-ui/xslt/${stylesheet}.xsl"?>\r"""
+							}
+							println reply.getValidReffToXML(urnStr,level)
 						} catch (Exception e){
 							println invalidUrnReply(urnStr)
 						}
@@ -219,6 +225,9 @@ if (!done) {
 						}
 					} else {
 						try {
+							if (stylesheet != null){
+								println """<?xml-stylesheet type="text/xsl" href="cts-ui/xslt/${stylesheet}.xsl"?>\r"""
+							}
 						println reply.getFirstUrnToXML(urnStr)
 						} catch (Exception e){
 							println invalidUrnReply(urnStr)

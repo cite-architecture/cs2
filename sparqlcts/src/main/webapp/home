@@ -1,40 +1,67 @@
+import edu.harvard.chs.cite.CtsUrn
+
+def demoUrnStr = "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1-1.10"
+CtsUrn demoUrn = new CtsUrn(demoUrnStr)
+
 
 html.html {
-    head {
-        title("SPARQL CTS")
-        link(href : "css/normalize.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
-        link(href : "css/app.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
+	head {
+		title("Canonical Text Services")
+			link(href : "cts-ui/css/cts-core.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
 
-    }
-    
-    body {
-    
-    	header("SPARQL CTS")
-        nav {
-            p {
-                a(href : "http://www.homermultitext.org/hmt-doc/", "Canonical Text Services") 
-            }
-        }
-    	
-    	article {
-            p("This site hosts an implementation of Canonical Text Services (CTS).")
-            p {
-                mkp.yield("Although CTS is a network service primarily intended for use by other computer programs, you can use ")
-                a(href : "", "these query forms (not implemented yet)")
-                mkp.yield(" to interact with the service.")
-            }
+	}
 
-	    h2("Links")
-	    ul {
-                li {
-                    a(href :"http://cite-architecture.github.io", "More about the CITE Architecture and the CTS protocol.")
-                }
-                li {
-                    code("sparqlcts")
-                    mkp.yield (" is licensed under the terms of the ")
-                    a(href : "gpl-3.0.txt", "GPL, version 3")
-                }
-            }
-        }
-    }
+	body {
+
+		header("SPARQL CTS")
+			nav {
+				p {
+					a(href : "http://www.homermultitext.org/hmt-doc/", "Canonical Text Services") 
+				}
+			}
+
+		article {
+			p("This site hosts an implementation of Canonical Text Services (CTS).")
+				p {
+					mkp.yield("Although CTS is a network service primarily intended for use by other computer programs, you can use these query forms to interact with the service.")
+				}
+
+			h2("See the catalogue with GetCapabilities")
+				form (action : "api", method : "get") {
+					input (type : "hidden", name : "request", value : "GetCapabilities")
+						input (type : "hidden", name : "stylesheet", value : "cts_capabilities")
+						input (type : "submit", value : "GetCapabilities" )
+				}
+
+			h2("Browse a text with GetPassagePlus")
+				form (action : "api", method : "get") {
+					input (type : "hidden", name : "request", value : "GetPassagePlus")
+						input (type : "hidden", name : "stylesheet", value : "cts_passage")
+						input (type : "text", name : "urn", value : demoUrn, size: "40")
+						input (type : "submit", value : "GetPassagePlus" )
+				}
+
+			h2("Find valid citations in a text with GetValidReff")
+				form (action : "api", method : "get") {
+					input (type : "hidden", name : "request", value : "GetValidReff")
+						input (type : "hidden", name : "stylesheet", value : "cts_validreff")
+						input (type : "text", name : "urn", value : demoUrn.getUrnWithoutPassage(), size: "40")
+						mkp.yield(" depth: ")
+						input (type : "text", name : "level", value : "1", size: "2")
+						input (type : "submit", value : "GetValidReff" )
+				}
+
+
+				footer{
+					p {
+						a(href :"http://cite-architecture.github.io", "More about the CITE Architecture and the CTS protocol.")
+					}
+					p {
+						code("sparqlcts")
+							mkp.yield (" is licensed under the terms of the ")
+							a(href : "gpl-3.0.txt", "GPL, version 3.")
+					}
+				}
+		}
+	}
 }
