@@ -50,7 +50,7 @@
 						<xsl:element name="a">
 							<xsl:attribute name="href">
 								<xsl:value-of select="$tctVar"/>
-							</xsl:attribute> <xsl:value-of select="$tctVar"/> </xsl:element>
+							</xsl:attribute> citation tool </xsl:element>
 							
 					</p>
 				</nav>
