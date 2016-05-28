@@ -16,6 +16,8 @@
 		<xsl:variable name="urnString">
 			<xsl:value-of select="//cts:request/cts:requestUrn"/>
 		</xsl:variable>
+		<xsl:variable name="tctVar">api?request=GetPassagePlus&amp;stylesheet=cts_tct&amp;urn=<xsl:value-of
+			select="normalize-space(//cts:reply/cts:urn)"/></xsl:variable>
 		<html>
 			<head>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -41,9 +43,15 @@
 					<xsl:call-template name="header"/>
 				</header>
 				<nav>
-					<p>navigation: <xsl:element name="a">
+					<p><xsl:element name="a">
 							<xsl:attribute name="href"><xsl:value-of select="$homeUrl"
-								/></xsl:attribute> home </xsl:element>
+								/></xsl:attribute> home </xsl:element> | 
+						
+						<xsl:element name="a">
+							<xsl:attribute name="href">
+								<xsl:value-of select="$tctVar"/>
+							</xsl:attribute> <xsl:value-of select="$tctVar"/> </xsl:element>
+							
 					</p>
 				</nav>
 				<article>
