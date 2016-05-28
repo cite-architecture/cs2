@@ -4,7 +4,7 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes"/>
 	<xsl:include href="cts_header.xsl"/>
-	<xsl:include href="chs_tei_to_html5.xsl"/>
+	
 	<xsl:variable name="homeUrl">home</xsl:variable>
 	<xsl:variable name="formsUrl">home</xsl:variable>
 	
@@ -23,15 +23,16 @@
 				<link href="cts-ui/css/cts-core.css" rel="stylesheet" title="CSS for CTS" type="text/css"/>
 				<link href="cts-ui/css/cts.css" rel="stylesheet"/>
 				<link href="cts-ui/css/chs-tei.css" rel="stylesheet"/>
-				<!--<script src="js/jquery.min.js"/>
-				<script src="js/jquery-ui.js"/>
-				<script src="js/selector.js"/>-->
+				<link href="cts-ui/css/tct.css" rel="stylesheet"/>
+				<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"/>
+				<script src="cts-ui/js/jquery.min.js"></script>
+				<script src="cts-ui/js/selector.js"></script>
 				<xsl:choose>
 					<xsl:when test="/cts:CTSError">
 						<title>Error</title>
 					</xsl:when>
 					<xsl:otherwise>
-						<title>CTS Reader: <xsl:value-of select="//cts:reply/cts:label/urn"/>
+						<title>CTS Text Citation Tool: <xsl:value-of select="//cts:reply/cts:label/urn"/>
 						</title>
 					</xsl:otherwise>
 				</xsl:choose>
@@ -52,17 +53,39 @@
 							<xsl:apply-templates select="cts:CTSError"/>
 						</xsl:when>
 						<xsl:otherwise>
+							<div id="clipBoard" class="hide">
+								<textarea rows="25" cols="80" wrap="soft" class=""/>
+								<i id="closeClipboard" class='fa fa-close'></i>
+							</div>
+							<div id="addNote" class="hide">
+								<h2>Add Note:</h2>
+								<p id="noteUrn">urn:cts:greekLit…</p>
+								<input type="text" placeholder=":input"/>
+								<p><span id="cancelNoteButton">Cancel</span><span id="addNoteButton">Add</span></p>
+							</div>
 							<h1><xsl:value-of select="//cts:reply/cts:label"/>
 							</h1>
 							<p>
 								<xsl:value-of select="//cts:reply/cts:urn"/>
 							</p>
-							
+							<div id="selectedUrn">
+								<i class="fa fa-plus-square hide"></i>
+								<p>- a selected urn will go here -</p>
+							</div>
 							<div id="textDisplay">
 									<xsl:apply-templates select="//cts:reply"/>
 									
 									<div style="clear:both"></div>
 							</div>
+							<div id="urnListDiv">
+								<h3>Saved URNs <i class="fa fa-clipboard"></i></h3>
+								<ul id="urnList">
+									
+								</ul>
+								
+							</div>
+							
+							
 								
 								
 						</xsl:otherwise>

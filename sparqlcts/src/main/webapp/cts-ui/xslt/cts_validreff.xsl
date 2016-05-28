@@ -19,7 +19,7 @@
         
         <html>
             <head>
-                <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <link href="cts-ui/css/cts-core.css" rel="stylesheet" title="CSS for CTS" type="text/css"/>
                 <link href="cts-ui/css/cts.css" rel="stylesheet"/>
                 <link href="cts-ui/css/chs-tei.css" rel="stylesheet"/>
