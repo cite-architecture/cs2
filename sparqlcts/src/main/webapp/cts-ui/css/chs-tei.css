@@ -228,7 +228,7 @@ p {
 }
  
 .unrecognized_seg {	
-	border: 1px solid red;
+	/* border: 1px solid red; */
 }
  
 .tei_sic {

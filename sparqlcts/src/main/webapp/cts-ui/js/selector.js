@@ -36,7 +36,7 @@ function selectionToUrn() {
 				if (range.toString()[0].match(/\s/)) {
 					finalUrn = "This tool does not support citation of white space.";
 				} else {
-					finalUrn = "urn:cts:single-char: " + 
+					finalUrn = range.startContainer.parentNode.getAttribute("data-ctsurn") + "@" + 
 						getSubstring(
 								range.startContainer.parentNode.getAttribute("data-ctsurn"),
 								range.toString()[0],
@@ -85,18 +85,23 @@ function cleanUpUrn(ohcoObject){
 
 	//validate startUrn
 	if (oO.startChar.match(/\s/)){
-		if (  startAtEnd(oO.startUrn, oO.startOffset) ){
+		if (  startAtEnd(oO.startUrn, oO.startOffset)) {
 			if ( emptyCitation(oO.startUrn) ){
 				oO.startSs = "";
 				oO.startPos = "empty";
 			} else {
 				// Drop down to next citation, use first char.
+				
 				oO.startUrn = getNextLeafUrn( oO.startUrn );
 				oO.startSs = getFirstSubstring( oO.startUrn );
 				oO.startPos = "beginning";
 			}
 		} else { // not at end, not empty, so grab the next valid char
 			oO.startSs = getNextValidSubstring(oO.startUrn,oO.startOffset);
+			if ( oO.startSs == getFirstSubstring(oO.startUrn) ) {
+				oO.startPos = "beginning";
+			}
+
 		}
 
 	} else if ( oO.startSs == getFirstSubstring(oO.startUrn) ) {
@@ -121,7 +126,6 @@ function cleanUpUrn(ohcoObject){
 	} else if ( oO.endSs == getLastSubstring( oO.endUrn ) ) {
 		oO.endPos = "end";
 	}
-
 
 	finalUrn = objectToUrn(oO);
 	return finalUrn;
