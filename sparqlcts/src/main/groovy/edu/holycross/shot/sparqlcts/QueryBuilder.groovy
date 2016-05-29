@@ -245,9 +245,12 @@ abstract class QueryBuilder {
      				?urn cts:containedBy  <${containingUrn}>  .
 					?urn cts:hasSequence ?seq .        
 				} union {
-     				?urn  cts:isPassageOf*  <${containingUrn}>  .
+     				?urn  cts:isPassageOf  <${containingUrn}>  .
 					?urn cts:hasSequence ?seq .        
-				}
+				} union {
+					<${containingUrn}> cts:hasSequence ?seq .
+					bind( <${containingUrn}> as ?urn) .
+  }
 			}
 		ORDER BY ?seq
 			LIMIT 1
@@ -322,9 +325,8 @@ abstract class QueryBuilder {
 			${CtsDefinitions.prefixPhrase}
 		SELECT distinct ?ref 
 			WHERE {
-				?u cts:isPassageOf <${versionUrn}> .
-					?u cts:containedBy* ?ref .
-					?u cts:hasSequence ?s .
+					?ref cts:isPassageOf <${versionUrn}> .
+					?ref cts:hasSequence ?s .
 					?ref cts:citationDepth ?d .
 					?ref cts:hasTextContent ?t .
 
@@ -447,9 +449,8 @@ abstract class QueryBuilder {
 			${CtsDefinitions.prefixPhrase}
 		SELECT distinct ?ref
 			WHERE {
-				?u cts:isPassageOf <${workUrn}> .
-					?u cts:containedBy* ?ref .
-					?u cts:hasSequence ?s .
+				?ref cts:isPassageOf <${workUrn}> .
+					?ref cts:hasSequence ?s .
 					?ref cts:citationDepth ?d .
 					{
 						?ref cts:hasTextContent ?t .
@@ -511,8 +512,7 @@ abstract class QueryBuilder {
 		SELECT (MAX(?d) AS ?deepest)
 			WHERE {
 				?c cts:isPassageOf <${workUrnStr}> .
-					?leaf cts:containedBy* ?c .
-					?leaf cts:citationDepth ?d .
+					?c cts:citationDepth ?d .
 			}
 		"""
 	}
