@@ -242,7 +242,7 @@ abstract class QueryBuilder {
 		SELECT   ?urn ?seq
 			WHERE {
 				{
-     				?urn  cts:containedBy*  <${containingUrn}>  .
+     				?urn cts:containedBy  <${containingUrn}>  .
 					?urn cts:hasSequence ?seq .        
 				} union {
      				?urn  cts:isPassageOf*  <${containingUrn}>  .
@@ -344,19 +344,18 @@ abstract class QueryBuilder {
 			${CtsDefinitions.prefixPhrase}
 		SELECT ?ref ?t ?anc ?xpt ?nxt ?xmlns ?xmlnsabbr   
 			WHERE {
-				?u cts:isPassageOf <${versionUrn}> .
-					?u cts:containedBy* ?ref .
-					?u cts:hasSequence ?s .
+				?ref cts:isPassageOf <${versionUrn}> .
+					?ref cts:hasSequence ?s .
 					?ref cts:citationDepth ?d .
 					?ref cts:hasTextContent ?t .
 					optional { 
-						?u hmt:xmlOpen ?anc .
-							?u hmt:xpTemplate ?xpt .
-							?u cts:xmlnsabbr ?xmlnsabbr .
-							?u cts:xmlns ?xmlns .
+						?ref hmt:xmlOpen ?anc .
+							?ref hmt:xpTemplate ?xpt .
+							?ref cts:xmlnsabbr ?xmlnsabbr .
+							?ref cts:xmlns ?xmlns .
 					}
 					optional {
-						?u cts:next ?nxt .
+						?ref cts:next ?nxt .
 					}
 
 				FILTER (?s >= "${startCount}"^^xsd:integer) .    
@@ -448,7 +447,7 @@ abstract class QueryBuilder {
 			${CtsDefinitions.prefixPhrase}
 		SELECT distinct ?ref
 			WHERE {
-				?u cts:isPassageOf+ <${workUrn}> .
+				?u cts:isPassageOf <${workUrn}> .
 					?u cts:containedBy* ?ref .
 					?u cts:hasSequence ?s .
 					?ref cts:citationDepth ?d .
@@ -470,11 +469,10 @@ abstract class QueryBuilder {
 			${CtsDefinitions.prefixPhrase}
 		SELECT ?ref (MIN(?s) AS ?startSeq)
 			WHERE {
-				?ref cts:containedBy* <${urn}> .
-					?ref cts:citationDepth  ${level} .
-					?leaf cts:containedBy* ?ref .
-					?leaf cts:hasSequence ?s .
-			}
+				<${urn}> cts:contains ?leaf . 	
+			  ?leaf cts:containedBy* ?ref .
+			  ?ref cts:citationDepth  ${level} . 			
+			  ?leaf cts:hasSequence ?s .	}
 		GROUP BY ?ref
 			ORDER BY ?startSeq
 			"""
