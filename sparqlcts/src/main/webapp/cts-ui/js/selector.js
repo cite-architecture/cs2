@@ -122,6 +122,7 @@ function cleanUpUrn(ohcoObject){
 		oO.endPos = "end";
 	}
 
+
 	finalUrn = objectToUrn(oO);
 	return finalUrn;
 
@@ -193,6 +194,9 @@ function getNextValidSubstring(urn,offset){
 	nextChar = ls[i];
 	//now we need its index in the leaf-node
 	// now get the index for that char
+	
+	var sanitized;
+	if (ls[i] == "."){ sanitized = "\\."; } else { sanitized = ls[i]; }
 	var newIndex = ls.match(new RegExp(ls[i], "g") || []).length;
 	return nextChar + "[" + newIndex + "]";
 }
@@ -208,6 +212,8 @@ function getPrevValidSubstring(urn,offset){
 	prevChar = ls[i];
 	//now we need its index in the leaf-node
 	// now get the index for that char
+	var sanitized;
+	if (ls[i] == "."){ sanitized = "\\."; } else { sanitized = ls[i]; }
 	var newIndex = ls.match(new RegExp(ls[i], "g") || []).length;
 	return prevChar + "[" + newIndex + "]";
 }
@@ -282,7 +288,9 @@ function getLastSubstring(urn){
 		if ( leafString[i].match(/\S/) ){ break; }
 	}
 	// now get the index for that char
-	var newIndex = leafString.match(new RegExp(leafString[i], "g") || []).length;
+	var sanitized;
+	if (leafString[i] == "."){ sanitized = "\\."; } else { sanitized = leafString[i]; }
+	var newIndex = leafString.match(new RegExp(sanitized, "g") || []).length;
 
 	return leafString[i] + "[" + newIndex + "]";
 
@@ -366,7 +374,6 @@ jQuery(document).ready(function($) {
 	});
 	$("#cancelNoteButton").on('mouseup', function(e){
 		$(this).removeClass("hilite");
-		console.log("hide box.");
 		$("div#addNote input:text").val();
 		$("div#addNote").addClass("hide");
 	});
