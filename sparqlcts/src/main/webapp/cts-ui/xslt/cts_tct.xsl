@@ -16,7 +16,7 @@
 		<xsl:variable name="urnString">
 			<xsl:value-of select="//cts:request/cts:requestUrn"/>
 		</xsl:variable>
-		<xsl:variable name="tctVar">api?request=GetPassagePlus&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
+		<xsl:variable name="tctVar">api?request=<xsl:value-of select="//cts:request/cts:requestName"/>&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
 			select="normalize-space(//cts:reply/cts:urn)"/></xsl:variable>
 		<html>
 			<head>
@@ -144,7 +144,7 @@
 						<xsl:if test="normalize-space(cts:prev) != ''">
 							
 									<xsl:variable name="prvVar"
-										>api?request=GetPassagePlus&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
+										>api?request=<xsl:value-of select="//cts:request/cts:requestName"/>&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
 											select="normalize-space(cts:prev)"/></xsl:variable>
 									<xsl:element name="a">
 										<xsl:attribute name="href">
@@ -159,7 +159,7 @@
 			
 								
 									<xsl:variable name="nxtVar"
-										>api?request=GetPassagePlus&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
+										>api?request=<xsl:value-of select="//cts:request/cts:requestName"/>&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
 											select="normalize-space(cts:next)"/></xsl:variable>
 									<xsl:element name="a">
 										<xsl:attribute name="href">
