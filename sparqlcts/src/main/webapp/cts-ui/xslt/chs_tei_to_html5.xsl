@@ -136,6 +136,7 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+    
     <xsl:template match="tei:l">
         <p class="tei_l">
             <!--<span class="citation_value">
@@ -157,11 +158,7 @@
     </xsl:template>
     <xsl:template match="tei:lg">
         <div class="tei_lg">
-          <!-- <span class="citation_value">
-                
-                <xsl:value-of select="@n"/>
-            <xsl:apply-templates/>
-           </span>-->
+          <xsl:apply-templates/>
         </div>
     </xsl:template>
     <xsl:template match="tei:note">

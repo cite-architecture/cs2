@@ -242,7 +242,6 @@ class XmlFormatter {
 
 		if (properXML){
 
-
 		//	String currentWrapper = leafNodes[0]['typeExtras']['anc']
 			String currentWrapper = leafNodes[0]['typeExtras']['anc']
 			// We need to grab this, because when texts have different sections with different depths,
@@ -254,7 +253,6 @@ class XmlFormatter {
 			Boolean firstNode = true
 
 			leafNodes.each { b ->
-
 				if (b['typeExtras']['nxt'] != currentNext){
 					
 					currentNext = b['typeExtras']['nxt']

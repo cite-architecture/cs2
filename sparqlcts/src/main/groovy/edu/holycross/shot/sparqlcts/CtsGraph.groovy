@@ -114,6 +114,7 @@ class CtsGraph {
             ctsReply =  sparql.getSparqlReply("application/json", listUrnsQuery)
             def slurper = new groovy.json.JsonSlurper()
             def parsedReply = slurper.parseText(ctsReply)
+
             parsedReply.results.bindings.each { b ->
                 if (b.ref) {
 					RangeNode rn = new RangeNode(new CtsUrn(b.ref?.value),b.t?.value)
