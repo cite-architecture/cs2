@@ -120,7 +120,7 @@ if (request.getParameter("level")) {
 
 
 if (!done) {
-	String baseUrl = "http://localhost:8080/fuseki/cts/query"
+	String baseUrl = "http://localhost:8080/fuseki/ctsTest/query"
 		Sparql sparql = new Sparql(baseUrl)
 		CtsGraph graph = new CtsGraph(sparql)
 		CtsReply reply = new CtsReply( sparql, graph)
