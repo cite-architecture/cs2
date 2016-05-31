@@ -16,7 +16,7 @@
 		<xsl:variable name="urnString">
 			<xsl:value-of select="//cts:request/cts:requestUrn"/>
 		</xsl:variable>
-		<xsl:variable name="catVar">api?request=<xsl:value-of select="//cts:request/cts:requestName"/>&amp;stylesheet=cts_catt&amp;urn=<xsl:value-of
+		<xsl:variable name="catVar">api?request=<xsl:value-of select="//cts:request/cts:requestName"/>&amp;stylesheet=cts_cat&amp;urn=<xsl:value-of
 			select="normalize-space(//cts:reply/cts:urn)"/></xsl:variable>
 		<html>
 			<head>
