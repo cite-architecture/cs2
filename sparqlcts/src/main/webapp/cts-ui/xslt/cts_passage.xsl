@@ -16,7 +16,7 @@
 		<xsl:variable name="urnString">
 			<xsl:value-of select="//cts:request/cts:requestUrn"/>
 		</xsl:variable>
-		<xsl:variable name="tctVar">api?request=<xsl:value-of select="//cts:request/cts:requestName"/>&amp;stylesheet=cts_tct&amp;urn=<xsl:value-of
+		<xsl:variable name="catVar">api?request=<xsl:value-of select="//cts:request/cts:requestName"/>&amp;stylesheet=cts_catt&amp;urn=<xsl:value-of
 			select="normalize-space(//cts:reply/cts:urn)"/></xsl:variable>
 		<html>
 			<head>
@@ -49,8 +49,8 @@
 						
 						<xsl:element name="a">
 							<xsl:attribute name="href">
-								<xsl:value-of select="$tctVar"/>
-							</xsl:attribute> citation tool </xsl:element>
+								<xsl:value-of select="$catVar"/>
+							</xsl:attribute> citation alignment tool </xsl:element>
 							
 					</p>
 				</nav>
