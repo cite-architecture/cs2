@@ -35,7 +35,7 @@
                 </header>
                 
                 <nav>
-                    <p>  @projectlabel@:
+                    <p> 
                         <xsl:element name="a">
                             <xsl:attribute name="href"><xsl:value-of select="$homeUrl"/></xsl:attribute>
                             home
