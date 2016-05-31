@@ -52,16 +52,26 @@
                 </nav>
                 
                 <article>
+                    <xsl:choose>
+                        <xsl:when test="/cts:CTSError">
+                            <xsl:apply-templates select="cts:CTSError"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <p>The first citation of <xsl:value-of select="//cts:requestUrn"/> is:</p>
+                            
+                            <h1>
+                                <xsl:element name="a">
+                                    <xsl:attribute name="href">api?request=GetPassagePlus&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
+                                        select="normalize-space(//cts:reply/cts:urn)"/></xsl:attribute>
+                                    <xsl:value-of select="//cts:reply/cts:urn"/>
+                                </xsl:element>
+                            </h1>
+                            
+                            
+                        </xsl:otherwise>
+                    </xsl:choose>
                     
-                    <p>The first citation of <xsl:value-of select="//cts:requestUrn"/> is:</p>
                     
-                    <h1>
-                        <xsl:element name="a">
-                            <xsl:attribute name="href">api?request=GetPassagePlus&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
-                                select="normalize-space(//cts:reply/cts:urn)"/></xsl:attribute>
-                        <xsl:value-of select="//cts:reply/cts:urn"/>
-                        </xsl:element>
-                    </h1>
                 </article>
                 
                 <footer>
