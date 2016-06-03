@@ -51,7 +51,9 @@
                         <xsl:otherwise>
                             <h1>Valid References: <xsl:value-of select="//cts:request/cts:requestUrn"/>
                             </h1>
+                            <p>Level = <xsl:value-of select="//cts:request/cts:level"/></p>
                             <p>
+      
                                 <xsl:value-of select="//cts:reply/cts:urn"/>
                             </p>
                             
