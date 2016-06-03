@@ -447,6 +447,26 @@ abstract class QueryBuilder {
 	static String getFillGVRQuery(Integer startCount, Integer endCount, Integer level, String workUrn) {
 		return """
 			${CtsDefinitions.prefixPhrase}
+		SELECT distinct ?ref WHERE {
+			  ?urn cts:isPassageOf <${workUrn}> . 	
+			  ?urn cts:hasSequence ?s . 
+			  {
+			  	?urn cts:citationDepth ${level} .
+			  	bind (?urn as ?ref).
+			  } union {
+			  	?container cts:contains ?urn.
+				?container cts:citationDepth ${level} .
+			  	bind (?container as ?ref).    
+			  }
+						
+			  FILTER (?s >= "${startCount}"^^xsd:integer) . 					
+			  FILTER (?s <= "${endCount}"^^xsd:integer) . 					
+						
+			} 		ORDER BY ?s 			
+
+			"""
+		/* return """
+			${CtsDefinitions.prefixPhrase}
 		SELECT distinct ?ref
 			WHERE {
 				?ref cts:isPassageOf <${workUrn}> .
@@ -462,7 +482,7 @@ abstract class QueryBuilder {
 					FILTER (?d <= "${level}"^^xsd:integer) .
 			}
 		ORDER BY ?s
-			"""
+			""" */
 	}
 
 	static String getGVRNodeQuery(CtsUrn urn, Integer level) {
