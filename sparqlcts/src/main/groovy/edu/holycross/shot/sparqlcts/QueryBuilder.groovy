@@ -465,24 +465,6 @@ abstract class QueryBuilder {
 			} 		ORDER BY ?s 			
 
 			"""
-		/* return """
-			${CtsDefinitions.prefixPhrase}
-		SELECT distinct ?ref
-			WHERE {
-				?ref cts:isPassageOf <${workUrn}> .
-					?ref cts:hasSequence ?s .
-					?ref cts:citationDepth ?d .
-					{
-						?ref cts:hasTextContent ?t .
-					} UNION {
-						?ref cts:citationDepth ${level} .
-					}
-				FILTER (?s >= "${startCount}"^^xsd:integer) .
-					FILTER (?s <= "${endCount}"^^xsd:integer) .
-					FILTER (?d <= "${level}"^^xsd:integer) .
-			}
-		ORDER BY ?s
-			""" */
 	}
 
 	static String getGVRNodeQuery(CtsUrn urn, Integer level) {
