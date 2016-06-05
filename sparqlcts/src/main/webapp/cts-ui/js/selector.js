@@ -80,8 +80,8 @@ function selectionToUrn() {
 				ohcoObject.startChar = range.toString()[0];
 				ohcoObject.startPos = null;
 				ohcoObject.startSs = getSubstring(ohcoObject.startUrn,ohcoObject.startChar,ohcoObject.startOffset);
-				//console.log("sOffset: " + ohcoObject.startOffset);
-				//console.log("sChar: " + ohcoObject.startChar);
+				console.log("in s2u sOffset: " + ohcoObject.startOffset);
+				console.log("in s2u sChar: " + ohcoObject.startChar);
 
 				// --end--
 				ohcoObject.endUrn = range.endContainer.parentNode.getAttribute("data-ctsurn");
@@ -89,8 +89,8 @@ function selectionToUrn() {
 				ohcoObject.endChar = range.toString()[range.toString().length - 1];
 				ohcoObject.endSs = getSubstring(ohcoObject.endUrn,ohcoObject.endChar,(ohcoObject.endOffset -1));
 				ohcoObject.endPos = null;
-				//console.log("eOffset: " + ohcoObject.endOffset);
-				//console.log("eChar: " + ohcoObject.endChar);
+				console.log("in s2u eOffset: " + ohcoObject.endOffset);
+				console.log("in s2u eChar: " + ohcoObject.endChar);
 
 
 				finalUrn = cleanUpUrn(ohcoObject);
@@ -115,16 +115,18 @@ function cleanUpUrn(ohcoObject){
 	if (oO.startChar.match(/\s/)){
 		if (  startAtEnd(oO.startUrn, oO.startOffset)) {
 			if ( emptyCitation(oO.startUrn) ){
+				console.log("I think startUrn is empty.");
 				oO.startSs = "";
 				oO.startPos = "empty";
 			} else {
 				// Drop down to next citation, use first char.
-				
+			    console.log("I think startUrn is at the end.");
 				oO.startUrn = getNextLeafUrn( oO.startUrn );
 				oO.startSs = getFirstSubstring( oO.startUrn );
 				oO.startPos = "beginning";
 			}
 		} else { // not at end, not empty, so grab the next valid char
+			console.log("Trying to get next valid char.");
 			oO.startSs = getNextValidSubstring(oO.startUrn,oO.startOffset);
 			if ( oO.startSs == getFirstSubstring(oO.startUrn) ) {
 				oO.startPos = "beginning";
@@ -223,13 +225,19 @@ function getNextValidSubstring(urn,offset){
 		if ( ls[i].match(/\S/) ){ break; }
 	}
 	//so i is the next legit char. 
+	console.log("Now i = " + i + ".");
 	nextChar = ls[i];
 	//now we need its index in the leaf-node
 	// now get the index for that char
 	
 	var sanitized;
 	if (ls[i] == "."){ sanitized = "\\."; } else { sanitized = ls[i]; }
-	var newIndex = ls.match(new RegExp(ls[i], "g") || []).length;
+	var newIndex = 0;
+	for (var c = 0; c <= i; c++){
+		if (ls[c] == ls[i]){ newIndex++; }	
+	}
+
+	console.log("New index = " + newIndex + ".");
 	return nextChar + "[" + newIndex + "]";
 }
 
@@ -237,16 +245,25 @@ function getNextValidSubstring(urn,offset){
 function getPrevValidSubstring(urn,offset){
 	var ls = $("[data-ctsurn='" + urn + "']").text();
 	var prevChar = "";
+	console.log("Text-content of node: " + ls);
+	console.log("in gnvss, offset = " + offset);
+	console.log("Character " + (offset+1) + " of ls is '" + ls[offset+1] + "'.");
 	for (var i = offset - 1; i >= 0; i--){
 		if ( ls[i].match(/\S/) ){ break; }
 	}
 	//so i is the next legit char. 
+	console.log("Now i = " + i + ".");
 	prevChar = ls[i];
 	//now we need its index in the leaf-node
 	// now get the index for that char
 	var sanitized;
 	if (ls[i] == "."){ sanitized = "\\."; } else { sanitized = ls[i]; }
-	var newIndex = ls.match(new RegExp(ls[i], "g") || []).length;
+	var newIndex = 0;
+	for (var c = 0; c <= i; c++){
+		if (ls[c] == ls[i]){ newIndex++; }	
+	}
+
+	console.log("New index = " + newIndex + ".");
 	return prevChar + "[" + newIndex + "]";
 }
 
