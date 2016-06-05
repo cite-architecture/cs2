@@ -66,7 +66,7 @@
 							</div>
 							<div id="addNote" class="hide">
 								<h2>Add Note:</h2>
-								<input type="text" id="noteUrn">urn:cts:greekLit…</input>
+								<p id="noteUrn">urn:cts:greekLit…</p>
 								<input type="text" placeholder=":input"/>
 								<p><span id="cancelNoteButton">Cancel</span><span id="addNoteButton">Add</span></p>
 							</div>

@@ -52,21 +52,46 @@ function selectionToUrn() {
 			if ( range.startContainer.parentNode.nodeName == "MARK"
 					&& range.endContainer.parentNode.nodeName == "MARK"){
 
+				// In case there is mixed content in parent element, we need to do all of this
+				var addToStartOffset = 0;
+				for (var n = 0; n < range.startContainer.parentNode.childNodes.length; n++){
+					if ( range.startContainer.parentNode.childNodes[n] == range.startContainer ){
+						break;
+					}
+					if ( range.startContainer.parentNode.childNodes[n].nodeName == "#text" ){
+						addToStartOffset += range.startContainer.parentNode.childNodes[n].length;
+					}
+				}
+				var addToEndOffset = 0;
+				for (var n = 0; n < range.endContainer.parentNode.childNodes.length; n++){
+					if ( range.endContainer.parentNode.childNodes[n] == range.endContainer ){
+						break;
+					}
+					if ( range.startContainer.parentNode.childNodes[n].nodeName == "#text" ){
+						addToEndOffset += range.endContainer.parentNode.childNodes[n].length;
+					}
+				}
 
+				
 				// initial values for our object
 				// --start--
 				ohcoObject.startUrn = range.startContainer.parentNode.getAttribute("data-ctsurn"); 
-				ohcoObject.startOffset = range.startOffset;
+				ohcoObject.startOffset = range.startOffset + addToStartOffset;
 				ohcoObject.startChar = range.toString()[0];
 				ohcoObject.startPos = null;
 				ohcoObject.startSs = getSubstring(ohcoObject.startUrn,ohcoObject.startChar,ohcoObject.startOffset);
+				//console.log("sOffset: " + ohcoObject.startOffset);
+				//console.log("sChar: " + ohcoObject.startChar);
 
 				// --end--
 				ohcoObject.endUrn = range.endContainer.parentNode.getAttribute("data-ctsurn");
-				ohcoObject.endOffset = range.endOffset;
+				ohcoObject.endOffset = range.endOffset + addToEndOffset;
 				ohcoObject.endChar = range.toString()[range.toString().length - 1];
 				ohcoObject.endSs = getSubstring(ohcoObject.endUrn,ohcoObject.endChar,(ohcoObject.endOffset -1));
 				ohcoObject.endPos = null;
+				//console.log("eOffset: " + ohcoObject.endOffset);
+				//console.log("eChar: " + ohcoObject.endChar);
+
 
 				finalUrn = cleanUpUrn(ohcoObject);
 
@@ -270,7 +295,9 @@ function endAtStart( urn, offset ){
 }
 
 function getSubstring(urn,testChar,offset){
+	//console.log ("offset as param: " + offset + "; char as param: " + testChar);
 	var leafString = $("[data-ctsurn='" + urn + "']").text();
+	//console.log( "leaf string: " + leafString );
 	var urnIndex = 1;
 	for (var i = 0; i < offset; i++){
 		if (leafString[i] == testChar){
@@ -396,7 +423,18 @@ jQuery(document).ready(function($) {
 
 				$('.fa-close, .deleteListItem').on('mouseup', function(e){
 					var whichUrn = $(this).parents("li").children("p.urnListItem").attr("data-ctsselectedurn");
+					var parentNodes = [];
+
+					$("mark[data-ctsselectedurn='" + whichUrn + "']").parents("mark").each( function() {
+						parentNodes.push(this);	
+					});
+					//console.log(parentNodes.length);
 					$("mark[data-ctsselectedurn='" + whichUrn + "']").remove();
+
+					for (var i = 0; i < parentNodes.length; i++){
+						parentNodes[i].normalize();
+					}
+
 					$(this).parents("li").remove();
 				});
 				$('.fa-edit').on('mouseup', function(e){
@@ -604,3 +642,4 @@ function markAfterChar(urn,closeLeafUrn,passageUrn,myChar,myIndex,counter){
 	}
 	$("mark[data-ctsurn='" + closeLeafUrn + "']").html(outHtml);
 }
+
