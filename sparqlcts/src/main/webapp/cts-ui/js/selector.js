@@ -1,3 +1,6 @@
+	// Crappy, lazy way to keep track of how many URNs have been made
+	var selectedUrnCounter = 0;
+
 function selectionToUrn() {
 	var range, sel;
 	var ohcoObject = new Object();
@@ -329,6 +332,7 @@ function displaySelectedUrn(urnMsg, valid){
 
 jQuery(document).ready(function($) {
 
+
 	// in the off-chance there is an empty, citable element, this will give the user something to hit
 	var nbss = "&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;";
 	$('mark')
@@ -391,6 +395,8 @@ jQuery(document).ready(function($) {
 				$("ul#urnList").append(generateUrnListItem( $(this).next("p").text() ) );
 
 				$('.fa-close, .deleteListItem').on('mouseup', function(e){
+					var whichUrn = $(this).parents("li").children("p.urnListItem").attr("data-ctsselectedurn");
+					$("mark[data-ctsselectedurn='" + whichUrn + "']").remove();
 					$(this).parents("li").remove();
 				});
 				$('.fa-edit').on('mouseup', function(e){
@@ -419,10 +425,15 @@ jQuery(document).ready(function($) {
 });
 
 function generateUrnListItem(urn){
+	selectedUrnCounter++;
 	var htmlText = "";
-	htmlText += "<li><p class='urnListItem'>";
-	htmlText += urn;
+	var markerText = "<mark class='bracket bracketMarker' style='background-color: " + colorForIndex(selectedUrnCounter) + "' ";
+	markerText += " data-ctsselectedindex='" + selectedUrnCounter + "' />";
+	htmlText += "<li><p class='urnListItem' data-ctsSelectedUrn='" + urn + "' data-urnCounter='" + selectedUrnCounter + "' >";
+	htmlText += markerText + urn;
 	htmlText += "</p><p class='urnListNote'></p><i class='fa fa-edit'></i><i class='fa fa-close deleteListItem'></i></li>";
+	// TESTING!
+	markSelectedUrn(urn, selectedUrnCounter);
 	return htmlText;
 }
 
@@ -438,3 +449,158 @@ function gatherAllUrns(){
 
 }
 
+function markSelectedUrn(urn,counter){
+	var urnPassage = urn.split(":")[4];
+	var openUrn = "";
+	var openLeafUrn = "";
+	var closeUrn = "";
+	var closeLeafUrn = "";
+	var openChar = "";
+	var openCharIndex = 0;
+	var closeChar = "";
+	var closeCharIndex = 0;
+	var tempRef = "";
+	var tempPassage = "";
+	var tempSs = "";
+	var urnWithoutPassage = urn.substring(
+			0,
+			urn.length - urnPassage.length
+			);
+	// single leaf-node or range?
+	if (urnPassage.indexOf("-") != -1){
+		//deal with first component
+		tempRef = urnPassage.split("-")[0];
+		openUrn = urnWithoutPassage + tempRef;
+		if ( tempRef.indexOf("@") != -1){
+			tempPassage = tempRef.split("@")[0];
+			tempSs = tempRef.split("@")[1];
+			openChar = charFromSubref(tempSs);
+			openCharIndex = indexFromSubref(tempSs);
+			openLeafUrn = urnWithoutPassage + tempPassage;
+			
+			markBeforeChar(urn,openLeafUrn,openUrn,openChar,openCharIndex,counter);				
+		} else {
+			markBeforeLeaf(urn,openUrn,counter);
+		}
+			
+		//deal with second component
+		tempRef = urnPassage.split("-")[1];
+		closeUrn = urnWithoutPassage + tempRef;
+		if ( tempRef.indexOf("@") != -1){
+			tempPassage = tempRef.split("@")[0];
+			tempSs = tempRef.split("@")[1];
+			closeChar = charFromSubref(tempSs);
+			closeCharIndex = indexFromSubref(tempSs);
+			closeLeafUrn = urnWithoutPassage + tempPassage;
+			markAfterChar(urn,closeLeafUrn,closeUrn,closeChar,closeCharIndex,counter);				
+		} else {
+			markAfterLeaf(urn,closeUrn,counter);
+		}
+
+	} else {
+		if ( urnPassage.indexOf("@") == -1 ){
+			openUrn = urn;
+			closeUrn = urn;
+			markAfterLeaf(urn,closeUrn,counter);
+			markBeforeLeaf(urn,openUrn,counter);
+		} else {
+			tempPassage = tempRef.split("@")[0];
+			tempSs = tempRef.split("@")[1];
+			openChar = charFromSubref(tempSs);
+			openCharIndex = indexFromSubref(tempSs);
+			closeChar = charFromSubref(tempSs);
+			closeCharIndex = indexFromSubref(tempSs);
+			markBeforeChar(urn,openChar,openCharIndex,counter);				
+			markAfterChar(urn,closeChar,closeCharIndex,counter);				
+		}
+	}
+}
+
+function markBeforeLeaf(urn,openUrn,index){
+	var markText = "<mark class='bracket left-bracket' ";
+	markText += "data-ctsselectedurn='" + urn + "' ";
+	markText += "data-ctsselectedindex='" + index + "' ";
+	markText += " style='background-color: " + colorForIndex(index) + "' />";
+	$("mark[data-ctsurn='" + openUrn + "']").prepend(markText);
+}
+function markAfterLeaf(urn,closeUrn,index){
+	var markText = "<mark class='bracket right-bracket' ";
+	markText += "data-ctsselectedurn='" + urn + "' ";
+	markText += "data-ctsselectedindex='" + index + "' ";
+	markText += " style='background-color: " + colorForIndex(index) + "' />";
+	$("mark[data-ctsurn='" + closeUrn + "']").append(markText);
+}
+
+function colorForIndex(index){
+	var colors = ["CornflowerBlue","BurlyWood","LightCyan","DarkKhaki","DarkSalmon","DarkSeaGreen","Silver","GoldenRod","Khaki","LightBlue","LightSkyBlue","MediumOrchid","MistyRose","NavajoWhite","Olive","Orchid","Peru","RosyBrown","RebeccaPurple","Silver","Tan","YellowGreen"];
+	return colors[index % colors.length];
+}
+
+function charFromSubref(sr){
+	return sr.split("[")[0];
+}
+
+function indexFromSubref(sr){
+	var tmpString = sr.split("[")[1];
+	return tmpString.split("]")[0];
+}
+
+function markBeforeChar(urn,openLeafUrn,passageUrn,myChar,myIndex,counter){
+	var tempHtml = $("mark[data-ctsurn='" + openLeafUrn + "']").html();
+
+	var markText = "<mark class='bracket left-bracket' ";
+	markText += "data-ctsselectedurn='" + urn + "' ";
+	markText += "data-ctsselectedindex='" + counter + "' ";
+	markText += " style='background-color: " + colorForIndex(counter) + "' />";
+
+	var htmlArray = tempHtml.split('');
+	var outHtml = "";
+	var inTag = false;
+	var tempChar = "";
+	var incrementer = 0;
+	for (i = 0; i < htmlArray.length; i++){
+		tempChar = htmlArray[i];		
+		if ( tempChar == "<"){ inTag = true; }	
+		if ( inTag != true ){
+			if ( tempChar == myChar){
+				incrementer++;
+				if (incrementer == myIndex){
+					outHtml += markText;	
+				}
+			}
+		}
+		outHtml += tempChar;
+		if ( tempChar == ">") { inTag = false; }
+	}
+	$("mark[data-ctsurn='" + openLeafUrn + "']").html(outHtml);
+}
+
+function markAfterChar(urn,closeLeafUrn,passageUrn,myChar,myIndex,counter){
+	var tempHtml = $("mark[data-ctsurn='" + closeLeafUrn + "']").html();
+
+	var markText = "<mark class='bracket right-bracket' ";
+	markText += "data-ctsselectedurn='" + urn + "' ";
+	markText += "data-ctsselectedindex='" + counter + "' ";
+	markText += " style='background-color: " + colorForIndex(counter) + "' />";
+
+	var htmlArray = tempHtml.split('');
+	var outHtml = "";
+	var inTag = false;
+	var tempChar = "";
+	var incrementer = 0;
+	for (i = 0; i < htmlArray.length; i++){
+		tempChar = htmlArray[i];		
+		outHtml += tempChar;
+		if ( tempChar == "<"){ inTag = true; }	
+		if ( inTag != true ){
+			if ( tempChar == myChar){
+				incrementer++;
+				if (incrementer == myIndex){
+					outHtml += markText;	
+				}
+			}
+		}
+		if ( tempChar == ">") { inTag = false; }
+	}
+	$("mark[data-ctsurn='" + closeLeafUrn + "']").html(outHtml);
+}

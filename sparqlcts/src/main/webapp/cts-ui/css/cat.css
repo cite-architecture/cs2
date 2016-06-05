@@ -215,4 +215,44 @@ textarea.hide {
 	display: none;
 }
 
-	
+/* Funky Brackets */
+
+.bracket {
+	padding: 6px;
+/* 	background-color: Brown ; */
+	font-family: "Helvetica", sans-serif;
+	font-weight: 600;
+	font-size: 80%;
+
+}	
+
+
+.bracketMarker:before {
+	content: "【" attr(data-ctsselectedindex) ;
+	color: white ;
+	mix-blend-mode: difference;
+}
+
+.bracketMarker:after {
+	content: "】" ;
+	color: white ;
+	mix-blend-mode: difference;
+}
+
+.bracketMarker {
+	margin-right: 1em;
+}
+
+.left-bracket:before {
+	content: "【";
+	content: attr(data-ctsselectedindex) "【";
+	color: white ;
+	mix-blend-mode: difference;
+}
+
+
+.right-bracket:after {
+	content: "】" attr(data-ctsselectedindex);
+	color: white ;
+	mix-blend-mode: difference;
+}

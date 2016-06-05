@@ -214,6 +214,13 @@
 			<xsl:apply-templates/><xsl:text> </xsl:text>
 		</xsl:element>
 	</xsl:template>
+	
+	<xsl:template match="tei:milestone[@type='left']">
+		<mark class=" bracket left-bracket" id="1"/>
+	</xsl:template>
+	<xsl:template match="tei:milestone[@type='right']">
+		<mark class="bracket right-bracket" id="2"/>
+	</xsl:template>
 
 	<!-- Default: replicate unrecognized markup -->
 	<!--<xsl:template match="@*|node()" priority="-1">
