@@ -1,5 +1,6 @@
 
-div#selectedurn {
+
+div#selectedUrn {
     border: 1px solid silver; 
 	padding: 2px;
 	max-width: 45%;
@@ -7,7 +8,7 @@ div#selectedurn {
 }
 
 
-div#selectedurn i.fa {
+div#selectedUrn i.fa {
     position: absolute;
 	top: 2px;
 	right: 2px;
@@ -15,7 +16,7 @@ div#selectedurn i.fa {
 }
 
 
-div#selectedurn i.hide {
+div#selectedUrn i.hide {
 	display: none;
 }
 
@@ -201,14 +202,15 @@ div#clipBoard {
 	box-shadow: -1px 6px 19px 0px rgba(0,0,0,0.75);	
 }
 
-div#clipboard.hide { display: none; }
+div#clipBoard.hide { display: none; }
+
 
 div#clipBoard textarea {
 	width: 100%;
 	height: 100%;
 	font-family: "Monaco", "Courier", monospaced;
 	font-size: 12pt;
-	display: inherit;
+/* 	display: inherit; */
 }
 
 textarea.hide {
