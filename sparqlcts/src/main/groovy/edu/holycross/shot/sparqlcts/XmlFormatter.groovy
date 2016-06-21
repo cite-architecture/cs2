@@ -159,16 +159,13 @@ class XmlFormatter {
 
 		  // Index of elements containing citation values:
 		  ArrayList citeIndex = citationIndices(xpTemplate)
-		  System.err.println "in fdcl(): citeIndex = ${citeIndex.join(', ')}"
 
 		  Integer firstIndex = citeIndex[0].toInteger()
-		  System.err.println "in fdcl(): firstIndex = ${firstIndex}"
 		  // If there is only one citation level, they will match all the way to the end no matter what…
 		  if (citeIndex.size() == 1){
 		     differingLevel = -1	  
 		  } else { // we need to learn at what point they differ…
 			  Integer lastIndex = citeIndex[citeIndex.size() - 2].toInteger() // -2 because we are ignoring the leaf-node element.
-			  System.err.println "in fdcl(): lastIndex = ${lastIndex}"
 
 			  Integer counter = 0
 			  for (i in firstIndex .. lastIndex) {
@@ -259,7 +256,6 @@ class XmlFormatter {
 			def citeDiffLevel = 0
 			String tempText = ""
 			Boolean firstNode = true
-			System.err.println "********************************"
 
 
 			leafNodes.each { b ->
@@ -267,8 +263,6 @@ class XmlFormatter {
 					
 					currentNext = b['typeExtras']['nxt']
 					if ((b['typeExtras']['anc'] != currentWrapper)||(firstNode)) {
-			System.err.println "${b['typeExtras']['anc']}, ${currentWrapper}, ${b['typeExtras']['xpt']}"
-			System.err.println "********************************"
 						citeDiffLevel = findDifferingCitationLevel(b['typeExtras']['anc'], currentWrapper, b['typeExtras']['xpt'])
 						if (firstNode) {
 								firstNode = false
