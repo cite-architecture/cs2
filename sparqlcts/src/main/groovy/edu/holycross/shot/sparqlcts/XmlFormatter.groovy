@@ -159,26 +159,34 @@ class XmlFormatter {
 
 		  // Index of elements containing citation values:
 		  ArrayList citeIndex = citationIndices(xpTemplate)
+		  System.err.println "in fdcl(): citeIndex = ${citeIndex.join(', ')}"
 
 		  Integer firstIndex = citeIndex[0].toInteger()
-		  Integer lastIndex = citeIndex[citeIndex.size() - 2].toInteger() // -2 because we are ignoring the leaf-node element.
+		  System.err.println "in fdcl(): firstIndex = ${firstIndex}"
+		  // If there is only one citation level, they will match all the way to the end no matter what…
+		  if (citeIndex.size() == 1){
+		     differingLevel = -1	  
+		  } else { // we need to learn at what point they differ…
+			  Integer lastIndex = citeIndex[citeIndex.size() - 2].toInteger() // -2 because we are ignoring the leaf-node element.
+			  System.err.println "in fdcl(): lastIndex = ${lastIndex}"
 
-		  Integer counter = 0
-		  for (i in firstIndex .. lastIndex) {
-			  if (pathParts1[i] != pathParts2[i]){
-				  differingLevel = counter
-					  break
-			  }
-			  counter++;
-			  if (i == lastIndex) {
-				  // then they matched all the way to the end,
-				  // so are identical:
-				  differingLevel = -1
+			  Integer counter = 0
+			  for (i in firstIndex .. lastIndex) {
+				  if (pathParts1[i] != pathParts2[i]){
+					  differingLevel = counter
+						  break
+				  }
+				  counter++;
+				  if (i == lastIndex) {
+					  // then they matched all the way to the end,
+					  // so are identical:
+					  differingLevel = -1
+				  }
 			  }
 		  }
-		  // save 0 value for identical match, and
-		  // report level as 1-origin array:
-		  return differingLevel + 1
+			  // save 0 value for identical match, and
+			  // report level as 1-origin array:
+			  return differingLevel + 1
 	  }
   
   /**
@@ -251,12 +259,16 @@ class XmlFormatter {
 			def citeDiffLevel = 0
 			String tempText = ""
 			Boolean firstNode = true
+			System.err.println "********************************"
+
 
 			leafNodes.each { b ->
 				if (b['typeExtras']['nxt'] != currentNext){
 					
 					currentNext = b['typeExtras']['nxt']
 					if ((b['typeExtras']['anc'] != currentWrapper)||(firstNode)) {
+			System.err.println "${b['typeExtras']['anc']}, ${currentWrapper}, ${b['typeExtras']['xpt']}"
+			System.err.println "********************************"
 						citeDiffLevel = findDifferingCitationLevel(b['typeExtras']['anc'], currentWrapper, b['typeExtras']['xpt'])
 						if (firstNode) {
 								firstNode = false

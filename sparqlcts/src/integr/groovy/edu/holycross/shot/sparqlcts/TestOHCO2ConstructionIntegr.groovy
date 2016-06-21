@@ -2,6 +2,7 @@ package edu.holycross.shot.sparqlcts
 
 import static org.junit.Assert.*
 import org.junit.Test
+import groovy.json.*
 import org.custommonkey.xmlunit.*
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.citeservlet.Sparql
@@ -168,6 +169,30 @@ class TestOHCO2ConstructionIntegr extends GroovyTestCase {
 
 		  Ohco2Node response = graph.getOhco2Node(urn)
 	      assert response.nodeLang == "eng"
+
+  }
+
+  @Test
+  void testOhco2Node_1Level_leaf_Integr() {
+		XMLUnit.setNormalizeWhitespace(true)
+
+		  String xmlString = """<l xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" n="3">Er hat den Knaben wohl in dem Arm,</l>"""
+		  CtsUrn urn = new CtsUrn("urn:cts:hmtDemo:goethe.erlkoenig.deu:3")
+
+		  Ohco2Node response = graph.getOhco2Node(urn)
+		
+		  assert response.nodeUrn.toString() == "urn:cts:hmtDemo:goethe.erlkoenig.deu:3"
+		  assert response.prevUrn.toString() == "urn:cts:hmtDemo:goethe.erlkoenig.deu:2" 
+		  assert response.nextUrn.toString() == "urn:cts:hmtDemo:goethe.erlkoenig.deu:4"
+		  assert response.nodeLabel == """Johann Wolfgang von Goethe, Der Erlkönig (German (1782)): 3 (urn:cts:hmtDemo:goethe.erlkoenig.deu:3)"""
+		  assert response.nodeLang == "deu"
+		  
+		  assert response.leafNodes.size() == 1
+
+		  Diff xmlDiff = new Diff(xmlString, response.leafNodes[0]['rangeNode'].textContent)
+		  assert xmlDiff.identical()
+
+	      println new JsonBuilder(response).toPrettyString()
 
   }
 

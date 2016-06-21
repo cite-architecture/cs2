@@ -127,5 +127,10 @@ class TestXmlFormatter extends GroovyTestCase {
     assert XmlFormatter.findDifferingCitationLevel(xp1, xp2, xpTemplate) == 1
     
   }
+
+  @Test
+  void testOneLevelStuff(){
+    String xpTemplate = "/tei:TEI/tei:text/tei:body/tei:div/tei:l[@n = '?']"
+  }
   
 }

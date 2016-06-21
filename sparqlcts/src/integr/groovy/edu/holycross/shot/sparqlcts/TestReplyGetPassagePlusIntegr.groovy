@@ -61,7 +61,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 	String testReply = reply.getPassagePlusToXML(urn)
 
 	assert testReply
-	//printline testReply
+	//println testReply
     
   }
 
@@ -72,7 +72,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 	String testReply = reply.getPassagePlusToXML(urn)
 
 	assert testReply
-	//printline testReply
+	//println testReply
     
   }
 
@@ -83,7 +83,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 	String testReply = reply.getPassagePlusToXML(urn)
 
 	assert testReply
-	//printline testReply
+	//println testReply
     
   }
 
@@ -95,7 +95,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 	String testReply = reply.getPassagePlusToXML(urn)
 
 	assert testReply
-	//printline testReply
+	//println testReply
     
   }
 
@@ -106,7 +106,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 	String testReply = reply.getPassagePlusToXML(urn)
 
 	assert testReply
-	//printline testReply
+	//println testReply
     
   }
 
@@ -117,7 +117,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 	String testReply = reply.getPassagePlusToXML(urn)
 
 	assert testReply
-	//printline testReply
+	//println testReply
     
   }
 
@@ -128,7 +128,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 	String testReply = reply.getPassagePlusToXML(urn)
 
 	assert testReply
-	//printline testReply
+	//println testReply
     
   }
 
@@ -139,8 +139,18 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 	String testReply = reply.getPassagePlusToXML(urn)
 
 	assert testReply
-	//printline testReply
+	//println testReply
     
+  }
+
+  @Test
+  void testXML_OneLevel(){
+    CtsUrn urn = new CtsUrn("urn:cts:hmtDemo:goethe.erlkoenig.deu:3")
+
+	String testReply = reply.getPassagePlusToXML(urn)
+
+	assert testReply
+	println testReply
   }
 
 }

@@ -172,4 +172,13 @@ class TestPrevIntegr extends GroovyTestCase {
   }
 
 
+  /* One-level citation */
+
+  @Test
+  void testPrevOneLevel() {
+    CtsUrn urn = new CtsUrn("urn:cts:hmtDemo:goethe.erlkoenig.deu:3")
+    String expectedPrev = "urn:cts:hmtDemo:goethe.erlkoenig.deu:2"
+    assert  graph.getRangePrevUrnStr(urn) == expectedPrev
+  }
+
 }

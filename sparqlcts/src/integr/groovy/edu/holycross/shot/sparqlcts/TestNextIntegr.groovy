@@ -160,5 +160,13 @@ class TestNextIntegr extends GroovyTestCase {
   }
 
 
+  /* One-level citation */
+
+  @Test
+  void testNextOneLevel() {
+    CtsUrn urn = new CtsUrn("urn:cts:hmtDemo:goethe.erlkoenig.deu:3")
+    String expectedNext = "urn:cts:hmtDemo:goethe.erlkoenig.deu:4"
+    assert  graph.getRangeNextUrnStr(urn) == expectedNext
+  }
   
 }
