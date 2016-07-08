@@ -92,6 +92,7 @@ subprojects {
 
     compile group: 'xmlunit', name: 'xmlunit', version: '1.6'
     compile group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
+    compile group: 'edu.holycross.shot', name: 'prestochango', version: versionMap['prestochango']
     compile group: 'commons-io', name: 'commons-io', version: versionMap['commonsio']
 
     testCompile group: 'com.github.rjeschke', name: 'txtmark', version: '0.11'
@@ -194,7 +195,7 @@ project(":sparqlcc") {
 
     // Need to define all dependencies for integration tests:
     integrCompile "junit:junit:${versionMap['junit']}"
-    integrCompile project(":sparqlcts")
+    integrCompile project(":sparqlcc")
     integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
   }
 }

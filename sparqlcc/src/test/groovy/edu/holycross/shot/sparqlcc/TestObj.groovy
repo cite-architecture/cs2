@@ -4,29 +4,62 @@ import static org.junit.Assert.*
 import org.junit.Test
 
 
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.*
+import edu.holycross.shot.prestochango.*
 
 class TestObj extends GroovyTestCase {
 
-  CiteUrn urn = new CiteUrn("urn:cite:hmt:msA.12r")
-  CiteProperty rvProp = new CiteProperty("rv", CiteProperty.PropertyType.STRING,"Recto or verso","recto")
-  CiteProperty labelProp = new CiteProperty("label", CiteProperty.PropertyType.STRING,"Description","Venetus A (Marciana 454 = 822), folio 12, recto")
+	 /* Make a collection */
 
-  
+	CiteUrn collUrn = new CiteUrn("urn:cite:testNs:testColl")
+	
+	CiteUrn prevUrn = new CiteUrn("urn:cite:testNs:testColl.one.v1")
+	CiteUrn nextUrn = new CiteUrn("urn:cite:testNs:testColl.three.v1")
+
+	CiteProperty idProp = new CiteProperty("urn","citeurn","canonical id")
+	CiteProperty labelProp = new CiteProperty("label","string","description of object")
+	CiteProperty orderedByProp = new CiteProperty("seq","number","sequence")
+	CiteProperty booleanProp = new CiteProperty("trueOrFalse","boolean","a boolean property")
+
+	ArrayList collProps = [idProp, labelProp, orderedByProp]
+	ArrayList extensions = ["cite:CiteImage","cite:Geo"]
+	
+	String orderedProp = "orderedBy"
+	String nsAbbr = "testNs"
+	String nsFull = "http://www.testNs.org/datans"
+	 
+    CiteCollection ccOrdered = new CiteCollection(collUrn, idProp, labelProp, orderedByProp, nsAbbr, nsFull, collProps, extensions)
+    CiteCollection ccUnordered = new CiteCollection(collUrn, idProp, labelProp, null, nsAbbr, nsFull, collProps, extensions)
+
   @Test
-  void testConstructor() {
-    ArrayList propList = [rvProp, labelProp]
-    CiteObject cobj = new CiteObject(urn, propList)
-    assert cobj
+  void testEmptyTest(){
+	  assert true
   }
 
+ @Test void testConstructor1() {
 
-  @Test
-  void testBad() {
-    ArrayList bogusList = ["nonsense", -1]
-    assert shouldFail {
-      CiteObject cobj = new CiteObject(urn, bogusList)
-    }
-  }
+	/* Make some property values */
+
+	def properties = ["urn":"urn:cite:testNs:testColl.one.v1","label":"object 1","seq":"1"]
+
+    CiteUrn urn = new CiteUrn("urn:cite:testNs:testColl.one.v1")	
+
+	CiteCollectionObject cco = new CiteCollectionObject(urn,ccUnordered,properties)
+
+	assert cco
+
+ }
+
+ @Test void testConstructor2() {
+
+	def properties = ["urn":"urn:cite:testNs:testColl.one.v1","label":"object 1","seq":"1"]
+
+    CiteUrn urn = new CiteUrn("urn:cite:testNs:testColl.two.v1")	
+
+	CiteCollectionObject cco = new CiteCollectionObject(urn,ccOrdered,properties,prevUrn,nextUrn)
+
+	assert cco
+
+ }
   
 }
