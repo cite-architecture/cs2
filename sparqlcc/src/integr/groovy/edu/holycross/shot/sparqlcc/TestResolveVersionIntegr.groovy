@@ -17,6 +17,7 @@ class TestResolveVersionIntegr extends GroovyTestCase {
   CiteUrn versionedUrn =  new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086.v1")
   CiteUrn versionedRangeUrn =      new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086.v1-VA085VN_0087.v1")
   CiteUrn extendedUrn =   new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086.v1@12,12,12,12")
+  CiteUrn unversionedExtendedUrn =   new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086@12,12,12,12")
   CiteUrn objectUrn =     new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086")
   CiteUrn collectionUrn = new CiteUrn("urn:cite:hmt:vaimg")
   CiteUrn rangeUrn =      new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086-VA085VN_0087")
@@ -26,7 +27,7 @@ class TestResolveVersionIntegr extends GroovyTestCase {
   void testTest() {
     assert true
   }
-  
+
 
   // Simple object example, should work
   @Test
@@ -48,10 +49,11 @@ class TestResolveVersionIntegr extends GroovyTestCase {
   @Test
   void testResolveVersion3() {
     Sparql sparql = new Sparql(baseUrl)
-	CcGraph cc = new CcGraph(sparql)
+	  CcGraph cc = new CcGraph(sparql)
 
     assert cc.resolveVersion(rangeUrn).toString() == versionedRangeUrn.toString()
   }
+
 
 
   // Should work
@@ -70,7 +72,7 @@ class TestResolveVersionIntegr extends GroovyTestCase {
 	CcGraph cc = new CcGraph(sparql)
 
 	shouldFail {
-		assert cc.versionForObject(rangeUrn).toString() == rangeUrn.toString() 
+		assert cc.versionForObject(rangeUrn).toString() == rangeUrn.toString()
 	}
   }
 
@@ -95,13 +97,15 @@ class TestResolveVersionIntegr extends GroovyTestCase {
   }
 
 
-  // Urn with extended ref; invalid without version, so returns itself
+  // Urn with extended ref; invalid without version, so should fail
   @Test
   void testVersionForObject5() {
     Sparql sparql = new Sparql(baseUrl)
-	CcGraph cc = new CcGraph(sparql)
+    CcGraph cc = new CcGraph(sparql)
 
-	assert cc.versionForObject(extendedUrn).toString() == extendedUrn.toString()
+    shouldFail {
+      assert cc.versionForObject(unversionedExtendedUrn).toString() == extendedUrn.toString()
+    }
   }
 
   	// Good urn, but not in data, returns null
@@ -112,5 +116,5 @@ class TestResolveVersionIntegr extends GroovyTestCase {
 
 	assert cc.versionForObject(notInDataUrn) == null
   }
-  
+
 }

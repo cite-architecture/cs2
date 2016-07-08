@@ -34,5 +34,5 @@ class TestSparqlIntegr extends GroovyTestCase {
     }
     assert verbList.size() == expectedNumberVerbs
   }
-  
+
 }

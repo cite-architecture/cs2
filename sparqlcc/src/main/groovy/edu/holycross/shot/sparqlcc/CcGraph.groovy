@@ -7,7 +7,7 @@ import edu.harvard.chs.cite.CtsUrn
 import groovy.json.JsonSlurper
 
 /** A class interacting with a SPARQL endpoint to
- * to resolve SPARQL replies into objects in the abstract data 
+ * to resolve SPARQL replies into objects in the abstract data
  * model of CITE Collection objects.
  */
 class CcGraph {
@@ -16,7 +16,7 @@ class CcGraph {
   Sparql sparql
 
 
-  /** Constructor with required SPARQL endpoint object */  
+  /** Constructor with required SPARQL endpoint object */
   CcGraph(Sparql endPoint) {
     sparql = endPoint
   }
@@ -28,19 +28,26 @@ class CcGraph {
   CiteUrn resolveVersion(CiteUrn urn)
   throws Exception {
   	  Object returnObject
-			
+
  	  String tempUrnString = ""
 	  // Handle ranges: Be sure both sides have a version, and the same version
 	  if ( urn.isRange() ){
 		  CiteUrn rangeBegin = new CiteUrn(urn.getRangeBegin())
 		  CiteUrn rangeEnd = new CiteUrn(urn.getRangeEnd())
 		  System.err.println "${urn.toString()} --> ${rangeBegin.toString()} + ${rangeEnd.toString()}"
+      CiteUrn resolvedBegin = resolveVersion(rangeBegin)
+      tempUrnString = resolvedBegin.toString()
+      tempUrnString += "-${rangeEnd.objectId}.${resolvedBegin.objectVersion}"
+      if (rangeEnd.hasExtendedRef()){
+        tempUrnString += "@${rangeEnd.getExtendedRef()}"
+      }
+      returnObject = new CiteUrn(tempUrnString)
 
 	  } else {
 	  // Handle single objects
 		  tempUrnString = versionForObject(urn)
 	  }
-	  
+
 	  if ( tempUrnString == ""){
 			returnObject = null
 	  } else {
@@ -51,7 +58,7 @@ class CcGraph {
 			}
 	  }
 	  return returnObject
-	
+
   }
 
   /** Performs a query to find a valid version for an object-level URN
@@ -60,47 +67,48 @@ class CcGraph {
   */
   CiteUrn versionForObject(CiteUrn urn)
   throws Exception {
-  		String tempUrnString = ""
-		Object returnObject = null
+    String tempUrnString = ""
+    Object returnObject = null
 
-  		if ( urn.isRange() ) {
-			throw new Exception( "CcGraph.versionForObject: ${urn.toString()} cannot be a range.")
-		}
-  		if ( !(urn.hasObjectId()) ) {
-			throw new Exception( "CcGraph.versionForObject: ${urn.toString()} cannot be a collection-level urn.")
-		}
-		if ( urn.hasVersion() ){
-			tempUrnString = urn.toString()
-		} else {
-			  String queryString = QueryBuilder.resolveVersionQuery(urn)
-			  String reply = sparql.getSparqlReply("application/json", queryString)
-			  System.err.println "Got here."
+    if ( urn.isRange() ) {
+      throw new Exception( "CcGraph.versionForObject: ${urn.toString()} cannot be a range.")
+    }
+    if ( !(urn.hasObjectId()) ) {
+      throw new Exception( "CcGraph.versionForObject: ${urn.toString()} cannot be a collection-level urn.")
+    }
+    if ( !(urn.hasVersion()) && urn.hasExtendedRef() ) {
+      throw new Exception( "CcGraph.versionForObject: ${urn.toString()} cannot have an extendedRef without a version identifier.")
+    }
+    if ( urn.hasVersion() ){
+      tempUrnString = urn.toString()
+      } else {
+        String queryString = QueryBuilder.resolveVersionQuery(urn)
+        String reply = sparql.getSparqlReply("application/json", queryString)
 
-			  JsonSlurper slurper = new groovy.json.JsonSlurper()
-			  def parsedReply = slurper.parseText(reply)
-			  parsedReply.results.bindings.each { bndng ->
-				  if (bndng.v) {
-					  tempUrnString = bndng.v?.value
-				  }
-			  }
+        JsonSlurper slurper = new groovy.json.JsonSlurper()
+        def parsedReply = slurper.parseText(reply)
+        parsedReply.results.bindings.each { bndng ->
+          if (bndng.v) {
+            tempUrnString = bndng.v?.value
+          }
+        }
 
-		}
+      }
 
-	  System.err.println "tempUrnString = ${tempUrnString}"
-	  if ( tempUrnString == ""){
-			returnObject = null
-	  } else {
-			try {
-				returnObject = new CiteUrn(tempUrnString)
-			} catch (Exception e ) {
-				returnObject = null
-			}
-	  }
-		
-	  return returnObject
-  }
+      if ( tempUrnString == ""){
+        returnObject = null
+        } else {
+          try {
+            returnObject = new CiteUrn(tempUrnString)
+            } catch (Exception e ) {
+              returnObject = null
+            }
+          }
 
-  
-  
-  
+          return returnObject
+        }
+
+
+
+
 }
