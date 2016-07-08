@@ -43,7 +43,7 @@ class Ohco2Node {
    * @param label Human-readable label.
    * @param prev URN for preceding node, or null if no preceding node.
    * @param next URN for following node, or null if no following node.
-   * @param txt Non-null string with text content of the citable node.
+   * @param rangeNodeMap Non-null arraylist of leafNode objects.
    * @throws Exception if urn, label or txt is empty; or if a non-null
    * value for prev or next is not a valid URN.
    */
