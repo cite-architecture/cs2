@@ -186,8 +186,8 @@
             <xsl:element name="input">
                 <xsl:attribute name="type">text</xsl:attribute>
                 <xsl:attribute name="name">urn</xsl:attribute>
-                <xsl:attribute name="value"><xsl:value-of select="$urn"/>CITATION_HERE</xsl:attribute>
-                <xsl:attribute name="size">40</xsl:attribute>
+                <xsl:attribute name="value"><xsl:value-of select="$urn"/>REPLACE_WITH_VALID_CITATION</xsl:attribute>
+                <xsl:attribute name="size">70</xsl:attribute>
             </xsl:element>
             Units of context: 
             <xsl:element name="input">
@@ -202,6 +202,28 @@
             <xsl:attribute name="value">Browse <xsl:value-of select="$textType"/></xsl:attribute>
             </xsl:element>
         </xsl:element>
+        <xsl:element name="form">
+            <xsl:attribute name="action">api</xsl:attribute>
+            <xsl:attribute name="method">get</xsl:attribute>
+            <input type="hidden" name="request" value="GetValidReff"/>
+            <input type="hidden" name="stylesheet" value="cts_validreff"/>
+            <input type="hidden" name="level" value="1"/>
+            <xsl:element name="input">
+                <xsl:attribute name="type">text</xsl:attribute>
+                <xsl:attribute name="name">urn</xsl:attribute>
+                <xsl:attribute name="value"><xsl:value-of select="$urn"/></xsl:attribute>
+                <xsl:attribute name="size">40</xsl:attribute>
+            </xsl:element>
+            
+            <xsl:element name="input">
+                <xsl:attribute name="type">submit</xsl:attribute>
+                
+                <xsl:attribute name="value">See Valid Citations</xsl:attribute>
+            </xsl:element>
+        </xsl:element>
+        <!-- 
+            
+            -->
        
     </xsl:template>
     
