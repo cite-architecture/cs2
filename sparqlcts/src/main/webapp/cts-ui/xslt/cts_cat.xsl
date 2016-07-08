@@ -71,6 +71,7 @@
 								<p><span id="cancelNoteButton">Cancel</span><span id="addNoteButton">Add</span></p>
 							</div>
 							<h1>Citation Alignment Tool</h1>
+							<p>Drag in the text-passage to create CTS-URNs with extended references. The [+] button will add a selected URN to a list, which can be annotated and saved.</p>
 							<h2><xsl:value-of select="//cts:reply/cts:label"/>
 							</h2>
 							<p>

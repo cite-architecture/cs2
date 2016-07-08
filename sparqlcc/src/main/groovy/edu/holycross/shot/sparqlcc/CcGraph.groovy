@@ -32,6 +32,9 @@ class CcGraph {
  	  String tempUrnString = ""
 	  // Handle ranges: Be sure both sides have a version, and the same version
 	  if ( urn.isRange() ){
+		  CiteUrn rangeBegin = new CiteUrn(urn.getRangeBegin())
+		  CiteUrn rangeEnd = new CiteUrn(urn.getRangeEnd())
+		  System.err.println "${urn.toString()} --> ${rangeBegin.toString()} + ${rangeEnd.toString()}"
 
 	  } else {
 	  // Handle single objects

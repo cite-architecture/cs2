@@ -15,6 +15,7 @@ class TestResolveVersionIntegr extends GroovyTestCase {
 
   String baseUrl = "http://localhost:8080/fuseki/cc/query"
   CiteUrn versionedUrn =  new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086.v1")
+  CiteUrn versionedRangeUrn =      new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086.v1-VA085VN_0087.v1")
   CiteUrn extendedUrn =   new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086.v1@12,12,12,12")
   CiteUrn objectUrn =     new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086")
   CiteUrn collectionUrn = new CiteUrn("urn:cite:hmt:vaimg")
@@ -29,11 +30,27 @@ class TestResolveVersionIntegr extends GroovyTestCase {
 
   // Simple object example, should work
   @Test
-  void testResolveVersion() {
+  void testResolveVersion1() {
     Sparql sparql = new Sparql(baseUrl)
 	CcGraph cc = new CcGraph(sparql)
 
     assert cc.resolveVersion(objectUrn).toString() == versionedUrn.toString()
+  }
+  // Has a version. Should work
+  @Test
+  void testResolveVersion2() {
+    Sparql sparql = new Sparql(baseUrl)
+	CcGraph cc = new CcGraph(sparql)
+
+    assert cc.resolveVersion(versionedUrn).toString() == versionedUrn.toString()
+  }
+  // Range URN. Should work
+  @Test
+  void testResolveVersion3() {
+    Sparql sparql = new Sparql(baseUrl)
+	CcGraph cc = new CcGraph(sparql)
+
+    assert cc.resolveVersion(rangeUrn).toString() == versionedRangeUrn.toString()
   }
 
 
