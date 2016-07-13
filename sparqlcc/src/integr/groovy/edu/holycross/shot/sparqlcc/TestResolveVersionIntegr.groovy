@@ -25,8 +25,7 @@ class TestResolveVersionIntegr extends GroovyTestCase {
 
   @Test
   void testTest() {
-    assert true
-  }
+    assert true  }
 
 
   // Simple object example, should work
@@ -91,7 +90,7 @@ class TestResolveVersionIntegr extends GroovyTestCase {
   @Test
   void testVersionForObject4() {
     Sparql sparql = new Sparql(baseUrl)
-	CcGraph cc = new CcGraph(sparql)
+    CcGraph cc = new CcGraph(sparql)
 
     assert cc.versionForObject(versionedUrn).toString() == versionedUrn.toString()
   }
