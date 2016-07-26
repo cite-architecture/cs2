@@ -4,7 +4,7 @@ import edu.holycross.shot.sparqlcts.CtsDefinitions
 import edu.holycross.shot.citeservlet.Sparql
 import edu.harvard.chs.cite.CtsUrn
 
-String contentType 
+String contentType
 
 String responseType = request.getParameter("type")
 if ( (responseType == "") || (responseType == null)){
@@ -84,13 +84,13 @@ if (req == "GetCapabilities") {
 	}
 }
 
-Integer context = 0
+Integer contextSize = 0
 if (request.getParameter("context")) {
 	String contextStr = request.getParameter("context")
 		try {
-			context = contextStr.toInteger()
+			contextSize = contextStr.toInteger()
 			try {
-				assert context >= 0
+				assert contextSize >= 0
 				} catch (AssertionError e){
 					println badIntegerParamReply("context",contextStr)
 					done = true
@@ -120,7 +120,7 @@ if (request.getParameter("level")) {
 
 
 if (!done) {
-	String baseUrl = "http://localhost:8080/fuseki/cts/query"
+	String baseUrl = context.getInitParameter('tripleserver') 
 		Sparql sparql = new Sparql(baseUrl)
 		CtsGraph graph = new CtsGraph(sparql)
 		CtsReply reply = new CtsReply( sparql, graph)
@@ -146,7 +146,7 @@ if (!done) {
 			case "GetPassagePlus":
 					if (responseType == "json"){
 						try {
-							println reply.getPassagePlusToJSON(urnStr,context)
+							println reply.getPassagePlusToJSON(urnStr,contextSize)
 						} catch (Exception e){
 							println invalidUrnReply(urnStr)
 						}
@@ -155,7 +155,7 @@ if (!done) {
 							if (stylesheet != null){
 								println """<?xml-stylesheet type="text/xsl" href="cts-ui/xslt/${stylesheet}.xsl"?>\r"""
 							}
-							println reply.getPassagePlusToXML(urnStr,context)
+							println reply.getPassagePlusToXML(urnStr,contextSize)
 						} catch (Exception e){
 							println invalidUrnReply(urnStr)
 						}
@@ -165,7 +165,7 @@ if (!done) {
 			case "GetPassage":
 					if (responseType == "json"){
 						try {
-						println reply.getPassageToJSON(urnStr,context)
+						println reply.getPassageToJSON(urnStr,contextSize)
 						} catch (Exception e){
 							println invalidUrnReply(urnStr)
 						}
@@ -174,7 +174,7 @@ if (!done) {
 							if (stylesheet != null){
 								println """<?xml-stylesheet type="text/xsl" href="cts-ui/xslt/${stylesheet}.xsl"?>\r"""
 							}
-							println reply.getPassageToXML(urnStr,context)
+							println reply.getPassageToXML(urnStr,contextSize)
 						} catch (Exception e){
 							println invalidUrnReply(urnStr)
 						}
@@ -288,4 +288,3 @@ String getCapsReply() {
     }
 
 }
-

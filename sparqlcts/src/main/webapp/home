@@ -15,13 +15,17 @@ html.html {
 
 		header("SPARQL CTS")
 			nav {
+
 				p {
-					a(href : "http://www.homermultitext.org/hmt-doc/", "Canonical Text Services") 
+					a(href : "http://www.homermultitext.org/hmt-doc/", "Canonical Text Services")
 				}
 			}
 
 		article {
 			p("This site hosts an implementation of Canonical Text Services (CTS).")
+		
+
+
 				p {
 					mkp.yield("Although CTS is a network service primarily intended for use by other computer programs, you can use these query forms to interact with the service.")
 				}

@@ -57,3 +57,8 @@ task ctsIntegration(type: Test, dependsOn: 'test') {
 ctsIntegration.doFirst {
   System.out.println "Running CTS integration tests now...."
 }
+
+gretty {
+  initParameter("tripleserver", "http://localhost:8080/fuseki/cts/query")
+  initParameter("version","CS2 ANEW")
+}
