@@ -1,0 +1,260 @@
+
+
+div#selectedUrn {
+    border: 1px solid silver; 
+	padding: 2px;
+	max-width: 45%;
+	position: relative;
+}
+
+
+div#selectedUrn i.fa {
+    position: absolute;
+	top: 2px;
+	right: 2px;
+	color: navy;
+}
+
+
+div#selectedUrn i.hide {
+	display: none;
+}
+
+
+
+div#selectedUrn p {
+	font-family: "Helvetica", sans-serif;
+	font-weight: 500;
+	border: none;
+	padding-left: 0.5em;
+    color: navy;
+}
+
+div#selectedUrn p.valid {
+	color: #0a0;
+}
+div#selectedUrn p.invalid {
+	color: #a00;
+}
+
+div#textDisplay {
+	width: 50%;
+	max-width: 1000px;
+	float: left;
+}
+
+div#urnListDiv h3 {
+	position: relative;
+	font-weight: 500;
+	font-size: 120%;
+	background-color: navy;
+	color: white;
+	padding: 5px;
+	min-height: 32px;
+}
+
+div#urnListDiv h3 .fa {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+}
+
+div#urnListDiv {
+	margin-top: 1em;
+	font-family: "Helvetica", sans-serif;
+	font-size: 80%;
+	border: 1px solid silver;
+	min-width: 40%;
+	max-width: 50%;
+	float: left;
+}
+
+ul#urnList {
+	list-style: none;
+	margin: 0px;
+	overflow: scroll;
+}
+
+ul#urnList li:nth-child(even) {
+	background-color: #ddd;
+}
+
+ul#urnList li {
+	padding: 0px;
+	margin: 0px;
+	position: relative;
+}
+
+ul#urnList li p {
+	padding: 5px;
+	margin: 0px;
+}
+
+i.fa{
+ font-size:24px;
+}
+
+
+
+i.fa-close{
+color: red;
+position: absolute;
+top: 0px;
+right: 2px;
+}
+
+i.fa-edit{
+color: navy;
+position: absolute;
+top: 2px;
+right: 26px;
+}
+
+/* Note Form */
+
+div#addNote.hide {
+	display: none;
+}
+
+
+div#addNote {
+	border: 3px solid navy;
+	width: 500px;
+	background-color: #ddd;
+position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -250px;
+  z-index: 1000;
+  padding: 10px;
+-webkit-box-shadow: -1px 6px 19px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: -1px 6px 19px 0px rgba(0,0,0,0.75);
+box-shadow: -1px 6px 19px 0px rgba(0,0,0,0.75);	
+}
+
+div#addNote input[type="text"] {
+  display: block;
+  margin: 0;
+  margin-bottom: 10px;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 18px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+ 
+}
+div#addNote h2 {
+	margin: 0;
+}
+div#addNote p {
+	margin: 0;
+	font-family: "Helvetica", sans-serif;
+}
+
+
+div#addNote p span {
+	height: 20px;
+	width: 40px;
+	border: 1px solid navy;
+	margin-right: 10px;
+	padding: 5px;
+	font-family: "Helvetica", sans-serif;	
+	font-size: 80%;
+	font-weight: 700;
+}
+
+#cancelNoteButton {
+	background-color: #fdd;
+}
+
+#cancelNoteButton.hilite {
+	background-color: navy;
+	color: white;
+}
+#addNoteButton.hilite {
+	background-color: navy;
+	color: white;
+}
+
+#addNoteButton {
+	background-color: #dfd;
+}
+
+/* Clipboard */
+
+div#clipBoard {
+
+	border: 3px solid navy;
+	width: 80%;
+	height: 80%;
+	background-color: #ddd;
+	position: fixed;
+	top: 20%;
+	left: 30%;
+	margin-top: -50px;
+	margin-left: -250px;
+	z-index: 1000;
+	padding: 10px;
+	-webkit-box-shadow: -1px 6px 19px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: -1px 6px 19px 0px rgba(0,0,0,0.75);
+	box-shadow: -1px 6px 19px 0px rgba(0,0,0,0.75);	
+}
+
+div#clipBoard.hide { display: none; }
+
+
+div#clipBoard textarea {
+	width: 100%;
+	height: 100%;
+	font-family: "Monaco", "Courier", monospaced;
+	font-size: 12pt;
+/* 	display: inherit; */
+}
+
+textarea.hide {
+	display: none;
+}
+
+/* Funky Brackets */
+
+.bracket {
+	padding: 6px;
+/* 	background-color: Brown ; */
+	font-family: "Helvetica", sans-serif;
+	font-weight: 600;
+	font-size: 80%;
+
+}	
+
+
+.bracketMarker:before {
+	content: "【" attr(data-ctsselectedindex) ;
+	color: white ;
+	mix-blend-mode: difference;
+}
+
+.bracketMarker:after {
+	content: "】" ;
+	color: white ;
+	mix-blend-mode: difference;
+}
+
+.bracketMarker {
+	margin-right: 1em;
+}
+
+.left-bracket:before {
+	content: "【";
+	content: attr(data-ctsselectedindex) "【";
+	color: white ;
+	mix-blend-mode: difference;
+}
+
+
+.right-bracket:after {
+	content: "】" attr(data-ctsselectedindex);
+	color: white ;
+	mix-blend-mode: difference;
+}

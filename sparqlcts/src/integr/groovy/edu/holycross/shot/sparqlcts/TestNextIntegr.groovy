@@ -5,8 +5,8 @@ import org.junit.Test
 
 
 import edu.harvard.chs.cite.CtsUrn
-import edu.holycross.shot.citeservlet.Sparql
-import edu.holycross.shot.sparqlcts.CtsGraph
+//import edu.holycross.shot.citeservlet.Sparql
+//import edu.holycross.shot.sparqlcts.CtsGraph
 
 
 class TestNextIntegr extends GroovyTestCase {

@@ -5,8 +5,8 @@ import org.junit.Test
 
 
 import edu.harvard.chs.cite.CtsUrn
-import edu.holycross.shot.citeservlet.Sparql
-import edu.holycross.shot.sparqlcts.CtsGraph
+//import edu.holycross.shot.citeservlet.Sparql
+//import edu.holycross.shot.sparqlcts.CtsGraph
 
 
 class TestDescrsIntegr extends GroovyTestCase {
@@ -16,7 +16,7 @@ class TestDescrsIntegr extends GroovyTestCase {
   CtsGraph graph = new CtsGraph(sparql)
 
 
-  
+
 
   @Test
   void testVersionDescr() {
@@ -24,7 +24,7 @@ class TestDescrsIntegr extends GroovyTestCase {
     String expectedLabel = "Homeric Epic, Iliad (Allen's Iliad (test ed.)): 1.1 (urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1)"
     String actualLabel = graph.getLabel(urn)
     assert actualLabel.replaceAll("\\s","") == expectedLabel.replaceAll("\\s","")
-    
+
   }
 
   @Test

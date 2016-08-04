@@ -3,7 +3,7 @@ package edu.holycross.shot.sparqlcts
 import static org.junit.Assert.*
 import org.junit.Test
 
-import edu.holycross.shot.citeservlet.Sparql
+//import edu.holycross.shot.citeservlet.Sparql
 
 
 class TestSparqlIntegr extends GroovyTestCase {

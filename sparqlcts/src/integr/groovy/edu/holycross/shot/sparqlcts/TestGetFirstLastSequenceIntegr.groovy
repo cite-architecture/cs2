@@ -5,8 +5,8 @@ import org.junit.Test
 
 
 import edu.harvard.chs.cite.CtsUrn
-import edu.holycross.shot.citeservlet.Sparql
-import edu.holycross.shot.sparqlcts.CtsGraph
+//import edu.holycross.shot.citeservlet.Sparql
+//import edu.holycross.shot.sparqlcts.CtsGraph
 
 
 class TestGetFirstLastSequenceIntegr extends GroovyTestCase {
@@ -16,24 +16,24 @@ class TestGetFirstLastSequenceIntegr extends GroovyTestCase {
   CtsGraph graph = new CtsGraph(sparql)
 
 
-  
+
 
   @Test
   void testGetFirstSequence() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1")
 	Integer seq = graph.getFirstSequence(urn)
-	
+
 	assert seq == 1
-    
+
   }
 
   @Test
   void testGetLastSequence() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1")
 	Integer seq = graph.getLastSequence(urn)
-	
+
 	assert seq == 10
-    
+
   }
 
 

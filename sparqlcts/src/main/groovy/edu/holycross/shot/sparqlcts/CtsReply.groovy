@@ -1,8 +1,8 @@
 package edu.holycross.shot.sparqlcts
 
-import edu.holycross.shot.citeservlet.Sparql
 
-import groovy.time.TimeCategory 
+
+import groovy.time.TimeCategory
 import groovy.time.TimeDuration
 import groovy.json.*
 import edu.harvard.chs.cite.CtsUrn
@@ -14,24 +14,24 @@ import edu.holycross.shot.sparqlcts.CtsGraph
  */
 class CtsReply {
 
-  Sparql sparql 
-  CtsGraph graph 
+  Sparql sparql
+  CtsGraph graph
   XmlFormatter formatter
-  
 
-  /** Constructor with required sparql and graph services */  
+
+  /** Constructor with required sparql and graph services */
   CtsReply( Sparql endPoint,  CtsGraph myGraph ) {
    	sparql = endPoint
-    graph = myGraph	
+    graph = myGraph
 	formatter = new XmlFormatter()
   }
 
-  
+
 /* ******************************************
 * GetPassagePlus Replies
    ****************************************** */
 
-   /** Overloaded function. 
+   /** Overloaded function.
    @param CtsUrn requestUrn
    @returns ctsReply as Map
    */
@@ -50,7 +50,7 @@ class CtsReply {
 		Map ctsRequestMap = [:]
 		Map ctsReplyMap = [:]
 
-		CtsUrn urn 
+		CtsUrn urn
 
 		if (requestContext > 0){
 			urn = graph.getRangeForContext(requestUrn,requestContext)
@@ -59,7 +59,7 @@ class CtsReply {
 		}
 
 			Ohco2Node o2n = graph.getOhco2Node(urn)
-		
+
 
 		ctsRequestMap.put('request','GetPassagePlus')
 		ctsRequestMap.put('urn',requestUrn.toString())
@@ -79,7 +79,7 @@ class CtsReply {
 		ctsReplyMap.put('passageComponent',xmlCtsFragString)
 
 		ctsReplyObject.put('request',ctsRequestMap)
-		ctsReplyObject.put('reply',ctsReplyMap)	
+		ctsReplyObject.put('reply',ctsReplyMap)
 		ctsReply.put('GetPassagePlus',ctsReplyObject)
 
 		return ctsReply
@@ -120,7 +120,7 @@ class CtsReply {
 	String getPassagePlusToXML(CtsUrn requestUrn, Integer context){
         StringBuilder xmlString = new StringBuilder()
 		Map gppObject = getPassagePlusObject(requestUrn, context)
-		
+
 
 		xmlString.append("""
 			<GetPassagePlus xmlns:cts="http://chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">
@@ -191,7 +191,7 @@ GetPrevNext Request
 
 		CtsUrn urn = graph.resolveVersion(requestUrn)
 
-		
+
 		ctsRequestMap.put('request','GetPrevNextUrn')
 		ctsRequestMap.put('urn',requestUrn.toString())
 
@@ -199,13 +199,13 @@ GetPrevNext Request
 		ctsReplyMap.put("next",graph.getNextUrn(urn).toString())
 
 		ctsReplyObject.put('request',ctsRequestMap)
-		ctsReplyObject.put('reply',ctsReplyMap)	
+		ctsReplyObject.put('reply',ctsReplyMap)
 		ctsReply.put('GetPrevNextUrn',ctsReplyObject)
 
 
 		return ctsReply
 	}
-		
+
 		/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
 	 * an XML fragment, by first making a getPrevNext reply Map.
 	 * @returns String
@@ -222,7 +222,7 @@ GetPrevNext Request
 	String getPrevNextToXML(CtsUrn requestUrn){
         StringBuffer xmlString = new StringBuffer()
 		Map gpnObject = getPrevNextObject(requestUrn)
-		
+
 
 		xmlString.append("""
 			<GetPrevNextUrn xmlns:cts="http://chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">
@@ -275,7 +275,7 @@ GetPrevNext Request
 GetValidReff Request
 ***************************** */
 
-  /**  Overloaded method. 
+  /**  Overloaded method.
   * @param CtsUrn requestUrn
    * @returns ctsReply as Map
    */
@@ -297,10 +297,10 @@ GetValidReff Request
 
 		CtsUrn urn = graph.resolveVersion(requestUrn)
 
-		
+
 		ctsRequestMap.put('request','GetValidReff')
 		ctsRequestMap.put('urn',requestUrn.toString())
-	
+
 		if ((level != null) || (level > 1)){
 			ctsReplyMap.put("reff",graph.getValidReff(urn,level))
 		} else {
@@ -308,7 +308,7 @@ GetValidReff Request
 		}
 
 		ctsReplyObject.put('request',ctsRequestMap)
-		ctsReplyObject.put('reply',ctsReplyMap)	
+		ctsReplyObject.put('reply',ctsReplyMap)
 		ctsReply.put('GetValidReff',ctsReplyObject)
 
 
@@ -341,7 +341,7 @@ GetValidReff Request
 			CtsUrn urn = new CtsUrn(requestUrn)
 			return getValidReffToXML(urn, level)
 	}
-  
+
 	/**  Given a URN, constructs a getValidReff reply as
 	 * an XML fragment, by first making a getValidReffObject reply Map.
 	 * @returns String
@@ -353,7 +353,7 @@ GetValidReff Request
 		gvrObject['GetValidReff']['reply']['reff'].each { rrr ->
 			reff += "<urn>${rrr}</urn>\n"
 		}
-		
+
 
 		xmlString.append("""
 			<GetValidReff xmlns:cts="http://chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">
@@ -430,20 +430,20 @@ GetFirstUrn Request
 
 		CtsUrn urn = graph.resolveVersion(requestUrn)
 
-		
+
 		ctsRequestMap.put('request','GetFirstUrn')
 		ctsRequestMap.put('urn',requestUrn.toString())
 
 		ctsReplyMap.put("urn",graph.getFirstUrn(urn).toString())
 
 		ctsReplyObject.put('request',ctsRequestMap)
-		ctsReplyObject.put('reply',ctsReplyMap)	
+		ctsReplyObject.put('reply',ctsReplyMap)
 		ctsReply.put('GetFirstUrn',ctsReplyObject)
 
 
 		return ctsReply
 	}
-		
+
 	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
 	 * an XML fragment, by first making a getFirstUrn reply Map.
 	 * @returns String
@@ -460,7 +460,7 @@ GetFirstUrn Request
 	String getFirstUrnToXML(CtsUrn requestUrn){
         StringBuffer xmlString = new StringBuffer()
 		Map gfuObject = getFirstUrnObject(requestUrn)
-		
+
 
 		xmlString.append("""
 			<GetFirstUrn xmlns:cts="http://chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">
@@ -527,7 +527,7 @@ GetFirstUrn Request
 		Ohco2Node o2n = graph.getOhco2Node(urn)
 
 
-		
+
 		ctsRequestMap.put('request','GetPassage')
 		ctsRequestMap.put('urn',requestUrn.toString())
 		ctsRequestMap.put('context',requestContext)
@@ -542,7 +542,7 @@ GetFirstUrn Request
 		ctsReplyMap.put('passageComponent',xmlCtsFragString)
 
 		ctsReplyObject.put('request',ctsRequestMap)
-		ctsReplyObject.put('reply',ctsReplyMap)	
+		ctsReplyObject.put('reply',ctsReplyMap)
 		ctsReply.put('GetPassage',ctsReplyObject)
 
 
@@ -554,7 +554,7 @@ GetFirstUrn Request
 	 * @returns String
 	 */
 	String getPassageToXML(CtsUrn requestUrn){
-			Integer context = 0 
+			Integer context = 0
 			return getPassageToXML(requestUrn,context)
 	}
 
@@ -564,7 +564,7 @@ GetFirstUrn Request
 	 */
 	String getPassageToXML(String requestUrn){
 			CtsUrn urn = new CtsUrn(requestUrn)
-			Integer context = 0 
+			Integer context = 0
 			return getPassageToXML(urn,context)
 	}
 
@@ -586,7 +586,7 @@ GetFirstUrn Request
 
 
 		Map gpObject = getPassageObject(requestUrn,context)
-		
+
 
 
 		xmlString.append("""
@@ -668,13 +668,13 @@ GetFirstUrn Request
 			ctsReplyMap.put("description",graph.getLabel(urn).toString())
 
 			ctsReplyObject.put('request',ctsRequestMap)
-			ctsReplyObject.put('reply',ctsReplyMap)	
+			ctsReplyObject.put('reply',ctsReplyMap)
 			ctsReply.put('GetDescription',ctsReplyObject)
 
 
 			return ctsReply
 	}
-		
+
 	/**  Overloaded function. Turn a urn-string into a CTS-URN, and return
 	 * an XML fragment, by first making a getDescription reply Map.
 	 * @returns String
@@ -691,7 +691,7 @@ GetFirstUrn Request
 	String getDescriptionToXML(CtsUrn requestUrn){
         StringBuffer xmlString = new StringBuffer()
 		Map gDObject = getDescriptionObject(requestUrn)
-		
+
 
 		xmlString.append("""
 			<GetDescription xmlns:cts="http://chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">
@@ -735,5 +735,5 @@ GetFirstUrn Request
 	}
 
 
-   
+
 }

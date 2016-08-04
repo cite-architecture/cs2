@@ -3,9 +3,10 @@ package edu.holycross.shot.sparqlcts
 import static org.junit.Assert.*
 import org.junit.Test
 import org.custommonkey.xmlunit.*
+
 import edu.harvard.chs.cite.CtsUrn
-import edu.holycross.shot.citeservlet.Sparql
-import edu.holycross.shot.sparqlcts.CtsGraph
+//import edu.holycross.shot.citeservlet.Sparql
+//import edu.holycross.shot.sparqlcts.CtsGraph
 
 
 class TestGetRangeNodesNotionalIntegr extends GroovyTestCase {

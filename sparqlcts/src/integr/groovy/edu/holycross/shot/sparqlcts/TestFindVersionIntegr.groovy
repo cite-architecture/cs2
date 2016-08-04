@@ -5,8 +5,8 @@ import org.junit.Test
 
 
 import edu.harvard.chs.cite.CtsUrn
-import edu.holycross.shot.citeservlet.Sparql
-import edu.holycross.shot.sparqlcts.CtsGraph
+//import edu.holycross.shot.citeservlet.Sparql
+//import edu.holycross.shot.sparqlcts.CtsGraph
 
 
 class TestFindVersionIntegr extends GroovyTestCase {
@@ -15,10 +15,10 @@ class TestFindVersionIntegr extends GroovyTestCase {
   Sparql sparql = new Sparql(baseUrl)
   CtsGraph graph = new CtsGraph(sparql)
 
-  
+
   CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.1")
   CtsUrn nonextant_urn = new CtsUrn("urn:cts:greekLit:tlgXXX.tlgXX:1.1")
-  
+
   @Test
   void testFindVersion() {
     // because there is only one version in the test data set, we
@@ -37,7 +37,7 @@ class TestFindVersionIntegr extends GroovyTestCase {
 	try {
 		expectedVersion = graph.findVesion(nonextant_urn)
 	} catch (Exception e) {
-	    expectedVersion = ""	
+	    expectedVersion = ""
 	}
     assert expectedVersion == ""
   }

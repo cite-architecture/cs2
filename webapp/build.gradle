@@ -1,4 +1,22 @@
-// Run webapp as /citeservlet:
+buildscript {
+  repositories {
+    jcenter()
+    // enable this to use snapshot versions of Gretty:
+    // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+  }
+
+  dependencies {
+    classpath 'org.akhikhl.gretty:gretty:+'
+  }
+}
+
+repositories {
+  jcenter()
+  // enable this to use snapshot versions of Gretty:
+  // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+}
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
 gretty {
     contextPath = '/citeservlet'
 }

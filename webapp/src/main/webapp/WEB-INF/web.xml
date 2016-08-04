@@ -5,84 +5,34 @@
     "http://java.sun.com/xml/ns/j2ee
     http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     version="2.4">
-  
+
 
     <servlet>
       <servlet-name>GroovyServlet</servlet-name>
       <servlet-class>groovy.servlet.GroovyServlet</servlet-class>
     </servlet>
 
-    <welcome-file-list>
-      <welcome-file>index.html</welcome-file>
-    </welcome-file-list>
-
-    
-    <!-- useful for testing: -->
     <servlet-mapping>
         <servlet-name>GroovyServlet</servlet-name>
         <url-pattern>*.groovy</url-pattern>
     </servlet-mapping>
 
-    <!-- CTS service -->
-    <servlet-mapping>
-      <servlet-name>GroovyServlet</servlet-name>
-      <url-pattern>/texts</url-pattern>
-    </servlet-mapping>
-
-
-<!--
-    
     <servlet-mapping>
         <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/default</url-pattern>
+        <url-pattern>/root</url-pattern>
     </servlet-mapping>
 
 
     <servlet-mapping>
         <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/browse</url-pattern>
+        <url-pattern>/api</url-pattern>
+	<init-param>
+	  <param-name>tripleserver</param-name>
+	  <param-value>http://localhost:3030/ds/</param-value>
+	</init-param>
     </servlet-mapping>
 
-
-    <servlet-mapping>
-        <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/browseimg</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/browseill</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet-mapping>
-        <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/overview</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet-mapping>
-        <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/svcforms</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/images</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet-mapping>
-        <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/collections</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet-mapping>
-        <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/indices</url-pattern>
-    </servlet-mapping>
-    -->
-    
-
+    <welcome-file-list>
+        <welcome-file>root</welcome-file>
+    </welcome-file-list>
 </web-app>

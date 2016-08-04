@@ -1,11 +1,23 @@
-/*
-Root build file defines plugin usage and dependencies for all subprojects,
-and two server farms for integration testing, one running just fuseki
-with a test data set loaded, the other running both fuseki and the
-current build of citeservlet.
- */
+buildscript {
+  repositories {
+    jcenter()
+    // enable this to use snapshot versions of Gretty:
+    // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+  }
 
-import org.apache.tools.ant.filters.*
+  dependencies {
+    classpath 'org.akhikhl.gretty:gretty:+'
+  }
+}
+
+repositories {
+  jcenter()
+  // enable this to use snapshot versions of Gretty:
+  // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+}
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+
 
 task configure {
   description = "Generates fuseki configuration file based on current project location."
@@ -23,52 +35,17 @@ task configure {
   }
 }
 
+
 allprojects {
   apply from: "${rootProject.rootDir}/versions.gradle"
   version = "1.0.0"
-
-
-  task vmap << { task ->
-    println "\nDependencies for ${version} in ${task.project.name}:"
-    versionMap.keySet().sort().each { k ->
-      print k
-      Integer spaces = 15 - k.size()
-      Integer idx = 0
-      while(idx < spaces) {
-	print " "
-	idx++;
-      }
-      println versionMap[k]
-    }
-    println ""
-  }
-  vmap.description = "Displays versions of all dependencies"
-
-  task seesrc << { task ->
-    println "\nFiles on runtime CP for ${version} in ${task.project.name}:"
-    task.project.runtimeClasspath.getFiles().each {
-      println it
-    }
-
-    println "\n"
-    println "\nSource sets files:"
-    task.project.sourceSets.each { ss ->
-      println "Source set ${ss} has " + ss.allSource.getSrcDirs()
-    }
-
-
-    println "\nconfigurations:"
-    task.project.configurations.each { c ->
-      println "${c} has ..."
-    }
-  }
-  seesrc.description = "See info about some settings for project."
 }
+
 
 subprojects {
   apply plugin: "groovy"
   // plugins shared across subprojects:
-  apply from: "${rootProject.rootDir}/common/common.plugin"
+  //apply from: "${rootProject.rootDir}/common/common.plugin"
 
 
   configurations.compile.transitive = true
@@ -95,7 +72,7 @@ subprojects {
     compile group: 'edu.holycross.shot', name: 'prestochango', version: versionMap['prestochango']
     compile group: 'commons-io', name: 'commons-io', version: versionMap['commonsio']
 
-    testCompile group: 'com.github.rjeschke', name: 'txtmark', version: '0.11'
+    //testCompile group: 'com.github.rjeschke', name: 'txtmark', version: '0.11'
 
   }
 
@@ -119,103 +96,23 @@ subprojects {
   }
 }
 
-
-
-project(":specs") {
-  apply plugin: "java"
-  dependencies {
-    compile project(":sparqlcts")
-    testCompile project(":sparqlcts")
+farms {
+  farm 'suite', {
+    webapp ":webapp"
+    webapp ":sparqlcts"
+    webapp "${rootDir}/fuseki/fuseki.war"
   }
-}
-
-project(":webapp") {
-  apply plugin: "war"
-
-  repositories {
-    mavenCentral()
-    maven {
-      url "http://beta.hpcc.uh.edu/nexus/content/groups/public"
-    }
+  farm 'fuse', {
+    webapp "${rootDir}/fuseki/fuseki.war"
   }
 
 }
 
 
-
-project(":sparqlcts") {
-  apply plugin: 'war'
-  // make integration tests a separate source set:
-  version="1.0.0"
-  sourceSets {
-    integr {
-    }
-  }
-
-  dependencies {
-    compile project(":common")
-    testCompile project(":common")
-
-    // Need to define all dependencies for integration tests:
-    integrCompile "junit:junit:${versionMap['junit']}"
-    integrCompile project(":sparqlcts")
-    integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
-  }
-}
-
-
-
-project(":orca") {
-  // make integration tests a separate source set:
-  sourceSets {
-    integr {
-    }
-  }
-
-  dependencies {
-    compile project(":common")
-    testCompile project(":common")
-
-    // Need to define all dependencies for integration tests:
-    integrCompile "junit:junit:${versionMap['junit']}"
-    integrCompile project(":sparqlcts")
-    integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
-  }
-}
-
-project(":sparqlcc") {
-  // make integration tests a separate source set:
-  sourceSets {
-    integr {
-    }
-  }
-  dependencies {
-    compile project(":common")
-    testCompile project(":common")
-
-    // Need to define all dependencies for integration tests:
-    integrCompile "junit:junit:${versionMap['junit']}"
-    integrCompile project(":sparqlcc")
-    integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
-  }
-}
-
-project(":graph") {
-  // make integration tests a separate source set:
-  sourceSets {
-    integr {
-    }
-  }
-
-  dependencies {
-    compile project(":common")
-    compile project(":sparqlcts")
-    testCompile project(":common")
-
-    // Need to define all dependencies for integration tests:
-    integrCompile "junit:junit:${versionMap['junit']}"
-    integrCompile project(":graph")
-    integrCompile project(":sparqlcts")
-    integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
+products {
+  product 'suite', {
+    webapp ":webapp"
+    webapp ":sparqlcts"
+    webapp "${rootDir}/fuseki/fuseki.war"
   }
 }

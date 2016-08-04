@@ -1,7 +1,4 @@
-package edu.holycross.shot.sparqlcts
-import edu.holycross.shot.sparqlcts.CtsGraph
-import edu.holycross.shot.sparqlcts.CtsDefinitions
-import edu.holycross.shot.citeservlet.Sparql
+import edu.holycross.shot.sparqlcts.*
 import edu.harvard.chs.cite.CtsUrn
 
 String contentType
@@ -120,7 +117,7 @@ if (request.getParameter("level")) {
 
 
 if (!done) {
-	String baseUrl = context.getInitParameter('tripleserver') 
+	String baseUrl = context.getInitParameter('tripleserver')
 		Sparql sparql = new Sparql(baseUrl)
 		CtsGraph graph = new CtsGraph(sparql)
 		CtsReply reply = new CtsReply( sparql, graph)

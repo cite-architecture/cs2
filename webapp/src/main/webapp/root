@@ -1,0 +1,43 @@
+
+
+html.html {
+	head {
+		title("Multiple web apps under gretty")
+			link(href : "cts-ui/css/cts-core.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
+
+	}
+
+	body {
+
+		header("Gretty web apps")
+			nav {
+
+				p {
+					a(href : "http://www.homermultitext.org/hmt-doc/", "HMT Doc'y things")
+				}
+
+			}
+
+		article {
+			p("Root for a full-blown CITE service suite.")
+
+			p {
+				mkp.yield ("Try a relative URN to ")
+				a(href : "../sparqlcts", "CTS service")
+			}
+
+
+
+				footer{
+					p {
+						a(href :"http://cite-architecture.github.io", "More about the CITE Architecture and the CTS protocol.")
+					}
+					p {
+						code("sparqlcts")
+							mkp.yield (" is licensed under the terms of the ")
+							a(href : "gpl-3.0.txt", "GPL, version 3.")
+					}
+				}
+		}
+	}
+}

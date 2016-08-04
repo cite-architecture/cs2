@@ -5,8 +5,8 @@ import org.junit.Test
 
 
 import edu.harvard.chs.cite.CtsUrn
-import edu.holycross.shot.citeservlet.Sparql
-import edu.holycross.shot.sparqlcts.CtsGraph
+//import edu.holycross.shot.citeservlet.Sparql
+//import edu.holycross.shot.sparqlcts.CtsGraph
 
 
 
@@ -23,7 +23,7 @@ class TestForLeafIntegr extends GroovyTestCase {
   CtsUrn bookUrn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1")
   CtsUrn leafWithSubstr = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.1@μῆνιν[1]")
   CtsUrn oneLevelVersion = new CtsUrn("urn:cts:hmtDemo:goethe.erlkoenig.deu:1")
-  
+
   @Test
   void testLine() {
     assert  graph.isLeafNode(lineUrn)
@@ -35,5 +35,5 @@ class TestForLeafIntegr extends GroovyTestCase {
   void testOneLevel(){
 	assert graph.isLeafNode(oneLevelVersion)
   }
-  
+
 }

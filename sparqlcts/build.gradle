@@ -1,21 +1,44 @@
 buildscript {
   repositories {
+    jcenter()
     mavenCentral()
     maven {
       url "http://beta.hpcc.uh.edu/nexus/content/groups/public"
     }
   }
+
   dependencies {
+    classpath 'org.akhikhl.gretty:gretty:+'
     classpath group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
   }
 }
 
-/*
-task copyResources(type: Copy) {
-    from "x"
-    into "${buildDir}"
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+
+
+repositories {
+  jcenter()
+  // enable this to use snapshot versions of Gretty:
+  // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
 }
-*/
+
+sourceSets {
+  integr {
+  }
+}
+
+dependencies {
+  //compile project(":common")
+  //testCompile project(":common")
+
+  // Need to define all dependencies for integration tests:
+  integrCompile "junit:junit:${versionMap['junit']}"
+  integrCompile project(":sparqlcts")
+  integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
+}
+
+
 
 farm {
     integrationTestTask = 'ctsIntegration'
@@ -33,32 +56,17 @@ test {
 task ctsIntegration(type: Test, dependsOn: 'test') {
   description  = "Runs integration tests against test data set served from fuseki."
   outputs.upToDateWhen { false }
-    include '**/*Integr.*'
-	//include '**/TestReply*Integr.*'
-	//include '**/TestResolveVersionIntegr.*'
-	//include '**/TestURNCheckIntegr.*'
-	//include '**/TestReplyGetPrevNextIntegr.*'
-	//include '**/TestGVRIntegr.*'
-	//include '**/TestReplyGetValidReffIntegr.*'
-	//include '**/TestReplyGetPassageIntegr.*'
-	//include '**/TestReplyGetPassagePlusIntegr.*'
-	//include '**/TestGetFirstUrnIntegr.*'
-	//include '**/TestReplyGetFirstUrnIntegr.*'
-	//include '**/TestOHCO2ConstructionIntegr.*'
-	//include '**/TestMetadataIntegr.*'
-	//include '**/TestGetRangeForContextIntegr.*'
-	//include '**/TestPrevIntegr.*'
-	//include '**/TestNextIntegr.*'
-	//include '**/TestDescrsIntegr.*'
+  include '**/*Integr.*'
 
- testClassesDir = sourceSets.integr.output.classesDir
- classpath = sourceSets.integr.runtimeClasspath
+  testClassesDir = sourceSets.integr.output.classesDir
+  classpath = sourceSets.integr.runtimeClasspath
 }
 ctsIntegration.doFirst {
   System.out.println "Running CTS integration tests now...."
 }
 
+
 gretty {
-  initParameter("tripleserver", "http://localhost:8080/fuseki/cts/query")
-  initParameter("version","CS2 ANEW")
+  initParameter("tripleserver", "http://localhost:8080/fuseki/ds/query")
+  initParameter("version","cs2 pre-release 1.0")
 }

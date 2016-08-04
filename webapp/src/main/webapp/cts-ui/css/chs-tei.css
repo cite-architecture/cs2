@@ -1,0 +1,278 @@
+
+:lang(ar){
+	text-align: right;
+}
+ 
+:lang(ar) .tei_l .citation_value {
+	float: right;
+	margin-left: 3em;
+}
+ 
+ 
+.tei_add {
+	color: red;
+	vertical-align: super;
+}
+ 
+.tei_bibl {
+	display: block;
+	color: maroon;
+	margin-left: 7em;
+	font-size: 70%;
+	margin-bottom: 1em;
+}
+ 
+.tei_bibl:before {
+	content: " (";
+}
+ 
+.tei_bibl:after {
+	content: ") ";
+}
+ 
+.tei_note .tei_bibl {
+	display: inline;
+	color: maroon;
+	margin-left: 0em;
+	font-size: 100%;
+	margin-bottom: 0em;
+}
+ 
+.tei_note .tei_bibl:before {
+	content: "";
+}
+ 
+.tei_note .tei_bibl:after {
+	content: "";
+}
+ 
+.tei_choice {
+	color: #09f;
+}
+.tei_choice:before {	
+	content: "( ";
+}
+ 
+.tei_choice:after {	
+	content: " )";
+}
+ 
+.tei_corr {
+	color: green;
+}
+ 
+.tei_choice .tei_corr:before{
+	content: "→";
+}
+ 
+ 
+.tei_cit {	
+	color: navy;
+}
+ 
+ 
+.tei_del {
+	text-decoration: line-through;
+	color: red;
+}
+ 
+.div_book {
+	margin: 2em;
+	display: block;
+}
+ 
+.div_chapter {	}
+.div_comment {	}
+.div_lemma {	}
+.div_ref {	}
+.div_scholion {	}
+.div_section {	}
+ 
+ 
+ 
+.citation_value {
+	font-size: 125%;
+	color: maroon;
+	margin-bottom: 0.5em;
+}
+ 
+ 
+.tei_lb {
+	margin-left: 0.5em;
+	margin-right: 0.25em;
+	border-left: 2px solid #bbb;
+	color: #bbb;
+}
+ 
+.tei_pb {
+	display: block;
+	color: #bbb;
+	text-align: right;
+}
+ 
+.tei_l .citation_value {
+	margin-right: 1em;
+	color: #aaa;
+	background-color:inherit;
+	margin-right: 3em;
+	font-size: 100%;
+}
+ 
+.chs_verse {
+	display: block;
+	margin-top: 0.5em;
+}
+ 
+.chs_verse .citation_value {
+	font-size: 100%;
+	margin-right: 0.5em;
+	float: left;
+}
+ 
+.tei_expan {	
+	color: green;
+}
+ 
+.tei_expan:before {
+	content: "(";
+}
+ 
+.tei_expan:after {
+	content: ")";
+}
+ 
+ 
+.tei_foreign	 {	}
+ 
+ 
+.tei_gap {	
+	background: white;
+	border-top: 1px solid #aab;
+	border-left: 1px solid #aab;
+	color: grey;
+	font-size: 80%;
+}		
+ 
+ 
+.unit_line:after {
+	color: grey;
+	content: " line(s) ";
+}
+ 
+.unit_char:after {
+	color: grey;
+	content: " char(s) ";
+}
+ 
+.tei_head {	
+	font-size: 125%;
+	margin-bottom: 0.5em;
+}
+ 
+.tei_l {	}
+ 
+.tei_lg {
+	padding: 15px;
+}
+ 
+.tei_lg > .citation_value {
+	margin-left: -15px;
+	margin-bottom: 15px;
+	display: block;
+}
+ 
+.tei_note {	
+	display: none;
+	float: right;
+	width: 40%;
+	font-size: 85%;
+	border-left: 1px solid black;
+	padding-left: 1em;
+}
+ 
+.num_value {
+	color: green;
+}
+ 
+.num_value:before {
+	content: "=";
+}
+ 
+ 
+.tei_num {	}
+ 
+p {
+	display: block;
+	margin-bottom: 0.5em;
+	
+}
+ 
+.tei_q:before {	
+	content: "“";
+}
+ 
+.tei_q:after {	
+	content: "”";
+}
+ 
+.tei_quote:before {	
+	content: "“";
+}
+ 
+.tei_quote:after {	
+	content: "”";
+}
+ 
+.chs_word {	
+	border: 1px solid #BBF;
+}
+ 
+.unrecognized_seg {	
+	/* border: 1px solid red; */
+}
+ 
+.tei_sic {
+	color: navy;
+}
+ 
+.tei_sic:after{
+	content: " [sic]";
+}
+ 
+.tei_supplied:before {	
+	content: "[";
+}
+.tei_supplied:after {	
+	content: "]";
+}
+ 
+.tei_sp {
+	display: block;
+}
+ 
+.tei_speaker {
+	font-weight: bold;
+}
+ 
+.tei_speaker:after {
+	content: " — ";
+}
+ 
+.tei_supplied {
+	color: #69C;
+}
+ 
+.reason_lost {
+	color: #bbb;
+}
+ 
+.unrecognized_reason {	
+	color: red;
+	background-color: red;
+}
+ 
+.tei_unclear {	
+	color: #777;
+	border-bottom: 1px dashed black;
+}
+ 

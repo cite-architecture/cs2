@@ -2,12 +2,12 @@ package edu.holycross.shot.sparqlcts
 
 import edu.harvard.chs.cite.CtsUrn
 
-abstract class QueryBuilder {
+class QueryBuilder {
 
 
+  static String prefixPhrase  = "PREFIX hmt:        <http://www.homermultitext.org/hmt/rdf/>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX dcterms: <http://purl.org/dc/terms/>\nPREFIX cts:        <http://www.homermultitext.org/cts/rdf/>\nPREFIX cite:        <http://www.homermultitext.org/cite/rdf/>\n"
 
-
-	/** Builds SPARQL query string to retrieve all 
+	/** Builds SPARQL query string to retrieve all
 	 * relevant data about a citable leaf node.
 	 */
 	static String getLeafNodeQuery(CtsUrn urn) {
@@ -15,8 +15,8 @@ abstract class QueryBuilder {
 	}
 
 	static String getLeafNodeQuery(CtsUrn urn, Integer context) {
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 
 		SELECT ?psg ?txt ?anc ?xpt ?xmlns ?xmlnsabbr ?nxt WHERE {
 			?psg cts:isPassageOf <${urn.getUrnWithoutPassage()}> .
@@ -46,19 +46,19 @@ abstract class QueryBuilder {
 			FILTER (?s <= ?max) .
 				FILTER (?s >= ?min) .
 		}
-		ORDER BY ?s 
+		ORDER BY ?s
 
 			"""
 	}
 
 
 
-	/** Builds SPARQL query string to retrieve a 
+	/** Builds SPARQL query string to retrieve a
 	 * rdf label fo a URN.
 	 */
 	static String getRdfLabel(CtsUrn urn) {
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 		SELECT ?label WHERE {
 			<${urn}> rdf:label ?label .
 		}
@@ -67,15 +67,15 @@ abstract class QueryBuilder {
 
 
 	/** Builds SPARQL query string to find
-	 * URN of leaf node preceding the 
+	 * URN of leaf node preceding the
 	 * requested leaf node.
 	 * @param urn URN at leaf node level.
 	 * @returns A complete SPARQL query string.
 	 */
 	static String getPrevUrnQuery(CtsUrn urn) {
 		String workUrnStr = urn.getUrnWithoutPassage()
-			return """
-			${CtsDefinitions.prefixPhrase}
+			return prefixPhrase + """
+
 		SELECT ?prevUrn ?prevSeq WHERE {
 			<${urn}> cts:prev ?prevUrn .
 				?prevUrn cts:hasSequence ?prevSeq .
@@ -87,15 +87,15 @@ abstract class QueryBuilder {
 
 
 	/** Builds SPARQL query string to find
-	 * URN of leaf node following the 
+	 * URN of leaf node following the
 	 * requested leaf node.
 	 * @param urn URN at leaf node level.
 	 * @returns A complete SPARQL query string.
 	 */
 	static String getNextUrnQuery(CtsUrn urn) {
 		String workUrnStr = urn.getUrnWithoutPassage()
-			return """
-			${CtsDefinitions.prefixPhrase}
+			return prefixPhrase + """
+
 		SELECT ?nextUrn ?nextSeq WHERE {
 			<${urn}> cts:next ?nextUrn .
 				?nextUrn cts:hasSequence ?nextSeq .
@@ -105,13 +105,13 @@ abstract class QueryBuilder {
 
 
 
-	/** Builds SPARQL query string to retrieve a 
+	/** Builds SPARQL query string to retrieve a
 	 * strcutured description for a version-level CTS URN.
 	 */
 	static String getVersionDescrQuery(CtsUrn psgUrn) {
 		def vers = "${psgUrn.getUrnWithoutPassage()}"
-			return """
-			${CtsDefinitions.prefixPhrase}
+			return prefixPhrase + """
+
 
 		SELECT ?gname ?title ?lab WHERE {
 			<${vers}> dcterms:title ?lab .
@@ -124,14 +124,14 @@ abstract class QueryBuilder {
 	}
 
 
-	/** Builds SPARQL query string to determine if a 
+	/** Builds SPARQL query string to determine if a
 	 * CTS URN refers to a leaf citation node.
 	 * @param urn The urn to test.
 	 * @returns A complete SPARQL query string.
 	 */
 	static String getIsLeafQuery(CtsUrn urn) {
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 		ASK
 			WHERE {
 				<${urn}> cts:hasTextContent ?txt .
@@ -146,8 +146,8 @@ abstract class QueryBuilder {
 	 * @returns A complete SPARQL query string.
 	 */
 	static String getVersionQuery(CtsUrn workLevelUrn) {
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 		SELECT   ?vers ?wk ?type
 			WHERE {
 				?vers cts:belongsTo  <${workLevelUrn.getUrnWithoutPassage()}>  .
@@ -176,8 +176,8 @@ abstract class QueryBuilder {
 	 * @returns A complete SPARQL query string.
 	 */
 	static String getLeafNodeTextQuery(CtsUrn urn, Integer context) {
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 
 		SELECT ?psg ?txt ?anc ?xpt ?nxt ?xmlns ?xmlnsabbr WHERE {
 			?psg cts:isPassageOf <${urn.getUrnWithoutPassage()}> .
@@ -207,9 +207,9 @@ abstract class QueryBuilder {
 			FILTER (?s <= ?max) .
 				FILTER (?s >= ?min) .
 		}
-		ORDER BY ?s 
-			"""        
-	}   
+		ORDER BY ?s
+			"""
+	}
 
 
 	/** Builds SPARQL query string to retrieve
@@ -219,11 +219,11 @@ abstract class QueryBuilder {
 	 * @returns A complete SPARQL query string.
 	 */
 	static String getSeqQuery(CtsUrn urn) {
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 		SELECT ?urn ?seq
 			WHERE  {
-				<${urn}> cts:hasSequence ?seq .       
+				<${urn}> cts:hasSequence ?seq .
 					BIND( <${urn}> as ?urn )
 			}
 		"""
@@ -237,16 +237,16 @@ abstract class QueryBuilder {
 	 * @returns A complete SPARQL query string.
 	 */
 	static String getFirstContainedQuery(CtsUrn containingUrn) {
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 		SELECT   ?urn ?seq
 			WHERE {
 				{
      				?urn cts:containedBy  <${containingUrn}>  .
-					?urn cts:hasSequence ?seq .        
+					?urn cts:hasSequence ?seq .
 				} union {
      				?urn  cts:isPassageOf  <${containingUrn}>  .
-					?urn cts:hasSequence ?seq .        
+					?urn cts:hasSequence ?seq .
 				} union {
 					<${containingUrn}> cts:hasSequence ?seq .
 					bind( <${containingUrn}> as ?urn) .
@@ -265,8 +265,8 @@ abstract class QueryBuilder {
 
 	static String urnForSequence(Integer seq, String versionUrnStr){
 
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 
 		SELECT ?urn WHERE {
 			?urn cts:isPassageOf <${versionUrnStr}> .
@@ -285,72 +285,72 @@ abstract class QueryBuilder {
 	 */
 	static String getLastContainedQuery(CtsUrn containingUrn) {
 
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 		SELECT   ?urn ?seq
 			WHERE {
 				?urn  cts:containedBy*  <${containingUrn}>  .
-					?urn cts:hasSequence ?seq .        
+					?urn cts:hasSequence ?seq .
 			}
 		ORDER BY DESC(?seq)
 			LIMIT 1
 			"""
 	}
 
-	/** Builds SPARQL query string to find the URN 
+	/** Builds SPARQL query string to find the URN
 	 * of the last citable node of a work.
 	 * @param urn The urn to test.
 	 * @returns A complete SPARQL query string.
 	 */
 	static String getLastUrnQuery(CtsUrn versionUrn) {
 
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 		SELECT   ?urn ?seq
 			WHERE {
 				?urn  cts:isPassageOf  <${versionUrn}>  .
-					?urn cts:hasSequence ?seq .        
+					?urn cts:hasSequence ?seq .
 			}
 		ORDER BY DESC(?seq)
 			LIMIT 1
 			"""
 	}
 
-	/* Forms SPARQL query to find all URNs 
+	/* Forms SPARQL query to find all URNs
 	 *  between two leaf-nodes, identified by their sequence numbers
-	 *  (@startCount, @endCount). Requires a version-level URN. 
+	 *  (@startCount, @endCount). Requires a version-level URN.
 	 */
 	static String getRangeUrnsQuery(Integer startCount, Integer endCount, String versionUrn) {
-		return """
-			${CtsDefinitions.prefixPhrase}
-		SELECT distinct ?ref 
+		return prefixPhrase + """
+
+		SELECT distinct ?ref
 			WHERE {
 					?ref cts:isPassageOf <${versionUrn}> .
 					?ref cts:hasSequence ?s .
 					?ref cts:citationDepth ?d .
 					?ref cts:hasTextContent ?t .
 
-					FILTER (?s >= "${startCount}"^^xsd:integer) .    
+					FILTER (?s >= "${startCount}"^^xsd:integer) .
 					FILTER (?s <= "${endCount}"^^xsd:integer) .
 			}
 		ORDER BY ?s
 			"""
 	}
 
-	/* Forms SPARQL query to find all URNs, and their accompanying text 
+	/* Forms SPARQL query to find all URNs, and their accompanying text
 	 *  between two leaf-nodes, identified by their sequence numbers
-	 *  (@startCount, @endCount). Requires a version-level URN. 
+	 *  (@startCount, @endCount). Requires a version-level URN.
 	 */
 	static String getRangeNodesQuery(Integer startCount, Integer endCount, String versionUrn) {
-		return """
-			${CtsDefinitions.prefixPhrase}
-		SELECT ?ref ?t ?anc ?xpt ?nxt ?xmlns ?xmlnsabbr   
+		return prefixPhrase + """
+
+		SELECT ?ref ?t ?anc ?xpt ?nxt ?xmlns ?xmlnsabbr
 			WHERE {
 				?ref cts:isPassageOf <${versionUrn}> .
 					?ref cts:hasSequence ?s .
 					?ref cts:citationDepth ?d .
 					?ref cts:hasTextContent ?t .
-					optional { 
+					optional {
 						?ref hmt:xmlOpen ?anc .
 							?ref hmt:xpTemplate ?xpt .
 							?ref cts:xmlnsabbr ?xmlnsabbr .
@@ -360,20 +360,20 @@ abstract class QueryBuilder {
 						?ref cts:next ?nxt .
 					}
 
-				FILTER (?s >= "${startCount}"^^xsd:integer) .    
+				FILTER (?s >= "${startCount}"^^xsd:integer) .
 				FILTER (?s <= "${endCount}"^^xsd:integer) .
 			}
 		ORDER BY ?s
 			"""
 	}
 
-	/* Forms SPARQL query to find the type of an version-level URN (Translation or Edition); 
+	/* Forms SPARQL query to find the type of an version-level URN (Translation or Edition);
 	 * if the URN points to an exemplar, returns the type of the parent Version.
 	 * @returns a Sparql query as String
 	 **/
 	static String getVersionTypeQuery(String urn) {
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 		SELECT ?t
 			WHERE {
 
@@ -389,13 +389,13 @@ abstract class QueryBuilder {
 	}
 
 
-	/* Forms SPARQL query to find the language of an Edition, Translation, or 
+	/* Forms SPARQL query to find the language of an Edition, Translation, or
 	 * derived Exemplar.
 	 * @returns a Sparql query as String
 	 **/
 	static String getLangQuery(String urn) {
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 		SELECT ?l
 			WHERE {
 
@@ -424,8 +424,8 @@ abstract class QueryBuilder {
 	 *  given a version- or exemplar-level URN and an integer (depth) as input
 	 */
 	static String getWorkGVRQuery(CtsUrn urn, Integer level) {
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 		SELECT ?ref (MIN(?s) AS ?st)
 			WHERE {
 			?leaf cts:isPassageOf <${urn.toString()}> .
@@ -445,48 +445,48 @@ abstract class QueryBuilder {
 	 *  than the maximum citation-depth.
 	 */
 	static String getFillGVRQuery(Integer startCount, Integer endCount, Integer level, String workUrn) {
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 		SELECT distinct ?ref WHERE {
-			  ?urn cts:isPassageOf <${workUrn}> . 	
-			  ?urn cts:hasSequence ?s . 
+			  ?urn cts:isPassageOf <${workUrn}> .
+			  ?urn cts:hasSequence ?s .
 			  {
 			  	?urn cts:citationDepth ${level} .
 			  	bind (?urn as ?ref).
 			  } union {
 			  	?container cts:contains ?urn.
 				?container cts:citationDepth ${level} .
-			  	bind (?container as ?ref).    
+			  	bind (?container as ?ref).
 			  }
-						
-			  FILTER (?s >= "${startCount}"^^xsd:integer) . 					
-			  FILTER (?s <= "${endCount}"^^xsd:integer) . 					
-						
-			} 		ORDER BY ?s 			
+
+			  FILTER (?s >= "${startCount}"^^xsd:integer) .
+			  FILTER (?s <= "${endCount}"^^xsd:integer) .
+
+			} 		ORDER BY ?s
 
 			"""
 	}
 
 	static String getGVRNodeQuery(CtsUrn urn, Integer level) {
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 		SELECT ?ref (MIN(?s) AS ?startSeq)
 			WHERE {
-				<${urn}> cts:contains ?leaf . 	
+				<${urn}> cts:contains ?leaf .
 			  ?leaf cts:containedBy* ?ref .
-			  ?ref cts:citationDepth  ${level} . 			
+			  ?ref cts:citationDepth  ${level} .
 			  ?leaf cts:hasSequence ?s .	}
 		GROUP BY ?ref
 			ORDER BY ?startSeq
 			"""
-	}  
+	}
 
 /** Forms SPARQL query to find greatest citation depth
 * anywhere in a work. Input is a work-level URN.
 */
 	static String getLeafDepthForWorkQuery(CtsUrn urn) {
-		return """
-			${CtsDefinitions.prefixPhrase}
+		return prefixPhrase + """
+
 
 		SELECT (MAX(?d) AS ?deepest) WHERE {
 			{
@@ -509,8 +509,8 @@ abstract class QueryBuilder {
 */
 	static String getLeafDepthQuery(CtsUrn urn) {
 		String workUrnStr = urn.getUrnWithoutPassage()
-			return """
-			${CtsDefinitions.prefixPhrase}
+			return prefixPhrase + """
+
 		SELECT (MAX(?d) AS ?deepest)
 			WHERE {
 				?c cts:isPassageOf <${workUrnStr}> .
@@ -520,5 +520,4 @@ abstract class QueryBuilder {
 	}
 
 
-} 
-
+}

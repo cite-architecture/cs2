@@ -1,7 +1,7 @@
 package edu.holycross.shot.sparqlcts
-import groovy.time.TimeCategory 
+import groovy.time.TimeCategory
 import groovy.time.TimeDuration
-import edu.holycross.shot.citeservlet.Sparql
+
 
 import edu.harvard.chs.cite.CtsUrn
 import groovy.json.JsonSlurper
@@ -16,11 +16,11 @@ class CtsGraph {
   Sparql sparql
 
 
-  /** Constructor with required SPARQL endpoint object */  
+  /** Constructor with required SPARQL endpoint object */
   CtsGraph(Sparql endPoint) {
     sparql = endPoint
   }
-  
+
   /**  Determines whether or not a CTS URN refers to a leaf
    * citation node by consulting the SPARQL endpoint to see
    * if the node has text content or not.
@@ -57,7 +57,7 @@ class CtsGraph {
 	String ctsReply = ""
 	Integer int1
 	Integer int2
-	Integer startAtStr 
+	Integer startAtStr
 	Integer endAtStr
 
 	CtsUrn urn = resolveVersion(submittedUrn)
@@ -65,7 +65,7 @@ class CtsGraph {
 
 	// Three Possibilities: node, container, range
 	if (isLeafNode(urn)){
-		
+
 			String leafUrnQuery = QueryBuilder.getLeafNodeTextQuery(urn)
             ctsReply =  sparql.getSparqlReply("application/json", leafUrnQuery)
             def slurper = new groovy.json.JsonSlurper()
@@ -82,7 +82,7 @@ class CtsGraph {
 						typeExtras['xmlns'] = b.xmlns?.value
 						typeExtras['xmlnsabbr'] = b.xmlnsabbr?.value
 					} else {
-						typeExtras['type'] = "unknown"				
+						typeExtras['type'] = "unknown"
 					}
 					Map tempMap = [ 'rangeNode':rn, 'typeExtras':typeExtras ]
 					responseList.add(tempMap)
@@ -99,7 +99,7 @@ class CtsGraph {
 			} else {
 				startAtStr = getFirstSequence(urn1)
 			}
-			
+
 			if (isLeafNode(urn2)) {
 				endAtStr = getSequence(urn2)
 			} else {
@@ -109,7 +109,7 @@ class CtsGraph {
 		    int1 = startAtStr.toInteger()
 			int2 = endAtStr.toInteger()
 
-		      
+
 			listUrnsQuery = QueryBuilder.getRangeNodesQuery(int1, int2, "${urn.getUrnWithoutPassage()}")
             ctsReply =  sparql.getSparqlReply("application/json", listUrnsQuery)
             def slurper = new groovy.json.JsonSlurper()
@@ -127,15 +127,15 @@ class CtsGraph {
 						typeExtras['xmlns'] = b.xmlns?.value
 						typeExtras['xmlnsabbr'] = b.xmlnsabbr?.value
 					} else {
-						typeExtras['type'] = "unknown"				
+						typeExtras['type'] = "unknown"
 					}
 					Map tempMap = [ 'rangeNode':rn, 'typeExtras':typeExtras ]
 					responseList.add(tempMap)
                 }
             }
-				
+
 		} else { // must be containing element
-			
+
 			startAtStr = getFirstSequence(urn)
 			endAtStr = getLastSequence(urn)
 			// error check these…
@@ -157,7 +157,7 @@ class CtsGraph {
 						typeExtras['xmlns'] = b.xmlns?.value
 						typeExtras['xmlnsabbr'] = b.xmlnsabbr?.value
 					} else {
-						typeExtras['type'] = "unknown"				
+						typeExtras['type'] = "unknown"
 					}
 					Map tempMap = [ 'rangeNode':rn, 'typeExtras':typeExtras ]
 					responseList.add(tempMap)
@@ -188,7 +188,7 @@ class CtsGraph {
 	String ctsReply = ""
 	Integer int1
 	Integer int2
-	Integer startAtStr 
+	Integer startAtStr
 	Integer endAtStr
 
 	CtsUrn urn = resolveVersion(new CtsUrn (submittedUrn.reduceToNode()))
@@ -196,7 +196,7 @@ class CtsGraph {
 
 	// Three Possibilities: node, container, range
 	if (isLeafNode(urn)){
-		urns.add(urn)	
+		urns.add(urn)
 	} else {
 
 		if (urn.isRange()){
@@ -208,7 +208,7 @@ class CtsGraph {
 			} else {
 				startAtStr = getFirstSequence(urn1)
 			}
-			
+
 			if (isLeafNode(urn2)) {
 				endAtStr = getSequence(urn2)
 			} else {
@@ -219,7 +219,7 @@ class CtsGraph {
 		    int1 = startAtStr.toInteger()
 			int2 = endAtStr.toInteger()
 
-		      
+
 			listUrnsQuery = QueryBuilder.getRangeUrnsQuery(int1, int2, "${urn.getUrnWithoutPassage()}")
             ctsReply =  sparql.getSparqlReply("application/json", listUrnsQuery)
             def slurper = new groovy.json.JsonSlurper()
@@ -229,12 +229,12 @@ class CtsGraph {
                     urns.add(new CtsUrn(b.ref?.value))
                 }
             }
-				
-			
 
-			
+
+
+
 		} else { // must be containing element
-			
+
 			startAtStr = getFirstSequence(urn)
 			endAtStr = getLastSequence(urn)
 			// error check these…
@@ -253,20 +253,20 @@ class CtsGraph {
 
 		}
 	}
-	
+
     return urns
   }
-  
+
   /**  Constructs a version-level CTS URN for a
    * given URN.  If the request URN already has a version,
    * it is returned unchanged.  If the request URN is at the
    * work level, a version attested in the triple store is chosen,
    * and URN referring to that version for the same passage is returned.
    * @param urn A CTS URN reference to resolve to a version-level CTS URN.
-   * @returns A CTS URN at the version level citing the passage in 
+   * @returns A CTS URN at the version level citing the passage in
    * the request urn.
    */
-  CtsUrn resolveVersion(CtsUrn urn) 
+  CtsUrn resolveVersion(CtsUrn urn)
   throws Exception {
     String workLevel = urn.getWorkLevel()
     if ((workLevel == 'VERSION')|(workLevel == 'EXEMPLAR')) {
@@ -278,12 +278,12 @@ class CtsGraph {
 				} else {
 					  return new CtsUrn("${urn.getUrnWithoutPassage()}${ref1.tokenize("@")[0]}-${ref2.tokenize("@")[0]}")
 				}
-		  
+
 	  } else {
 		  if (urn.hasSubref()){
 			  return new CtsUrn("${urn.getUrnWithoutPassage()}${urn.passageComponent.tokenize("@")[0]}")
 		  } else {
-			  return urn 
+			  return urn
 		  }
 	  }
 
@@ -295,31 +295,31 @@ class CtsGraph {
 		if (urn.getPassageComponent() != null){
 			resolvedStr += urn.getPassageComponent()
 		}
-	
+
 	try {
 	  return (new CtsUrn(resolvedStr))
 	} catch (Exception e) {
 	  System.err.println ("CtsGraph:resolveVersion: error: ${e}")
 	  throw e
 	}
-	
+
       } else {
 		throw new Exception("CtsGraph: resolveVersion: no version found for urn ${urn}")
       }
     }
   }
-  
-  
+
+
   /** Determines a valid version value for a CTS URN.
    * If the URN is at the version level, this value is simply the
    * version element of the URN.  If the URN is at the work level,
-   * the SPARQL endpoint is consulted and the identifier of 
+   * the SPARQL endpoint is consulted and the identifier of
    * the first version mapped to this work is returned.
    * @param urn CTS URN to find version for.
    * @returns A string with the version identifier component of a
    * version-level URN, without namespace qualifier.
    */
-  String findVersion(CtsUrn urn) 
+  String findVersion(CtsUrn urn)
   throws Exception {
     String workLevel = urn.labelForWorkLevel()
     String vers = null
@@ -359,7 +359,7 @@ class CtsGraph {
     String label  = getLabel(urn)
 	String nodeLang = getLanguage(urn)
 
-	
+
     ArrayList leafNodes = getRangeNodes(urn)
 
     CtsUrn prev = getPrevUrn(urn)
@@ -370,7 +370,7 @@ class CtsGraph {
     if (ond == null) {
       System.err.println "COULD NOT MAKE Ohco2Node!"
       System.err.println "${leafNode} (${label}): ${txtContent}"
-    } 
+    }
 
 
     return  ond
@@ -424,7 +424,7 @@ class CtsGraph {
 					  Integer firstSequenceOfUrn = getFirstSequence(queryUrn)
 					  String firstSeqUrn = getUrnForSequence(firstSequenceOfUrn, queryUrn.getUrnWithoutPassage())
 					  replyUrn = getPrevUrn(new CtsUrn(firstSeqUrn))
-			  }	
+			  }
 		  return replyUrn
 	  }
 
@@ -504,14 +504,14 @@ class CtsGraph {
 					  Integer lastSequenceOfUrn = getLastSequence(queryUrn)
 					  String lastSeqUrn = getUrnForSequence(lastSequenceOfUrn, queryUrn.getUrnWithoutPassage())
 					  replyUrn = getNextUrn(new CtsUrn(lastSeqUrn))
-			  }	
+			  }
 
 		  return replyUrn
 	  }
 
 
   /** Gets the TextContent for a CTS Leaf node.
-   * @param urn CTS URN 
+   * @param urn CTS URN
    * @returns String. The Text Content of the CTS Leaf Node.
    */
   String getLeafNodeText(CtsUrn urnSubmitted) {
@@ -530,10 +530,10 @@ class CtsGraph {
     return txtNode
   }
 
-  
+
 
   /** Gets a label for a Cts URN
-   * @param urn CTS URN 
+   * @param urn CTS URN
    * @returns String. A human-readable label for group, work, version, or leaf-node pointed to by the URN.
    */
   String getLabel(CtsUrn urnSubmitted)
@@ -606,7 +606,7 @@ class CtsGraph {
   }
 
 
-    /** Finds the first sequence value for a set of URNs contained 
+    /** Finds the first sequence value for a set of URNs contained
     * by a given URN.
     * @param urn A containing URN.
     * @returns The sequence property of this URN, as an Integer.
@@ -617,7 +617,7 @@ class CtsGraph {
         String ctsReply = sparql.getSparqlReply("application/json", firstContainedQuery)
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(ctsReply)
-        
+
         String intStr
         parsedReply.results.bindings.each { b ->
             if (b.seq) {
@@ -635,17 +635,17 @@ class CtsGraph {
 
     /** Finds the last URN of a version- or exemplar.
     * @param urn A version- or exemplar-URN.
-    * @returns CtsUrn 
+    * @returns CtsUrn
     */
     CtsUrn getLastUrn(CtsUrn requestUrn) {
 		CtsUrn lastUrn
-		CtsUrn urn = resolveVersion(requestUrn)	
+		CtsUrn urn = resolveVersion(requestUrn)
 		String lastUrnQuery = QueryBuilder.getLastUrnQuery(urn)
         String ctsReply = sparql.getSparqlReply("application/json", lastUrnQuery )
 
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(ctsReply)
-        
+
         String urnStr
         parsedReply.results.bindings.each { b ->
             if (b.seq) {
@@ -656,7 +656,7 @@ class CtsGraph {
         return lastUrn
     }
 
-    /** Finds the last sequence value for a set of URNs contained 
+    /** Finds the last sequence value for a set of URNs contained
     * by a given URN.
     * @param urn A containing URN.
     * @returns The sequence property of this URN, as an Integer.
@@ -668,7 +668,7 @@ class CtsGraph {
 
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(ctsReply)
-        
+
         String intStr
         parsedReply.results.bindings.each { b ->
             if (b.seq) {
@@ -690,7 +690,7 @@ class CtsGraph {
     * @throws Exception if urn is not a leaf-node URN, or if a
     * sequence could not be found in the triple store.
     */
-    Integer getSequence(CtsUrn urn) 
+    Integer getSequence(CtsUrn urn)
     throws Exception {
         if (isLeafNode(urn)) {
             StringBuffer reply = new StringBuffer()
@@ -713,10 +713,10 @@ class CtsGraph {
         }
     }
 
-  
+
   /** Given a Cts URN, returns its language, as a string. The language of a Translation (or exemplar
   * derived from a Translation, or for an Edition, or Edition-exemplar, the language of the Work.
-   * @param urn CTS URN 
+   * @param urn CTS URN
    * @returns String. The language of the text.
    */
 	String getLanguage(CtsUrn urn){
@@ -726,7 +726,7 @@ class CtsGraph {
 
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(ctsReply)
-        
+
         parsedReply.results.bindings.each { b ->
 			langString = b.l?.value
 		}
@@ -735,7 +735,7 @@ class CtsGraph {
 
   /** Given a Cts URN, returns a string identifying it as Edition or Translation.
   * If it is an Exemplar, it will return the type of the parent Version.
-   * @param urn CTS URN 
+   * @param urn CTS URN
    * @returns String. "Edition" or "Translation".
    */
    String getVersionType(CtsUrn urn){
@@ -745,7 +745,7 @@ class CtsGraph {
 
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(ctsReply)
-        
+
         parsedReply.results.bindings.each { b ->
 				switch(b.t?.value) {
 					case "http://www.homermultitext.org/cts/rdf/Exemplar"	:
@@ -765,7 +765,7 @@ class CtsGraph {
 
   /** Given a Cts URN, returns a string, "okay" if the URN successfully resolves to a version.
   * Otherwise, returns an error code.
-   * @param urn CTS URN 
+   * @param urn CTS URN
    * @returns String. "okay", or error code.
    */
    String checkUrn(CtsUrn urn){
@@ -777,7 +777,7 @@ class CtsGraph {
 		} catch (Exception e) {
 			responseString = "Invalid URN reference: ${urn}"
 		}
-			
+
 		return responseString
    }
 
@@ -785,7 +785,7 @@ class CtsGraph {
    * @param urnString String
    * @returns ArrayList of CtsUrns
    */
-   ArrayList getValidReff(String urnString){ 
+   ArrayList getValidReff(String urnString){
 		CtsUrn urn = new CtsUrn(urnString)
 		return getValidReff(urn)
    }
@@ -794,7 +794,7 @@ class CtsGraph {
    * @param urnString String
    * @returns ArrayList of CtsUrns
    */
-   ArrayList getValidReff(String urnString, Integer level){ 
+   ArrayList getValidReff(String urnString, Integer level){
 		CtsUrn urn = new CtsUrn(urnString)
 		return getValidReff(urn, level)
    }
@@ -803,16 +803,16 @@ class CtsGraph {
    * @param urnString String
    * @returns ArrayList of CtsUrns
    */
-   ArrayList getValidReff(CtsUrn urn){ 
+   ArrayList getValidReff(CtsUrn urn){
 	   Integer maxLevel = getLeafDepth(urn)
 	   return getValidReff(urn, maxLevel)
    }
 
   /** Given a Cts URN, returns a valid reffs for that urn.
-   * @param urn CTS URN 
+   * @param urn CTS URN
    * @returns ArrayList of CtsUrns
    */
-   ArrayList getValidReff(CtsUrn requestUrn, Integer level){ 
+   ArrayList getValidReff(CtsUrn requestUrn, Integer level){
 	   CtsUrn urn = resolveVersion(requestUrn)
 	   ArrayList returnList = []
 	   // 3 cases to consider:
@@ -834,14 +834,14 @@ class CtsGraph {
 	   return returnList
    }
 
-  /** Gets valid references for a work-level, version-level, or exemplar-level 
+  /** Gets valid references for a work-level, version-level, or exemplar-level
   * CTS URN, without a passage reference.
   * @param CtsUrn urn
   * @param Integer level
   * @returns ArrayList of CtsUrns
   **/
   ArrayList getValidReffForWork(CtsUrn workUrn, Integer level) {
-	  	
+
 		ArrayList reply = []
         CtsUrn urn = resolveVersion(workUrn)
         if (isLeafNode(urn)) {
@@ -860,7 +860,7 @@ class CtsGraph {
         return reply
     }
 
-  /** Gets valid references for a work-level, version-level, or exemplar-level 
+  /** Gets valid references for a work-level, version-level, or exemplar-level
   * CTS URN, with a (single) passage reference.
   * @param CtsUrn urn
   * @param Integer level
@@ -879,7 +879,7 @@ class CtsGraph {
 				  throw new Exception("CtsGraph:getGetValidReff: invalid URN. (${urn})")
 		} else if ((parsedReply.results.bindings.size() == 1) && (parsedReply.results.bindings[0].ref?.value.size() < 1)  ){
 				  throw new Exception("CtsGraph:getGetValidReff: invalid URN. (${urn})")
-		} else { 
+		} else {
 				parsedReply.results.bindings.each { b ->
 					if (b.ref) {
 						reply << "${b.ref?.value}"
@@ -898,7 +898,7 @@ class CtsGraph {
         CtsUrn urn1 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
         CtsUrn urn2 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")
 
-        Integer startAtStr 
+        Integer startAtStr
         Integer endAtStr
 
         if (isLeafNode(urn1)) {
@@ -906,7 +906,7 @@ class CtsGraph {
         } else {
             startAtStr = getFirstSequence(urn1)
         }
-		
+
         if (isLeafNode(urn2)) {
             endAtStr = getSequence(urn2)
         } else {
@@ -932,7 +932,7 @@ class CtsGraph {
         def parsedReply = slurper.parseText(fillReply)
 		if (parsedReply.results.bindings.size() < 2){
 			throw new Exception ("invalid urn")
-		} else { 
+		} else {
 				parsedReply.results.bindings.each { b ->
 					if (b.ref) {
 						reply << "${b.ref?.value}"
@@ -953,7 +953,7 @@ class CtsGraph {
     Integer getLeafDepth(CtsUrn requestUrn) {
         Integer deepestInt = null
         CtsUrn urn = resolveVersion(requestUrn)
-        String ctsReply 
+        String ctsReply
         if (urn.getPassageComponent() == null) {
             ctsReply = sparql.getSparqlReply("application/json", QueryBuilder.getLeafDepthForWorkQuery(urn))
         } else {
@@ -961,7 +961,7 @@ class CtsGraph {
         }
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(ctsReply)
-        
+
         String intStr
         parsedReply.results.bindings.each { b ->
             if (b.deepest) {
@@ -996,7 +996,7 @@ class CtsGraph {
         if (urn.getPassageComponent() == null) {
             // 1. no limiting passage reference:
 
-			thisSequence = getFirstSequence(urn) 
+			thisSequence = getFirstSequence(urn)
 		    replyUrnString = getUrnForSequence(thisSequence, urn.getUrnWithoutPassage())
 
         } else if (urn.isRange()) {
@@ -1022,7 +1022,7 @@ class CtsGraph {
 		return replyUrn
 	}
 
-  /** Given a range-urn defining N leaf-nodes, returns a CtsUrn, as String 
+  /** Given a range-urn defining N leaf-nodes, returns a CtsUrn, as String
    * defining the preceding N leaf-nodes, or all preceding leaf nodes if
    * the param URN starts less than N nodes from the beginning of the text.
    * @param urn CTS URN to test.
@@ -1053,7 +1053,7 @@ class CtsGraph {
 				firstUrnOfRange = getFirstUrn(testFirstUrnOfRange)
 			}
 		} else if (isLeafNode(urn)) {
-		    firstUrnOfRange = urn	
+		    firstUrnOfRange = urn
 		} else {
 			firstUrnOfRange = getFirstUrn(urn)
 		}
@@ -1065,16 +1065,16 @@ class CtsGraph {
 			howMany = howManyIdeally
 		}
 		if (howMany < 1){
-			replyString = ""	
+			replyString = ""
 		} else {
 			startSeq = firstSequenceOfRange - howMany
 			endSeq = (startSeq) + (howMany -1)
 			if (startSeq == endSeq){
 				replyString = "${getUrnForSequence(startSeq,urn.getUrnWithoutPassage())}"
 			} else {
-				Integer leafDepth = getLeafDepth(urn) 
-				ArrayList fillVR =  getFillVR(startSeq, endSeq, leafDepth, "${urn.getUrnWithoutPassage()}") 
-				String startPassage = new CtsUrn(fillVR[0]).passageComponent 
+				Integer leafDepth = getLeafDepth(urn)
+				ArrayList fillVR =  getFillVR(startSeq, endSeq, leafDepth, "${urn.getUrnWithoutPassage()}")
+				String startPassage = new CtsUrn(fillVR[0]).passageComponent
 				String endPassage  = new CtsUrn(fillVR[-1]).passageComponent
 				replyString = "${urn.getUrnWithoutPassage()}${startPassage}-${endPassage}"
 			}
@@ -1082,7 +1082,7 @@ class CtsGraph {
 		return replyString
 	}
 
-  /** Given a range-urn defining N leaf-nodes, returns a CtsUrn, as String 
+  /** Given a range-urn defining N leaf-nodes, returns a CtsUrn, as String
    * defining the next N leaf-nodes, or all followin leaf nodes if
    * the text ends fewer than N nodes after the param URN's ending citation.
    * @param urn CTS URN to test.
@@ -1112,7 +1112,7 @@ class CtsGraph {
 				lastUrnOfRange = new CtsUrn(getUrnForSequence(getLastSequence(testLastUrnOfRange),urn.getUrnWithoutPassage()))
 			}
 		} else if (isLeafNode(urn)) {
-		    lastUrnOfRange = urn	
+		    lastUrnOfRange = urn
 		} else {
 			lastUrnOfRange = new CtsUrn(getUrnForSequence(getLastSequence(urn),urn.getUrnWithoutPassage()))
 		}
@@ -1124,16 +1124,16 @@ class CtsGraph {
 			howMany = howManyIdeally
 		}
 		if (howMany < 1){
-			replyString = ""	
+			replyString = ""
 		} else {
 			startSeq = lastSequenceOfRange + 1
 			endSeq = (startSeq) + (howMany-1)
 			if (startSeq == endSeq){
 				replyString = "${getUrnForSequence(startSeq,urn.getUrnWithoutPassage())}"
 			} else {
-				Integer leafDepth = getLeafDepth(urn) 
-				ArrayList fillVR =  getFillVR(startSeq, endSeq, leafDepth, "${urn.getUrnWithoutPassage()}") 
-				String startPassage = new CtsUrn(fillVR[0]).passageComponent 
+				Integer leafDepth = getLeafDepth(urn)
+				ArrayList fillVR =  getFillVR(startSeq, endSeq, leafDepth, "${urn.getUrnWithoutPassage()}")
+				String startPassage = new CtsUrn(fillVR[0]).passageComponent
 				String endPassage  = new CtsUrn(fillVR[-1]).passageComponent
 				replyString = "${urn.getUrnWithoutPassage()}${startPassage}-${endPassage}"
 			}
@@ -1141,7 +1141,7 @@ class CtsGraph {
 		return replyString
 	}
 
-	/** Given a CtsUrn and a context-integer, returns a range reflecting 
+	/** Given a CtsUrn and a context-integer, returns a range reflecting
 	* the urn's passage, plus context
 	* @param CtsUrn requestUrn
 	* @param Integer context
@@ -1183,21 +1183,21 @@ class CtsGraph {
 				lastSequence = getLastSequence(testLastSequenceOfRange)
 			}
 		} else if (isLeafNode(urn)) {
-		   firstSequence = getSequence(urn) 
+		   firstSequence = getSequence(urn)
 		   lastSequence = firstSequence
 		} else {
 			firstSequence = getFirstSequence(urn)
-			lastSequence = getLastSequence(urn)	
+			lastSequence = getLastSequence(urn)
 		}
 		idealFirstSequence = firstSequence - context
 		idealLastSequence = lastSequence + context
-		if (idealFirstSequence < firstSequenceOfText){ 
-			startSeq = firstSequenceOfText 
+		if (idealFirstSequence < firstSequenceOfText){
+			startSeq = firstSequenceOfText
 		} else {
 			startSeq = idealFirstSequence
 		}
-		if (idealLastSequence > lastSequenceOfText){ 
-			endSeq = lastSequenceOfText 
+		if (idealLastSequence > lastSequenceOfText){
+			endSeq = lastSequenceOfText
 		} else {
 			endSeq = idealLastSequence
 		}

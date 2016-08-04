@@ -6,9 +6,9 @@ import org.junit.Test
 
 
 import edu.harvard.chs.cite.CtsUrn
-import edu.holycross.shot.citeservlet.Sparql
-import edu.holycross.shot.sparqlcts.CtsGraph
-import edu.holycross.shot.sparqlcts.CtsReply
+//import edu.holycross.shot.citeservlet.Sparql
+//import edu.holycross.shot.sparqlcts.CtsGraph
+//import edu.holycross.shot.sparqlcts.CtsReply
 
 
 class TestGetFirstUrnIntegr extends GroovyTestCase {
@@ -25,7 +25,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
 	CtsUrn testReply = graph.getFirstUrn(urn)
 
 	assert testReply.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1"
-    
+
   }
 
 
@@ -36,7 +36,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
 	CtsUrn testReply = graph.getFirstUrn(urn)
 
 	assert testReply.toString() == "urn:cts:greekLit:tlg0016.tlg001.engTest:1.0"
-    
+
   }
 
   @Test
@@ -46,7 +46,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
 	CtsUrn testReply = graph.getFirstUrn(urn)
 
 	assert testReply.toString() == "urn:cts:greekLit:tlg0016.tlg001.engTest:3.1"
-    
+
   }
 
   @Test
@@ -56,7 +56,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
 	CtsUrn testReply = graph.getFirstUrn(urn)
 
 	assert testReply.toString() == "urn:cts:greekLit:tlg0016.tlg001.engTest:2.1"
-    
+
   }
 
   @Test
@@ -66,7 +66,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
 	CtsUrn testReply = graph.getFirstUrn(urn)
 
 	assert testReply.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1"
-    
+
   }
 
   @Test
@@ -76,7 +76,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
 	CtsUrn testReply = graph.getFirstUrn(urn)
 
 	assert testReply.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.5"
-    
+
   }
 
   @Test
@@ -86,7 +86,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
 	CtsUrn testReply = graph.getFirstUrn(urn)
 
 	assert testReply.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.5"
-    
+
   }
 
   @Test
@@ -96,7 +96,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
 	CtsUrn testReply = graph.getFirstUrn(urn)
 
 	assert testReply.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen:2.1"
-    
+
   }
 
 
@@ -107,7 +107,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
 	CtsUrn testReply = graph.getFirstUrn(urn)
 
 	assert testReply.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:1.1.1"
-    
+
   }
 
 
@@ -118,7 +118,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
 	CtsUrn testReply = graph.getFirstUrn(urn)
 
 	assert testReply.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:1.1.1"
-    
+
   }
 
   @Test
@@ -128,7 +128,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
 	CtsUrn testReply = graph.getFirstUrn(urn)
 
 	assert testReply.toString() == "urn:cts:greekLit:tlg0012.tlg001.testAllen.wt:2.1.1"
-    
+
   }
 
 
