@@ -86,4 +86,90 @@ select ?u where {
 	return queryString
   }
 
+
+  /** Generates a Sparql query for finding the last object
+  * in an ordered collection
+  * @param CiteUrn must be a collection-level urn
+  * @returns String
+  */
+  /* Using ?urn at the top and in the nested SELECT cuts 30% off execution time, for some reason */
+  String getLastQuery(CiteUrn collUrn) {
+    String queryString = prefixPhrase
+    queryString += """
+SELECT ?urn WHERE {
+  ?urn cite:belongsTo <${collUrn}> .
+  ?urn olo:item ?seq .
+  { SELECT (MAX (?s) as ?max )
+    WHERE {
+      ?urn olo:item ?s .
+      ?urn cite:belongsTo <${collUrn}> .
+    }
+  }
+  FILTER (?seq = ?max).
+}
+    """
+    return queryString
+  }
+
+
+
+  /** Generates a Sparql query for finding the first object
+  * in an ordered collection
+  * @param CiteUrn must be a collection-level urn
+  * @returns String
+  */
+  /* Using ?urn at the top and in the nested SELECT cuts 30% off execution time, for some reason */
+  String getFirstQuery(CiteUrn collUrn) {
+    String queryString = prefixPhrase
+    queryString += """
+SELECT ?urn WHERE {
+  ?urn cite:belongsTo <${collUrn}> .
+  ?urn olo:item ?seq .
+  { SELECT  (MIN (?s) as ?min)
+      WHERE {
+      ?urn olo:item ?s .
+      ?urn cite:belongsTo <${collUrn}> .
+    }
+  }
+  FILTER (?seq = ?min) .
+}
+    """
+    return queryString
+  }
+
+
+
+  /** Generates a Sparql query for finding every versioned URN in a collection
+  * in an ordered collection
+  * @param CiteUrn must be a collection-level urn
+  * @returns String
+  */
+  /* Using ?urn at the top and in the nested SELECT cuts 30% off execution time, for some reason */
+  String getVersionedObjectsQuery(CiteUrn collUrn) {
+    String queryString = prefixPhrase
+    queryString += """
+  select distinct ?v where {
+    <${collUrn}> cite:possesses ?o .
+    ?o cite:hasVersion ?v .
+  }
+  """
+  return queryString
+}
+
+  /** Generates a Sparql query for finding every versioned URN in a collection
+  * in an ordered collection
+  * @param CiteUrn must be a collection-level urn
+  * @returns String
+  */
+  /* Using ?urn at the top and in the nested SELECT cuts 30% off execution time, for some reason */
+  String getVersionsOfObjectQuery(CiteUrn urn) {
+    String queryString = prefixPhrase
+    queryString += """
+    select ?v where {
+     <${urn}> cite:hasVersion ?v .
+    }  }
+  """
+  return queryString
+}
+
 }

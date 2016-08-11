@@ -1,20 +1,47 @@
 buildscript {
   repositories {
+    jcenter()
     mavenCentral()
     maven {
       url "http://beta.hpcc.uh.edu/nexus/content/groups/public"
     }
   }
+
   dependencies {
+    classpath 'org.akhikhl.gretty:gretty:+'
     classpath group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
   }
 }
 
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+
+
+repositories {
+  jcenter()
+  // enable this to use snapshot versions of Gretty:
+  // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+}
+
+sourceSets {
+  integr {
+  }
+}
+
+dependencies {
+  //compile project(":common")
+  //testCompile project(":common")
+
+  // Need to define all dependencies for integration tests:
+  integrCompile "junit:junit:${versionMap['junit']}"
+  integrCompile project(":sparqlcc")
+  integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
+}
 
 
 
 farm {
-    integrationTestTask = 'sparqlccIntegration'
+    integrationTestTask = 'ccIntegration'
     webapp "${rootDir}/fuseki/fuseki.war"
     webapp project(":sparqlcc")
 }
@@ -26,14 +53,20 @@ test {
 }
 
 
-task sparqlccIntegration(type: Test, dependsOn: 'test') {
+task ccIntegration(type: Test, dependsOn: 'test') {
   description  = "Runs integration tests against test data set served from fuseki."
   outputs.upToDateWhen { false }
   include '**/*Integr.*'
 
- testClassesDir = sourceSets.integr.output.classesDir
- classpath = sourceSets.integr.runtimeClasspath
+  testClassesDir = sourceSets.integr.output.classesDir
+  classpath = sourceSets.integr.runtimeClasspath
 }
-sparqlccIntegration.doFirst {
-  System.out.println "Running SparqlCc integration tests now...."
+ccIntegration.doFirst {
+  System.out.println "Running CC integration tests now...."
+}
+
+
+gretty {
+  initParameter("tripleserver", "http://localhost:8080/fuseki/ds/query")
+  initParameter("version","cs2 pre-release 1.0")
 }

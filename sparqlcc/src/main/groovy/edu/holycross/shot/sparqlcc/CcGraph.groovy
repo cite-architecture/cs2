@@ -1,6 +1,6 @@
 package edu.holycross.shot.sparqlcc
 
-import edu.holycross.shot.citeservlet.Sparql
+//import edu.holycross.shot.citeservlet.Sparql
 
 import edu.harvard.chs.cite.CiteUrn
 import edu.harvard.chs.cite.CtsUrn
@@ -210,12 +210,101 @@ class CcGraph {
       }
   }
 
-  CiteUrn getFirstUrn(CiteUrn urn){
+  /** Returns all versions present for a given object
+  * @param CiteUrn
+  * @returns ArrayList of CiteUrns
+  */
+  ArrayList getVersionsOfObject(CiteUrn urn){
+    CiteUrn firstTestUrn
+    CiteUrn testUrn
+    ArrayList returnList = []
+    if (urn.isRange()){
+        firstTestUrn = new CiteUrn(urn.getRangeBegin())
+    } else {
+      firstTestUrn = urn
+    }
+    if (firstTestUrn.hasObjectId()){
+      testUrn = new CiteUrn(firstTestUrn.reduceToObject())
+
+      String qs = QueryBuilder.getVersionsOfObjectQuery(rurn)
+      String reply = sparql.getSparqlReply("application/json", qs)
+      JsonSlurper slurper = new groovy.json.JsonSlurper()
+      def parsedReply = slurper.parseText(reply)
+        parsedReply.results.bindings.each { bndng ->
+          if (bndng.v) {
+            tempUrnString = bndng.u?.value
+          }
+        }
+    } else { // We're looking at a collection-level URN
+      returnList = getVersionsInCollection(testUrn)
+    }
     return null
   }
-  CiteUrn getlastUrn(CiteUrn urn){
+
+  /** Returns all versions, as strings, present in a given collection
+  * @param CiteUrn Collection-level
+  * @returns ArrayList of CiteUrns
+  */
+  ArrayList getVersionsInCollection(CiteUrn urn){
     return null
   }
+
+
+  /** Returns the CiteUrn for the first object in an ordered collection.
+  * @param CiteUrn
+  * @returns CiteUrn
+  */
+  CiteUrn getFirstUrn(CiteUrn urn)
+  throws Exception {
+    // Only if ordered
+    if ( !(isOrdered(urn))){
+      throw new Exception( "CcGraph.getFirstUrn: ${urn.toString()} must be from an ordered collection.")
+    }
+
+
+
+
+  }
+
+  /** Returns the CiteUrn for the first object in an ordered collection, with a version specified
+  * @param CiteUrn
+  * @param versionString
+  * @returns CiteUrn
+  */
+  CiteUrn getFirstUrn(CiteUrn urn, String versionString){
+    // Only if ordered
+    if ( !(isOrdered(urn))){
+      throw new Exception( "CcGraph.getFirstUrn: ${urn.toString()} must be from an ordered collection.")
+    }
+    return null
+  }
+
+  /** Returns the CiteUrn for the last object in an ordered collection.
+  * @param CiteUrn
+  * @returns CiteUrn
+  */
+  CiteUrn getLastUrn(CiteUrn urn){
+    // Only if ordered
+    if ( !(isOrdered(urn))){
+      throw new Exception( "CcGraph.getLastUrn: ${urn.toString()} must be from an ordered collection.")
+    }
+
+    return null
+  }
+
+  /** Returns the CiteUrn for the last object in an ordered collection, with a version specified
+  * @param CiteUrn
+  * @param versionString
+  * @returns CiteUrn
+  */
+  CiteUrn getLastUrn(CiteUrn urn, String versionString){
+    // Only if ordered
+    if ( !(isOrdered(urn))){
+      throw new Exception( "CcGraph.getLastUrn: ${urn.toString()} must be from an ordered collection.")
+    }
+    return null
+  }
+
   ArrayList getValidReff(CiteUrn urn){
     return null
   }

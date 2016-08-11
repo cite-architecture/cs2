@@ -3,7 +3,6 @@ package edu.holycross.shot.sparqlcc
 import static org.junit.Assert.*
 import org.junit.Test
 
-import edu.holycross.shot.citeservlet.Sparql
 import edu.holycross.shot.sparqlcc.CcGraph
 import edu.harvard.chs.cite.CiteUrn
 import edu.harvard.chs.cite.CtsUrn
