@@ -10,6 +10,11 @@
     <servlet>
       <servlet-name>GroovyServlet</servlet-name>
       <servlet-class>groovy.servlet.GroovyServlet</servlet-class>
+  	<init-param>
+  <param-name>tripleserver</param-name>
+	  <param-value>http://localhost:3030/ds/</param-value>
+	</init-param>
+
     </servlet>
 
     <servlet-mapping>
@@ -26,10 +31,6 @@
     <servlet-mapping>
         <servlet-name>GroovyServlet</servlet-name>
         <url-pattern>/api</url-pattern>
-	<init-param>
-	  <param-name>tripleserver</param-name>
-	  <param-value>http://localhost:3030/ds/</param-value>
-	</init-param>
     </servlet-mapping>
 
     <welcome-file-list>
