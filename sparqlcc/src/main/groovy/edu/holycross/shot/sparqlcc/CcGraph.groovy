@@ -214,32 +214,43 @@ class CcGraph {
   * @param CiteUrn
   * @returns ArrayList of CiteUrns
   */
-  ArrayList getVersionsOfObject(CiteUrn urn){
-    CiteUrn firstTestUrn
-    CiteUrn testUrn
-    ArrayList returnList = []
-    if (urn.isRange()){
-        firstTestUrn = new CiteUrn(urn.getRangeBegin())
-    } else {
-      firstTestUrn = urn
-    }
-    if (firstTestUrn.hasObjectId()){
-      testUrn = new CiteUrn(firstTestUrn.reduceToObject())
-
-      String qs = QueryBuilder.getVersionsOfObjectQuery(rurn)
-      String reply = sparql.getSparqlReply("application/json", qs)
-      JsonSlurper slurper = new groovy.json.JsonSlurper()
-      def parsedReply = slurper.parseText(reply)
-        parsedReply.results.bindings.each { bndng ->
-          if (bndng.v) {
-            tempUrnString = bndng.u?.value
+  ArrayList getVersionsOfObject(CiteUrn urn)
+  throws Exception {
+    ArrayList replyArray = []
+    String tempUrnString
+    CiteUrn queryUrn
+    if ( urn.isRange() ){
+      System.err.println( "${urn} is range.")
+      String rangeBeginString = urn.getRangeBegin()
+      CiteUrn rangeBeginUrn = new CiteUrn(rangeBeginString)
+      if (rangeBeginUrn.hasObjectId()){
+        tempUrnString = rangeBeginUrn.reduceToObject()
+        } else { // Is not an object-level URN
+          throw new Exception( "CcGraph.getVersionsOfObject: ${rangeBeginUrn} is not an object-level URN.")
+        }
+      } else {
+        if (urn.hasObjectId()){
+          tempUrnString = urn.reduceToObject()
+          } else { // Is not an object-level URN
+            throw new Exception( "CcGraph.getVersionsOfObject: ${urn} is not an object-level URN.")
           }
         }
-    } else { // We're looking at a collection-level URN
-      returnList = getVersionsInCollection(testUrn)
-    }
-    return null
-  }
+        queryUrn = new CiteUrn(tempUrnString)
+        String qs = QueryBuilder.getVersionsOfObjectQuery(queryUrn)
+        String reply = sparql.getSparqlReply("application/json", qs)
+        JsonSlurper slurper = new groovy.json.JsonSlurper()
+        def parsedReply = slurper.parseText(reply)
+        parsedReply.results.bindings.each { bndng ->
+          if (bndng.v) {
+            try{
+              replyArray << new CiteUrn( bndng.v?.value )
+              } catch (Exception e ) {
+                throw new Exception ( "CcGraph.getVersionsOfObject: Bad data ( ${bndng.v?.value} )")
+              }
+            }
+          }
+          return replyArray
+        }
 
   /** Returns all versions, as strings, present in a given collection
   * @param CiteUrn Collection-level
@@ -259,7 +270,27 @@ class CcGraph {
     // Only if ordered
     if ( !(isOrdered(urn))){
       throw new Exception( "CcGraph.getFirstUrn: ${urn.toString()} must be from an ordered collection.")
-    }
+      } else {
+        CiteUrn collUrn = new CiteUrn(urn.reduceToCollection())
+        String qs = QueryBuilder.getFirstQuery(collUrn)
+        System.err.println(qs)
+        String reply = sparql.getSparqlReply("application/json", qs)
+        String tempUrnString = ""
+        JsonSlurper slurper = new groovy.json.JsonSlurper()
+        def parsedReply = slurper.parseText(reply)
+        System.err.println(parsedReply)
+        parsedReply.results.bindings.each { bndng ->
+          if (bndng.urn) {
+            tempUrnString = bndng.urn?.value
+          }
+        }
+        if ((tempUrnString == "") || (tempUrnString == null)){
+          throw new Exception( "CcGraph.getFirstUrn: ${urn.toString()}. No valid firstUrn for collection ${collUrn.toString()}")
+        } else {
+          System.err.println(tempUrnString)
+          return new CiteUrn(tempUrnString)
+        }
+      }
 
 
 

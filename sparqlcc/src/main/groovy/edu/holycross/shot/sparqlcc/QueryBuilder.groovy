@@ -93,7 +93,7 @@ select ?u where {
   * @returns String
   */
   /* Using ?urn at the top and in the nested SELECT cuts 30% off execution time, for some reason */
-  String getLastQuery(CiteUrn collUrn) {
+  static String getLastQuery(CiteUrn collUrn) {
     String queryString = prefixPhrase
     queryString += """
 SELECT ?urn WHERE {
@@ -114,30 +114,29 @@ SELECT ?urn WHERE {
 
 
   /** Generates a Sparql query for finding the first object
-  * in an ordered collection
+  * in an ordered collection; ignores versions, so you
+  * get whatever object has the lowest sequence in the collection.
   * @param CiteUrn must be a collection-level urn
   * @returns String
   */
   /* Using ?urn at the top and in the nested SELECT cuts 30% off execution time, for some reason */
-  String getFirstQuery(CiteUrn collUrn) {
+  static String getFirstQuery(CiteUrn collUrn) {
     String queryString = prefixPhrase
     queryString += """
-SELECT ?urn WHERE {
-  ?urn cite:belongsTo <${collUrn}> .
-  ?urn olo:item ?seq .
-  { SELECT  (MIN (?s) as ?min)
-      WHERE {
-      ?urn olo:item ?s .
+    SELECT ?urn WHERE {
       ?urn cite:belongsTo <${collUrn}> .
+      ?urn olo:item ?seq .
+      { SELECT  (MIN (?s) as ?min)
+        WHERE {
+          ?urn olo:item ?s .
+          ?urn cite:belongsTo <${collUrn}> .
+        }
+      }
+      FILTER (?seq = ?min) .
     }
-  }
-  FILTER (?seq = ?min) .
-}
     """
     return queryString
   }
-
-
 
   /** Generates a Sparql query for finding every versioned URN in a collection
   * in an ordered collection
@@ -145,7 +144,7 @@ SELECT ?urn WHERE {
   * @returns String
   */
   /* Using ?urn at the top and in the nested SELECT cuts 30% off execution time, for some reason */
-  String getVersionedObjectsQuery(CiteUrn collUrn) {
+  static String getVersionedObjectsQuery(CiteUrn collUrn) {
     String queryString = prefixPhrase
     queryString += """
   select distinct ?v where {
@@ -156,18 +155,18 @@ SELECT ?urn WHERE {
   return queryString
 }
 
-  /** Generates a Sparql query for finding every versioned URN in a collection
-  * in an ordered collection
+  /** Generates a Sparql query for finding every version-string represented in
+  * in a collection
   * @param CiteUrn must be a collection-level urn
   * @returns String
   */
   /* Using ?urn at the top and in the nested SELECT cuts 30% off execution time, for some reason */
-  String getVersionsOfObjectQuery(CiteUrn urn) {
+  static String getVersionsOfObjectQuery(CiteUrn urn) {
     String queryString = prefixPhrase
     queryString += """
     select ?v where {
      <${urn}> cite:hasVersion ?v .
-    }  }
+    } 
   """
   return queryString
 }

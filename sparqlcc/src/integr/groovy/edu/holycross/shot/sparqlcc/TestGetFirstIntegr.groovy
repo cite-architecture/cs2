@@ -71,22 +71,4 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
     }
   }
 
-  // Collection with multiple versions
-  @Test
-  void testFirstUrn6() {
-    Sparql sparql = new Sparql(baseUrl)
-	  CcGraph cc = new CcGraph(sparql)
-    CiteUrn urn = new CiteUrn(orderedColl2,'v2')
-    assert cc.getFirstUrn(urn).toString() == "urn:cite:hmt:msA.5v.v2"
-  }
-  // Collection with multiple versions
-  @Test
-  void testFirstUrn7() {
-    Sparql sparql = new Sparql(baseUrl)
-	  CcGraph cc = new CcGraph(sparql)
-    CiteUrn urn = new CiteUrn(orderedColl2,'v1')
-    assert cc.getFirstUrn(urn).toString() == "urn:cite:hmt:msA.1r.v1"
-  }
-
-
 }
