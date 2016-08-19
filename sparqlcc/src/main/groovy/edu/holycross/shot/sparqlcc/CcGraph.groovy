@@ -399,7 +399,23 @@ class CcGraph {
   }
 
   ArrayList gvrForRange(CiteUrn urn){
-    return ["for range"]
+    ArrayList replyArray = []
+    // is not range
+    if (!urn.isRange()){
+        if(urn.hasVersion()){
+          System.err.println("${urn} hasVersion ${urn.hasVersion()}")
+          replyArray << urn.toString()
+        } else {
+          System.err.println("doing getVersionsOfObject for ${urn}")
+          getVersionsOfObject(urn).each{ v ->
+            replyArray << v.toString()
+          }
+        }
+    } else {
+      replyArray << "for range"
+    }
+
+    return replyArray
   }
 
   CiteCollectionObject getObject(CiteUrn urn){

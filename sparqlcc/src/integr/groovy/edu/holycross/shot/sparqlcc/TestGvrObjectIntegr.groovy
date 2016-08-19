@@ -70,9 +70,10 @@ class TestGetValidReffIntegr extends GroovyTestCase {
   void testSingleObjectNotional(){
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.3")
-    assert cc.getValidReff(urn).size() == 1
-    assert cc.getValidReff(urn)[0] == "urn:cite:hmt:venAsign.3.v1"
+    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi.3")
+    assert cc.getValidReff(urn).size() == 2
+    assert cc.getValidReff(urn).contains("urn:cite:hmt:pageroi.3.v1")
+    assert cc.getValidReff(urn).contains("urn:cite:hmt:pageroi.3.v2")
   }
 
   @Test
