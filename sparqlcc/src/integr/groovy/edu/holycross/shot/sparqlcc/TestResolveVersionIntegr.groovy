@@ -14,7 +14,7 @@ class TestResolveVersionIntegr extends GroovyTestCase {
 
   String baseUrl = "http://localhost:8080/fuseki/cc/query"
   CiteUrn versionedUrn =  new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086.v1")
-  CiteUrn versionedRangeUrn =      new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086.v1-VA085VN_0087.v1")
+  CiteUrn versionedRangeUrn = new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086.v1-VA085VN_0087.v1")
   CiteUrn extendedUrn =   new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086.v1@12,12,12,12")
   CiteUrn unversionedExtendedUrn =   new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086@12,12,12,12")
   CiteUrn objectUrn =     new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086")

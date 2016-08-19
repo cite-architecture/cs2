@@ -31,7 +31,15 @@ class TestGetVersionsOfObjectIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn(testUrn1)
-    assert cc.getVersionsOfObject(urn).size() == 2
+    ArrayList va = cc.getVersionsOfObject(urn)
+    assert va.size() == 2
+    List stringArray = []
+    va.each{ v ->
+      stringArray << v.toString()
+    }
+    assert stringArray.contains("urn:cite:hmt:pageroi.32.v1")
+    assert stringArray.contains("urn:cite:hmt:pageroi.32.v2")
+
   }
 
   // Should fail, since param is a collection-level URN.

@@ -42,6 +42,38 @@ select ?v where {
 	return queryString
   }
 
+
+  /** Returns a Sparql query counting distinct notional objects in a collecction
+  * @param CiteUrn
+  * @returns String
+  */
+  static String getCollectionSizeQuery(CiteUrn collUrn) {
+  	String queryString = prefixPhrase
+  	queryString += """
+    SELECT (COUNT(distinct ?urn) AS ?size) WHERE {
+            ?urn cite:belongsTo <${collUrn}> .
+      		?urn cite:hasVersion ?version .
+          }
+"""
+    return queryString
+  }
+
+  /** Returns a Sparql query counting versioned objects in a collecction
+  * @param CiteUrn
+  * @returns String
+  */
+  static String getVersionedCollectionSizeQuery(CiteUrn collUrn, String vString) {
+    String queryString = prefixPhrase
+    queryString += """
+    SELECT (COUNT(distinct ?urn) AS ?size) WHERE {
+        ?urn cite:belongsTo <${collUrn}> .
+  		?urn cite:isVersionOf ?notional .
+  		FILTER(regex(str(?urn), ".${vString}\$"))
+      }
+"""
+    return queryString
+  }
+
   /** Generates a Sparql query for the presence of a cite:orderedBy statement
   * @param CiteUrn
   * @returns String
@@ -166,7 +198,7 @@ SELECT ?urn WHERE {
     queryString += """
     select ?v where {
      <${urn}> cite:hasVersion ?v .
-    } 
+    }
   """
   return queryString
 }

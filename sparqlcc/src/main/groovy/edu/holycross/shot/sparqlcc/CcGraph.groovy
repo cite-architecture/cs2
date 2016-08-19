@@ -129,11 +129,6 @@ class CcGraph {
   }
 
 
-
-  BigInteger getCollectionSize(CiteUrn urn) {
-    return 0
-  }
-
   /** Returns the CiteUrn for the previous item in an ordered collection
   * @param CiteUrn
   * @returns CiteUrn
@@ -252,14 +247,6 @@ class CcGraph {
           return replyArray
         }
 
-  /** Returns all versions, as strings, present in a given collection
-  * @param CiteUrn Collection-level
-  * @returns ArrayList of CiteUrns
-  */
-  ArrayList getVersionsInCollection(CiteUrn urn){
-    return null
-  }
-
 
   /** Returns the CiteUrn for the first object in an ordered collection.
   * @param CiteUrn
@@ -292,23 +279,8 @@ class CcGraph {
         }
       }
 
-
-
-
   }
 
-  /** Returns the CiteUrn for the first object in an ordered collection, with a version specified
-  * @param CiteUrn
-  * @param versionString
-  * @returns CiteUrn
-  */
-  CiteUrn getFirstUrn(CiteUrn urn, String versionString){
-    // Only if ordered
-    if ( !(isOrdered(urn))){
-      throw new Exception( "CcGraph.getFirstUrn: ${urn.toString()} must be from an ordered collection.")
-    }
-    return null
-  }
 
   /** Returns the CiteUrn for the last object in an ordered collection.
   * @param CiteUrn
@@ -318,35 +290,122 @@ class CcGraph {
     // Only if ordered
     if ( !(isOrdered(urn))){
       throw new Exception( "CcGraph.getLastUrn: ${urn.toString()} must be from an ordered collection.")
-    }
-
-    return null
+      } else {
+        CiteUrn collUrn = new CiteUrn(urn.reduceToCollection())
+        String qs = QueryBuilder.getLastQuery(collUrn)
+        System.err.println(qs)
+        String reply = sparql.getSparqlReply("application/json", qs)
+        String tempUrnString = ""
+        JsonSlurper slurper = new groovy.json.JsonSlurper()
+        def parsedReply = slurper.parseText(reply)
+        System.err.println(parsedReply)
+        parsedReply.results.bindings.each { bndng ->
+          if (bndng.urn) {
+            tempUrnString = bndng.urn?.value
+          }
+        }
+        if ((tempUrnString == "") || (tempUrnString == null)){
+          throw new Exception( "CcGraph.getFirstUrn: ${urn.toString()}. No valid firstUrn for collection ${collUrn.toString()}")
+        } else {
+          System.err.println(tempUrnString)
+          return new CiteUrn(tempUrnString)
+        }
+      }
   }
 
-  /** Returns the CiteUrn for the last object in an ordered collection, with a version specified
+  /**
+  * Returns a count of objects in a collection, based on a CiteUrn.
+  * With a collection-level URN, returns a count of all versions of all
+  * objects. With a version-level URN, counts only objects with the same
+  * version-string.
   * @param CiteUrn
-  * @param versionString
-  * @returns CiteUrn
+  * @returns BigInteger
   */
-  CiteUrn getLastUrn(CiteUrn urn, String versionString){
-    // Only if ordered
-    if ( !(isOrdered(urn))){
-      throw new Exception( "CcGraph.getLastUrn: ${urn.toString()} must be from an ordered collection.")
+    BigInteger getCollectionSize(CiteUrn urn){
+    String versionString = null
+    CiteUrn qUrn
+    if(urn.hasVersion()){
+       versionString = urn.objectVersion
     }
-    return null
+    qUrn = new CiteUrn(urn.reduceToCollection())
+
+    return getCollectionSize(qUrn,versionString)
   }
 
+  BigInteger getCollectionSize(CiteUrn urn, String versionString)
+  throws Exception {
+    CiteUrn qUrn
+    String qVersion
+    String qs
+    if(urn.hasVersion()){
+      if( (versionString == "") || (versionString == null)){
+        qVersion = urn.objectVersion
+        qUrn = new CiteUrn(urn.reduceToCollection())
+      }
+      } else {
+        qVersion = versionString
+        qUrn = new CiteUrn(urn.reduceToCollection())
+      }
+
+      if ((versionString != "") && (versionString != null)){
+        qs = QueryBuilder.getVersionedCollectionSizeQuery(qUrn,qVersion)
+        } else {
+          qs = QueryBuilder.getCollectionSizeQuery(qUrn)
+        }
+
+        String reply = sparql.getSparqlReply("application/json", qs)
+        String tempUrnString = ""
+        JsonSlurper slurper = new groovy.json.JsonSlurper()
+        def parsedReply = slurper.parseText(reply)
+        if (parsedReply.results.bindings.size) {
+          System.err.println(parsedReply.results.bindings)
+          System.err.println(parsedReply.results.bindings.getClass())
+          return new BigInteger(parsedReply.results.bindings[0].size.value)
+          } else {
+            throw new Exception( "CcGraph.getCollectionSize: ${urn.toString()}. Failed to get count.")
+          }
+        }
+
+
+  /** Returns all valid CiteUrns in a collection.
+  * If the input parameter CiteUrn has a version-id, returns
+  * only URNs with the same version-id. If the param is a range,
+  * returns all URNs contained in that range (for ordered collections),
+  * or the first- and last- elements of the range-urn for unordered collections.
+  * @param CiteUrn
+  * @returns ArrayList of CiteUrns
+  */
   ArrayList getValidReff(CiteUrn urn){
     return null
   }
+
+  ArrayList gvrForCollection(CiteUrn urn){
+    return null
+  }
+
+  ArrayList gvrForRange(CiteUrn urn){
+    return null
+  }
+
   CiteCollectionObject getObject(CiteUrn urn){
     return null
   }
+
   CCOSet getRange(CiteUrn urn){
     return null
   }
+
   CCOSet getPaged(CiteUrn urn, Integer offset, Integer limit){
     return null
+  }
+
+
+  ArrayList getPropertiesInCollection(CiteUrn urn){
+      return null
+  }
+
+  ArrayList getPropertiesForObject(CiteUrn urn){
+
   }
 
   String formatReply(String request, Map, params) {
