@@ -372,19 +372,34 @@ class CcGraph {
   * only URNs with the same version-id. If the param is a range,
   * returns all URNs contained in that range (for ordered collections),
   * or the first- and last- elements of the range-urn for unordered collections.
+  * For queries on notional
   * @param CiteUrn
   * @returns ArrayList of CiteUrns
   */
   ArrayList getValidReff(CiteUrn urn){
-    return null
+    // Is it an object or a range?
+    if ( urn.isRange() || urn.hasObjectId() ){
+      return gvrForRange(urn)
+    } else {
+      return gvrForCollection(urn)
+    }
+  }
+
+  ArrayList getValidReff(CiteUrn urn, String versionString){
+    CiteUrn qUrn = new CiteUrn(urn.reduceToCollection())
+    return gvrForCollection(qUrn,versionString)
   }
 
   ArrayList gvrForCollection(CiteUrn urn){
-    return null
+    return ["for collection"]
+  }
+
+  ArrayList gvrForCollection(CiteUrn urn, String versionString){
+    return ["for collection, with version-string"]
   }
 
   ArrayList gvrForRange(CiteUrn urn){
-    return null
+    return ["for range"]
   }
 
   CiteCollectionObject getObject(CiteUrn urn){
@@ -398,7 +413,6 @@ class CcGraph {
   CCOSet getPaged(CiteUrn urn, Integer offset, Integer limit){
     return null
   }
-
 
   ArrayList getPropertiesInCollection(CiteUrn urn){
       return null

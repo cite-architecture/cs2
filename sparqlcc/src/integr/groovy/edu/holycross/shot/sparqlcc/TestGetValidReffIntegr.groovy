@@ -58,11 +58,47 @@ class TestGetValidReffIntegr extends GroovyTestCase {
   }
 
   @Test
+  void testSingleObjectVersioned(){
+    Sparql sparql = new Sparql(baseUrl)
+    CcGraph cc = new CcGraph(sparql)
+    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi.3.v1")
+    assert cc.getValidReff(urn).size() == 1
+    assert cc.getValidReff(urn)[0] == urn.toString()
+  }
+
+  @Test
+  void testSingleObjectNotional(){
+    Sparql sparql = new Sparql(baseUrl)
+    CcGraph cc = new CcGraph(sparql)
+    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.3")
+    assert cc.getValidReff(urn).size() == 1
+    assert cc.getValidReff(urn)[0] == "urn:cite:hmt:venAsign.3.v1"
+  }
+
+  @Test
   void testRangeOfUnOrdered2(){
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi.3.v2-6.v2")
     assert cc.getValidReff(urn).size() == 2
+  }
+
+  @Test
+  void testCollectionWithVersionString1(){
+    Sparql sparql = new Sparql(baseUrl)
+    CcGraph cc = new CcGraph(sparql)
+    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
+    String vString = "v1"
+    assert cc.getValidReff(urn, vString).size() == 20
+  }
+
+  @Test
+  void testCollectionWithVersionString2(){
+    Sparql sparql = new Sparql(baseUrl)
+    CcGraph cc = new CcGraph(sparql)
+    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi.3.v1")
+    String vString = "v2"
+    assert cc.getValidReff(urn, vString).size() == 20
   }
 
   @Test
@@ -98,6 +134,19 @@ class TestGetValidReffIntegr extends GroovyTestCase {
       "urn:cite:hmt:venAsign.12.v1",
       "urn:cite:hmt:venAsign.13.v1",
       "urn:cite:hmt:venAsign.14.v1" ]
+    assert cc.getValidReff(urn) == correct
+  }
+
+  @Test
+  void testContents3(){
+    Sparql sparql = new Sparql(baseUrl)
+    CcGraph cc = new CcGraph(sparql)
+    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi.4-5")
+    ArrayList correct = [
+      "urn:cite:hmt:venAsign.4.v1",
+      "urn:cite:hmt:venAsign.4.v2",
+      "urn:cite:hmt:venAsign.5.v1",
+      "urn:cite:hmt:venAsign.5.v2"]
     assert cc.getValidReff(urn) == correct
   }
 
