@@ -374,7 +374,7 @@ class CcGraph {
   * or the first- and last- elements of the range-urn for unordered collections.
   * For queries on notional
   * @param CiteUrn
-  * @returns ArrayList of CiteUrns
+  * @returns ArrayList of URN-Strings
   */
   ArrayList getValidReff(CiteUrn urn){
     // Is it an object or a range?
@@ -385,34 +385,100 @@ class CcGraph {
     }
   }
 
-  ArrayList getValidReff(CiteUrn urn, String versionString){
+  ArrayList getValidReff(CiteUrn urn, String versionString)
+  throws Exception {
     CiteUrn qUrn = new CiteUrn(urn.reduceToCollection())
     return gvrForCollection(qUrn,versionString)
   }
 
-  ArrayList gvrForCollection(CiteUrn urn){
-    return ["for collection"]
+  ArrayList gvrForCollection(CiteUrn urn, String versionString)
+  throws Exception {
+    ArrayList replyArray = []
+    String qs
+    String qUrnString = urn.reduceToCollection()
+    CiteUrn qUrn = new CiteUrn(qUrnString)
+    if ( (versionString =="") || ( versionString == null)){
+      if (isOrdered(qUrn)){
+        qs = QueryBuilder.getGVROrderedCollectionQuery(qUrn)
+      } else {
+          qs = QueryBuilder.getGVRCollectionQuery(qUrn)
+      }
+    } else {
+        if (isOrdered(qUrn)){
+          qs = QueryBuilder.getGVROrderedCollectionVersionedQuery(qUrn, versionString)
+        } else {
+          qs = QueryBuilder.getGVRCollectionVersionedQuery(qUrn, versionString)
+        }
+    }
+
+    String reply = sparql.getSparqlReply("application/json", qs)
+    String tempUrnString = ""
+    JsonSlurper slurper = new groovy.json.JsonSlurper()
+    def parsedReply = slurper.parseText(reply)
+    parsedReply.results.bindings.each { bndng ->
+      if (bndng.urn) {
+          replyArray << bndng.urn.value
+      }
+    }
+      return replyArray
+    }
+
+  ArrayList gvrForCollection(CiteUrn urn)
+  throws Exception {
+    return gvrForCollection(urn, null)
   }
 
-  ArrayList gvrForCollection(CiteUrn urn, String versionString){
-    return ["for collection, with version-string"]
-  }
-
-  ArrayList gvrForRange(CiteUrn urn){
+  ArrayList gvrForRange(CiteUrn urn)
+  throws Exception {
     ArrayList replyArray = []
     // is not range
     if (!urn.isRange()){
         if(urn.hasVersion()){
-          System.err.println("${urn} hasVersion ${urn.hasVersion()}")
           replyArray << urn.toString()
         } else {
-          System.err.println("doing getVersionsOfObject for ${urn}")
           getVersionsOfObject(urn).each{ v ->
             replyArray << v.toString()
           }
         }
-    } else {
-      replyArray << "for range"
+    } else { // is a range
+      if (isOrdered(urn)){
+        String rStart = urn.getRangeBegin()
+        String rEnd = urn.getRangeEnd()
+        CiteUrn rStartUrn = resolveVersion(new CiteUrn(rStart))
+        CiteUrn rEndUrn = resolveVersion(new CiteUrn(rEnd))
+        String vs = rStartUrn.objectVersion
+        // replyArray = ["for range; ordered collection"]
+        ArrayList tempArray = gvrForCollection(rStartUrn, vs)
+        Boolean collecting = false
+        tempArray.each { cco ->
+            if( cco == rStartUrn.toString()){
+              collecting = true
+            }
+            if( collecting ){
+              replyArray << cco
+              if (cco == rEndUrn.toString()){
+                collecting = false
+              }
+            }
+        }
+      } else {
+        System.err.println("${urn} is not ordered.")
+         CiteUrn rangeStart = new CiteUrn(urn.getRangeBegin())
+         CiteUrn rangeEnd = new CiteUrn(urn.getRangeEnd())
+        if (rangeStart.hasVersion()){
+            System.err.println("${rangeStart} hasVersion.")
+            replyArray << urn.getRangeBegin()
+            replyArray << urn.getRangeEnd()
+        } else {
+            System.err.println("${rangeStart} does not have Version.")
+           getVersionsOfObject(rangeStart).each{ v ->
+             replyArray << v.toString()
+           }
+           getVersionsOfObject(rangeEnd).each{ v ->
+             replyArray << v.toString()
+           }
+        }
+      }
     }
 
     return replyArray

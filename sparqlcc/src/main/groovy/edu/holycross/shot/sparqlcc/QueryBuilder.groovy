@@ -5,22 +5,22 @@ import edu.harvard.chs.cite.CiteUrn
 abstract class QueryBuilder {
 
 
-    static String prefixPhrase  = """
-PREFIX cts:        <http://www.homermultitext.org/cts/rdf/>
-PREFIX cite:        <http://www.homermultitext.org/cite/rdf/>
-PREFIX hmt:        <http://www.homermultitext.org/hmt/rdf/>
-PREFIX citedata:        <http://www.homermultitext.org/hmt/citedata/>
-PREFIX dcterms: <http://purl.org/dc/terms/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX olo:     <http://purl.org/ontology/olo/core#>
-PREFIX lex:        <http://data.perseus.org/rdfverbs/>
-PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX owl:        <http://www.w3.org/2002/07/owl#>
-PREFIX dse:        <http://www.homermultitext.org/dse/rdf>
-PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
+  static String prefixPhrase  = """
+  PREFIX cts:        <http://www.homermultitext.org/cts/rdf/>
+  PREFIX cite:        <http://www.homermultitext.org/cite/rdf/>
+  PREFIX hmt:        <http://www.homermultitext.org/hmt/rdf/>
+  PREFIX citedata:        <http://www.homermultitext.org/hmt/citedata/>
+  PREFIX dcterms: <http://purl.org/dc/terms/>
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+  PREFIX olo:     <http://purl.org/ontology/olo/core#>
+  PREFIX lex:        <http://data.perseus.org/rdfverbs/>
+  PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+  PREFIX owl:        <http://www.w3.org/2002/07/owl#>
+  PREFIX dse:        <http://www.homermultitext.org/dse/rdf>
+  PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
 
-"""
+  """
 
   static String getExampleQuery(CiteUrn urn) {
     return "Query about ${urn}"
@@ -31,15 +31,15 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
   * @returns String
   */
   static String resolveVersionQuery(CiteUrn urn){
-	String queryString = prefixPhrase
-	queryString += """
-select ?v where {
+    String queryString = prefixPhrase
+    queryString += """
+    select ?v where {
 
-<${urn.toString()}> cite:hasVersion ?v
+      <${urn.toString()}> cite:hasVersion ?v
 
-}
-"""
-	return queryString
+    }
+    """
+    return queryString
   }
 
 
@@ -48,13 +48,13 @@ select ?v where {
   * @returns String
   */
   static String getCollectionSizeQuery(CiteUrn collUrn) {
-  	String queryString = prefixPhrase
-  	queryString += """
+    String queryString = prefixPhrase
+    queryString += """
     SELECT (COUNT(distinct ?urn) AS ?size) WHERE {
-            ?urn cite:belongsTo <${collUrn}> .
-      		?urn cite:hasVersion ?version .
-          }
-"""
+      ?urn cite:belongsTo <${collUrn}> .
+      ?urn cite:hasVersion ?version .
+    }
+    """
     return queryString
   }
 
@@ -66,11 +66,11 @@ select ?v where {
     String queryString = prefixPhrase
     queryString += """
     SELECT (COUNT(distinct ?urn) AS ?size) WHERE {
-        ?urn cite:belongsTo <${collUrn}> .
-  		?urn cite:isVersionOf ?notional .
-  		FILTER(regex(str(?urn), ".${vString}\$"))
-      }
-"""
+      ?urn cite:belongsTo <${collUrn}> .
+      ?urn cite:isVersionOf ?notional .
+      FILTER(regex(str(?urn), ".${vString}\$"))
+    }
+    """
     return queryString
   }
 
@@ -79,13 +79,13 @@ select ?v where {
   * @returns String
   */
   static String isOrderedQuery(CiteUrn urn){
-	String queryString = prefixPhrase
-	queryString += """
-ask {
-  <${urn.toString()}> cite:orderedBy ?z .
-}
-"""
-	return queryString
+    String queryString = prefixPhrase
+    queryString += """
+    ask {
+      <${urn.toString()}> cite:orderedBy ?z .
+    }
+    """
+    return queryString
   }
 
   /** Generates a Sparql query for finding the previous object
@@ -94,13 +94,13 @@ ask {
   * @returns String
   */
   static String getPreviousQuery(CiteUrn urn){
-	String queryString = prefixPhrase
-	queryString += """
-select ?u where {
-     <${urn.toString()}> olo:previous  ?u
-}
-"""
-	return queryString
+    String queryString = prefixPhrase
+    queryString += """
+    select ?u where {
+      <${urn.toString()}> olo:previous  ?u
+    }
+    """
+    return queryString
   }
 
   /** Generates a Sparql query for finding the next object
@@ -109,13 +109,13 @@ select ?u where {
   * @returns String
   */
   static String getNextQuery(CiteUrn urn){
-	String queryString = prefixPhrase
-	queryString += """
-select ?u where {
-     <${urn.toString()}> olo:next  ?u
-}
-"""
-	return queryString
+    String queryString = prefixPhrase
+    queryString += """
+    select ?u where {
+      <${urn.toString()}> olo:next  ?u
+    }
+    """
+    return queryString
   }
 
 
@@ -128,17 +128,17 @@ select ?u where {
   static String getLastQuery(CiteUrn collUrn) {
     String queryString = prefixPhrase
     queryString += """
-SELECT ?urn WHERE {
-  ?urn cite:belongsTo <${collUrn}> .
-  ?urn olo:item ?seq .
-  { SELECT (MAX (?s) as ?max )
-    WHERE {
-      ?urn olo:item ?s .
+    SELECT ?urn WHERE {
       ?urn cite:belongsTo <${collUrn}> .
+      ?urn olo:item ?seq .
+      { SELECT (MAX (?s) as ?max )
+        WHERE {
+          ?urn olo:item ?s .
+          ?urn cite:belongsTo <${collUrn}> .
+        }
+      }
+      FILTER (?seq = ?max).
     }
-  }
-  FILTER (?seq = ?max).
-}
     """
     return queryString
   }
@@ -179,13 +179,13 @@ SELECT ?urn WHERE {
   static String getVersionedObjectsQuery(CiteUrn collUrn) {
     String queryString = prefixPhrase
     queryString += """
-  select distinct ?v where {
-    <${collUrn}> cite:possesses ?o .
-    ?o cite:hasVersion ?v .
+    select distinct ?v where {
+      <${collUrn}> cite:possesses ?o .
+      ?o cite:hasVersion ?v .
+    }
+    """
+    return queryString
   }
-  """
-  return queryString
-}
 
   /** Generates a Sparql query for finding every version-string represented in
   * in a collection
@@ -197,10 +197,98 @@ SELECT ?urn WHERE {
     String queryString = prefixPhrase
     queryString += """
     select ?v where {
-     <${urn}> cite:hasVersion ?v .
+      <${urn}> cite:hasVersion ?v .
     }
-  """
-  return queryString
-}
+    """
+    return queryString
+  }
+
+  /** Generates a Sparql query for finding all objects, with all
+  * versions, in a collection.
+  * @param CiteUrn
+  * @returns String
+  */
+  static String getGVRCollectionQuery(CiteUrn urn){
+    String queryString = prefixPhrase
+    queryString += """
+    SELECT distinct ?urn WHERE {
+           ?urn cite:belongsTo <${urn}> .
+      		?urn cite:isVersionOf ?notional .
+          }
+    ORDER BY ?urn
+    """
+    return queryString
+  }
+
+  /** Generates a Sparql query for finding all objects, with all
+  * versions, in an ordered collection.
+  * @param CiteUrn
+  * @returns String
+  */
+  static String getGVROrderedCollectionQuery(CiteUrn urn){
+    String queryString = prefixPhrase
+    queryString += """
+    SELECT distinct ?urn WHERE {
+           ?urn cite:belongsTo <${urn}> .
+          ?urn cite:isVersionOf ?notional .
+          ?urn olo:item ?seq .
+          }
+    ORDER BY ?seq
+    """
+    return queryString
+  }
+
+  /** Generates a Sparql query for finding all object-URNs, with
+  * a given version, in a collection.
+  * @param CiteUrn
+  * @param String
+  * @returns String
+  */
+  static String getGVRCollectionVersionedQuery(CiteUrn urn, String vString){
+    String queryString = prefixPhrase
+    queryString += """
+    SELECT distinct ?urn WHERE {
+           ?urn cite:belongsTo <${urn}> .
+      		?urn cite:isVersionOf ?notional .
+          FILTER(regex(str(?urn), ".${vString}\$"))
+      }
+    ORDER BY ?urn
+    """
+    return queryString
+  }
+
+  /** Generates a Sparql query for finding all objects, with a
+  * given version-string, in an ordered collection.
+  * @param CiteUrn
+  * @returns String
+  */
+  static String getGVROrderedCollectionVersionedQuery(CiteUrn urn, String vString){
+    String queryString = prefixPhrase
+    queryString += """
+    SELECT distinct ?urn WHERE {
+           ?urn cite:belongsTo <${urn}> .
+          ?urn cite:isVersionOf ?notional .
+          ?urn olo:item ?seq .
+          FILTER(regex(str(?urn), ".${vString}\$"))
+          }
+    ORDER BY ?seq
+    """
+    return queryString
+  }
+
+  /** Generates a Sparql query for finding all object-URNs
+  * defined by a range, for an ordered collection
+  * @param CiteUrn
+  * @param String
+  * @returns String
+  */
+  static String getGVRRangeQuery(CiteUrn urn, String vString){
+    String queryString = prefixPhrase
+    queryString += """
+
+    """
+    return queryString
+  }
+
 
 }
