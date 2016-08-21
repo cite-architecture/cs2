@@ -322,4 +322,20 @@ abstract class QueryBuilder {
     }
 
 
+    /** Generates a query for finding the properties of a collection, their types, and labels.
+    * @param CiteUrn (collection-level)
+    * @returns String.
+    */
+    static String getPropertiesForCollectionQuery(CiteUrn urn){
+      String queryString = prefixPhrase
+      queryString += """
+      SELECT ?property ?label ?type  WHERE {
+             <${urn}> cite:collProperty ?property .
+             ?property cite:propType ?type .
+             ?property cite:propLabel ?label .
+        } """
+        return queryString
+    }
+
+
 }

@@ -13,11 +13,11 @@ class TestGetVersionsOfObjectIntegr extends GroovyTestCase {
 
 
   String baseUrl = "http://localhost:8080/fuseki/cc/query"
-  String testUrn1  = "urn:cite:hmt:pageroi.32"
+  String testUrn1  = "urn:cite:hmt:pageroi.5"
   String testUrn2  = "urn:cite:hmt:pageroi"
-  String testUrn3  = "urn:cite:hmt:pageroi.32.v1"
-  String testUrn4  = "urn:cite:hmt:pageroi.32.v1@12,12,12,12"
-  String testUrn5  = "urn:cite:hmt:pageroi.32.v1-33.v1"
+  String testUrn3  = "urn:cite:hmt:pageroi.5.v1"
+  String testUrn4  = "urn:cite:hmt:pageroi.5.v1@12,12,12,12"
+  String testUrn5  = "urn:cite:hmt:pageroi.5.v1-33.v1"
 
 
   @Test
@@ -37,8 +37,8 @@ class TestGetVersionsOfObjectIntegr extends GroovyTestCase {
     va.each{ v ->
       stringArray << v.toString()
     }
-    assert stringArray.contains("urn:cite:hmt:pageroi.32.v1")
-    assert stringArray.contains("urn:cite:hmt:pageroi.32.v2")
+    assert stringArray.contains("urn:cite:hmt:pageroi.5.v1")
+    assert stringArray.contains("urn:cite:hmt:pageroi.5.v2")
 
   }
 
