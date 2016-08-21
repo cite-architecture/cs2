@@ -290,5 +290,36 @@ abstract class QueryBuilder {
     return queryString
   }
 
+  /** Generates a Sparql query for finding all properties
+  * their values, and their labels for a CITE object
+  * @param CiteUrn
+  * @returns String
+  */
+  static String getObjectQuery(CiteUrn urn){
+    String queryString = prefixPhrase
+    queryString += """
+    SELECT ?propval ?property ?label ?type WHERE {
+      <?{urn}> cite:belongsTo ?coll  .
+      ?coll cite:collProperty ?property .
+      <${urn}> ?property ?propval .
+      ?property cite:propLabel ?label .
+      ?property cite:propType ?type .
+      } """
+      return queryString
+    }
+
+    /** Generates query for finding the full namespace, given a NS-abbreviation
+    * @param String
+    * @returns String
+    */
+  static String getNamespaceQuery(String abbr){
+    String queryString = prefixPhrase
+    queryString += """
+    SELECT ?full  WHERE {
+       ?full cite:abbreviatedBy "${abbr}" .
+      } """
+      return queryString
+    }
+
 
 }

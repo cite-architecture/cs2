@@ -485,7 +485,43 @@ class CcGraph {
   }
 
   CiteCollectionObject getObject(CiteUrn urn){
+    // Make a CiteCollection object
+
+    // Make a CiteCollectionObject object
     return null
+  }
+
+  /** Returns a Map of full: and abbr: namespaces
+  * for a Cite Collection
+  * @param CiteUrn
+  * @returns Map "full:" and "abbr:"
+  */
+  Map getCollectionNamespace(CiteUrn urn)
+  throws Exception {
+    def nsMap = [:]
+    nsMap['abbr'] = urn.ns
+    nsMap['full'] = "not implemented yet"
+
+
+    String qs = QueryBuilder.getNamespaceQuery(urn.ns)
+    String reply = sparql.getSparqlReply("application/json", qs)
+    JsonSlurper slurper = new groovy.json.JsonSlurper()
+    def parsedReply = slurper.parseText(reply)
+    if (parsedReply.results.bindings.full) {
+        nsMap['full'] = parsedReply.results.bindings[0].full.value
+      } else {
+         throw new Exception( "CcGraph.getCollectionNamespace: ${urn.toString()}. Failed to get namespace.")
+      }
+
+    return nsMap
+  }
+
+  /** Return an ArrayList of Map objects
+  * @param CiteUrn
+  * @returns ArrayList of Map
+  */
+  ArrayList getPropertiesInCollection(CiteUrn urn){
+      return null
   }
 
   CCOSet getRange(CiteUrn urn){
@@ -496,9 +532,6 @@ class CcGraph {
     return null
   }
 
-  ArrayList getPropertiesInCollection(CiteUrn urn){
-      return null
-  }
 
   ArrayList getPropertiesForObject(CiteUrn urn){
 
