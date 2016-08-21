@@ -54,13 +54,23 @@ class TestGetCollectionIntegr extends GroovyTestCase {
   }
 
   @Test
+  void testGetCollectionOrderedByProp4unordered(){
+    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
+    Sparql sparql = new Sparql(baseUrl)
+    CcGraph cc = new CcGraph(sparql)
+    shouldFail {
+      CiteProperty prop = cc.getCollectionOrderedByProp(urn)
+    }
+  }
+
+  @Test
   void testGetCollectionExtensions(){
     CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg")
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     ArrayList exts = cc.getCollectionExtensions(urn)
     assert exts.size() == 1
-    assert exts[0] == "cite:CiteImage"
+    assert exts[0] == "http://www.homermultitext.org/cite/rdf/CiteImage"
   }
 
   @Test

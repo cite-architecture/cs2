@@ -537,11 +537,8 @@ class CcGraph {
           String ts1
           String ts2
           ts1 = parsedReply.results.bindings[0].name.value.toString()
-          System.err.println(ts1)
           ts2 = ts1.substring(ts1.lastIndexOf("/") + 1)
-          System.err.println(ts2)
           pName = ts2.tokenize("_")[1]
-          System.err.println(pName)
         } else {
           throw new Exception( "CcGraph.getCollectionIdProp: ${urn.toString()}. Failed to get property name.")
         }
@@ -569,17 +566,68 @@ class CcGraph {
   * @param CiteUrn
   * @returns CiteProperty
   */
-  CiteProperty getCollectionLabelProp(CiteUrn urn){
-    return null
+  CiteProperty getCollectionLabelProp(CiteUrn urn)
+  throws Exception {
+    String labelString = ""
+    CiteUrn collUrn = new CiteUrn(urn.reduceToCollection())
+    String qs = QueryBuilder.getLabelForCollectionQuery(collUrn)
+    String reply = sparql.getSparqlReply("application/json", qs)
+    String tempUrnString = ""
+    JsonSlurper slurper = new groovy.json.JsonSlurper()
+    def parsedReply = slurper.parseText(reply)
+    parsedReply.results.bindings.each{ b ->
+        if (b.label){
+          labelString = b.label.value
+        } else {
+          throw new Exception( "CcGraph.getCollectionLabelProp: ${urn.toString()}. Could not get label.")
+        }
+    }
+
+    CiteProperty labelProp = new CiteProperty("CollectionLabel","string",labelString)
+
+    return labelProp
   }
 
   /** Returns a CiteProperty with the OrderedBy property
-  * of an ordered Cite collection. May return null.
+  * of an ordered Cite collection. Exception if the collections
+  * is not ordered
   * @param CiteUrn
   * @returns CiteProperty
   */
-  CiteProperty getCollectionOrderedByProp(CiteUrn urn){
-    return null
+  CiteProperty getCollectionOrderedByProp(CiteUrn urn)
+  throws Exception {
+    CiteUrn collUrn = new CiteUrn(urn.reduceToCollection())
+
+    String nameString
+    String labelString
+
+    if (isOrdered(collUrn)){
+      String qs = QueryBuilder.getOrderedByPropQuery(collUrn)
+      String reply = sparql.getSparqlReply("application/json", qs)
+      String tempUrnString = ""
+      JsonSlurper slurper = new groovy.json.JsonSlurper()
+      def parsedReply = slurper.parseText(reply)
+      parsedReply.results.bindings.each{ b ->
+        if (b.name){
+          String ts1
+          String ts2
+          ts1 = parsedReply.results.bindings[0].name.value.toString()
+          ts2 = ts1.substring(ts1.lastIndexOf("/") + 1)
+          nameString = ts2.tokenize("_")[1]
+        } else {
+          throw new Exception( "CcGraph.getCollectionOrderedByProp: ${urn.toString()}. Could not get name.")
+        }
+        if (b.label){
+          labelString = b.label.value
+        } else {
+          throw new Exception( "CcGraph.getOrderedByPropQuery: ${urn.toString()}. Could not get label.")
+        }
+      }
+      CiteProperty orderedByProp = new CiteProperty(nameString,"number",labelString)
+      return orderedByProp
+    } else {
+          throw new Exception( "CcGraph.getCollectionOrderedByProp: ${urn.toString()} is not an ordered collection.")
+    }
   }
 
   /** Returns an ArrayList of extensions to a Cite Collection.
@@ -587,8 +635,20 @@ class CcGraph {
   * @param CiteUrn
   * @returns CiteProperty
   */
-  ArrayList getCollectionExtensions(CiteUrn urn){
+  ArrayList getCollectionExtensions(CiteUrn urn)
+  throws Exception {
     def exts = []
+    CiteUrn collUrn = new CiteUrn(urn.reduceToCollection())
+    String qs = QueryBuilder.getExtensionsQuery(collUrn)
+    String reply = sparql.getSparqlReply("application/json", qs)
+    String tempUrnString = ""
+    JsonSlurper slurper = new groovy.json.JsonSlurper()
+    def parsedReply = slurper.parseText(reply)
+    parsedReply.results.bindings.each{ b ->
+      if(b.ext){
+        exts << b.ext.value
+      }
+    }
     return exts
   }
 
