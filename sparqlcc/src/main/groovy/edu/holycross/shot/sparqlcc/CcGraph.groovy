@@ -292,12 +292,10 @@ class CcGraph {
       } else {
         CiteUrn collUrn = new CiteUrn(urn.reduceToCollection())
         String qs = QueryBuilder.getLastQuery(collUrn)
-        System.err.println(qs)
         String reply = sparql.getSparqlReply("application/json", qs)
         String tempUrnString = ""
         JsonSlurper slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(reply)
-        System.err.println(parsedReply)
         parsedReply.results.bindings.each { bndng ->
           if (bndng.urn) {
             tempUrnString = bndng.urn?.value
@@ -483,6 +481,121 @@ class CcGraph {
     return replyArray
   }
 
+
+  /* Returns a CiteCollection
+  * @param CiteUrn
+  * @returns CiteCollection object
+  */
+  CiteCollection getCollection(CiteUrn urn){
+    String tempUrn = urn.reduceToCollection()
+
+
+  	CiteUrn collUrn = new CiteUrn(tempUrn)
+
+  	CiteProperty idProp = getCollectionIdProp(collUrn)
+  	CiteProperty labelProp = getCollectionLabelProp(collUrn)
+    CiteProperty orderedByProp = null
+    if (isOrdered(collUrn)){
+    	orderedByProp = getCollectionOrderedByProp(collUrn)
+    }
+    ArrayList collProps = getPropertiesInCollection(collUrn)
+    collProps << labelProp // this isn't in RDF like a proper property
+
+  	ArrayList extensions = getCollectionExtensions(collUrn)
+
+  	Map nss = getCollectionNamespace(collUrn)
+  	String nsAbbr = nss['abbr']
+  	String nsFull = nss['full']
+
+    CiteCollection cc = new CiteCollection(collUrn, idProp, labelProp, orderedByProp, nsAbbr, nsFull, collProps, extensions)
+
+    return cc
+  }
+
+  /** Returns a CiteProperty with the Canonical Id property
+  * of a Cite collection
+  * @param CiteUrn
+  * @returns CiteProperty
+  */
+  CiteProperty getCollectionIdProp(CiteUrn urn)
+  throws Exception {
+
+        CiteUrn collUrn = new CiteUrn(urn.reduceToCollection())
+
+        String qs = QueryBuilder.getCanonicalIdPropQuery(collUrn)
+        String reply = sparql.getSparqlReply("application/json", qs)
+        String tempUrnString = ""
+        JsonSlurper slurper = new groovy.json.JsonSlurper()
+        def parsedReply = slurper.parseText(reply)
+
+        String pName
+        String pLabel
+        String pType
+        System.err.println(parsedReply)
+
+        if (parsedReply.results.bindings[0].name){
+          String ts1
+          String ts2
+          ts1 = parsedReply.results.bindings[0].name.value.toString()
+          System.err.println(ts1)
+          ts2 = ts1.substring(ts1.lastIndexOf("/") + 1)
+          System.err.println(ts2)
+          pName = ts2.tokenize("_")[1]
+          System.err.println(pName)
+        } else {
+          throw new Exception( "CcGraph.getCollectionIdProp: ${urn.toString()}. Failed to get property name.")
+        }
+        if (parsedReply.results.bindings[0].type){
+          pType = "citeurn" // it has to be
+        } else {
+          throw new Exception( "CcGraph.getCollectionIdProp: ${urn.toString()}. Failed to get property type.")
+        }
+        if (parsedReply.results.bindings[0].label){
+          pType = parsedReply.results.bindings.label.value
+        } else {
+          throw new Exception( "CcGraph.getCollectionIdProp: ${urn.toString()}. Failed to get property label.")
+        }
+        try {
+            CiteProperty canonicalId = new CiteProperty(pName,pType,pLabel)
+            return canonicalId
+        } catch (Exception e) {
+          throw new Exception( "CcGraph.getCollectionIdProp: ${urn.toString()}. Could not make property out of name = ${pName}, type = ${pType}, label = ${pLabel}.")
+        }
+
+  }
+
+  /** Returns a CiteProperty with the Label property
+  * of a Cite collection
+  * @param CiteUrn
+  * @returns CiteProperty
+  */
+  CiteProperty getCollectionLabelProp(CiteUrn urn){
+    return null
+  }
+
+  /** Returns a CiteProperty with the OrderedBy property
+  * of an ordered Cite collection. May return null.
+  * @param CiteUrn
+  * @returns CiteProperty
+  */
+  CiteProperty getCollectionOrderedByProp(CiteUrn urn){
+    return null
+  }
+
+  /** Returns an ArrayList of extensions to a Cite Collection.
+  * May return an empty array
+  * @param CiteUrn
+  * @returns CiteProperty
+  */
+  ArrayList getCollectionExtensions(CiteUrn urn){
+    def exts = []
+    return exts
+  }
+
+  /* Returns a CmeiteCollectionObject
+  * @param CiteUrn
+  * @returns CiteCollectionObject object
+  */
   CiteCollectionObject getObject(CiteUrn urn){
     // Make a CiteCollection object
 
@@ -515,7 +628,7 @@ class CcGraph {
     return nsMap
   }
 
-  /** Return an ArrayList of Map objects
+  /** Return an ArrayList of CiteProperty objects
   * @param CiteUrn
   * @returns ArrayList of Map
   */
@@ -528,9 +641,27 @@ class CcGraph {
     String reply = sparql.getSparqlReply("application/json", qs)
     JsonSlurper slurper = new groovy.json.JsonSlurper()
     def parsedReply = slurper.parseText(reply)
+    String ts1
+    String ts2
     parsedReply.results.bindings.each{ pp ->
-      tempMap = [property:pp.property.value, label:pp.label.value, type:pp.type.value]
-      collProps << tempMap
+      // get just the property name
+      ts1 = pp.property.value
+      ts2 = ts1.substring(ts1.lastIndexOf("/") + 1)
+      tempMap['property'] = ts2.tokenize("_")[1]
+      tempMap['type'] = pp.type.value
+      tempMap['label'] = pp.label.value
+      switch (tempMap['type']){
+          case "http://www.homermultitext.org/cite/rdf/CiteUrn":
+            tempMap['type'] = "citeurn"
+            break
+          case "http://www.homermultitext.org/cite/rdf/CtsUrn":
+            tempMap['type'] = "ctsurn"
+            break
+          default:
+            break
+          }
+
+      collProps << new CiteProperty(tempMap['property'],tempMap['type'],tempMap['label'])
     }
 
     return collProps

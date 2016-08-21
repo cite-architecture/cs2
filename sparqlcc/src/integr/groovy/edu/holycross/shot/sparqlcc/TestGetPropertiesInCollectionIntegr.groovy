@@ -17,7 +17,7 @@ class TestGetPropertiesInCollectionIntegr extends GroovyTestCase {
 
   @Test
   void testTest(){
-    assert true 
+    assert true
   }
 
   // With Object Urn
@@ -28,9 +28,9 @@ class TestGetPropertiesInCollectionIntegr extends GroovyTestCase {
     CiteUrn urn = new CiteUrn(objUrn)
     ArrayList collProps = cc.getPropertiesInCollection(urn)
     assert collProps.size() == 4
-    assert collProps[0]["property"]
-    assert collProps[0]["label"]
-    assert collProps[0]["type"]
+    assert collProps[0].propertyName
+    assert collProps[0].label
+    assert collProps[0].propertyType
   }
 
   // With Collection URN
@@ -41,9 +41,9 @@ class TestGetPropertiesInCollectionIntegr extends GroovyTestCase {
     CiteUrn urn = new CiteUrn(collUrn)
     ArrayList collProps = cc.getPropertiesInCollection(urn)
     assert collProps.size() == 5
-    assert collProps[0]["property"]
-    assert collProps[0]["label"]
-    assert collProps[0]["type"]
+    assert collProps[0].propertyName
+    assert collProps[0].label
+    assert collProps[0].propertyType
   }
 
 }

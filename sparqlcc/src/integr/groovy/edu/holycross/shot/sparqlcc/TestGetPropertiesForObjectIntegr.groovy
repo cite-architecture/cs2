@@ -17,7 +17,7 @@ class TestGetPropertiesForObjectIntegr extends GroovyTestCase {
 
   @Test
   void testTest(){
-    assert false
+    assert false 
   }
 
 

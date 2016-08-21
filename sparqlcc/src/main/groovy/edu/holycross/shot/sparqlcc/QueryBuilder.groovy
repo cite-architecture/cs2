@@ -337,5 +337,63 @@ abstract class QueryBuilder {
         return queryString
     }
 
+    /** Generates a query for finding the canlnicalId property
+    * of a collection, its type, and label.
+    * @param CiteUrn (collection-level)
+    * @returns String.
+    */
+    static String getCanonicalIdPropQuery(CiteUrn urn){
+      String queryString = prefixPhrase
+      queryString += """
+      select ?name ?type ?label where {
+      <${urn}> cite:canonicalId ?name .
+      ?name cite:propType ?type .
+      ?name cite:propLabel ?label .
+    } """
+        return queryString
+    }
 
+    /** Generates a query for finding the extensions
+    * of a collection
+    * @param CiteUrn (collection-level)
+    * @returns String.
+    */
+    static String getExtensionsQuery(CiteUrn urn){
+      String queryString = prefixPhrase
+      queryString += """
+      select ?ext where {
+      <${urn}> cite:extendedBy ?ext .
+    } """
+        return queryString
+    }
+
+    /** Generates a query for finding the label
+    * of a collection
+    * @param CiteUrn (collection-level)
+    * @returns String.
+    */
+    static String getLabelForCollectionQuery(CiteUrn urn){
+      String queryString = prefixPhrase
+      queryString += """
+      select ?label where {
+      <${urn}> rdf:label ?label .
+    } """
+        return queryString
+    }
+
+    /** Generates a query for finding the orderedBy property
+    * of a collection
+    * @param CiteUrn (collection-level)
+    * @returns String.
+    */
+    static String getOrderedByPropQuery(CiteUrn urn){
+      String queryString = prefixPhrase
+      queryString += """
+      select ?name ?type ?label where {
+      <${urn}> cite:orderedBy ?name .
+      ?name cite:propType ?type .
+      ?name cite:propLabel ?label .
+    } """
+        return queryString
+    }
 }
