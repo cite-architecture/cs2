@@ -459,15 +459,12 @@ class CcGraph {
             }
         }
       } else {
-        System.err.println("${urn} is not ordered.")
          CiteUrn rangeStart = new CiteUrn(urn.getRangeBegin())
          CiteUrn rangeEnd = new CiteUrn(urn.getRangeEnd())
         if (rangeStart.hasVersion()){
-            System.err.println("${rangeStart} hasVersion.")
             replyArray << urn.getRangeBegin()
             replyArray << urn.getRangeEnd()
         } else {
-            System.err.println("${rangeStart} does not have Version.")
            getVersionsOfObject(rangeStart).each{ v ->
              replyArray << v.toString()
            }
@@ -507,9 +504,14 @@ class CcGraph {
   	String nsAbbr = nss['abbr']
   	String nsFull = nss['full']
 
+    try {
     CiteCollection cc = new CiteCollection(collUrn, idProp, labelProp, orderedByProp, nsAbbr, nsFull, collProps, extensions)
 
     return cc
+    } catch (Exception e) {
+      System.err.println(e)
+      throw new Exception( "CcGraph.getCollection: ${urn.toString()}. Could not create collection.")
+    }
   }
 
   /** Returns a CiteProperty with the Canonical Id property

@@ -17,7 +17,7 @@ class TestGetCollectionIntegr extends GroovyTestCase {
 
   @Test
   void testTest(){
-    assert false
+    assert true 
   }
 
   @Test
@@ -89,7 +89,7 @@ class TestGetCollectionIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
       CiteCollection coll = cc.getCollection(urn)
-      assert cc.isValid()
+      assert coll.isValid()
   }
 
   @Test
@@ -98,7 +98,7 @@ class TestGetCollectionIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
       CiteCollection coll = cc.getCollection(urn)
-      assert cc.isValid()
+      assert coll.isValid()
   }
 
 
