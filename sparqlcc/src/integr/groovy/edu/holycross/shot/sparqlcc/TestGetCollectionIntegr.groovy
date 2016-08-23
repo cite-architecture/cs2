@@ -17,7 +17,7 @@ class TestGetCollectionIntegr extends GroovyTestCase {
 
   @Test
   void testTest(){
-    assert true 
+    assert true
   }
 
   @Test
@@ -27,7 +27,7 @@ class TestGetCollectionIntegr extends GroovyTestCase {
     CcGraph cc = new CcGraph(sparql)
     CiteProperty prop = cc.getCollectionIdProp(urn)
     assert prop.propertyName == "OccurrenceUrn"
-    assert prop.propertyType == "string"
+    assert prop.propertyType == CitePropertyType.CITE_URN
     assert prop.label.size() > 0
   }
 
@@ -38,7 +38,7 @@ class TestGetCollectionIntegr extends GroovyTestCase {
     CcGraph cc = new CcGraph(sparql)
     CiteProperty prop = cc.getCollectionLabelProp(urn)
     assert prop.propertyName == "CollectionLabel"
-    assert prop.propertyType == "string"
+    assert prop.propertyType == CitePropertyType.STRING
     assert prop.label.size() > 0
   }
 
@@ -49,7 +49,7 @@ class TestGetCollectionIntegr extends GroovyTestCase {
     CcGraph cc = new CcGraph(sparql)
     CiteProperty prop = cc.getCollectionOrderedByProp(urn)
     assert prop.propertyName == "Sequence"
-    assert prop.propertyType == "number"
+    assert prop.propertyType == CitePropertyType.NUM
     assert prop.label.size() > 0
   }
 

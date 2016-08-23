@@ -491,7 +491,9 @@ class CcGraph {
   	CiteUrn collUrn = new CiteUrn(tempUrn)
 
   	CiteProperty idProp = getCollectionIdProp(collUrn)
-  	CiteProperty labelProp = getCollectionLabelProp(collUrn)
+    String collectionProp = labelProp.label
+    String collectionLabel = getCollectionLabel(collUrn)
+  	CiteProperty labelProp = new CiteProperty("CollectionLabel",CitePropertyType.STRING,"Collection Label")
     CiteProperty orderedByProp = null
     if (isOrdered(collUrn)){
     	orderedByProp = getCollectionOrderedByProp(collUrn)
@@ -506,7 +508,7 @@ class CcGraph {
   	String nsFull = nss['full']
 
     try {
-    CiteCollection cc = new CiteCollection(collUrn, idProp, labelProp, orderedByProp, nsAbbr, nsFull, collProps, extensions)
+    CiteCollection cc = new CiteCollection(collUrn, collectionLabel, idProp, labelProp, orderedByProp, nsAbbr, nsFull, collProps, extensions)
 
     return cc
     } catch (Exception e) {
@@ -533,7 +535,7 @@ class CcGraph {
 
         String pName
         String pLabel
-        String pType
+        CitePropertyType pType
         System.err.println(parsedReply)
 
         if (parsedReply.results.bindings[0].name){
@@ -546,17 +548,19 @@ class CcGraph {
           throw new Exception( "CcGraph.getCollectionIdProp: ${urn.toString()}. Failed to get property name.")
         }
         if (parsedReply.results.bindings[0].type){
-          pType = "citeurn" // it has to be
+          pType = CitePropertyType.CITE_URN // it has to be
         } else {
           throw new Exception( "CcGraph.getCollectionIdProp: ${urn.toString()}. Failed to get property type.")
         }
         if (parsedReply.results.bindings[0].label){
-          pType = parsedReply.results.bindings.label.value
+          pLabel = parsedReply.results.bindings[0].label.value
         } else {
           throw new Exception( "CcGraph.getCollectionIdProp: ${urn.toString()}. Failed to get property label.")
         }
         try {
+           System.err.println("${pName} ${pType} ${pLabel}")
             CiteProperty canonicalId = new CiteProperty(pName,pType,pLabel)
+            System.err.println(canonicalId)
             return canonicalId
         } catch (Exception e) {
           throw new Exception( "CcGraph.getCollectionIdProp: ${urn.toString()}. Could not make property out of name = ${pName}, type = ${pType}, label = ${pLabel}.")
@@ -569,7 +573,7 @@ class CcGraph {
   * @param CiteUrn
   * @returns CiteProperty
   */
-  CiteProperty getCollectionLabelProp(CiteUrn urn)
+  String getCollectionLabel(CiteUrn urn)
   throws Exception {
     String labelString = ""
     CiteUrn collUrn = new CiteUrn(urn.reduceToCollection())
@@ -586,9 +590,9 @@ class CcGraph {
         }
     }
 
-    CiteProperty labelProp = new CiteProperty("CollectionLabel","string",labelString)
+    //CiteProperty labelProp = new CiteProperty("CollectionLabel",CitePropertyType.STRING,labelString)
 
-    return labelProp
+    return labelString
   }
 
   /** Returns a CiteProperty with the OrderedBy property
@@ -626,7 +630,7 @@ class CcGraph {
           throw new Exception( "CcGraph.getOrderedByPropQuery: ${urn.toString()}. Could not get label.")
         }
       }
-      CiteProperty orderedByProp = new CiteProperty(nameString,"number",labelString)
+      CiteProperty orderedByProp = new CiteProperty(nameString,CitePropertyType.NUM,labelString)
       return orderedByProp
     } else {
           throw new Exception( "CcGraph.getCollectionOrderedByProp: ${urn.toString()} is not an ordered collection.")
@@ -704,12 +708,25 @@ class CcGraph {
       tempMap['property'] = ts2.tokenize("_")[1]
       tempMap['type'] = pp.type.value
       tempMap['label'] = pp.label.value
+      System.err.println("${tempMap['property']} type ${tempMap['type']}")
       switch (tempMap['type']){
           case "http://www.homermultitext.org/cite/rdf/CiteUrn":
-            tempMap['type'] = "citeurn"
+            tempMap['type'] = CitePropertyType.CITE_URN
             break
           case "http://www.homermultitext.org/cite/rdf/CtsUrn":
-            tempMap['type'] = "ctsurn"
+            tempMap['type'] = CitePropertyType.CTS_URN
+            break
+          case "string":
+            tempMap['type'] = CitePropertyType.STRING
+            break
+          case "number":
+            tempMap['type'] = CitePropertyType.NUM
+            break
+          case "boolean":
+            tempMap['type'] = CitePropertyType.BOOLEAN
+            break
+          case "markdown":
+            tempMap['type'] = CitePropertyType.MARKDOWN
             break
           default:
             break

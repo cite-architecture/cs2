@@ -1,0 +1,70 @@
+import edu.harvard.chs.cite.CiteUrn
+
+def demoUrnStr = "urn:cite:hmt:venAsign.1.v1"
+CiteUrn demoUrn = new CiteUrn(demoUrnStr)
+
+
+html.html {
+	head {
+		title("CITE Collection Services")
+			link(href : "cts-ui/css/cts-core.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
+	}
+
+	body {
+
+		header("SPARQL CITE Collections (SparaqlCC)")
+			nav {
+
+				p {
+					a(href : "http://www.homermultitext.org/hmt-doc/", "CITE Architecture")
+				}
+			}
+
+		article {
+			p("This site hosts an implementation of CITE Collection Services.")
+
+
+
+				p {
+					mkp.yield("Although CITE is a network service primarily intended for use by other computer programs, you can use these query forms to interact with the service.")
+				}
+
+			h2("See the catalogue with GetCapabilities")
+				form (action : "api", method : "get") {
+					input (type : "hidden", name : "request", value : "GetCapabilities")
+						input (type : "hidden", name : "stylesheet", value : "cts_capabilities")
+						input (type : "submit", value : "GetCapabilities" )
+				}
+
+			h2("View an object with GetObject")
+				form (action : "api", method : "get") {
+					input (type : "hidden", name : "request", value : "GetPassagePlus")
+						input (type : "hidden", name : "stylesheet", value : "cts_passage")
+						input (type : "text", name : "urn", value : demoUrn, size: "40")
+						input (type : "submit", value : "GetPassagePlus" )
+				}
+
+			h2("Find valid citations for objects in a collection with GetValidReff")
+				form (action : "api", method : "get") {
+					input (type : "hidden", name : "request", value : "GetValidReff")
+						input (type : "hidden", name : "stylesheet", value : "cts_validreff")
+						input (type : "text", name : "urn", value : demoUrn.getUrnWithoutPassage(), size: "40")
+						mkp.yield(" depth: ")
+						input (type : "text", name : "level", value : "1", size: "2")
+						input (type : "submit", value : "GetValidReff" )
+				}
+
+
+				footer{
+					p {
+						a(href :"http://cite-architecture.github.io", "More about the CITE Architecture and the CTS protocol.")
+					}
+					p {
+						code("sparqlcts")
+							mkp.yield (" is licensed under the terms of the ")
+							a(href : "gpl-3.0.txt", "GPL, version 3.")
+					}
+				}
+		}
+	}
+}
