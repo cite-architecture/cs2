@@ -396,4 +396,29 @@ abstract class QueryBuilder {
     } """
         return queryString
     }
+
+    /** Generates a query for finding the values of all properties
+    * of an object. Needs an Array of `citedata:…` verbs, generated from
+    * the collection.
+    * @param CiteUrn
+    * @param ArrayList of citedata: namespaces verbsList
+    * @param ArrayList of property names
+    * @returns String
+    */
+    static String getPropertiesForObjectQuery(CiteUrn urn, ArrayList verbs, ArrayList props){
+      String queryString = prefixPhrase
+      queryString += "SELECT "
+      props.each{ pp ->
+        queryString += "?${pp} "
+      }
+      queryString += "WHERE { "
+      verbs.eachWithIndex{ vv, i ->
+        queryString += """optional { <${urn}> <${vv}> ?${props[i]} . }
+        """
+      }
+      queryString += " }"
+      return queryString
+
+    }
+
 }

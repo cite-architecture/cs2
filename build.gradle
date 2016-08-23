@@ -100,6 +100,7 @@ farms {
   farm 'suite', {
     webapp ":webapp"
     webapp ":sparqlcts"
+    webapp ":sparqlcc"
     webapp "${rootDir}/fuseki/fuseki.war"
   }
   farm 'fuse', {
@@ -112,6 +113,7 @@ products {
   product 'suite', {
     webapp ":webapp"
     webapp ":sparqlcts"
+    webapp ":sparqlcc"
     webapp "${rootDir}/fuseki/fuseki.war"
   }
 }

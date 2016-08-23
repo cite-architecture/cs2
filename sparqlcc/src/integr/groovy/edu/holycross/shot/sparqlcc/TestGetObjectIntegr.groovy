@@ -17,7 +17,27 @@ class TestGetObjectIntegr extends GroovyTestCase {
 
   @Test
   void testTest(){
-    assert false
+    assert true
+  }
+
+  @Test
+  void testGetObjectUnordered(){
+    Sparql sparql = new Sparql(baseUrl)
+	  CcGraph cc = new CcGraph(sparql)
+    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi.3.v1")
+
+    CiteCollectionObject cco = cc.getObject(urn)
+    assert cco
+  }
+
+  @Test
+  void testGetObjectOrdered(){
+    Sparql sparql = new Sparql(baseUrl)
+	  CcGraph cc = new CcGraph(sparql)
+    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.3.v1")
+
+    CiteCollectionObject cco = cc.getObject(urn)
+    assert cco
   }
 
 

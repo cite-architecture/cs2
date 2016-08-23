@@ -17,7 +17,20 @@ class TestGetPropertiesForObjectIntegr extends GroovyTestCase {
 
   @Test
   void testTest(){
-    assert false 
+    assert true 
+  }
+
+  @Test
+  void testGetProperties1(){
+    Sparql sparql = new Sparql(baseUrl)
+	  CcGraph cc = new CcGraph(sparql)
+    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi.3.v1")
+    Map props = cc.getPropertiesForObject(urn)
+    assert props["Codex"] == "urn:cite:hmt:codices.msA"
+    assert props["Folio"] == "urn:cite:hmt:msA.13r"
+    assert props["Label"] == "Page area of folio 13r"
+    assert props["ImageRoI"] == "urn:cite:hmt:vaimg.VA013RN-0014.v1@0.0675,0.0892,0.795,0.8638"
+
   }
 
 

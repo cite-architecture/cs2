@@ -23,6 +23,7 @@ class CcGraph {
     sparql = endPoint
   }
 
+
   /** Returns a valid version for an Object-level CITE Urn.
   * @param CiteUrn Can be range. Throws exception if the param is a collection-level URN
   * @returns CiteUrn (version-level)
@@ -654,16 +655,7 @@ class CcGraph {
     return exts
   }
 
-  /* Returns a CmeiteCollectionObject
-  * @param CiteUrn
-  * @returns CiteCollectionObject object
-  */
-  CiteCollectionObject getObject(CiteUrn urn){
-    // Make a CiteCollection object
 
-    // Make a CiteCollectionObject object
-    return null
-  }
 
   /** Returns a Map of full: and abbr: namespaces
   * for a Cite Collection
@@ -729,6 +721,33 @@ class CcGraph {
     return collProps
   }
 
+  /* Returns a CmeiteCollectionObject
+  * @param CiteUrn
+  * @returns CiteCollectionObject object
+  */
+  CiteCollectionObject getObject(CiteUrn urn){
+    CiteUrn objUrn = resolveVersion(urn)
+    CiteCollectionObject collectionObject
+
+    // Make a CiteCollection object
+    CiteCollection thisCollection = getCollection(objUrn)
+
+    // Make a CiteCollectionObject object
+    Map thisProperties = getPropertiesForObject(objUrn)
+    // Add canonicalID property if it is (still) missing (see PrestoChango Issue #68)
+    if( thisProperties["${thisCollection.canonicalIdProp.propertyName}"] == null){
+      thisProperties["${thisCollection.canonicalIdProp.propertyName}"] = objUrn.toString()
+    }
+    //if ordered, we need prev and next URNs
+    if (isOrdered(objUrn)){
+      collectionObject = new CiteCollectionObject(objUrn,thisCollection,thisProperties,getPrevUrn(objUrn),getNextUrn(objUrn))
+    } else {
+      collectionObject = new CiteCollectionObject(objUrn,thisCollection,thisProperties)
+    }
+
+    return collectionObject
+  }
+
   CCOSet getRange(CiteUrn urn){
     return null
   }
@@ -737,8 +756,34 @@ class CcGraph {
     return null
   }
 
-
-  ArrayList getPropertiesForObject(CiteUrn urn){
+  /** Returns a Map of properties and their values for an object
+  * in a CITE Collection
+  * @param CiteUrn
+  * @returns Map
+  */
+  Map getPropertiesForObject(CiteUrn urn){
+    def propMap = [:]
+    CiteUrn objUrn = resolveVersion(urn)
+    ArrayList collProps = getPropertiesInCollection(objUrn)
+    def verbsList = []
+    def propNames = []
+    String collectionName = objUrn.collection
+    collProps.each { cp ->
+      verbsList << "http://www.homermultitext.org/citedata/${collectionName}_${cp.propertyName}"
+      propNames << cp.propertyName
+    }
+    String qs = QueryBuilder.getPropertiesForObjectQuery(objUrn,verbsList,propNames )
+    //System.err.println(qs)
+    String reply = sparql.getSparqlReply("application/json", qs)
+    JsonSlurper slurper = new groovy.json.JsonSlurper()
+    def parsedReply = slurper.parseText(reply)
+    //System.err.println(parsedReply)
+    parsedReply.results.bindings[0].each{ bb ->
+        //System.err.println("Key=${bb.key}")
+        propMap["${bb.key}"] = bb.value.value
+        //System.err.println("Value=${bb.value.value} is class ${bb.value.value.getClass()}")
+    }
+    return propMap
 
   }
 
