@@ -573,27 +573,51 @@ class CcGraph {
   * @param CiteUrn
   * @returns CiteProperty
   */
-  String getCollectionLabel(CiteUrn urn)
+  CiteProperty getCollectionLabelProp(CiteUrn urn)
   throws Exception {
-    String labelString = ""
     CiteUrn collUrn = new CiteUrn(urn.reduceToCollection())
-    String qs = QueryBuilder.getLabelForCollectionQuery(collUrn)
+
+    String qs = QueryBuilder.getCollectionLabelPropQuery(collUrn)
     String reply = sparql.getSparqlReply("application/json", qs)
     String tempUrnString = ""
     JsonSlurper slurper = new groovy.json.JsonSlurper()
     def parsedReply = slurper.parseText(reply)
-    parsedReply.results.bindings.each{ b ->
-        if (b.label){
-          labelString = b.label.value
-        } else {
-          throw new Exception( "CcGraph.getCollectionLabelProp: ${urn.toString()}. Could not get label.")
-        }
+
+    String pName
+    String pLabel
+    CitePropertyType pType
+    System.err.println(parsedReply)
+
+    if (parsedReply.results.bindings[0].name){
+      String ts1
+      String ts2
+      ts1 = parsedReply.results.bindings[0].name.value.toString()
+      ts2 = ts1.substring(ts1.lastIndexOf("/") + 1)
+      pName = ts2.tokenize("_")[1]
+    } else {
+      throw new Exception( "CcGraph.getCollectionLabelProp: ${urn.toString()}. Failed to get property name.")
+    }
+    if (parsedReply.results.bindings[0].type){
+      pType = CitePropertyType.STRING // it has to be
+    } else {
+      throw new Exception( "CcGraph.getCollectionLabelProp: ${urn.toString()}. Failed to get property type.")
+    }
+    if (parsedReply.results.bindings[0].label){
+      pLabel = parsedReply.results.bindings[0].label.value
+    } else {
+      throw new Exception( "CcGraph.getCollectionLabelProp: ${urn.toString()}. Failed to get property label.")
+    }
+    try {
+       System.err.println("${pName} ${pType} ${pLabel}")
+        CiteProperty canonicalId = new CiteProperty(pName,pType,pLabel)
+        System.err.println(canonicalId)
+        return canonicalId
+    } catch (Exception e) {
+      throw new Exception( "CcGraph.getCollectionLabelProp: ${urn.toString()}. Could not make property out of name = ${pName}, type = ${pType}, label = ${pLabel}.")
     }
 
-    //CiteProperty labelProp = new CiteProperty("CollectionLabel",CitePropertyType.STRING,labelString)
+}
 
-    return labelString
-  }
 
   /** Returns a CiteProperty with the OrderedBy property
   * of an ordered Cite collection. Exception if the collections

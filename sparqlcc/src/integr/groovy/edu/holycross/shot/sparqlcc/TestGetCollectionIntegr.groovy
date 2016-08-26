@@ -37,7 +37,7 @@ class TestGetCollectionIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteProperty prop = cc.getCollectionLabelProp(urn)
-    assert prop.propertyName == "CollectionLabel"
+    assert prop.propertyName == "Label"
     assert prop.propertyType == CitePropertyType.STRING
     assert prop.label.size() > 0
   }

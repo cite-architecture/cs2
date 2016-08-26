@@ -346,7 +346,7 @@ abstract class QueryBuilder {
       String queryString = prefixPhrase
       queryString += """
       select ?name ?type ?label where {
-      <${urn}> cite:canonicalId ?name .
+      <${urn}> cite:idPropName ?name .
       ?name cite:propType ?type .
       ?name cite:propLabel ?label .
     } """
@@ -372,11 +372,13 @@ abstract class QueryBuilder {
     * @param CiteUrn (collection-level)
     * @returns String.
     */
-    static String getLabelForCollectionQuery(CiteUrn urn){
+    static String getCollectionLabelPropQuery(CiteUrn urn){
       String queryString = prefixPhrase
       queryString += """
-      select ?label where {
-      <${urn}> rdf:label ?label .
+      select ?name ?type ?label where {
+      <${urn}> cite:labelPropName ?name .
+      ?name cite:propType ?type .
+      ?name cite:propLabel ?label .
     } """
         return queryString
     }
