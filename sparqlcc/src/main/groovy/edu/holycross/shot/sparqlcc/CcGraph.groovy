@@ -491,15 +491,13 @@ class CcGraph {
   	CiteUrn collUrn = new CiteUrn(tempUrn)
 
   	CiteProperty idProp = getCollectionIdProp(collUrn)
-    String collectionProp = labelProp.label
-    String collectionLabel = getCollectionLabel(collUrn)
-  	CiteProperty labelProp = new CiteProperty("CollectionLabel",CitePropertyType.STRING,"Collection Label")
+    CiteProperty labelProp = getCollectionLabelProp(collUrn)
+    String collectionLabel = labelProp.label
     CiteProperty orderedByProp = null
     if (isOrdered(collUrn)){
     	orderedByProp = getCollectionOrderedByProp(collUrn)
     }
     ArrayList collProps = getPropertiesInCollection(collUrn)
-    collProps << labelProp // this isn't in RDF like a proper property
 
   	ArrayList extensions = getCollectionExtensions(collUrn)
 
@@ -513,7 +511,7 @@ class CcGraph {
     return cc
     } catch (Exception e) {
       System.err.println(e)
-      throw new Exception( "CcGraph.getCollection: ${urn.toString()}. Could not create collection.")
+      throw new Exception( "CcGraph.getCollection: ${urn.toString()}. Could not create collection. ${e}")
     }
   }
 

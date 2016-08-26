@@ -21,7 +21,7 @@ class TestGvrForCollectionIntegr  extends GroovyTestCase {
 
   @Test
   void testTest(){
-    assert true 
+    assert true
   }
 
   @Test
@@ -29,7 +29,7 @@ void testBigCollection(){
   Sparql sparql = new Sparql(baseUrl)
   CcGraph cc = new CcGraph(sparql)
   CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign")
-  assert cc.getValidReff(urn).size() == 2906
+  assert cc.getValidReff(urn).size() == 2903
 }
 
 @Test
@@ -51,9 +51,9 @@ void testOrderedCollection(){
   CcGraph cc = new CcGraph(sparql)
   CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign")
   replyArray = cc.getValidReff(urn)
-  assert replyArray.size() == 2906
+  assert replyArray.size() == 2903
   assert replyArray[0] == "urn:cite:hmt:venAsign.1.v1"
-  assert replyArray[2905] == "urn:cite:hmt:venAsign.2906.v1"
+  assert replyArray[2902] == "urn:cite:hmt:venAsign.2906.v1"
 }
 
 }
