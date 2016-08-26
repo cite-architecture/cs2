@@ -82,7 +82,7 @@ abstract class QueryBuilder {
     String queryString = prefixPhrase
     queryString += """
     ask {
-      <${urn.toString()}> cite:orderedBy ?z .
+      <${urn.toString()}> cite:ordered "true" .
     }
     """
     return queryString
