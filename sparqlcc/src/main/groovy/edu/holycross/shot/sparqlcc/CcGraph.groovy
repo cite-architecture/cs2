@@ -733,30 +733,31 @@ class CcGraph {
       tempMap['type'] = pp.type.value
       tempMap['label'] = pp.label.value
       System.err.println("${tempMap['property']} type ${tempMap['type']}")
+      CitePropertyType thisType
       switch (tempMap['type']){
           case "http://www.homermultitext.org/cite/rdf/CiteUrn":
-            tempMap['type'] = CitePropertyType.CITE_URN
+            thisType = CitePropertyType.CITE_URN
             break
           case "http://www.homermultitext.org/cite/rdf/CtsUrn":
-            tempMap['type'] = CitePropertyType.CTS_URN
+            thisType = CitePropertyType.CTS_URN
             break
           case "string":
-            tempMap['type'] = CitePropertyType.STRING
+            thisType = CitePropertyType.STRING
             break
           case "number":
-            tempMap['type'] = CitePropertyType.NUM
+            thisType = CitePropertyType.NUM
             break
           case "boolean":
-            tempMap['type'] = CitePropertyType.BOOLEAN
+            thisType = CitePropertyType.BOOLEAN
             break
           case "markdown":
-            tempMap['type'] = CitePropertyType.MARKDOWN
+            thisType = CitePropertyType.MARKDOWN
             break
           default:
             break
           }
 
-      collProps << new CiteProperty(tempMap['property'],tempMap['type'],tempMap['label'])
+      collProps << new CiteProperty(tempMap['property'],thisType,tempMap['label'])
     }
 
     return collProps

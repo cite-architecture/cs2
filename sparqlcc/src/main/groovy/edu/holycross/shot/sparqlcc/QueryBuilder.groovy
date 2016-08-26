@@ -392,7 +392,7 @@ abstract class QueryBuilder {
       String queryString = prefixPhrase
       queryString += """
       select ?name ?type ?label where {
-      <${urn}> cite:orderedBy ?name .
+      <${urn}> cite:orderingPropName ?name .
       ?name cite:propType ?type .
       ?name cite:propLabel ?label .
     } """
