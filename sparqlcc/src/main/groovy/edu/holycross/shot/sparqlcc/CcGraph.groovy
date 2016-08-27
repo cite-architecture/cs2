@@ -159,13 +159,14 @@ class CcGraph {
           if (bndng.u) {
             tempUrnString = bndng.u?.value
           }
+
         }
 
-      if (tempUrnString.contains("urn:cite:")){
-        return new CiteUrn(tempUrnString)
-      } else {
-        return null
-      }
+      if (tempUrnString != null){
+        if (tempUrnString.contains("urn:cite:")){
+          return new CiteUrn(tempUrnString)
+        }
+      } else {  return null }
   }
 
   /** Returns the CiteUrn for the Next item in an ordered collection
@@ -199,11 +200,11 @@ class CcGraph {
           }
         }
 
-      if (tempUrnString.contains("urn:cite:")){
-        return new CiteUrn(tempUrnString)
-      } else {
-        return null
-      }
+      if (tempUrnString != null){
+        if (tempUrnString.contains("urn:cite:")){
+          return new CiteUrn(tempUrnString)
+        }
+      } else {  return null }
   }
 
   /** Returns all versions present for a given object
@@ -836,7 +837,12 @@ class CcGraph {
   * @returns CCOSet
   */
   CCOSet getRange(CiteUrn paramUrn){
-    CiteUrn urn = resolveVersion(paramUrn)
+    CiteUrn urn
+    if (paramUrn.hasObjectId()){
+      urn = resolveVersion(paramUrn)
+    } else {
+      urn = paramUrn
+    }
     ArrayList validReff = getValidReff(urn)
     def objects = []
     CiteCollection coll = getCollection(urn)

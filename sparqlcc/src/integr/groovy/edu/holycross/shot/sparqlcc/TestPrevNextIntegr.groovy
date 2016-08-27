@@ -17,6 +17,8 @@ class TestPrevNextVersionedIntegr extends GroovyTestCase {
   String orderedUrn3 = "urn:cite:hmt:venAsign.16.v1"
   String orderedUrn4 = "urn:cite:hmt:venAsign.17.v1"
   String orderedUrn5 = "urn:cite:hmt:venAsign.15-16"
+  String firstUrn = "urn:cite:hmt:venAsign.1.v1"
+  String lastUrn = "urn:cite:hmt:venAsign.2906.v1"
 
   @Test
   void testTest(){
@@ -56,6 +58,24 @@ class TestPrevNextVersionedIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn(orderedUrn5)
     assert cc.getNextUrn(urn).toString() == orderedUrn4
+  }
+
+  // GetPrev on first urn
+  @Test
+  void testGetPrevOnFirst() {
+    Sparql sparql = new Sparql(baseUrl)
+	  CcGraph cc = new CcGraph(sparql)
+    CiteUrn urn = new CiteUrn(firstUrn)
+    assert cc.getPrevUrn(urn) == null
+  }
+
+  // GetNext on last
+  @Test
+  void testGetNextOnLast() {
+    Sparql sparql = new Sparql(baseUrl)
+	  CcGraph cc = new CcGraph(sparql)
+    CiteUrn urn = new CiteUrn(lastUrn)
+    assert cc.getNextUrn(urn) == null
   }
 
 }

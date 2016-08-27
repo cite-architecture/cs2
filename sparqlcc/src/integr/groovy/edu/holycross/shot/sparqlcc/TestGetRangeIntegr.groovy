@@ -73,10 +73,28 @@ class TestGetRangeIntegr extends GroovyTestCase {
     CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.2610.v1-2601.v1")
     shouldFail {
       CCOSet ccos = cc.getRange(urn)
+      System.err.println(ccos)
       assert ccos
     }
   }
 
+/* We passed this once, but it is commented out because it takes forever */
+/*
+  @Test
+  void testRangeWholeColl(){
+    Sparql sparql = new Sparql(baseUrl)
+	  CcGraph cc = new CcGraph(sparql)
+
+    // Ordered collection, should include 10 objects
+    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign")
+    CCOSet ccos = cc.getRange(urn)
+    assert ccos.urn.toString() == "urn:cite:hmt:venAsign.1.v1-2906.v1"
+    assert ccos.startUrn.toString() == "urn:cite:hmt:venAsign.1.v1"
+    assert ccos.endUrn.toString() == "urn:cite:hmt:venAsign.2906.v1"
+    assert ccos.ccos.size() == 2903
+
+  }
+  */
 
 
 
