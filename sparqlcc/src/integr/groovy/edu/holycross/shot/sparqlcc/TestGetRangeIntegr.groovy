@@ -17,7 +17,7 @@ class TestGetRangeIntegr extends GroovyTestCase {
 
   @Test
   void testTest(){
-    assert false
+    assert true
   }
 
   @Test
@@ -46,6 +46,21 @@ class TestGetRangeIntegr extends GroovyTestCase {
     assert ccos.startUrn.toString() == "urn:cite:hmt:venAsign.2601.v1"
     assert ccos.endUrn.toString() == "urn:cite:hmt:venAsign.2610.v1"
     assert ccos.ccos.size() == 10
+
+  }
+
+  @Test
+  void testRange3(){
+    Sparql sparql = new Sparql(baseUrl)
+	  CcGraph cc = new CcGraph(sparql)
+
+    // Ordered collection, should include 10 objects
+    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.2601.v1")
+    CCOSet ccos = cc.getRange(urn)
+    assert ccos.urn.toString() == "urn:cite:hmt:venAsign.2601.v1"
+    assert ccos.startUrn.toString() == "urn:cite:hmt:venAsign.2601.v1"
+    assert ccos.endUrn.toString() == "urn:cite:hmt:venAsign.2601.v1"
+    assert ccos.ccos.size() == 1
 
   }
 
