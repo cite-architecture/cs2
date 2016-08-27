@@ -498,6 +498,9 @@ class CcGraph {
     	orderedByProp = getCollectionOrderedByProp(collUrn)
     }
     ArrayList collProps = getPropertiesInCollection(collUrn)
+    System.err.println("++++++++++++++")
+    System.err.println(collProps)
+    System.err.println("++++++++++++++")
 
   	ArrayList extensions = getCollectionExtensions(collUrn)
 
@@ -739,16 +742,16 @@ class CcGraph {
           case "http://www.homermultitext.org/cite/rdf/CtsUrn":
             thisType = CitePropertyType.CTS_URN
             break
-          case "string":
+          case "http://www.homermultitext.org/cite/rdf/String":
             thisType = CitePropertyType.STRING
             break
-          case "number":
+          case "http://www.homermultitext.org/cite/rdf/Numeric":
             thisType = CitePropertyType.NUM
             break
-          case "boolean":
+          case "http://www.homermultitext.org/cite/rdf/Boolean":
             thisType = CitePropertyType.BOOLEAN
             break
-          case "markdown":
+          case "http://www.homermultitext.org/cite/rdf/Markdown":
             thisType = CitePropertyType.MARKDOWN
             break
           default:
@@ -782,19 +785,19 @@ class CcGraph {
     if (isOrdered(objUrn)){
       collectionObject = new CiteCollectionObject(objUrn,thisCollection,thisProperties,getPrevUrn(objUrn),getNextUrn(objUrn))
     } else {
+      System.err.println("---------")
+      System.err.println(objUrn)
+      System.err.println(thisCollection)
+      System.err.println(thisCollection.collProperties)
+      System.err.println(thisProperties)
+      System.err.println("---------")
+
       collectionObject = new CiteCollectionObject(objUrn,thisCollection,thisProperties)
     }
 
     return collectionObject
   }
 
-  CCOSet getRange(CiteUrn urn){
-    return null
-  }
-
-  CCOSet getPaged(CiteUrn urn, Integer offset, Integer limit){
-    return null
-  }
 
   /** Returns a Map of properties and their values for an object
   * in a CITE Collection
@@ -827,9 +830,37 @@ class CcGraph {
 
   }
 
+  /** Given a CiteUrn, returns a CCOSet object, containing a
+  * Collection-URN and an Array of CiteCollectionObjects
+  * @param CiteUrn
+  * @returns CCOSet
+  */
+  CCOSet getRange(CiteUrn paramUrn){
+    CiteUrn urn = resolveVersion(paramUrn)
+    ArrayList validReff = getValidReff(urn)
+    def objects = []
+    CiteCollection coll = getCollection(urn)
+    validReff.each{ vr ->
+      objects << getObject(new CiteUrn(vr))
+    }
+    CCOSet ccos = new CCOSet(coll,objects)
+    return ccos
+
+}
+
+
+  /** Given a CiteUrn, an offset, and a limit, returns a CCOSet object, containing a
+  * Collection-URN and an Array of CiteCollectionObjects. The urn of the CCOSet
+  * will reflect the data actually returned.
+  * @param CiteUrn
+  * @returns CCOSet
+  */
+  CCOSet getPaged(CiteUrn urn, Integer offset, Integer limit){
+    return null
+  }
+
   String formatReply(String request, Map, params) {
     return ""
   }
-
 
 }
