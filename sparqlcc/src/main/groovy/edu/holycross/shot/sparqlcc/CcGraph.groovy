@@ -37,7 +37,6 @@ class CcGraph {
 	  if ( urn.isRange() ){
 		  CiteUrn rangeBegin = new CiteUrn(urn.getRangeBegin())
 		  CiteUrn rangeEnd = new CiteUrn(urn.getRangeEnd())
-		  System.err.println "${urn.toString()} --> ${rangeBegin.toString()} + ${rangeEnd.toString()}"
       CiteUrn resolvedBegin = resolveVersion(rangeBegin)
       tempUrnString = resolvedBegin.toString()
       tempUrnString += "-${rangeEnd.objectId}.${resolvedBegin.objectVersion}"
@@ -149,7 +148,6 @@ class CcGraph {
     } else {
       rurn = resolveVersion(urn)
     }
-    System.err.println("Working with: ${rurn}.")
 
       String qs = QueryBuilder.getPreviousQuery(rurn)
       String reply = sparql.getSparqlReply("application/json", qs)
@@ -188,7 +186,6 @@ class CcGraph {
     } else {
       rurn = resolveVersion(urn)
     }
-    System.err.println("Working with: ${rurn}.")
 
       String qs = QueryBuilder.getNextQuery(rurn)
       String reply = sparql.getSparqlReply("application/json", qs)
@@ -261,12 +258,10 @@ class CcGraph {
       } else {
         CiteUrn collUrn = new CiteUrn(urn.reduceToCollection())
         String qs = QueryBuilder.getFirstQuery(collUrn)
-        System.err.println(qs)
         String reply = sparql.getSparqlReply("application/json", qs)
         String tempUrnString = ""
         JsonSlurper slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(reply)
-        System.err.println(parsedReply)
         parsedReply.results.bindings.each { bndng ->
           if (bndng.urn) {
             tempUrnString = bndng.urn?.value
@@ -275,7 +270,6 @@ class CcGraph {
         if ((tempUrnString == "") || (tempUrnString == null)){
           throw new Exception( "CcGraph.getFirstUrn: ${urn.toString()}. No valid firstUrn for collection ${collUrn.toString()}")
         } else {
-          System.err.println(tempUrnString)
           return new CiteUrn(tempUrnString)
         }
       }
@@ -306,7 +300,6 @@ class CcGraph {
         if ((tempUrnString == "") || (tempUrnString == null)){
           throw new Exception( "CcGraph.getFirstUrn: ${urn.toString()}. No valid firstUrn for collection ${collUrn.toString()}")
         } else {
-          System.err.println(tempUrnString)
           return new CiteUrn(tempUrnString)
         }
       }
@@ -357,8 +350,6 @@ class CcGraph {
         JsonSlurper slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(reply)
         if (parsedReply.results.bindings.size) {
-          System.err.println(parsedReply.results.bindings)
-          System.err.println(parsedReply.results.bindings.getClass())
           return new BigInteger(parsedReply.results.bindings[0].size.value)
           } else {
             throw new Exception( "CcGraph.getCollectionSize: ${urn.toString()}. Failed to get count.")
@@ -441,6 +432,8 @@ class CcGraph {
         }
     } else { // is a range
       if (isOrdered(urn)){
+
+
         String rStart = urn.getRangeBegin()
         String rEnd = urn.getRangeEnd()
         CiteUrn rStartUrn = resolveVersion(new CiteUrn(rStart))
@@ -448,6 +441,15 @@ class CcGraph {
         String vs = rStartUrn.objectVersion
         // replyArray = ["for range; ordered collection"]
         ArrayList tempArray = gvrForCollection(rStartUrn, vs)
+
+
+        def startIndex = tempArray.findIndexOf { s -> s.toString() == rStartUrn.toString() }
+        def endIndex = tempArray.findIndexOf { e -> e.toString() == rEndUrn.toString() }
+
+        if (startIndex > endIndex){
+          throw new Exception( "CcGraph.getValidReffForRange: ${urn.toString()}. This is an ordered collection, but the start-URN follows the end-URN.")
+        }
+
         Boolean collecting = false
         tempArray.each { cco ->
             if( cco == rStartUrn.toString()){
@@ -499,9 +501,6 @@ class CcGraph {
     	orderedByProp = getCollectionOrderedByProp(collUrn)
     }
     ArrayList collProps = getPropertiesInCollection(collUrn)
-    System.err.println("++++++++++++++")
-    System.err.println(collProps)
-    System.err.println("++++++++++++++")
 
   	ArrayList extensions = getCollectionExtensions(collUrn)
 
@@ -514,7 +513,6 @@ class CcGraph {
 
     return cc
     } catch (Exception e) {
-      System.err.println(e)
       throw new Exception( "CcGraph.getCollection: ${urn.toString()}. Could not create collection. ${e}")
     }
   }
@@ -538,7 +536,6 @@ class CcGraph {
         String pName
         String pLabel
         CitePropertyType pType
-        System.err.println(parsedReply)
 
         if (parsedReply.results.bindings[0].name){
           String ts1
@@ -560,9 +557,7 @@ class CcGraph {
           throw new Exception( "CcGraph.getCollectionIdProp: ${urn.toString()}. Failed to get property label.")
         }
         try {
-           System.err.println("${pName} ${pType} ${pLabel}")
             CiteProperty canonicalId = new CiteProperty(pName,pType,pLabel)
-            System.err.println(canonicalId)
             return canonicalId
         } catch (Exception e) {
           throw new Exception( "CcGraph.getCollectionIdProp: ${urn.toString()}. Could not make property out of name = ${pName}, type = ${pType}, label = ${pLabel}.")
@@ -588,7 +583,6 @@ class CcGraph {
     String pName
     String pLabel
     CitePropertyType pType
-    System.err.println(parsedReply)
 
     if (parsedReply.results.bindings[0].name){
       String ts1
@@ -610,9 +604,7 @@ class CcGraph {
       throw new Exception( "CcGraph.getCollectionLabelProp: ${urn.toString()}. Failed to get property label.")
     }
     try {
-       System.err.println("${pName} ${pType} ${pLabel}")
         CiteProperty canonicalId = new CiteProperty(pName,pType,pLabel)
-        System.err.println(canonicalId)
         return canonicalId
     } catch (Exception e) {
       throw new Exception( "CcGraph.getCollectionLabelProp: ${urn.toString()}. Could not make property out of name = ${pName}, type = ${pType}, label = ${pLabel}.")
@@ -734,7 +726,6 @@ class CcGraph {
       tempMap['property'] = ts2.tokenize("_")[1]
       tempMap['type'] = pp.type.value
       tempMap['label'] = pp.label.value
-      System.err.println("${tempMap['property']} type ${tempMap['type']}")
       CitePropertyType thisType
       switch (tempMap['type']){
           case "http://www.homermultitext.org/cite/rdf/CiteUrn":
@@ -786,12 +777,6 @@ class CcGraph {
     if (isOrdered(objUrn)){
       collectionObject = new CiteCollectionObject(objUrn,thisCollection,thisProperties,getPrevUrn(objUrn),getNextUrn(objUrn))
     } else {
-      System.err.println("---------")
-      System.err.println(objUrn)
-      System.err.println(thisCollection)
-      System.err.println(thisCollection.collProperties)
-      System.err.println(thisProperties)
-      System.err.println("---------")
 
       collectionObject = new CiteCollectionObject(objUrn,thisCollection,thisProperties)
     }

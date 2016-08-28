@@ -23,7 +23,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
 
   @Test
   void testTest(){
-    assert true 
+    assert true
   }
 
   @Test
@@ -40,6 +40,16 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.11-20")
     assert cc.getValidReff(urn).size() == 10
+  }
+
+  @Test
+  void testRangeOfOrderedBadRange1(){
+    Sparql sparql = new Sparql(baseUrl)
+    CcGraph cc = new CcGraph(sparql)
+    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.20-11")
+    shouldFail{
+      assert cc.getValidReff(urn)
+    }
   }
 
   @Test

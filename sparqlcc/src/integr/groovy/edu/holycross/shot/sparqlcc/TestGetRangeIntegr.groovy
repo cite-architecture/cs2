@@ -73,7 +73,10 @@ class TestGetRangeIntegr extends GroovyTestCase {
     CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.2610.v1-2601.v1")
     shouldFail {
       CCOSet ccos = cc.getRange(urn)
-      System.err.println(ccos)
+      System.err.println(ccos.urn)
+      System.err.println(ccos.ccos[0])
+      System.err.println(ccos.ccos[1])
+      System.err.println("${ccos.ccos.size()}")
       assert ccos
     }
   }
