@@ -819,9 +819,9 @@ class CcGraph {
   /** Given a CiteUrn, returns a CCOSet object, containing a
   * Collection-URN and an Array of CiteCollectionObjects
   * @param CiteUrn
-  * @returns CCOSet
+  * @returns ArrayList of CiteCollectionObjects
   */
-  CCOSet getRange(CiteUrn paramUrn){
+  ArrayList getRange(CiteUrn paramUrn){
     CiteUrn urn
     if (paramUrn.hasObjectId()){
       urn = resolveVersion(paramUrn)
@@ -830,28 +830,77 @@ class CcGraph {
     }
     ArrayList validReff = getValidReff(urn)
     def objects = []
-    CiteCollection coll = getCollection(urn)
     validReff.each{ vr ->
       objects << getObject(new CiteUrn(vr))
     }
-    CCOSet ccos = new CCOSet(coll,objects)
-    return ccos
+    return objects
 
 }
 
 
-  /** Given a CiteUrn, an offset, and a limit, returns a CCOSet object, containing a
-  * Collection-URN and an Array of CiteCollectionObjects. The urn of the CCOSet
-  * will reflect the data actually returned.
-  * @param CiteUrn
-  * @returns CCOSet
-  */
-  CCOSet getPaged(CiteUrn urn, Integer offset, Integer limit){
-    return null
+/** Given a CiteUrn, an offset, and a limit, returns a CCOSet object, containing a
+* Collection-URN and an Array of CiteCollectionObjects. The urn of the CCOSet
+* will reflect the data actually returned.
+* @param CiteUrn
+* @returns Map ['urn':citeUrn, 'offset':integer, 'limit':integer, 'size':BigInteger 'objects':ArrayList]
+*/
+Map getPaged(CiteUrn paramUrn, Integer offset, Integer limit)
+throws Exception {
+
+  if ( (offset < 1) || (limit < 1)){
+         throw new Exception( "CcGraph.getPaged: ${urn.toString()}. Neither parameter 'offset' nor 'limit' may be less than 1.")
   }
 
-  String formatReply(String request, Map, params) {
-    return ""
+  System.err.println("-----------------")
+  System.err.println("${paramUrn}")
+  def pagedObject = [:]
+  CiteUrn urn
+  if (paramUrn.hasObjectId()){
+    urn = resolveVersion(paramUrn)
+    } else {
+      urn = paramUrn
+    }
+    System.err.println("${urn}")
+    pagedObject['urn'] = urn
+    pagedObject['offset'] = offset
+    pagedObject['limit'] = limit
+
+    def objects = [] // will hold the CiteCollectionObjects
+
+    ArrayList firstArray = getValidReff(urn)
+    pagedObject['size'] = firstArray.size()
+
+    // let's get absolute values for start and end
+    def startIndex = offset - 1
+    def endIndex = startIndex + limit - 1
+
+    System.err.println("0. From ${startIndex} to ${endIndex}, out of ${firstArray.size()}")
+
+    if (offset > firstArray.size()){
+      pagedObject['objects'] = objects
+
+      System.err.println("Offset too big. From ${startIndex} to ${endIndex}, out of ${firstArray.size()}")
+
+    } else {
+      if ( endIndex > firstArray.size()){
+
+
+        endIndex = firstArray.size() - 1
+        pagedObject['limit'] = firstArray.size() - offset + 1
+
+        System.err.println("endIndex too big. From ${startIndex} to ${endIndex}, out of ${firstArray.size()}")
+      }
+      for (i in (startIndex..endIndex) ){
+        System.err.println("[${i}] ${firstArray[i]}")
+        objects << getObject( new CiteUrn(firstArray[i]) )
+      }
+      pagedObject['objects'] = objects
+    }
+
+    return pagedObject
+
+
   }
+
 
 }
