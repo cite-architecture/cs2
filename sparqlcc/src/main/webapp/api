@@ -2,6 +2,25 @@ import edu.holycross.shot.sparqlcc.*
 import edu.harvard.chs.cite.CtsUrn
 import edu.harvard.chs.cite.CiteUrn
 
+/*
+
+Requests
+
+GetCapabilities
+GetPagedGetObjectPlus
+GetPrevNextUrn
+GetNext
+GetPrev
+GetCollectionSize
+GetValidReff
+GetObject
+GetLast
+GetFirst
+
+*/
+
+/* SET UP VARIABLES */
+
 String contentType
 
 String responseType = request.getParameter("type")
@@ -11,259 +30,64 @@ if ( (responseType == "") || (responseType == null)){
 
 if (responseType == "json"){
 	contentType = "text/json"
-} else {
-	contentType = "text/xml"
-}
-response.setContentType(contentType)
-response.setHeader( "Access-Control-Allow-Origin", "*")
-
-String stylesheet = null
-if (request.getParameter("stylesheet")){
-	stylesheet = request.getParameter("stylesheet")
-}
-
-boolean done = false
-
-
-String req = request.getParameter("request")
-String urnStr = request.getParameter("urn")
-if (req == "GetCapabilities") {
-	if (stylesheet != null){
-		println """<?xml-stylesheet type="text/xsl" href="cts-ui/xslt/${stylesheet}.xsl"?>\r"""
-	}
-	  println getCapsReply()
-	  done = true
-
-
-
-} else  if (req == "GetVersion") {
-	println "<version>@version@</version>"
-		done = true
-
-} else {
-	// guarantee that URN parameter is syntactically valid
-    if (request.getParameter("urn"))	{
-		try {
-			CtsUrn urn = new CtsUrn(urnStr)
-
-		} catch (Exception e) {
-			System.err.println e
-			println """<CTSError xmlns:cts="http:chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">\n"""
-				def errorNum
-				switch (e) {
-					case ~/java.lang.Exception: Bad URN syntax.*/:
-					   errorNum = 2
-					   println """<message>BAD URN SYNTAX: "${urnStr}"</message>\n"""
-					   println """<code>${errorNum}</code>\n"""
-					   break
-
-					case "java.lang.NullPointerException":
-						errorNum = 1
-					   println """<message>INVALID REQUEST. Missing parameter: 'urn'</message>\n"""
-					   println """<code>${errorNum}</code>\n"""
-					   break
-
-					default:
-					   errorNum = 0
-					   println """<message>Undefined error: ${e}</message>"""
-					   println """<code>${errorNum}</code>"""
-					   break
-				}
-			println """</CTSError>\n"""
-				done = true
-		}
 	} else {
-		   errorNum = 1
-			println """<CTSError xmlns:cts="http:chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">\n"""
-		   println """<message>INVALID REQUEST. Missing parameter: 'urn'</message>\n"""
-		   println """<code>${errorNum}</code>\n"""
-			println """</CTSError>\n"""
-		   done = true
+		contentType = "text/xml"
 	}
-}
+	response.setContentType(contentType)
+	response.setHeader( "Access-Control-Allow-Origin", "*")
 
-Integer contextSize = 0
-if (request.getParameter("context")) {
-	String contextStr = request.getParameter("context")
-		try {
-			contextSize = contextStr.toInteger()
+
+	String stylesheet = null
+	if (request.getParameter("stylesheet")){
+		stylesheet = request.getParameter("stylesheet")
+	}
+
+	boolean done = false
+
+	String req = request.getParameter("request")
+	String urnStr = request.getParameter("urn")
+
+	if (req == "GetCapabilities") {
+		if (stylesheet != null){
+			println """<?xml-stylesheet type="text/xsl" href="cc-ui/xslt/${stylesheet}.xsl"?>\r"""
+		}
+		// *** GetCapabilities ***
+		println getCapsReply()
+		done = true
+	} else  if (req == "GetVersion") {
+		println "<version>@version@</version>"
+		done = true
+	} else {
+		// guarantee that URN parameter is syntactically valid
+		if (request.getParameter("urn"))	{
 			try {
-				assert contextSize >= 0
-				} catch (AssertionError e){
-					println badIntegerParamReply("context",contextStr)
+				CiteUrn urn = new CiteUrn(urnStr)
+				} catch (Exception e) {
+					System.err.printn(e)
+					println "<error>${urnStr} is not a valid URN: ${e}</error>\n"
 					done = true
 				}
-		} catch (Exception e) {
-			println badIntegerParamReply("context",contextStr)
-			done = true
-		}
-}
-
-Integer level = null
-if (request.getParameter("level")) {
-	String levelStr = request.getParameter("level")
-		try {
-			level = levelStr.toInteger()
-			try {
-				assert level >= 0
-			} catch (AssertionError e){
-				println badIntegerParamReply("level",levelStr)
+			} else {
+				errorNum = 1
+				println """<CITEError xmlns:cts="http:chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cite">\n"""
+				println """<message>INVALID REQUEST. Missing parameter: 'urn'</message>\n"""
+				println """<code>${errorNum}</code>\n"""
+				println """</CITEError>\n"""
 				done = true
 			}
-		} catch (Exception e) {
-			println badIntegerParamReply("level",levelStr)
-			done = true
-		}
-}
+	}
 
 
+// *** Other Requests than GetCapabilities and GetVersion
 if (!done) {
+
 	String baseUrl = context.getInitParameter('tripleserver')
-		Sparql sparql = new Sparql(baseUrl)
-		CtsGraph graph = new CtsGraph(sparql)
-		CtsReply reply = new CtsReply( sparql, graph)
-		switch(req) {
+  Sparql sparql = new Sparql(baseUrl)
+  CcGraph cc = new CcGraph(sparql)
 
-			case "GetDescription":
-					if (responseType == "json"){
-						try {
-						println reply.getDescriptionToJSON(urnStr)
-						} catch (Exception e){
-							println invalidUrnReply(urnStr)
-						}
+  switch(req) {
 
-					} else {
-						try {
-							println reply.getDescriptionToXML(urnStr)
-						} catch (Exception e){
-							println invalidUrnReply(urnStr)
-						}
-					}
-					break
-
-			case "GetPassagePlus":
-					if (responseType == "json"){
-						try {
-							println reply.getPassagePlusToJSON(urnStr,contextSize)
-						} catch (Exception e){
-							println invalidUrnReply(urnStr)
-						}
-					} else {
-						try {
-							if (stylesheet != null){
-								println """<?xml-stylesheet type="text/xsl" href="cts-ui/xslt/${stylesheet}.xsl"?>\r"""
-							}
-							println reply.getPassagePlusToXML(urnStr,contextSize)
-						} catch (Exception e){
-							println invalidUrnReply(urnStr)
-						}
-					}
-					break
-
-			case "GetPassage":
-					if (responseType == "json"){
-						try {
-						println reply.getPassageToJSON(urnStr,contextSize)
-						} catch (Exception e){
-							println invalidUrnReply(urnStr)
-						}
-					} else {
-						try {
-							if (stylesheet != null){
-								println """<?xml-stylesheet type="text/xsl" href="cts-ui/xslt/${stylesheet}.xsl"?>\r"""
-							}
-							println reply.getPassageToXML(urnStr,contextSize)
-						} catch (Exception e){
-							println invalidUrnReply(urnStr)
-						}
-					}
-					break
-
-			case "GetPrevNextUrn":
-					if (responseType == "json"){
-						try {
-						println reply.getPrevNextToJSON(urnStr)
-						} catch (Exception e){
-							println invalidUrnReply(urnStr)
-						}
-					} else {
-						try {
-						println reply.getPrevNextToXML(urnStr)
-						} catch (Exception e){
-							println invalidUrnReply(urnStr)
-						}
-					}
-					break
-
-			case "GetValidReff":
-					if (responseType == "json"){
-						try {
-						println reply.getValidReffToJSON(urnStr,level)
-						} catch (Exception e){
-							println invalidUrnReply(urnStr)
-						}
-					} else {
-						try {
-							if (stylesheet != null){
-								println """<?xml-stylesheet type="text/xsl" href="cts-ui/xslt/${stylesheet}.xsl"?>\r"""
-							}
-							println reply.getValidReffToXML(urnStr,level)
-						} catch (Exception e){
-							println invalidUrnReply(urnStr)
-						}
-					}
-					break
-
-			case "GetFirstUrn":
-					if (responseType == "json"){
-						try {
-						println reply.getFirstUrnToJSON(urnStr)
-						} catch (Exception e){
-							println invalidUrnReply(urnStr)
-						}
-					} else {
-						try {
-							if (stylesheet != null){
-								println """<?xml-stylesheet type="text/xsl" href="cts-ui/xslt/${stylesheet}.xsl"?>\r"""
-							}
-						println reply.getFirstUrnToXML(urnStr)
-						} catch (Exception e){
-							println invalidUrnReply(urnStr)
-						}
-					}
-					break
-			default :
-					// break with "undefined request" excetpion
-					println unknownRequestReply()
-					break
-		}
-}
-
-String invalidUrnReply(urnStr){
-		Integer	errorNum = 3
-		String errorString =  """<CTSError xmlns:cts="http:chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">\n"""
-		errorString += """<message>INVALID REQUEST. No text found matching: "${urnStr}"</message>\n"""
-		errorString += """<code>${errorNum}</code>\n"""
-		errorString += """</CTSError>\n"""
-		return errorString
-}
-
-String unknownRequestReply(){
-		Integer	errorNum = 4
-		String errorString =  """<CTSError xmlns:cts="http:chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">\n"""
-		errorString += """<message>UNKNOWN REQUEST. Must be one of: "GetCapabilities", "GetValidReff", "GetPassage", "GetPassagePlus", "GetPrevNextUrn", "GetFirstUrn", "GetDescription".</message>\n"""
-		errorString += """<code>${errorNum}</code>\n"""
-		errorString += """</CTSError>\n"""
-		return errorString
-}
-
-String badIntegerParamReply(String paramName, String paramValue){
-			Integer errorNum = 1
-			errorString =  """<CTSError xmlns:cts="http:chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cts">\n"""
-		    errorString += """<message>INVALID REQUEST. Value of parameter "${paramName}" must be a positive integer: "${paramValue}."</message>\n"""
-		    errorString +=  """<code>${errorNum}</code>\n"""
-			errorString +=  """</CTSError>\n"""
-			return errorString
+	}
 }
 
 String getCapsReply() {
@@ -277,12 +101,11 @@ String getCapsReply() {
         // temporary kludge:  strip XML PIs, and hope they're isolated on
         // a single line ...
         String capsText = invFile.getText("UTF-8").replaceAll(/<[?].+[?]>/, '')
-        return "<GetCapabilities xmlns='http://chs.harvard.edu/xmlns/cts' xmlns:cts='http://chs.harvard.edu/xmlns/cts'>\n<cts:request><request>GetCapabilities</request>\n<inventory>${inv}</inventory>\n\n</cts:request>\n<cts:reply>\n${capsText}\n</cts:reply>\n</GetCapabilities>"
+        return "<GetCapabilities xmlns='http://chs.harvard.edu/xmlns/cite' xmlns:cite='http://chs.harvard.edu/xmlns/cite'>\n<cite:request><request>GetCapabilities</request>\n<inventory>${inv}</inventory>\n\n</cite:request>\n<cite:reply>\n${capsText}\n</cite:reply>\n</GetCapabilities>"
 
 	//return "<debug>FILE ${invFile} had text of length ${capsText.size()}</debug>"
 
     } catch (Exception e) {
         return ("<error>Exception reading inventory file:  ${e}</error>")
     }
-
 }

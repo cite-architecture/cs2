@@ -900,6 +900,17 @@ throws Exception {
     return pagedObject
   }
 
+/** Takes a CITE Collection Service request and returns
+* a properly formatted reply, as a string.
+* @param String request
+* @param Map params
+* @returns String
+*/
+String formatReply(String request, Map params){
+    return ""
+}
+
+
 
 
 
