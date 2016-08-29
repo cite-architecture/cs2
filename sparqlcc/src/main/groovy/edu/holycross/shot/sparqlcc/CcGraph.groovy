@@ -851,8 +851,8 @@ throws Exception {
          throw new Exception( "CcGraph.getPaged: ${urn.toString()}. Neither parameter 'offset' nor 'limit' may be less than 1.")
   }
 
-  System.err.println("-----------------")
-  System.err.println("${paramUrn}")
+  //System.err.println("-----------------")
+  //System.err.println("${paramUrn}")
   def pagedObject = [:]
   CiteUrn urn
   if (paramUrn.hasObjectId()){
@@ -860,7 +860,7 @@ throws Exception {
     } else {
       urn = paramUrn
     }
-    System.err.println("${urn}")
+  //  System.err.println("${urn}")
     pagedObject['urn'] = urn
     pagedObject['offset'] = offset
     pagedObject['limit'] = limit
@@ -874,7 +874,7 @@ throws Exception {
     def startIndex = offset - 1
     def endIndex = startIndex + limit - 1
 
-    System.err.println("0. From ${startIndex} to ${endIndex}, out of ${firstArray.size()}")
+  //  System.err.println("0. From ${startIndex} to ${endIndex}, out of ${firstArray.size()}")
 
     if (offset > firstArray.size()){
       pagedObject['objects'] = objects
@@ -888,19 +888,19 @@ throws Exception {
         endIndex = firstArray.size() - 1
         pagedObject['limit'] = firstArray.size() - offset + 1
 
-        System.err.println("endIndex too big. From ${startIndex} to ${endIndex}, out of ${firstArray.size()}")
+  //      System.err.println("endIndex too big. From ${startIndex} to ${endIndex}, out of ${firstArray.size()}")
       }
       for (i in (startIndex..endIndex) ){
-        System.err.println("[${i}] ${firstArray[i]}")
+  //      System.err.println("[${i}] ${firstArray[i]}")
         objects << getObject( new CiteUrn(firstArray[i]) )
       }
       pagedObject['objects'] = objects
     }
 
     return pagedObject
-
-
   }
+
+
 
 
 }
