@@ -2,22 +2,6 @@ import edu.holycross.shot.sparqlcc.*
 import edu.harvard.chs.cite.CtsUrn
 import edu.harvard.chs.cite.CiteUrn
 
-/*
-
-Requests
-
-GetCapabilities
-GetPagedGetObjectPlus
-GetPrevNextUrn
-GetNext
-GetPrev
-GetCollectionSize
-GetValidReff
-GetObject
-GetLast
-GetFirst
-
-*/
 
 /* SET UP VARIABLES */
 
@@ -49,7 +33,7 @@ if (responseType == "json"){
 
 	if (req == "GetCapabilities") {
 		if (stylesheet != null){
-			println """<?xml-stylesheet type="text/xsl" href="cc-ui/xslt/${stylesheet}.xsl"?>\r"""
+			println """<?xml-stylesheet type="text/xsl" href="cite-ui/xslt/${stylesheet}.xsl"?>\r"""
 		}
 		// *** GetCapabilities ***
 		println getCapsReply()
@@ -85,9 +69,17 @@ if (!done) {
   Sparql sparql = new Sparql(baseUrl)
   CcGraph cc = new CcGraph(sparql)
 
-  switch(req) {
+  if (responseType == "xml"){
+		if (stylesheet != null){
+			println """<?xml-stylesheet type="text/xsl" href="cite-ui/xslt/${stylesheet}.xsl"?>\r"""
+		}
 
+		println cc.formatXmlReply(req,request.getParameterMap())
+	} else {
+		println "<html><p>Responses other than XML not yet implemented.</p></html>"
 	}
+
+
 }
 
 String getCapsReply() {

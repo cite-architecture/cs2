@@ -900,14 +900,96 @@ throws Exception {
     return pagedObject
   }
 
+/* Requests
+
+GetObject
+GetObjectPlus
+GetPrevNextUrn
+GetNext
+GetPrev
+GetCollectionSize
+GetValidReff
+GetLast
+GetFirst
+GetRange
+GetPaged
+*/
+
 /** Takes a CITE Collection Service request and returns
 * a properly formatted reply, as a string.
 * @param String request
 * @param Map params
 * @returns String
 */
-String formatReply(String request, Map params){
-    return ""
+String formatXmlReply(String request, Map params)
+throws Exception {
+  try{
+
+    String replyString = ""
+    replyString += """<${request} xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite" >\n\n<cite:request>\n"""
+
+    switch(request) {
+// GetObject -----------------------------------
+      case "GetObject":
+      break;
+
+// GetObjectPlus -----------------------------------
+      case "GetObjectPlus":
+      break;
+
+// GetPrevNextUrn -----------------------------------
+      case "GetPrevNextUrn":
+      break;
+
+// GetNext -----------------------------------
+      case "GetNext":
+      break;
+
+// GetPrev -----------------------------------
+      case "GetPrev":
+      break;
+
+// GetCollectionSize -----------------------------------
+      case "GetCollectionSize":
+      break;
+
+// GetValidReff -----------------------------------
+      case "GetValidReff":
+      break;
+
+// GetLast -----------------------------------
+      case "GetLast":
+      break;
+
+// GetFirst -----------------------------------
+      case "GetFirst":
+      break;
+
+// GetRange -----------------------------------
+      case "GetRange":
+      break;
+
+// GetPaged -----------------------------------
+      case "GetPaged":
+      break;
+
+// Default -----------------------------------
+      default:
+        throw new Exception("${request} is not a recognized request.")
+      break;
+    }
+
+    replyString += "</${request}>"
+    return replyString
+
+  } catch (Exception e){
+    String replyString = """ <CITEError xmlns:cts="http:chs.harvard.edu/xmlns/cite" xmlns="http://chs.harvard.edu/xmlns/cite">
+				<message>INVALID REQUEST. Request: ${request}, with parameters ${params}</message>
+				<error>${e}</error>
+				</CITEError> """
+    return replyString
+  }
+
 }
 
 
