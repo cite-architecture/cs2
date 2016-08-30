@@ -53,7 +53,7 @@ if (responseType == "json"){
 				}
 			} else {
 				errorNum = 1
-				println """<CITEError xmlns:cts="http:chs.harvard.edu/xmlns/cts" xmlns="http://chs.harvard.edu/xmlns/cite">\n"""
+				println """<CITEError xmlns:cts="http:chs.harvard.edu/xmlns/cite" xmlns="http://chs.harvard.edu/xmlns/cite">\n"""
 				println """<message>INVALID REQUEST. Missing parameter: 'urn'</message>\n"""
 				println """<code>${errorNum}</code>\n"""
 				println """</CITEError>\n"""
@@ -73,8 +73,8 @@ if (!done) {
 		if (stylesheet != null){
 			println """<?xml-stylesheet type="text/xsl" href="cite-ui/xslt/${stylesheet}.xsl"?>\r"""
 		}
-
-		println cc.formatXmlReply(req,request.getParameterMap())
+		CiteUrn urn = new CiteUrn(urnStr)
+		println cc.formatXmlReply(req, urn, request.getParameterMap())
 	} else {
 		println "<html><p>Responses other than XML not yet implemented.</p></html>"
 	}

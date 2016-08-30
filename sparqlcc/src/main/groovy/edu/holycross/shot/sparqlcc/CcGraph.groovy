@@ -1,4 +1,4 @@
-package edu.holycross.shot.sparqlcc
+  package edu.holycross.shot.sparqlcc
 
 //import edu.holycross.shot.citeservlet.Sparql
 
@@ -235,7 +235,7 @@ class CcGraph {
           def parsedReply = slurper.parseText(reply)
           parsedReply.results.bindings.each { bndng ->
             if (bndng.v) {
-              try{
+              try {
                 replyArray << new CiteUrn( bndng.v?.value )
                 } catch (Exception e ) {
                   throw new Exception ( "CcGraph.getVersionsOfObject: Bad data ( ${bndng.v?.value} )")
@@ -311,9 +311,9 @@ class CcGraph {
   * objects. With a version-level URN, counts only objects with the same
   * version-string.
   * @param CiteUrn
-  * @returns BigInteger
+  * @returns Map ['urn':CiteUrn, 'version':String, 'size': BigInteger]
   */
-    BigInteger getCollectionSize(CiteUrn urn){
+    Map getCollectionSize(CiteUrn urn){
     String versionString = null
     CiteUrn qUrn
     if(urn.hasVersion()){
@@ -324,7 +324,7 @@ class CcGraph {
     return getCollectionSize(qUrn,versionString)
   }
 
-  BigInteger getCollectionSize(CiteUrn urn, String versionString)
+  Map getCollectionSize(CiteUrn urn, String versionString)
   throws Exception {
     CiteUrn qUrn
     String qVersion
@@ -350,7 +350,11 @@ class CcGraph {
         JsonSlurper slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(reply)
         if (parsedReply.results.bindings.size) {
-          return new BigInteger(parsedReply.results.bindings[0].size.value)
+          Map returnMap = [:]
+          returnMap['urn'] = qUrn
+          returnMap['version'] = qVersion
+          returnMap['size'] = new BigInteger(parsedReply.results.bindings[0].size.value)
+          return returnMap
           } else {
             throw new Exception( "CcGraph.getCollectionSize: ${urn.toString()}. Failed to get count.")
           }
@@ -921,12 +925,23 @@ GetPaged
 * @param Map params
 * @returns String
 */
-String formatXmlReply(String request, Map params)
+String formatXmlReply(String request, CiteUrn requestUrn, Map params )
 throws Exception {
-  try{
+  try {
 
     String replyString = ""
+
     replyString += """<${request} xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite" >\n\n<cite:request>\n"""
+
+    replyString += "<request>${request}</request>\n"
+    params.each { pm ->
+      if (pm.key == "urn") {
+        replyString += "<requestUrn>${pm.value[0]}</requestUrn>\n"
+        } else {
+          replyString+= "<${pm.key}>${pm.value[0]}</${pm.key}>\n"
+        }
+    }
+    // We don't close <cite:request> yet, so we can add request-specific stuff below.
 
     switch(request) {
 // GetObject -----------------------------------
@@ -951,6 +966,12 @@ throws Exception {
 
 // GetCollectionSize -----------------------------------
       case "GetCollectionSize":
+        Map getCollectionSizeMap = getCollectionSize(requestUrn)
+        replyString += "<queryUrn>${getCollectionSizeMap['urn']}</queryUrn>\n"
+        replyString += "<versionString>${getCollectionSizeMap['version']}</versionString>\n"
+        replyString += "</cite:request>\n<cite:reply>"
+        replyString += "<collectionSize>${getCollectionSizeMap['size']}</collectionSize>\n"
+        replyString += "</cite:reply>\n"
       break;
 
 // GetValidReff -----------------------------------
@@ -958,11 +979,11 @@ throws Exception {
       break;
 
 // GetLast -----------------------------------
-      case "GetLast":
+      case "GetLastUrn":
       break;
 
 // GetFirst -----------------------------------
-      case "GetFirst":
+      case "GetFirstUrn":
       break;
 
 // GetRange -----------------------------------

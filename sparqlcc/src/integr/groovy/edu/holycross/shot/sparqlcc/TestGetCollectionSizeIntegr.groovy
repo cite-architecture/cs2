@@ -31,7 +31,7 @@ class TestGetCollectionSizeIntegr extends GroovyTestCase {
     CcGraph cc = new CcGraph(sparql)
 
     CiteUrn testUrn = new CiteUrn(urn1)
-    assert cc.getCollectionSize(testUrn) == 10
+    assert cc.getCollectionSize(testUrn)['size'] == 10
   }
 
   @Test
@@ -39,7 +39,7 @@ class TestGetCollectionSizeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteUrn testUrn = new CiteUrn(urn2)
-    assert cc.getCollectionSize(testUrn) == 2903
+    assert cc.getCollectionSize(testUrn)['size'] == 2903
   }
 
   @Test
@@ -47,7 +47,7 @@ class TestGetCollectionSizeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteUrn testUrn = new CiteUrn(urn3)
-    assert cc.getCollectionSize(testUrn) == 20
+    assert cc.getCollectionSize(testUrn)['size'] == 20
   }
 
   @Test
@@ -55,7 +55,7 @@ class TestGetCollectionSizeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteUrn testUrn = new CiteUrn(urn4)
-    assert cc.getCollectionSize(testUrn) == 2903
+    assert cc.getCollectionSize(testUrn)['size'] == 2903
   }
 
   @Test
@@ -63,7 +63,7 @@ class TestGetCollectionSizeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteUrn testUrn = new CiteUrn(urn5)
-    assert cc.getCollectionSize(testUrn) == 20
+    assert cc.getCollectionSize(testUrn)['size'] == 20
   }
 
   @Test
@@ -71,7 +71,7 @@ class TestGetCollectionSizeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteUrn testUrn = new CiteUrn(urn3)
-    assert cc.getCollectionSize(testUrn,'v1') == 20
+    assert cc.getCollectionSize(testUrn,'v1')['size'] == 20
   }
 
   @Test
@@ -79,7 +79,7 @@ class TestGetCollectionSizeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteUrn testUrn = new CiteUrn(urn3)
-    assert cc.getCollectionSize(testUrn,'v2') == 20
+    assert cc.getCollectionSize(testUrn,'v2')['size'] == 20
   }
 
 

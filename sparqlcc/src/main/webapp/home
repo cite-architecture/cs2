@@ -115,18 +115,18 @@ html.html {
 				}
 
 				form (action : "api", method : "get") {
-					input (type : "hidden", name : "request", value : "GetFirst")
+					input (type : "hidden", name : "request", value : "GetFirstUrn")
 						input (type : "hidden", name : "stylesheet", value : "cite_validreff")
 						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40")
-						input (type : "submit", value : "GetFirst" )
+						input (type : "submit", value : "GetFirstUrn" )
 						mkp.yield("Valid only for ordered collections.")
 				}
 
 				form (action : "api", method : "get") {
-					input (type : "hidden", name : "request", value : "GetLast")
+					input (type : "hidden", name : "request", value : "GetLastUrn")
 						input (type : "hidden", name : "stylesheet", value : "cite_validreff")
 						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40")
-						input (type : "submit", value : "GetLast" )
+						input (type : "submit", value : "GetLastUrn" )
 						mkp.yield("Valid only for ordered collections.")
 				}
 /*

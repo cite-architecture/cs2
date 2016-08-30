@@ -67,6 +67,6 @@ ccIntegration.doFirst {
 
 
 gretty {
-  initParameter("tripleserver", "http://localhost:8080/fuseki/ds/query")
+  initParameter("tripleserver", "http://localhost:8080/fuseki/cc/query")
   initParameter("version","cs2 pre-release 1.0")
 }
