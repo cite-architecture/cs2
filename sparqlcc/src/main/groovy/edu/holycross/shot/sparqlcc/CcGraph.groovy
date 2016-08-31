@@ -883,7 +883,7 @@ Map getPagedReff(CiteUrn paramUrn, Integer offset, Integer limit)
 throws Exception {
 
   if ( (offset < 1) || (limit < 1)){
-         throw new Exception( "CcGraph.getPaged: ${urn.toString()}. Neither parameter 'offset' nor 'limit' may be less than 1.")
+         throw new Exception( "CcGraph.getPagedReff: ${paramUrn.toString()}. Neither parameter 'offset' nor 'limit' may be less than 1. offset = ${offset}; limit=${limit}")
   }
 
   //System.err.println("-----------------")
@@ -891,7 +891,7 @@ throws Exception {
   def pagedReff = [:]
   CiteUrn urn
   if (paramUrn.hasObjectId()){
-    urn = resolveVersion(paramUrn)
+    urn = resolveVersion(urn)
     } else {
       urn = paramUrn
     }
@@ -1086,9 +1086,9 @@ throws Exception {
             // We're sending this off to getPagedValidReff
             // so we need to make a new set of params
             def pgvrOffset = []
-            pgvrOffset << 1
+            pgvrOffset << "1"
             def pgvrLimit = []
-            pgvrLimit << 50
+            pgvrLimit << "50"
             def pgvrParams = [:]
             pgvrParams['offset'] = pgvrOffset
             pgvrParams['limit'] = pgvrLimit
@@ -1117,9 +1117,30 @@ throws Exception {
 // GetPagedValidReff -----------------------------------
       case "GetPagedValidReff":
 
-        replyString += "<resolvedUrn> *** URN GOES HERE *** </resolvedUrn>\n"
+        // Sort out params
+        Integer limit
+        Integer offset
+        if (params['limit']){
+          limit = params['limit'][0].toInteger()
+        } else {
+          throw new Exception("SparqlCC: GetPagedValidReff. Missing paramter 'limit'.")
+        }
+        if (params['offset']){
+          offset = params['offset'][0].toInteger()
+        } else {
+          throw new Exception("SparqlCC: GetPagedValidReff. Missing paramter 'offset'.")
+        }
+
+        Map pagedGvr = getPagedReff(requestUrn, offset, limit)
+
+
+        replyString += "<resolvedUrn>${pagedGvr['resolvedUrn']}</resolvedUrn>\n"
+        replyString += "<numberOfUrns>${pagedGvr['size']}</numberOfUrns>\n"
         replyString += "</cite:request>\n<cite:reply>"
-        replyString += "Not implemented yet\n</cite:reply>"
+        pagedGvr['urns'].each{ uu ->
+          replyString += "<urn>${uu.toString()}</urn>\n"
+        }
+        replyString += "</cite:reply>\n"
         replyString += "</${request}>"
 
       break;

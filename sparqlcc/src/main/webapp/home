@@ -53,7 +53,7 @@ html.html {
 						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40", id:"gvrUrnField")
 						input (type : "submit", value : "GetValidReff" )
 						br()
-						label(for:"gvrVersionField", "[Optional] Limit results to URNs with this version-string.")
+						label(for:"gvrVersionField", "[Optional] Limit results to URNs with this version-string:")
 						input (type : "text", name : "version", value : "", size: "10", id:"gvrVersionField")
 						br()
 							input (type: "checkbox", name : "safemode", checked : "checked", id:"gvrSafe" )
@@ -78,6 +78,17 @@ html.html {
 						mkp.yield("Useful mainly for ordered collections.")
 						input (type: "checkbox", name : "safemode", checked : "checked" )
 						mkp.yield("Safe Mode: Returns paged results if query yields more than 20 objects.")
+				}
+
+				form (action : "api", method : "get") {
+					input (type : "hidden", name : "request", value : "GetPagedValidReff")
+						input (type : "hidden", name : "stylesheet", value : "")
+						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40")
+						label ( for:"pverOffsetField", "Offset:")
+						input (type : "text", name : "offset", value : "1", size: "5", id: "pvrOffsetField")
+						label ( for:"pverLimitField", "Limit:")
+						input (type : "text", name : "limit", value : "10", size: "5", id: "pvrLimitField")
+						input (type : "submit", value : "GetPagedValidReff)" )
 				}
 
 				form (action : "api", method : "get") {
