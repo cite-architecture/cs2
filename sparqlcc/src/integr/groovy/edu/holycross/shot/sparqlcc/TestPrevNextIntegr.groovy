@@ -31,7 +31,7 @@ class TestPrevNextVersionedIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn(orderedUrn2)
-    assert cc.getPrevUrn(urn).toString() == orderedUrn1
+    assert cc.getPrevUrn(urn)['prevUrn'].toString() == orderedUrn1
   }
   // Un-versioned range
   @Test
@@ -39,7 +39,7 @@ class TestPrevNextVersionedIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn(orderedUrn5)
-    assert cc.getPrevUrn(urn).toString() == orderedUrn1
+    assert cc.getPrevUrn(urn)['prevUrn'].toString() == orderedUrn1
   }
 
   // Simple object example, should work
@@ -48,7 +48,7 @@ class TestPrevNextVersionedIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn(orderedUrn2)
-    assert cc.getNextUrn(urn).toString() == orderedUrn3
+    assert cc.getNextUrn(urn)['nextUrn'].toString() == orderedUrn3
   }
 
   // Unversioned range.
@@ -57,7 +57,7 @@ class TestPrevNextVersionedIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn(orderedUrn5)
-    assert cc.getNextUrn(urn).toString() == orderedUrn4
+    assert cc.getNextUrn(urn)['nextUrn'].toString() == orderedUrn4
   }
 
   // GetPrev on first urn
@@ -66,7 +66,7 @@ class TestPrevNextVersionedIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn(firstUrn)
-    assert cc.getPrevUrn(urn) == null
+    assert cc.getPrevUrn(urn)['prevUrn'] == null
   }
 
   // GetNext on last
@@ -75,7 +75,7 @@ class TestPrevNextVersionedIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn(lastUrn)
-    assert cc.getNextUrn(urn) == null
+    assert cc.getNextUrn(urn)['nextUrn'] == null
   }
 
 }

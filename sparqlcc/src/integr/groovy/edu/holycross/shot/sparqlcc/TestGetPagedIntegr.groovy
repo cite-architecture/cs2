@@ -29,7 +29,7 @@ class TestGetPagedIntegr extends GroovyTestCase {
     // Paged for a whole collection
     CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign")
     Map ccos = cc.getPaged(urn,1,10)
-    assert ccos['urn'].toString() == urn.toString()
+    assert ccos['resolvedUrn'].toString() == urn.toString()
     assert ccos['offset'] == 1
     assert ccos['limit'] == 10
     assert ccos['size'] == 2903
@@ -47,7 +47,7 @@ class TestGetPagedIntegr extends GroovyTestCase {
     // Paged for a whole collection
     CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
     Map ccos = cc.getPaged(urn,1,10)
-    assert ccos['urn'].toString() == urn.toString()
+    assert ccos['resolvedUrn'].toString() == urn.toString()
     assert ccos['offset'] == 1
     assert ccos['limit'] == 10
     assert ccos['size'] == 40
@@ -65,7 +65,7 @@ class TestGetPagedIntegr extends GroovyTestCase {
     // Paged for a whole collection
     CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
     Map ccos = cc.getPaged(urn,11,10)
-    assert ccos['urn'].toString() == urn.toString()
+    assert ccos['resolvedUrn'].toString() == urn.toString()
     assert ccos['offset'] == 11
     assert ccos['limit'] == 10
     assert ccos['size'] == 40
@@ -83,7 +83,7 @@ class TestGetPagedIntegr extends GroovyTestCase {
     // Paged for a whole collection
     CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
     Map ccos = cc.getPaged(urn,31,10)
-    assert ccos['urn'].toString() == urn.toString()
+    assert ccos['resolvedUrn'].toString() == urn.toString()
     assert ccos['offset'] == 31
     assert ccos['limit'] == 10
     assert ccos['size'] == 40
@@ -102,7 +102,7 @@ class TestGetPagedIntegr extends GroovyTestCase {
     // Paged for a whole collection
     CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
     Map ccos = cc.getPaged(urn,31,20)
-    assert ccos['urn'].toString() == urn.toString()
+    assert ccos['resolvedUrn'].toString() == urn.toString()
     assert ccos['offset'] == 31
     assert ccos['limit'] == 10
     assert ccos['size'] == 40
@@ -121,7 +121,7 @@ class TestGetPagedIntegr extends GroovyTestCase {
     // Paged for a whole collection
     CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
     Map ccos = cc.getPaged(urn,35,20)
-    assert ccos['urn'].toString() == urn.toString()
+    assert ccos['resolvedUrn'].toString() == urn.toString()
     assert ccos['offset'] == 35
     assert ccos['limit'] == 6
     assert ccos['size'] == 40
@@ -140,7 +140,7 @@ class TestGetPagedIntegr extends GroovyTestCase {
     // Paged for a whole collection, ordered
     CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign")
     Map ccos = cc.getPaged(urn,2900,20)
-    assert ccos['urn'].toString() == urn.toString()
+    assert ccos['resolvedUrn'].toString() == urn.toString()
     assert ccos['offset'] == 2900
     assert ccos['limit'] == 4
     assert ccos['size'] == 2903
@@ -209,7 +209,7 @@ void testPaged12(){
   // Paged for a whole collection
   CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
   Map ccos = cc.getPaged(urn,40,1)
-  assert ccos['urn'].toString() == urn.toString()
+  assert ccos['resolvedUrn'].toString() == urn.toString()
   assert ccos['offset'] == 40
   assert ccos['limit'] == 1
   assert ccos['size'] == 40
@@ -228,7 +228,7 @@ void testPaged13(){
   // Paged for a whole collection
   CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
   Map ccos = cc.getPaged(urn,1,1)
-  assert ccos['urn'].toString() == urn.toString()
+  assert ccos['resolvedUrn'].toString() == urn.toString()
   assert ccos['offset'] == 1
   assert ccos['limit'] == 1
   assert ccos['size'] == 40
@@ -247,7 +247,7 @@ void testPaged14(){
   // Paged for a whole collection
   CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
   Map ccos = cc.getPaged(urn,40,10)
-  assert ccos['urn'].toString() == urn.toString()
+  assert ccos['resolvedUrn'].toString() == urn.toString()
   assert ccos['offset'] == 40
   assert ccos['limit'] == 1
   assert ccos['size'] == 40

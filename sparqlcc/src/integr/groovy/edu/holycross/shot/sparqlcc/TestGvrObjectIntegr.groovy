@@ -22,7 +22,7 @@ class TestGvrObjectIntegr extends GroovyTestCase {
 
   @Test
   void testTest(){
-    assert true 
+    assert true
   }
 
 
@@ -33,8 +33,8 @@ class TestGvrObjectIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi.3.v1")
-    assert cc.getValidReff(urn).size() == 1
-    assert cc.getValidReff(urn)[0] == urn.toString()
+    assert cc.getValidReff(urn)['urns'].size() == 1
+    assert cc.getValidReff(urn)['urns'][0] == urn.toString()
   }
 
   @Test
@@ -42,9 +42,9 @@ class TestGvrObjectIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi.3")
-    assert cc.getValidReff(urn).size() == 2
-    assert cc.getValidReff(urn).contains("urn:cite:hmt:pageroi.3.v1")
-    assert cc.getValidReff(urn).contains("urn:cite:hmt:pageroi.3.v2")
+    assert cc.getValidReff(urn)['urns'].size() == 2
+    assert cc.getValidReff(urn)['urns'].contains("urn:cite:hmt:pageroi.3.v1")
+    assert cc.getValidReff(urn)['urns'].contains("urn:cite:hmt:pageroi.3.v2")
   }
 
 

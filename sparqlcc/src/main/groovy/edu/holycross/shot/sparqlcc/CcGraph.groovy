@@ -131,10 +131,11 @@ class CcGraph {
 
   /** Returns the CiteUrn for the previous item in an ordered collection
   * @param CiteUrn
-  * @returns CiteUrn
+  * @returns Map ['resolvedUrn':CiteUrn, 'prevUrn':CiteUrn]
   */
-  CiteUrn getPrevUrn(CiteUrn urn){
+  Map getPrevUrn(CiteUrn urn){
     CiteUrn rurn
+    def replyMap = [:]
     String tempUrnString
 
     // Only if ordered
@@ -162,18 +163,25 @@ class CcGraph {
 
       if (tempUrnString != null){
         if (tempUrnString.contains("urn:cite:")){
-          return new CiteUrn(tempUrnString)
+          replyMap['resolvedUrn'] = rurn
+          replyMap['prevUrn'] = new CiteUrn(tempUrnString)
+          return replyMap
         }
-      } else {  return null }
+      } else {
+          replyMap['resolvedUrn'] = rurn
+          replyMap['prevUrn'] = null
+          return replyMap
+ }
   }
 
   /** Returns the CiteUrn for the Next item in an ordered collection
   * @param CiteUrn
-  * @returns CiteUrn
+  * @returns Map ['resolvedUrn':CiteUrn, 'nextUrn':CiteUrn]
   */
-  CiteUrn getNextUrn(CiteUrn urn){
+  Map getNextUrn(CiteUrn urn){
     CiteUrn rurn
     String tempUrnString
+    def replyMap = [:]
 
     // Only if ordered
     if ( !(isOrdered(urn))){
@@ -199,9 +207,15 @@ class CcGraph {
 
       if (tempUrnString != null){
         if (tempUrnString.contains("urn:cite:")){
-          return new CiteUrn(tempUrnString)
+          replyMap['resolvedUrn'] = rurn
+          replyMap['nextUrn'] = new CiteUrn(tempUrnString)
+          return replyMap
         }
-      } else {  return null }
+      } else {
+          replyMap['resolvedUrn'] = rurn
+          replyMap['nextUrn'] = null
+          return replyMap
+      }
   }
 
   /** Returns all versions present for a given object
@@ -248,14 +262,15 @@ class CcGraph {
 
   /** Returns the CiteUrn for the first object in an ordered collection.
   * @param CiteUrn
-  * @returns CiteUrn
+  * @returns Map ['resolvedUrn':CiteUrn, 'firstUrn':CiteUrn]
   */
-  CiteUrn getFirstUrn(CiteUrn urn)
+  Map getFirstUrn(CiteUrn urn)
   throws Exception {
     // Only if ordered
     if ( !(isOrdered(urn))){
       throw new Exception( "CcGraph.getFirstUrn: ${urn.toString()} must be from an ordered collection.")
       } else {
+        def replyMap = [:]
         CiteUrn collUrn = new CiteUrn(urn.reduceToCollection())
         String qs = QueryBuilder.getFirstQuery(collUrn)
         String reply = sparql.getSparqlReply("application/json", qs)
@@ -270,7 +285,9 @@ class CcGraph {
         if ((tempUrnString == "") || (tempUrnString == null)){
           throw new Exception( "CcGraph.getFirstUrn: ${urn.toString()}. No valid firstUrn for collection ${collUrn.toString()}")
         } else {
-          return new CiteUrn(tempUrnString)
+          replyMap['resolvedUrn'] = urn
+          replyMap['firstUrn'] = new CiteUrn(tempUrnString)
+          return replyMap
         }
       }
 
@@ -279,13 +296,14 @@ class CcGraph {
 
   /** Returns the CiteUrn for the last object in an ordered collection.
   * @param CiteUrn
-  * @returns CiteUrn
+  * @returns Map ['resolvedUrn':CiteUrn, 'lastUrn':CiteUrn]
   */
-  CiteUrn getLastUrn(CiteUrn urn){
+  Map getLastUrn(CiteUrn urn){
     // Only if ordered
     if ( !(isOrdered(urn))){
       throw new Exception( "CcGraph.getLastUrn: ${urn.toString()} must be from an ordered collection.")
       } else {
+        def replyMap = [:]
         CiteUrn collUrn = new CiteUrn(urn.reduceToCollection())
         String qs = QueryBuilder.getLastQuery(collUrn)
         String reply = sparql.getSparqlReply("application/json", qs)
@@ -298,9 +316,11 @@ class CcGraph {
           }
         }
         if ((tempUrnString == "") || (tempUrnString == null)){
-          throw new Exception( "CcGraph.getFirstUrn: ${urn.toString()}. No valid firstUrn for collection ${collUrn.toString()}")
+          throw new Exception( "CcGraph.getLastUrn: ${urn.toString()}. No valid lastUrn for collection ${collUrn.toString()}")
         } else {
-          return new CiteUrn(tempUrnString)
+          replyMap['resolvedUrn'] = urn
+          replyMap['lastUrn'] = new CiteUrn(tempUrnString)
+          return replyMap
         }
       }
   }
@@ -351,7 +371,7 @@ class CcGraph {
         def parsedReply = slurper.parseText(reply)
         if (parsedReply.results.bindings.size) {
           Map returnMap = [:]
-          returnMap['urn'] = qUrn
+          returnMap['resolvedUrn'] = qUrn
           returnMap['version'] = qVersion
           returnMap['size'] = new BigInteger(parsedReply.results.bindings[0].size.value)
           return returnMap
@@ -368,9 +388,9 @@ class CcGraph {
   * or the first- and last- elements of the range-urn for unordered collections.
   * For queries on notional
   * @param CiteUrn
-  * @returns ArrayList of URN-Strings
+  * @returns Map ['resolvedUrn': CiteUrn, 'versionString': String, 'urns': ArrayList of URN-Strings]
   */
-  ArrayList getValidReff(CiteUrn urn){
+  Map getValidReff(CiteUrn urn){
     // Is it an object or a range?
     if ( urn.isRange() || urn.hasObjectId() ){
       return gvrForRange(urn)
@@ -379,25 +399,30 @@ class CcGraph {
     }
   }
 
-  ArrayList getValidReff(CiteUrn urn, String versionString)
+  Map getValidReff(CiteUrn urn, String versionString)
   throws Exception {
     CiteUrn qUrn = new CiteUrn(urn.reduceToCollection())
     return gvrForCollection(qUrn,versionString)
   }
 
-  ArrayList gvrForCollection(CiteUrn urn, String versionString)
+  Map gvrForCollection(CiteUrn urn, String versionString)
   throws Exception {
+    def replyMap = [:]
     ArrayList replyArray = []
     String qs
     String qUrnString = urn.reduceToCollection()
     CiteUrn qUrn = new CiteUrn(qUrnString)
+    replyMap['resolvedUrn'] = qUrn
+
     if ( (versionString =="") || ( versionString == null)){
+      replyMap['versionString'] = ""
       if (isOrdered(qUrn)){
         qs = QueryBuilder.getGVROrderedCollectionQuery(qUrn)
       } else {
           qs = QueryBuilder.getGVRCollectionQuery(qUrn)
       }
     } else {
+        replyMap['versionString'] = versionString
         if (isOrdered(qUrn)){
           qs = QueryBuilder.getGVROrderedCollectionVersionedQuery(qUrn, versionString)
         } else {
@@ -414,19 +439,24 @@ class CcGraph {
           replyArray << bndng.urn.value
       }
     }
-      return replyArray
+      replyMap['urns'] = replyArray
+      return replyMap
     }
 
-  ArrayList gvrForCollection(CiteUrn urn)
+  Map gvrForCollection(CiteUrn urn)
   throws Exception {
     return gvrForCollection(urn, null)
   }
 
-  ArrayList gvrForRange(CiteUrn urn)
+  Map gvrForRange(CiteUrn urn)
   throws Exception {
+    def replyMap = [:]
     ArrayList replyArray = []
+    replyMap['versionString'] = ""
+
     // is not range
     if (!urn.isRange()){
+        replyMap['resolvedUrn'] = urn
         if(urn.hasVersion()){
           replyArray << urn.toString()
         } else {
@@ -440,11 +470,12 @@ class CcGraph {
 
         String rStart = urn.getRangeBegin()
         String rEnd = urn.getRangeEnd()
+        replyMap['resolvedUrn'] = resolveVersion(urn)
         CiteUrn rStartUrn = resolveVersion(new CiteUrn(rStart))
         CiteUrn rEndUrn = resolveVersion(new CiteUrn(rEnd))
         String vs = rStartUrn.objectVersion
         // replyArray = ["for range; ordered collection"]
-        ArrayList tempArray = gvrForCollection(rStartUrn, vs)
+        ArrayList tempArray = gvrForCollection(rStartUrn, vs)['urns']
 
 
         def startIndex = tempArray.findIndexOf { s -> s.toString() == rStartUrn.toString() }
@@ -482,8 +513,8 @@ class CcGraph {
         }
       }
     }
-
-    return replyArray
+    replyMap['urns'] = replyArray
+    return replyMap
   }
 
 
@@ -779,7 +810,7 @@ class CcGraph {
     }
     //if ordered, we need prev and next URNs
     if (isOrdered(objUrn)){
-      collectionObject = new CiteCollectionObject(objUrn,thisCollection,thisProperties,getPrevUrn(objUrn),getNextUrn(objUrn))
+      collectionObject = new CiteCollectionObject(objUrn,thisCollection,thisProperties,getPrevUrn(objUrn)['prevUrn'],getNextUrn(objUrn)['nextUrn'])
     } else {
 
       collectionObject = new CiteCollectionObject(objUrn,thisCollection,thisProperties)
@@ -832,7 +863,7 @@ class CcGraph {
     } else {
       urn = paramUrn
     }
-    ArrayList validReff = getValidReff(urn)
+    ArrayList validReff = getValidReff(urn)['urns']
     def objects = []
     validReff.each{ vr ->
       objects << getObject(new CiteUrn(vr))
@@ -842,13 +873,13 @@ class CcGraph {
 }
 
 
-/** Given a CiteUrn, an offset, and a limit, returns a CCOSet object, containing a
-* Collection-URN and an Array of CiteCollectionObjects. The urn of the CCOSet
+/**Given a CiteUrn, an offset, and a limit, returns a Map, containing a
+* Collection-URN and an Array of CiteUrns. The urn of the CCOSet
 * will reflect the data actually returned.
 * @param CiteUrn
 * @returns Map ['urn':citeUrn, 'offset':integer, 'limit':integer, 'size':BigInteger 'objects':ArrayList]
 */
-Map getPaged(CiteUrn paramUrn, Integer offset, Integer limit)
+Map getPagedReff(CiteUrn paramUrn, Integer offset, Integer limit)
 throws Exception {
 
   if ( (offset < 1) || (limit < 1)){
@@ -857,7 +888,7 @@ throws Exception {
 
   //System.err.println("-----------------")
   //System.err.println("${paramUrn}")
-  def pagedObject = [:]
+  def pagedReff = [:]
   CiteUrn urn
   if (paramUrn.hasObjectId()){
     urn = resolveVersion(paramUrn)
@@ -865,14 +896,14 @@ throws Exception {
       urn = paramUrn
     }
   //  System.err.println("${urn}")
-    pagedObject['urn'] = urn
-    pagedObject['offset'] = offset
-    pagedObject['limit'] = limit
+    pagedReff['resolvedUrn'] = urn
+    pagedReff['offset'] = offset
+    pagedReff['limit'] = limit
 
-    def objects = [] // will hold the CiteCollectionObjects
+    def urns = [] // will hold the CiteCollectionObjects
 
-    ArrayList firstArray = getValidReff(urn)
-    pagedObject['size'] = firstArray.size()
+    ArrayList firstArray = getValidReff(urn)['urns']
+    pagedReff['size'] = firstArray.size()
 
     // let's get absolute values for start and end
     def startIndex = offset - 1
@@ -881,7 +912,7 @@ throws Exception {
   //  System.err.println("0. From ${startIndex} to ${endIndex}, out of ${firstArray.size()}")
 
     if (offset > firstArray.size()){
-      pagedObject['objects'] = objects
+      pagedReff['urns'] = urns // that is, an empty array
 
       System.err.println("Offset too big. From ${startIndex} to ${endIndex}, out of ${firstArray.size()}")
 
@@ -890,19 +921,43 @@ throws Exception {
 
 
         endIndex = firstArray.size() - 1
-        pagedObject['limit'] = firstArray.size() - offset + 1
+        pagedReff['limit'] = firstArray.size() - offset + 1
 
   //      System.err.println("endIndex too big. From ${startIndex} to ${endIndex}, out of ${firstArray.size()}")
       }
       for (i in (startIndex..endIndex) ){
   //      System.err.println("[${i}] ${firstArray[i]}")
-        objects << getObject( new CiteUrn(firstArray[i]) )
+        urns << new CiteUrn(firstArray[i])
       }
-      pagedObject['objects'] = objects
+      pagedReff['urns'] = urns
     }
 
-    return pagedObject
+    return pagedReff
   }
+
+/**Given a CiteUrn, an offset, and a limit, returns a Map, containing a
+* a resolvedUrn, an offset, a limit, and an array of CiteCollectionObjects. The resolvedUrn will reflect the data actually returned.
+* @param CiteUrn
+* @returns Map ['urn':citeUrn, 'offset':integer, 'limit':integer, 'size':BigInteger 'objects':ArrayList]
+*/
+Map getPaged(CiteUrn paramUrn, Integer offset, Integer limit)
+throws Exception {
+  Map pagedReff = getPagedReff(paramUrn, offset, limit)
+  Map pagedObjects = [:]
+  def citeObjects = []
+  pagedObjects['resolvedUrn'] = pagedReff['resolvedUrn']
+  pagedObjects['offset'] = pagedReff['offset']
+  pagedObjects['limit'] = pagedReff['limit']
+  pagedObjects['size'] = pagedReff['size']
+  pagedReff['urns'].each { uu ->
+    citeObjects << getObject(uu)
+
+  }
+  pagedObjects['objects'] = citeObjects
+  return pagedObjects
+
+}
+
 
 /* Requests
 
@@ -954,20 +1009,37 @@ throws Exception {
 
 // GetPrevNextUrn -----------------------------------
       case "GetPrevNextUrn":
+        Map getPrevMap = getPrevUrn(requestUrn)
+        Map getNextMap = getNextUrn(requestUrn)
+        replyString += "<resolvedUrn>${getNextMap['resolvedUrn']}</resolvedUrn>\n"
+        replyString += "</cite:request>\n<cite:reply>"
+        replyString += "<prevUrn>${getPrevMap['prevUrn']}</prevUrn>\n"
+        replyString += "<nextUrn>${getNextMap['nextUrn']}</nextUrn>\n"
+        replyString += "</cite:reply>\n"
       break;
 
 // GetNext -----------------------------------
-      case "GetNext":
+      case "GetNextUrn":
+        Map getNextMap = getNextUrn(requestUrn)
+        replyString += "<resolvedUrn>${getNextMap['resolvedUrn']}</resolvedUrn>\n"
+        replyString += "</cite:request>\n<cite:reply>"
+        replyString += "<nextUrn>${getNextMap['nextUrn']}</nextUrn>\n"
+        replyString += "</cite:reply>\n"
       break;
 
 // GetPrev -----------------------------------
-      case "GetPrev":
+      case "GetPrevUrn":
+        Map getPrevMap = getPrevUrn(requestUrn)
+        replyString += "<resolvedUrn>${getPrevMap['resolvedUrn']}</resolvedUrn>\n"
+        replyString += "</cite:request>\n<cite:reply>"
+        replyString += "<prevUrn>${getPrevMap['prevUrn']}</prevUrn>\n"
+        replyString += "</cite:reply>\n"
       break;
 
 // GetCollectionSize -----------------------------------
       case "GetCollectionSize":
         Map getCollectionSizeMap = getCollectionSize(requestUrn)
-        replyString += "<queryUrn>${getCollectionSizeMap['urn']}</queryUrn>\n"
+        replyString += "<resolvedUrn>${getCollectionSizeMap['resolvedUrn']}</resolvedUrn>\n"
         replyString += "<versionString>${getCollectionSizeMap['version']}</versionString>\n"
         replyString += "</cite:request>\n<cite:reply>"
         replyString += "<collectionSize>${getCollectionSizeMap['size']}</collectionSize>\n"
@@ -980,10 +1052,21 @@ throws Exception {
 
 // GetLast -----------------------------------
       case "GetLastUrn":
+        Map getLastMap = getLastUrn(requestUrn)
+        replyString += "<resolvedUrn>${getLastMap['resolvedUrn']}</resolvedUrn>\n"
+        replyString += "</cite:request>\n<cite:reply>"
+        replyString += "<nextUrn>${getLastMap['lastUrn']}</nextUrn>\n"
+        replyString += "</cite:reply>\n"
+
       break;
 
 // GetFirst -----------------------------------
       case "GetFirstUrn":
+        Map getFirstMap = getFirstUrn(requestUrn)
+        replyString += "<resolvedUrn>${getFirstMap['resolvedUrn']}</resolvedUrn>\n"
+        replyString += "</cite:request>\n<cite:reply>"
+        replyString += "<nextUrn>${getFirstMap['firstUrn']}</nextUrn>\n"
+        replyString += "</cite:reply>\n"
       break;
 
 // GetRange -----------------------------------

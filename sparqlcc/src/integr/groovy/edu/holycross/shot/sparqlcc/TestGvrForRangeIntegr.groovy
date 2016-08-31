@@ -31,7 +31,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.11.v1-20.v1")
-    assert cc.getValidReff(urn).size() == 10
+    assert cc.getValidReff(urn)['urns'].size() == 10
   }
 
   @Test
@@ -39,7 +39,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.11-20")
-    assert cc.getValidReff(urn).size() == 10
+    assert cc.getValidReff(urn)['urns'].size() == 10
   }
 
   @Test
@@ -48,7 +48,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.20-11")
     shouldFail{
-      assert cc.getValidReff(urn)
+      assert cc.getValidReff(urn)['urns']
     }
   }
 
@@ -57,7 +57,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi.3.v1-6.v1")
-    assert cc.getValidReff(urn).size() == 2
+    assert cc.getValidReff(urn)['urns'].size() == 2
   }
 
   @Test
@@ -65,7 +65,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi.3.v2-6.v2")
-    assert cc.getValidReff(urn).size() == 2
+    assert cc.getValidReff(urn)['urns'].size() == 2
   }
 
   @Test
@@ -74,7 +74,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
     String vString = "v1"
-    assert cc.getValidReff(urn, vString).size() == 20
+    assert cc.getValidReff(urn, vString)['urns'].size() == 20
   }
 
   @Test
@@ -83,7 +83,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi.3.v1")
     String vString = "v2"
-    assert cc.getValidReff(urn, vString).size() == 20
+    assert cc.getValidReff(urn, vString)['urns'].size() == 20
   }
 
   @Test
@@ -97,7 +97,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
       "urn:cite:hmt:venAsign.12.v1",
       "urn:cite:hmt:venAsign.13.v1",
       "urn:cite:hmt:venAsign.14.v1" ]
-    assert cc.getValidReff(urn) == correct
+    assert cc.getValidReff(urn)['urns'] == correct
   }
 
   @Test
@@ -111,7 +111,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
       "urn:cite:hmt:venAsign.12.v1",
       "urn:cite:hmt:venAsign.13.v1",
       "urn:cite:hmt:venAsign.14.v1" ]
-    assert cc.getValidReff(urn) == correct
+    assert cc.getValidReff(urn)['urns'] == correct
   }
 
   @Test
@@ -124,7 +124,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
       "urn:cite:hmt:pageroi.4.v2",
       "urn:cite:hmt:pageroi.5.v1",
       "urn:cite:hmt:pageroi.5.v2"]
-    assert cc.getValidReff(urn) == correct
+    assert cc.getValidReff(urn)['urns'] == correct
   }
 
 
@@ -134,7 +134,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
       Sparql sparql = new Sparql(baseUrl)
       CcGraph cc = new CcGraph(sparql)
       CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi.3-6")
-      assert cc.getValidReff(urn).size() == 4
+      assert cc.getValidReff(urn)['urns'].size() == 4
     }
 
 }

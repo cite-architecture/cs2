@@ -41,7 +41,7 @@ html.html {
 			h2("View an object with GetObjectPlus")
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetObjectPlus")
-						input (type : "hidden", name : "stylesheet", value : "cite_object")
+						input (type : "hidden", name : "stylesheet", value : "")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
 						input (type : "submit", value : "GetPassagePlus" )
 				}
@@ -49,10 +49,12 @@ html.html {
 			h2("Find valid citations for objects in a collection with GetValidReff")
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetValidReff")
-						input (type : "hidden", name : "stylesheet", value : "cite_validreff")
+						input (type : "hidden", name : "stylesheet", value : "")
 						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40")
-						input (type : "text", name : "level", value : "1", size: "2")
+						input (type : "text", name : "versionString", value : "", size: "10")
 						input (type : "submit", value : "GetValidReff" )
+						input (type: "checkbox", name : "safemode", checked : "checked" )
+						mkp.yield("Safe Mode: Returns paged results if query yields more than 50 URNs.")
 				}
 
 			h2("Other Requests")
@@ -60,22 +62,24 @@ html.html {
 
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetCollectionSize")
-						input (type : "hidden", name : "stylesheet", value : "cite_object")
+						input (type : "hidden", name : "stylesheet", value : "")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
 						input (type : "submit", value : "GetCollectionSize" )
 				}
 
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetRange")
-						input (type : "hidden", name : "stylesheet", value : "cite_object")
+						input (type : "hidden", name : "stylesheet", value : "")
 						input (type : "text", name : "urn", value : demoRangeUrnStr, size: "40")
 						input (type : "submit", value : "GetRange" )
 						mkp.yield("Useful mainly for ordered collections.")
+						input (type: "checkbox", name : "safemode", checked : "checked" )
+						mkp.yield("Safe Mode: Returns paged results if query yields more than 20 objects.")
 				}
 
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetPaged")
-						input (type : "hidden", name : "stylesheet", value : "cite_object")
+						input (type : "hidden", name : "stylesheet", value : "")
 						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40")
 						input (type : "text", name : "offset", value : "1", size: "5")
 						input (type : "text", name : "limit", value : "10", size: "5")
@@ -85,22 +89,14 @@ html.html {
 
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetObject")
-						input (type : "hidden", name : "stylesheet", value : "cite_object")
+						input (type : "hidden", name : "stylesheet", value : "")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
-						input (type : "submit", value : "GetPassage" )
-				}
-
-				form (action : "api", method : "get") {
-					input (type : "hidden", name : "request", value : "GetPrevNextUrn")
-						input (type : "hidden", name : "stylesheet", value : "cite_validreff")
-						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
-						input (type : "submit", value : "GetPrevNextUrn" )
-						mkp.yield("Valid only for ordered collections.")
+						input (type : "submit", value : "GetObject" )
 				}
 
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetPrev")
-						input (type : "hidden", name : "stylesheet", value : "cite_validreff")
+						input (type : "hidden", name : "stylesheet", value : "")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
 						input (type : "submit", value : "GetPrev" )
 						mkp.yield("Valid only for ordered collections.")
@@ -108,15 +104,39 @@ html.html {
 
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetNext")
-						input (type : "hidden", name : "stylesheet", value : "cite_validreff")
+						input (type : "hidden", name : "stylesheet", value : "")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
 						input (type : "submit", value : "GetNext" )
 						mkp.yield("Valid only for ordered collections.")
 				}
 
 				form (action : "api", method : "get") {
+					input (type : "hidden", name : "request", value : "GetPrevNextUrn")
+						input (type : "hidden", name : "stylesheet", value : "")
+						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
+						input (type : "submit", value : "GetPrevNextUrn" )
+						mkp.yield("Valid only for ordered collections.")
+				}
+
+				form (action : "api", method : "get") {
+					input (type : "hidden", name : "request", value : "GetPrevUrn")
+						input (type : "hidden", name : "stylesheet", value : "")
+						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
+						input (type : "submit", value : "GetPrevUrn" )
+						mkp.yield("Valid only for ordered collections.")
+				}
+
+				form (action : "api", method : "get") {
+					input (type : "hidden", name : "request", value : "GetNextUrn")
+						input (type : "hidden", name : "stylesheet", value : "")
+						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
+						input (type : "submit", value : "GetNextUrn" )
+						mkp.yield("Valid only for ordered collections.")
+				}
+
+				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetFirstUrn")
-						input (type : "hidden", name : "stylesheet", value : "cite_validreff")
+						input (type : "hidden", name : "stylesheet", value : "")
 						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40")
 						input (type : "submit", value : "GetFirstUrn" )
 						mkp.yield("Valid only for ordered collections.")
@@ -124,10 +144,18 @@ html.html {
 
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetLastUrn")
-						input (type : "hidden", name : "stylesheet", value : "cite_validreff")
+						input (type : "hidden", name : "stylesheet", value : "")
 						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40")
 						input (type : "submit", value : "GetLastUrn" )
 						mkp.yield("Valid only for ordered collections.")
+				}
+
+				form (action : "api", method : "get") {
+					input (type : "hidden", name : "request", value : "GetVersionsOfObject")
+						input (type : "hidden", name : "stylesheet", value : "")
+						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
+						input (type : "submit", value : "GetVersionsOfObject" )
+						mkp.yield("This is equivalent to querying for ‘GetValidReff’ on a single object’s URN.")
 				}
 /*
 GetPagedGetObjectPlus

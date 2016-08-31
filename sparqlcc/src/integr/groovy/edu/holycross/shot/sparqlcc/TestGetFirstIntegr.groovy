@@ -31,7 +31,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn(orderedColl)
-    assert cc.getFirstUrn(urn).toString() == "urn:cite:hmt:venAsign.1.v1"
+    assert cc.getFirstUrn(urn)['firstUrn'].toString() == "urn:cite:hmt:venAsign.1.v1"
   }
   // Object example
   @Test
@@ -39,7 +39,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn(orderedUrn)
-    assert cc.getFirstUrn(urn).toString() == "urn:cite:hmt:venAsign.1.v1"
+    assert cc.getFirstUrn(urn)['firstUrn'].toString() == "urn:cite:hmt:venAsign.1.v1"
   }
 
   // Collection with multiple versions
@@ -48,7 +48,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn(orderedColl2)
-    assert cc.getFirstUrn(urn).toString() == "urn:cite:hmt:msA.1r.v1"
+    assert cc.getFirstUrn(urn)['firstUrn'].toString() == "urn:cite:hmt:msA.1r.v1"
   }
 
   // Range
@@ -57,7 +57,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn(orderedRange)
-    assert cc.getFirstUrn(urn).toString() == "urn:cite:hmt:venAsign.1.v1"
+    assert cc.getFirstUrn(urn)['firstUrn'].toString() == "urn:cite:hmt:venAsign.1.v1"
   }
 
   // Unordered collection. Should fail
@@ -67,7 +67,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
     CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn(unOrderedColl)
     shouldFail {
-      String test = cc.getFirstUrn(urn).toString()
+      String test = cc.getFirstUrn(urn)['firstUrn'].toString()
     }
   }
 
