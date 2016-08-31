@@ -795,7 +795,11 @@ class CcGraph {
   * @param CiteUrn
   * @returns CiteCollectionObject object
   */
-  CiteCollectionObject getObject(CiteUrn urn){
+  CiteCollectionObject getObject(CiteUrn urn)
+  throws Exception {
+    if (urn.isRange()){
+         throw new Exception( "CcGraph.getObject: ${urn.toString()}. Cannot construct a Cite Colletion Object from a range-urn.")
+    }
     CiteUrn objUrn = resolveVersion(urn)
     CiteCollectionObject collectionObject
 

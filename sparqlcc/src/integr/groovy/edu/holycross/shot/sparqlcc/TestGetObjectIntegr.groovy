@@ -28,6 +28,8 @@ class TestGetObjectIntegr extends GroovyTestCase {
 
     CiteCollectionObject cco = cc.getObject(urn)
     assert cco
+    System.err.println(cco.urn)
+    System.err.println(cco.objectProperties)
   }
 
   @Test
@@ -38,6 +40,22 @@ class TestGetObjectIntegr extends GroovyTestCase {
 
     CiteCollectionObject cco = cc.getObject(urn)
     assert cco
+    System.err.println(cco.urn)
+    System.err.println(cco.objectProperties)
+  }
+
+  @Test
+  void testGetObjectRange(){
+    Sparql sparql = new Sparql(baseUrl)
+	  CcGraph cc = new CcGraph(sparql)
+    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.3.v1-5.v1")
+
+    shouldFail {
+      CiteCollectionObject cco = cc.getObject(urn)
+      assert cco
+      System.err.println(cco.urn)
+      System.err.println(cco.objectProperties)
+    }
   }
 
 
