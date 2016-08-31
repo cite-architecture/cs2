@@ -106,11 +106,11 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.10.v1-14.v1")
     ArrayList correct = [
-      "urn:cite:hmt:venAsign.10.v1",
-      "urn:cite:hmt:venAsign.11.v1",
-      "urn:cite:hmt:venAsign.12.v1",
-      "urn:cite:hmt:venAsign.13.v1",
-      "urn:cite:hmt:venAsign.14.v1" ]
+    "urn:cite:hmt:venAsign.10.v1",
+    "urn:cite:hmt:venAsign.11.v1",
+    "urn:cite:hmt:venAsign.12.v1",
+    "urn:cite:hmt:venAsign.13.v1",
+    "urn:cite:hmt:venAsign.14.v1" ]
     assert cc.getValidReff(urn)['urns'] == correct
   }
 

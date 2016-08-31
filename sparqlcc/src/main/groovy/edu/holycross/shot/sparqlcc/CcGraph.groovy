@@ -1016,6 +1016,7 @@ throws Exception {
         replyString += "<prevUrn>${getPrevMap['prevUrn']}</prevUrn>\n"
         replyString += "<nextUrn>${getNextMap['nextUrn']}</nextUrn>\n"
         replyString += "</cite:reply>\n"
+        replyString += "</${request}>"
       break;
 
 // GetNext -----------------------------------
@@ -1025,6 +1026,7 @@ throws Exception {
         replyString += "</cite:request>\n<cite:reply>"
         replyString += "<nextUrn>${getNextMap['nextUrn']}</nextUrn>\n"
         replyString += "</cite:reply>\n"
+        replyString += "</${request}>"
       break;
 
 // GetPrev -----------------------------------
@@ -1034,6 +1036,7 @@ throws Exception {
         replyString += "</cite:request>\n<cite:reply>"
         replyString += "<prevUrn>${getPrevMap['prevUrn']}</prevUrn>\n"
         replyString += "</cite:reply>\n"
+        replyString += "</${request}>"
       break;
 
 // GetCollectionSize -----------------------------------
@@ -1044,10 +1047,81 @@ throws Exception {
         replyString += "</cite:request>\n<cite:reply>"
         replyString += "<collectionSize>${getCollectionSizeMap['size']}</collectionSize>\n"
         replyString += "</cite:reply>\n"
+        replyString += "</${request}>"
       break;
 
 // GetValidReff -----------------------------------
       case "GetValidReff":
+
+        // Lets assemble the params we need, all at once
+        String gvrVersionString
+        Boolean gvrSafeMode
+
+        if (params['version']){
+          if (params['version'][0] == null){
+              gvrVersionString = ""
+          }
+          if (params['version'][0] == "" ){
+              gvrVersionString = ""
+          }
+        }
+        if (params['safemode']){
+          if (params['safemode'][0] == "on"){
+            gvrSafeMode = true
+          } else {
+            gvrSafeMode = false
+          }
+        } else {
+            gvrSafeMode = false
+        }
+
+      Map gvr
+
+     gvr = getValidReff(requestUrn,gvrVersionString)
+
+      if(gvrSafeMode){
+
+          // Check to see if there are more than 50 urns
+          if ( gvr['urns'].size() > 50 ){
+            // We're sending this off to getPagedValidReff
+            // so we need to make a new set of params
+            def pgvrOffset = []
+            pgvrOffset << 1
+            def pgvrLimit = []
+            pgvrLimit << 50
+            def pgvrParams = [:]
+            pgvrParams['offset'] = pgvrOffset
+            pgvrParams['limit'] = pgvrLimit
+
+            replyString = formatXmlReply("GetPagedValidReff", requestUrn, pgvrParams)
+            break;
+          }
+      }
+
+      replyString += "<resolvedUrn>${gvr['resolvedUrn']}</resolvedUrn>\n"
+      if ( params['version']){
+        if ( (params['version'][0] == null) || (params['version'][0] == "")){
+          replyString += "<versionString>${gvr['versionString']}</versionString>\n"
+        }
+      }
+      replyString += "</cite:request>\n<cite:reply>"
+      gvr['urns'].each { uu ->
+        replyString += "<urn>${uu.toString()}</urn>\n"
+      }
+      replyString += "</cite:reply>\n"
+      replyString += "</${request}>"
+
+
+      break;
+
+// GetPagedValidReff -----------------------------------
+      case "GetPagedValidReff":
+
+        replyString += "<resolvedUrn> *** URN GOES HERE *** </resolvedUrn>\n"
+        replyString += "</cite:request>\n<cite:reply>"
+        replyString += "Not implemented yet\n</cite:reply>"
+        replyString += "</${request}>"
+
       break;
 
 // GetLast -----------------------------------
@@ -1057,6 +1131,7 @@ throws Exception {
         replyString += "</cite:request>\n<cite:reply>"
         replyString += "<nextUrn>${getLastMap['lastUrn']}</nextUrn>\n"
         replyString += "</cite:reply>\n"
+        replyString += "</${request}>"
 
       break;
 
@@ -1067,6 +1142,7 @@ throws Exception {
         replyString += "</cite:request>\n<cite:reply>"
         replyString += "<nextUrn>${getFirstMap['firstUrn']}</nextUrn>\n"
         replyString += "</cite:reply>\n"
+        replyString += "</${request}>"
       break;
 
 // GetRange -----------------------------------
@@ -1083,7 +1159,6 @@ throws Exception {
       break;
     }
 
-    replyString += "</${request}>"
     return replyString
 
   } catch (Exception e){

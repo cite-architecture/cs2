@@ -50,11 +50,14 @@ html.html {
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetValidReff")
 						input (type : "hidden", name : "stylesheet", value : "")
-						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40")
-						input (type : "text", name : "versionString", value : "", size: "10")
+						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40", id:"gvrUrnField")
 						input (type : "submit", value : "GetValidReff" )
-						input (type: "checkbox", name : "safemode", checked : "checked" )
-						mkp.yield("Safe Mode: Returns paged results if query yields more than 50 URNs.")
+						br()
+						label(for:"gvrVersionField", "[Optional] Limit results to URNs with this version-string.")
+						input (type : "text", name : "version", value : "", size: "10", id:"gvrVersionField")
+						br()
+							input (type: "checkbox", name : "safemode", checked : "checked", id:"gvrSafe" )
+							label(for:"gvrSafe", "Safe Mode: Returns paged results if query yields more than 50 URNs.")
 				}
 
 			h2("Other Requests")
