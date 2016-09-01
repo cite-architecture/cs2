@@ -33,7 +33,7 @@ void testBigCollection(){
 }
 
 @Test
-void testCollectionsWithVersion(){
+void testCollections(){
   ArrayList replyArray = []
   Sparql sparql = new Sparql(baseUrl)
   CcGraph cc = new CcGraph(sparql)
@@ -42,6 +42,18 @@ void testCollectionsWithVersion(){
   assert replyArray.size() == 40
   assert replyArray[0] == "urn:cite:hmt:pageroi.1.v1"
   assert replyArray[1] == "urn:cite:hmt:pageroi.1.v2"
+}
+
+@Test
+void testCollectionsWithVersionString(){
+  ArrayList replyArray = []
+  Sparql sparql = new Sparql(baseUrl)
+  CcGraph cc = new CcGraph(sparql)
+  CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
+  replyArray = cc.getValidReff(urn, "v1")['urns']
+  assert replyArray.size() == 20
+  assert replyArray[0] == "urn:cite:hmt:pageroi.1.v1"
+  assert replyArray[1] == "urn:cite:hmt:pageroi.10.v1"
 }
 
 @Test

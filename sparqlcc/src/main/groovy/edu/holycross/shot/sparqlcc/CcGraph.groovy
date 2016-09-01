@@ -393,16 +393,23 @@ class CcGraph {
   Map getValidReff(CiteUrn urn){
     // Is it an object or a range?
     if ( urn.isRange() || urn.hasObjectId() ){
+      System.err.println("${urn} is range; no version")
       return gvrForRange(urn)
     } else {
+      System.err.println("${urn} is NOT range; no version")
       return gvrForCollection(urn)
     }
   }
 
   Map getValidReff(CiteUrn urn, String versionString)
   throws Exception {
-    CiteUrn qUrn = new CiteUrn(urn.reduceToCollection())
-    return gvrForCollection(qUrn,versionString)
+      System.err.println("${urn} has version = ${versionString}.")
+    if ((versionString == "") || (versionString == null)){
+      return getValidReff(urn)
+    } else {
+      CiteUrn qUrn = new CiteUrn(urn.reduceToCollection())
+      return gvrForCollection(qUrn,versionString)
+    }
   }
 
   Map gvrForCollection(CiteUrn urn, String versionString)
@@ -1086,9 +1093,10 @@ throws Exception {
         if (params['version']){
           if (params['version'] == null){
               gvrVersionString = ""
-          }
-          if (params['version'] == "" ){
+          } else if (params['version'] == "" ){
               gvrVersionString = ""
+          } else {
+            gvrVersionString = params['version']
           }
         }
         if (params['safemode']){
@@ -1100,6 +1108,8 @@ throws Exception {
         } else {
             gvrSafeMode = false
         }
+
+        System.err.println("GetValidReff reply: param = '${gvrVersionString}'")
 
       Map gvr
 
@@ -1127,10 +1137,10 @@ throws Exception {
       replyString += "<resolvedUrn>${gvr['resolvedUrn']}</resolvedUrn>\n"
       if ( params['version']){
         if ( (params['version'] == null) || (params['version'] == "")){
-          replyString += "<versionString>${gvr['versionString']}</versionString>\n"
+          replyString += "<version>${gvr['versionString']}</version>\n"
         }
       }
-      replyString += "</cite:request>\n<cite:reply>"
+      replyString += "</cite:request>\n<cite:reply>\n"
       gvr['urns'].each { uu ->
         replyString += "<urn>${uu.toString()}</urn>\n"
       }
@@ -1162,7 +1172,7 @@ throws Exception {
 
         replyString += "<resolvedUrn>${pagedGvr['resolvedUrn']}</resolvedUrn>\n"
         replyString += "<numberOfUrns>${pagedGvr['size']}</numberOfUrns>\n"
-        replyString += "</cite:request>\n<cite:reply>"
+        replyString += "</cite:request>\n<cite:reply>\n"
         pagedGvr['urns'].each{ uu ->
           replyString += "<urn>${uu.toString()}</urn>\n"
         }
@@ -1175,7 +1185,7 @@ throws Exception {
       case "GetLastUrn":
         Map getLastMap = getLastUrn(requestUrn)
         replyString += "<resolvedUrn>${getLastMap['resolvedUrn']}</resolvedUrn>\n"
-        replyString += "</cite:request>\n<cite:reply>"
+        replyString += "</cite:request>\n<cite:reply>\n"
         replyString += "<nextUrn>${getLastMap['lastUrn']}</nextUrn>\n"
         replyString += "</cite:reply>\n"
         replyString += "</${request}>"
@@ -1186,7 +1196,7 @@ throws Exception {
       case "GetFirstUrn":
         Map getFirstMap = getFirstUrn(requestUrn)
         replyString += "<resolvedUrn>${getFirstMap['resolvedUrn']}</resolvedUrn>\n"
-        replyString += "</cite:request>\n<cite:reply>"
+        replyString += "</cite:request>\n<cite:reply>\n"
         replyString += "<nextUrn>${getFirstMap['firstUrn']}</nextUrn>\n"
         replyString += "</cite:reply>\n"
         replyString += "</${request}>"
