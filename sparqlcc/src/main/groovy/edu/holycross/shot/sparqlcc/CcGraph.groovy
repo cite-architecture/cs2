@@ -1048,7 +1048,7 @@ throws Exception {
         replyString += "</${request}>"
       break;
 
-// GetNext -----------------------------------
+// GetNextUrn -----------------------------------
       case "GetNextUrn":
         Map getNextMap = getNextUrn(requestUrn)
         replyString += "<resolvedUrn>${getNextMap['resolvedUrn']}</resolvedUrn>\n"
@@ -1058,7 +1058,7 @@ throws Exception {
         replyString += "</${request}>"
       break;
 
-// GetPrev -----------------------------------
+// GetPrevUrn -----------------------------------
       case "GetPrevUrn":
         Map getPrevMap = getPrevUrn(requestUrn)
         replyString += "<resolvedUrn>${getPrevMap['resolvedUrn']}</resolvedUrn>\n"
@@ -1186,7 +1186,7 @@ throws Exception {
         Map getLastMap = getLastUrn(requestUrn)
         replyString += "<resolvedUrn>${getLastMap['resolvedUrn']}</resolvedUrn>\n"
         replyString += "</cite:request>\n<cite:reply>\n"
-        replyString += "<nextUrn>${getLastMap['lastUrn']}</nextUrn>\n"
+        replyString += "<lastUrn>${getLastMap['lastUrn']}</lastUrn>\n"
         replyString += "</cite:reply>\n"
         replyString += "</${request}>"
 
@@ -1197,7 +1197,7 @@ throws Exception {
         Map getFirstMap = getFirstUrn(requestUrn)
         replyString += "<resolvedUrn>${getFirstMap['resolvedUrn']}</resolvedUrn>\n"
         replyString += "</cite:request>\n<cite:reply>\n"
-        replyString += "<nextUrn>${getFirstMap['firstUrn']}</nextUrn>\n"
+        replyString += "<firstUrn>${getFirstMap['firstUrn']}</firstUrn>\n"
         replyString += "</cite:reply>\n"
         replyString += "</${request}>"
       break;
