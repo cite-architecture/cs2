@@ -883,14 +883,23 @@ class CcGraph {
 
 }
 
-
 /**Given a CiteUrn, an offset, and a limit, returns a Map, containing a
 * Collection-URN and an Array of CiteUrns. The urn of the CCOSet
 * will reflect the data actually returned.
 * @param CiteUrn
 * @returns Map ['urn':citeUrn, 'offset':integer, 'limit':integer, 'size':BigInteger 'objects':ArrayList]
 */
-Map getPagedReff(CiteUrn paramUrn, Integer offset, Integer limit)
+Map getPagedReff(CiteUrn paramUrn, Integer offset, Integer limit){
+  return getPagedReff(paramUrn, offset, limit, "")
+}
+
+/**Given a CiteUrn, an offset, a limit, and a version-string, returns a Map, containing a
+* Collection-URN and an Array of CiteUrns. The urn of the CCOSet
+* will reflect the data actually returned.
+* @param CiteUrn
+* @returns Map ['urn':citeUrn, 'offset':integer, 'limit':integer, 'size':BigInteger 'objects':ArrayList]
+*/
+Map getPagedReff(CiteUrn paramUrn, Integer offset, Integer limit, String versionString)
 throws Exception {
 
   if ( (offset < 1) || (limit < 1)){
@@ -910,10 +919,11 @@ throws Exception {
     pagedReff['resolvedUrn'] = urn
     pagedReff['offset'] = offset
     pagedReff['limit'] = limit
+    pagedReff['versionString'] = versionString
 
     def urns = [] // will hold the CiteCollectionObjects
 
-    ArrayList firstArray = getValidReff(urn)['urns']
+    ArrayList firstArray = getValidReff(urn,versionString)['urns']
     pagedReff['size'] = firstArray.size()
 
     // let's get absolute values for start and end
@@ -1156,6 +1166,7 @@ throws Exception {
         // Sort out params
         Integer limit
         Integer offset
+        String versionString
         if (params['limit']){
           limit = params['limit'].toInteger()
         } else {
@@ -1166,12 +1177,21 @@ throws Exception {
         } else {
           throw new Exception("SparqlCC: GetPagedValidReff. Missing paramter 'offset'.")
         }
+        if (params['version']){
+          if (params['version'] != null){
+            versionString = params['version']
+          } else {
+            versionString = ""
+          }
+        } else {
+          versionString = ""
+        }
 
-        Map pagedGvr = getPagedReff(requestUrn, offset, limit)
+        Map pagedGvr = getPagedReff(requestUrn, offset, limit, versionString)
 
 
         replyString += "<resolvedUrn>${pagedGvr['resolvedUrn']}</resolvedUrn>\n"
-        replyString += "<numberOfUrns>${pagedGvr['size']}</numberOfUrns>\n"
+        replyString += "<count>${pagedGvr['size']}</count>\n"
         replyString += "</cite:request>\n<cite:reply>\n"
         pagedGvr['urns'].each{ uu ->
           replyString += "<urn>${uu.toString()}</urn>\n"
