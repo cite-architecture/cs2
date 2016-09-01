@@ -992,19 +992,30 @@ throws Exception {
 
     replyString += """<${request} xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite" >\n\n<cite:request>\n"""
 
-    replyString += "<request>${request}</request>\n"
+    params.each{  pp ->
+    System.err.println("${pp.key} ${pp.value}")
+  }
+
     params.each { pm ->
       if (pm.key == "urn") {
-        replyString += "<requestUrn>${pm.value[0]}</requestUrn>\n"
-        } else {
-          replyString+= "<${pm.key}>${pm.value[0]}</${pm.key}>\n"
-        }
+        replyString += "<requestUrn>${pm.value}</requestUrn>\n"
+      } else if (pm.key == "request"){
+        replyString += "<request>${request}</request>\n"
+      } else {
+        replyString+= "<${pm.key}>${pm.value}</${pm.key}>\n"
+      }
     }
     // We don't close <cite:request> yet, so we can add request-specific stuff below.
 
     switch(request) {
 // GetObject -----------------------------------
       case "GetObject":
+        CiteCollectionObject cco = getObject(requestUrn)
+        replyString += "<resolvedUrn>${cco.urn}</resolvedUrn>\n"
+        replyString += "</cite:request>\n<cite:reply>\n"
+        replyString += xmlFormatObject(cco)
+        replyString += "</cite:reply>\n"
+        replyString += "</${request}>"
       break;
 
 // GetObjectPlus -----------------------------------
@@ -1049,7 +1060,7 @@ throws Exception {
         replyString += "<resolvedUrn>${getCollectionSizeMap['resolvedUrn']}</resolvedUrn>\n"
         replyString += "<versionString>${getCollectionSizeMap['version']}</versionString>\n"
         replyString += "</cite:request>\n<cite:reply>"
-        replyString += "<collectionSize>${getCollectionSizeMap['size']}</collectionSize>\n"
+        replyString += "<count>${getCollectionSizeMap['size']}</count>\n"
         replyString += "</cite:reply>\n"
         replyString += "</${request}>"
       break;
@@ -1062,15 +1073,15 @@ throws Exception {
         Boolean gvrSafeMode
 
         if (params['version']){
-          if (params['version'][0] == null){
+          if (params['version'] == null){
               gvrVersionString = ""
           }
-          if (params['version'][0] == "" ){
+          if (params['version'] == "" ){
               gvrVersionString = ""
           }
         }
         if (params['safemode']){
-          if (params['safemode'][0] == "on"){
+          if (params['safemode'] == "on"){
             gvrSafeMode = true
           } else {
             gvrSafeMode = false
@@ -1104,7 +1115,7 @@ throws Exception {
 
       replyString += "<resolvedUrn>${gvr['resolvedUrn']}</resolvedUrn>\n"
       if ( params['version']){
-        if ( (params['version'][0] == null) || (params['version'][0] == "")){
+        if ( (params['version'] == null) || (params['version'] == "")){
           replyString += "<versionString>${gvr['versionString']}</versionString>\n"
         }
       }
@@ -1125,12 +1136,12 @@ throws Exception {
         Integer limit
         Integer offset
         if (params['limit']){
-          limit = params['limit'][0].toInteger()
+          limit = params['limit'].toInteger()
         } else {
           throw new Exception("SparqlCC: GetPagedValidReff. Missing paramter 'limit'.")
         }
         if (params['offset']){
-          offset = params['offset'][0].toInteger()
+          offset = params['offset'].toInteger()
         } else {
           throw new Exception("SparqlCC: GetPagedValidReff. Missing paramter 'offset'.")
         }
@@ -1196,7 +1207,25 @@ throws Exception {
 
 }
 
+/** Formats a CiteCollectionObject into an  XML replyString
+* @param CiteCollectionObject
+* @returns String
+*/
 
+String xmlFormatObject(CiteCollectionObject cco){
+  String replyString = ""
+  replyString += """<citeObject urn="${cco.urn.toString()}">\n"""
+  cco.objectProperties.each{ op ->
+    String propType = ""
+    replyString += """<citeProperty name="${op['key']}" label="${cco.collection.propertyForName(op['key']).label}" type="${cco.collection.getPropertyType(op['key'])}">"""
+
+    replyString += """${op['value']}"""
+
+    replyString +="</citeProperty>\n"
+  }
+  replyString += "</citeObject>\n"
+  return replyString
+}
 
 
 

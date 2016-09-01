@@ -74,13 +74,21 @@ if (!done) {
 			println """<?xml-stylesheet type="text/xsl" href="cite-ui/xslt/${stylesheet}.xsl"?>\r"""
 		}
 		CiteUrn urn = new CiteUrn(urnStr)
-		println cc.formatXmlReply(req, urn, request.getParameterMap())
+
+	  // Sort out paramaterMap
+    def params = [:]
+    request.getParameterMap.each{ pp ->
+      params[pp.key] = pp.value[0]
+    }
+
+		println cc.formatXmlReply(req, urn, params)
 	} else {
 		println "<html><p>Responses other than XML not yet implemented.</p></html>"
 	}
 
 
 }
+
 
 String getCapsReply() {
     String inv = "inventory.xml"
