@@ -68,6 +68,9 @@ html.html {
 						input (type : "hidden", name : "stylesheet", value : "")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
 						input (type : "submit", value : "GetCollectionSize" )
+						br()
+						label(for:"gcsVersionField", "[Optional] Limit results to URNs with this version-string:")
+						input (type : "text", name : "version", value : "", size: "10", id:"gcsVersionField")
 				}
 
 				form (action : "api", method : "get") {

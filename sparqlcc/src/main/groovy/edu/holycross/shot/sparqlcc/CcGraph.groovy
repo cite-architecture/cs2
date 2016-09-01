@@ -1004,6 +1004,7 @@ throws Exception {
       } else {
         replyString+= "<${pm.key}>${pm.value}</${pm.key}>\n"
       }
+      System.err.println("Param: ${pm.key} : ${pm.value}")
     }
     // We don't close <cite:request> yet, so we can add request-specific stuff below.
 
@@ -1056,10 +1057,14 @@ throws Exception {
 
 // GetCollectionSize -----------------------------------
       case "GetCollectionSize":
-        Map getCollectionSizeMap = getCollectionSize(requestUrn)
+        Map getCollectionSizeMap
+        if (params['version']){
+          getCollectionSizeMap = getCollectionSize(requestUrn,params['version'])
+        } else {
+          getCollectionSizeMap = getCollectionSize(requestUrn)
+        }
         replyString += "<resolvedUrn>${getCollectionSizeMap['resolvedUrn']}</resolvedUrn>\n"
-        replyString += "<versionString>${getCollectionSizeMap['version']}</versionString>\n"
-        replyString += "</cite:request>\n<cite:reply>"
+        replyString += "</cite:request>\n<cite:reply>\n"
         replyString += "<count>${getCollectionSizeMap['size']}</count>\n"
         replyString += "</cite:reply>\n"
         replyString += "</${request}>"
@@ -1217,13 +1222,60 @@ String xmlFormatObject(CiteCollectionObject cco){
   replyString += """<citeObject urn="${cco.urn.toString()}">\n"""
   cco.objectProperties.each{ op ->
     String propType = ""
-    replyString += """<citeProperty name="${op['key']}" label="${cco.collection.propertyForName(op['key']).label}" type="${cco.collection.getPropertyType(op['key'])}">"""
+    replyString += """<citeProperty name="${op['key']}" label="${cco.collection.propertyForName(op['key']).label}" type="${xmlTranslatePropertyType("${cco.collection.getPropertyType(op['key'])}")}">"""
+    replyString += """${op['value']}</citeProperty>\n"""
+  }
 
-    replyString += """${op['value']}"""
+  // Prev and Next, if present
+  if (cco.prevUrn != null){
+      replyString += "<prevUrn>${cco.prevUrn}</prevUrn>\n"
+  }
+  if (cco.nextUrn != null){
+      replyString += "<nextUrn>${cco.nextUrn}</nextUrn>\n"
+  }
 
-    replyString +="</citeProperty>\n"
+  // Collection extensions
+  if ( (cco.collection.extendedBy != null) && (cco.collection.extendedBy.size() > 0) ){
+      cco.collection.extendedBy.each{ ext ->
+        replyString += "<extension>${ext}</extension>\n"
+    }
+
   }
   replyString += "</citeObject>\n"
+  return replyString
+}
+
+/** Translates the CitePropertyType Strings as received
+* from RDF into the values expected by the CITE Collection inventory
+* schema
+* @param typeString
+* @returns String
+*/
+
+String xmlTranslatePropertyType(String typeString){
+  String replyString = ""
+
+  switch (typeString){
+
+    case "NUM":
+      replyString = "number"
+      break;
+    case "BOOLEAN" :
+      replyString = "boolean"
+      break;
+    case "STRING" :
+      replyString = "string"
+      break;
+    case "MARKDOWN" :
+      replyString = "markdown"
+      break;
+    case "CITE_URN" :
+      replyString = "citeurn"
+      break;
+    case "CTS_URN" :
+      replyString = "ctsurn"
+      break;
+  }
   return replyString
 }
 

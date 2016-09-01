@@ -20,7 +20,7 @@ class TestReplyGetObjectIntegr extends GroovyTestCase {
 
   @Test
   void testTest(){
-    assert false
+    assert true
   }
 
   @Test
@@ -56,7 +56,7 @@ class TestReplyGetObjectIntegr extends GroovyTestCase {
         <citeProperty name="Label" label="Label" type="string">Sign 5.v1</citeProperty>
         <citeProperty name="OccurrenceUrn" label="The URN for this occurrence of a critical sign" type="citeurn">urn:cite:hmt:venAsign.5.v1</citeProperty>
         <citeProperty name="Sequence" label="Sequence" type="number">5</citeProperty>
-        <citeProperty name="TextPassage" label="The Iliadic passage that the sign marks." type="CTS_URN">urn:cts:greekLit:tlg0012.tlg001.msA:1.12</citeProperty>
+        <citeProperty name="TextPassage" label="The Iliadic passage that the sign marks." type="ctsurn">urn:cts:greekLit:tlg0012.tlg001.msA:1.12</citeProperty>
         <prevUrn>urn:cite:hmt:venAsign.4.v1</prevUrn>
         <nextUrn>urn:cite:hmt:venAsign.6.v1</nextUrn>
     </citeObject>
@@ -64,7 +64,7 @@ class TestReplyGetObjectIntegr extends GroovyTestCase {
 </GetObject>
 """
 
-		  Diff xmlDiff = new Diff(replyString, expectedXml)
+		  Diff xmlDiff = new Diff(expectedXml, replyString)
 		  assert xmlDiff.identical()
   }
 
@@ -101,13 +101,13 @@ class TestReplyGetObjectIntegr extends GroovyTestCase {
         <citeProperty name="Image" label="Image URN" type="citeurn">urn:cite:hmt:vaimg.VA082RN_0083.v1</citeProperty>
         <citeProperty name="Label" label="Caption" type="string">Venetus A: Marcianus Graecus Z. 454 (= 822).  Photograph in natural light, folio 82, recto.</citeProperty>
         <citeProperty name="Rights" label="Rights" type="string">This image was derived from an original ©2007, Biblioteca Nazionale Marciana, Venezie, Italia. The derivative image is ÔøΩ2010, Center for Hellenic Studies. Original and derivative are licensed under the Creative Commons Attribution-Noncommercial-Share Alike 3.0 License. The CHS/Marciana Imaging Project was directed by David Jacobs of the British Library.</citeProperty>
-        <extension>cite:CiteImage</extension>
+        <extension>http://www.homermultitext.org/cite/rdf/CiteImage</extension>
     </citeObject>
 </cite:reply>
 </GetObject>
 """
 
-		  Diff xmlDiff = new Diff(replyString, expectedXml)
+		  Diff xmlDiff = new Diff(expectedXml, replyString)
 		  assert xmlDiff.identical()
   }
 
