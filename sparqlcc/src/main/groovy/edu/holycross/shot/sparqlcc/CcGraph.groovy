@@ -1021,6 +1021,12 @@ throws Exception {
 
 // GetObjectPlus -----------------------------------
       case "GetObjectPlus":
+        CiteCollectionObject cco = getObject(requestUrn)
+        replyString += "<resolvedUrn>${cco.urn}</resolvedUrn>\n"
+        replyString += "</cite:request>\n<cite:reply>\n"
+        replyString += xmlFormatObject(cco)
+        replyString += "</cite:reply>\n"
+        replyString += "</${request}>"
       break;
 
 // GetPrevNextUrn -----------------------------------
@@ -1028,7 +1034,7 @@ throws Exception {
         Map getPrevMap = getPrevUrn(requestUrn)
         Map getNextMap = getNextUrn(requestUrn)
         replyString += "<resolvedUrn>${getNextMap['resolvedUrn']}</resolvedUrn>\n"
-        replyString += "</cite:request>\n<cite:reply>"
+        replyString += "</cite:request>\n<cite:reply>\n"
         replyString += "<prevUrn>${getPrevMap['prevUrn']}</prevUrn>\n"
         replyString += "<nextUrn>${getNextMap['nextUrn']}</nextUrn>\n"
         replyString += "</cite:reply>\n"
@@ -1039,7 +1045,7 @@ throws Exception {
       case "GetNextUrn":
         Map getNextMap = getNextUrn(requestUrn)
         replyString += "<resolvedUrn>${getNextMap['resolvedUrn']}</resolvedUrn>\n"
-        replyString += "</cite:request>\n<cite:reply>"
+        replyString += "</cite:request>\n<cite:reply>\n"
         replyString += "<nextUrn>${getNextMap['nextUrn']}</nextUrn>\n"
         replyString += "</cite:reply>\n"
         replyString += "</${request}>"
@@ -1049,7 +1055,7 @@ throws Exception {
       case "GetPrevUrn":
         Map getPrevMap = getPrevUrn(requestUrn)
         replyString += "<resolvedUrn>${getPrevMap['resolvedUrn']}</resolvedUrn>\n"
-        replyString += "</cite:request>\n<cite:reply>"
+        replyString += "</cite:request>\n<cite:reply>\n"
         replyString += "<prevUrn>${getPrevMap['prevUrn']}</prevUrn>\n"
         replyString += "</cite:reply>\n"
         replyString += "</${request}>"
