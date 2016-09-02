@@ -23,7 +23,6 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
     assert true
   }
 
-/*
   @Test
   void testGetPagedValidReff1(){
     // set up XMLUnit
@@ -69,7 +68,6 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
 		  Diff xmlDiff = new Diff(expectedXml, replyString)
 		  assert xmlDiff.identical()
   }
-  */
 
   @Test
   void testGetPagedValidReff2(){

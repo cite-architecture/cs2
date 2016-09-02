@@ -1224,6 +1224,17 @@ throws Exception {
 
 // GetRange -----------------------------------
       case "GetRange":
+        ArrayList ccos = getRange(requestUrn)
+        CiteUrn rurn = resolveVersion(requestUrn)
+        replyString += "<resolvedUrn>${rurn}</resolvedUrn>\n"
+        replyString += "</cite:request>\n<cite:reply>\n"
+        replyString += "<citeObjects>\n"
+        ccos.each { cco ->
+          replyString += xmlFormatObject(cco)
+        }
+        replyString += "</citeObjects>\n"
+        replyString += "</cite:reply>\n"
+        replyString += "</${request}>"
       break;
 
 // GetPaged -----------------------------------
