@@ -1222,6 +1222,21 @@ throws Exception {
         replyString += "</${request}>"
       break;
 
+// GetVersionsOfObject -----------------------------------
+      case "GetVersionsOfObject":
+        ArrayList urns = getVersionsOfObject(requestUrn)
+        replyString += "<resolvedUrn>${requestUrn}</resolvedUrn>\n"
+        replyString += "</cite:request>\n<cite:reply>\n"
+        replyString += "<versions>\n"
+        urns.each{ uu ->
+          replyString += "<version>${uu}</version>\n"
+        }
+        replyString += "</versions>\n"
+        replyString += "</cite:reply>\n"
+        replyString += "</${request}>"
+
+      break;
+
 // GetRange -----------------------------------
       case "GetRange":
         ArrayList ccos = getRange(requestUrn)
