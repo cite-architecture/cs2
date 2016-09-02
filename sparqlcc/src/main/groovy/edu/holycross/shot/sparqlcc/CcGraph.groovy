@@ -1239,6 +1239,32 @@ throws Exception {
 
 // GetPaged -----------------------------------
       case "GetPaged":
+        // Sort out params
+        Integer limit
+        Integer offset
+        if (params['limit']){
+          limit = params['limit'].toInteger()
+        } else {
+          throw new Exception("SparqlCC: GetPaged. Missing paramter 'limit'.")
+        }
+        if (params['offset']){
+          offset = params['offset'].toInteger()
+        } else {
+          throw new Exception("SparqlCC: GetPaged. Missing paramter 'offset'.")
+        }
+
+        Map ccos = getPaged(requestUrn, offset, limit)
+
+        replyString += "<resolvedUrn>${requestUrn}</resolvedUrn>\n"
+        replyString += "<count>${ccos['size']}</count>\n"
+        replyString += "</cite:request>\n<cite:reply>\n"
+        replyString += "<citeObjects>\n"
+        ccos['objects'].each { cco ->
+          replyString += xmlFormatObject(cco)
+        }
+        replyString += "</citeObjects>\n"
+        replyString += "</cite:reply>\n"
+        replyString += "</${request}>"
       break;
 
 // Default -----------------------------------
