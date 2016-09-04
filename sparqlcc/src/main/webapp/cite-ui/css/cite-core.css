@@ -1,0 +1,324 @@
+/* _hmt-core.scss */
+/* http://meyerweb.com/eric/tools/css/reset/
+ * v2.0 | 20110126
+ * License: none (public domain) */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+
+
+html {
+	max-width: 2000px;
+}
+
+body {
+  font-family: Times, serif;
+  font-weight: 300;
+  line-height: 1.8;
+  padding: 0.5em;
+  color: #676767;
+  background-color: #fff;
+  padding: 2em;
+  max-width: 1200px;
+}
+
+header, footer, nav, .cite_nav {
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  color: navy;
+  margin: 0.5em 0 0.5em 0;
+  color: #aaa;
+  font-size: 75%;
+  clear: both; }
+
+header {
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 0.5em;
+}
+
+
+footer {
+  border-top: 1px solid #aaa;
+  padding-top: 0.5em;
+  }
+
+article, header, footer, nav {
+
+}
+
+
+/* Blocks */
+h1, h2, h3 {
+  font-family: Helvetica, sans-serif;
+  font-weight: 500;
+  color: navy;
+  line-height: 1.1em;
+  padding-top: 1.5em;
+  padding-bottom: 0.5em;
+  max-width: 900px;
+}
+
+h1 {
+  font-size: 120%; }
+
+h2 {
+  font-size: 100%; }
+
+h3 {
+  font-size: 100%; }
+
+form {
+	padding: 0.5em;
+	margin: 0.5em;
+	border: 1px solid silver;
+	background-color: #fafafa;
+	font-family: Helvetica, sans-serif;
+	font-size: 80%;
+}
+
+p, ul, ol {
+  margin: 0.5em 0 0.5em 0; }
+
+ul, ol {
+  margin-left: 1.5em;
+}
+
+  ul li, ol li {
+    margin: 0.5em 0 0.5em 0;
+}
+
+ul {
+  list-style-type: circle; }
+
+ol {
+  list-style-type: decimal; }
+
+blockquote {
+  margin: 0.5em 0 0.5em 1.5em;
+  border: 1px dashed #c4c4c4;
+  padding: 0.5em; }
+
+/* Spans */
+em {
+  font-style: italic; }
+
+strong {
+  font-weight: 900; }
+
+a {
+  color: navy;
+  text-decoration: none; }
+
+a:hover {
+  border-bottom: 1px solid navy; }
+
+code {
+  font-family: Courier, fixed;
+  font-size: 90%; }
+
+.highlight {
+	font-family: Helvetica, sans-serif;
+	color: navy;
+}
+
+/* Special */
+
+body.no-logo {
+	background: white;
+}
+
+body.no-logo header {
+  margin: 0.5em 0 0.5em 0;
+  width: 100%;
+}
+
+.cite_replyData {
+
+	font-family: "Helvetica", sans-serif;
+	font-size: 100%;
+	padding: 3px;
+	background-color: #efefff;
+}
+
+.cite_requestData, .cite_serviceLinks{
+	font-family: "Helvetica", sans-serif;
+	font-size: 80%;
+	clear: both;
+}
+
+.cite_requestData ul li, ol li {
+  margin: 0em 0 0em 0;
+}
+
+/* FORMATTING CITE OBJECTS */
+/* ----------------------- */
+
+div.cite_object {
+	margin: 10px;
+	float: left;
+}
+
+table.cite_objectTable {
+
+	font-family: "Helvetica", sans-serif;
+	font-size: 10pt;
+	border: 1px solid silver;
+	padding: 3px;
+	border-collapse: collapse;
+
+}
+
+table.cite_objectTable td {
+
+	padding: 3px;
+	text-align: left;
+	vertical-align: top;
+
+}
+
+table.cite_objectTable th {
+	padding: 3px;
+	font-weight: 700;
+	background-color: #aaa;
+	text-align: left;
+	vertical-align: top;
+}
+
+table.cite_objectTable tr:nth-child(odd) {
+	background-color: #ddd;
+}	
+
+
+/* Tooltip-style labels on properties */
+.cite_propertyNameCell {
+	position: relative;
+	display:inline-block;
+}
+
+.cite_propertyNameCell  .cite_propertyLabelSpan{
+   visibility: hidden;
+    width: 120px;
+    background-color: #ffd;
+    color: #444;
+    text-align: left;
+	line-height: 1.2em;
+	font-size: 80%;
+    padding: 5px;
+    border-radius: 3px; 
+	border: 1px solid #bb9;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;}
+
+.cite_propertyNameCell:hover  .cite_propertyLabelSpan{
+   visibility: visible;
+}
+
+/* ----------------------- */
+
+/* Limited responsive design */
+
+@media screen and (min-width: 1200px) /* Big Desktop */ {
+	body {
+		background-image: url(cite-logo.png);
+		background-repeat: no-repeat;
+		background-position: left 1000px top 10px;
+	}
+	header {
+		width: 930px;
+	}
+}
+
+@media screen and (min-width: 980px) and (max-width: 1199px) /* Desktop */ {
+	body {
+		background-image: url(cite-logo.png);
+		background-repeat: no-repeat;
+		background-position: right 40px top 10px;
+	}
+	article {
+		margin-right: 200px;
+	}
+	header {
+		margin-right: 200px;
+	}
+}
+
+@media screen  and (max-width: 979px) /* Tablet */ {
+  body {
+		background-image: url(cite-logo-small.png);
+		background-repeat: no-repeat;
+		background-position: right 40px top 10px;
+  }
+	header {
+		margin-right: 100px;
+	}
+  footer{
+		margin-bottom: 200px;
+  }
+  ul, ol, li {
+	margin-left: 0;
+	margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 500px) /* Mobile */ {
+  body {
+		background-image: url(cite-logo-small.png);
+		background-repeat: no-repeat;
+		background-position: right 40px top 10px;
+  }
+	header {
+		margin-right: 100px;
+	}
+  footer{
+		margin-bottom: 200px;
+  }
+  ul, ol, li {
+	margin-left: 0;
+	margin-right: 0;
+  }
+}
+/*# sourceMappingURL=cite-core.css.map */

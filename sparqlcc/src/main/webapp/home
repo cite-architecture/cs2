@@ -41,7 +41,7 @@ html.html {
 			h2("View an object with GetObjectPlus")
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetObjectPlus")
-						input (type : "hidden", name : "stylesheet", value : "")
+						input (type : "hidden", name : "stylesheet", value : "cite_getobject")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
 						input (type : "submit", value : "GetPassagePlus" )
 				}
@@ -106,7 +106,7 @@ html.html {
 
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetObject")
-						input (type : "hidden", name : "stylesheet", value : "")
+						input (type : "hidden", name : "stylesheet", value : "cite_getobject")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
 						input (type : "submit", value : "GetObject" )
 				}
