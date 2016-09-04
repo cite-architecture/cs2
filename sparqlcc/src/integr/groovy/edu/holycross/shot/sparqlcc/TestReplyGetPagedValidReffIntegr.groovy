@@ -24,6 +24,101 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
   }
 
   @Test
+  void testCalculatePagedNavigation1(){
+      def myMap = [:]
+
+      Integer myLimit = 10
+      BigInteger myOffset = 11
+      BigInteger mySize = 100
+
+
+      myMap['prevOffset'] = 1
+      myMap['prevLimit'] = 10
+      myMap['nextOffset'] = 21
+      myMap['nextLimit'] = 10
+
+      Map testMap = cc.calculatePagedNavigation( mySize, myOffset, myLimit)
+
+      assert myMap == testMap
+  }
+
+  @Test
+  void testCalculatePagedNavigation2(){
+      def myMap = [:]
+
+      Integer myLimit = 10
+      BigInteger myOffset = 1
+      BigInteger mySize = 100
+
+
+      myMap['prevOffset'] = 0
+      myMap['prevLimit'] = 0
+      myMap['nextOffset'] = 11
+      myMap['nextLimit'] = 10
+
+      Map testMap = cc.calculatePagedNavigation( mySize, myOffset, myLimit)
+
+      assert myMap == testMap
+  }
+
+  @Test
+  void testCalculatePagedNavigation3(){
+      def myMap = [:]
+
+      Integer myLimit = 10
+      BigInteger myOffset = 91
+      BigInteger mySize = 100
+
+
+      myMap['prevOffset'] = 81
+      myMap['prevLimit'] = 10
+      myMap['nextOffset'] = 0
+      myMap['nextLimit'] = 0
+
+      Map testMap = cc.calculatePagedNavigation( mySize, myOffset, myLimit)
+
+      assert myMap == testMap
+  }
+
+  @Test
+  void testCalculatePagedNavigation4(){
+      def myMap = [:]
+
+      Integer myLimit = 10
+      BigInteger myOffset = 86
+      BigInteger mySize = 100
+
+
+      myMap['prevOffset'] = 76
+      myMap['prevLimit'] = 10
+      myMap['nextOffset'] = 96
+      myMap['nextLimit'] = 5
+
+      Map testMap = cc.calculatePagedNavigation( mySize, myOffset, myLimit)
+
+      assert myMap == testMap
+  }
+
+  @Test
+  void testCalculatePagedNavigation5(){
+      def myMap = [:]
+
+      Integer myLimit = 10
+      BigInteger myOffset = 6
+      BigInteger mySize = 100
+
+
+      myMap['prevOffset'] = 1
+      myMap['prevLimit'] = 5
+      myMap['nextOffset'] = 16
+      myMap['nextLimit'] = 10
+
+      Map testMap = cc.calculatePagedNavigation( mySize, myOffset, myLimit)
+
+      assert myMap == testMap
+  }
+
+  @Test
   void testGetPagedValidReff1(){
     // set up XMLUnit
 		XMLUnit.setNormalizeWhitespace(true)
@@ -54,6 +149,10 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
     <limit>5</limit>
     <resolvedUrn>urn:cite:hmt:pageroi</resolvedUrn>
     <count>40</count>
+    <prevOffset>5</prevOffset>
+    <prevLimit>5</prevLimit>
+    <nextOffset>15</nextOffset>
+    <nextLimit>5</nextLimit>
 </cite:request>
 <cite:reply>
   <urn>urn:cite:hmt:pageroi.2.v2</urn>
@@ -102,6 +201,10 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
     <limit>5</limit>
     <resolvedUrn>urn:cite:hmt:pageroi</resolvedUrn>
     <count>20</count>
+    <prevOffset>1</prevOffset>
+    <prevLimit>2</prevLimit>
+    <nextOffset>8</nextOffset>
+    <nextLimit>5</nextLimit>
 </cite:request>
 <cite:reply>
   <urn>urn:cite:hmt:pageroi.12.v1</urn>
@@ -149,6 +252,10 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
     <limit>2</limit>
     <resolvedUrn>urn:cite:hmt:venAsign.1-10</resolvedUrn>
     <count>10</count>
+    <prevOffset>3</prevOffset>
+    <prevLimit>2</prevLimit>
+    <nextOffset>7</nextOffset>
+    <nextLimit>2</nextLimit>
 </cite:request>
 <cite:reply>
   <urn>urn:cite:hmt:venAsign.5.v1</urn>

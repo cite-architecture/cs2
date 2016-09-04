@@ -53,6 +53,9 @@ if (responseType == "json"){
 				}
 			} else {
 				errorNum = 1
+				if (stylesheet != null){
+					println """<?xml-stylesheet type="text/xsl" href="cite-ui/xslt/${stylesheet}.xsl"?>\r"""
+				}
 				println """<CITEError xmlns:cts="http:chs.harvard.edu/xmlns/cite" xmlns="http://chs.harvard.edu/xmlns/cite">\n"""
 				println """<message>INVALID REQUEST. Missing parameter: 'urn'</message>\n"""
 				println """<code>${errorNum}</code>\n"""
@@ -77,7 +80,7 @@ if (!done) {
 
 	  // Sort out paramaterMap
     def params = [:]
-    request.getParameterMap.each{ pp ->
+    request.getParameterMap().each{ pp ->
       params[pp.key] = pp.value[0]
     }
 

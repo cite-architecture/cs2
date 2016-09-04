@@ -1021,6 +1021,7 @@ throws Exception {
       } else {
         replyString+= "<${pm.key}>${pm.value}</${pm.key}>\n"
       }
+        //replyString+= "<${pm.key}>${pm.value}</${pm.key}>\n"
       System.err.println("Param: ${pm.key} : ${pm.value}")
     }
     // We don't close <cite:request> yet, so we can add request-specific stuff below.
@@ -1120,24 +1121,26 @@ throws Exception {
         }
 
         System.err.println("GetValidReff reply: param = '${gvrVersionString}'")
+        System.err.println("----------- gvrSafeMode: ${gvrSafeMode}")
+        System.err.println("----------- params['safemode']: ${params}")
 
       Map gvr
 
      gvr = getValidReff(requestUrn,gvrVersionString)
 
-      if(gvrSafeMode){
+      if(gvrSafeMode == true ){
 
           // Check to see if there are more than 50 urns
           if ( gvr['urns'].size() > 50 ){
             // We're sending this off to getPagedValidReff
             // so we need to make a new set of params
-            def pgvrOffset = []
-            pgvrOffset << "1"
-            def pgvrLimit = []
-            pgvrLimit << "50"
+            String pgvrOffset = "1"
+            String pgvrLimit = "50"
             def pgvrParams = [:]
             pgvrParams['offset'] = pgvrOffset
             pgvrParams['limit'] = pgvrLimit
+            pgvrParams['request'] = "GetPagedValidReff"
+            pgvrParams['urn'] = requestUrn.toString()
 
             replyString = formatXmlReply("GetPagedValidReff", requestUrn, pgvrParams)
             break;
@@ -1189,9 +1192,17 @@ throws Exception {
 
         Map pagedGvr = getPagedReff(requestUrn, offset, limit, versionString)
 
+        Map pagedNav = calculatePagedNavigation(new BigInteger(pagedGvr['size']),offset,limit)
+
 
         replyString += "<resolvedUrn>${pagedGvr['resolvedUrn']}</resolvedUrn>\n"
         replyString += "<count>${pagedGvr['size']}</count>\n"
+
+        replyString += "<prevOffset>${pagedNav['prevOffset']}</prevOffset>\n"
+        replyString += "<prevLimit>${pagedNav['prevLimit']}</prevLimit>\n"
+        replyString += "<nextOffset>${pagedNav['nextOffset']}</nextOffset>\n"
+        replyString += "<nextLimit>${pagedNav['nextLimit']}</nextLimit>\n"
+
         replyString += "</cite:request>\n<cite:reply>\n"
         pagedGvr['urns'].each{ uu ->
           replyString += "<urn>${uu.toString()}</urn>\n"
@@ -1269,9 +1280,14 @@ throws Exception {
         }
 
         Map ccos = getPaged(requestUrn, offset, limit)
+        Map pagedNav = calculatePagedNavigation(new BigInteger(ccos['size']),offset,limit)
 
         replyString += "<resolvedUrn>${requestUrn}</resolvedUrn>\n"
         replyString += "<count>${ccos['size']}</count>\n"
+        replyString += "<prevOffset>${pagedNav['prevOffset']}</prevOffset>\n"
+        replyString += "<prevLimit>${pagedNav['prevLimit']}</prevLimit>\n"
+        replyString += "<nextOffset>${pagedNav['nextOffset']}</nextOffset>\n"
+        replyString += "<nextLimit>${pagedNav['nextLimit']}</nextLimit>\n"
         replyString += "</cite:request>\n<cite:reply>\n"
         replyString += "<citeObjects>\n"
         ccos['objects'].each { cco ->
@@ -1365,6 +1381,48 @@ String xmlTranslatePropertyType(String typeString){
       break;
   }
   return replyString
+}
+
+/** Given an offset, a limit, and a collection-size, returns a Map
+* giving appropriate values for previous- and next- paged requests.
+* If either request would exceed the bounds of the collection, limit and
+* offset are returned as 0.
+* @param BigInteger size
+* @param BigInteger offset
+* @param Integer limit
+* @returs Map ['prevOffset','prevLimit','nextOffset','nextLimit']
+*/
+
+Map calculatePagedNavigation(BigInteger size, BigInteger offset, Integer limit){
+  def returnMap = [:]
+
+  // previous
+  if ( offset == 1 ){
+      returnMap['prevOffset'] = 0
+      returnMap['prevLimit'] = 0
+  } else if ( offset < limit ){
+      returnMap['prevOffset'] = 1
+      returnMap['prevLimit'] = offset - 1
+  } else {
+      returnMap['prevOffset'] = offset - limit
+      returnMap['prevLimit'] = limit
+  }
+
+
+  //next
+  if ( (offset + limit) > size ){
+    returnMap['nextOffset'] = 0
+    returnMap['nextLimit'] = 0
+  } else if ( ( size - ( offset + limit)) < limit  ){
+    returnMap['nextOffset'] = offset + limit
+    returnMap['nextLimit'] = size - (offset + limit - 1)
+  } else {
+      returnMap['nextOffset'] = offset + limit
+      returnMap['nextLimit'] = limit
+  }
+
+  return returnMap
+
 }
 
 

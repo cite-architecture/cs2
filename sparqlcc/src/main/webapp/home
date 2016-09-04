@@ -9,7 +9,7 @@ CiteUrn demoUrn = new CiteUrn(demoUrnStr)
 html.html {
 	head {
 		title("CITE Collection Services")
-			link(href : "cite-ui/css/cts-core.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
+			link(href : "cite-ui/css/cite-core.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
 	}
 
 	body {
@@ -49,7 +49,7 @@ html.html {
 			h2("Find valid citations for objects in a collection with GetValidReff")
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetValidReff")
-						input (type : "hidden", name : "stylesheet", value : "")
+						input (type : "hidden", name : "stylesheet", value : "cite_getvalidreff")
 						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40", id:"gvrUrnField")
 						input (type : "submit", value : "GetValidReff" )
 						br()
@@ -65,7 +65,7 @@ html.html {
 
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetCollectionSize")
-						input (type : "hidden", name : "stylesheet", value : "")
+						input (type : "hidden", name : "stylesheet", value : "cite_getcollectionsize")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
 						input (type : "submit", value : "GetCollectionSize" )
 						br()
@@ -85,7 +85,7 @@ html.html {
 
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetPagedValidReff")
-						input (type : "hidden", name : "stylesheet", value : "")
+						input (type : "hidden", name : "stylesheet", value : "cite_getvalidreff")
 						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40")
 						label ( for:"pverOffsetField", "Offset:")
 						input (type : "text", name : "offset", value : "1", size: "5", id: "pvrOffsetField")
@@ -129,7 +129,7 @@ html.html {
 
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetPrevNextUrn")
-						input (type : "hidden", name : "stylesheet", value : "")
+						input (type : "hidden", name : "stylesheet", value : "cite_getprevnexturn")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
 						input (type : "submit", value : "GetPrevNextUrn" )
 						mkp.yield("Valid only for ordered collections.")
@@ -137,7 +137,7 @@ html.html {
 
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetPrevUrn")
-						input (type : "hidden", name : "stylesheet", value : "")
+						input (type : "hidden", name : "stylesheet", value : "cite_getprevnexturn")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
 						input (type : "submit", value : "GetPrevUrn" )
 						mkp.yield("Valid only for ordered collections.")
@@ -145,7 +145,7 @@ html.html {
 
 				form (action : "api", method : "get") {
 					input (type : "hidden", name : "request", value : "GetNextUrn")
-						input (type : "hidden", name : "stylesheet", value : "")
+						input (type : "hidden", name : "stylesheet", value : "cite_getprevnexturn")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
 						input (type : "submit", value : "GetNextUrn" )
 						mkp.yield("Valid only for ordered collections.")

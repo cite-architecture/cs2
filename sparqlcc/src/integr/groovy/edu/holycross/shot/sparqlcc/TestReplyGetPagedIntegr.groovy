@@ -54,6 +54,10 @@ class TestReplyGetPagedIntegr extends GroovyTestCase {
     <limit>3</limit>
     <resolvedUrn>urn:cite:hmt:venAsign</resolvedUrn>
     <count>2903</count>
+    <prevOffset>2</prevOffset>
+    <prevLimit>3</prevLimit>
+    <nextOffset>8</nextOffset>
+    <nextLimit>3</nextLimit>
 </cite:request>
 <cite:reply>
   <citeObjects>
@@ -124,6 +128,10 @@ class TestReplyGetPagedIntegr extends GroovyTestCase {
     <limit>2</limit>
     <resolvedUrn>urn:cite:hmt:venAsign.5-8</resolvedUrn>
     <count>4</count>
+    <prevOffset>0</prevOffset>
+    <prevLimit>2</prevLimit>
+    <nextOffset>4</nextOffset>
+    <nextLimit>1</nextLimit>
 </cite:request>
 <cite:reply>
   <citeObjects>
