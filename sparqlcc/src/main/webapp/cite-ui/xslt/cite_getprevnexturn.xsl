@@ -51,6 +51,20 @@
                                     </xsl:call-template>
                                  </p>
                                 </xsl:if>
+                                <xsl:if test="//cite:firstUrn">
+                                    <p>First Object Urn: 
+                                        <xsl:call-template name="cite_getObjectLink">
+                                            <xsl:with-param name="urn"><xsl:value-of select="//cite:reply/cite:firstUrn"/></xsl:with-param>
+                                        </xsl:call-template>
+                                    </p>
+                                </xsl:if>
+                                <xsl:if test="//cite:lastUrn">
+                                    <p>Last Object Urn: 
+                                        <xsl:call-template name="cite_getObjectLink">
+                                            <xsl:with-param name="urn"><xsl:value-of select="//cite:reply/cite:lastUrn"/></xsl:with-param>
+                                        </xsl:call-template>
+                                    </p>
+                                </xsl:if>
                             </div>
                             <div class="cite_serviceLinks">
                                 <p>

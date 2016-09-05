@@ -78,7 +78,7 @@ if (!done) {
 		}
 		CiteUrn urn = new CiteUrn(urnStr)
 
-	  // Sort out paramaterMap
+	  // Sort out parameterMap
     def params = [:]
     request.getParameterMap().each{ pp ->
       params[pp.key] = pp.value[0]

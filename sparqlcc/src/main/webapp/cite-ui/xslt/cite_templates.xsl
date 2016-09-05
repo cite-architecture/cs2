@@ -60,17 +60,18 @@
         </nav>
     </xsl:template>
 
-    <xsl:template name="cite_pagedVR">
-        <xsl:if test="//cite:request/cite:request = 'GetPagedValidReff'">
-            <xsl:variable name="total">
+    <xsl:template name="cite_pagedNav">
+        <xsl:param name="requestUrl"/>
+        <xsl:if test="(//cite:request/cite:request = 'GetPagedValidReff') or (//cite:request/cite:request = 'GetPaged')">
+           <xsl:variable name="total">
                 <xsl:value-of select="//cite:request//cite:count"/>
             </xsl:variable>
-            <xsl:variable name="offset">
+            <!-- <xsl:variable name="offset">
                 <xsl:value-of select="//cite:request//cite:offset"/>
             </xsl:variable>
             <xsl:variable name="limit">
                 <xsl:value-of select="//cite:request//cite:limit"/>
-            </xsl:variable>
+            </xsl:variable>-->
 
             <div class="cite_pagedNav cite_nav">
                 
@@ -81,14 +82,14 @@
                 <xsl:if test="(//cite:request/cite:prevOffset != '0') and (//cite:request/cite:prevOffset)"> 
                    <xsl:element name="a">
                     <xsl:attribute name="href">
-                        <xsl:value-of select="$getPagedValidReffUrl"/><xsl:value-of
+                        <xsl:value-of select="$requestUrl"/><xsl:value-of
                             select="//cite:request/cite:resolvedUrn"
                         />&amp;limit=<xsl:value-of
                             select="//cite:request/cite:prevLimit"
                         />&amp;offset=<xsl:value-of
                             select="//cite:request/cite:prevOffset"
                         /></xsl:attribute> previous <xsl:value-of
-                            select="//cite:request/cite:nextLimit"/></xsl:element></xsl:if>
+                            select="//cite:request/cite:prevLimit"/></xsl:element></xsl:if>
                 
                 | 
                 
@@ -96,7 +97,7 @@
                 <xsl:if test="(//cite:request/cite:nextOffset != '0') and (//cite:request/cite:nextOffset)"> 
                 <xsl:element name="a">
                     <xsl:attribute name="href">
-                        <xsl:value-of select="$getPagedValidReffUrl"/><xsl:value-of
+                        <xsl:value-of select="$requestUrl"/><xsl:value-of
                             select="//cite:request/cite:resolvedUrn"
                         />&amp;limit=<xsl:value-of
                             select="//cite:request/cite:nextLimit"
@@ -122,7 +123,7 @@
                     <th>Type</th>
                     <th>Value</th>
                 </tr>
-                <xsl:for-each select="//cite:reply/cite:citeObject/cite:citeProperty">
+                <xsl:for-each select="current()/cite:citeProperty">
                     <tr>
                         <td class="cite_propertyNameCell"><xsl:value-of select="current()/@name"/><span class="cite_propertyLabelSpan"><xsl:value-of select="current()/@label"/></span></td>
                         <td class="cite_propertyTypeCell"><xsl:value-of select="current()/@type"/></td>
@@ -139,6 +140,7 @@
         
     </xsl:template>
 
+    
 
 
 </xsl:stylesheet>

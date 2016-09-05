@@ -1120,9 +1120,6 @@ throws Exception {
             gvrSafeMode = false
         }
 
-        System.err.println("GetValidReff reply: param = '${gvrVersionString}'")
-        System.err.println("----------- gvrSafeMode: ${gvrSafeMode}")
-        System.err.println("----------- params['safemode']: ${params}")
 
       Map gvr
 
@@ -1252,6 +1249,40 @@ throws Exception {
       case "GetRange":
         ArrayList ccos = getRange(requestUrn)
         CiteUrn rurn = resolveVersion(requestUrn)
+        Boolean grSafeMode
+
+        if (params['safemode']){
+          if (params['safemode'] == "on"){
+            grSafeMode = true
+          } else {
+            grSafeMode = false
+          }
+        } else {
+            gkrSafeMode = false
+        }
+
+        if(grSafeMode == true ){
+            Map gvr
+            gvr = getValidReff(requestUrn)
+
+            // Check to see if there are more than 50 urns
+            if ( gvr['urns'].size() > 20 ){
+              // We're sending this off to getPaged
+              // so we need to make a new set of params
+              String pgvrOffset = "1"
+              String pgvrLimit = "20"
+              def pgvrParams = [:]
+              pgvrParams['offset'] = pgvrOffset
+              pgvrParams['limit'] = pgvrLimit
+              pgvrParams['request'] = "GetPaged"
+              pgvrParams['urn'] = requestUrn.toString()
+
+              replyString = formatXmlReply("GetPaged", requestUrn, pgvrParams)
+              break;
+            }
+        }
+
+
         replyString += "<resolvedUrn>${rurn}</resolvedUrn>\n"
         replyString += "</cite:request>\n<cite:reply>\n"
         replyString += "<citeObjects>\n"

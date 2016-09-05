@@ -37,7 +37,9 @@
                         
                         <xsl:otherwise>
                             <div class="reply">
-                                <xsl:call-template name="cite_object"/>
+                                <xsl:for-each select="//cite:citeObject">
+                                    <xsl:call-template name="cite_object"/>
+                                </xsl:for-each>
                                 
                             </div>
                             <div class="cite_serviceLinks">

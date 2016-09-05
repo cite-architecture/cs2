@@ -8,6 +8,8 @@
     <xsl:variable name="getObjectPlusUrl">api?request=GetObjectPlus&amp;stylesheet=cite_getobject&amp;urn=</xsl:variable>
     <xsl:variable name="getValidReffUrl">api?request=GetValidReff&amp;safemode=on&amp;stylesheet=cite_getvalidreff&amp;urn=</xsl:variable>
     <xsl:variable name="getPagedValidReffUrl">api?request=GetPagedValidReff&amp;safemode=on&amp;stylesheet=cite_getvalidreff&amp;urn=</xsl:variable>
+    <xsl:variable name="getPagedUrl">api?request=GetPaged&amp;safemode=on&amp;stylesheet=cite_paged&amp;urn=</xsl:variable>
+    
    
     <xsl:variable name="homeUrl">home</xsl:variable>
     <xsl:variable name="formsUrl">home</xsl:variable>
