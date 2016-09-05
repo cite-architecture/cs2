@@ -393,17 +393,17 @@ class CcGraph {
   Map getValidReff(CiteUrn urn){
     // Is it an object or a range?
     if ( urn.isRange() || urn.hasObjectId() ){
-      System.err.println("${urn} is range; no version")
+      //System.err.println("${urn} is range; no version")
       return gvrForRange(urn)
     } else {
-      System.err.println("${urn} is NOT range; no version")
+      //System.err.println("${urn} is NOT range; no version")
       return gvrForCollection(urn)
     }
   }
 
   Map getValidReff(CiteUrn urn, String versionString)
   throws Exception {
-      System.err.println("${urn} has version = ${versionString}.")
+      //System.err.println("${urn} has version = ${versionString}.")
     if ((versionString == "") || (versionString == null)){
       return getValidReff(urn)
     } else {
@@ -935,7 +935,7 @@ throws Exception {
     if (offset > firstArray.size()){
       pagedReff['urns'] = urns // that is, an empty array
 
-      System.err.println("Offset too big. From ${startIndex} to ${endIndex}, out of ${firstArray.size()}")
+      //System.err.println("Offset too big. From ${startIndex} to ${endIndex}, out of ${firstArray.size()}")
 
     } else {
       if ( endIndex > firstArray.size()){
@@ -1010,7 +1010,7 @@ throws Exception {
     replyString += """<${request} xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite" >\n\n<cite:request>\n"""
 
     params.each{  pp ->
-    System.err.println("${pp.key} ${pp.value}")
+  //  System.err.println("${pp.key} ${pp.value}")
   }
 
     params.each { pm ->
@@ -1022,7 +1022,7 @@ throws Exception {
         replyString+= "<${pm.key}>${pm.value}</${pm.key}>\n"
       }
         //replyString+= "<${pm.key}>${pm.value}</${pm.key}>\n"
-      System.err.println("Param: ${pm.key} : ${pm.value}")
+      //System.err.println("Param: ${pm.key} : ${pm.value}")
     }
     // We don't close <cite:request> yet, so we can add request-specific stuff below.
 
@@ -1258,7 +1258,7 @@ throws Exception {
             grSafeMode = false
           }
         } else {
-            gkrSafeMode = false
+            grSafeMode = false
         }
 
         if(grSafeMode == true ){
