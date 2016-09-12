@@ -1,4 +1,4 @@
-  package edu.holycross.shot.sparqlcc
+package edu.holycross.shot.sparqlcc
 
 //import edu.holycross.shot.citeservlet.Sparql
 

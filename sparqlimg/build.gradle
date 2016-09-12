@@ -1,2 +1,76 @@
 
-apply plugin: 'base'
+
+buildscript {
+  repositories {
+    jcenter()
+    mavenCentral()
+    maven {
+      url "http://beta.hpcc.uh.edu/nexus/content/groups/public"
+    }
+  }
+
+  dependencies {
+    classpath 'org.akhikhl.gretty:gretty:+'
+    classpath group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
+  }
+}
+
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+
+
+repositories {
+  jcenter()
+  // enable this to use snapshot versions of Gretty:
+  // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+}
+
+sourceSets {
+  integr {
+  }
+}
+
+dependencies {
+  //compile project(":common")
+  //testCompile project(":common")
+
+  // Need to define all dependencies for integration tests:
+  integrCompile "junit:junit:${versionMap['junit']}"
+  integrCompile project(":sparqlcc")
+  integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
+}
+
+
+
+farm {
+    integrationTestTask = 'imgIntegration'
+    webapp "${rootDir}/fuseki/fuseki.war"
+    webapp project(":sparqlimg")
+}
+
+test {
+  include '**/Test*.*'
+  include '**/*Test.*'
+  exclude '**/*Integr.*'
+}
+
+
+task imgIntegration(type: Test, dependsOn: 'test') {
+  description  = "Runs integration tests against test data set served from fuseki."
+  outputs.upToDateWhen { false }
+  //include '**/TestReply*Integr.*'
+  include '**/*Integr.*'
+
+  testClassesDir = sourceSets.integr.output.classesDir
+  classpath = sourceSets.integr.runtimeClasspath
+}
+imgIntegration.doFirst {
+  System.out.println "Running CiteImg integration tests now...."
+}
+
+
+gretty {
+  initParameter("tripleserver", "http://localhost:8080/fuseki/img/query")
+//  initParameter("tripleserver", "http://localhost:3030/cc/query")
+  initParameter("version","cs2 pre-release 1.0")
+}

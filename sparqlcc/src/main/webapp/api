@@ -83,6 +83,7 @@ if (!done) {
     request.getParameterMap().each{ pp ->
       params[pp.key] = pp.value[0]
     }
+		params['tripleserver'] = baseUrl
 
 		println cc.formatXmlReply(req, urn, params)
 	} else {

@@ -1,3 +1,5 @@
+
+
 buildscript {
   repositories {
     jcenter()
@@ -69,5 +71,7 @@ ccIntegration.doFirst {
 
 gretty {
   initParameter("tripleserver", "http://localhost:8080/fuseki/cc/query")
+  initParameter("iipserv","http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi")
+//  initParameter("tripleserver", "http://localhost:3030/cc/query")
   initParameter("version","cs2 pre-release 1.0")
 }
