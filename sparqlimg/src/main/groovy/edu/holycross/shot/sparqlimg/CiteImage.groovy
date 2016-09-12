@@ -33,8 +33,8 @@ class CiteImage {
     * @param serverUrl String value for URL of sparql endpoint to query.
     * @param fcgiUrl String value for URL of IIPSrv fast cgi.
 .   */
-    CiteImage(String serverUrl, String fcgiUrl) {
-        this.tripletServerUrl = serverUrl
+    CiteImage(Sparql endpoint, String fcgiUrl) {
+        this.sparql = endpoint
         this.iipsrv = fcgiUrl
         this.qb = new QueryBuilder()
     }
