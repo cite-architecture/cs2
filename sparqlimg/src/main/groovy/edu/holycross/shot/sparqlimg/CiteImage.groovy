@@ -68,7 +68,7 @@ class CiteImage {
 	if (debug > 0) {
 	  System.err.println "CiteImage: query = ${q}"
 	}
-        String imgReply =  getSparqlReply("application/json", q)
+        String imgReply =  sparql.getSparqlReply("application/json", q)
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(imgReply)
         parsedReply.results.bindings.each { b ->
@@ -89,7 +89,7 @@ class CiteImage {
     throws Exception {
         CiteUrn urn = new CiteUrn(urnStr)
 		CiteUrn baseUrn = new CiteUrn("urn:cite:${urn.getNs()}:${urn.getCollection()}.${urn.getObjectId()}")
-        String rightsPropReply =  getSparqlReply("application/json", qb.getRightsProp(baseUrn))
+        String rightsPropReply =  sparql.getSparqlReply("application/json", qb.getRightsProp(baseUrn))
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(rightsPropReply)
         String prop = ""
@@ -111,7 +111,7 @@ class CiteImage {
     throws Exception {
         CiteUrn urn = new CiteUrn(urnStr)
 		CiteUrn baseUrn = new CiteUrn("urn:cite:${urn.getNs()}:${urn.getCollection()}.${urn.getObjectId()}")
-        String captionPropReply =  getSparqlReply("application/json", qb.getCaptionProp(baseUrn))
+        String captionPropReply =  sparql.getSparqlReply("application/json", qb.getCaptionProp(baseUrn))
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(captionPropReply)
         String prop = ""
@@ -175,7 +175,7 @@ class CiteImage {
     * @returns A String value with a valid URN to a binary image.
     */
     String getBinaryRedirect(CiteUrn urn) {
-        String pathReply =  getSparqlReply("application/json", qb.binaryPathQuery(urn))
+        String pathReply =  sparql.getSparqlReply("application/json", qb.binaryPathQuery(urn))
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(pathReply)
         String path = ""
@@ -271,30 +271,6 @@ class CiteImage {
     }
 
 
-
-    /** Submits a SPARQL query to the configured endpoint
-    * and returns the text of the reply.
-    * @param acceptType  Value to use for headers.Accept in
-    * http request.  If the value of acceptType is 'applicatoin/json'
-    * fuseki's additional 'output' parameter is added to the
-    * http request string so that the string returned for the
-    * the request will be in JSON format.  This separates the
-    * concerns of forming SPARQL queries from the decision about
-    * how to parse the reply in a given format.
-    * @param query Text of SPARQL query to submit.
-    * @returns Text content of reply.
-    */
-    String getSparqlReply(String acceptType, String query) {
-        String replyString
-        def encodedQuery = URLEncoder.encode(query)
-        def q = "${tripletServerUrl}query?query=${encodedQuery}"
-        if (acceptType == "application/json") {
-            q +="&output=json"
-        }
-		URL queryUrl = new URL(q)
-        return queryUrl.getText("UTF-8")
-
-    }
 
 
 }

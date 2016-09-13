@@ -22,11 +22,11 @@ class TestTestIntegr extends GroovyTestCase {
   }
 
   @Test
-  void testGetCollectionIdProp(){
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign")
+  void testGetCaptionPropIntegr(){
+    CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1")
     Sparql sparql = new Sparql(baseUrl)
     CiteImage cimg = new CiteImage(sparql,iipserv)
-		assert cimg.getCaptionProp(urn.toString()) == "xvaimg_Label"
+		assert cimg.getCaptionProp(urn.toString()) == "citedata:vaimg_Label"
   }
 
 
