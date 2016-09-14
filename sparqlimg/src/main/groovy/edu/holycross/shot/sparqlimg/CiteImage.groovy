@@ -333,10 +333,10 @@ class CiteImage {
 
 
     String getImagePlusReply(CiteUrn urn, String baseUrl) {
-        String baseUrnStr = "urn:cite:${urn.getNs()}:${urn.getCollection()}.${urn.getObjectId()}"
-		CiteUrn baseUrn = new CiteUrn(baseUrnStr)
-        String binaryUrl = "${baseUrl}request=GetBinaryImage&amp;urn=${urn}"
-        String zoomableUrl =  "${baseUrl}request=GetIIPMooViewer&amp;urn=${urn}"
+			CiteUrn resolvedUrn = resolveVersion(urn)
+			CiteUrn baseUrn = new CiteUrn("urn:cite:${resolvedUrn.getNs()}:${resolvedUrn.getCollection()}.${resolvedUrn.getObjectId()}.${resolvedUrn.getObjectVersion()}")
+        String binaryUrl = "${baseUrl}request=GetBinaryImage&amp;urn=${resolvedUrn}"
+        String zoomableUrl =  "${baseUrl}request=GetIIPMooViewer&amp;urn=${resolvedUrn}"
 
         String rightsVerb = getRightsProp(urn.toString())
         String captionVerb = getCaptionProp(urn.toString())
@@ -344,7 +344,7 @@ class CiteImage {
         String rights
         String q = qb.getImageInfo(baseUrn, captionVerb, rightsVerb)
         System.err.println "QUERY " + q
-        String imgReply =  getSparqlReply("application/json", q)
+        String imgReply =  sparql.getSparqlReply("application/json", q)
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(imgReply)
         parsedReply.results.bindings.each { b ->
@@ -353,7 +353,8 @@ class CiteImage {
             caption = b.caption.value
         }
 
-        StringBuffer reply = new StringBuffer("<GetImagePlus  xmlns='http://chs.harvard.edu/xmlns/citeimg'>\n<request>\n<urn>${urn}</urn>\n\n</request>\n<reply>")
+        StringBuffer reply = new StringBuffer("<GetImagePlus  xmlns='http://chs.harvard.edu/xmlns/citeimg'>\n")
+			reply.append("<request>\n<urn>${urn}</urn>\n<resolvedUrn>${resolvedUrn}</resolvedUrn>\n</request>\n<reply>\n")
         reply.append("<caption>${caption}</caption>\n")
         reply.append("<rights>${rights}</rights>\n")
         reply.append("<binaryUrl>${binaryUrl}</binaryUrl>\n")
