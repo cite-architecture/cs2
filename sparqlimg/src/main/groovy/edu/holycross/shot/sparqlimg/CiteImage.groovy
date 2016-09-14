@@ -153,11 +153,12 @@ class CiteImage {
     * @returns A valid reply to the CiteImage GetCaption request.
     */
     String getCaptionReply(CiteUrn urn) {
+			CiteUrn resolvedUrn = resolveVersion(urn)
         String rightsVerb = getRightsProp(urn.toString())
         String captionVerb = getCaptionProp(urn.toString())
-        CiteUrn baseUrn = new CiteUrn("urn:cite:${urn.getNs()}:${urn.getCollection()}.${urn.getObjectId()}")
+			CiteUrn baseUrn = new CiteUrn("urn:cite:${resolvedUrn.getNs()}:${resolvedUrn.getCollection()}.${resolvedUrn.getObjectId()}.${resolvedUrn.getObjectVersion()}")
         StringBuffer reply = new StringBuffer("<GetCaption xmlns='http://chs.harvard.edu/xmlns/citeimg'>\n")
-        reply.append("<request>\n<urn>${urn}</urn>\n</request>\n<reply>\n")
+        reply.append("<request>\n<urn>${urn}</urn>\n<resolvedUrn>${resolvedUrn}</resolvedUrn>\n</request>\n<reply>\n")
         String q = qb.getImageInfo(baseUrn, captionVerb, rightsVerb)
 	if (debug > 0) {
 	  System.err.println "CiteImage: query = ${q}"

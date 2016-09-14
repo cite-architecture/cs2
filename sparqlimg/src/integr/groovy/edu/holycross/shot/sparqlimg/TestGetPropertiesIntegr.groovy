@@ -2,6 +2,7 @@ package edu.holycross.shot.sparqlimg
 
 import static org.junit.Assert.*
 import org.junit.Test
+import org.custommonkey.xmlunit.*
 
 import edu.holycross.shot.sparqlimg.CiteImage
 import edu.harvard.chs.cite.CiteUrn
