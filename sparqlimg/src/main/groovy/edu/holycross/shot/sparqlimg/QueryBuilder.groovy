@@ -14,7 +14,7 @@ class QueryBuilder {
 PREFIX cts:        <http://www.homermultitext.org/cts/rdf/>
 PREFIX cite:        <http://www.homermultitext.org/cite/rdf/>
 PREFIX hmt:        <http://www.homermultitext.org/hmt/rdf/>
-PREFIX citedata:        <http://www.homermultitext.org/hmt/citedata/>
+PREFIX citedata:        <http://www.homermultitext.org/citedata/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -29,6 +29,22 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
     /** Empty constructor.*/
     QueryBuilder() {
     }
+
+		/** Generates a Sparql query for versions of an object
+		* @param CiteUrn
+		* @returns String
+		*/
+		String resolveVersionQuery(CiteUrn urn){
+			String queryString = prefix
+			queryString += """
+			select ?v where {
+
+				<${urn.toString()}> cite:hasVersion ?v
+
+			}
+			"""
+			return queryString
+		}
 
 
     String binaryPathQuery(CiteUrn img) {

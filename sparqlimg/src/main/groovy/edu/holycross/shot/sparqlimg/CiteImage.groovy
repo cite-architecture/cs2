@@ -39,6 +39,100 @@ class CiteImage {
         this.qb = new QueryBuilder()
     }
 
+		/** Returns a valid version for an Object-level CITE Urn.
+	  * @param CiteUrn Can be range. Throws exception if the param is a collection-level URN
+	  * @returns CiteUrn (version-level)
+	  */
+	  CiteUrn resolveVersion(CiteUrn urn)
+	  throws Exception {
+	  	  Object returnObject
+
+	 	  String tempUrnString = ""
+		  // Handle ranges: Be sure both sides have a version, and the same version
+		  if ( urn.isRange() ){
+				throw new Exception("SparqlImg: Range URNs are not valid parameters for CITE Image Extension requests.")
+		  } else {
+		  // Handle single objects
+			  tempUrnString = versionForObject(urn)
+		  }
+
+		  if ( tempUrnString == ""){
+				returnObject = null
+		  } else {
+				try {
+					returnObject = new CiteUrn(tempUrnString)
+				} catch (Exception e ) {
+					returnObject = null
+				}
+		  }
+		  return returnObject
+
+	  }
+
+	  /** Performs a query to find a valid version for an object-level URN
+	  * @param CiteUrn Throws exceptions if param is collection-level or a range.
+	  * @returns CiteUrn (version-level) May return null if there is not a version present in the data
+	  */
+	  CiteUrn versionForObject(CiteUrn urn)
+	  throws Exception {
+	    String tempUrnString = ""
+	    Object returnObject = null
+
+	    if ( urn.isRange() ) {
+	      throw new Exception( "CiteImg: versionForObject: ${urn.toString()} cannot be a range.")
+	    }
+	    if ( !(urn.hasObjectId()) ) {
+	      throw new Exception( "CiteImg: versionForObject: ${urn.toString()} cannot be a collection-level urn.")
+	    }
+	    if ( !(urn.hasVersion()) && urn.hasExtendedRef() ) {
+	      throw new Exception( "CiteImg: versionForObject: ${urn.toString()} cannot have an extendedRef without a version identifier.")
+	    }
+	    if ( urn.hasVersion() ){
+	      tempUrnString = urn.toString()
+	      } else {
+	        String queryString = qb.resolveVersionQuery(urn)
+	        String reply = sparql.getSparqlReply("application/json", queryString)
+
+	        JsonSlurper slurper = new groovy.json.JsonSlurper()
+	        def parsedReply = slurper.parseText(reply)
+	        parsedReply.results.bindings.each { bndng ->
+	          if (bndng.v) {
+	            tempUrnString = bndng.v?.value
+	          }
+	        }
+
+	      }
+
+	      if ( tempUrnString == ""){
+	        returnObject = null
+	        } else {
+	          try {
+	            returnObject = new CiteUrn(tempUrnString)
+	            } catch (Exception e ) {
+	              returnObject = null
+	            }
+	          }
+
+	          return returnObject
+	        }
+
+	  /** Returns 'true' if an object identified by a Cite URN is a member of an ordered collection.
+	  * @param CiteUrn
+	  * @returns Boolean
+	  */
+	  Boolean isOrdered(CiteUrn urn)
+	  throws Exception {
+	      String collectionUrnStr = urn.reduceToCollection()
+	      CiteUrn collectionUrn = new CiteUrn(collectionUrnStr)
+	      String qs = QueryBuilder.isOrderedQuery(collectionUrn)
+	      String reply = sparql.getSparqlReply("application/json", qs)
+	      JsonSlurper slurper = new groovy.json.JsonSlurper()
+	      def parsedReply = slurper.parseText(reply)
+	      //System.err.println qs
+	      //System.err.println parsedReply
+	      //System.err.println "${urn} >> ${collectionUrn}"
+	      return parsedReply.boolean == true
+	  }
 
     /**
     * Composes a String validating against the .rng schema for the GetCaption reply.
@@ -135,26 +229,36 @@ class CiteImage {
         return getRightsReply(baseUrn)
     }
 
-    /**
-    * Composes a String validating against the .rng schema for the GetRights reply.
-    * @param urn URN of the image.
-    * @returns A valid reply to the CiteImage GetRights request.
-    */
-    String getRightsReply(CiteUrn urn){
-        String rightsVerb = getRightsProp(urn.toString())
-        String captionVerb = getCaptionProp(urn.toString())
-		CiteUrn baseUrn = new CiteUrn("urn:cite:${urn.getNs()}:${urn.getCollection()}.${urn.getObjectId()}")
-        StringBuffer reply = new StringBuffer("<GetRights xmlns='http://chs.harvard.edu/xmlns/citeimg'>\n")
-        reply.append("<request>\n<urn>${urn}</urn>\n</request>\n<reply>\n")
-        String imgReply =  getSparqlReply("application/json", qb.getImageInfo(baseUrn, captionVerb, rightsVerb))
-        def slurper = new groovy.json.JsonSlurper()
-        def parsedReply = slurper.parseText(imgReply)
-        parsedReply.results.bindings.each { b ->
-            reply.append("<rights>${b.license.value}</rights>\n")
-        }
-        reply.append("</reply>\n</GetRights>\n")
-        return reply.toString()
-    }
+		/**
+		* Composes a String validating against the .rng schema for the GetRights reply.
+		* @param urn URN of the image.
+		* @returns A valid reply to the CiteImage GetRights request.
+		*/
+		String getRightsReply(CiteUrn urn){
+			CiteUrn resolvedUrn = resolveVersion(urn)
+			String rightsVerb = getRightsProp(urn.toString())
+			String captionVerb = getCaptionProp(urn.toString())
+			CiteUrn baseUrn = new CiteUrn("urn:cite:${resolvedUrn.getNs()}:${resolvedUrn.getCollection()}.${resolvedUrn.getObjectId()}.${resolvedUrn.getObjectVersion()}")
+
+			StringBuffer reply = new StringBuffer("<GetRights xmlns='http://chs.harvard.edu/xmlns/citeimg'>\n")
+
+			reply.append("<request>\n<urn>${urn}</urn>\n<resolvedUrn>${resolvedUrn}</resolvedUrn>\n</request>\n<reply>\n")
+
+			System.err.println(qb.getImageInfo(baseUrn, captionVerb, rightsVerb))
+
+			String imgReply =  sparql.getSparqlReply("application/json", qb.getImageInfo(baseUrn, captionVerb, rightsVerb))
+
+			def slurper = new groovy.json.JsonSlurper()
+
+			def parsedReply = slurper.parseText(imgReply)
+
+			parsedReply.results.bindings.each { b ->
+				reply.append("<rights>${b.license.value}</rights>\n")
+			}
+
+			reply.append("</reply>\n</GetRights>\n")
+			return reply.toString()
+		}
 
 
 
