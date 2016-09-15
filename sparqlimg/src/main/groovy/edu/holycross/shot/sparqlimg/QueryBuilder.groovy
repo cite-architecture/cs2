@@ -46,6 +46,13 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
 			return queryString
 		}
 
+		String getExtendedCollectionQuery(String extensionString){
+        return """${prefix}
+			SELECT ?coll WHERE {
+		?coll cite:extendedBy ${extensionString} .
+		 }
+		 """
+		}
 
     String binaryPathQuery(CiteUrn img) {
 

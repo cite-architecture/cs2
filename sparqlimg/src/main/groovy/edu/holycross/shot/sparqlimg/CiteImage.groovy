@@ -290,7 +290,26 @@ class CiteImage {
         return "${iipsrv}?OBJ=IIP,1.0&FIF=${path}/${urn.getObjectId()}.tif"
     }
 
+		String getExtendedCollectionsReply(String extensionString){
 
+        String extendedCollectionsReply =  sparql.getSparqlReply("application/json", qb.getExtendedCollectionQuery(extensionString))
+        def pathSlurp = new groovy.json.JsonSlurper()
+        def pathParse = pathSlurp.parseText(extendedCollectionsReply)
+				ArrayList<String> colls = []
+        pathParse.results.bindings.each { b ->
+            colls << b.coll.value
+        }
+
+        StringBuffer reply = new StringBuffer("<GetExtendedCollections  xmlns='http://chs.harvard.edu/xmlns/citeimg'>\n<request>\n")
+				reply.append("</request>\n<reply>\n")
+					colls.each { cc ->
+		        reply.append("""<collection urn="${cc}"/>\n""")
+					}
+
+        reply.append("</reply>\n</GetExtendedCollections>\n")
+        return reply.toString()
+
+		}
 
     String getIIPMooViewerReply(CiteUrn urn) {
         String roi = urn.getExtendedRef()
