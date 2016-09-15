@@ -294,15 +294,15 @@ class CiteImage {
 
     String getIIPMooViewerReply(CiteUrn urn) {
         String roi = urn.getExtendedRef()
-        String baseUrnStr = "urn:cite:${urn.getNs()}:${urn.getCollection()}.${urn.getObjectId()}"
-		CiteUrn baseUrn = new CiteUrn(baseUrnStr)
+			CiteUrn resolvedUrn = resolveVersion(urn)
+			CiteUrn baseUrn = new CiteUrn("urn:cite:${resolvedUrn.getNs()}:${resolvedUrn.getCollection()}.${resolvedUrn.getObjectId()}.${resolvedUrn.getObjectVersion()}")
         String license
         String caption
         String path
 
         String rightsVerb = getRightsProp(urn.toString())
         String captionVerb = getCaptionProp(urn.toString())
-        String imgReply =  getSparqlReply("application/json", qb.getImageInfo(baseUrn, captionVerb, rightsVerb))
+        String imgReply =  sparql.getSparqlReply("application/json", qb.getImageInfo(baseUrn, captionVerb, rightsVerb))
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(imgReply)
         parsedReply.results.bindings.each { b ->
@@ -310,14 +310,16 @@ class CiteImage {
             caption = b.caption.value
         }
 
-        String pathReply =  getSparqlReply("application/json", qb.binaryPathQuery(baseUrn))
+        String pathReply =  sparql.getSparqlReply("application/json", qb.binaryPathQuery(baseUrn))
         def pathSlurp = new groovy.json.JsonSlurper()
         def pathParse = pathSlurp.parseText(pathReply)
         pathParse.results.bindings.each { b ->
             path = b.path.value
         }
 
-        StringBuffer reply = new StringBuffer("<GetIIPMooViewer  xmlns='http://chs.harvard.edu/xmlns/citeimg'>\n<request>\n<urn>${urn}</urn>\n<baseUrn>${baseUrn}</baseUrn>\n<roi>${roi}</roi>\n</request>\n<reply>")
+        StringBuffer reply = new StringBuffer("<GetIIPMooViewer  xmlns='http://chs.harvard.edu/xmlns/citeimg'>\n<request>\n")
+				reply.append("<urn>${urn}</urn>\n<resolvedUrn>${resolvedUrn}</resolvedUrn>\n")
+				reply.append("<baseUrn>${baseUrn}</baseUrn>\n<roi>${roi}</roi>\n</request>\n<reply>")
         reply.append("<serverUrl val='" + iipsrv + "'/>\n")
 
         reply.append("<imgPath val='" + path + "/${urn.getObjectId()}.tif'/>\n")
