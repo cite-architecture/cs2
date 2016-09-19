@@ -1,0 +1,124 @@
+import edu.holycross.shot.sparqlimg.*
+import edu.harvard.chs.cite.CtsUrn
+import edu.harvard.chs.cite.CiteUrn
+
+String responseType = request.getParameter("type")
+if ( (responseType == "") || (responseType == null)){
+	responseType = "xml"
+}
+if (responseType == "json"){
+	contentType = "text/json"
+} else {
+	contentType = "text/xml"
+}
+
+response.setContentType(contentType)
+response.setHeader( "Access-Control-Allow-Origin", "*")
+
+String baseUrl = context.getInitParameter('baseUrl')
+String tripleserver = context.getInitParameter('tripleserver')
+String iipsrv = context.getInitParameter('iipsrv')
+String servletVersion = context.getInitParameter('version')
+String preferredMooStylesheet = context.getInitParameter('moostylesheet')
+
+Sparql sparql = new Sparql(tripleserver)
+CiteImage cimg = new CiteImage(sparql,iipsrv)
+
+String req = request.getParameter("request")
+String urnStr = request.getParameter("urn")
+
+Boolean done = false
+
+String stylesheet = null
+if (request.getParameter("stylesheet")){
+	stylesheet = request.getParameter("stylesheet")
+}
+
+if(req == "GetExtendedCollections"){
+	if (stylesheet != null){
+		println """<?xml-stylesheet type="text/xsl" href="cite-ui/xslt/${stylesheet}.xsl"?>\r"""
+	}
+		// *** GetExtendedCollections ***
+		println cimg.getExtendedCollectionsReply("cite:CiteImage")
+		done = true
+} else  if (req == "GetVersion") {
+	println "<version>${servletVersion}</version>"
+	done = true
+} else {
+	// guarantee that URN parameter is syntactically valid
+	done = false
+	CiteUrn urn
+	try {
+    urn = new CiteUrn(urnStr)
+	} catch (Exception e) {
+		errorNum = 1
+		if (stylesheet != null){
+			println """<?xml-stylesheet type="text/xsl" href="cite-ui/xslt/${stylesheet}.xsl"?>\r"""
+		}
+		println """<CITEError xmlns:cts="http:chs.harvard.edu/xmlns/cite" xmlns="http://chs.harvard.edu/xmlns/cite">\n"""
+		println """<message>INVALID REQUEST. Missing parameter: 'urn'</message>\n"""
+		println """<code>${errorNum}</code>\n"""
+		println """</CITEError>\n"""
+		done = true
+	}
+}
+
+
+
+if (!done) {
+	  CiteUrn urn = new CiteUrn(urnStr)
+    switch(req) {
+        case "GetCaption":
+						if (stylesheet != null){
+							println """<?xml-stylesheet type="text/xsl" href="cite-ui/xslt/${stylesheet}.xsl"?>\r"""
+						}
+            println  cimg.getCaptionReply(urn)
+        break
+
+        case "GetRights":
+						if (stylesheet != null){
+							println """<?xml-stylesheet type="text/xsl" href="cite-ui/xslt/${stylesheet}.xsl"?>\r"""
+						}
+            println cimg.getRightsReply(urn)
+        break
+
+        case "GetIIPMooViewer":
+						if (stylesheet != null){
+							println """<?xml-stylesheet type="text/xsl" href="cite-ui/xslt/${stylesheet}.xsl"?>\r"""
+						} else {
+							println """<?xml-stylesheet type="text/xsl" href="cite-ui/xslt/${preferredMooStylesheet}.xsl"?>\r"""
+						}
+            println cimg.getIIPMooViewerReply(urn)
+        break
+
+        case "GetImagePlus":
+						if (stylesheet != null){
+							println """<?xml-stylesheet type="text/xsl" href="cite-ui/xslt/${stylesheet}.xsl"?>\r"""
+						}
+            println  cimg.getImagePlusReply(urn, "api?")
+        break
+        // add handling for 'w' param
+        case "GetBinaryImage":
+            String subRef = urn.getExtendedRef()
+            def w = 1000
+            String reqW = request.getParameter("w")
+            try  {
+                w = reqW.toInteger()
+            } catch (Exception) {
+                // stick with default
+            }
+						CiteUrn resolvedUrn = cimg.resolveVersion(urn)
+            CiteUrn queryUrn = new CiteUrn ("urn:cite:${resolvedUrn.getNs()}:${resolvedUrn.getCollection()}.${resolvedUrn.getObjectId()}.${resolvedUrn.getObjectVersion()}")
+            String redirectAddress = cimg.getBinaryRedirect(queryUrn) + "&RGN=${subRef}&WID=${w}&CVT=JPEG"
+            System.err.println "REDIRECT TO ${redirectAddress}"
+            response.sendRedirect(redirectAddress)
+            break
+
+
+
+        default :
+        // break with "undefined request" excetpion
+            println "<error>CiteImage: Unrecognized request: ${req}.</error>"
+        break
+    }
+}
