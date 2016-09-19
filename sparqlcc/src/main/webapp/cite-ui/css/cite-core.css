@@ -207,7 +207,12 @@ table.cite_objectTable {
 	border: 1px solid silver;
 	padding: 3px;
 	border-collapse: collapse;
+}
 
+table.multiple_cite_objects{
+	width: 200px;
+	float:left;
+	font-size: 9pt;
 }
 
 table.cite_objectTable td {
@@ -228,7 +233,7 @@ table.cite_objectTable th {
 
 table.cite_objectTable tr:nth-child(odd) {
 	background-color: #ddd;
-}	
+}
 
 
 /* Tooltip-style labels on properties */
@@ -246,9 +251,9 @@ table.cite_objectTable tr:nth-child(odd) {
 	line-height: 1.2em;
 	font-size: 80%;
     padding: 5px;
-    border-radius: 3px; 
+    border-radius: 3px;
 	border: 1px solid #bb9;
- 
+
     /* Position the tooltip text - see examples below! */
     position: absolute;
     z-index: 1;}

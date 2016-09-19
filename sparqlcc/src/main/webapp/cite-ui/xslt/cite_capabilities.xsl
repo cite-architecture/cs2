@@ -6,10 +6,10 @@
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
     <xsl:output omit-xml-declaration="yes" method="html" encoding="UTF-8"/>
-    <xsl:include href="cite_header.xsl"/>
+    <!--<xsl:include href="cite_header.xsl"/>-->
     
    <xsl:include href="cite_variables.xsl"/>
-    <xsl:include href="cite_templates.xsl"/>
+   <!-- <xsl:include href="cite_templates.xsl"/>-->
     
     
     <xsl:template match="/">

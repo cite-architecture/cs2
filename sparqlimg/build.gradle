@@ -46,6 +46,8 @@ farm {
     integrationTestTask = 'imgIntegration'
     webapp "${rootDir}/fuseki/fuseki.war"
     webapp project(":sparqlimg")
+		webapp project(":sparqlcc")
+		webapp project(":sparqlcts")
 }
 
 test {
@@ -73,6 +75,8 @@ gretty {
   initParameter("tripleserver", "http://localhost:8080/fuseki/img/query")
   initParameter("baseUrl", "api")
 	initParameter("iipsrv", "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi")
-//  initParameter("tripleserver", "http://localhost:3030/img/query")
+	initParameter("moostylesheet","cite_remoteiip")
+	// initParameter("moostylesheet","cite_giipmoo")
+  // initParameter("tripleserver", "http://localhost:3030/img/query")
   initParameter("version","cs2 pre-release 1.0")
 }

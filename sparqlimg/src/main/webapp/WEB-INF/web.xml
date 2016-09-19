@@ -22,6 +22,12 @@
         <param-name>version</param-name>
         <param-value>cs2 pre-release 1.0</param-value>
     </context-param>
+    <context-param>
+        <param-name>moostylesheet</param-name>
+        <param-value>cite_remoteiip</param-value>
+        <!--<param-value>cite_giipmoo</param-value>-->
+    </context-param>
+    
     
     
 

@@ -17,13 +17,13 @@ html.html {
 			nav {
 
 				p {
-					a(href : "http://www.homermultitext.org/hmt-doc/", "Canonical Text Services")
+					a(href : "http://cite-architecture.github.io", "Canonical Text Services")
 				}
 			}
 
 		article {
 			p("This site hosts an implementation of Canonical Text Services (CTS).")
-		
+
 
 
 				p {

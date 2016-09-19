@@ -50,12 +50,14 @@
 
     <xsl:template name="cite_nav">
         <nav>
-            <p>
+            <ul>
+                <li>
                 <xsl:element name="a">
                     <xsl:attribute name="href"><xsl:value-of select="$homeUrl"/></xsl:attribute>
-                    home </xsl:element>
+                    Collections Home </xsl:element>
+                 </li>
 
-            </p>
+            </ul>
 
         </nav>
     </xsl:template>
@@ -114,10 +116,18 @@
     </xsl:template>
     
     <xsl:template name="cite_object">
+        <xsl:param name="class">single_cite_object</xsl:param>
+       
         
         <div class="cite_object">
             <h2><xsl:value-of select="//cite:reply//cite:citeObject/@urn"/></h2>
-            <table class="cite_objectTable">
+           
+                <xsl:element name="table">
+                    <xsl:attribute name="class">
+                        cite_objectTable
+                        <xsl:value-of select="$class"/>
+                    </xsl:attribute>
+               
                 <tr>
                     <th>Property</th>
                     <th>Type</th>
@@ -129,12 +139,56 @@
                         <td class="cite_propertyTypeCell"><xsl:value-of select="current()/@type"/></td>
                         <xsl:element name="td">
                             <xsl:attribute name="class">cite_propertyValueCell cite_<xsl:value-of select="current()/@type"/></xsl:attribute>
-                            <xsl:apply-templates select="current()"/>
+                            <xsl:choose>
+                                <xsl:when test="current()/@type = 'ctsurn'">
+                                    <xsl:element name="a">
+                                        <xsl:attribute name="href">
+                                            <xsl:value-of select="$ctsUrl"/><xsl:value-of select="current()"/>
+                                        </xsl:attribute>
+                                        <xsl:apply-templates select="current()"/>
+                                    </xsl:element>
+                                </xsl:when>
+                                <xsl:when test="current()/@type = 'citeurn'">
+                                    <xsl:element name="a">
+                                        <xsl:attribute name="href">
+                                            <xsl:value-of select="$getObjectUrl"/><xsl:value-of select="current()"/>
+                                        </xsl:attribute>
+                                        <xsl:apply-templates select="current()"/>
+                                    </xsl:element>
+                                </xsl:when>
+                                <xsl:otherwise> <xsl:apply-templates select="current()"/></xsl:otherwise>
+                            </xsl:choose>
+                           
                         </xsl:element>
                       
                     </tr>
                 </xsl:for-each>
-            </table>
+                
+                <!-- IF THIS OBJECT IS AN IMAGE -->
+                <xsl:if test="//cite:extension = 'http://www.homermultitext.org/cite/rdf/CiteImage'">
+                    <tr>
+                        <td>Extension</td>
+                        <td>
+                          
+                          Cite Image
+                        </td>
+                        <td>
+                            <xsl:element name="a">
+                                <xsl:attribute name="href"><xsl:value-of select="$imgLinkUrl"/><xsl:value-of select="current()/@urn"/></xsl:attribute>
+                                
+                            <xsl:element name="img">
+                                <xsl:attribute name="src"><xsl:value-of select="$imgThumbUrl"/><xsl:value-of select="current()/@urn"/></xsl:attribute>
+                            </xsl:element>
+                            </xsl:element>
+                            <br/>
+                            <xsl:element name="a">
+                                <xsl:attribute name="href"><xsl:value-of select="$imgICTUrl"/><xsl:value-of select="current()/@urn"/></xsl:attribute>
+                                Cite and quote this image.
+                            </xsl:element>
+                        </td>
+                    </tr>
+                </xsl:if>
+                </xsl:element>
             
         </div>
         

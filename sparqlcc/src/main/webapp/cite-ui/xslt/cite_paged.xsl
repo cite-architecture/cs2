@@ -43,7 +43,10 @@
                                     </xsl:with-param>
                                 </xsl:call-template>
                                 <xsl:for-each select="//cite:reply/cite:citeObjects/cite:citeObject">
-                                    <xsl:call-template name="cite_object"/>
+                                    <xsl:call-template name="cite_object">
+                                        <xsl:with-param name="class">multiple_cite_objects</xsl:with-param>
+                                        
+                                    </xsl:call-template>
                                 </xsl:for-each>
 
                             </div>
