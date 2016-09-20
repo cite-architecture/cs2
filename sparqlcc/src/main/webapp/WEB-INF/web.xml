@@ -8,16 +8,16 @@
 
       <context-param>
       	  <param-name>tripleserver</param-name>
-      	  <param-value>http://localhost:8080/fuseki/cc/query</param-value>
+      	  <param-value>http://localhost:3030/cc/query</param-value>
+      	</context-param>
+		<context-param>
+			<param-name>version</param-name>
+      	  <param-value>http://localhost:3030/cc/query</param-value>
       	</context-param>
 
     <servlet>
       <servlet-name>GroovyServlet</servlet-name>
       <servlet-class>groovy.servlet.GroovyServlet</servlet-class>
-      <init-param>
-      	  <param-name>tripleserver</param-name>
-      	  <param-value>http://localhost:3030/cc/query</param-value>
-      	</init-param>
     </servlet>
 
     <servlet-mapping>
