@@ -43,7 +43,9 @@ dependencies {
 farm {
     integrationTestTask = 'ctsIntegration'
     webapp "${rootDir}/fuseki/fuseki.war"
-    webapp project(":sparqlcts")
+    webapp project(":sparqlimg")
+	webapp project(":sparqlcc")
+	webapp project(":sparqlcts")
 }
 
 test {
