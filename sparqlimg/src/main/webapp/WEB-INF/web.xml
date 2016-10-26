@@ -8,7 +8,7 @@
 
       <context-param>
       	  <param-name>tripleserver</param-name>
-      	  <param-value>http://localhost:3030/ds/query</param-value>
+      	  <param-value>http://localhost:8080/fuseki/img/query</param-value>
       	</context-param>
     <context-param>
         <param-name>baseUrl</param-name>
