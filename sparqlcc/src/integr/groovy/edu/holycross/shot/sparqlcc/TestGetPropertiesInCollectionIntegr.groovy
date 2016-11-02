@@ -27,7 +27,7 @@ class TestGetPropertiesInCollectionIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
     CiteUrn urn = new CiteUrn(objUrn)
     ArrayList collProps = cc.getPropertiesInCollection(urn)
-    assert collProps.size() == 5 
+    assert collProps.size() == 5
     assert collProps[0].propertyName
     assert collProps[0].label
     assert collProps[0].propertyType
