@@ -23,6 +23,7 @@
      <#service_tdb_orca>
      <#service_tdb_cc>
      <#service_tdb_img>
+     <#service_tdb_hmt>
    ) .
 
 # TDB
@@ -30,6 +31,30 @@
 tdb:DatasetTDB  rdfs:subClassOf  ja:RDFDataset .
 tdb:GraphTDB    rdfs:subClassOf  ja:Model .
 
+## ---------------------------------------------------------------
+## HMT Data 
+## Updatable TDB dataset with all services enabled.
+
+<#service_tdb_hmt> rdf:type fuseki:Service ;
+    rdfs:label                      "CITE Servlet Data: HMT" ;
+    fuseki:name                     "hmt" ;
+    fuseki:serviceQuery             "query" ;
+    fuseki:serviceQuery             "sparql" ;
+    fuseki:serviceUpdate            "update" ;
+    fuseki:serviceUpload            "upload" ;
+    fuseki:serviceReadWriteGraphStore      "data" ;
+    # A separate read-only graph store endpoint:
+    fuseki:serviceReadGraphStore       "get" ;
+    fuseki:dataset           <#tdb_dataset_hmt> ;
+    .
+
+<#tdb_dataset_hmt> rdf:type      tdb:DatasetTDB ;
+    tdb:location "@projectroot@/fuseki/fusekibase/databases/hmt";
+##     # Query timeout on this dataset (milliseconds)
+       ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "50000,600000" ] ;
+#s#     # Default graph for query is the (read-only) union of all named graphs.
+       tdb:unionDefaultGraph false
+     .
 
 ## ---------------------------------------------------------------
 ## CTS Data 

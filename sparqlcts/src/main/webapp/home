@@ -1,6 +1,6 @@
 import edu.harvard.chs.cite.CtsUrn
 
-def demoUrnStr = "urn:cts:greekLit:tlg0012.tlg001.fuPers:1.1-1.10"
+def demoUrnStr = "urn:cts:greekLit:tlg0012.tlg001.msA:9.1-9.10"
 CtsUrn demoUrn = new CtsUrn(demoUrnStr)
 
 
@@ -18,6 +18,8 @@ html.html {
 
 				p {
 					a(href : "http://cite-architecture.github.io", "Canonical Text Services")
+					mkp.yield(" | ")
+					a(href : "../citeservlet", "HMT Digital Home")
 				}
 			}
 

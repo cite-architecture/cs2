@@ -1,9 +1,9 @@
 import edu.harvard.chs.cite.CiteUrn
 
-def demoUrnStr = "urn:cite:hmt:venAsign.5.v1"
-def demoRangeUrnStr = "urn:cite:hmt:venAsign.1.v1-10.v1"
-def demoCollectionUrnStr = "urn:cite:hmt:venAsign"
-def demoUrnStrVersions = "urn:cite:hmt:pageroi.5"
+def demoUrnStr = "urn:cite:hmt:msA.1r.v1"
+def demoRangeUrnStr = "urn:cite:hmt:msA.1r-12v"
+def demoCollectionUrnStr = "urn:cite:hmt:msA"
+def demoUrnStrVersions = "urn:cite:hmt:msA.1r"
 CiteUrn demoUrn = new CiteUrn(demoUrnStr)
 
 
@@ -20,6 +20,8 @@ html.html {
 
 				p {
 					a(href : "http://cite-architecture.github.io", "CITE Architecture")
+					mkp.yield(" | ")
+					a(href : "../citeservlet", "HMT Digital Home")
 				}
 			}
 

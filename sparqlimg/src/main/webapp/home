@@ -1,7 +1,7 @@
 import edu.harvard.chs.cite.CiteUrn
 
-String demoUrnStr = "urn:cite:hmt:vaimg.VA024RN_0025.v1"
-String demoUrnWRoi = "urn:cite:hmt:vaimg.VA024RN_0025.v1@0.251,0.4459,0.217,0.048"
+String demoUrnStr = "urn:cite:hmt:vaimg.VA012RN_0013.v1"
+String demoUrnWRoi = "urn:cite:hmt:vaimg.VA012RN_0013.v1@0.052,0.2231,0.12,0.0954"
 String sampleWidth = "1000"
 CiteUrn demoUrn = new CiteUrn(demoUrnStr)
 
@@ -19,6 +19,8 @@ html.html {
 
 				p {
 					a(href : "http://cite-architecture.github.io", "CITE Architecture")
+					mkp.yield(" | ")
+					a(href : "../citeservlet", "HMT Digital Home")
 				}
 			}
 

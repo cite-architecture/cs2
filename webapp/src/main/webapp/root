@@ -2,28 +2,39 @@
 
 html.html {
 	head {
-		title("Multiple web apps under gretty")
+		title("Homer Multitext Digital Library")
 			link(href : "cts-ui/css/cts-core.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
 
 	}
 
 	body {
 
-		header("Gretty web apps")
+		header("Homer Multitext Digital Library")
 			nav {
 
 				p {
-					a(href : "http://www.homermultitext.org/hmt-doc/", "HMT Doc'y things")
+					a(href : "http://www.homermultitext.org/about-main.html", "About the Homer Multitext")
 				}
 
 			}
 
 		article {
-			p("Root for a full-blown CITE service suite.")
+			h1("Access individual services:")
+
 
 			p {
-				mkp.yield ("Try a relative URN to ")
-				a(href : "../sparqlcts", "CTS service")
+				mkp.yield ("Access to passages of text: ")
+				a(href : "../sparqlcts", "Canonical Text Services (CTS)")
+			}
+
+			p {
+				mkp.yield ("Access to data collections: ")
+				a(href : "../sparqlcc", "CITE Collection Services")
+			}
+
+			p {
+				mkp.yield ("Image Collections: ")
+				a(href : "../sparqlimg", "CITE Image Extension")
 			}
 
 
