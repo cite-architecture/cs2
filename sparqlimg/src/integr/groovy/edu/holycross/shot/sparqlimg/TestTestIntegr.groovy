@@ -14,7 +14,7 @@ class TestTestIntegr extends GroovyTestCase {
 
   String baseUrl = "http://localhost:8080/fuseki/img/query"
   String iipserv = "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi"
-
+	String serviceUrl = "http://localhost:8080/sparqlimg/api?"
 
   @Test
   void testTest(){
@@ -25,7 +25,7 @@ class TestTestIntegr extends GroovyTestCase {
   void testGetCaptionPropIntegr(){
     CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1")
     Sparql sparql = new Sparql(baseUrl)
-    CiteImage cimg = new CiteImage(sparql,iipserv)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		assert cimg.getCaptionProp(urn.toString()) == "citedata:vaimg_Label"
   }
 

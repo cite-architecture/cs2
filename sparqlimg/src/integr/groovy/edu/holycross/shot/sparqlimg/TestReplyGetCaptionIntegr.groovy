@@ -14,6 +14,7 @@ class TestReplyGetCaptionIntegr extends GroovyTestCase {
 
   String baseUrl = "http://localhost:8080/fuseki/img/query"
   String iipserv = "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi"
+	String serviceUrl = "http://localhost:8080/sparqlimg/api?"
 
 
 
@@ -25,7 +26,7 @@ class TestReplyGetCaptionIntegr extends GroovyTestCase {
 
 		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
-		CiteImage cimg = new CiteImage(sparql,iipserv)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String replyString = cimg.getCaptionReply(urn)
 
     String expectedXml = """
@@ -57,7 +58,7 @@ class TestReplyGetCaptionIntegr extends GroovyTestCase {
 
 		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1")
 		Sparql sparql = new Sparql(baseUrl)
-		CiteImage cimg = new CiteImage(sparql,iipserv)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String replyString = cimg.getCaptionReply(urn)
 
     String expectedXml = """

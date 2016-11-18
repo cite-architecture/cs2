@@ -14,7 +14,7 @@ class TestReplyGetIIPMooViewerIntegr extends GroovyTestCase {
 
   String baseUrl = "http://localhost:8080/fuseki/img/query"
   String iipserv = "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi"
-
+	String serviceUrl = "http://localhost:8080/sparqlimg/api?"
 
 
 	@Test
@@ -25,7 +25,7 @@ class TestReplyGetIIPMooViewerIntegr extends GroovyTestCase {
 
 		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
-		CiteImage cimg = new CiteImage(sparql,iipserv)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String replyString = cimg.getIIPMooViewerReply(urn)
 
     String expectedXml = """
@@ -61,7 +61,7 @@ class TestReplyGetIIPMooViewerIntegr extends GroovyTestCase {
 
 		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1")
 		Sparql sparql = new Sparql(baseUrl)
-		CiteImage cimg = new CiteImage(sparql,iipserv)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String replyString = cimg.getIIPMooViewerReply(urn)
 
     String expectedXml = """
@@ -97,7 +97,7 @@ class TestReplyGetIIPMooViewerIntegr extends GroovyTestCase {
 
 		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1@0.25,0.25,0.25,0.25")
 		Sparql sparql = new Sparql(baseUrl)
-		CiteImage cimg = new CiteImage(sparql,iipserv)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String replyString = cimg.getIIPMooViewerReply(urn)
 
     String expectedXml = """

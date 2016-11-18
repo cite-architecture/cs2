@@ -15,7 +15,7 @@ class TestReplyGetExtendedCollectionsIntegr extends GroovyTestCase {
   String baseUrl1 = "http://localhost:8080/fuseki/img/query"
   String baseUrl2 = "http://localhost:8080/fuseki/cc/query"
   String iipserv = "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi"
-
+	String serviceUrl = "http://localhost:8080/sparqlimg/api?"
 
 
 	@Test
@@ -25,7 +25,7 @@ class TestReplyGetExtendedCollectionsIntegr extends GroovyTestCase {
 		//XMLUnit.setIgnoreWhitespace(true)
 
 		Sparql sparql = new Sparql(baseUrl1)
-		CiteImage cimg = new CiteImage(sparql,iipserv)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String replyString = cimg.getExtendedCollectionsReply("cite:CiteImage")
 
     String expectedXml = """
@@ -54,7 +54,7 @@ class TestReplyGetExtendedCollectionsIntegr extends GroovyTestCase {
 		//XMLUnit.setIgnoreWhitespace(true)
 
 		Sparql sparql = new Sparql(baseUrl2)
-		CiteImage cimg = new CiteImage(sparql,iipserv)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String replyString = cimg.getExtendedCollectionsReply("cite:CiteImage")
 
     String expectedXml = """

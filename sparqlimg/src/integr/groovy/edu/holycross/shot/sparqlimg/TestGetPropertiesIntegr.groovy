@@ -14,13 +14,14 @@ class TestGetPropertiesIntegr extends GroovyTestCase {
 
   String baseUrl = "http://localhost:8080/fuseki/img/query"
   String iipserv = "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi"
+	String serviceUrl = "http://localhost:8080/sparqlimg/api?"
 
 
 	@Test
 	void testGetCaptionProp(){
 		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1")
 		Sparql sparql = new Sparql(baseUrl)
-		CiteImage cimg = new CiteImage(sparql,iipserv)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String expectedPropName = "citedata:vaimg_Label"
 		assert cimg.getCaptionProp(urn.toString()) == expectedPropName
 	}
@@ -29,7 +30,7 @@ class TestGetPropertiesIntegr extends GroovyTestCase {
 	void testGetCaptionPropUnversioned(){
 		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
-		CiteImage cimg = new CiteImage(sparql,iipserv)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String expectedPropName = "citedata:vaimg_Label"
 		assert cimg.getCaptionProp(urn.toString()) == expectedPropName
 	}
@@ -39,7 +40,7 @@ class TestGetPropertiesIntegr extends GroovyTestCase {
 	void testGetRightsProp(){
 		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1")
 		Sparql sparql = new Sparql(baseUrl)
-		CiteImage cimg = new CiteImage(sparql,iipserv)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String expectedPropName = "citedata:vaimg_Rights"
 		assert cimg.getRightsProp(urn.toString()) == expectedPropName
 	}
@@ -48,7 +49,7 @@ class TestGetPropertiesIntegr extends GroovyTestCase {
 	void testGetRightsPropUnversioned(){
 		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
-		CiteImage cimg = new CiteImage(sparql,iipserv)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String expectedPropName = "citedata:vaimg_Rights"
 		assert cimg.getRightsProp(urn.toString()) == expectedPropName
 	}

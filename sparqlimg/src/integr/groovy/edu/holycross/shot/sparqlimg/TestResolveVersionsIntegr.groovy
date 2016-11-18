@@ -13,7 +13,7 @@ class TestResolveVersionsIntegr extends GroovyTestCase {
 
   String baseUrl = "http://localhost:8080/fuseki/img/query"
   String iipserv = "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi"
-
+	String serviceUrl = "http://localhost:8080/sparqlimg/api?"
 
 
 	@Test
@@ -21,7 +21,7 @@ class TestResolveVersionsIntegr extends GroovyTestCase {
 
 		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
-		CiteImage cimg = new CiteImage(sparql,iipserv)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		CiteUrn resolvedUrn = cimg.resolveVersion(urn)
 			assert resolvedUrn.toString() == "urn:cite:hmt:vaimg.VA327RN_0497.v1"
 	}
@@ -30,7 +30,7 @@ class TestResolveVersionsIntegr extends GroovyTestCase {
 	void testResolveVersion2(){
 		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1")
 		Sparql sparql = new Sparql(baseUrl)
-		CiteImage cimg = new CiteImage(sparql,iipserv)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		CiteUrn resolvedUrn = cimg.resolveVersion(urn)
 		assert resolvedUrn.toString() == "urn:cite:hmt:vaimg.VA327RN_0497.v1"
 	}
@@ -39,7 +39,7 @@ class TestResolveVersionsIntegr extends GroovyTestCase {
 	void testResolveVersion3(){
 		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497-VA327VN_0498")
 		Sparql sparql = new Sparql(baseUrl)
-		CiteImage cimg = new CiteImage(sparql,iipserv)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		shouldFail{
 			CiteUrn resolvedUrn = cimg.resolveVersion(urn)
 		}

@@ -22,7 +22,7 @@ String servletVersion = context.getInitParameter('version')
 String preferredMooStylesheet = context.getInitParameter('moostylesheet')
 
 Sparql sparql = new Sparql(tripleserver)
-CiteImage cimg = new CiteImage(sparql,iipsrv)
+CiteImage cimg = new CiteImage(sparql,iipsrv,baseUrl)
 
 String req = request.getParameter("request")
 String urnStr = request.getParameter("urn")
@@ -95,7 +95,7 @@ if (!done) {
 						if (stylesheet != null){
 							println """<?xml-stylesheet type="text/xsl" href="cite-ui/xslt/${stylesheet}.xsl"?>\r"""
 						}
-            println  cimg.getImagePlusReply(urn, "api?")
+		        println  cimg.getImagePlusReply(urn)
         break
         // add handling for 'w' param
         case "GetBinaryImage":
