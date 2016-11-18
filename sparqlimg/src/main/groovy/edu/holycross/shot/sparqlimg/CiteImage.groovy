@@ -25,6 +25,9 @@ class CiteImage {
   /** SPARQL query endpoint for HMT graph triples.   */
   String tripletServerUrl
 
+	/** Base URL for this service */
+	String baseUrl
+
   /** QueryGenerator object formulating SPARQL query strings. */
   QueryBuilder qb
 
@@ -33,9 +36,10 @@ class CiteImage {
     * @param serverUrl String value for URL of sparql endpoint to query.
     * @param fcgiUrl String value for URL of IIPSrv fast cgi.
 .   */
-    CiteImage(Sparql endpoint, String fcgiUrl) {
+    CiteImage(Sparql endpoint, String fcgiUrl, String baseUrlString) {
         this.sparql = endpoint
         this.iipsrv = fcgiUrl
+        this.baseUrl = baseUrlString
         this.qb = new QueryBuilder()
     }
 
@@ -353,7 +357,7 @@ class CiteImage {
 
 
 
-    String getImagePlusReply(CiteUrn urn, String baseUrl) {
+    String getImagePlusReply(CiteUrn urn) {
 			CiteUrn resolvedUrn = resolveVersion(urn)
 			CiteUrn baseUrn = new CiteUrn("urn:cite:${resolvedUrn.getNs()}:${resolvedUrn.getCollection()}.${resolvedUrn.getObjectId()}.${resolvedUrn.getObjectVersion()}")
         String binaryUrl = "${baseUrl}request=GetBinaryImage&amp;urn=${resolvedUrn}"
