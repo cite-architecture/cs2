@@ -39,7 +39,7 @@ class CiteImage {
     CiteImage(Sparql endpoint, String fcgiUrl, String baseUrlString) {
         this.sparql = endpoint
         this.iipsrv = fcgiUrl
-        this.baseUrl = baseUrlString  
+        this.baseUrl = baseUrlString
         this.qb = new QueryBuilder()
     }
 
@@ -357,7 +357,7 @@ class CiteImage {
 
 
 
-    String getImagePlusReply(CiteUrn urn, String baseUrl) {
+    String getImagePlusReply(CiteUrn urn) {
 			CiteUrn resolvedUrn = resolveVersion(urn)
 			CiteUrn baseUrn = new CiteUrn("urn:cite:${resolvedUrn.getNs()}:${resolvedUrn.getCollection()}.${resolvedUrn.getObjectId()}.${resolvedUrn.getObjectVersion()}")
         String binaryUrl = "${baseUrl}request=GetBinaryImage&amp;urn=${resolvedUrn}"

@@ -14,7 +14,7 @@ class TestTestIntegr extends GroovyTestCase {
 
   String baseUrl = "http://localhost:8080/fuseki/img/query"
   String iipserv = "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi"
-	String serviceUrl = "http://localhost:8080/sparqlimg/api"
+	String serviceUrl = "http://localhost:8080/sparqlimg/api?"
 
   @Test
   void testTest(){

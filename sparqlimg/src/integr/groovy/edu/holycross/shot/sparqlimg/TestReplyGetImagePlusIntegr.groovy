@@ -14,7 +14,7 @@ class TestReplyGetImagePlusIntegr extends GroovyTestCase {
 
   String baseUrl = "http://localhost:8080/fuseki/img/query"
   String iipserv = "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi"
-	String serviceUrl = "http://localhost:8080/sparqlimg/api"
+	String serviceUrl = "http://localhost:8080/sparqlimg/api?"
 
 
 	@Test
@@ -26,7 +26,7 @@ class TestReplyGetImagePlusIntegr extends GroovyTestCase {
 		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
-		String replyString = cimg.getImagePlusReply(urn,"api?")
+		String replyString = cimg.getImagePlusReply(urn,)
 
     String expectedXml = """
 <GetImagePlus  xmlns='http://chs.harvard.edu/xmlns/citeimg'>
@@ -38,7 +38,7 @@ class TestReplyGetImagePlusIntegr extends GroovyTestCase {
 <caption>Venetus A: Marcianus Graecus Z. 454 (= 822), folio 327, recto.</caption>
 <rights>This image was derived from an original ©2007, Biblioteca Nazionale Marciana, Venezie, Italia. The derivative image is ©2010, Center for Hellenic Studies. Original and derivative are licensed under the Creative Commons Attribution-Noncommercial-Share Alike 3.0 License. The CHS/Marciana Imaging Project was directed by David Jacobs of the British Library.</rights>
 <binaryUrl>http://localhost:8080/sparqlimg/api?request=GetBinaryImage&amp;urn=urn:cite:hmt:vaimg.VA327RN_0497.v1</binaryUrl>
-<zoomableUrl>api?request=GetIIPMooViewer&amp;urn=urn:cite:hmt:vaimg.VA327RN_0497.v1</zoomableUrl>
+<zoomableUrl>http://localhost:8080/sparqlimg/api?request=GetIIPMooViewer&amp;urn=urn:cite:hmt:vaimg.VA327RN_0497.v1</zoomableUrl>
 </reply>
 </GetImagePlus>
 """
@@ -61,7 +61,7 @@ class TestReplyGetImagePlusIntegr extends GroovyTestCase {
 		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1")
 		Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
-		String replyString = cimg.getImagePlusReply(urn,"api?")
+		String replyString = cimg.getImagePlusReply(urn)
 
     String expectedXml = """
 <GetImagePlus  xmlns='http://chs.harvard.edu/xmlns/citeimg'>

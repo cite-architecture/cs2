@@ -73,7 +73,7 @@ imgIntegration.doFirst {
 
 gretty {
   initParameter("tripleserver", "http://localhost:8080/fuseki/img/query")
-  initParameter("baseUrl", "api")
+  initParameter("baseUrl", "http://localhost:8080/sparqlimg/api?")
 	initParameter("iipsrv", "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi")
 	initParameter("moostylesheet","cite_remoteiip")
 	// initParameter("moostylesheet","cite_giipmoo")

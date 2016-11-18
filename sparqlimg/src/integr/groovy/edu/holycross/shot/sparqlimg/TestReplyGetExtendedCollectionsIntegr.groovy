@@ -15,7 +15,7 @@ class TestReplyGetExtendedCollectionsIntegr extends GroovyTestCase {
   String baseUrl1 = "http://localhost:8080/fuseki/img/query"
   String baseUrl2 = "http://localhost:8080/fuseki/cc/query"
   String iipserv = "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi"
-	String serviceUrl = "http://localhost:8080/sparqlimg/api"
+	String serviceUrl = "http://localhost:8080/sparqlimg/api?"
 
 
 	@Test

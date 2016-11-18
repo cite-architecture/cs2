@@ -12,7 +12,7 @@
       	</context-param>
     <context-param>
         <param-name>baseUrl</param-name>
-        <param-value>api</param-value>
+        <param-value>http://localhost:8080/sparqlimg/api?</param-value>
     </context-param>
     <context-param>
         <param-name>iipsrv</param-name>
