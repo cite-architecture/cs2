@@ -4,15 +4,15 @@ import static org.junit.Assert.*
 import org.junit.Test
 
 
+import edu.holycross.shot.sparqlcts.Sparql
 import edu.harvard.chs.cite.CtsUrn
-import edu.holycross.shot.citeservlet.Sparql
 
 
 class TestSampleGraphDataIntegr extends GroovyTestCase {
 
 
 	ArrayList getMasterVerbList(){
-		String baseUrl = "http://localhost:8080/fuseki/justverbs/query"
+		String baseUrl = "http://localhost:8080/fuseki/verbs/query"
 		String verbQuery = "SELECT distinct ?s WHERE { ?s ?v ?o .  }"
 
 		Sparql sparql = new Sparql(baseUrl)
@@ -30,38 +30,19 @@ class TestSampleGraphDataIntegr extends GroovyTestCase {
 
 	}
 
-	ArrayList getCtsVerbList(){
-
-		String baseUrl = "http://localhost:8080/fuseki/cts-verbs/query"
-		String verbQuery = "SELECT distinct ?s WHERE { ?s ?v ?o .  }"
-
-		Sparql sparql = new Sparql(baseUrl)
-		String uri = System.getProperty('gretty.baseURI')
-		def slurper = new groovy.json.JsonSlurper()
-
-		def parsedColls = slurper.parseText(sparql.getSparqlReply("application/json", verbQuery))
-
-
-		ArrayList verbList = []
-		parsedColls.results.bindings.each { b ->
-			verbList.add(b.s.value)
-		}
-		return verbList
-
-	}
 
   @Test
   void testMasterVerbs() {
-  String baseUrl = "http://localhost:8080/fuseki/justverbs/query"
+  String baseUrl = "http://localhost:8080/fuseki/verbs/query"
   String verbQuery = "SELECT distinct ?s WHERE { ?s ?v ?o .  }"
-  Integer expectedNumberVerbs = 48 
+  Integer expectedNumberVerbs = 60
 
   Sparql sparql = new Sparql(baseUrl)
   String uri = System.getProperty('gretty.baseURI')
   def slurper = new groovy.json.JsonSlurper()
 
   def parsedColls = slurper.parseText(sparql.getSparqlReply("application/json", verbQuery))
-	
+
    assert parsedColls
 
 	def verbList = []
@@ -75,7 +56,7 @@ class TestSampleGraphDataIntegr extends GroovyTestCase {
 	@Test
 	void testGetVerbList(){
 		ArrayList verbList = getMasterVerbList()
-		assert verbList.size() == 48
+		assert verbList.size() == 60
 	}
 
 	@Test
@@ -103,8 +84,8 @@ class TestSampleGraphDataIntegr extends GroovyTestCase {
 		assert verbList as Set == masterVerbList as Set
 
 	}
-	
-  
 
-  
+
+
+
 }

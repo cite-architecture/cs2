@@ -1,21 +1,55 @@
+
 buildscript {
-
-
   repositories {
+    jcenter()
     mavenCentral()
     maven {
       url "http://beta.hpcc.uh.edu/nexus/content/groups/public"
     }
   }
+
   dependencies {
-    classpath group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
+    classpath 'org.akhikhl.gretty:gretty:+'
+	    classpath group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
   }
 }
+
+
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+
+
+repositories {
+  jcenter()
+  // enable this to use snapshot versions of Gretty:
+  // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+}
+
+sourceSets {
+  integr {
+  }
+}
+
+dependencies {
+	compile project(":sparqlcts")
+	testCompile project(':sparqlcts').sourceSets.test.output
+
+	// Need to define all dependencies for integration tests:
+	integrCompile "junit:junit:${versionMap['junit']}"
+	integrCompile project(':sparqlcts').sourceSets.test.output
+	integrCompile project(":graph")
+	integrCompile  group: 'org.codehaus.groovy', name: 'groovy-all', version: versionMap['groovy']
+}
+
+
 
 farm {
     integrationTestTask = 'graphIntegration'
     webapp "${rootDir}/fuseki/fuseki.war"
-    webapp project(":graph")
+    webapp project(":sparqlimg")
+		webapp project(":sparqlcc")
+		webapp project(":sparqlcts")
+		webapp project(":graph")
 }
 
 test {
@@ -26,13 +60,25 @@ test {
 
 
 task graphIntegration(type: Test, dependsOn: 'test') {
+
+
   description  = "Runs integration tests against test data set served from fuseki."
   outputs.upToDateWhen { false }
+  //include '**/TestReply*Integr.*'
   include '**/*Integr.*'
 
- testClassesDir = sourceSets.integr.output.classesDir
- classpath = sourceSets.integr.runtimeClasspath
+  testClassesDir = sourceSets.integr.output.classesDir
+  classpath = sourceSets.integr.runtimeClasspath
+
 }
 graphIntegration.doFirst {
-  System.out.println "Running graph integration tests now...."
+  System.out.println "Running Graph integration tests now...."
+}
+
+
+gretty {
+  initParameter("tripleserver", "http://localhost:8080/fuseki/cts/query")
+  initParameter("iipserv","http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi")
+//  initParameter("tripleserver", "http://localhost:3030/cc/query")
+  initParameter("version","cs2 pre-release 1.0")
 }

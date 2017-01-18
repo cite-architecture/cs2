@@ -1,14 +1,14 @@
 package edu.holycross.shot.graph
 
-import edu.holycross.shot.citeservlet.Sparql
 import edu.holycross.shot.sparqlcts.CtsGraph
+import edu.holycross.shot.sparqlcts.Sparql
 
 import edu.harvard.chs.cite.CiteUrn
 import edu.harvard.chs.cite.CtsUrn
 import groovy.json.JsonSlurper
 
 /** A class interacting with a SPARQL endpoint to
- * to resolve SPARQL replies into objects in the abstract data 
+ * to resolve SPARQL replies into objects in the abstract data
  * model of CITE Collection objects.
  */
 class IndexGraph {
@@ -19,13 +19,13 @@ class IndexGraph {
   /** We're going to be doing so much CTS work, let's just re-use CtsGraph */
   CtsGraph ctsgraph
 
-  /** Constructor with required SPARQL endpoint object */  
-  IndexGraph(Sparql endPoint) {
-    sparql = endPoint
-	ctsgraph = new CtsGraph(sparql)
-  }
+	/** Constructor with required SPARQL endpoint object */
+	IndexGraph(Sparql endPoint) {
+		sparql = endPoint
+		ctsgraph = new CtsGraph(sparql)
+	}
 
-  /** Overloaded method. Find all nodes at one degree of 
+  /** Overloaded method. Find all nodes at one degree of
    * relation to the object identified by
    * a CITE urn.
    * @param urn CITE Object to find in the graph.
@@ -35,9 +35,9 @@ class IndexGraph {
 		ArrayList al = []
 		al << "dogs"
 		al << "cats"
-	} 
+	}
 
-  /** Overloaded method. Find all nodes at one degree of 
+  /** Overloaded method. Find all nodes at one degree of
    * relation to the object identified by
    * a CITE urn.
    * @param urn CTS Object to find in the graph.
@@ -112,12 +112,12 @@ class IndexGraph {
 					}
 				}
 				break;
-			default: 
-				al << "error ${workLevel}"		
+			default:
+				al << "error ${workLevel}"
 		}
 
 	    return al
-	} 
+	}
 
 /* -------------------------------------------------------------------------------- */
 /* Methods for Identifying Components */
@@ -128,7 +128,7 @@ class IndexGraph {
  *   @returns Boolean
  **/
 Boolean existsInGraph(CtsUrn urn){
-	Boolean response = false	
+	Boolean response = false
 		ArrayList replyArray = []
 		ArrayList workingArray = []
 		String replyText = ""
@@ -139,7 +139,7 @@ Boolean existsInGraph(CtsUrn urn){
 		JsonSlurper slurper = new groovy.json.JsonSlurper()
 		def parsedReply = slurper.parseText(reply)
 		workingArray = parsedJsonToTriples(parsedReply)
-		replyArray = uniqueTriples(workingArray) 
+		replyArray = uniqueTriples(workingArray)
 		replyArray.each { ttt ->
 			testString = URLDecoder.decode(ttt.subj.toString(),"UTF-8")
 				if (urn.toString() == testString){
@@ -189,15 +189,15 @@ ArrayList getExemplarsForVersion(CtsUrn urn){
 		String replyText = ""
 		String exemplarQuery = QueryBuilder.getQueryExemplarsForVersion(urn.getUrnWithoutPassage())
 		String reply = sparql.getSparqlReply("application/json", exemplarQuery)
-		if ("${urn.getWorkLevel()}" == "VERSION"){	
+		if ("${urn.getWorkLevel()}" == "VERSION"){
 
 			JsonSlurper slurper = new groovy.json.JsonSlurper()
 				def parsedReply = slurper.parseText(reply)
 				parsedReply.results.bindings.each{ jo ->
-					replyArray << jo.o?.value		
+					replyArray << jo.o?.value
 				}
 		} else {
-			replyArray << "ERROR: URN must point to a version-level URN"	
+			replyArray << "ERROR: URN must point to a version-level URN"
 		}
 	return replyArray
 }
@@ -240,7 +240,7 @@ ArrayList getOneOffCtsUrn(CtsUrn urn){
 		case "WORK":
 			versionArray = getVersionsForWork(urn)
 			versionArray.each { u ->
-				tempArray = getOneOffCtsUrn(new CtsUrn("${u}${urn.passageComponent}"))	
+				tempArray = getOneOffCtsUrn(new CtsUrn("${u}${urn.passageComponent}"))
 					tempArray.each { ttt ->
 						workingArray << ttt
 					}
@@ -249,7 +249,7 @@ ArrayList getOneOffCtsUrn(CtsUrn urn){
 		case "VERSION":
 			exemplarArray = getExemplarsForVersion(urn)
 			exemplarArray.each { u ->
-				tempArray = getOneOffCtsUrn(new CtsUrn("${u}${urn.passageComponent}"))	
+				tempArray = getOneOffCtsUrn(new CtsUrn("${u}${urn.passageComponent}"))
 					tempArray.each { ttt ->
 						workingArray << ttt
 					}
@@ -260,11 +260,11 @@ ArrayList getOneOffCtsUrn(CtsUrn urn){
 		reply = sparql.getSparqlReply("application/json", oneOffQuery)
 		slurper = new groovy.json.JsonSlurper()
 		parsedReply = slurper.parseText(reply)
-		parsedJsonToTriples(parsedReply).each{ 
-			workingArray << it 
-			
+		parsedJsonToTriples(parsedReply).each{
+			workingArray << it
+
 		}
-		replyArray = uniqueTriples(workingArray) 
+		replyArray = uniqueTriples(workingArray)
 
 		return replyArray
 }
@@ -283,7 +283,7 @@ ArrayList getForGroup(CtsUrn urn){
 		JsonSlurper slurper = new groovy.json.JsonSlurper()
 		def parsedReply = slurper.parseText(reply)
 		workingArray = parsedJsonToTriples(parsedReply)
-		replyArray = uniqueTriples(workingArray) 
+		replyArray = uniqueTriples(workingArray)
 		return replyArray
 }
 
@@ -301,12 +301,12 @@ ArrayList getForWorkWithoutPassage(CtsUrn urn){
 		JsonSlurper slurper = new groovy.json.JsonSlurper()
 		def parsedReply = slurper.parseText(reply)
 		workingArray = parsedJsonToTriples(parsedReply)
-		replyArray = uniqueTriples(workingArray) 
+		replyArray = uniqueTriples(workingArray)
 		return replyArray
 }
 
 
-/** Finds  data adjacent to a work-level containing (non-leaf-node) URN 
+/** Finds  data adjacent to a work-level containing (non-leaf-node) URN
  * @param urn The URN to test.
  * @returns ArrayList of Triple objects.
  */
@@ -328,13 +328,13 @@ ArrayList getForWorkContainer(CtsUrn urn){
 		String tempQuery = ""
 
 		versionArray.each { u ->
-			tempArray = getForVersionContainer(new CtsUrn("${u}${urn.passageComponent}"))	
+			tempArray = getForVersionContainer(new CtsUrn("${u}${urn.passageComponent}"))
 				tempArray.each { ttt ->
 					workingArray << ttt
 				}
 		}
 
-	replyArray = uniqueTriples(workingArray) 
+	replyArray = uniqueTriples(workingArray)
 
 		return replyArray
 }
@@ -355,7 +355,7 @@ ArrayList getForWorkLeaf(CtsUrn urn) {
 		versionArray = getVersionsForWork(urn)
 
 
-		// For each version, get adjacents 
+		// For each version, get adjacents
 		versionArray.each { vers ->
 				tempUrn = new CtsUrn("${vers}${thisPassage}")
 				getForVersionLeaf(tempUrn).each { replyArray << it }
@@ -365,7 +365,7 @@ ArrayList getForWorkLeaf(CtsUrn urn) {
 
 }
 
-/** Find all nodes at one degree of 
+/** Find all nodes at one degree of
  * relation to the object identified by
  * a CTS work-level urn with a range citation.
  * @param urn CTS Object to find in the graph.
@@ -390,14 +390,14 @@ ArrayList getForWorkRange(CtsUrn urn){
 			workingArray << it
 		}
 	}
-	
+
 	uniquedArray = uniqueTriples(workingArray)
 
 	return uniquedArray
 
 }
 
-/** Finds  data adjacent to a version-level containing (non-leaf-node) URN 
+/** Finds  data adjacent to a version-level containing (non-leaf-node) URN
  * We want anything indexed to the citation itself, all contained leaf-node citations,
  * and the same for any exemplars.
  * @param urn The URN to test.
@@ -440,14 +440,14 @@ ArrayList getForVersionContainer(CtsUrn urn){
 			parsedJsonToTriples(parsedReply).each { workingArray << it }
 	}
 
-	// Assemble	
+	// Assemble
 
-	replyArray = uniqueTriples(workingArray) 
+	replyArray = uniqueTriples(workingArray)
 		return replyArray
 
 }
 
-/** Find all nodes at one degree of 
+/** Find all nodes at one degree of
  * relation to the object identified by
  * a CTS leaf-node, version- or exemplar-level urn.
  * @param urn CTS Object to find in the graph.
@@ -475,7 +475,7 @@ ArrayList getForVersionLeaf(CtsUrn urn){
 		// Get adjacents for this version, minus any subref
 
 		String replyText = ""
-		String leafQuery = QueryBuilder.getSingleLeafNodeQuery(requestUrn.encodeSubref())    
+		String leafQuery = QueryBuilder.getSingleLeafNodeQuery(requestUrn.encodeSubref())
 		String reply = sparql.getSparqlReply("application/json", leafQuery)
 		JsonSlurper slurper = new groovy.json.JsonSlurper()
 		def parsedReply = slurper.parseText(reply)
@@ -484,7 +484,7 @@ ArrayList getForVersionLeaf(CtsUrn urn){
 		// Get adjacents for this version, with subref
 
 		replyText = ""
-		leafQuery = QueryBuilder.getSingleLeafNodeQuery(requestUrn.encodeSubref())    
+		leafQuery = QueryBuilder.getSingleLeafNodeQuery(requestUrn.encodeSubref())
 		reply = sparql.getSparqlReply("application/json", leafQuery)
 		slurper = new groovy.json.JsonSlurper()
 		parsedReply = slurper.parseText(reply)
@@ -501,12 +501,12 @@ ArrayList getForVersionLeaf(CtsUrn urn){
 			getForExemplarLeaf(exemplarUrn).each { workingArray << it }
 	}
 
-		replyArray = uniqueTriples(workingArray) 
+		replyArray = uniqueTriples(workingArray)
 		return replyArray
 
 }
 
-/** Find all nodes at one degree of 
+/** Find all nodes at one degree of
  * relation to the object identified by
  * a CTS version-level urn with a range citation.
  * @param urn CTS Object to find in the graph.
@@ -523,12 +523,12 @@ ArrayList getForVersionRange(CtsUrn urn){
 	// See if there is anything mapped to this explicit range
 	getOneOffCtsUrn(urn).each{ workingArray << it }
 	println "Doing getForVersionRange ${urn}"
-	
+
 
 	// Get leaves for Version
-	leafArray = ctsgraph.getUrnList(urn)	
+	leafArray = ctsgraph.getUrnList(urn)
 	leafArray.each{ lai ->
-		findAdjacent(lai).each{ 
+		findAdjacent(lai).each{
 			workingArray << it
 		}
 	}
@@ -547,13 +547,13 @@ ArrayList getForVersionRange(CtsUrn urn){
 	}
 
 	uniquedArray = uniqueTriples(workingArray)
-	
+
 
 	return uniquedArray
 
 }
 
-/** Find all nodes at one degree of 
+/** Find all nodes at one degree of
  * relation to the object identified by
  * a CTS non-leaf-node, exemplar-level urn.
  * @param urn CTS Object to find in the graph.
@@ -573,7 +573,7 @@ ArrayList getForExemplarContainer(CtsUrn urn){
 	if (parsedReply.results.size() > 0 ){
 		parsedJsonToTriples(parsedReply).each { exemplarArray << it }
 	}
-	
+
 
 	return uniqueTriples(exemplarArray)
 
@@ -581,7 +581,7 @@ ArrayList getForExemplarContainer(CtsUrn urn){
 
 
 
-/** Find all nodes at one degree of 
+/** Find all nodes at one degree of
  * relation to the object identified by
  * a CTS leaf-node, exemplar-level urn.
  * @param urn CTS Object to find in the graph.
@@ -607,7 +607,7 @@ ArrayList getForExemplarLeaf(CtsUrn urn){
 }
 
 
-/** Find all nodes at one degree of 
+/** Find all nodes at one degree of
  * relation to _all_ leaf-node elements in a
  * a range specified by an exemplar-level CTS leaf-node.
  * Also, incidentally, anything mapped to that particular range, itself.
@@ -626,12 +626,12 @@ ArrayList getForExemplarRange(CtsUrn urn){
 	getOneOffCtsUrn(urn).each{ workingArray << it }
 
 	// Get
-	leafArray = ctsgraph.getUrnList(urn)	
+	leafArray = ctsgraph.getUrnList(urn)
 	println "leafArray:"
 	println leafArray
 	println "---------------------"
 	leafArray.each{ lai ->
-		findAdjacent(lai).each{ 
+		findAdjacent(lai).each{
 			workingArray << it
 		}
 	}
@@ -651,7 +651,7 @@ ArrayList getForExemplarRange(CtsUrn urn){
 
 
  /** Given a JSON reply from SPARQL
-   * construct a ListArray of Triple objects, 
+   * construct a ListArray of Triple objects,
    * including the work of sorting out object-types, and
    * catching labels on URI objects, and making them into Triples, too.
    * @param parsedReply Object, the parsed JSON text
@@ -665,7 +665,7 @@ ArrayList parsedJsonToTriples(Object parsedReply){
 		Object tempObject
 		String tempString = ""
 
-		if (parsedReply?.results && (parsedReply?.results.bindings.size() > 0)){	
+		if (parsedReply?.results && (parsedReply?.results.bindings.size() > 0)){
 			parsedReply.results.bindings.each{ jo ->
 				tempString = URLDecoder.decode(jo.s.value,"UTF-8")
 					tempSubject = new URI(URLEncoder.encode(tempString, "UTF-8")) // decode the URL encoding from Fuseki
@@ -685,45 +685,45 @@ ArrayList parsedJsonToTriples(Object parsedReply){
 					}
 
 				Triple tempTriple = new Triple(tempSubject, tempVerb, tempObject)
-					replyArray << tempTriple 
+					replyArray << tempTriple
 					// We also want rdf:labels for all URI objects, to be nice
 					if (jo.label){
 						tempVerb = new URI("rdf:label")
 							tempSubject = tempObject
-							tempTriple = new Triple(tempSubject,tempVerb,jo.label?.value)	
+							tempTriple = new Triple(tempSubject,tempVerb,jo.label?.value)
 							replyArray << tempTriple
 					}
 				// We also want cts:hasSequence for all URI objects, to be nice
 				if (jo.ctsSeq){
 					tempVerb = new URI("http://www.homermultitext.org/cts/rdf/hasSequence")
 						tempSubject = tempObject
-						tempTriple = new Triple(tempSubject,tempVerb,jo.ctsSeq?.value)	
+						tempTriple = new Triple(tempSubject,tempVerb,jo.ctsSeq?.value)
 						replyArray << tempTriple
 				}
 				// We also want olo:item sequencing for all URI objects, to be nice
 				if (jo.objSeq){
 					tempVerb = new URI("http://purl.org/ontology/olo/core#item")
 						tempSubject = jo.v.value
-						tempTriple = new Triple(tempSubject,tempVerb,jo.objSeq?.value)	
+						tempTriple = new Triple(tempSubject,tempVerb,jo.objSeq?.value)
 						replyArray << tempTriple
 				}
 				// And we want triples with verbs and their labels
 				if (jo.verbLabel){
 					tempVerb = new URI("http://www.w3.org/1999/02/22-rdf-syntax-ns#label")
 					tempSubject = new URI(jo.v.value)
-						tempTriple = new Triple(tempSubject,tempVerb,jo.verbLabel?.value)	
+						tempTriple = new Triple(tempSubject,tempVerb,jo.verbLabel?.value)
 						replyArray << tempTriple
 				}
 				if (jo.ctsSeqLabel){
 					tempVerb = new URI("http://www.w3.org/1999/02/22-rdf-syntax-ns#label")
 					tempSubject = new URI("http://www.homermultitext.org/cts/rdf/hasSequence")
-						tempTriple = new Triple(tempSubject,tempVerb,jo.ctsSeqLabel?.value)	
+						tempTriple = new Triple(tempSubject,tempVerb,jo.ctsSeqLabel?.value)
 						replyArray << tempTriple
 				}
 				if (jo.objSeqLabel){
 					tempVerb = new URI("http://www.w3.org/1999/02/22-rdf-syntax-ns#label")
 					tempSubject = new URI("http://purl.org/ontology/olo/core#item")
-						tempTriple = new Triple(tempSubject,tempVerb,jo.objSeqLabel?.value)	
+						tempTriple = new Triple(tempSubject,tempVerb,jo.objSeqLabel?.value)
 						replyArray << tempTriple
 				}
 			}
@@ -748,5 +748,5 @@ ArrayList uniqueTriples(ArrayList al){
 		return tsub
 }
 
-		
+
 }

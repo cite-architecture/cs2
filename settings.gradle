@@ -1,5 +1,6 @@
 
 include 'sparqlcts'
 include 'sparqlcc'
+include 'graph'
 include 'sparqlimg'
 include 'webapp'

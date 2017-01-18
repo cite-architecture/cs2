@@ -3,7 +3,7 @@ package edu.holycross.shot.graph
 import static org.junit.Assert.*
 import org.junit.Test
 
-import edu.holycross.shot.citeservlet.Sparql
+import edu.holycross.shot.sparqlcts.Sparql
 import edu.harvard.chs.cite.CiteUrn
 import edu.harvard.chs.cite.CtsUrn
 
@@ -13,9 +13,9 @@ class TestGraphIntegr extends GroovyTestCase {
 
   String baseUrl = "http://localhost:8080/fuseki/graph/query"
   String verbQuery = "SELECT distinct ?v WHERE { ?s ?v <urn:cts:greekLit:tlg0012.tlg001.msA:1.1> .  }"
-  Integer expectedNumberVerbs = 7 
+  Integer expectedNumberVerbs = 7
 
-  
+
   @Test
   void testSetup() {
     Sparql sparql = new Sparql(baseUrl)
@@ -24,7 +24,7 @@ class TestGraphIntegr extends GroovyTestCase {
     println "RUN verbQuery " + verbQuery
 
     def parsedColls = slurper.parseText(sparql.getSparqlReply("application/json", verbQuery))
-	
+
 	assert parsedColls
 
 	def verbList = []
@@ -34,5 +34,5 @@ class TestGraphIntegr extends GroovyTestCase {
 	assert verbList.size() == expectedNumberVerbs
   }
 
-  
+
 }
