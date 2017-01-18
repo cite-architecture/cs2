@@ -13,17 +13,17 @@ class TestProp extends GroovyTestCase {
   void testImports(){
 
 	  CtsUrn testcts = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.1")
-	  CiteUrn testcite = new CiteUrn("urn:cite:hmt:venAsign.1")
-	  CiteProperty testProp = new CiteProperty("urn",CitePropertyType.CITE_URN,"canonical id")
+	  Cite2Urn testcite = new Cite2Urn("urn:cite2:hmt:venAsign.v1:1")
+	  CiteProperty testProp = new CiteProperty("urn",CitePropertyType.CITE2_URN,"canonical id")
   }
 
   @Test
   void testConstructor1() {
 
-		CiteProperty testProp = new CiteProperty("urn",CitePropertyType.CITE_URN,"canonical id")
+		CiteProperty testProp = new CiteProperty("urn",CitePropertyType.CITE2_URN,"canonical id")
 		assert testProp
 		assert testProp.propertyName == "urn"
-		assert testProp.propertyType.getLabel() == "CITE Object URN"
+		assert testProp.propertyType.getLabel() == "CITE2 Object URN"
 		assert testProp.label == "canonical id"
 
   }
