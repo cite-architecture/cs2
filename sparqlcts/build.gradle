@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+apply from: "ctsconf.gradle"
 buildscript {
   repositories {
     jcenter()
@@ -71,4 +73,22 @@ ctsIntegration.doFirst {
 gretty {
   initParameter("tripleserver", "http://localhost:8080/fuseki/cts/query")
   initParameter("version","cs2 pre-release 1.0")
+  webappCopy {
+    // Enable filtering on all xml files in WEB-INF
+    filesMatching 'WEB-INF/web.xml', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: [
+        'tripleserver' : tripleserver
+      ]
+    }
+
+    filesMatching 'home', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: [
+        'demoUrn' : demoUrn,
+        'tripleserver' : tripleserver
+      ]
+    }
+
+  }
 }

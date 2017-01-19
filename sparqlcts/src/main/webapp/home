@@ -1,6 +1,7 @@
 import edu.harvard.chs.cite.CtsUrn
 
-def demoUrnStr = "urn:cts:greekLit:tlg0012.tlg001.fuPers:1.1-1.10"
+
+def demoUrnStr = "@demoUrn@"
 CtsUrn demoUrn = new CtsUrn(demoUrnStr)
 
 
@@ -22,6 +23,7 @@ html.html {
 			}
 
 		article {
+    p("This service is configured to use the triple server at  @tripleserver@")
 			p("This site hosts an implementation of Canonical Text Services (CTS).")
 
 

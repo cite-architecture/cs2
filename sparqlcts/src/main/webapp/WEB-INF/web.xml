@@ -9,7 +9,7 @@
 
     <context-param>
 	  <param-name>tripleserver</param-name>
-	  <param-value>http://localhost:8080/fuseki/cts/query</param-value>
+	  <param-value>@tripleserver@</param-value>
 	</context-param>
 
     <servlet>

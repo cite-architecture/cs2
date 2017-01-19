@@ -1,0 +1,9 @@
+/* add cts configuration */
+
+
+
+project.ext {
+  bozovalue = "READ ME"
+  demoUrn = "urn:cts:greekLit:tlg0012.tlg001.fuPers:1.1-1.10"
+  tripleserver = "http://localhost:3030/ds/sparql"
+}
