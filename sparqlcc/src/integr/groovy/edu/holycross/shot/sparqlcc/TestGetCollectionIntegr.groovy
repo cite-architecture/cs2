@@ -4,7 +4,7 @@ import static org.junit.Assert.*
 import org.junit.Test
 
 import edu.holycross.shot.sparqlcc.CcGraph
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -22,18 +22,18 @@ class TestGetCollectionIntegr extends GroovyTestCase {
 
   @Test
   void testGetCollectionIdProp(){
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:")
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteProperty prop = cc.getCollectionIdProp(urn)
     assert prop.propertyName == "OccurrenceUrn"
-    assert prop.propertyType == CitePropertyType.CITE_URN
+	  assert prop.propertyType == CitePropertyType.CITE2_URN
     assert prop.label.size() > 0
   }
 
   @Test
   void testGetCollectionLabelProp(){
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:")
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteProperty prop = cc.getCollectionLabelProp(urn)
@@ -44,7 +44,7 @@ class TestGetCollectionIntegr extends GroovyTestCase {
 
   @Test
   void testGetCollectionOrderedByProp(){
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:")
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     CiteProperty prop = cc.getCollectionOrderedByProp(urn)
@@ -55,7 +55,7 @@ class TestGetCollectionIntegr extends GroovyTestCase {
 
   @Test
   void testGetCollectionOrderedByProp4unordered(){
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     shouldFail {
@@ -65,7 +65,7 @@ class TestGetCollectionIntegr extends GroovyTestCase {
 
   @Test
   void testGetCollectionExtensions(){
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg")
+    Cite2Urn urn = new Cite2Urn("urn:cite:hmt:vaimg")
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     ArrayList exts = cc.getCollectionExtensions(urn)
@@ -76,7 +76,7 @@ class TestGetCollectionIntegr extends GroovyTestCase {
   @Test
   void testGetCollectionExtensions2(){
     // no extensions
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:")
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     ArrayList exts = cc.getCollectionExtensions(urn)
@@ -85,7 +85,7 @@ class TestGetCollectionIntegr extends GroovyTestCase {
 
   @Test
   void testOrdered(){
-      CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.1")
+      Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:1")
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
       CiteCollection coll = cc.getCollection(urn)
@@ -94,7 +94,7 @@ class TestGetCollectionIntegr extends GroovyTestCase {
 
   @Test
   void testUnordered(){
-      CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi.1")
+      Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:1")
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
       CiteCollection coll = cc.getCollection(urn)

@@ -4,7 +4,7 @@ import static org.junit.Assert.*
 import org.junit.Test
 
 import edu.holycross.shot.sparqlcc.CcGraph
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -13,10 +13,10 @@ class TestGetLastIntegr extends GroovyTestCase {
 
 
   String baseUrl = "http://localhost:8080/fuseki/cc/query"
-  String orderedColl = "urn:cite:hmt:venAsign" // urn:cite:hmt:venAsign.2906.v1
-  String orderedUrn = "urn:cite:hmt:venAsign.3" // urn:cite:hmt:venAsign.2906.v1
-  String orderedColl2 = "urn:cite:hmt:msA" // urn:cite:hmt:msA.5v.v1
-  String orderedRange = "urn:cite:hmt:venAsign.14-15" // urn:cite:hmt:venAsign.2906.v1
+  String orderedColl = "urn:cite2:hmt:venAsign.v1:" // urn:cite2:hmt:venAsign.v1:2906.v1
+  String orderedUrn = "urn:cite2:hmt:venAsign.v1:3" // urn:cite2:hmt:venAsign.v1:2906.v1
+  String orderedColl2 = "urn:cite2:hmt:msA.v1:" // urn:cite2:hmt:msA.v1:5v.v1
+  String orderedRange = "urn:cite2:hmt:venAsign.v1:14-15" // urn:cite2:hmt:venAsign.v1:2906.v1
   String unOrderedColl = "urn:cite:hmt:vaimg" // unordered; will fail
 
   @Test
@@ -29,16 +29,16 @@ class TestGetLastIntegr extends GroovyTestCase {
   void testLastUrn1() {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
-    CiteUrn urn = new CiteUrn(orderedColl)
-    assert cc.getLastUrn(urn)['lastUrn'].toString() == "urn:cite:hmt:venAsign.2906.v1"
+    Cite2Urn urn = new Cite2Urn(orderedColl)
+    assert cc.getLastUrn(urn)['lastUrn'].toString() == "urn:cite2:hmt:venAsign.v1:2906"
   }
   // Object example
   @Test
   void testLastUrn2() {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
-    CiteUrn urn = new CiteUrn(orderedUrn)
-    assert cc.getLastUrn(urn)['lastUrn'].toString() == "urn:cite:hmt:venAsign.2906.v1"
+    Cite2Urn urn = new Cite2Urn(orderedUrn)
+    assert cc.getLastUrn(urn)['lastUrn'].toString() == "urn:cite2:hmt:venAsign.v1:2906"
   }
 
   // Collection with multiple versions
@@ -46,8 +46,8 @@ class TestGetLastIntegr extends GroovyTestCase {
   void testLastUrn3() {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
-    CiteUrn urn = new CiteUrn(orderedColl2)
-    assert cc.getLastUrn(urn)['lastUrn'].toString() == "urn:cite:hmt:msA.5v.v1"
+    Cite2Urn urn = new Cite2Urn(orderedColl2)
+    assert cc.getLastUrn(urn)['lastUrn'].toString() == "urn:cite2:hmt:msA.v1:5v"
   }
 
   // Range
@@ -55,8 +55,8 @@ class TestGetLastIntegr extends GroovyTestCase {
   void testLastUrn4() {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
-    CiteUrn urn = new CiteUrn(orderedRange)
-    assert cc.getLastUrn(urn)['lastUrn'].toString() == "urn:cite:hmt:venAsign.2906.v1"
+    Cite2Urn urn = new Cite2Urn(orderedRange)
+    assert cc.getLastUrn(urn)['lastUrn'].toString() == "urn:cite2:hmt:venAsign.v1:2906"
   }
 
   // Unordered collection. Should fail
@@ -64,7 +64,7 @@ class TestGetLastIntegr extends GroovyTestCase {
   void testLastUrn5() {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
-    CiteUrn urn = new CiteUrn(unOrderedColl)
+    Cite2Urn urn = new Cite2Urn(unOrderedColl)
     shouldFail {
       String test = cc.getLastUrn(urn)['lastUrn'].toString()
     }

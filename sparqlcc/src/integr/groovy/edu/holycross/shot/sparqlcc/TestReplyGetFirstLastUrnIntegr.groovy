@@ -5,7 +5,7 @@ import org.junit.Test
 import org.custommonkey.xmlunit.*
 
 import edu.holycross.shot.sparqlcc.CcGraph
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -31,7 +31,7 @@ class TestReplyGetFirstLastUrnIntegr extends GroovyTestCase {
 
     //Set up params
     String reqString = "GetFirstUrn"
-    CiteUrn reqUrn = new CiteUrn("urn:cite:hmt:venAsign.5.v1")
+    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:5")
 
 
     def reqParams = [:]
@@ -46,12 +46,12 @@ class TestReplyGetFirstLastUrnIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetFirstUrn xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite:hmt:venAsign.5.v1</requestUrn>
+    <requestUrn>urn:cite2:hmt:venAsign.v1:5.v1</requestUrn>
     <request>GetFirstUrn</request>
-    <resolvedUrn>urn:cite:hmt:venAsign.5.v1</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:venAsign.v1:5.v1</resolvedUrn>
 </cite:request>
 <cite:reply>
-    <firstUrn>urn:cite:hmt:venAsign.1.v1</firstUrn>
+    <firstUrn>urn:cite2:hmt:venAsign.v1:1.v1</firstUrn>
 </cite:reply>
 </GetFirstUrn>
 """
@@ -69,7 +69,7 @@ class TestReplyGetFirstLastUrnIntegr extends GroovyTestCase {
 
     //Set up params
     String reqString = "GetLastUrn"
-    CiteUrn reqUrn = new CiteUrn("urn:cite:hmt:venAsign.5.v1")
+    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:5")
 
 
     def reqParams = [:]
@@ -84,12 +84,12 @@ class TestReplyGetFirstLastUrnIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetLastUrn xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite:hmt:venAsign.5.v1</requestUrn>
+    <requestUrn>urn:cite2:hmt:venAsign.v1:5.v1</requestUrn>
     <request>GetLastUrn</request>
-    <resolvedUrn>urn:cite:hmt:venAsign.5.v1</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:venAsign.v1:5.v1</resolvedUrn>
 </cite:request>
 <cite:reply>
-    <lastUrn>urn:cite:hmt:venAsign.2906.v1</lastUrn>
+    <lastUrn>urn:cite2:hmt:venAsign.v1:2906.v1</lastUrn>
 </cite:reply>
 </GetLastUrn>
 """

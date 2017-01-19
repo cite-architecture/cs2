@@ -1,6 +1,6 @@
 package edu.holycross.shot.sparqlcc
 
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 
 abstract class QueryBuilder {
 
@@ -22,15 +22,15 @@ abstract class QueryBuilder {
 
   """
 
-  static String getExampleQuery(CiteUrn urn) {
+  static String getExampleQuery(Cite2Urn urn) {
     return "Query about ${urn}"
   }
 
   /** Generates a Sparql query for versions of an object
-  * @param CiteUrn
+  * @param Cite2Urn
   * @returns String
   */
-  static String resolveVersionQuery(CiteUrn urn){
+  static String resolveVersionQuery(Cite2Urn urn){
     String queryString = prefixPhrase
     queryString += """
     select ?v where {
@@ -44,10 +44,10 @@ abstract class QueryBuilder {
 
 
   /** Returns a Sparql query counting distinct notional objects in a collecction
-  * @param CiteUrn
+  * @param Cite2Urn
   * @returns String
   */
-  static String getCollectionSizeQuery(CiteUrn collUrn) {
+  static String getCollectionSizeQuery(Cite2Urn collUrn) {
     String queryString = prefixPhrase
     queryString += """
     SELECT (COUNT(distinct ?urn) AS ?size) WHERE {
@@ -59,10 +59,10 @@ abstract class QueryBuilder {
   }
 
   /** Returns a Sparql query counting versioned objects in a collecction
-  * @param CiteUrn
+  * @param Cite2Urn
   * @returns String
   */
-  static String getVersionedCollectionSizeQuery(CiteUrn collUrn, String vString) {
+  static String getVersionedCollectionSizeQuery(Cite2Urn collUrn, String vString) {
     String queryString = prefixPhrase
     queryString += """
     SELECT (COUNT(distinct ?urn) AS ?size) WHERE {
@@ -75,10 +75,10 @@ abstract class QueryBuilder {
   }
 
   /** Generates a Sparql query for the presence of a cite:orderedBy statement
-  * @param CiteUrn
+  * @param Cite2Urn
   * @returns String
   */
-  static String isOrderedQuery(CiteUrn urn){
+  static String isOrderedQuery(Cite2Urn urn){
     String queryString = prefixPhrase
     queryString += """
     ask {
@@ -90,10 +90,10 @@ abstract class QueryBuilder {
 
   /** Generates a Sparql query for finding the previous object
   * in an ordered collection
-  * @param CiteUrn
+  * @param Cite2Urn
   * @returns String
   */
-  static String getPreviousQuery(CiteUrn urn){
+  static String getPreviousQuery(Cite2Urn urn){
     String queryString = prefixPhrase
     queryString += """
     select ?u where {
@@ -105,10 +105,10 @@ abstract class QueryBuilder {
 
   /** Generates a Sparql query for finding the next object
   * in an ordered collection
-  * @param CiteUrn
+  * @param Cite2Urn
   * @returns String
   */
-  static String getNextQuery(CiteUrn urn){
+  static String getNextQuery(Cite2Urn urn){
     String queryString = prefixPhrase
     queryString += """
     select ?u where {
@@ -121,11 +121,11 @@ abstract class QueryBuilder {
 
   /** Generates a Sparql query for finding the last object
   * in an ordered collection
-  * @param CiteUrn must be a collection-level urn
+  * @param Cite2Urn must be a collection-level urn
   * @returns String
   */
   /* Using ?urn at the top and in the nested SELECT cuts 30% off execution time, for some reason */
-  static String getLastQuery(CiteUrn collUrn) {
+  static String getLastQuery(Cite2Urn collUrn) {
     String queryString = prefixPhrase
     queryString += """
     SELECT ?urn WHERE {
@@ -148,11 +148,11 @@ abstract class QueryBuilder {
   /** Generates a Sparql query for finding the first object
   * in an ordered collection; ignores versions, so you
   * get whatever object has the lowest sequence in the collection.
-  * @param CiteUrn must be a collection-level urn
+  * @param Cite2Urn must be a collection-level urn
   * @returns String
   */
   /* Using ?urn at the top and in the nested SELECT cuts 30% off execution time, for some reason */
-  static String getFirstQuery(CiteUrn collUrn) {
+  static String getFirstQuery(Cite2Urn collUrn) {
     String queryString = prefixPhrase
     queryString += """
     SELECT ?urn WHERE {
@@ -172,32 +172,48 @@ abstract class QueryBuilder {
 
   /** Generates a Sparql query for finding every versioned URN in a collection
   * in an ordered collection
-  * @param CiteUrn must be a collection-level urn
+  * @param Cite2Urn must be a collection-level urn
   * @returns String
   */
   /* Using ?urn at the top and in the nested SELECT cuts 30% off execution time, for some reason */
-  static String getVersionedObjectsQuery(CiteUrn collUrn) {
+  static String getVersionedObjectsQuery(Cite2Urn collUrn) {
     String queryString = prefixPhrase
     queryString += """
     select distinct ?v where {
-      <${collUrn}> cite:possesses ?o .
+      <${collUrn}> cite:hasVersion ?c .
+			?c cite:possesses ?o .
       ?o cite:hasVersion ?v .
     }
     """
     return queryString
   }
 
-  /** Generates a Sparql query for finding every version-string represented in
-  * in a collection
-  * @param CiteUrn must be a collection-level urn
+  /** Generates a Sparql query for finding every version of an identified
+  * collection
+  * @param Cite2Urn must be a collection-level urn
   * @returns String
   */
   /* Using ?urn at the top and in the nested SELECT cuts 30% off execution time, for some reason */
-  static String getVersionsOfObjectQuery(CiteUrn urn) {
+  static String getVersionsForCollectionQuery(Cite2Urn urn) {
     String queryString = prefixPhrase
     queryString += """
-    select ?v where {
-      <${urn}> cite:hasVersion ?v .
+    select ?cv where {
+      <${urn}> cite:hasVersion ?cv .
+    }
+    """
+    return queryString
+  }
+
+  /** Generates a Sparql query for testing whether a Cite2 object-level URN
+  * is represented in the data
+  * @param Cite2Urn
+  * @returns String
+  */
+  static String getObjectExistsQuery(Cite2Urn urn) {
+    String queryString = prefixPhrase
+    queryString += """
+    ask {
+      <${urn}> cite:belongsTo ?cv .
     }
     """
     return queryString
@@ -205,10 +221,10 @@ abstract class QueryBuilder {
 
   /** Generates a Sparql query for finding all objects, with all
   * versions, in a collection.
-  * @param CiteUrn
+  * @param Cite2Urn
   * @returns String
   */
-  static String getGVRCollectionQuery(CiteUrn urn){
+  static String getGVRCollectionQuery(Cite2Urn urn){
     String queryString = prefixPhrase
     queryString += """
     SELECT distinct ?urn WHERE {
@@ -222,10 +238,10 @@ abstract class QueryBuilder {
 
   /** Generates a Sparql query for finding all objects, with all
   * versions, in an ordered collection.
-  * @param CiteUrn
+  * @param Cite2Urn
   * @returns String
   */
-  static String getGVROrderedCollectionQuery(CiteUrn urn){
+  static String getGVROrderedCollectionQuery(Cite2Urn urn){
     String queryString = prefixPhrase
     queryString += """
     SELECT distinct ?urn WHERE {
@@ -240,11 +256,11 @@ abstract class QueryBuilder {
 
   /** Generates a Sparql query for finding all object-URNs, with
   * a given version, in a collection.
-  * @param CiteUrn
+  * @param Cite2Urn
   * @param String
   * @returns String
   */
-  static String getGVRCollectionVersionedQuery(CiteUrn urn, String vString){
+  static String getGVRCollectionVersionedQuery(Cite2Urn urn, String vString){
     String queryString = prefixPhrase
     queryString += """
     SELECT distinct ?urn WHERE {
@@ -259,10 +275,10 @@ abstract class QueryBuilder {
 
   /** Generates a Sparql query for finding all objects, with a
   * given version-string, in an ordered collection.
-  * @param CiteUrn
+  * @param Cite2Urn
   * @returns String
   */
-  static String getGVROrderedCollectionVersionedQuery(CiteUrn urn, String vString){
+  static String getGVROrderedCollectionVersionedQuery(Cite2Urn urn, String vString){
     String queryString = prefixPhrase
     queryString += """
     SELECT distinct ?urn WHERE {
@@ -278,11 +294,11 @@ abstract class QueryBuilder {
 
   /** Generates a Sparql query for finding all object-URNs
   * defined by a range, for an ordered collection
-  * @param CiteUrn
+  * @param Cite2Urn
   * @param String
   * @returns String
   */
-  static String getGVRRangeQuery(CiteUrn urn, String vString){
+  static String getGVRRangeQuery(Cite2Urn urn, String vString){
     String queryString = prefixPhrase
     queryString += """
 
@@ -292,10 +308,10 @@ abstract class QueryBuilder {
 
   /** Generates a Sparql query for finding all properties
   * their values, and their labels for a CITE object
-  * @param CiteUrn
+  * @param Cite2Urn
   * @returns String
   */
-  static String getObjectQuery(CiteUrn urn){
+  static String getObjectQuery(Cite2Urn urn){
     String queryString = prefixPhrase
     queryString += """
     SELECT ?propval ?property ?label ?type WHERE {
@@ -323,10 +339,10 @@ abstract class QueryBuilder {
 
 
     /** Generates a query for finding the properties of a collection, their types, and labels.
-    * @param CiteUrn (collection-level)
+    * @param Cite2Urn (collection-level)
     * @returns String.
     */
-    static String getPropertiesForCollectionQuery(CiteUrn urn){
+    static String getPropertiesForCollectionQuery(Cite2Urn urn){
       String queryString = prefixPhrase
       queryString += """
       SELECT ?property ?label ?type  WHERE {
@@ -339,10 +355,10 @@ abstract class QueryBuilder {
 
     /** Generates a query for finding the canlnicalId property
     * of a collection, its type, and label.
-    * @param CiteUrn (collection-level)
+    * @param Cite2Urn (collection-level)
     * @returns String.
     */
-    static String getCanonicalIdPropQuery(CiteUrn urn){
+    static String getCanonicalIdPropQuery(Cite2Urn urn){
       String queryString = prefixPhrase
       queryString += """
       select ?name ?type ?label where {
@@ -355,10 +371,10 @@ abstract class QueryBuilder {
 
     /** Generates a query for finding the extensions
     * of a collection
-    * @param CiteUrn (collection-level)
+    * @param Cite2Urn (collection-level)
     * @returns String.
     */
-    static String getExtensionsQuery(CiteUrn urn){
+    static String getExtensionsQuery(Cite2Urn urn){
       String queryString = prefixPhrase
       queryString += """
       select ?ext where {
@@ -369,10 +385,10 @@ abstract class QueryBuilder {
 
     /** Generates a query for finding the label
     * of a collection
-    * @param CiteUrn (collection-level)
+    * @param Cite2Urn (collection-level)
     * @returns String.
     */
-    static String getCollectionLabelPropQuery(CiteUrn urn){
+    static String getCollectionLabelPropQuery(Cite2Urn urn){
       String queryString = prefixPhrase
       queryString += """
       select ?name ?type ?label where {
@@ -385,10 +401,10 @@ abstract class QueryBuilder {
 
     /** Generates a query for finding the orderedBy property
     * of a collection
-    * @param CiteUrn (collection-level)
+    * @param Cite2Urn (collection-level)
     * @returns String.
     */
-    static String getOrderedByPropQuery(CiteUrn urn){
+    static String getOrderedByPropQuery(Cite2Urn urn){
       String queryString = prefixPhrase
       queryString += """
       select ?name ?type ?label where {
@@ -402,12 +418,12 @@ abstract class QueryBuilder {
     /** Generates a query for finding the values of all properties
     * of an object. Needs an Array of `citedata:…` verbs, generated from
     * the collection.
-    * @param CiteUrn
+    * @param Cite2Urn
     * @param ArrayList of citedata: namespaces verbsList
     * @param ArrayList of property names
     * @returns String
     */
-    static String getPropertiesForObjectQuery(CiteUrn urn, ArrayList verbs, ArrayList props){
+    static String getPropertiesForObjectQuery(Cite2Urn urn, ArrayList verbs, ArrayList props){
       String queryString = prefixPhrase
       queryString += "SELECT "
       props.each{ pp ->

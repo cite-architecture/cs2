@@ -5,7 +5,7 @@ import org.junit.Test
 import org.custommonkey.xmlunit.*
 
 import edu.holycross.shot.sparqlcc.CcGraph
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -31,7 +31,7 @@ class TestReplyGetPrevNextUrnIntegr extends GroovyTestCase {
 
     //Set up params
     String reqString = "GetPrevUrn"
-    CiteUrn reqUrn = new CiteUrn("urn:cite:hmt:venAsign.5.v1")
+    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:5")
 
 
     def reqParams = [:]
@@ -46,12 +46,12 @@ class TestReplyGetPrevNextUrnIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetPrevUrn xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite:hmt:venAsign.5.v1</requestUrn>
+    <requestUrn>urn:cite2:hmt:venAsign.v1:5.v1</requestUrn>
     <request>GetPrevUrn</request>
-    <resolvedUrn>urn:cite:hmt:venAsign.5.v1</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:venAsign.v1:5.v1</resolvedUrn>
 </cite:request>
 <cite:reply>
-    <prevUrn>urn:cite:hmt:venAsign.4.v1</prevUrn>
+    <prevUrn>urn:cite2:hmt:venAsign.v1:4.v1</prevUrn>
 </cite:reply>
 </GetPrevUrn>
 """
@@ -69,7 +69,7 @@ class TestReplyGetPrevNextUrnIntegr extends GroovyTestCase {
 
     //Set up params
     String reqString = "GetNextUrn"
-    CiteUrn reqUrn = new CiteUrn("urn:cite:hmt:venAsign.5.v1")
+    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:5")
 
 
     def reqParams = [:]
@@ -84,12 +84,12 @@ class TestReplyGetPrevNextUrnIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetNextUrn xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite:hmt:venAsign.5.v1</requestUrn>
+    <requestUrn>urn:cite2:hmt:venAsign.v1:5.v1</requestUrn>
     <request>GetNextUrn</request>
-    <resolvedUrn>urn:cite:hmt:venAsign.5.v1</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:venAsign.v1:5.v1</resolvedUrn>
 </cite:request>
 <cite:reply>
-    <nextUrn>urn:cite:hmt:venAsign.6.v1</nextUrn>
+    <nextUrn>urn:cite2:hmt:venAsign.v1:6.v1</nextUrn>
 </cite:reply>
 </GetNextUrn>
 """
@@ -106,7 +106,7 @@ class TestReplyGetPrevNextUrnIntegr extends GroovyTestCase {
 
    //Set up params
    String reqString = "GetPrevNextUrn"
-   CiteUrn reqUrn = new CiteUrn("urn:cite:hmt:venAsign.5.v1")
+   Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:5")
 
 
    def reqParams = [:]
@@ -121,13 +121,13 @@ class TestReplyGetPrevNextUrnIntegr extends GroovyTestCase {
    String expectedXml = """
 <GetPrevNextUrn xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-   <requestUrn>urn:cite:hmt:venAsign.5.v1</requestUrn>
+   <requestUrn>urn:cite2:hmt:venAsign.v1:5.v1</requestUrn>
    <request>GetPrevNextUrn</request>
-   <resolvedUrn>urn:cite:hmt:venAsign.5.v1</resolvedUrn>
+   <resolvedUrn>urn:cite2:hmt:venAsign.v1:5.v1</resolvedUrn>
 </cite:request>
 <cite:reply>
-  <prevUrn>urn:cite:hmt:venAsign.4.v1</prevUrn>
-  <nextUrn>urn:cite:hmt:venAsign.6.v1</nextUrn>
+  <prevUrn>urn:cite2:hmt:venAsign.v1:4.v1</prevUrn>
+  <nextUrn>urn:cite2:hmt:venAsign.v1:6.v1</nextUrn>
 </cite:reply>
 </GetPrevNextUrn>
 """
