@@ -36,7 +36,9 @@ if (req == "GetCapabilities") {
 
 
 } else  if (req == "GetVersion") {
-	println "<version>@version@</version>"
+	String versionString = context.getInitParameter('version')
+
+	println "<version>${versionString}</version>"
 		done = true
 
 } else {

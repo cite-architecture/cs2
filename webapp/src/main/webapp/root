@@ -24,17 +24,17 @@ html.html {
 
 			p {
 				mkp.yield ("Access to passages of text: ")
-				a(href : "../sparqlcts", "Canonical Text Services (CTS)")
+				a(href : "../hmt-cts", "Canonical Text Services (CTS)")
 			}
 
 			p {
 				mkp.yield ("Access to data collections: ")
-				a(href : "../sparqlcc", "CITE Collection Services")
+				a(href : "../hmt-cc", "CITE Collection Services")
 			}
 
 			p {
 				mkp.yield ("Image Collections: ")
-				a(href : "../sparqlimg", "CITE Image Extension")
+				a(href : "../hmt-img", "CITE Image Extension")
 			}
 
 

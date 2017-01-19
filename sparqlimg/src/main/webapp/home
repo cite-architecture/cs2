@@ -20,7 +20,7 @@ html.html {
 				p {
 					a(href : "http://cite-architecture.github.io", "CITE Architecture")
 					mkp.yield(" | ")
-					a(href : "../citeservlet", "HMT Digital Home")
+					a(href : "../hmt-digital", "HMT Digital Home")
 				}
 			}
 

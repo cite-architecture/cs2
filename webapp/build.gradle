@@ -1,22 +1,24 @@
 buildscript {
   repositories {
-    jcenter()
-    // enable this to use snapshot versions of Gretty:
-    // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
-  }
+		jcenter()
+    mavenCentral()
+    maven {
+      url "http://beta.hpcc.uh.edu/nexus/content/groups/public"
+    }
+	}
 
   dependencies {
     classpath 'org.akhikhl.gretty:gretty:+'
+		classpath group: 'edu.harvard.chs', name: 'cite', version: versionMap['cite']
+
   }
 }
 
-repositories {
-  jcenter()
-  // enable this to use snapshot versions of Gretty:
-  // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
-}
+
 apply plugin: 'war'
 apply plugin: 'org.akhikhl.gretty'
 gretty {
     contextPath = '/citeservlet'
+		  initParameter("tripleserver", "http://localhost:8080/fuseki/hmt/query")
+		  initParameter("version","cs2 pre-release 1.0")
 }

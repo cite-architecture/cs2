@@ -1,33 +1,100 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation=
-    "http://java.sun.com/xml/ns/j2ee
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
     http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
-    version="2.4">
+	version="2.4">
+	<context-param>
+		<param-name>tripleserver</param-name>
+		<param-value>http://localhost:8080/fuseki/hmt/query</param-value>
+	</context-param>
+	<context-param>
+		<param-name>citekit_path</param-name>
+		<param-value>http://localhost:8080/citeservlet/citekit/js/cite-jq.js</param-value>
+	</context-param>
+	<context-param>
+		<param-name>cts_server</param-name>
+		<param-value>http://localhost:8080/sparqlcts/api</param-value>
+	</context-param>
+	<context-param>
+		<param-name>cc_server</param-name>
+		<param-value>http://localhost:8080/sparqlcc/api</param-value>
+	</context-param>
+	<context-param>
+		<param-name>img_server</param-name>
+		<param-value>http://localhost:8080/sparqlimg/api</param-value>
+	</context-param>
+	<context-param>
+		<param-name>css_core</param-name>
+		<param-value>cite-ui/css/cite-core.css</param-value>
+	</context-param>
 
-    <servlet>
-      <servlet-name>GroovyServlet</servlet-name>
-      <servlet-class>groovy.servlet.GroovyServlet</servlet-class>
-    </servlet>
+	<servlet>
+		<servlet-name>GroovyServlet</servlet-name>
+		<servlet-class>groovy.servlet.GroovyServlet</servlet-class>
+	</servlet>
 
-    <servlet-mapping>
-        <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>*.groovy</url-pattern>
-    </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GroovyServlet</servlet-name>
+		<url-pattern>*.groovy</url-pattern>
+	</servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/root</url-pattern>
-    </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GroovyServlet</servlet-name>
+		<url-pattern>/root</url-pattern>
+	</servlet-mapping>
 
+	<servlet-mapping>
+		<servlet-name>GroovyServlet</servlet-name>
+		<url-pattern>/hmt-digital</url-pattern>
+	</servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/api</url-pattern>
-    </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GroovyServlet</servlet-name>
+		<url-pattern>/facs</url-pattern>
+	</servlet-mapping>
 
-    <welcome-file-list>
-        <welcome-file>root</welcome-file>
-    </welcome-file-list>
+	<servlet-mapping>
+		<servlet-name>GroovyServlet</servlet-name>
+		<url-pattern>/iliad</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GroovyServlet</servlet-name>
+		<url-pattern>/imgs.status</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GroovyServlet</servlet-name>
+		<url-pattern>/mss.status</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GroovyServlet</servlet-name>
+		<url-pattern>/mss</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GroovyServlet</servlet-name>
+		<url-pattern>/mssForScholia</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GroovyServlet</servlet-name>
+		<url-pattern>/scholia</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GroovyServlet</servlet-name>
+		<url-pattern>/texts.status</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GroovyServlet</servlet-name>
+		<url-pattern>/api</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>root</welcome-file>
+	</welcome-file-list>
 </web-app>
