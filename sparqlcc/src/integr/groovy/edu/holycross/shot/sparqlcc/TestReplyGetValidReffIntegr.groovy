@@ -51,46 +51,6 @@ class TestReplyGetValidReffIntegr extends GroovyTestCase {
     <resolvedUrn>urn:cite2:hmt:pageroi.v1:</resolvedUrn>
 </cite:request>
 <cite:reply>
-  <urn>urn:cite2:hmt:pageroi.v1:1.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:1.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:10.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:10.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:12.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:12.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:19.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:19.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:2.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:2.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:23.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:23.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:24.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:24.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:3.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:3.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:30.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:30.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:31.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:31.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:36.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:36.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:39.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:39.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:4.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:4.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:41.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:41.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:49.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:49.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:5.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:5.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:50.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:50.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:6.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:6.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:7.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:7.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:8.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:8.v2</urn>
 </cite:reply>
 </GetValidReff>
 """
@@ -129,26 +89,26 @@ class TestReplyGetValidReffIntegr extends GroovyTestCase {
     <resolvedUrn>urn:cite2:hmt:pageroi.v1:</resolvedUrn>
 </cite:request>
 <cite:reply>
-  <urn>urn:cite2:hmt:pageroi.v1:1.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:10.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:12.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:19.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:2.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:23.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:24.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:3.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:30.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:31.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:36.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:39.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:4.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:41.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:49.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:5.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:50.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:6.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:7.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:8.v1</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:1</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:10</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:12</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:19</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:2</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:23</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:24</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:3</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:30</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:31</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:36</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:39</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:4</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:41</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:49</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:5</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:50</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:6</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:7</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:8</urn>
 </cite:reply>
 </GetValidReff>
 """
@@ -186,9 +146,9 @@ class TestReplyGetValidReffIntegr extends GroovyTestCase {
     <resolvedUrn>urn:cite2:hmt:venAsign.v1:5.v1-7.v1</resolvedUrn>
 </cite:request>
 <cite:reply>
-  <urn>urn:cite2:hmt:venAsign.v1:5.v1</urn>
-  <urn>urn:cite2:hmt:venAsign.v1:6.v1</urn>
-  <urn>urn:cite2:hmt:venAsign.v1:7.v1</urn>
+  <urn>urn:cite2:hmt:venAsign.v1:5</urn>
+  <urn>urn:cite2:hmt:venAsign.v1:6</urn>
+  <urn>urn:cite2:hmt:venAsign.v1:7</urn>
 </cite:reply>
 </GetValidReff>
 """

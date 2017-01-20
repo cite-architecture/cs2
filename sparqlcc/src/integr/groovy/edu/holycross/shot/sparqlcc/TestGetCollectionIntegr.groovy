@@ -65,7 +65,7 @@ class TestGetCollectionIntegr extends GroovyTestCase {
 
   @Test
   void testGetCollectionExtensions(){
-    Cite2Urn urn = new Cite2Urn("urn:cite:hmt:vaimg")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg:")
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     ArrayList exts = cc.getCollectionExtensions(urn)

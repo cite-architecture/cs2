@@ -26,7 +26,7 @@ class TestGetRangeIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Unordered collection, should get just first- and last-identified object
-    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:3.v1-24")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:3-24")
     ArrayList ccos = cc.getRange(urn)
     assert ccos.size() == 2
   }
@@ -37,7 +37,7 @@ class TestGetRangeIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Ordered collection, should include 10 objects
-    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:2601.v1-2610")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:2601-2610")
     ArrayList ccos = cc.getRange(urn)
     assert ccos.size() == 10
 
@@ -61,7 +61,7 @@ class TestGetRangeIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // With an Ordered collection, you can't do this
-    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:2610.v1-2601")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:2610-2601")
     shouldFail {
       ArrayList ccos = cc.getRange(urn)
       assert ccos

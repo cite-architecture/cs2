@@ -19,6 +19,7 @@ class TestGetCollectionSizeIntegr extends GroovyTestCase {
   String urn3 = "urn:cite2:hmt:pageroi.v1:" // .v1 = 20
 	String urn4 = "urn:cite2:hmt:venAsign.v1:2902" // 2903
   String urn5 = "urn:cite2:hmt:pageroi.v1:30" // 20
+  String urn6 = "urn:cite2:hmt:pageroi.v2:30" // 20
 
   @Test
   void testTest(){
@@ -31,7 +32,7 @@ class TestGetCollectionSizeIntegr extends GroovyTestCase {
     CcGraph cc = new CcGraph(sparql)
 
     Cite2Urn testUrn = new Cite2Urn(urn1)
-    assert cc.getCollectionSize(testUrn)['size'] == 10
+    assert cc.getCollectionSize(testUrn)['size'] == 12
   }
 
   @Test
@@ -71,7 +72,7 @@ class TestGetCollectionSizeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     Cite2Urn testUrn = new Cite2Urn(urn3)
-    assert cc.getCollectionSize(testUrn,'v1')['size'] == 20
+    assert cc.getCollectionSize(testUrn)['size'] == 20
   }
 
   @Test
@@ -79,7 +80,15 @@ class TestGetCollectionSizeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     Cite2Urn testUrn = new Cite2Urn(urn3)
-    assert cc.getCollectionSize(testUrn,'v2')['size'] == 20
+    assert cc.getCollectionSize(testUrn)['size'] == 20
+  }
+
+  @Test
+  void testCount8(){
+    Sparql sparql = new Sparql(baseUrl)
+    CcGraph cc = new CcGraph(sparql)
+    Cite2Urn testUrn = new Cite2Urn(urn6)
+    assert cc.getCollectionSize(testUrn)['size'] == 20
   }
 
 

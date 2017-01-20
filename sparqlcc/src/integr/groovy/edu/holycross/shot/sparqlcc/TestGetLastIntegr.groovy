@@ -15,9 +15,9 @@ class TestGetLastIntegr extends GroovyTestCase {
   String baseUrl = "http://localhost:8080/fuseki/cc/query"
   String orderedColl = "urn:cite2:hmt:venAsign.v1:" // urn:cite2:hmt:venAsign.v1:2906.v1
   String orderedUrn = "urn:cite2:hmt:venAsign.v1:3" // urn:cite2:hmt:venAsign.v1:2906.v1
-  String orderedColl2 = "urn:cite2:hmt:msA.v1:" // urn:cite2:hmt:msA.v1:5v.v1
+  String orderedColl2 = "urn:cite2:hmt:msA.v1:" // urn:cite2:hmt:msA.v1:6v.v1
   String orderedRange = "urn:cite2:hmt:venAsign.v1:14-15" // urn:cite2:hmt:venAsign.v1:2906.v1
-  String unOrderedColl = "urn:cite:hmt:vaimg" // unordered; will fail
+  String unOrderedColl = "urn:cite2:hmt:vaimg:" // unordered; will fail
 
   @Test
   void testTest(){
@@ -47,7 +47,7 @@ class TestGetLastIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
 	  CcGraph cc = new CcGraph(sparql)
     Cite2Urn urn = new Cite2Urn(orderedColl2)
-    assert cc.getLastUrn(urn)['lastUrn'].toString() == "urn:cite2:hmt:msA.v1:5v"
+    assert cc.getLastUrn(urn)['lastUrn'].toString() == "urn:cite2:hmt:msA.v1:6v"
   }
 
   // Range

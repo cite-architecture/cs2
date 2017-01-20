@@ -30,7 +30,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
   void testRangeOfOrdered(){
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
-    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:11.v1-20")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:11-20")
     assert cc.getValidReff(urn)['urns'].size() == 10
   }
 
@@ -47,16 +47,16 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:20-11")
-    shouldFail{
+//    shouldFail{
       assert cc.getValidReff(urn)['urns']
-    }
+//    }
   }
 
   @Test
   void testRangeOfUnOrdered(){
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
-    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:3.v1-6")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:3-6")
     assert cc.getValidReff(urn)['urns'].size() == 2
   }
 
@@ -64,7 +64,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
   void testRangeOfUnOrdered2(){
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
-    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:3.v2-6.v2")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:3-6")
     assert cc.getValidReff(urn)['urns'].size() == 2
   }
 
@@ -73,8 +73,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
-    String vString = "v1"
-    assert cc.getValidReff(urn, vString)['urns'].size() == 20
+    assert cc.getValidReff(urn)['urns'].size() == 20
   }
 
   @Test
@@ -83,7 +82,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     CcGraph cc = new CcGraph(sparql)
     Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:3")
     String vString = "v2"
-    assert cc.getValidReff(urn, vString)['urns'].size() == 20
+    assert cc.getValidReff(urn)['urns'].size() == 20
   }
 
   @Test
@@ -104,7 +103,7 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
   void testContents2(){
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
-    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:10.v1-14")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:10-14")
     ArrayList correct = [
     "urn:cite2:hmt:venAsign.v1:10",
     "urn:cite2:hmt:venAsign.v1:11",

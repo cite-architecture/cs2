@@ -43,7 +43,7 @@ abstract class QueryBuilder {
   }
 
 
-  /** Returns a Sparql query counting distinct notional objects in a collecction
+  /** Returns a Sparql query counting distinct  objects in a collecction
   * @param Cite2Urn
   * @returns String
   */
@@ -52,27 +52,11 @@ abstract class QueryBuilder {
     queryString += """
     SELECT (COUNT(distinct ?urn) AS ?size) WHERE {
       ?urn cite:belongsTo <${collUrn}> .
-      ?urn cite:hasVersion ?version .
     }
     """
     return queryString
   }
 
-  /** Returns a Sparql query counting versioned objects in a collecction
-  * @param Cite2Urn
-  * @returns String
-  */
-  static String getVersionedCollectionSizeQuery(Cite2Urn collUrn, String vString) {
-    String queryString = prefixPhrase
-    queryString += """
-    SELECT (COUNT(distinct ?urn) AS ?size) WHERE {
-      ?urn cite:belongsTo <${collUrn}> .
-      ?urn cite:isVersionOf ?notional .
-      FILTER(regex(str(?urn), ".${vString}\$"))
-    }
-    """
-    return queryString
-  }
 
   /** Generates a Sparql query for the presence of a cite:orderedBy statement
   * @param Cite2Urn
@@ -219,73 +203,18 @@ abstract class QueryBuilder {
     return queryString
   }
 
-  /** Generates a Sparql query for finding all objects, with all
-  * versions, in a collection.
-  * @param Cite2Urn
-  * @returns String
-  */
-  static String getGVRCollectionQuery(Cite2Urn urn){
-    String queryString = prefixPhrase
-    queryString += """
-    SELECT distinct ?urn WHERE {
-           ?urn cite:belongsTo <${urn}> .
-      		?urn cite:isVersionOf ?notional .
-          }
-    ORDER BY ?urn
-    """
-    return queryString
-  }
-
-  /** Generates a Sparql query for finding all objects, with all
-  * versions, in an ordered collection.
-  * @param Cite2Urn
-  * @returns String
-  */
-  static String getGVROrderedCollectionQuery(Cite2Urn urn){
-    String queryString = prefixPhrase
-    queryString += """
-    SELECT distinct ?urn WHERE {
-           ?urn cite:belongsTo <${urn}> .
-          ?urn cite:isVersionOf ?notional .
-          ?urn olo:item ?seq .
-          }
-    ORDER BY ?seq
-    """
-    return queryString
-  }
-
-  /** Generates a Sparql query for finding all object-URNs, with
-  * a given version, in a collection.
-  * @param Cite2Urn
-  * @param String
-  * @returns String
-  */
-  static String getGVRCollectionVersionedQuery(Cite2Urn urn, String vString){
-    String queryString = prefixPhrase
-    queryString += """
-    SELECT distinct ?urn WHERE {
-           ?urn cite:belongsTo <${urn}> .
-      		?urn cite:isVersionOf ?notional .
-          FILTER(regex(str(?urn), ".${vString}\$"))
-      }
-    ORDER BY ?urn
-    """
-    return queryString
-  }
 
   /** Generates a Sparql query for finding all objects, with a
   * given version-string, in an ordered collection.
   * @param Cite2Urn
   * @returns String
   */
-  static String getGVROrderedCollectionVersionedQuery(Cite2Urn urn, String vString){
+  static String getGVRQuery(Cite2Urn urn){
     String queryString = prefixPhrase
     queryString += """
     SELECT distinct ?urn WHERE {
            ?urn cite:belongsTo <${urn}> .
-          ?urn cite:isVersionOf ?notional .
           ?urn olo:item ?seq .
-          FILTER(regex(str(?urn), ".${vString}\$"))
           }
     ORDER BY ?seq
     """
@@ -353,7 +282,7 @@ abstract class QueryBuilder {
         return queryString
     }
 
-    /** Generates a query for finding the canlnicalId property
+    /** Generates a query for finding the canonicalId property
     * of a collection, its type, and label.
     * @param Cite2Urn (collection-level)
     * @returns String.

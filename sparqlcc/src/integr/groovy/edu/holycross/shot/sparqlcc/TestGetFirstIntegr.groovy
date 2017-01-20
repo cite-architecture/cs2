@@ -17,7 +17,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
   String orderedUrn = "urn:cite2:hmt:venAsign.v1:3"
   String orderedColl2 = "urn:cite2:hmt:msA.v1:"
   String orderedRange = "urn:cite2:hmt:venAsign.v1:14-15"
-  String unOrderedColl = "urn:cite:hmt:vaimg"
+  String unOrderedColl = "urn:cite2:hmt:vaimg:"
 
 
   @Test

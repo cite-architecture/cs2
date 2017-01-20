@@ -67,7 +67,7 @@ class TestResolveVersionIntegr extends GroovyTestCase {
 		CcGraph cc = new CcGraph(sparql)
 	  Cite2Urn urn =  new Cite2Urn("urn:cite2:hmt:vaimg.v1:VA085RN_0086@12,12,12,12-VA089RN_0090")
 
-		assert cc.resolveVersion(urn).toString() == "urn:cite2:hmt:vaimg.v1:VA085RN_0086-VA089RN_0090"
+		assert cc.resolveVersion(urn).toString() == "urn:cite2:hmt:vaimg.v1:VA085RN_0086@12,12,12,12-VA089RN_0090"
 	}
 
 	// Collection-level URN should work
@@ -91,22 +91,26 @@ class TestResolveVersionIntegr extends GroovyTestCase {
 	}
 
 
-	// Good urn, but not in data, returns null
+	// Good urn, but not in data, throws exception
 	@Test
 	void testResolveVersion8() {
 		Sparql sparql = new Sparql(baseUrl)
 		CcGraph cc = new CcGraph(sparql)
 	  Cite2Urn urn =  new Cite2Urn("urn:cite2:hmt:vaimg:notAnObject")
-		assert cc.resolveVersion(notInDataUrn) == null
+		assert shouldFail{
+			assert cc.resolveVersion(urn)
+		}
 	}
 
-	// Good but not in data, returns null
+	// Good but not in data, returns throws exception
 	@Test
 	void testResolveVersion9() {
 		Sparql sparql = new Sparql(baseUrl)
 		CcGraph cc = new CcGraph(sparql)
 	  Cite2Urn urn =  new Cite2Urn("urn:cite2:hmt:notACollection:12")
-		assert cc.resolveVersion(notInDataUrn) == null
+		assert shouldFail{
+			assert cc.resolveVersion(urn)
+		}
 	}
 
 }

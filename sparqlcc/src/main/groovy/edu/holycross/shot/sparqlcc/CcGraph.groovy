@@ -39,19 +39,13 @@ class CcGraph {
 		} else{
 			if (urn.isRange()){
 				Cite2Urn collUrn = urn.reduceToCollection()
-				System.err.println("collUrn: ${collUrn}")
 				ArrayList vfc = versionsForCollection(collUrn)
-				System.err.println("versions of coll: ${vfc}")
 				if (vfc.size() > 0){
 					Cite2Urn testUrn
 					vfc.each{ curn ->
 							testUrn = new Cite2Urn("${curn}${urn.objectId_1}-${urn.objectId_2}")
-							System.err.println("Testing: ${testUrn}")
 							if (objectExists(testUrn)){
-									System.err.println("found it!")
 									returnUrn = testUrn
-							} else {
-								System.err.println("did not find it.")
 							}
 					}
 
@@ -60,14 +54,16 @@ class CcGraph {
 				}
 
 			} else {
-				ArrayList vfo = versionsForObject(urn)
-				System.err.println(vfo)
-				if (vfo.size() > 0){
-					System.err.println(vfo[0].toString())
-					returnUrn = vfo[0]
-				} else {
-					System.err.println(e)
-					throw new Exception("CcGraph, resolveVersion: No versions of collection ${urn.reduceToCollection()} contain an object identified as ${urn}")
+
+				if (urn.hasObjectId()){
+					ArrayList vfo = versionsForObject(urn)
+					if (vfo.size() > 0){
+						returnUrn = vfo[0]
+					} else {
+						throw new Exception("CcGraph, resolveVersion: No versions of collection ${urn.reduceToCollection()} contain an object identified as ${urn}")
+					}
+				} else { // it is a collection-level URN
+					returnUrn = versionsForCollection(urn)[0]
 				}
 			}
 		}
@@ -92,7 +88,6 @@ class CcGraph {
     def parsedReply = slurper.parseText(reply)
       parsedReply.results.bindings.each { bndng ->
         if (bndng.cv) {
-					System.err.println(bndng.cv?.value)
 					try {
 	          tempUrn = new Cite2Urn(bndng.cv?.value)
 					} catch (Exception e){
@@ -120,7 +115,6 @@ class CcGraph {
 			String objStr = urn.getObjectId()
 			collUrn = urn.reduceToCollection()
 			ArrayList collVersions = versionsForCollection(collUrn)
-			System.err.println(collVersions)
 			if (collVersions.size() < 1){
 				throw new Exception("CcGraph, versionsForObject: ${collUrn} is not represented in this data by any version.")
 			} else {
@@ -190,15 +184,12 @@ class CcGraph {
   */
   boolean isordered(Cite2Urn urn)
   throws Exception {
-      String collectionUrnStr = urn.reduceToCollection()
+      String collectionUrnStr = urn.reduceToCollectionVersion()
       Cite2Urn collectionUrn = new Cite2Urn(collectionUrnStr)
       String qs = QueryBuilder.isOrderedQuery(collectionUrn)
       String reply = sparql.getSparqlReply("application/json", qs)
       JsonSlurper slurper = new groovy.json.JsonSlurper()
       def parsedReply = slurper.parseText(reply)
-      //System.err.println qs
-      //System.err.println parsedReply
-      //System.err.println "${urn} >> ${collectionUrn}"
       return parsedReply.boolean == true
   }
 
@@ -219,33 +210,34 @@ class CcGraph {
 
     // If a range…
     if ( urn.isRange() ){
-      rurn = resolveVersion(new Cite2Urn(urn.getRangeBegin()))
+      rurn = resolveVersion(urn.getRangeBegin())
     } else {
       rurn = resolveVersion(urn)
     }
 
-      String qs = QueryBuilder.getPreviousQuery(rurn)
-      String reply = sparql.getSparqlReply("application/json", qs)
-      JsonSlurper slurper = new groovy.json.JsonSlurper()
-      def parsedReply = slurper.parseText(reply)
-        parsedReply.results.bindings.each { bndng ->
-          if (bndng.u) {
-            tempUrnString = bndng.u?.value
-          }
+    String qs = QueryBuilder.getPreviousQuery(rurn)
+    String reply = sparql.getSparqlReply("application/json", qs)
 
-        }
+    JsonSlurper slurper = new groovy.json.JsonSlurper()
+    def parsedReply = slurper.parseText(reply)
+    parsedReply.results.bindings.each { bndng ->
+      if (bndng.u) {
+        tempUrnString = bndng.u?.value
+      }
 
-      if (tempUrnString != null){
-        if (tempUrnString.contains("urn:cite:")){
-          replyMap['resolvedUrn'] = rurn
-          replyMap['prevUrn'] = new Cite2Urn(tempUrnString)
-          return replyMap
-        }
-      } else {
-          replyMap['resolvedUrn'] = rurn
-          replyMap['prevUrn'] = null
-          return replyMap
- }
+    }
+
+		if (tempUrnString != null){
+			if (tempUrnString.contains("urn:cite2:")){
+				replyMap['resolvedUrn'] = rurn
+				replyMap['prevUrn'] = new Cite2Urn(tempUrnString)
+				return replyMap
+			}
+		} else {
+			replyMap['resolvedUrn'] = rurn
+			replyMap['prevUrn'] = null
+			return replyMap
+		}
   }
 
   /** Returns the Cite2Urn for the Next item in an ordered collection
@@ -264,32 +256,34 @@ class CcGraph {
 
     // If a range…
     if ( urn.isRange() ){
-      rurn = resolveVersion(new Cite2Urn(urn.getRangeEnd()))
+      rurn = resolveVersion(urn.getRangeEnd())
     } else {
       rurn = resolveVersion(urn)
     }
 
-      String qs = QueryBuilder.getNextQuery(rurn)
-      String reply = sparql.getSparqlReply("application/json", qs)
-      JsonSlurper slurper = new groovy.json.JsonSlurper()
-      def parsedReply = slurper.parseText(reply)
-        parsedReply.results.bindings.each { bndng ->
-          if (bndng.u) {
-            tempUrnString = bndng.u?.value
-          }
-        }
+    String qs = QueryBuilder.getNextQuery(rurn)
+    String reply = sparql.getSparqlReply("application/json", qs)
 
-      if (tempUrnString != null){
-        if (tempUrnString.contains("urn:cite:")){
-          replyMap['resolvedUrn'] = rurn
-          replyMap['nextUrn'] = new Cite2Urn(tempUrnString)
-          return replyMap
+    JsonSlurper slurper = new groovy.json.JsonSlurper()
+
+    def parsedReply = slurper.parseText(reply)
+      parsedReply.results.bindings.each { bndng ->
+        if (bndng.u) {
+          tempUrnString = bndng.u?.value
         }
-      } else {
-          replyMap['resolvedUrn'] = rurn
-          replyMap['nextUrn'] = null
-          return replyMap
       }
+
+    if (tempUrnString != null){
+      if (tempUrnString.contains("urn:cite2:")){
+        replyMap['resolvedUrn'] = rurn
+        replyMap['nextUrn'] = new Cite2Urn(tempUrnString)
+        return replyMap
+      }
+    } else {
+        replyMap['resolvedUrn'] = rurn
+        replyMap['nextUrn'] = null
+        return replyMap
+    }
   }
 
   /** Returns all versions present for a given object. That is to say
@@ -346,7 +340,7 @@ class CcGraph {
       throw new Exception( "CcGraph.getFirstUrn: ${urn.toString()} must be from an ordered collection.")
       } else {
         def replyMap = [:]
-        Cite2Urn collUrn = new Cite2Urn(urn.reduceToCollection())
+        Cite2Urn collUrn = resolveVersion(urn).reduceToCollectionVersion()
         String qs = QueryBuilder.getFirstQuery(collUrn)
         String reply = sparql.getSparqlReply("application/json", qs)
         String tempUrnString = ""
@@ -379,7 +373,7 @@ class CcGraph {
       throw new Exception( "CcGraph.getLastUrn: ${urn.toString()} must be from an ordered collection.")
       } else {
         def replyMap = [:]
-        Cite2Urn collUrn = new Cite2Urn(urn.reduceToCollection())
+        Cite2Urn collUrn = resolveVersion(urn).reduceToCollectionVersion()
         String qs = QueryBuilder.getLastQuery(collUrn)
         String reply = sparql.getSparqlReply("application/json", qs)
         String tempUrnString = ""
@@ -406,198 +400,56 @@ class CcGraph {
   * objects. With a version-level URN, counts only objects with the same
   * version-string.
   * @param Cite2Urn
-  * @returns Map ['urn':Cite2Urn, 'version':String, 'size': BigInteger]
+  * @returns Map ['urn':Cite2Urn, 'size': BigInteger]
   */
-    Map getCollectionSize(Cite2Urn urn){
-    String versionString = null
-    Cite2Urn qUrn
-    if(urn.hasCollectionVersion()){
-       versionString = urn.objectVersion
-    }
-    qUrn = new Cite2Urn(urn.reduceToCollection())
 
-    return getCollectionSize(qUrn,versionString)
-  }
+	Map getCollectionSize(Cite2Urn urn)
+	throws Exception {
+		Cite2Urn qUrn = resolveVersion(urn).reduceToCollectionVersion()
 
-  Map getCollectionSize(Cite2Urn urn, String versionString)
-  throws Exception {
-    Cite2Urn qUrn
-    String qVersion
-    String qs
-    if(urn.hasCollectionVersion()){
-      if( (versionString == "") || (versionString == null)){
-        qVersion = urn.objectVersion
-        qUrn = new Cite2Urn(urn.reduceToCollection())
-      }
-      } else {
-        qVersion = versionString
-        qUrn = new Cite2Urn(urn.reduceToCollection())
-      }
+		String qs = QueryBuilder.getCollectionSizeQuery(qUrn)
 
-      if ((versionString != "") && (versionString != null)){
-        qs = QueryBuilder.getVersionedCollectionSizeQuery(qUrn,qVersion)
-        } else {
-          qs = QueryBuilder.getCollectionSizeQuery(qUrn)
-        }
-
-        String reply = sparql.getSparqlReply("application/json", qs)
-        String tempUrnString = ""
-        JsonSlurper slurper = new groovy.json.JsonSlurper()
-        def parsedReply = slurper.parseText(reply)
-        if (parsedReply.results.bindings.size) {
-          Map returnMap = [:]
-          returnMap['resolvedUrn'] = qUrn
-          returnMap['version'] = qVersion
-          returnMap['size'] = new BigInteger(parsedReply.results.bindings[0].size.value)
-          return returnMap
-          } else {
-            throw new Exception( "CcGraph.getCollectionSize: ${urn.toString()}. Failed to get count.")
-          }
-        }
+		String reply = sparql.getSparqlReply("application/json", qs)
+		JsonSlurper slurper = new groovy.json.JsonSlurper()
+		def parsedReply = slurper.parseText(reply)
+		if (parsedReply.results.bindings.size) {
+			Map returnMap = [:]
+			returnMap['resolvedUrn'] = qUrn
+			returnMap['size'] = new BigInteger(parsedReply.results.bindings[0].size.value)
+			return returnMap
+		} else {
+			throw new Exception( "CcGraph.getCollectionSize: ${urn.toString()}. Failed to get count.")
+		}
+	}
 
 
   /** Returns all valid Cite2Urns in a collection.
-  * If the input parameter Cite2Urn has a version-id, returns
-  * only URNs with the same version-id. If the param is a range,
-  * returns all URNs contained in that range (for ordered collections),
-  * or the first- and last- elements of the range-urn for unordered collections.
-  * For queries on notional
+	* If the collection is un-versioned, resolves to a version.
+	* If the URN expresses a range, returns all valid reffs between the identified objects.
   * @param Cite2Urn
-  * @returns Map ['resolvedUrn': Cite2Urn, 'versionString': String, 'urns': ArrayList of URN-Strings]
+  * @returns Map ['resolvedUrn': Cite2Urn, 'urns': ArrayList of Cite2Urns]
   */
   Map getValidReff(Cite2Urn urn){
     // Is it an object or a range?
     if ( urn.isRange() || urn.hasObjectId() ){
-      //System.err.println("${urn} is range; no version")
       return gvrForRange(urn)
     } else {
-      //System.err.println("${urn} is NOT range; no version")
       return gvrForCollection(urn)
     }
   }
 
-  Map getValidReff(Cite2Urn urn, String versionString)
-  throws Exception {
-      //System.err.println("${urn} has version = ${versionString}.")
-    if ((versionString == "") || (versionString == null)){
-      return getValidReff(urn)
-    } else {
-      Cite2Urn qUrn = new Cite2Urn(urn.reduceToCollection())
-      return gvrForCollection(qUrn,versionString)
-    }
-  }
-
-  Map gvrForCollection(Cite2Urn urn, String versionString)
-  throws Exception {
-    def replyMap = [:]
-    ArrayList replyArray = []
-    String qs
-    String qUrnString = urn.reduceToCollection()
-    Cite2Urn qUrn = new Cite2Urn(qUrnString)
-    replyMap['resolvedUrn'] = qUrn
-
-    if ( (versionString =="") || ( versionString == null)){
-      replyMap['versionString'] = ""
-      if (isOrdered(qUrn)){
-        qs = QueryBuilder.getGVROrderedCollectionQuery(qUrn)
-      } else {
-          qs = QueryBuilder.getGVRCollectionQuery(qUrn)
-      }
-    } else {
-        replyMap['versionString'] = versionString
-        if (isOrdered(qUrn)){
-          qs = QueryBuilder.getGVROrderedCollectionVersionedQuery(qUrn, versionString)
-        } else {
-          qs = QueryBuilder.getGVRCollectionVersionedQuery(qUrn, versionString)
-        }
-    }
-
-    String reply = sparql.getSparqlReply("application/json", qs)
-    String tempUrnString = ""
-    JsonSlurper slurper = new groovy.json.JsonSlurper()
-    def parsedReply = slurper.parseText(reply)
-    parsedReply.results.bindings.each { bndng ->
-      if (bndng.urn) {
-          replyArray << bndng.urn.value
-      }
-    }
-      replyMap['urns'] = replyArray
-      return replyMap
-    }
-
   Map gvrForCollection(Cite2Urn urn)
   throws Exception {
-    return gvrForCollection(urn, null)
+		def returnMap = [:]
+		return returnMap
   }
 
   Map gvrForRange(Cite2Urn urn)
   throws Exception {
-    def replyMap = [:]
-    ArrayList replyArray = []
-    replyMap['versionString'] = ""
-
-    // is not range
-    if (!urn.isRange()){
-        replyMap['resolvedUrn'] = urn
-        if(urn.hasCollectionVersion()){
-          replyArray << urn.toString()
-        } else {
-          getVersionsOfObject(urn).each{ v ->
-            replyArray << v.toString()
-          }
-        }
-    } else { // is a range
-      if (isOrdered(urn)){
-
-
-        String rStart = urn.getRangeBegin()
-        String rEnd = urn.getRangeEnd()
-        replyMap['resolvedUrn'] = resolveVersion(urn)
-        Cite2Urn rStartUrn = resolveVersion(new Cite2Urn(rStart))
-        Cite2Urn rEndUrn = resolveVersion(new Cite2Urn(rEnd))
-        String vs = rStartUrn.objectVersion
-        // replyArray = ["for range; ordered collection"]
-        ArrayList tempArray = gvrForCollection(rStartUrn, vs)['urns']
-
-
-        def startIndex = tempArray.findIndexOf { s -> s.toString() == rStartUrn.toString() }
-        def endIndex = tempArray.findIndexOf { e -> e.toString() == rEndUrn.toString() }
-
-        if (startIndex > endIndex){
-          throw new Exception( "CcGraph.getValidReffForRange: ${urn.toString()}. This is an ordered collection, but the start-URN follows the end-URN.")
-        }
-
-        Boolean collecting = false
-        tempArray.each { cco ->
-            if( cco == rStartUrn.toString()){
-              collecting = true
-            }
-            if( collecting ){
-              replyArray << cco
-              if (cco == rEndUrn.toString()){
-                collecting = false
-              }
-            }
-        }
-      } else {
-         Cite2Urn rangeStart = new Cite2Urn(urn.getRangeBegin())
-         Cite2Urn rangeEnd = new Cite2Urn(urn.getRangeEnd())
-        if (rangeStart.hasCollectionVersion()){
-            replyArray << urn.getRangeBegin()
-            replyArray << urn.getRangeEnd()
-        } else {
-           getVersionsOfObject(rangeStart).each{ v ->
-             replyArray << v.toString()
-           }
-           getVersionsOfObject(rangeEnd).each{ v ->
-             replyArray << v.toString()
-           }
-        }
-      }
-    }
-    replyMap['urns'] = replyArray
-    return replyMap
+		def returnMap = [:]
+		return returnMap
   }
+
 
 
   /* Returns a CiteCollection
@@ -605,10 +457,7 @@ class CcGraph {
   * @returns CiteCollection object
   */
   CiteCollection getCollection(Cite2Urn urn){
-    String tempUrn = urn.reduceToCollection()
-
-
-  	Cite2Urn collUrn = new Cite2Urn(tempUrn)
+    Cite2Urn collUrn = resolveVersion(urn).reduceToCollectionVersion()
 
   	CiteProperty idProp = getCollectionIdProp(collUrn)
     CiteProperty labelProp = getCollectionLabelProp(collUrn)
@@ -642,7 +491,7 @@ class CcGraph {
   CiteProperty getCollectionIdProp(Cite2Urn urn)
   throws Exception {
 
-        Cite2Urn collUrn = new Cite2Urn(urn.reduceToCollection())
+        Cite2Urn collUrn = resolveVersion(urn).reduceToCollectionVersion()
 
         String qs = QueryBuilder.getCanonicalIdPropQuery(collUrn)
         String reply = sparql.getSparqlReply("application/json", qs)
@@ -664,7 +513,7 @@ class CcGraph {
           throw new Exception( "CcGraph.getCollectionIdProp: ${urn.toString()}. Failed to get property name.")
         }
         if (parsedReply.results.bindings[0].type){
-          pType = CitePropertyType.CITE_URN // it has to be
+          pType = CitePropertyType.CITE2_URN // it has to be
         } else {
           throw new Exception( "CcGraph.getCollectionIdProp: ${urn.toString()}. Failed to get property type.")
         }
@@ -689,7 +538,7 @@ class CcGraph {
   */
   CiteProperty getCollectionLabelProp(Cite2Urn urn)
   throws Exception {
-    Cite2Urn collUrn = new Cite2Urn(urn.reduceToCollection())
+    Cite2Urn collUrn = resolveVersion(urn).reduceToCollectionVersion()
 
     String qs = QueryBuilder.getCollectionLabelPropQuery(collUrn)
     String reply = sparql.getSparqlReply("application/json", qs)
@@ -738,7 +587,7 @@ class CcGraph {
   */
   CiteProperty getCollectionOrderedByProp(Cite2Urn urn)
   throws Exception {
-    Cite2Urn collUrn = new Cite2Urn(urn.reduceToCollection())
+    Cite2Urn collUrn = urn.reduceToCollectionVersion()
 
     String nameString
     String labelString
@@ -780,7 +629,7 @@ class CcGraph {
   ArrayList getCollectionExtensions(Cite2Urn urn)
   throws Exception {
     def exts = []
-    Cite2Urn collUrn = new Cite2Urn(urn.reduceToCollection())
+    Cite2Urn collUrn = resolveVersion(urn).reduceToCollectionVersion()
     String qs = QueryBuilder.getExtensionsQuery(collUrn)
     String reply = sparql.getSparqlReply("application/json", qs)
     String tempUrnString = ""
@@ -826,7 +675,7 @@ class CcGraph {
   * @returns ArrayList of Map
   */
   ArrayList getPropertiesInCollection(Cite2Urn urn){
-      Cite2Urn collUrn = new Cite2Urn(urn.reduceToCollection())
+      Cite2Urn collUrn = urn.reduceToCollectionVersion()
       def collProps = []
       def tempMap = [:]
 
@@ -846,7 +695,7 @@ class CcGraph {
       CitePropertyType thisType
       switch (tempMap['type']){
           case "http://www.homermultitext.org/cite/rdf/Cite2Urn":
-            thisType = CitePropertyType.CITE_URN
+            thisType = CitePropertyType.CITE2_URN
             break
           case "http://www.homermultitext.org/cite/rdf/CtsUrn":
             thisType = CitePropertyType.CTS_URN
@@ -883,9 +732,9 @@ class CcGraph {
          throw new Exception( "CcGraph.getObject: ${urn.toString()}. Cannot construct a Cite Colletion Object from a range-urn.")
     }
     Cite2Urn objUrn = resolveVersion(urn)
-    CiteCollectionObject collectionObject
 
     // Make a CiteCollection object
+		CiteCollectionObject collectionObject
     CiteCollection thisCollection = getCollection(objUrn)
 
     // Make a CiteCollectionObject object
@@ -898,7 +747,6 @@ class CcGraph {
     if (isOrdered(objUrn)){
       collectionObject = new CiteCollectionObject(objUrn,thisCollection,thisProperties,getPrevUrn(objUrn)['prevUrn'],getNextUrn(objUrn)['nextUrn'])
     } else {
-
       collectionObject = new CiteCollectionObject(objUrn,thisCollection,thisProperties)
     }
 
@@ -923,15 +771,11 @@ class CcGraph {
       propNames << cp.propertyName
     }
     String qs = QueryBuilder.getPropertiesForObjectQuery(objUrn,verbsList,propNames )
-    //System.err.println(qs)
     String reply = sparql.getSparqlReply("application/json", qs)
     JsonSlurper slurper = new groovy.json.JsonSlurper()
     def parsedReply = slurper.parseText(reply)
-    //System.err.println(parsedReply)
     parsedReply.results.bindings[0].each{ bb ->
-        //System.err.println("Key=${bb.key}")
         propMap["${bb.key}"] = bb.value.value
-        //System.err.println("Value=${bb.value.value} is class ${bb.value.value.getClass()}")
     }
     return propMap
 
@@ -981,8 +825,6 @@ throws Exception {
          throw new Exception( "CcGraph.getPagedReff: ${paramUrn.toString()}. Neither parameter 'offset' nor 'limit' may be less than 1. offset = ${offset}; limit=${limit}")
   }
 
-  //System.err.println("-----------------")
-  //System.err.println("${paramUrn}")
   def pagedReff = [:]
   Cite2Urn urn
   if (paramUrn.hasObjectId()){
@@ -990,7 +832,6 @@ throws Exception {
     } else {
       urn = paramUrn
     }
-  //  System.err.println("${urn}")
     pagedReff['resolvedUrn'] = urn
     pagedReff['offset'] = offset
     pagedReff['limit'] = limit
@@ -1005,12 +846,10 @@ throws Exception {
     def startIndex = offset - 1
     def endIndex = startIndex + limit - 1
 
-  //  System.err.println("0. From ${startIndex} to ${endIndex}, out of ${firstArray.size()}")
 
     if (offset > firstArray.size()){
       pagedReff['urns'] = urns // that is, an empty array
 
-      //System.err.println("Offset too big. From ${startIndex} to ${endIndex}, out of ${firstArray.size()}")
 
     } else {
       if ( endIndex > firstArray.size()){
@@ -1019,10 +858,8 @@ throws Exception {
         endIndex = firstArray.size() - 1
         pagedReff['limit'] = firstArray.size() - offset + 1
 
-  //      System.err.println("endIndex too big. From ${startIndex} to ${endIndex}, out of ${firstArray.size()}")
       }
       for (i in (startIndex..endIndex) ){
-  //      System.err.println("[${i}] ${firstArray[i]}")
         urns << new Cite2Urn(firstArray[i])
       }
       pagedReff['urns'] = urns
@@ -1085,7 +922,6 @@ throws Exception {
     replyString += """<${request} xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite" >\n\n<cite:request>\n"""
 
     params.each{  pp ->
-  //  System.err.println("${pp.key} ${pp.value}")
   }
 
     params.each { pm ->
@@ -1097,7 +933,6 @@ throws Exception {
         replyString+= "<${pm.key}>${pm.value}</${pm.key}>\n"
       }
         //replyString+= "<${pm.key}>${pm.value}</${pm.key}>\n"
-      //System.err.println("Param: ${pm.key} : ${pm.value}")
     }
     // We don't close <cite:request> yet, so we can add request-specific stuff below.
 
@@ -1479,7 +1314,7 @@ String xmlTranslatePropertyType(String typeString){
     case "MARKDOWN" :
       replyString = "markdown"
       break;
-    case "CITE_URN" :
+    case "CITE2_URN" :
       replyString = "Cite2Urn"
       break;
     case "CTS_URN" :
@@ -1532,5 +1367,18 @@ Map calculatePagedNavigation(BigInteger size, BigInteger offset, Integer limit){
 }
 
 
+  /** Returns 'true' if an object identified by a Cite URN is a member of an ordered collection.
+  * @param CiteUrn
+  * @returns Boolean
+  */
+  Boolean isOrdered(Cite2Urn urn)
+  throws Exception {
+      Cite2Urn collectionUrn = resolveVersion(urn).reduceToCollectionVersion()
+      String qs = QueryBuilder.isOrderedQuery(collectionUrn)
+      String reply = sparql.getSparqlReply("application/json", qs)
+      JsonSlurper slurper = new groovy.json.JsonSlurper()
+      def parsedReply = slurper.parseText(reply)
+      return parsedReply.boolean == true
+  }
 
 }
