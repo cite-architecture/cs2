@@ -1,4 +1,6 @@
+import org.apache.tools.ant.filters.ReplaceTokens
 
+apply from: "customconf.gradle"
 
 buildscript {
   repositories {
@@ -25,9 +27,12 @@ repositories {
   // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
 }
 
-
-
-
 gretty {
- overlay ':sparqlcts'
+  webappCopy {
+    filesMatching '*', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: customTokens
+    }
+  }
+  overlay ':sparqlcts'
 }
