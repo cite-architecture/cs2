@@ -46,12 +46,12 @@ class TestReplyGetPrevNextUrnIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetPrevUrn xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite2:hmt:venAsign.v1:5.v1</requestUrn>
+    <requestUrn>urn:cite2:hmt:venAsign.v1:5</requestUrn>
     <request>GetPrevUrn</request>
-    <resolvedUrn>urn:cite2:hmt:venAsign.v1:5.v1</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:venAsign.v1:5</resolvedUrn>
 </cite:request>
 <cite:reply>
-    <prevUrn>urn:cite2:hmt:venAsign.v1:4.v1</prevUrn>
+    <prevUrn>urn:cite2:hmt:venAsign.v1:4</prevUrn>
 </cite:reply>
 </GetPrevUrn>
 """
@@ -84,12 +84,12 @@ class TestReplyGetPrevNextUrnIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetNextUrn xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite2:hmt:venAsign.v1:5.v1</requestUrn>
+    <requestUrn>urn:cite2:hmt:venAsign.v1:5</requestUrn>
     <request>GetNextUrn</request>
-    <resolvedUrn>urn:cite2:hmt:venAsign.v1:5.v1</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:venAsign.v1:5</resolvedUrn>
 </cite:request>
 <cite:reply>
-    <nextUrn>urn:cite2:hmt:venAsign.v1:6.v1</nextUrn>
+    <nextUrn>urn:cite2:hmt:venAsign.v1:6</nextUrn>
 </cite:reply>
 </GetNextUrn>
 """
@@ -121,13 +121,13 @@ class TestReplyGetPrevNextUrnIntegr extends GroovyTestCase {
    String expectedXml = """
 <GetPrevNextUrn xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-   <requestUrn>urn:cite2:hmt:venAsign.v1:5.v1</requestUrn>
+   <requestUrn>urn:cite2:hmt:venAsign.v1:5</requestUrn>
    <request>GetPrevNextUrn</request>
-   <resolvedUrn>urn:cite2:hmt:venAsign.v1:5.v1</resolvedUrn>
+   <resolvedUrn>urn:cite2:hmt:venAsign.v1:5</resolvedUrn>
 </cite:request>
 <cite:reply>
-  <prevUrn>urn:cite2:hmt:venAsign.v1:4.v1</prevUrn>
-  <nextUrn>urn:cite2:hmt:venAsign.v1:6.v1</nextUrn>
+  <prevUrn>urn:cite2:hmt:venAsign.v1:4</prevUrn>
+  <nextUrn>urn:cite2:hmt:venAsign.v1:6</nextUrn>
 </cite:reply>
 </GetPrevNextUrn>
 """

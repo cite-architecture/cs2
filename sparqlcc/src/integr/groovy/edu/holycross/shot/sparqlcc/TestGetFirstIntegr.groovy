@@ -15,6 +15,7 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
   String baseUrl = "http://localhost:8080/fuseki/cc/query"
   String orderedColl = "urn:cite2:hmt:venAsign.v1:"
   String orderedUrn = "urn:cite2:hmt:venAsign.v1:3"
+  String notionalUrn = "urn:cite2:hmt:venAsign:3" // urn:cite2:hmt:venAsign.v1:2906.v1
   String orderedColl2 = "urn:cite2:hmt:msA.v1:"
   String orderedRange = "urn:cite2:hmt:venAsign.v1:14-15"
   String unOrderedColl = "urn:cite2:hmt:vaimg:"
@@ -69,6 +70,15 @@ class TestGetFirstUrnIntegr extends GroovyTestCase {
     shouldFail {
       String test = cc.getFirstUrn(urn)['firstUrn'].toString()
     }
+  }
+
+  // Testing resolvedUrn
+  @Test
+  void testFirstUrn6() {
+    Sparql sparql = new Sparql(baseUrl)
+	  CcGraph cc = new CcGraph(sparql)
+    Cite2Urn urn = new Cite2Urn(notionalUrn)
+    assert cc.getFirstUrn(urn)['resolvedUrn'].toString() == "urn:cite2:hmt:venAsign.v1:"
   }
 
 }

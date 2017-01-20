@@ -214,7 +214,9 @@ abstract class QueryBuilder {
     queryString += """
     SELECT distinct ?urn WHERE {
            ?urn cite:belongsTo <${urn}> .
-          ?urn olo:item ?seq .
+					 optional{
+	           ?urn olo:item ?seq .
+					 }
           }
     ORDER BY ?seq
     """
@@ -223,14 +225,35 @@ abstract class QueryBuilder {
 
   /** Generates a Sparql query for finding all object-URNs
   * defined by a range, for an ordered collection
-  * @param Cite2Urn
-  * @param String
+  * @param Cite2Urn urn
+	* @param Integer startIndex the index of the first object
+	* @param Integer endIndex the index of the last object
   * @returns String
   */
-  static String getGVRRangeQuery(Cite2Urn urn, String vString){
+  static String getGVRRangeQuery(Cite2Urn urn, Integer startIndex, Integer endIndex){
     String queryString = prefixPhrase
     queryString += """
+    SELECT distinct ?urn WHERE {
+		    ?urn cite:belongsTo <${urn}> .
+		    ?urn olo:item ?s .
+			  FILTER (?s >= ${startIndex}) .
+		    FILTER (?s <= ${endIndex}) .
+	   }
+		 ORDER BY ?s    """
+    return queryString
+  }
 
+  /** Generates a Sparql query for finding the olo:item sequence
+  * number for a collection-object
+  * @param Cite2Urn
+  * @returns String
+  */
+  static String getSequenceQuery(Cite2Urn urn){
+    String queryString = prefixPhrase
+    queryString += """
+				SELECT ?seq where {
+					<${urn}> olo:item ?seq .
+				}
     """
     return queryString
   }

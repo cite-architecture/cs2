@@ -27,8 +27,9 @@ class TestGetRangeIntegr extends GroovyTestCase {
 
     // Unordered collection, should get just first- and last-identified object
     Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:3-24")
-    ArrayList ccos = cc.getRange(urn)
-    assert ccos.size() == 2
+		shouldFail{
+	    ArrayList ccos = cc.getRange(urn)
+		}
   }
 
   @Test

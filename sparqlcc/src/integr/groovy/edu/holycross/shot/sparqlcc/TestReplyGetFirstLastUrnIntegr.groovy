@@ -31,7 +31,7 @@ class TestReplyGetFirstLastUrnIntegr extends GroovyTestCase {
 
     //Set up params
     String reqString = "GetFirstUrn"
-    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:5")
+    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:venAsign:5")
 
 
     def reqParams = [:]
@@ -46,12 +46,12 @@ class TestReplyGetFirstLastUrnIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetFirstUrn xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite2:hmt:venAsign.v1:5.v1</requestUrn>
+    <requestUrn>urn:cite2:hmt:venAsign:5</requestUrn>
     <request>GetFirstUrn</request>
-    <resolvedUrn>urn:cite2:hmt:venAsign.v1:5.v1</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:venAsign.v1:</resolvedUrn>
 </cite:request>
 <cite:reply>
-    <firstUrn>urn:cite2:hmt:venAsign.v1:1.v1</firstUrn>
+    <firstUrn>urn:cite2:hmt:venAsign.v1:1</firstUrn>
 </cite:reply>
 </GetFirstUrn>
 """
@@ -84,12 +84,12 @@ class TestReplyGetFirstLastUrnIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetLastUrn xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite2:hmt:venAsign.v1:5.v1</requestUrn>
+    <requestUrn>urn:cite2:hmt:venAsign.v1:5</requestUrn>
     <request>GetLastUrn</request>
-    <resolvedUrn>urn:cite2:hmt:venAsign.v1:5.v1</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:venAsign.v1:</resolvedUrn>
 </cite:request>
 <cite:reply>
-    <lastUrn>urn:cite2:hmt:venAsign.v1:2906.v1</lastUrn>
+    <lastUrn>urn:cite2:hmt:venAsign.v1:2906</lastUrn>
 </cite:reply>
 </GetLastUrn>
 """

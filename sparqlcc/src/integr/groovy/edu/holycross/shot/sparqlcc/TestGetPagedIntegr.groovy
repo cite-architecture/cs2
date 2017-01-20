@@ -50,7 +50,7 @@ class TestGetPagedIntegr extends GroovyTestCase {
     assert ccos['resolvedUrn'].toString() == urn.toString()
     assert ccos['offset'] == 1
     assert ccos['limit'] == 10
-    assert ccos['size'] == 40
+    assert ccos['size'] == 20
     assert ccos['objects'].size() == 10
     ccos['object'].each { o ->
         System.err.println(o.urn.toString())
@@ -68,7 +68,7 @@ class TestGetPagedIntegr extends GroovyTestCase {
     assert ccos['resolvedUrn'].toString() == urn.toString()
     assert ccos['offset'] == 11
     assert ccos['limit'] == 10
-    assert ccos['size'] == 40
+    assert ccos['size'] == 20
     assert ccos['objects'].size() == 10
     ccos['object'].each { o ->
         System.err.println(o.urn.toString())
@@ -82,11 +82,11 @@ class TestGetPagedIntegr extends GroovyTestCase {
 
     // Paged for a whole collection
     Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
-    Map ccos = cc.getPaged(urn,31,10)
+    Map ccos = cc.getPaged(urn,11,10)
     assert ccos['resolvedUrn'].toString() == urn.toString()
-    assert ccos['offset'] == 31
+    assert ccos['offset'] == 11
     assert ccos['limit'] == 10
-    assert ccos['size'] == 40
+    assert ccos['size'] == 20
     assert ccos['objects'].size() == 10
     ccos['object'].each { o ->
         System.err.println(o.urn.toString())
@@ -101,12 +101,12 @@ class TestGetPagedIntegr extends GroovyTestCase {
 
     // Paged for a whole collection
     Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
-    Map ccos = cc.getPaged(urn,31,20)
+    Map ccos = cc.getPaged(urn,1,20)
     assert ccos['resolvedUrn'].toString() == urn.toString()
-    assert ccos['offset'] == 31
-    assert ccos['limit'] == 10
-    assert ccos['size'] == 40
-    assert ccos['objects'].size() == 10
+    assert ccos['offset'] == 1
+    assert ccos['limit'] == 20
+    assert ccos['size'] == 20
+    assert ccos['objects'].size() == 20
     ccos['object'].each { o ->
         System.err.println(o.urn.toString())
     }
@@ -120,11 +120,11 @@ class TestGetPagedIntegr extends GroovyTestCase {
 
     // Paged for a whole collection
     Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
-    Map ccos = cc.getPaged(urn,35,20)
+    Map ccos = cc.getPaged(urn,15,20)
     assert ccos['resolvedUrn'].toString() == urn.toString()
-    assert ccos['offset'] == 35
+    assert ccos['offset'] == 15
     assert ccos['limit'] == 6
-    assert ccos['size'] == 40
+    assert ccos['size'] == 20
     assert ccos['objects'].size() == 6
     ccos['object'].each { o ->
         System.err.println(o.urn.toString())
@@ -208,11 +208,11 @@ void testPaged12(){
 
   // Paged for a whole collection
   Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
-  Map ccos = cc.getPaged(urn,40,1)
+  Map ccos = cc.getPaged(urn,20,1)
   assert ccos['resolvedUrn'].toString() == urn.toString()
-  assert ccos['offset'] == 40
+  assert ccos['offset'] == 20
   assert ccos['limit'] == 1
-  assert ccos['size'] == 40
+  assert ccos['size'] == 20
   assert ccos['objects'].size() == 1
   ccos['object'].each { o ->
       System.err.println(o.urn.toString())
@@ -231,7 +231,7 @@ void testPaged13(){
   assert ccos['resolvedUrn'].toString() == urn.toString()
   assert ccos['offset'] == 1
   assert ccos['limit'] == 1
-  assert ccos['size'] == 40
+  assert ccos['size'] == 20
   assert ccos['objects'].size() == 1
   ccos['object'].each { o ->
     System.err.println(o.urn.toString())
@@ -246,11 +246,11 @@ void testPaged14(){
 
   // Paged for a whole collection
   Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
-  Map ccos = cc.getPaged(urn,40,10)
+  Map ccos = cc.getPaged(urn,20,10)
   assert ccos['resolvedUrn'].toString() == urn.toString()
-  assert ccos['offset'] == 40
+  assert ccos['offset'] == 20
   assert ccos['limit'] == 1
-  assert ccos['size'] == 40
+  assert ccos['size'] == 20
   assert ccos['objects'].size() == 1
   ccos['object'].each { o ->
     System.err.println(o.urn.toString())

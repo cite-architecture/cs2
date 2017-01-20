@@ -47,9 +47,9 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:20-11")
-//    shouldFail{
+    shouldFail{
       assert cc.getValidReff(urn)['urns']
-//    }
+    }
   }
 
   @Test
@@ -57,7 +57,9 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:3-6")
-    assert cc.getValidReff(urn)['urns'].size() == 2
+		shouldFail{
+	    assert cc.getValidReff(urn)['urns'].size() == 2
+		}
   }
 
   @Test
@@ -65,24 +67,9 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:3-6")
-    assert cc.getValidReff(urn)['urns'].size() == 2
-  }
-
-  @Test
-  void testCollectionWithVersionString1(){
-    Sparql sparql = new Sparql(baseUrl)
-    CcGraph cc = new CcGraph(sparql)
-    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
-    assert cc.getValidReff(urn)['urns'].size() == 20
-  }
-
-  @Test
-  void testCollectionWithVersionString2(){
-    Sparql sparql = new Sparql(baseUrl)
-    CcGraph cc = new CcGraph(sparql)
-    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:3")
-    String vString = "v2"
-    assert cc.getValidReff(urn)['urns'].size() == 20
+		shouldFail{
+	    assert cc.getValidReff(urn)['urns'].size() == 2
+		}
   }
 
   @Test
@@ -96,7 +83,11 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
       "urn:cite2:hmt:venAsign.v1:12",
       "urn:cite2:hmt:venAsign.v1:13",
       "urn:cite2:hmt:venAsign.v1:14" ]
-    assert cc.getValidReff(urn)['urns'] == correct
+		ArrayList testArray = []
+		cc.getValidReff(urn)['urns'].each{ turn ->
+			testArray << turn.toString()
+		}
+    assert testArray == correct
   }
 
   @Test
@@ -110,7 +101,11 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     "urn:cite2:hmt:venAsign.v1:12",
     "urn:cite2:hmt:venAsign.v1:13",
     "urn:cite2:hmt:venAsign.v1:14" ]
-    assert cc.getValidReff(urn)['urns'] == correct
+		ArrayList testArray = []
+		cc.getValidReff(urn)['urns'].each{ turn ->
+			testArray << turn.toString()
+		}
+    assert testArray == correct
   }
 
   @Test
@@ -118,22 +113,35 @@ class TestGvrForRangeIntegr extends GroovyTestCase {
     Sparql sparql = new Sparql(baseUrl)
     CcGraph cc = new CcGraph(sparql)
     Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:4-5")
-    ArrayList correct = [
-      "urn:cite2:hmt:pageroi.v1:4",
-      "urn:cite2:hmt:pageroi.v1:4.v2",
-      "urn:cite2:hmt:pageroi.v1:5",
-      "urn:cite2:hmt:pageroi.v1:5.v2"]
-    assert cc.getValidReff(urn)['urns'] == correct
+		shouldFail{
+	    assert cc.getValidReff(urn)['urns'] == correct
+		}
   }
 
+	@Test
+  void testResolvedUrn1(){
+    Sparql sparql = new Sparql(baseUrl)
+    CcGraph cc = new CcGraph(sparql)
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:4-5")
+    assert cc.getValidReff(urn)['resolvedUrn'].toString() == "urn:cite2:hmt:venAsign.v1:4-5"
+  }
 
+	@Test
+  void testResolvedUrn2(){
+    Sparql sparql = new Sparql(baseUrl)
+    CcGraph cc = new CcGraph(sparql)
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign:4-5")
+    assert cc.getValidReff(urn)['resolvedUrn'].toString() == "urn:cite2:hmt:venAsign.v1:4-5"
+  }
 
     @Test
     void testRangeOfUnOrderedNotional(){
       Sparql sparql = new Sparql(baseUrl)
       CcGraph cc = new CcGraph(sparql)
       Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:3-6")
-      assert cc.getValidReff(urn)['urns'].size() == 4
+			shouldFail{
+	      assert cc.getValidReff(urn)['urns'].size() == 4
+			}
     }
 
 }

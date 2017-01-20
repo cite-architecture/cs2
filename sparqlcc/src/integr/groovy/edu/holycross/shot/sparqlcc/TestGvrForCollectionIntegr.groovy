@@ -39,9 +39,7 @@ class TestGvrForCollectionIntegr  extends GroovyTestCase {
 		CcGraph cc = new CcGraph(sparql)
 		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
 		replyArray = cc.getValidReff(urn)['urns']
-		assert replyArray.size() == 40
-		assert replyArray[0] == "urn:cite2:hmt:pageroi.v1:1"
-		assert replyArray[1] == "urn:cite2:hmt:pageroi.v1:2"
+		assert replyArray.size() == 20
 	}
 
 	@Test
@@ -52,8 +50,8 @@ class TestGvrForCollectionIntegr  extends GroovyTestCase {
 		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
 		replyArray = cc.getValidReff(urn)['urns']
 		assert replyArray.size() == 20
-		assert replyArray[0] == "urn:cite2:hmt:pageroi.v1:1"
-		assert replyArray[1] == "urn:cite2:hmt:pageroi.v1:2"
+		def urnMatch = replyArray.find { it.toString() == "urn:cite2:hmt:pageroi.v1:2"}
+		assert urnMatch != null
 	}
 
 	@Test
@@ -64,8 +62,8 @@ class TestGvrForCollectionIntegr  extends GroovyTestCase {
 		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:")
 		replyArray = cc.getValidReff(urn)['urns']
 		assert replyArray.size() == 2903
-		assert replyArray[0] == "urn:cite2:hmt:venAsign.v1:1"
-		assert replyArray[2902] == "urn:cite2:hmt:venAsign.v1:2906"
+		assert replyArray[0].toString() == "urn:cite2:hmt:venAsign.v1:1"
+		assert replyArray[2902].toString() == "urn:cite2:hmt:venAsign.v1:2906"
 	}
 
 }

@@ -15,9 +15,9 @@ class TestOrderedIntegr extends GroovyTestCase {
   String orderedUrn1 = "urn:cite2:hmt:venAsign.v1:14"
   String orderedUrn2 = "urn:cite2:hmt:venAsign.v1:15"
   String orderedUrn3 = "urn:cite2:hmt:venAsign.v1:14-15"
-  String unorderedUrn1 = "urn:cite:hmt:vaimg.VA082RN_0083"
-  String unorderedUrn2 = "urn:cite:hmt:vaimg.VA082RN_0083"
-  String unorderedUrn3 = "urn:cite:hmt:vaimg"
+  String unorderedUrn1 = "urn:cite2:hmt:vaimg:VA082RN_0083"
+  String unorderedUrn2 = "urn:cite2:hmt:vaimg.v1:VA082RN_0083"
+  String unorderedUrn3 = "urn:cite2:hmt:vaimg:"
 
   @Test
   void testTest(){

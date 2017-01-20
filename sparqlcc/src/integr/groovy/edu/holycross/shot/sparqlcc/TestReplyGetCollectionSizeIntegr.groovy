@@ -75,7 +75,6 @@ class TestReplyGetCollectionSizeIntegr extends GroovyTestCase {
     def reqParams = [:]
     reqParams['urn'] = reqUrn.toString()
     reqParams['request'] = reqString
-    reqParams['version'] = "v2"
 
     String replyString =  cc.formatXmlReply(reqString,reqUrn,reqParams)
     System.err.println("----")
@@ -87,7 +86,6 @@ class TestReplyGetCollectionSizeIntegr extends GroovyTestCase {
 <cite:request>
     <requestUrn>urn:cite2:hmt:pageroi.v1:</requestUrn>
     <request>GetCollectionSize</request>
-    <version>v2</version>
     <resolvedUrn>urn:cite2:hmt:pageroi.v1:</resolvedUrn>
 </cite:request>
 <cite:reply>

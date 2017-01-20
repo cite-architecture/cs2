@@ -148,18 +148,18 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
     <offset>10</offset>
     <limit>5</limit>
     <resolvedUrn>urn:cite2:hmt:pageroi.v1:</resolvedUrn>
-    <count>40</count>
+    <count>20</count>
     <prevOffset>5</prevOffset>
     <prevLimit>5</prevLimit>
     <nextOffset>15</nextOffset>
     <nextLimit>5</nextLimit>
 </cite:request>
 <cite:reply>
-  <urn>urn:cite2:hmt:pageroi.v1:2.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:23.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:23.v2</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:24.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:24.v2</urn>
+<urn>urn:cite2:hmt:pageroi.v1:31</urn>
+<urn>urn:cite2:hmt:pageroi.v1:36</urn>
+<urn>urn:cite2:hmt:pageroi.v1:39</urn>
+<urn>urn:cite2:hmt:pageroi.v1:4</urn>
+<urn>urn:cite2:hmt:pageroi.v1:41</urn>
 </cite:reply>
 </GetPagedValidReff>
 """
@@ -182,7 +182,6 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
     def reqParams = [:]
     reqParams['urn'] = reqUrn.toString()
     reqParams['request'] = reqString
-    reqParams['version'] = "v1"
     reqParams['offset'] = "3"
     reqParams['limit'] = "5"
 
@@ -196,7 +195,6 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
 <cite:request>
     <requestUrn>urn:cite2:hmt:pageroi.v1:</requestUrn>
     <request>GetPagedValidReff</request>
-    <version>v1</version>
     <offset>3</offset>
     <limit>5</limit>
     <resolvedUrn>urn:cite2:hmt:pageroi.v1:</resolvedUrn>
@@ -207,11 +205,11 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
     <nextLimit>5</nextLimit>
 </cite:request>
 <cite:reply>
-  <urn>urn:cite2:hmt:pageroi.v1:12.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:19.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:2.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:23.v1</urn>
-  <urn>urn:cite2:hmt:pageroi.v1:24.v1</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:12</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:19</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:2</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:23</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:24</urn>
 </cite:reply>
 </GetPagedValidReff>
 """
@@ -258,8 +256,8 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
     <nextLimit>2</nextLimit>
 </cite:request>
 <cite:reply>
-  <urn>urn:cite2:hmt:venAsign.v1:5.v1</urn>
-  <urn>urn:cite2:hmt:venAsign.v1:6.v1</urn>
+  <urn>urn:cite2:hmt:venAsign.v1:5</urn>
+  <urn>urn:cite2:hmt:venAsign.v1:6</urn>
 </cite:reply>
 </GetPagedValidReff>
 """

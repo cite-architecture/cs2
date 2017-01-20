@@ -71,7 +71,7 @@ class TestReplyGetVersionsOfObjectIntegr extends GroovyTestCase {
 
     //Set up params
     String reqString = "GetVersionsOfObject"
-    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:2.v2")
+    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:2")
 
 
     def reqParams = [:]
@@ -86,14 +86,14 @@ class TestReplyGetVersionsOfObjectIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetVersionsOfObject xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite2:hmt:pageroi.v1:2.v2</requestUrn>
+    <requestUrn>urn:cite2:hmt:pageroi.v1:2</requestUrn>
     <request>GetVersionsOfObject</request>
-    <resolvedUrn>urn:cite2:hmt:pageroi.v1:2.v2</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:pageroi.v1:2</resolvedUrn>
 </cite:request>
 <cite:reply>
     <versions>
-      <version>urn:cite2:hmt:pageroi.v1:2.v1</version>
-      <version>urn:cite2:hmt:pageroi.v1:2.v2</version>
+      <version>urn:cite2:hmt:pageroi.v1:2</version>
+      <version>urn:cite2:hmt:pageroi.v2:2</version>
     </versions>
 </cite:reply>
 </GetVersionsOfObject>

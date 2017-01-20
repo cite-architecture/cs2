@@ -286,48 +286,6 @@ class CcGraph {
     }
   }
 
-  /** Returns all versions present for a given object. That is to say
-	* Looks in every version of a collection to find matching object-level URNs.
-  * @param Cite2Urn
-  * @returns ArrayList of Cite2Urns
-  */
-  ArrayList getVersionsOfObject(Cite2Urn urn)
-  throws Exception {
-    ArrayList replyArray = []
-    String tempUrnString
-    Cite2Urn queryUrn
-    if ( urn.isRange() ){
-      String rangeBeginString = urn.getRangeBegin()
-      Cite2Urn rangeBeginUrn = new Cite2Urn(rangeBeginString)
-      if (rangeBeginUrn.hasObjectId()){
-        tempUrnString = rangeBeginUrn.reduceToObject()
-        } else { // Is not an object-level URN
-          throw new Exception( "CcGraph.getVersionsOfObject: ${rangeBeginUrn} is not an object-level URN.")
-        }
-        } else {
-          if (urn.hasObjectId()){
-            tempUrnString = urn.reduceToObject()
-            } else { // Is not an object-level URN
-              throw new Exception( "CcGraph.getVersionsOfObject: ${urn} is not an object-level URN.")
-            }
-          }
-          queryUrn = new Cite2Urn(tempUrnString)
-          String qs = QueryBuilder.getVersionsOfObjectQuery(queryUrn)
-          String reply = sparql.getSparqlReply("application/json", qs)
-          JsonSlurper slurper = new groovy.json.JsonSlurper()
-          def parsedReply = slurper.parseText(reply)
-          parsedReply.results.bindings.each { bndng ->
-            if (bndng.v) {
-              try {
-                replyArray << new Cite2Urn( bndng.v?.value )
-                } catch (Exception e ) {
-                  throw new Exception ( "CcGraph.getVersionsOfObject: Bad data ( ${bndng.v?.value} )")
-                }
-              }
-            }
-            return replyArray
-          }
-
 
   /** Returns the Cite2Urn for the first object in an ordered collection.
   * @param Cite2Urn
@@ -354,7 +312,7 @@ class CcGraph {
         if ((tempUrnString == "") || (tempUrnString == null)){
           throw new Exception( "CcGraph.getFirstUrn: ${urn.toString()}. No valid firstUrn for collection ${collUrn.toString()}")
         } else {
-          replyMap['resolvedUrn'] = urn
+          replyMap['resolvedUrn'] = collUrn
           replyMap['firstUrn'] = new Cite2Urn(tempUrnString)
           return replyMap
         }
@@ -387,7 +345,7 @@ class CcGraph {
         if ((tempUrnString == "") || (tempUrnString == null)){
           throw new Exception( "CcGraph.getLastUrn: ${urn.toString()}. No valid lastUrn for collection ${collUrn.toString()}")
         } else {
-          replyMap['resolvedUrn'] = urn
+          replyMap['resolvedUrn'] = collUrn
           replyMap['lastUrn'] = new Cite2Urn(tempUrnString)
           return replyMap
         }
@@ -429,10 +387,23 @@ class CcGraph {
   * @param Cite2Urn
   * @returns Map ['resolvedUrn': Cite2Urn, 'urns': ArrayList of Cite2Urns]
   */
-  Map getValidReff(Cite2Urn urn){
+  Map getValidReff(Cite2Urn urn)
+		throws Exception {
+			Cite2Urn rUrn = resolveVersion(urn)
+			Cite2Urn collUrn = rUrn.reduceToCollectionVersion()
     // Is it an object or a range?
-    if ( urn.isRange() || urn.hasObjectId() ){
+    if ( urn.isRange() ){
+			if (isOrdered(collUrn) == false ){
+				throw new Exception("CcGraph. getValidReff. ${collUrn} is not an ordered collection, so it cannot have a range-URN.")
+			}
       return gvrForRange(urn)
+		} else if ( urn.hasObjectId()){
+			def returnMap = [:]
+			returnMap["resolvedUrn"] = rUrn
+			def gvrUrns = []
+			gvrUrns << rUrn
+			returnMap["urns"] = gvrUrns
+			return returnMap
     } else {
       return gvrForCollection(urn)
     }
@@ -441,14 +412,97 @@ class CcGraph {
   Map gvrForCollection(Cite2Urn urn)
   throws Exception {
 		def returnMap = [:]
+		def gvrUrns = []
+		Cite2Urn qUrn = resolveVersion(urn).reduceToCollectionVersion()
+		returnMap["resolvedUrn"] = qUrn
+
+		String qs = QueryBuilder.getGVRQuery(qUrn)
+
+		String reply = sparql.getSparqlReply("application/json", qs)
+		JsonSlurper slurper = new groovy.json.JsonSlurper()
+		def parsedReply = slurper.parseText(reply)
+		if (parsedReply.results.bindings.size) {
+			parsedReply.results.bindings.each{ bb ->
+				gvrUrns << new Cite2Urn(bb.urn.value)
+			}
+			returnMap["urns"] = gvrUrns
+		} else {
+			throw new Exception( "CcGraph.getValidReff: ${urn.toString()}, resolved to ${qUrn} did not yield any valid URNs..")
+		}
+
 		return returnMap
   }
 
   Map gvrForRange(Cite2Urn urn)
   throws Exception {
 		def returnMap = [:]
+		def gvrUrns = []
+		Cite2Urn qUrn = resolveVersion(urn)
+		returnMap['resolvedUrn'] = qUrn
+		if (urn.isRange() == false ){
+			throw new Exception("CcGraph. gvrForRange. ${urn} does not specify a range .")
+		}
+
+		Cite2Urn range1 = qUrn.getRangeBegin()
+		Cite2Urn range2 = qUrn.getRangeEnd()
+		Cite2Urn collUrn = qUrn.reduceToCollectionVersion()
+
+		Integer startSeq = getSequenceForObject(range1)
+		Integer endSeq = getSequenceForObject(range2)
+
+		String qs = QueryBuilder.getGVRRangeQuery(collUrn, startSeq, endSeq)
+
+		String reply = sparql.getSparqlReply("application/json", qs)
+		JsonSlurper slurper = new groovy.json.JsonSlurper()
+		def parsedReply = slurper.parseText(reply)
+		if (parsedReply.results.bindings.size) {
+			parsedReply.results.bindings.each{ bb ->
+				gvrUrns << new Cite2Urn(bb.urn.value)
+			}
+			returnMap["urns"] = gvrUrns
+		} else {
+			throw new Exception( "CcGraph.getValidReff: ${urn.toString()}, resolved to ${qUrn} did not yield any valid URNs..")
+		}
+
 		return returnMap
   }
+
+
+  /** Returns the olo:item sequence number for an object.
+	*   An exception if the object is not from an ordered collection,
+	*   or if the URN is a range, or lacking an ObjectId.
+	*   @param Cite2Urn
+	*   @returns Integer
+	*/
+	Integer getSequenceForObject(Cite2Urn urn){
+
+		if (urn.isRange()){
+			throw new Exception("CcGraph.getSequenceForObject: ${urn} is a range.")
+		}
+		if (urn.hasObjectId() == false){
+			throw new Exception("CcGraph.getSequenceForObject: ${urn} lacks an object-ID.")
+		}
+
+		Cite2Urn qUrn = resolveVersion(urn)
+		Integer seq
+
+		String qs = QueryBuilder.getSequenceQuery(qUrn)
+
+		String reply = sparql.getSparqlReply("application/json", qs)
+		JsonSlurper slurper = new groovy.json.JsonSlurper()
+		def parsedReply = slurper.parseText(reply)
+		if (parsedReply.results.bindings.size) {
+			if (parsedReply.results.bindings[0].seq.value.isInteger()){
+				seq = parsedReply.results.bindings[0].seq.value.toInteger()
+			} else {
+				throw new Exception( "CcGraph.getSequenceForObject: ${urn.toString()}, yielded a sequence that was unaccountably not an integer.")
+			}
+		} else {
+			throw new Exception( "CcGraph.getSequenceForObject: ${urn.toString()}, did not yield a sequence.")
+		}
+
+			return seq
+	}
 
 
 
@@ -796,21 +850,12 @@ class CcGraph {
     ArrayList validReff = getValidReff(urn)['urns']
     def objects = []
     validReff.each{ vr ->
-      objects << getObject(new Cite2Urn(vr))
+      objects << getObject(vr)
     }
     return objects
 
 }
 
-/**Given a Cite2Urn, an offset, and a limit, returns a Map, containing a
-* Collection-URN and an Array of Cite2Urns. The urn of the CCOSet
-* will reflect the data actually returned.
-* @param Cite2Urn
-* @returns Map ['urn':Cite2Urn, 'offset':integer, 'limit':integer, 'size':BigInteger 'objects':ArrayList]
-*/
-Map getPagedReff(Cite2Urn paramUrn, Integer offset, Integer limit){
-  return getPagedReff(paramUrn, offset, limit, "")
-}
 
 /**Given a Cite2Urn, an offset, a limit, and a version-string, returns a Map, containing a
 * Collection-URN and an Array of Cite2Urns. The urn of the CCOSet
@@ -818,7 +863,7 @@ Map getPagedReff(Cite2Urn paramUrn, Integer offset, Integer limit){
 * @param Cite2Urn
 * @returns Map ['urn':Cite2Urn, 'offset':integer, 'limit':integer, 'size':BigInteger 'objects':ArrayList]
 */
-Map getPagedReff(Cite2Urn paramUrn, Integer offset, Integer limit, String versionString)
+Map getPagedReff(Cite2Urn paramUrn, Integer offset, Integer limit)
 throws Exception {
 
   if ( (offset < 1) || (limit < 1)){
@@ -827,46 +872,42 @@ throws Exception {
 
   def pagedReff = [:]
   Cite2Urn urn
-  if (paramUrn.hasObjectId()){
-    urn = resolveVersion(urn)
-    } else {
-      urn = paramUrn
+	System.err.println("Going to call resolveVersion on ${urn}")
+  urn = resolveVersion(paramUrn)
+  pagedReff['resolvedUrn'] = urn
+  pagedReff['offset'] = offset
+  pagedReff['limit'] = limit
+
+  def urns = [] // will hold the CiteCollectionObjects
+
+  ArrayList firstArray = getValidReff(urn)['urns']
+  pagedReff['size'] = firstArray.size()
+
+  // let's get absolute values for start and end
+  def startIndex = offset - 1
+  def endIndex = startIndex + limit - 1
+
+
+  if (offset > firstArray.size()){
+    pagedReff['urns'] = urns // that is, an empty array
+
+
+  } else {
+    if ( endIndex > firstArray.size()){
+
+
+      endIndex = firstArray.size() - 1
+      pagedReff['limit'] = firstArray.size() - offset + 1
+
     }
-    pagedReff['resolvedUrn'] = urn
-    pagedReff['offset'] = offset
-    pagedReff['limit'] = limit
-    pagedReff['versionString'] = versionString
-
-    def urns = [] // will hold the CiteCollectionObjects
-
-    ArrayList firstArray = getValidReff(urn,versionString)['urns']
-    pagedReff['size'] = firstArray.size()
-
-    // let's get absolute values for start and end
-    def startIndex = offset - 1
-    def endIndex = startIndex + limit - 1
-
-
-    if (offset > firstArray.size()){
-      pagedReff['urns'] = urns // that is, an empty array
-
-
-    } else {
-      if ( endIndex > firstArray.size()){
-
-
-        endIndex = firstArray.size() - 1
-        pagedReff['limit'] = firstArray.size() - offset + 1
-
-      }
-      for (i in (startIndex..endIndex) ){
-        urns << new Cite2Urn(firstArray[i])
-      }
-      pagedReff['urns'] = urns
+    for (i in (startIndex..endIndex) ){
+      urns << firstArray[i]
     }
-
-    return pagedReff
+    pagedReff['urns'] = urns
   }
+
+  return pagedReff
+}
 
 /**Given a Cite2Urn, an offset, and a limit, returns a Map, containing a
 * a resolvedUrn, an offset, a limit, and an array of CiteCollectionObjects. The resolvedUrn will reflect the data actually returned.
@@ -992,11 +1033,8 @@ throws Exception {
 // GetCollectionSize -----------------------------------
       case "GetCollectionSize":
         Map getCollectionSizeMap
-        if (params['version']){
-          getCollectionSizeMap = getCollectionSize(requestUrn,params['version'])
-        } else {
-          getCollectionSizeMap = getCollectionSize(requestUrn)
-        }
+        getCollectionSizeMap = getCollectionSize(requestUrn)
+
         replyString += "<resolvedUrn>${getCollectionSizeMap['resolvedUrn']}</resolvedUrn>\n"
         replyString += "</cite:request>\n<cite:reply>\n"
         replyString += "<count>${getCollectionSizeMap['size']}</count>\n"
@@ -1008,18 +1046,8 @@ throws Exception {
       case "GetValidReff":
 
         // Lets assemble the params we need, all at once
-        String gvrVersionString
         Boolean gvrSafeMode
 
-        if (params['version']){
-          if (params['version'] == null){
-              gvrVersionString = ""
-          } else if (params['version'] == "" ){
-              gvrVersionString = ""
-          } else {
-            gvrVersionString = params['version']
-          }
-        }
         if (params['safemode']){
           if (params['safemode'] == "on"){
             gvrSafeMode = true
@@ -1033,8 +1061,9 @@ throws Exception {
 
       Map gvr
 
-     gvr = getValidReff(requestUrn,gvrVersionString)
-
+     gvr = getValidReff(requestUrn)
+     System.err.println("-----\n${gvr}\n-----")
+		 System.err.println("resolvedUrn: ${gvr['resolvedUrn']}\n")
       if(gvrSafeMode == true ){
 
           // Check to see if there are more than 50 urns
@@ -1055,11 +1084,6 @@ throws Exception {
       }
 
       replyString += "<resolvedUrn>${gvr['resolvedUrn']}</resolvedUrn>\n"
-      if ( params['version']){
-        if ( (params['version'] == null) || (params['version'] == "")){
-          replyString += "<version>${gvr['versionString']}</version>\n"
-        }
-      }
       replyString += "</cite:request>\n<cite:reply>\n"
       gvr['urns'].each { uu ->
         replyString += "<urn>${uu.toString()}</urn>\n"
@@ -1076,7 +1100,6 @@ throws Exception {
         // Sort out params
         Integer limit
         Integer offset
-        String versionString
         if (params['limit']){
           limit = params['limit'].toInteger()
         } else {
@@ -1087,17 +1110,8 @@ throws Exception {
         } else {
           throw new Exception("SparqlCC: GetPagedValidReff. Missing paramter 'offset'.")
         }
-        if (params['version']){
-          if (params['version'] != null){
-            versionString = params['version']
-          } else {
-            versionString = ""
-          }
-        } else {
-          versionString = ""
-        }
 
-        Map pagedGvr = getPagedReff(requestUrn, offset, limit, versionString)
+        Map pagedGvr = getPagedReff(requestUrn, offset, limit)
 
         Map pagedNav = calculatePagedNavigation(new BigInteger(pagedGvr['size']),offset,limit)
 
@@ -1141,8 +1155,9 @@ throws Exception {
       break;
 
 // GetVersionsOfObject -----------------------------------
+
       case "GetVersionsOfObject":
-        ArrayList urns = getVersionsOfObject(requestUrn)
+        ArrayList urns = versionsForObject(requestUrn)
         replyString += "<resolvedUrn>${requestUrn}</resolvedUrn>\n"
         replyString += "</cite:request>\n<cite:reply>\n"
         replyString += "<versions>\n"
@@ -1154,6 +1169,7 @@ throws Exception {
         replyString += "</${request}>"
 
       break;
+
 
 // GetRange -----------------------------------
       case "GetRange":
@@ -1220,6 +1236,7 @@ throws Exception {
           throw new Exception("SparqlCC: GetPaged. Missing paramter 'offset'.")
         }
 
+				System.err.println("Going to call getPaged with:\n${requestUrn}\n${offset}\n${limit}\n-----")
         Map ccos = getPaged(requestUrn, offset, limit)
         Map pagedNav = calculatePagedNavigation(new BigInteger(ccos['size']),offset,limit)
 

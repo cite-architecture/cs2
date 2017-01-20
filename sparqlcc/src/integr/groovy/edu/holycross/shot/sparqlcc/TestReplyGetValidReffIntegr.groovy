@@ -39,9 +39,9 @@ class TestReplyGetValidReffIntegr extends GroovyTestCase {
     reqParams['request'] = reqString
 
     String replyString =  cc.formatXmlReply(reqString,reqUrn,reqParams)
-    System.err.println("----")
-    System.err.println(replyString)
-    System.err.println("----")
+    //System.err.println("----")
+    //System.err.println(replyString)
+    //System.err.println("----")
 
     String expectedXml = """
 <GetValidReff xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
@@ -51,6 +51,26 @@ class TestReplyGetValidReffIntegr extends GroovyTestCase {
     <resolvedUrn>urn:cite2:hmt:pageroi.v1:</resolvedUrn>
 </cite:request>
 <cite:reply>
+<urn>urn:cite2:hmt:pageroi.v1:1</urn>
+<urn>urn:cite2:hmt:pageroi.v1:10</urn>
+<urn>urn:cite2:hmt:pageroi.v1:12</urn>
+<urn>urn:cite2:hmt:pageroi.v1:19</urn>
+<urn>urn:cite2:hmt:pageroi.v1:2</urn>
+<urn>urn:cite2:hmt:pageroi.v1:23</urn>
+<urn>urn:cite2:hmt:pageroi.v1:24</urn>
+<urn>urn:cite2:hmt:pageroi.v1:3</urn>
+<urn>urn:cite2:hmt:pageroi.v1:30</urn>
+<urn>urn:cite2:hmt:pageroi.v1:31</urn>
+<urn>urn:cite2:hmt:pageroi.v1:36</urn>
+<urn>urn:cite2:hmt:pageroi.v1:39</urn>
+<urn>urn:cite2:hmt:pageroi.v1:4</urn>
+<urn>urn:cite2:hmt:pageroi.v1:41</urn>
+<urn>urn:cite2:hmt:pageroi.v1:49</urn>
+<urn>urn:cite2:hmt:pageroi.v1:5</urn>
+<urn>urn:cite2:hmt:pageroi.v1:50</urn>
+<urn>urn:cite2:hmt:pageroi.v1:6</urn>
+<urn>urn:cite2:hmt:pageroi.v1:7</urn>
+<urn>urn:cite2:hmt:pageroi.v1:8</urn>
 </cite:reply>
 </GetValidReff>
 """
@@ -73,19 +93,17 @@ class TestReplyGetValidReffIntegr extends GroovyTestCase {
     def reqParams = [:]
     reqParams['urn'] = reqUrn.toString()
     reqParams['request'] = reqString
-    reqParams['version'] = "v1"
 
     String replyString =  cc.formatXmlReply(reqString,reqUrn,reqParams)
-    System.err.println("----")
-    System.err.println(replyString)
-    System.err.println("----")
+    //System.err.println("----")
+    //System.err.println(replyString)
+    //System.err.println("----")
 
     String expectedXml = """
 <GetValidReff xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
     <requestUrn>urn:cite2:hmt:pageroi.v1:</requestUrn>
     <request>GetValidReff</request>
-    <version>v1</version>
     <resolvedUrn>urn:cite2:hmt:pageroi.v1:</resolvedUrn>
 </cite:request>
 <cite:reply>
@@ -126,7 +144,7 @@ class TestReplyGetValidReffIntegr extends GroovyTestCase {
 
     //Set up params
     String reqString = "GetValidReff"
-    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:5-7")
+    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:venAsign:5-7")
 
 
     def reqParams = [:]
@@ -141,9 +159,9 @@ class TestReplyGetValidReffIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetValidReff xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite2:hmt:venAsign.v1:5-7</requestUrn>
+    <requestUrn>urn:cite2:hmt:venAsign:5-7</requestUrn>
     <request>GetValidReff</request>
-    <resolvedUrn>urn:cite2:hmt:venAsign.v1:5.v1-7.v1</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:venAsign.v1:5-7</resolvedUrn>
 </cite:request>
 <cite:reply>
   <urn>urn:cite2:hmt:venAsign.v1:5</urn>
