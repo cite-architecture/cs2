@@ -56,6 +56,11 @@ test {
   exclude '**/*Integr.*'
 }
 
+test.doFirst{
+  System.out.println "Running CC tests now...."
+  System.out.println "Using CITE version ${versionMap['cite']}."
+}
+
 
 task ccIntegration(type: Test, dependsOn: 'test') {
   description  = "Runs integration tests against test data set served from fuseki."
@@ -66,10 +71,11 @@ task ccIntegration(type: Test, dependsOn: 'test') {
   testClassesDir = sourceSets.integr.output.classesDir
   classpath = sourceSets.integr.runtimeClasspath
 }
+
 ccIntegration.doFirst {
   System.out.println "Running CC integration tests now...."
+  System.out.println "Using CITE version ${versionMap['cite']}."
 }
-
 
 gretty {
   initParameter("tripleserver", "http://localhost:8080/fuseki/cc/query")

@@ -4,7 +4,7 @@ import static org.junit.Assert.*
 import org.junit.Test
 
 import edu.holycross.shot.sparqlcc.CcGraph
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -12,107 +12,105 @@ import edu.holycross.shot.prestochango.*
 class TestResolveVersionIntegr extends GroovyTestCase {
 
 
-  String baseUrl = "http://localhost:8080/fuseki/cc/query"
-  CiteUrn versionedUrn =  new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086.v1")
-  CiteUrn versionedRangeUrn = new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086.v1-VA085VN_0087.v1")
-  CiteUrn extendedUrn =   new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086.v1@12,12,12,12")
-  CiteUrn unversionedExtendedUrn =   new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086@12,12,12,12")
-  CiteUrn objectUrn =     new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086")
-  CiteUrn collectionUrn = new CiteUrn("urn:cite:hmt:vaimg")
-  CiteUrn rangeUrn =      new CiteUrn("urn:cite:hmt:vaimg.VA085RN_0086-VA085VN_0087")
-  CiteUrn notInDataUrn =      new CiteUrn("urn:cite:hmt:nonColl.noObject1")
+	String baseUrl = "http://localhost:8080/fuseki/cc/query"
 
-  @Test
-  void testTest() {
-    assert true  }
-
-
-  // Simple object example, should work
-  @Test
-  void testResolveVersion1() {
-    Sparql sparql = new Sparql(baseUrl)
-	CcGraph cc = new CcGraph(sparql)
-
-    assert cc.resolveVersion(objectUrn).toString() == versionedUrn.toString()
-  }
-  // Has a version. Should work
-  @Test
-  void testResolveVersion2() {
-    Sparql sparql = new Sparql(baseUrl)
-	CcGraph cc = new CcGraph(sparql)
-
-    assert cc.resolveVersion(versionedUrn).toString() == versionedUrn.toString()
-  }
-  // Range URN. Should work
-  @Test
-  void testResolveVersion3() {
-    Sparql sparql = new Sparql(baseUrl)
-	  CcGraph cc = new CcGraph(sparql)
-
-    assert cc.resolveVersion(rangeUrn).toString() == versionedRangeUrn.toString()
-  }
-
-
-
-  // Should work
-  @Test
-  void testVersionForObject1() {
-    Sparql sparql = new Sparql(baseUrl)
-	CcGraph cc = new CcGraph(sparql)
-
-    assert cc.versionForObject(objectUrn).toString() == versionedUrn.toString()
-  }
-
-  // Range URN throws an exception
-  @Test
-  void testVersionForObject2() {
-    Sparql sparql = new Sparql(baseUrl)
-	CcGraph cc = new CcGraph(sparql)
-
-	shouldFail {
-		assert cc.versionForObject(rangeUrn).toString() == rangeUrn.toString()
+	@Test
+	void testTest() {
+		assert true
 	}
-  }
 
-  // Collection-level URN throws an exception
-  @Test
-  void testVersionForObject3() {
-    Sparql sparql = new Sparql(baseUrl)
-	CcGraph cc = new CcGraph(sparql)
 
-	shouldFail {
-		assert cc.versionForObject(collectionUrn).toString() == collectionUrn.toString()
+	// Simple object example, should work
+	@Test
+	void testResolveVersion1() {
+		Sparql sparql = new Sparql(baseUrl)
+		CcGraph cc = new CcGraph(sparql)
+	  Cite2Urn urn =  new Cite2Urn("urn:cite2:hmt:vaimg:VA085RN_0086")
+
+		assert cc.resolveVersion(urn).toString() == "urn:cite2:hmt:vaimg.v1:VA085RN_0086"
 	}
-  }
+	// Has a version. Should work
+	@Test
+	void testResolveVersion2() {
+		Sparql sparql = new Sparql(baseUrl)
+		CcGraph cc = new CcGraph(sparql)
+	  Cite2Urn urn =  new Cite2Urn("urn:cite2:hmt:vaimg.v1:VA085RN_0086")
 
-  // Urn with version, returns itself
-  @Test
-  void testVersionForObject4() {
-    Sparql sparql = new Sparql(baseUrl)
-    CcGraph cc = new CcGraph(sparql)
+		assert cc.resolveVersion(urn).toString() == "urn:cite2:hmt:vaimg.v1:VA085RN_0086"
+	}
+	// Range URN. Should work
+	@Test
+	void testResolveVersion3() {
+		Sparql sparql = new Sparql(baseUrl)
+		CcGraph cc = new CcGraph(sparql)
+	  Cite2Urn urn =  new Cite2Urn("urn:cite2:hmt:vaimg:VA085RN_0086-VA089RN_0090")
 
-    assert cc.versionForObject(versionedUrn).toString() == versionedUrn.toString()
-  }
+		assert cc.resolveVersion(urn).toString() == "urn:cite2:hmt:vaimg.v1:VA085RN_0086-VA089RN_0090"
+	}
 
 
-  // Urn with extended ref; invalid without version, so should fail
-  @Test
-  void testVersionForObject5() {
-    Sparql sparql = new Sparql(baseUrl)
-    CcGraph cc = new CcGraph(sparql)
 
-    shouldFail {
-      assert cc.versionForObject(unversionedExtendedUrn).toString() == extendedUrn.toString()
-    }
-  }
+	// Should work
+	@Test
+	void testResolveVersion4() {
+		Sparql sparql = new Sparql(baseUrl)
+		CcGraph cc = new CcGraph(sparql)
+	  Cite2Urn urn =  new Cite2Urn("urn:cite2:hmt:vaimg.v1:VA085RN_0086-VA089RN_0090")
 
-  	// Good urn, but not in data, returns null
-  @Test
-  void testVersionForObject6() {
-    Sparql sparql = new Sparql(baseUrl)
-	CcGraph cc = new CcGraph(sparql)
+		assert cc.resolveVersion(urn).toString() == "urn:cite2:hmt:vaimg.v1:VA085RN_0086-VA089RN_0090"
+	}
 
-	assert cc.versionForObject(notInDataUrn) == null
-  }
+	// Subref
+	@Test
+	void testResolveVersion5() {
+		Sparql sparql = new Sparql(baseUrl)
+		CcGraph cc = new CcGraph(sparql)
+	  Cite2Urn urn =  new Cite2Urn("urn:cite2:hmt:vaimg.v1:VA085RN_0086@12,12,12,12-VA089RN_0090")
+
+		assert cc.resolveVersion(urn).toString() == "urn:cite2:hmt:vaimg.v1:VA085RN_0086@12,12,12,12-VA089RN_0090"
+	}
+
+	// Collection-level URN should work
+	@Test
+	void testResolveVersion6() {
+		Sparql sparql = new Sparql(baseUrl)
+		CcGraph cc = new CcGraph(sparql)
+	  Cite2Urn urn =  new Cite2Urn("urn:cite2:hmt:vaimg:")
+
+		assert cc.resolveVersion(urn).toString() == "urn:cite2:hmt:vaimg.v1:"
+	}
+
+	// Urn with version, returns itself
+	@Test
+	void testResolveVersion7() {
+		Sparql sparql = new Sparql(baseUrl)
+		CcGraph cc = new CcGraph(sparql)
+	  Cite2Urn urn =  new Cite2Urn("urn:cite2:hmt:vaimg.v1:VA085RN_0086")
+
+		assert cc.resolveVersion(urn).toString() == "urn:cite2:hmt:vaimg.v1:VA085RN_0086"
+	}
+
+
+	// Good urn, but not in data, throws exception
+	@Test
+	void testResolveVersion8() {
+		Sparql sparql = new Sparql(baseUrl)
+		CcGraph cc = new CcGraph(sparql)
+	  Cite2Urn urn =  new Cite2Urn("urn:cite2:hmt:vaimg:notAnObject")
+		assert shouldFail{
+			assert cc.resolveVersion(urn)
+		}
+	}
+
+	// Good but not in data, returns throws exception
+	@Test
+	void testResolveVersion9() {
+		Sparql sparql = new Sparql(baseUrl)
+		CcGraph cc = new CcGraph(sparql)
+	  Cite2Urn urn =  new Cite2Urn("urn:cite2:hmt:notACollection:12")
+		assert shouldFail{
+			assert cc.resolveVersion(urn)
+		}
+	}
 
 }

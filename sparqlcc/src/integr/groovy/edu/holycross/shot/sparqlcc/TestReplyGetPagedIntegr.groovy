@@ -5,7 +5,7 @@ import org.junit.Test
 import org.custommonkey.xmlunit.*
 
 import edu.holycross.shot.sparqlcc.CcGraph
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -31,7 +31,7 @@ class TestReplyGetPagedIntegr extends GroovyTestCase {
 
     //Set up params
     String reqString = "GetPaged"
-    CiteUrn reqUrn = new CiteUrn("urn:cite:hmt:venAsign")
+    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:")
 
 
     def reqParams = [:]
@@ -48,11 +48,11 @@ class TestReplyGetPagedIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetPaged xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite:hmt:venAsign</requestUrn>
+    <requestUrn>urn:cite2:hmt:venAsign.v1:</requestUrn>
     <request>GetPaged</request>
     <offset>5</offset>
     <limit>3</limit>
-    <resolvedUrn>urn:cite:hmt:venAsign</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:venAsign.v1:</resolvedUrn>
     <count>2903</count>
     <prevOffset>2</prevOffset>
     <prevLimit>3</prevLimit>
@@ -60,36 +60,36 @@ class TestReplyGetPagedIntegr extends GroovyTestCase {
     <nextLimit>3</nextLimit>
 </cite:request>
 <cite:reply>
-  <citeObjects>
-      <citeObject urn="urn:cite:hmt:venAsign.5.v1">
-          <citeProperty name="CriticalSign" label="A URN identifying the kind of critical sign" type="citeurn">urn:cite:hmt:critsigns.asterisk</citeProperty>
-          <citeProperty name="Label" label="Label" type="string">Sign 5.v1</citeProperty>
-          <citeProperty name="OccurrenceUrn" label="The URN for this occurrence of a critical sign" type="citeurn">urn:cite:hmt:venAsign.5.v1</citeProperty>
-          <citeProperty name="Sequence" label="Sequence" type="number">5</citeProperty>
-          <citeProperty name="TextPassage" label="The Iliadic passage that the sign marks." type="ctsurn">urn:cts:greekLit:tlg0012.tlg001.msA:1.12</citeProperty>
-          <prevUrn>urn:cite:hmt:venAsign.4.v1</prevUrn>
-          <nextUrn>urn:cite:hmt:venAsign.6.v1</nextUrn>
-      </citeObject>
-      <citeObject urn="urn:cite:hmt:venAsign.6.v1">
-          <citeProperty name="CriticalSign" label="A URN identifying the kind of critical sign" type="citeurn">urn:cite:hmt:critsigns.asterisk</citeProperty>
-          <citeProperty name="Label" label="Label" type="string">Sign 6.v1</citeProperty>
-          <citeProperty name="OccurrenceUrn" label="The URN for this occurrence of a critical sign" type="citeurn">urn:cite:hmt:venAsign.6.v1</citeProperty>
-          <citeProperty name="Sequence" label="Sequence" type="number">6</citeProperty>
-          <citeProperty name="TextPassage" label="The Iliadic passage that the sign marks." type="ctsurn">urn:cts:greekLit:tlg0012.tlg001.msA:1.13</citeProperty>
-          <prevUrn>urn:cite:hmt:venAsign.5.v1</prevUrn>
-          <nextUrn>urn:cite:hmt:venAsign.7.v1</nextUrn>
-      </citeObject>
-      <citeObject urn="urn:cite:hmt:venAsign.7.v1">
-          <citeProperty name="CriticalSign" label="A URN identifying the kind of critical sign" type="citeurn">urn:cite:hmt:critsigns.asterisk</citeProperty>
-          <citeProperty name="Label" label="Label" type="string">Sign 7.v1</citeProperty>
-          <citeProperty name="OccurrenceUrn" label="The URN for this occurrence of a critical sign" type="citeurn">urn:cite:hmt:venAsign.7.v1</citeProperty>
-          <citeProperty name="Sequence" label="Sequence" type="number">7</citeProperty>
-          <citeProperty name="TextPassage" label="The Iliadic passage that the sign marks." type="ctsurn">urn:cts:greekLit:tlg0012.tlg001.msA:1.14</citeProperty>
-          <prevUrn>urn:cite:hmt:venAsign.6.v1</prevUrn>
-          <nextUrn>urn:cite:hmt:venAsign.8.v1</nextUrn>
-      </citeObject>
-    </citeObjects>
-  </cite:reply>
+<citeObjects>
+<citeObject urn="urn:cite2:hmt:venAsign.v1:5">
+<citeProperty name="OccurrenceUrn" label="The URN for this occurrence of a critical sign" type="Cite2Urn">urn:cite2:hmt:venAsign.v1:5</citeProperty>
+<citeProperty name="Label" label="Label" type="string">Sign 5.v1</citeProperty>
+<citeProperty name="Sequence" label="Sequence" type="number">5</citeProperty>
+<citeProperty name="CriticalSign" label="A URN identifying the kind of critical sign" type="Cite2Urn">urn:cite2:hmt:critsigns:asterisk</citeProperty>
+<citeProperty name="TextPassage" label="The Iliadic passage that the sign marks." type="ctsurn">urn:cts:greekLit:tlg0012.tlg001.msA:1.12</citeProperty>
+<prevUrn>urn:cite2:hmt:venAsign.v1:4</prevUrn>
+<nextUrn>urn:cite2:hmt:venAsign.v1:6</nextUrn>
+</citeObject>
+<citeObject urn="urn:cite2:hmt:venAsign.v1:6">
+<citeProperty name="OccurrenceUrn" label="The URN for this occurrence of a critical sign" type="Cite2Urn">urn:cite2:hmt:venAsign.v1:6</citeProperty>
+<citeProperty name="Label" label="Label" type="string">Sign 6.v1</citeProperty>
+<citeProperty name="Sequence" label="Sequence" type="number">6</citeProperty>
+<citeProperty name="CriticalSign" label="A URN identifying the kind of critical sign" type="Cite2Urn">urn:cite2:hmt:critsigns:asterisk</citeProperty>
+<citeProperty name="TextPassage" label="The Iliadic passage that the sign marks." type="ctsurn">urn:cts:greekLit:tlg0012.tlg001.msA:1.13</citeProperty>
+<prevUrn>urn:cite2:hmt:venAsign.v1:5</prevUrn>
+<nextUrn>urn:cite2:hmt:venAsign.v1:7</nextUrn>
+</citeObject>
+<citeObject urn="urn:cite2:hmt:venAsign.v1:7">
+<citeProperty name="OccurrenceUrn" label="The URN for this occurrence of a critical sign" type="Cite2Urn">urn:cite2:hmt:venAsign.v1:7</citeProperty>
+<citeProperty name="Label" label="Label" type="string">Sign 7.v1</citeProperty>
+<citeProperty name="Sequence" label="Sequence" type="number">7</citeProperty>
+<citeProperty name="CriticalSign" label="A URN identifying the kind of critical sign" type="Cite2Urn">urn:cite2:hmt:critsigns:asterisk</citeProperty>
+<citeProperty name="TextPassage" label="The Iliadic passage that the sign marks." type="ctsurn">urn:cts:greekLit:tlg0012.tlg001.msA:1.14</citeProperty>
+<prevUrn>urn:cite2:hmt:venAsign.v1:6</prevUrn>
+<nextUrn>urn:cite2:hmt:venAsign.v1:8</nextUrn>
+</citeObject>
+</citeObjects>
+</cite:reply>
 </GetPaged>
 """
 
@@ -105,7 +105,8 @@ class TestReplyGetPagedIntegr extends GroovyTestCase {
 
     //Set up params
     String reqString = "GetPaged"
-    CiteUrn reqUrn = new CiteUrn("urn:cite:hmt:venAsign.5-8")
+    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:5-8")
+		System.err.println("reqUrn for testGetPaged2: ${reqUrn}")
 
 
     def reqParams = [:]
@@ -122,11 +123,11 @@ class TestReplyGetPagedIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetPaged xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite:hmt:venAsign.5-8</requestUrn>
+    <requestUrn>urn:cite2:hmt:venAsign.v1:5-8</requestUrn>
     <request>GetPaged</request>
     <offset>2</offset>
     <limit>2</limit>
-    <resolvedUrn>urn:cite:hmt:venAsign.5-8</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:venAsign.v1:5-8</resolvedUrn>
     <count>4</count>
     <prevOffset>0</prevOffset>
     <prevLimit>2</prevLimit>
@@ -135,24 +136,24 @@ class TestReplyGetPagedIntegr extends GroovyTestCase {
 </cite:request>
 <cite:reply>
   <citeObjects>
-      <citeObject urn="urn:cite:hmt:venAsign.6.v1">
-          <citeProperty name="CriticalSign" label="A URN identifying the kind of critical sign" type="citeurn">urn:cite:hmt:critsigns.asterisk</citeProperty>
-          <citeProperty name="Label" label="Label" type="string">Sign 6.v1</citeProperty>
-          <citeProperty name="OccurrenceUrn" label="The URN for this occurrence of a critical sign" type="citeurn">urn:cite:hmt:venAsign.6.v1</citeProperty>
-          <citeProperty name="Sequence" label="Sequence" type="number">6</citeProperty>
-          <citeProperty name="TextPassage" label="The Iliadic passage that the sign marks." type="ctsurn">urn:cts:greekLit:tlg0012.tlg001.msA:1.13</citeProperty>
-          <prevUrn>urn:cite:hmt:venAsign.5.v1</prevUrn>
-          <nextUrn>urn:cite:hmt:venAsign.7.v1</nextUrn>
-      </citeObject>
-      <citeObject urn="urn:cite:hmt:venAsign.7.v1">
-          <citeProperty name="CriticalSign" label="A URN identifying the kind of critical sign" type="citeurn">urn:cite:hmt:critsigns.asterisk</citeProperty>
-          <citeProperty name="Label" label="Label" type="string">Sign 7.v1</citeProperty>
-          <citeProperty name="OccurrenceUrn" label="The URN for this occurrence of a critical sign" type="citeurn">urn:cite:hmt:venAsign.7.v1</citeProperty>
-          <citeProperty name="Sequence" label="Sequence" type="number">7</citeProperty>
-          <citeProperty name="TextPassage" label="The Iliadic passage that the sign marks." type="ctsurn">urn:cts:greekLit:tlg0012.tlg001.msA:1.14</citeProperty>
-          <prevUrn>urn:cite:hmt:venAsign.6.v1</prevUrn>
-          <nextUrn>urn:cite:hmt:venAsign.8.v1</nextUrn>
-      </citeObject>
+	<citeObject urn="urn:cite2:hmt:venAsign.v1:6">
+	<citeProperty name="OccurrenceUrn" label="The URN for this occurrence of a critical sign" type="Cite2Urn">urn:cite2:hmt:venAsign.v1:6</citeProperty>
+	<citeProperty name="Label" label="Label" type="string">Sign 6.v1</citeProperty>
+	<citeProperty name="Sequence" label="Sequence" type="number">6</citeProperty>
+	<citeProperty name="CriticalSign" label="A URN identifying the kind of critical sign" type="Cite2Urn">urn:cite2:hmt:critsigns:asterisk</citeProperty>
+	<citeProperty name="TextPassage" label="The Iliadic passage that the sign marks." type="ctsurn">urn:cts:greekLit:tlg0012.tlg001.msA:1.13</citeProperty>
+	<prevUrn>urn:cite2:hmt:venAsign.v1:5</prevUrn>
+	<nextUrn>urn:cite2:hmt:venAsign.v1:7</nextUrn>
+	</citeObject>
+	<citeObject urn="urn:cite2:hmt:venAsign.v1:7">
+	<citeProperty name="OccurrenceUrn" label="The URN for this occurrence of a critical sign" type="Cite2Urn">urn:cite2:hmt:venAsign.v1:7</citeProperty>
+	<citeProperty name="Label" label="Label" type="string">Sign 7.v1</citeProperty>
+	<citeProperty name="Sequence" label="Sequence" type="number">7</citeProperty>
+	<citeProperty name="CriticalSign" label="A URN identifying the kind of critical sign" type="Cite2Urn">urn:cite2:hmt:critsigns:asterisk</citeProperty>
+	<citeProperty name="TextPassage" label="The Iliadic passage that the sign marks." type="ctsurn">urn:cts:greekLit:tlg0012.tlg001.msA:1.14</citeProperty>
+	<prevUrn>urn:cite2:hmt:venAsign.v1:6</prevUrn>
+	<nextUrn>urn:cite2:hmt:venAsign.v1:8</nextUrn>
+	</citeObject>
     </citeObjects>
   </cite:reply>
 </GetPaged>

@@ -5,7 +5,7 @@ import org.junit.Test
 import org.custommonkey.xmlunit.*
 
 import edu.holycross.shot.sparqlcc.CcGraph
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -31,7 +31,7 @@ class TestReplyGetCollectionSizeIntegr extends GroovyTestCase {
 
     //Set up params
     String reqString = "GetCollectionSize"
-    CiteUrn reqUrn = new CiteUrn("urn:cite:hmt:pageroi")
+    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
 
 
     def reqParams = [:]
@@ -47,9 +47,9 @@ class TestReplyGetCollectionSizeIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetCollectionSize xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite:hmt:pageroi</requestUrn>
+    <requestUrn>urn:cite2:hmt:pageroi.v1:</requestUrn>
     <request>GetCollectionSize</request>
-    <resolvedUrn>urn:cite:hmt:pageroi</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:pageroi.v1:</resolvedUrn>
 </cite:request>
 <cite:reply>
     <count>20</count>
@@ -69,13 +69,12 @@ class TestReplyGetCollectionSizeIntegr extends GroovyTestCase {
 
     //Set up params
     String reqString = "GetCollectionSize"
-    CiteUrn reqUrn = new CiteUrn("urn:cite:hmt:pageroi")
+    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
 
 
     def reqParams = [:]
     reqParams['urn'] = reqUrn.toString()
     reqParams['request'] = reqString
-    reqParams['version'] = "v2"
 
     String replyString =  cc.formatXmlReply(reqString,reqUrn,reqParams)
     System.err.println("----")
@@ -85,10 +84,9 @@ class TestReplyGetCollectionSizeIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetCollectionSize xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite:hmt:pageroi</requestUrn>
+    <requestUrn>urn:cite2:hmt:pageroi.v1:</requestUrn>
     <request>GetCollectionSize</request>
-    <version>v2</version>
-    <resolvedUrn>urn:cite:hmt:pageroi</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:pageroi.v1:</resolvedUrn>
 </cite:request>
 <cite:reply>
     <count>20</count>

@@ -31,8 +31,6 @@ sourceSets {
 }
 
 dependencies {
-  //compile project(":common")
-  //testCompile project(":common")
 
   // Need to define all dependencies for integration tests:
   integrCompile "junit:junit:${versionMap['junit']}"

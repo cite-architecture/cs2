@@ -4,7 +4,7 @@ import static org.junit.Assert.*
 import org.junit.Test
 
 import edu.holycross.shot.sparqlcc.CcGraph
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -26,9 +26,10 @@ class TestGetRangeIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Unordered collection, should get just first- and last-identified object
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi.3.v1-24.v1")
-    ArrayList ccos = cc.getRange(urn)
-    assert ccos.size() == 2
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:3-24")
+		shouldFail{
+	    ArrayList ccos = cc.getRange(urn)
+		}
   }
 
   @Test
@@ -37,7 +38,7 @@ class TestGetRangeIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Ordered collection, should include 10 objects
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.2601.v1-2610.v1")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:2601-2610")
     ArrayList ccos = cc.getRange(urn)
     assert ccos.size() == 10
 
@@ -49,7 +50,7 @@ class TestGetRangeIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Should contain 1 object
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.2601.v1")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:2601")
     ArrayList ccos = cc.getRange(urn)
     assert ccos.size() == 1
 
@@ -61,7 +62,7 @@ class TestGetRangeIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // With an Ordered collection, you can't do this
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign.2610.v1-2601.v1")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:2610-2601")
     shouldFail {
       ArrayList ccos = cc.getRange(urn)
       assert ccos
@@ -76,7 +77,7 @@ class TestGetRangeIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Ordered collection, should include 10 objects
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:")
     ArrayList ccos = cc.getRange(urn)
     assert ccos.size() == 2903
 

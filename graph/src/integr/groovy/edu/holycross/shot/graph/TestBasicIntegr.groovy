@@ -5,7 +5,7 @@ import org.junit.Test
 
 
 import edu.harvard.chs.cite.CtsUrn
-import edu.holycross.shot.citeservlet.Sparql
+import edu.holycross.shot.sparqlcts.Sparql
 
 
 class TestBasicIntegr extends GroovyTestCase {
@@ -18,7 +18,7 @@ class TestBasicIntegr extends GroovyTestCase {
   @Test
   void testBasic() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.msA:1.2")
- 	println gs.graph.findAdjacent(urn)   
+ 	println gs.graph.findAdjacent(urn)
   }
-  
+
 }

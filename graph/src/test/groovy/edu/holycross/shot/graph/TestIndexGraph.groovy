@@ -3,8 +3,7 @@ package edu.holycross.shot.graph
 import static org.junit.Assert.*
 import org.junit.Test
 
-import edu.holycross.shot.citeservlet.Sparql
-
+import edu.holycross.shot.sparqlcts.Sparql
 import edu.harvard.chs.cite.CiteUrn
 import edu.harvard.chs.cite.CtsUrn
 
@@ -17,8 +16,8 @@ class TestIndexGraph extends GroovyTestCase {
   @Test
   void testConstructor() {
       Sparql sparql = new Sparql(baseUrl)
-	  IndexGraph ig = new IndexGraph(sparql)
+	    IndexGraph ig = new IndexGraph(sparql)
   }
 
-  
+
 }

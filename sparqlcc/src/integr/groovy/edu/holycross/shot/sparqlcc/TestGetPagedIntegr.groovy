@@ -4,7 +4,7 @@ import static org.junit.Assert.*
 import org.junit.Test
 
 import edu.holycross.shot.sparqlcc.CcGraph
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -27,7 +27,7 @@ class TestGetPagedIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Paged for a whole collection
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:")
     Map ccos = cc.getPaged(urn,1,10)
     assert ccos['resolvedUrn'].toString() == urn.toString()
     assert ccos['offset'] == 1
@@ -45,12 +45,12 @@ class TestGetPagedIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Paged for a whole collection
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
     Map ccos = cc.getPaged(urn,1,10)
     assert ccos['resolvedUrn'].toString() == urn.toString()
     assert ccos['offset'] == 1
     assert ccos['limit'] == 10
-    assert ccos['size'] == 40
+    assert ccos['size'] == 20
     assert ccos['objects'].size() == 10
     ccos['object'].each { o ->
         System.err.println(o.urn.toString())
@@ -63,12 +63,12 @@ class TestGetPagedIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Paged for a whole collection
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
     Map ccos = cc.getPaged(urn,11,10)
     assert ccos['resolvedUrn'].toString() == urn.toString()
     assert ccos['offset'] == 11
     assert ccos['limit'] == 10
-    assert ccos['size'] == 40
+    assert ccos['size'] == 20
     assert ccos['objects'].size() == 10
     ccos['object'].each { o ->
         System.err.println(o.urn.toString())
@@ -81,12 +81,12 @@ class TestGetPagedIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Paged for a whole collection
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
-    Map ccos = cc.getPaged(urn,31,10)
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
+    Map ccos = cc.getPaged(urn,11,10)
     assert ccos['resolvedUrn'].toString() == urn.toString()
-    assert ccos['offset'] == 31
+    assert ccos['offset'] == 11
     assert ccos['limit'] == 10
-    assert ccos['size'] == 40
+    assert ccos['size'] == 20
     assert ccos['objects'].size() == 10
     ccos['object'].each { o ->
         System.err.println(o.urn.toString())
@@ -100,13 +100,13 @@ class TestGetPagedIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Paged for a whole collection
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
-    Map ccos = cc.getPaged(urn,31,20)
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
+    Map ccos = cc.getPaged(urn,1,20)
     assert ccos['resolvedUrn'].toString() == urn.toString()
-    assert ccos['offset'] == 31
-    assert ccos['limit'] == 10
-    assert ccos['size'] == 40
-    assert ccos['objects'].size() == 10
+    assert ccos['offset'] == 1
+    assert ccos['limit'] == 20
+    assert ccos['size'] == 20
+    assert ccos['objects'].size() == 20
     ccos['object'].each { o ->
         System.err.println(o.urn.toString())
     }
@@ -119,12 +119,12 @@ class TestGetPagedIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Paged for a whole collection
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
-    Map ccos = cc.getPaged(urn,35,20)
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
+    Map ccos = cc.getPaged(urn,15,20)
     assert ccos['resolvedUrn'].toString() == urn.toString()
-    assert ccos['offset'] == 35
+    assert ccos['offset'] == 15
     assert ccos['limit'] == 6
-    assert ccos['size'] == 40
+    assert ccos['size'] == 20
     assert ccos['objects'].size() == 6
     ccos['object'].each { o ->
         System.err.println(o.urn.toString())
@@ -138,7 +138,7 @@ class TestGetPagedIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Paged for a whole collection, ordered
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:venAsign")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:")
     Map ccos = cc.getPaged(urn,2900,20)
     assert ccos['resolvedUrn'].toString() == urn.toString()
     assert ccos['offset'] == 2900
@@ -157,7 +157,7 @@ class TestGetPagedIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Paged for a whole collection
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
     shouldFail{
       Map ccos = cc.getPaged(urn,-1,20)
     }
@@ -169,7 +169,7 @@ class TestGetPagedIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Paged for a whole collection
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
     shouldFail{
       Map ccos = cc.getPaged(urn,1,-1)
     }
@@ -181,7 +181,7 @@ class TestGetPagedIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Paged for a whole collection
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
     shouldFail{
       Map ccos = cc.getPaged(urn,0,10)
     }
@@ -194,7 +194,7 @@ class TestGetPagedIntegr extends GroovyTestCase {
 	  CcGraph cc = new CcGraph(sparql)
 
     // Paged for a whole collection
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
     shouldFail{
       Map ccos = cc.getPaged(urn,10,0)
     }
@@ -207,12 +207,12 @@ void testPaged12(){
   CcGraph cc = new CcGraph(sparql)
 
   // Paged for a whole collection
-  CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
-  Map ccos = cc.getPaged(urn,40,1)
+  Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
+  Map ccos = cc.getPaged(urn,20,1)
   assert ccos['resolvedUrn'].toString() == urn.toString()
-  assert ccos['offset'] == 40
+  assert ccos['offset'] == 20
   assert ccos['limit'] == 1
-  assert ccos['size'] == 40
+  assert ccos['size'] == 20
   assert ccos['objects'].size() == 1
   ccos['object'].each { o ->
       System.err.println(o.urn.toString())
@@ -226,12 +226,12 @@ void testPaged13(){
   CcGraph cc = new CcGraph(sparql)
 
   // Paged for a whole collection
-  CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
+  Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
   Map ccos = cc.getPaged(urn,1,1)
   assert ccos['resolvedUrn'].toString() == urn.toString()
   assert ccos['offset'] == 1
   assert ccos['limit'] == 1
-  assert ccos['size'] == 40
+  assert ccos['size'] == 20
   assert ccos['objects'].size() == 1
   ccos['object'].each { o ->
     System.err.println(o.urn.toString())
@@ -245,12 +245,12 @@ void testPaged14(){
   CcGraph cc = new CcGraph(sparql)
 
   // Paged for a whole collection
-  CiteUrn urn = new CiteUrn("urn:cite:hmt:pageroi")
-  Map ccos = cc.getPaged(urn,40,10)
+  Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
+  Map ccos = cc.getPaged(urn,20,10)
   assert ccos['resolvedUrn'].toString() == urn.toString()
-  assert ccos['offset'] == 40
+  assert ccos['offset'] == 20
   assert ccos['limit'] == 1
-  assert ccos['size'] == 40
+  assert ccos['size'] == 20
   assert ccos['objects'].size() == 1
   ccos['object'].each { o ->
     System.err.println(o.urn.toString())

@@ -1,15 +1,15 @@
 package edu.holycross.shot.graph
 
-import edu.holycross.shot.citeservlet.Sparql
-
 import edu.harvard.chs.cite.CiteUrn
 import edu.harvard.chs.cite.CtsUrn
+
+import edu.holycross.shot.sparqlcts.Sparql
 
 
 
 /** A class representing a CITE Graph Service.
  * It uses a CtsGraph to collect information about CITE URNs
- * in response to CITE Collection Service requests, and then creates appropriate 
+ * in response to CITE Collection Service requests, and then creates appropriate
  * CITE Collection Service replies.
  */
 class GraphService {
@@ -18,7 +18,7 @@ class GraphService {
   Sparql sparql
 
   IndexGraph graph
-  
+
   /** Constructor requires a citeservlet SPARQL endpoint.
    */
   GraphService(Sparql sparqlService) {

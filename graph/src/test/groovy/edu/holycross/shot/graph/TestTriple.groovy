@@ -33,7 +33,7 @@ class TestTriple extends GroovyTestCase {
 	println encodedUrn
 	println "Decoded"
 	println URLDecoder.decode(encodedUrn,"UTF-8")
-		
+
     Triple  t = new Triple(testSubj, testVerbWithUriObj, testObjUri)
 	println "Original URI"
 	println testObjUri
@@ -84,5 +84,5 @@ class TestTriple extends GroovyTestCase {
 	assert t.toString() == expectedStringWithUriObject
   }
 
-  
+
 }

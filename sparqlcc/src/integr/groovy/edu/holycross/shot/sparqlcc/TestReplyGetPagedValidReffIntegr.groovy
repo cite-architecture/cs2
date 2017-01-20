@@ -5,7 +5,7 @@ import org.junit.Test
 import org.custommonkey.xmlunit.*
 
 import edu.holycross.shot.sparqlcc.CcGraph
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -126,7 +126,7 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
 
     //Set up params
     String reqString = "GetPagedValidReff"
-    CiteUrn reqUrn = new CiteUrn("urn:cite:hmt:pageroi")
+    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
 
 
     def reqParams = [:]
@@ -143,23 +143,23 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetPagedValidReff xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite:hmt:pageroi</requestUrn>
+    <requestUrn>urn:cite2:hmt:pageroi.v1:</requestUrn>
     <request>GetPagedValidReff</request>
     <offset>10</offset>
     <limit>5</limit>
-    <resolvedUrn>urn:cite:hmt:pageroi</resolvedUrn>
-    <count>40</count>
+    <resolvedUrn>urn:cite2:hmt:pageroi.v1:</resolvedUrn>
+    <count>20</count>
     <prevOffset>5</prevOffset>
     <prevLimit>5</prevLimit>
     <nextOffset>15</nextOffset>
     <nextLimit>5</nextLimit>
 </cite:request>
 <cite:reply>
-  <urn>urn:cite:hmt:pageroi.2.v2</urn>
-  <urn>urn:cite:hmt:pageroi.23.v1</urn>
-  <urn>urn:cite:hmt:pageroi.23.v2</urn>
-  <urn>urn:cite:hmt:pageroi.24.v1</urn>
-  <urn>urn:cite:hmt:pageroi.24.v2</urn>
+<urn>urn:cite2:hmt:pageroi.v1:31</urn>
+<urn>urn:cite2:hmt:pageroi.v1:36</urn>
+<urn>urn:cite2:hmt:pageroi.v1:39</urn>
+<urn>urn:cite2:hmt:pageroi.v1:4</urn>
+<urn>urn:cite2:hmt:pageroi.v1:41</urn>
 </cite:reply>
 </GetPagedValidReff>
 """
@@ -176,13 +176,12 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
 
     //Set up params
     String reqString = "GetPagedValidReff"
-    CiteUrn reqUrn = new CiteUrn("urn:cite:hmt:pageroi")
+    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:pageroi.v1:")
 
 
     def reqParams = [:]
     reqParams['urn'] = reqUrn.toString()
     reqParams['request'] = reqString
-    reqParams['version'] = "v1"
     reqParams['offset'] = "3"
     reqParams['limit'] = "5"
 
@@ -194,12 +193,11 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetPagedValidReff xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite:hmt:pageroi</requestUrn>
+    <requestUrn>urn:cite2:hmt:pageroi.v1:</requestUrn>
     <request>GetPagedValidReff</request>
-    <version>v1</version>
     <offset>3</offset>
     <limit>5</limit>
-    <resolvedUrn>urn:cite:hmt:pageroi</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:pageroi.v1:</resolvedUrn>
     <count>20</count>
     <prevOffset>1</prevOffset>
     <prevLimit>2</prevLimit>
@@ -207,11 +205,11 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
     <nextLimit>5</nextLimit>
 </cite:request>
 <cite:reply>
-  <urn>urn:cite:hmt:pageroi.12.v1</urn>
-  <urn>urn:cite:hmt:pageroi.19.v1</urn>
-  <urn>urn:cite:hmt:pageroi.2.v1</urn>
-  <urn>urn:cite:hmt:pageroi.23.v1</urn>
-  <urn>urn:cite:hmt:pageroi.24.v1</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:12</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:19</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:2</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:23</urn>
+  <urn>urn:cite2:hmt:pageroi.v1:24</urn>
 </cite:reply>
 </GetPagedValidReff>
 """
@@ -229,7 +227,7 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
 
     //Set up params
     String reqString = "GetPagedValidReff"
-    CiteUrn reqUrn = new CiteUrn("urn:cite:hmt:venAsign.1-10")
+    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:hmt:venAsign.v1:1-10")
 
 
     def reqParams = [:]
@@ -246,11 +244,11 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetPagedValidReff xmlns="http://chs.harvard.edu/xmlns/cite" xmlns:cite="http://chs.harvard.edu/xmlns/cite">
 <cite:request>
-    <requestUrn>urn:cite:hmt:venAsign.1-10</requestUrn>
+    <requestUrn>urn:cite2:hmt:venAsign.v1:1-10</requestUrn>
     <request>GetPagedValidReff</request>
     <offset>5</offset>
     <limit>2</limit>
-    <resolvedUrn>urn:cite:hmt:venAsign.1-10</resolvedUrn>
+    <resolvedUrn>urn:cite2:hmt:venAsign.v1:1-10</resolvedUrn>
     <count>10</count>
     <prevOffset>3</prevOffset>
     <prevLimit>2</prevLimit>
@@ -258,8 +256,8 @@ class TestReplyGetPagedValidReffIntegr extends GroovyTestCase {
     <nextLimit>2</nextLimit>
 </cite:request>
 <cite:reply>
-  <urn>urn:cite:hmt:venAsign.5.v1</urn>
-  <urn>urn:cite:hmt:venAsign.6.v1</urn>
+  <urn>urn:cite2:hmt:venAsign.v1:5</urn>
+  <urn>urn:cite2:hmt:venAsign.v1:6</urn>
 </cite:reply>
 </GetPagedValidReff>
 """
