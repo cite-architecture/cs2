@@ -1,0 +1,5 @@
+project.ext {
+
+  demoUrn = "urn:cts:greekLit:tlg0012.tlg001:1.1"
+
+}
