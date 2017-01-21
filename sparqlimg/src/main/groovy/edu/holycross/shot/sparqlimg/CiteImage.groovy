@@ -349,7 +349,7 @@ class CiteImage {
     String getIIPMooViewerReply(Cite2Urn urn) {
         String roi = urn.getExtendedRef()
 			Cite2Urn resolvedUrn = resolveVersion(urn)
-			Cite2Urn baseUrn = new Cite2Urn("urn:cite2:${resolvedUrn.getNs()}:${resolvedUrn.getCollection()}.${resolvedUrn.getObjectId()}.${resolvedUrn.getObjectVersion()}")
+			Cite2Urn baseUrn = resolvedUrn.reduceToObject()
         String license
         String caption
         String path
@@ -390,7 +390,7 @@ class CiteImage {
 
     String getImagePlusReply(Cite2Urn urn) {
 			Cite2Urn resolvedUrn = resolveVersion(urn)
-			Cite2Urn baseUrn = new Cite2Urn("urn:cite2:${resolvedUrn.getNs()}:${resolvedUrn.getCollection()}.${resolvedUrn.getObjectId()}.${resolvedUrn.getObjectVersion()}")
+			Cite2Urn baseUrn = resolvedUrn.reduceToObject()
         String binaryUrl = "${baseUrl}request=GetBinaryImage&amp;urn=${resolvedUrn}"
         String zoomableUrl =  "${baseUrl}request=GetIIPMooViewer&amp;urn=${resolvedUrn}"
 
