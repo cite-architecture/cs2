@@ -1,9 +1,9 @@
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 
-String demoUrnStr = "urn:cite:hmt:vaimg.VA024RN_0025.v1"
-String demoUrnWRoi = "urn:cite:hmt:vaimg.VA024RN_0025.v1@0.251,0.4459,0.217,0.048"
+String demoUrnStr = "urn:cite2:hmt:vaimg.v1:VA024RN_0025"
+String demoUrnWRoi = "urn:cite2:hmt:vaimg.v1:VA024RN_0025@0.251,0.4459,0.217,0.048"
 String sampleWidth = "1000"
-CiteUrn demoUrn = new CiteUrn(demoUrnStr)
+Cite2Urn demoUrn = new Cite2Urn(demoUrnStr)
 
 
 html.html {

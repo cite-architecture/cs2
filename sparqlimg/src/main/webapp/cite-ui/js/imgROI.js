@@ -4,22 +4,22 @@
       //set a default URN in gradle build.
       var defaultURN, paramURN, imgURN, imgRoi;
 
-	defaultURN = "urn:cite:hmt:vaimg.VA024RN_0025.v1";
+	defaultURN = "urn:cite2:hmt:vaimg.v1:VA024RN_0025";
 	var imgSvcURL = "api?";
 	var detailWidth = "400";
 	var ictUrl = "ict.html";
 
 	paramURN = get("urn");
 
-	if (paramURN != null){ 
-			imgURN = plainUrn( paramURN ); 
+	if (paramURN != null){
+			imgURN = plainUrn( paramURN );
 	} else {
 			imgURN = defaultURN;
 			paramURN = defaultURN;
 	}
 	imgRoi = urnRoi(paramURN);
 
-    var mainViewWidth = 1000;    
+    var mainViewWidth = 1000;
 
 	var widthFactor, heightFactor, topOffset;
 		if (imgRoi != ""){
@@ -49,7 +49,7 @@
 
         xsize = $pcnt.width(),
         ysize = $pcnt.height();
-    
+
     $('#target').Jcrop({
       onChange: updatePreview,
       onSelect: updatePreview,
@@ -64,7 +64,7 @@
 
       // Move the preview into the jcrop container for css positioning
       $preview.appendTo(jcrop_api.ui.holder);
-     
+
     });
 
     function updatePreview(c)
@@ -93,10 +93,10 @@
 		// 			c.y = top of selection (from top, in pixels)
 		// 			c.y = left of select (from top, in pixels)
 		//
-		//     t = (t * heightFactor) + topOffset; 
-		//     l = (l * widthFactor) + leftOffset; 
-		//     w = w * widthFactor; 
-		//     h = h * heightFactor; 
+		//     t = (t * heightFactor) + topOffset;
+		//     l = (l * widthFactor) + leftOffset;
+		//     w = w * widthFactor;
+		//     h = h * heightFactor;
 		//
 
 		var tempTop, tempLeft, tempWidth, tempHeight;
@@ -123,7 +123,7 @@
 		//Update data and links
 		function updateData(t,l,w,h){
 			var newURN, thisPage, gBI, gMV;
-			newURN = plainUrn(imgURN) + "@" + t + "," + l + "," + w + "," + h; 
+			newURN = plainUrn(imgURN) + "@" + t + "," + l + "," + w + "," + h;
 			thisPage = ictUrl + "?urn=" + newURN;
 			gBI = imgSvcURL + "request=GetBinaryImage&urn=" + newURN + "&w=9000";
 			gMV = imgSvcURL + "request=GetIIPMooViewer&urn=" + newURN;
