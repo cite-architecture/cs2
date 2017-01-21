@@ -1,10 +1,11 @@
 import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 
-def demoUrnStr = "urn:cite:hmt:venAsign.5.v1"
-def demoRangeUrnStr = "urn:cite:hmt:venAsign.1.v1-10.v1"
-def demoCollectionUrnStr = "urn:cite:hmt:venAsign"
-def demoUrnStrVersions = "urn:cite:hmt:pageroi.5"
-CiteUrn demoUrn = new CiteUrn(demoUrnStr)
+def demoUrnStr = "urn:cite2:hmt:venAsign.v1:5"
+def demoRangeUrnStr = "urn:cite2:hmt:venAsign.v1:1-10"
+def demoCollectionUrnStr = "urn:cite2:hmt:venAsign:"
+def demoUrnStrVersions = "urn:cite2:hmt:pageroi:5"
+Cite2Urn demoUrn = new Cite2Urn(demoUrnStr)
 
 
 html.html {

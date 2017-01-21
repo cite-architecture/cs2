@@ -1,6 +1,6 @@
 import edu.holycross.shot.sparqlcc.*
 import edu.harvard.chs.cite.CtsUrn
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 
 
 /* SET UP VARIABLES */
@@ -45,7 +45,7 @@ if (responseType == "json"){
 		// guarantee that URN parameter is syntactically valid
 		if (request.getParameter("urn"))	{
 			try {
-				CiteUrn urn = new CiteUrn(urnStr)
+				Cite2Urn urn = new Cite2Urn(urnStr)
 				} catch (Exception e) {
 					System.err.printn(e)
 					println "<error>${urnStr} is not a valid URN: ${e}</error>\n"
@@ -76,7 +76,7 @@ if (!done) {
 		if (stylesheet != null){
 			println """<?xml-stylesheet type="text/xsl" href="cite-ui/xslt/${stylesheet}.xsl"?>\r"""
 		}
-		CiteUrn urn = new CiteUrn(urnStr)
+		Cite2Urn urn = new Cite2Urn(urnStr)
 
 	  // Sort out parameterMap
     def params = [:]
