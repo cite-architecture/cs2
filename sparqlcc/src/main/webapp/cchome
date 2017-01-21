@@ -5,6 +5,7 @@ def demoUrnStr = "urn:cite2:hmt:venAsign.v1:5"
 def demoRangeUrnStr = "urn:cite2:hmt:venAsign.v1:1-10"
 def demoCollectionUrnStr = "urn:cite2:hmt:venAsign:"
 def demoUrnStrVersions = "urn:cite2:hmt:pageroi:5"
+
 Cite2Urn demoUrn = new Cite2Urn(demoUrnStr)
 
 
@@ -16,13 +17,14 @@ html.html {
 
 	body {
 
-		header("SPARQL CITE Collections (SparaqlCC)")
-			nav {
+    header("@projectLabel@")
+    nav {
 
-				p {
-					a(href : "http://cite-architecture.github.io", "CITE Architecture")
-				}
-			}
+      p {
+        a(href : "@contextPath@", "home")
+      }
+    }
+
 
 		article {
 			p("This site hosts an implementation of CITE Collection Services.")
@@ -34,14 +36,14 @@ html.html {
 				}
 
 			h2("See the catalogue with GetCapabilities")
-				form (action : "api", method : "get") {
+				form (action : "collections", method : "get") {
 					input (type : "hidden", name : "request", value : "GetCapabilities")
 						input (type : "hidden", name : "stylesheet", value : "cite_capabilities")
 						input (type : "submit", value : "GetCapabilities" )
 				}
 
 			h2("View an object with GetObjectPlus")
-				form (action : "api", method : "get") {
+				form (action : "collections", method : "get") {
 					input (type : "hidden", name : "request", value : "GetObjectPlus")
 						input (type : "hidden", name : "stylesheet", value : "cite_getobject")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
@@ -49,7 +51,7 @@ html.html {
 				}
 
 			h2("Find valid citations for objects in a collection with GetValidReff")
-				form (action : "api", method : "get") {
+				form (action : "collections", method : "get") {
 					input (type : "hidden", name : "request", value : "GetValidReff")
 						input (type : "hidden", name : "stylesheet", value : "cite_getvalidreff")
 						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40", id:"gvrUrnField")
@@ -63,14 +65,14 @@ html.html {
 			h2("Other Requests")
 
 
-				form (action : "api", method : "get") {
+				form (action : "collections", method : "get") {
 					input (type : "hidden", name : "request", value : "GetCollectionSize")
 						input (type : "hidden", name : "stylesheet", value : "cite_getcollectionsize")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
 						input (type : "submit", value : "GetCollectionSize" )
 				}
 
-				form (action : "api", method : "get") {
+				form (action : "collections", method : "get") {
 					input (type : "hidden", name : "request", value : "GetRange")
 						input (type : "hidden", name : "stylesheet", value : "cite_paged")
 						input (type : "text", name : "urn", value : demoRangeUrnStr, size: "40")
@@ -80,7 +82,7 @@ html.html {
 						mkp.yield("Safe Mode: Returns paged results if query yields more than 20 objects.")
 				}
 
-				form (action : "api", method : "get") {
+				form (action : "collections", method : "get") {
 					input (type : "hidden", name : "request", value : "GetPagedValidReff")
 						input (type : "hidden", name : "stylesheet", value : "cite_getvalidreff")
 						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40")
@@ -91,7 +93,7 @@ html.html {
 						input (type : "submit", value : "GetPagedValidReff)" )
 				}
 
-				form (action : "api", method : "get") {
+				form (action : "collections", method : "get") {
 					input (type : "hidden", name : "request", value : "GetPaged")
 						input (type : "hidden", name : "stylesheet", value : "cite_paged")
 						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40")
@@ -100,14 +102,14 @@ html.html {
 						input (type : "submit", value : "GetPaged" )
 				}
 
-				form (action : "api", method : "get") {
+				form (action : "collections", method : "get") {
 					input (type : "hidden", name : "request", value : "GetObject")
 						input (type : "hidden", name : "stylesheet", value : "cite_getobject")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
 						input (type : "submit", value : "GetObject" )
 				}
 
-				form (action : "api", method : "get") {
+				form (action : "collections", method : "get") {
 					input (type : "hidden", name : "request", value : "GetPrevNextUrn")
 						input (type : "hidden", name : "stylesheet", value : "cite_getprevnexturn")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
@@ -115,7 +117,7 @@ html.html {
 						mkp.yield("Valid only for ordered collections.")
 				}
 
-				form (action : "api", method : "get") {
+				form (action : "collections", method : "get") {
 					input (type : "hidden", name : "request", value : "GetPrevUrn")
 						input (type : "hidden", name : "stylesheet", value : "cite_getprevnexturn")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
@@ -123,7 +125,7 @@ html.html {
 						mkp.yield("Valid only for ordered collections.")
 				}
 
-				form (action : "api", method : "get") {
+				form (action : "collections", method : "get") {
 					input (type : "hidden", name : "request", value : "GetNextUrn")
 						input (type : "hidden", name : "stylesheet", value : "cite_getprevnexturn")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
@@ -131,7 +133,7 @@ html.html {
 						mkp.yield("Valid only for ordered collections.")
 				}
 
-				form (action : "api", method : "get") {
+				form (action : "collections", method : "get") {
 					input (type : "hidden", name : "request", value : "GetFirstUrn")
 						input (type : "hidden", name : "stylesheet", value : "cite_getprevnexturn")
 						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40")
@@ -139,7 +141,7 @@ html.html {
 						mkp.yield("Valid only for ordered collections.")
 				}
 
-				form (action : "api", method : "get") {
+				form (action : "collections", method : "get") {
 					input (type : "hidden", name : "request", value : "GetLastUrn")
 						input (type : "hidden", name : "stylesheet", value : "cite_getprevnexturn")
 						input (type : "text", name : "urn", value : demoCollectionUrnStr, size: "40")
@@ -147,7 +149,7 @@ html.html {
 						mkp.yield("Valid only for ordered collections.")
 				}
 
-				form (action : "api", method : "get") {
+				form (action : "collections", method : "get") {
 					input (type : "hidden", name : "request", value : "GetVersionsOfObject")
 						input (type : "hidden", name : "stylesheet", value : "cite_getvalidreff")
 						input (type : "text", name : "urn", value : demoUrnStrVersions, size: "40")
@@ -155,17 +157,7 @@ html.html {
 						mkp.yield("This is equivalent to querying for ‘GetValidReff’ on a single object’s URN.")
 				}
 
-
-				footer{
-					p {
-						a(href :"http://cite-architecture.github.io", "More about the CITE Architecture and the CTS protocol.")
-					}
-					p {
-						code("sparqlcts")
-							mkp.yield (" is licensed under the terms of the ")
-							a(href : "gpl-3.0.txt", "GPL, version 3.")
-					}
-				}
+				footer{}
 		}
 	}
 }

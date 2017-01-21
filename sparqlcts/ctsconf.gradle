@@ -1,5 +1,22 @@
 
 project.ext {
-  demoUrn = "urn:cts:greekLit:tlg0012.tlg001.fuPers:1.1-1.10"
-  tripleserver = "http://localhost:3030/ds/sparql"
+
+  cs2Tokens = [
+    // common:
+    "tripleserver" : "http://localhost:3030/ds/sparql",
+    "cs2version" : "cs2 release 1.0",
+
+    "projectLabel" : "CITE Services",
+    "header" : "<p>Canonical Text Services</p>",
+
+    "footer" :  """<p><a href="http://cite-architecture.github.io">More about the CITE Architecture and the CTS protocol.</a>The CITE-Servlet is developed by Christopher Blackwell and Neel Smith, and licensed under the <a href="gpl-3.0.txt">GPL, version 3</a>.</p>""",
+
+
+    "ctshome" : "ctshome",
+    "ctsapi" : "texts",
+
+    "demoCtsUrn" : "urn:cts:greekLit:tlg5026.msA:1.1"
+  ]
+
+
 }

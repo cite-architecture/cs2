@@ -1,5 +1,14 @@
 import org.apache.tools.ant.filters.ReplaceTokens
-apply from: "ctsconf.gradle"
+
+if (hasProperty('solo')) {
+  apply from: "ctsconf.gradle"
+} else if (hasProperty('custom')) {
+  apply from: new File(custom)
+} else {
+  apply from: "../cs2/conf.gradle"
+}
+
+
 buildscript {
   repositories {
     jcenter()
@@ -69,24 +78,20 @@ ctsIntegration.doFirst {
 
 
 gretty {
-  initParameter("tripleserver", "http://localhost:8080/fuseki/cts/query")
-  initParameter("version","cs2 pre-release 1.0")
+  initParameter("tripleserver", cs2Tokens['tripleserver'])
+  initParameter("version",cs2Tokens['cs2version'])
   webappCopy {
-    // Enable filtering on all xml files in WEB-INF
-    filesMatching 'WEB-INF/web.xml', { FileCopyDetails fileDetails ->
+    filesMatching '*', { FileCopyDetails fileDetails ->
       logger.warn 'File filtered: {}', fileDetails.path
-      filter ReplaceTokens, tokens: [
-        'tripleserver' : tripleserver
-      ]
+      filter ReplaceTokens, tokens: cs2Tokens
     }
-
-    filesMatching 'home', { FileCopyDetails fileDetails ->
+    filesMatching '**/*.xml', { FileCopyDetails fileDetails ->
       logger.warn 'File filtered: {}', fileDetails.path
-      filter ReplaceTokens, tokens: [
-        'demoUrn' : demoUrn,
-        'tripleserver' : tripleserver
-      ]
+      filter ReplaceTokens, tokens: cs2Tokens
     }
-
+    filesMatching '**/*.xsl', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
   }
 }

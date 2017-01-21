@@ -24,8 +24,25 @@
 
     <servlet-mapping>
         <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/api</url-pattern>
+        <url-pattern>/@ctsapi@</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>GroovyServlet</servlet-name>
+        <url-pattern>/@ctshome@</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet-mapping>
+        <servlet-name>GroovyServlet</servlet-name>
+        <url-pattern>/@ccapi@</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>GroovyServlet</servlet-name>
+        <url-pattern>/@cchome@</url-pattern>
+    </servlet-mapping>
+
 
     <welcome-file-list>
         <welcome-file>root</welcome-file>

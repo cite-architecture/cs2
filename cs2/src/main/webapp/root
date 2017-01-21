@@ -2,29 +2,35 @@
 
 html.html {
 	head {
-		title("Multiple web apps under gretty")
+		title("@projectLabel@: home page")
 			link(href : "cts-ui/css/cts-core.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
 
 	}
 
 	body {
 
-		header("Gretty web apps")
+		header("@projectLabel@")
 			nav {
 
 				p {
-					a(href : "http://www.homermultitext.org/hmt-doc/", "HMT Doc'y things")
+        mkp.yield("@projectLabel@: ")
+        a(href : "@contextPath@", "home")
 				}
 
 			}
 
 		article {
-			p("Root for a full-blown CITE service suite.")
+			h2("Installed services")
 
-			p {
-				mkp.yield ("Try a relative URN to ")
-				a(href : "../sparqlcts", "CTS service")
-			}
+      ul {
+        li {
+        a(href : "@cchome@", "CITE Collections service")
+        }
+        li {
+        a(href : "@ctshome@", "Canonical Text Service")
+        }
+
+      }
 
 
 

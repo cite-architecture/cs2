@@ -7,18 +7,18 @@ import edu.harvard.chs.cite.CtsUrn
 
 html.html {
 	head {
-		title("Canonical Text Services")
+		title("CITE service quite")
 			link(href : "cts-ui/css/cts-core.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
 
 	}
 
 	body {
 
-		header("SPARQL CTS")
+		header("@projectLabel@")
 			nav {
 
 				p {
-					a(href : "http://cite-architecture.github.io", "Canonical Text Services")
+					a(href : "http://cite-architecture.github.io", "@contextPath@")
 				}
 			}
 

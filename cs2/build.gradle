@@ -1,0 +1,55 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+
+if (hasProperty('custom')) {   
+  apply from: new File(custom)
+} else {
+  apply from: "conf.gradle"
+}
+
+
+buildscript {
+  repositories {
+    jcenter()
+    // enable this to use snapshot versions of Gretty:
+    // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+  }
+
+  dependencies {
+    classpath 'org.akhikhl.gretty:gretty:+'
+  }
+}
+
+repositories {
+  jcenter()
+  // enable this to use snapshot versions of Gretty:
+  // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+}
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+
+gretty {
+  contextPath = cs2Tokens["contextPath"]
+
+  initParameter("tripleserver", cs2Tokens["tripleserver"])
+  initParameter("version",cs2Tokens["cs2version"])
+
+  overlay ':sparqlcts'
+  overlay ':sparqlcc'
+
+  webappCopy {
+    // Enable filtering on all xml files in WEB-INF
+    filesMatching '*', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
+    filesMatching '**/*.xml', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
+    filesMatching '**/*.xsl', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
+  }
+}

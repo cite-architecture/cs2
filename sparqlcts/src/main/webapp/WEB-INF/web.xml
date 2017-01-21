@@ -24,16 +24,16 @@
 
     <servlet-mapping>
         <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/home</url-pattern>
+        <url-pattern>/@ctshome@</url-pattern>
     </servlet-mapping>
 
 
     <servlet-mapping>
         <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/api</url-pattern>
+        <url-pattern>/texts</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>home</welcome-file>
+        <welcome-file>/@ctshome@</welcome-file>
     </welcome-file-list>
 </web-app>

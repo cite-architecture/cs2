@@ -1,3 +1,12 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+if (hasProperty('solo')) {
+  apply from: "ccconf.gradle"
+} else if (hasProperty('custom')) {
+  apply from: new File(custom)
+} else {
+  apply from: "../cs2/conf.gradle"
+}
 
 
 buildscript {
@@ -78,8 +87,23 @@ ccIntegration.doFirst {
 }
 
 gretty {
-  initParameter("tripleserver", "http://localhost:8080/fuseki/cc/query")
-  initParameter("iipserv","http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi")
-//  initParameter("tripleserver", "http://localhost:3030/cc/query")
-  initParameter("version","cs2 pre-release 1.0")
+  initParameter("tripleserver", cs2Tokens["tripleserver"])
+  initParameter("iipserv",cs2Tokens["iipserv"])
+  initParameter("version",cs2Tokens["cs2version"])
+
+  webappCopy {
+    filesMatching '*', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
+    filesMatching '**/*.xml', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
+    filesMatching '**/*.xsl', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
+  }
+
 }

@@ -5,18 +5,18 @@
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes"/>
     <xsl:include href="cts_header.xsl"/>
     <xsl:include href="chs_tei_to_html5.xsl"/>
-    <xsl:variable name="homeUrl">home</xsl:variable>
-    <xsl:variable name="formsUrl">home</xsl:variable>
-    
+    <xsl:variable name="homeUrl">@ctshome@</xsl:variable>
+    <xsl:variable name="formsUrl">@ctshome@</xsl:variable>
+
     <!-- Framework for main body of document -->
-    
+
     <xsl:template match="/">
         <!-- can some of the reply contents in xsl variables
 			for convenient use in different parts of the output -->
         <xsl:variable name="urnString">
             <xsl:value-of select="//cts:request/cts:requestUrn"/>
         </xsl:variable>
-        
+
         <html>
             <head>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -40,7 +40,7 @@
                 <nav>
                     <p>navigation: <xsl:element name="a">
                         <xsl:attribute name="href"><xsl:value-of select="$homeUrl"
-                        /></xsl:attribute> home </xsl:element>
+                        /></xsl:attribute>CTS home </xsl:element>
                     </p>
                 </nav>
                 <article>
@@ -53,17 +53,17 @@
                             </h1>
                             <p>Level = <xsl:value-of select="//cts:request/cts:level"/></p>
                             <p>
-      
+
                                 <xsl:value-of select="//cts:reply/cts:urn"/>
                             </p>
-                            
+
                             <div id="textDisplay">
                                 <xsl:apply-templates select="//cts:reply"/>
-                                
+
                                 <div style="clear:both"></div>
                             </div>
-                            
-                            
+
+
                         </xsl:otherwise>
                     </xsl:choose>
                 </article>
@@ -74,8 +74,8 @@
         </html>
     </xsl:template>
     <!-- End Framework for main body document -->
-    
-    
+
+
     <!-- Match elements of the CTS reply -->
     <xsl:template match="cts:reply">
         <xsl:variable name="level">
@@ -92,27 +92,27 @@
                 <li>
                     <xsl:value-of select="current()"/> [
                     <xsl:element name="a">
-                        <xsl:attribute name="href">api?request=GetPassagePlus&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
+                        <xsl:attribute name="href">@ctsapi@?request=GetPassagePlus&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
                             select="normalize-space(current())"/></xsl:attribute>
                         see text
                     </xsl:element>
-                    
+
                     &#160; | &#160; <xsl:element name="a">
-                        <xsl:attribute name="href">api?request=GetValidReff&amp;stylesheet=cts_validreff&amp;urn=<xsl:value-of
+                        <xsl:attribute name="href">@ctsapi@?request=GetValidReff&amp;stylesheet=cts_validreff&amp;urn=<xsl:value-of
                             select="normalize-space(current())"/>&amp;level=<xsl:value-of select="$level + 1"/></xsl:attribute>
                         list contained citations
                     </xsl:element> ]
-                
+
                 </li>
             </xsl:for-each>
             </ul>
-            
+
         </xsl:element>
     </xsl:template>
-    
-    
-    
-    
+
+
+
+
 
     <xsl:template match="cts:CTSError">
         <h1>CTS Error</h1>
@@ -126,6 +126,6 @@
         <p>CTS library date: <xsl:apply-templates select="cts:libraryDate"/>
         </p>
     </xsl:template>
-    
-    
+
+
 </xsl:stylesheet>
