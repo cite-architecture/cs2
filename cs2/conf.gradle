@@ -19,6 +19,8 @@ project.ext {
 
 
     "cchome" : "cchome",
+    "ctshome" : "ctshome",
+    "imghome" : "imghome",
     "ccapi" : "collections",
     "ctsapi": "texts",
     "imgapi": "images",
