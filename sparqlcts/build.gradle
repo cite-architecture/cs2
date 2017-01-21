@@ -2,6 +2,8 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 if (hasProperty('solo')) {
   apply from: "ctsconf.gradle"
+} else if (hasProperty('custom')) {
+  apply from: new File(custom)
 } else {
   apply from: "../cs2/conf.gradle"
 }

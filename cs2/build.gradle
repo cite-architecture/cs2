@@ -1,6 +1,12 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
-apply from: "conf.gradle"
+
+if (hasProperty('custom')) {   
+  apply from: new File(custom)
+} else {
+  apply from: "conf.gradle"
+}
+
 
 buildscript {
   repositories {

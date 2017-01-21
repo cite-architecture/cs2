@@ -2,7 +2,7 @@
 
 html.html {
 	head {
-		title("CITE services")
+		title("@projectLabel@: home page")
 			link(href : "cts-ui/css/cts-core.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
 
 	}
@@ -13,7 +13,7 @@ html.html {
 			nav {
 
 				p {
-        mkp.yield("CITE Services: ")
+        mkp.yield("@projectLabel@: ")
         a(href : "@contextPath@", "home")
 				}
 

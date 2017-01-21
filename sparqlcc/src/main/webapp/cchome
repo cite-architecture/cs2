@@ -17,13 +17,14 @@ html.html {
 
 	body {
 
-		header("@projectLabel@")
-			nav {
+    header("@projectLabel@")
+    nav {
 
-				p {
-					a(href : "http://cite-architecture.github.io", "CITE Architecture")
-				}
-			}
+      p {
+        a(href : "@contextPath@", "home")
+      }
+    }
+
 
 		article {
 			p("This site hosts an implementation of CITE Collection Services.")

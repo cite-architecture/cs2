@@ -1,6 +1,11 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
-apply from: "customconf.gradle"
+if (file("customconf.gradle").exists()) {
+  apply from: "customconf.gradle"
+} else {
+  apply from: "customconf.gradle-template"
+}
+
 
 buildscript {
   repositories {
@@ -30,6 +35,14 @@ repositories {
 gretty {
   webappCopy {
     filesMatching '*', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: customTokens
+    }
+    filesMatching '**/*.xml', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: customTokens
+    }
+    filesMatching '**/*.xsl', { FileCopyDetails fileDetails ->
       logger.warn 'File filtered: {}', fileDetails.path
       filter ReplaceTokens, tokens: customTokens
     }
