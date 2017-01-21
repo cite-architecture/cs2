@@ -2,18 +2,18 @@
 
 html.html {
 	head {
-		title("Multiple web apps under gretty")
+		title("CITE services")
 			link(href : "cts-ui/css/cts-core.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
 
 	}
 
 	body {
 
-		header("Gretty web apps")
+		header("cs2")
 			nav {
 
 				p {
-					a(href : "http://www.homermultitext.org/hmt-doc/", "HMT Doc'y things")
+
 				}
 
 			}
@@ -22,8 +22,8 @@ html.html {
 			p("Root for a full-blown CITE service suite.")
 
 			p {
-				mkp.yield ("Try a relative URN to ")
-				a(href : "../sparqlcts", "CTS service")
+				mkp.yield ("Try an overlaid ")
+				a(href : "ctshome", "CTS service")
 			}
 
 

@@ -1,3 +1,7 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+apply from: "conf.gradle"
+
 buildscript {
   repositories {
     jcenter()
@@ -17,6 +21,28 @@ repositories {
 }
 apply plugin: 'war'
 apply plugin: 'org.akhikhl.gretty'
+
 gretty {
-    contextPath = '/citeservlet'
+  contextPath = cs2Tokens["contextPath"]
+
+  initParameter("tripleserver", cs2Tokens["tripleserver"])
+  initParameter("version",cs2Tokens["cs2version"])
+
+  overlay ':sparqlcts'
+
+  webappCopy {
+    // Enable filtering on all xml files in WEB-INF
+    filesMatching '*', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
+    filesMatching '**/*.xml', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
+    filesMatching '**/*.xsl', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
+  }
 }

@@ -1,0 +1,18 @@
+
+project.ext {
+
+  cs2Tokens = [
+
+    "contextPath" : "/cs2",
+    "tripleserver" : "http://localhost:3030/ds/sparql",
+    "cs2version" : "cs2 release 1.0",
+
+
+    "ctshome" : "ctshome",
+    "ctsapi" : "texts",
+
+    "demoCtsUrn" : "urn:cts:greekLit:tlg5026.msA:1.1"
+  ]
+
+
+}
