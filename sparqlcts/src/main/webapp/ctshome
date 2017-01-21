@@ -7,23 +7,24 @@ CtsUrn demoUrn = new CtsUrn(demoUrnStr)
 
 html.html {
 	head {
-		title("Canonical Text Services")
-			link(href : "cts-ui/css/cts-core.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
+		title("@projectLabel@")
+
+    link(href : "cts-ui/css/cts-core.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
 
 	}
 
 	body {
 
-		header("SPARQL CTS")
+		header("@projectLabel@")
 			nav {
 
 				p {
-					a(href : "http://cite-architecture.github.io", "Canonical Text Services")
+					a(href : "@contextPath@", "home")
 				}
 			}
 
 		article {
-    p("This service is configured to use the triple server at  @tripleserver@")
+
 			p("This site hosts an implementation of Canonical Text Services (CTS).")
 
 

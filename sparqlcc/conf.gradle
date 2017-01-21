@@ -17,8 +17,8 @@ project.ext {
 
     "cchome" : "cchome",
     "ccapi" : "collections",
-    "ctsapi": "http://www.homermultitext.org/hmt-digital/texts",
-    "imgapi": "http://www.homermultitext.org/hmt-digital/images",
+    "ctsapi": "texts",
+    "imgapi": "images",
 
     "thumbsize" : "300",
 
