@@ -1,7 +1,10 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
-
-apply from: "ccconf.gradle"
+if (hasProperty('solo')) {
+  apply from: "soloconf.gradle"
+} else {
+  apply from: "ccconf.gradle"
+}
 
 
 buildscript {
