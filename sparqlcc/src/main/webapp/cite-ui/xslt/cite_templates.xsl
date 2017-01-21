@@ -53,7 +53,7 @@
             <ul>
                 <li>
                 <xsl:element name="a">
-                    <xsl:attribute name="href"><xsl:value-of select="$homeUrl"/></xsl:attribute>
+                    <xsl:attribute name="href">@cchome@</xsl:attribute>
                     Collections Home </xsl:element>
                  </li>
 
@@ -76,12 +76,12 @@
             </xsl:variable>-->
 
             <div class="cite_pagedNav cite_nav">
-                
-               
-              
-                
+
+
+
+
                 <!-- Backwards Navigation -->
-                <xsl:if test="(//cite:request/cite:prevOffset != '0') and (//cite:request/cite:prevOffset)"> 
+                <xsl:if test="(//cite:request/cite:prevOffset != '0') and (//cite:request/cite:prevOffset)">
                    <xsl:element name="a">
                     <xsl:attribute name="href">
                         <xsl:value-of select="$requestUrl"/><xsl:value-of
@@ -92,11 +92,11 @@
                             select="//cite:request/cite:prevOffset"
                         /></xsl:attribute> previous <xsl:value-of
                             select="//cite:request/cite:prevLimit"/></xsl:element></xsl:if>
-                
-                | 
-                
+
+                |
+
                 <!-- Forwards Navigation -->
-                <xsl:if test="(//cite:request/cite:nextOffset != '0') and (//cite:request/cite:nextOffset)"> 
+                <xsl:if test="(//cite:request/cite:nextOffset != '0') and (//cite:request/cite:nextOffset)">
                 <xsl:element name="a">
                     <xsl:attribute name="href">
                         <xsl:value-of select="$requestUrl"/><xsl:value-of
@@ -109,25 +109,25 @@
                             select="//cite:request/cite:nextLimit"/>
                 </xsl:element>
                     </xsl:if>
-                
+
                 (out of <xsl:value-of select="$total"/>) </div>
 
         </xsl:if>
     </xsl:template>
-    
+
     <xsl:template name="cite_object">
         <xsl:param name="class">single_cite_object</xsl:param>
-       
-        
+
+
         <div class="cite_object">
             <h2><xsl:value-of select="//cite:reply//cite:citeObject/@urn"/></h2>
-           
+
                 <xsl:element name="table">
                     <xsl:attribute name="class">
                         cite_objectTable
                         <xsl:value-of select="$class"/>
                     </xsl:attribute>
-               
+
                 <tr>
                     <th>Property</th>
                     <th>Type</th>
@@ -158,24 +158,24 @@
                                 </xsl:when>
                                 <xsl:otherwise> <xsl:apply-templates select="current()"/></xsl:otherwise>
                             </xsl:choose>
-                           
+
                         </xsl:element>
-                      
+
                     </tr>
                 </xsl:for-each>
-                
+
                 <!-- IF THIS OBJECT IS AN IMAGE -->
                 <xsl:if test="//cite:extension = 'http://www.homermultitext.org/cite/rdf/CiteImage'">
                     <tr>
                         <td>Extension</td>
                         <td>
-                          
+
                           Cite Image
                         </td>
                         <td>
                             <xsl:element name="a">
                                 <xsl:attribute name="href"><xsl:value-of select="$imgLinkUrl"/><xsl:value-of select="current()/@urn"/></xsl:attribute>
-                                
+
                             <xsl:element name="img">
                                 <xsl:attribute name="src"><xsl:value-of select="$imgThumbUrl"/><xsl:value-of select="current()/@urn"/></xsl:attribute>
                             </xsl:element>
@@ -189,12 +189,12 @@
                     </tr>
                 </xsl:if>
                 </xsl:element>
-            
+
         </div>
-        
+
     </xsl:template>
 
-    
+
 
 
 </xsl:stylesheet>

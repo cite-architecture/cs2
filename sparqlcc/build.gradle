@@ -1,3 +1,7 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+
+apply from: "ccconf.gradle"
 
 
 buildscript {
@@ -78,8 +82,23 @@ ccIntegration.doFirst {
 }
 
 gretty {
-  initParameter("tripleserver", "http://localhost:8080/fuseki/cc/query")
-  initParameter("iipserv","http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi")
-//  initParameter("tripleserver", "http://localhost:3030/cc/query")
-  initParameter("version","cs2 pre-release 1.0")
+  initParameter("tripleserver", ccTokens["tripleserver"])
+  initParameter("iipserv",ccTokens["iipserv"])
+  initParameter("version",ccTokens["cs2version"])
+
+  webappCopy {
+    filesMatching '*', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: ccTokens
+    }
+    filesMatching '**/*.xml', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: ccTokens
+    }
+    filesMatching '**/*.xsl', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: ccTokens
+    }
+  }
+
 }

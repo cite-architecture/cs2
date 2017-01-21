@@ -8,11 +8,11 @@
 
       <context-param>
       	  <param-name>tripleserver</param-name>
-		  <param-value>http://localhost:8080/fuseki/img/query</param-value>
+		  <param-value>@tripleserver@</param-value>
       	</context-param>
 		<context-param>
 			<param-name>version</param-name>
-      	  <param-value>cs2 pre-release 1.0</param-value>
+      	  <param-value>@cs2version@</param-value>
       	</context-param>
 
     <servlet>
@@ -27,17 +27,17 @@
 
     <servlet-mapping>
         <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/home</url-pattern>
+        <url-pattern>/@cchome@</url-pattern>
     </servlet-mapping>
 
 
     <servlet-mapping>
         <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/api</url-pattern>
+        <url-pattern>/@ccapi@</url-pattern>
 
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>home</welcome-file>
+        <welcome-file>@cchome@</welcome-file>
     </welcome-file-list>
 </web-app>
