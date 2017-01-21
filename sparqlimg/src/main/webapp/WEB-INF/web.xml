@@ -8,23 +8,23 @@
 
       <context-param>
       	  <param-name>tripleserver</param-name>
-      	  <param-value>http://localhost:8080/fuseki/img/query</param-value>
+      	  <param-value>@tripleserver@</param-value>
       	</context-param>
     <context-param>
         <param-name>baseUrl</param-name>
-        <param-value>http://localhost:8080/sparqlimg/api?</param-value>
+        <param-value>@imgapi@?</param-value>
     </context-param>
     <context-param>
         <param-name>iipsrv</param-name>
-        <param-value>http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi</param-value>
+        <param-value>@iipserv@</param-value>
     </context-param>
     <context-param>
         <param-name>version</param-name>
-        <param-value>cs2 pre-release 1.0</param-value>
+        <param-value>@cs2version@</param-value>
     </context-param>
     <context-param>
         <param-name>moostylesheet</param-name>
-        <param-value>cite_remoteiip</param-value>
+        <param-value>@moostylesheet@</param-value>
         <!--<param-value>cite_giipmoo</param-value>-->
     </context-param>
 
@@ -36,7 +36,7 @@
       <servlet-class>groovy.servlet.GroovyServlet</servlet-class>
       <init-param>
       	  <param-name>tripleserver</param-name>
-      	  <param-value>http://localhost:3030/cc/query</param-value>
+      	  <param-value>@tripleserver@</param-value>
       	</init-param>
     </servlet>
 
@@ -47,17 +47,17 @@
 
     <servlet-mapping>
         <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/home</url-pattern>
+        <url-pattern>/imghome</url-pattern>
     </servlet-mapping>
 
 
     <servlet-mapping>
         <servlet-name>GroovyServlet</servlet-name>
-        <url-pattern>/api</url-pattern>
+        <url-pattern>/images</url-pattern>
 
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>home</welcome-file>
+        <welcome-file>/imghome</welcome-file>
     </welcome-file-list>
 </web-app>

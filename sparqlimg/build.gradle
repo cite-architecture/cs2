@@ -1,3 +1,12 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+if (hasProperty('solo')) {
+  apply from: "imgconf.gradle"
+} else if (hasProperty('custom')) {
+  apply from: new File(custom)
+} else {
+  apply from: "../cs2/conf.gradle"
+}
 
 
 buildscript {
@@ -72,11 +81,28 @@ imgIntegration.doFirst {
 
 
 gretty {
-  initParameter("tripleserver", "http://localhost:8080/fuseki/img/query")
-  initParameter("baseUrl", "http://localhost:8080/sparqlimg/api?")
-	initParameter("iipsrv", "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi")
-	initParameter("moostylesheet","cite_remoteiip")
-	// initParameter("moostylesheet","cite_giipmoo")
-  // initParameter("tripleserver", "http://localhost:3030/img/query")
-  initParameter("version","cs2 pre-release 1.0")
+  initParameter("tripleserver", cs2Tokens["tripleserver"])
+  initParameter("baseUrl", cs2Tokens["imgapi"] + "?")
+	initParameter("iipsrv", cs2Tokens["iipsrv"])
+	initParameter("moostylesheet",cs2Tokens["moostylesheet"])
+  initParameter("version",cs2Tokens["cs2version"])
+  webappCopy {
+    filesMatching '*', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
+    filesMatching '**/*.xml', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
+    filesMatching '**/*.xsl', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
+
+    filesMatching '**/*.js', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
+  }
 }

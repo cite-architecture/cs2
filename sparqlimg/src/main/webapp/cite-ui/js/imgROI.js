@@ -5,7 +5,7 @@
       var defaultURN, paramURN, imgURN, imgRoi;
 
 	defaultURN = "urn:cite2:hmt:vaimg.v1:VA024RN_0025";
-	var imgSvcURL = "api?";
+	var imgSvcURL = "@imgapi@?";
 	var detailWidth = "400";
 	var ictUrl = "ict.html";
 

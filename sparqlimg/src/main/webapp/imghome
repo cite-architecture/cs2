@@ -14,13 +14,14 @@ html.html {
 
 	body {
 
-		header("SPARQL CITE Image Collections (SparqlImg)")
-			nav {
 
-				p {
-					a(href : "http://cite-architecture.github.io", "CITE Architecture")
-				}
-			}
+      header("@projectLabel@")
+        nav {
+
+          p {
+            a(href : "@contextPath@", "home")
+          }
+        }
 
 		article {
 			p("This site hosts an implementation of the CITE-Image extension to CITE Collection Services.")
@@ -33,14 +34,14 @@ html.html {
 				}
 
 			h2("See Collections that are extended by CiteImage")
-				form (action : "api", method : "get") {
+				form (action : "images", method : "get") {
 					input (type : "hidden", name : "request", value : "GetExtendedCollections")
 						input (type : "hidden", name : "stylesheet", value : "cite_collections")
 						input (type : "submit", value : "Get Extended Collections" )
 				}
 
 			h2("See a binary image with GetBinaryImage")
-				form (action : "api", method : "get") {
+				form (action : "images", method : "get") {
 					input (type : "hidden", name : "request", value : "GetBinaryImage")
 						input (type : "text", name : "urn", value : demoUrnWRoi, size: "60")
 						label(for:"wField", "Desired width (in pixels) of resulting image:")
@@ -49,7 +50,7 @@ html.html {
 				}
 
 			h2("See an image and its metadata with GetImagePlus")
-				form (action : "api", method : "get") {
+				form (action : "images", method : "get") {
 					input (type : "hidden", name : "request", value : "GetImagePlus")
 						input (type : "hidden", name : "stylesheet", value : "cite_getimageplus")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "60")
@@ -57,7 +58,7 @@ html.html {
 				}
 
 				h2("Get a zoomable view of an image with GetIIPMooViewer")
-					form (action : "api", method : "get") {
+					form (action : "images", method : "get") {
 						input (type : "hidden", name : "request", value : "GetIIPMooViewer")
 							input (type : "hidden", name : "stylesheet", value : "cite_remoteiip")
 							input (type : "text", name : "urn", value : demoUrnWRoi, size: "60")
@@ -67,14 +68,14 @@ html.html {
 
 			h2("Other Requests")
 
-				form (action : "api", method : "get") {
+				form (action : "images", method : "get") {
 					input (type : "hidden", name : "request", value : "GetRights")
 						input (type : "hidden", name : "stylesheet", value : "cite_metadata")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
 						input (type : "submit", value : "Get Rights" )
 				}
 
-				form (action : "api", method : "get") {
+				form (action : "images", method : "get") {
 					input (type : "hidden", name : "request", value : "GetCaption")
 						input (type : "hidden", name : "stylesheet", value : "cite_metadata")
 						input (type : "text", name : "urn", value : demoUrnStr, size: "40")
