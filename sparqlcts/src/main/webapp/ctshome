@@ -1,7 +1,7 @@
 import edu.harvard.chs.cite.CtsUrn
 
 
-def demoUrnStr = "@demoUrn@"
+def demoUrnStr = "@demoCtsUrn@"
 CtsUrn demoUrn = new CtsUrn(demoUrnStr)
 
 
@@ -33,14 +33,14 @@ html.html {
 				}
 
 			h2("See the catalogue with GetCapabilities")
-				form (action : "api", method : "get") {
+				form (action : "texts", method : "get") {
 					input (type : "hidden", name : "request", value : "GetCapabilities")
 						input (type : "hidden", name : "stylesheet", value : "cts_capabilities")
 						input (type : "submit", value : "GetCapabilities" )
 				}
 
 			h2("Browse a text with GetPassagePlus")
-				form (action : "api", method : "get") {
+				form (action : "texts", method : "get") {
 					input (type : "hidden", name : "request", value : "GetPassagePlus")
 						input (type : "hidden", name : "stylesheet", value : "cts_passage")
 						input (type : "text", name : "urn", value : demoUrn, size: "40")
@@ -48,7 +48,7 @@ html.html {
 				}
 
 			h2("Find valid citations in a text with GetValidReff")
-				form (action : "api", method : "get") {
+				form (action : "texts", method : "get") {
 					input (type : "hidden", name : "request", value : "GetValidReff")
 						input (type : "hidden", name : "stylesheet", value : "cts_validreff")
 						input (type : "text", name : "urn", value : demoUrn.getUrnWithoutPassage(), size: "40")
