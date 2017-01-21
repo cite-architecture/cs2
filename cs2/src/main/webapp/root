@@ -29,6 +29,9 @@ html.html {
         li {
         a(href : "@ctshome@", "Canonical Text Service")
         }
+        li {
+        a(href : "@imghome@", "CITE Image Service")
+        }
 
       }
 

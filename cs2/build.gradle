@@ -1,7 +1,7 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
 
-if (hasProperty('custom')) {   
+if (hasProperty('custom')) {
   apply from: new File(custom)
 } else {
   apply from: "conf.gradle"
@@ -36,6 +36,7 @@ gretty {
 
   overlay ':sparqlcts'
   overlay ':sparqlcc'
+  overlay ':sparqlimg'
 
   webappCopy {
     // Enable filtering on all xml files in WEB-INF
