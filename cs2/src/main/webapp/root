@@ -9,26 +9,29 @@ html.html {
 
 	body {
 
-		header("cs2")
+		header("@projectLabel@")
 			nav {
 
 				p {
-
+        mkp.yield("CITE Services: ")
+        a(href : "@contextPath@", "home")
 				}
 
 			}
 
 		article {
-			p("Root for a full-blown CITE service suite.")
+			h2("Installed services")
 
-			p {
-				mkp.yield ("Try an overlaid ")
-				a(href : "@ctshome@", "CTS service")
-			}
-      p {
-        mkp.yield ("Try an overlaid ")
-        a(href : "@cchome@", "CITE collections service")
+      ul {
+        li {
+        a(href : "@cchome@", "CITE Collections service")
+        }
+        li {
+        a(href : "@ctshome@", "Canonical Text Service")
+        }
+
       }
+
 
 
 				footer{
