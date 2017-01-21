@@ -5,18 +5,18 @@
 	<xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes"/>
 	<xsl:include href="cts_header.xsl"/>
 	<xsl:include href="chs_tei_to_html5.xsl"/>
-	<xsl:variable name="homeUrl">home</xsl:variable>
-	<xsl:variable name="formsUrl">home</xsl:variable>
-	
+	<xsl:variable name="homeUrl">@ctshome@</xsl:variable>
+	<xsl:variable name="formsUrl">@ctshome@</xsl:variable>
+
 	<!-- Framework for main body of document -->
-	
+
 	<xsl:template match="/">
 		<!-- can some of the reply contents in xsl variables
 			for convenient use in different parts of the output -->
 		<xsl:variable name="urnString">
 			<xsl:value-of select="//cts:request/cts:requestUrn"/>
 		</xsl:variable>
-		<xsl:variable name="catVar">api?request=<xsl:value-of select="//cts:request/cts:requestName"/>&amp;stylesheet=cts_cat&amp;urn=<xsl:value-of
+		<xsl:variable name="catVar">@ctsapi@?request=<xsl:value-of select="//cts:request/cts:requestName"/>&amp;stylesheet=cts_cat&amp;urn=<xsl:value-of
 			select="normalize-space(//cts:reply/cts:urn)"/></xsl:variable>
 		<html>
 			<head>
@@ -45,13 +45,13 @@
 				<nav>
 					<p><xsl:element name="a">
 							<xsl:attribute name="href"><xsl:value-of select="$homeUrl"
-								/></xsl:attribute> home </xsl:element> | 
-						
+								/></xsl:attribute>CTS home </xsl:element> |
+
 						<xsl:element name="a">
 							<xsl:attribute name="href">
 								<xsl:value-of select="$catVar"/>
 							</xsl:attribute> citation alignment tool </xsl:element>
-							
+
 					</p>
 				</nav>
 				<article>
@@ -65,14 +65,14 @@
 							<p>
 								<xsl:value-of select="//cts:reply/cts:urn"/>
 							</p>
-							
+
 							<div id="textDisplay">
 									<xsl:apply-templates select="//cts:reply"/>
-									
+
 									<div style="clear:both"></div>
 							</div>
-								
-								
+
+
 						</xsl:otherwise>
 					</xsl:choose>
 				</article>
@@ -111,48 +111,48 @@
 		<p>CTS library date: <xsl:apply-templates select="cts:libraryDate"/>
 		</p>
 	</xsl:template>
-	
+
 	<xsl:template match="cts:prevnext">
-		
-			
-			
+
+
+
 				<div class="prevnext">
 					<span class="prv">
 						<xsl:if test="normalize-space(cts:prev) != ''">
-							
+
 									<xsl:variable name="prvVar"
-										>api?request=<xsl:value-of select="//cts:request/cts:requestName"/>&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
+										>@ctsapi@?request=<xsl:value-of select="//cts:request/cts:requestName"/>&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
 											select="normalize-space(cts:prev)"/></xsl:variable>
 									<xsl:element name="a">
 										<xsl:attribute name="href">
 											<xsl:value-of select="$prvVar"/>
 										</xsl:attribute> prev </xsl:element>
-								
-							
+
+
 						</xsl:if>
 						<xsl:if test="normalize-space(cts:prev) = ''"> (at the beginning of the text) </xsl:if>
 					</span> | <span class="nxt">
 						<xsl:if test="normalize-space(cts:next) != ''">
-			
-								
+
+
 									<xsl:variable name="nxtVar"
-										>api?request=<xsl:value-of select="//cts:request/cts:requestName"/>&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
+										>@ctsapi@?request=<xsl:value-of select="//cts:request/cts:requestName"/>&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
 											select="normalize-space(cts:next)"/></xsl:variable>
 									<xsl:element name="a">
 										<xsl:attribute name="href">
 											<xsl:value-of select="$nxtVar"/>
 										</xsl:attribute> next </xsl:element>
-								
-							
+
+
 						</xsl:if>
 						<xsl:if test="normalize-space(cts:next) = ''"> (at end of the text) </xsl:if>
 					</span>
 				</div>
-			
-		
+
+
 	</xsl:template>
 
-	
+
 	<xsl:template name="urnPsg">
 		<xsl:param name="urnStr"/>
 		<xsl:choose>
@@ -168,16 +168,16 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	
+
 	<!-- Special!! Identify leaf-nodes -->
-	<xsl:template match="cts:node">		
+	<xsl:template match="cts:node">
 		<xsl:element name="mark">
 			<xsl:choose>
-				
+
 				<xsl:when test="tei:w">
 					<xsl:attribute name="class">cts_node cts_inline</xsl:attribute>
 				</xsl:when>
-				
+
 				<xsl:otherwise>
 					<xsl:attribute name="class">cts_node cts_block</xsl:attribute>
 				</xsl:otherwise>

@@ -3,17 +3,17 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output omit-xml-declaration="yes" method="html" encoding="UTF-8"/>
     <xsl:include href="cts_header.xsl"/>
-    
-    <xsl:variable name="homeUrl">/</xsl:variable>
-    <xsl:variable name="formsUrl">/</xsl:variable>
-    
-    
+
+    <xsl:variable name="homeUrl">@ctshome@</xsl:variable>
+    <xsl:variable name="formsUrl">@ctshome@</xsl:variable>
+
+
     <xsl:template match="/">
-        
+
         <html>
             <head>
-                
-                
+
+
                 <link href="cts-ui/css/cts-core.css" rel="stylesheet" title="CSS for CTS" type="text/css"/>
                 <link href="cts-ui/css/cts.css" rel="stylesheet"/>
                 <xsl:choose>
@@ -28,29 +28,29 @@
                 </xsl:choose>
             </head>
             <body>
-                
-                
+
+
                 <header>
                     <xsl:call-template name="header"/>
                 </header>
-                
+
                 <nav>
-                    <p> 
+                    <p>
                         <xsl:element name="a">
                             <xsl:attribute name="href"><xsl:value-of select="$homeUrl"/></xsl:attribute>
-                            home
+                            CTS home
                         </xsl:element>
-                        
+
                         <!--<xsl:element name="a">
 							<xsl:attribute name="href"><xsl:value-of select="$formsUrl"/></xsl:attribute>
 							Look up material by URN
 						</xsl:element>-->
-                        
-                        
+
+
                     </p>
-                    
+
                 </nav>
-                
+
                 <article>
                     <xsl:choose>
                         <xsl:when test="/cts:CTSError">
@@ -58,31 +58,31 @@
                         </xsl:when>
                         <xsl:otherwise>
                             <p>The first citation of <xsl:value-of select="//cts:requestUrn"/> is:</p>
-                            
+
                             <h1>
                                 <xsl:element name="a">
-                                    <xsl:attribute name="href">api?request=GetPassagePlus&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
+                                    <xsl:attribute name="href">@ctsapi@?request=GetPassagePlus&amp;stylesheet=cts_passage&amp;urn=<xsl:value-of
                                         select="normalize-space(//cts:reply/cts:urn)"/></xsl:attribute>
                                     <xsl:value-of select="//cts:reply/cts:urn"/>
                                 </xsl:element>
                             </h1>
-                            
-                            
+
+
                         </xsl:otherwise>
                     </xsl:choose>
-                    
-                    
+
+
                 </article>
-                
+
                 <footer>
                     <xsl:call-template name="footer"/>
                 </footer>
-                
+
             </body>
         </html>
-        
-        
-        
+
+
+
     </xsl:template>
-    
+
 </xsl:stylesheet>
