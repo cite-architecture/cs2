@@ -17,7 +17,7 @@ html.html {
 
 	body {
 
-		header("@header@")
+		header("@projectLabel@")
 			nav {
 
 				p {

@@ -1,9 +1,9 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
 if (hasProperty('solo')) {
-  apply from: "soloconf.gradle"
-} else {
   apply from: "ccconf.gradle"
+} else {
+  apply from: "../cs2/conf.gradle"
 }
 
 
@@ -85,22 +85,22 @@ ccIntegration.doFirst {
 }
 
 gretty {
-  initParameter("tripleserver", ccTokens["tripleserver"])
-  initParameter("iipserv",ccTokens["iipserv"])
-  initParameter("version",ccTokens["cs2version"])
+  initParameter("tripleserver", cs2Tokens["tripleserver"])
+  initParameter("iipserv",cs2Tokens["iipserv"])
+  initParameter("version",cs2Tokens["cs2version"])
 
   webappCopy {
     filesMatching '*', { FileCopyDetails fileDetails ->
       logger.warn 'File filtered: {}', fileDetails.path
-      filter ReplaceTokens, tokens: ccTokens
+      filter ReplaceTokens, tokens: cs2Tokens
     }
     filesMatching '**/*.xml', { FileCopyDetails fileDetails ->
       logger.warn 'File filtered: {}', fileDetails.path
-      filter ReplaceTokens, tokens: ccTokens
+      filter ReplaceTokens, tokens: cs2Tokens
     }
     filesMatching '**/*.xsl', { FileCopyDetails fileDetails ->
       logger.warn 'File filtered: {}', fileDetails.path
-      filter ReplaceTokens, tokens: ccTokens
+      filter ReplaceTokens, tokens: cs2Tokens
     }
   }
 
