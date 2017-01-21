@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:cite="http://chs.harvard.edu/xmlns/cite" 
+    xmlns:cite="http://chs.harvard.edu/xmlns/cite"
     version="1.0">
-    <xsl:include href="cite_header.xsl"/>
-    <xsl:include href="cite_variables.xsl"/>
-    <xsl:include href="cite_templates.xsl"/>
-    
+    <xsl:include href="cc_cite_header.xsl"/>
+    <xsl:include href="cc_cite_variables.xsl"/>
+    <xsl:include href="cc_cite_templates.xsl"/>
+
     <xsl:output method="html" omit-xml-declaration="yes"/>
-    
-    
+
+
     <xsl:template match="/">
         <html>
             <head>
@@ -34,32 +34,32 @@
                         <xsl:when test="cite:CITEError">
                             <xsl:call-template name="cite_error"/>
                         </xsl:when>
-                        
+
                         <xsl:otherwise>
                             <div class="reply cite_replyData">
                                 <xsl:if test="//cite:prevUrn">
-                                <p>Previous Object URN: 
+                                <p>Previous Object URN:
                                     <xsl:call-template name="cite_getObjectLink">
                                         <xsl:with-param name="urn"><xsl:value-of select="//cite:reply/cite:prevUrn"/></xsl:with-param>
                                     </xsl:call-template>
                                      </p>
                                 </xsl:if>
                                 <xsl:if test="//cite:nextUrn">
-                                <p>Next Object Urn: 
+                                <p>Next Object Urn:
                                     <xsl:call-template name="cite_getObjectLink">
                                         <xsl:with-param name="urn"><xsl:value-of select="//cite:reply/cite:nextUrn"/></xsl:with-param>
                                     </xsl:call-template>
                                  </p>
                                 </xsl:if>
                                 <xsl:if test="//cite:firstUrn">
-                                    <p>First Object Urn: 
+                                    <p>First Object Urn:
                                         <xsl:call-template name="cite_getObjectLink">
                                             <xsl:with-param name="urn"><xsl:value-of select="//cite:reply/cite:firstUrn"/></xsl:with-param>
                                         </xsl:call-template>
                                     </p>
                                 </xsl:if>
                                 <xsl:if test="//cite:lastUrn">
-                                    <p>Last Object Urn: 
+                                    <p>Last Object Urn:
                                         <xsl:call-template name="cite_getObjectLink">
                                             <xsl:with-param name="urn"><xsl:value-of select="//cite:reply/cite:lastUrn"/></xsl:with-param>
                                         </xsl:call-template>
@@ -74,8 +74,8 @@
                             <xsl:call-template name="cite_requestData"/>
                         </xsl:otherwise>
                     </xsl:choose>
-                    
-                    
+
+
                 </article>
                 <footer>
                     <xsl:call-template name="cite_footer"/>
@@ -83,7 +83,7 @@
             </body>
         </html>
     </xsl:template>
-    
-    
-    
+
+
+
 </xsl:stylesheet>

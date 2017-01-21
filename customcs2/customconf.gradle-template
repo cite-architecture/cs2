@@ -3,14 +3,17 @@ project.ext {
 
   cs2Tokens = [
 
-    "contextPath" : "/cs2",
+
+    "contextPath" : "/yourcs2install",
 
     // common:
     "tripleserver" : "http://localhost:3030/ds/sparql",
-    "cs2version" : "cs2 release 1.0",
     "iipserv" : "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi",
 
-    "projectLabel" : "CITE Services",
+    "cs2version" : "cs2 release 1.0",
+
+
+    "projectLabel" : "Your project",
 
     "header" : "<p>CITE Services</p>",
 

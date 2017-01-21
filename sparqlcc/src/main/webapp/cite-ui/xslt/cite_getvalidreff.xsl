@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:cite="http://chs.harvard.edu/xmlns/cite" version="1.0">
-    <xsl:include href="cite_header.xsl"/>
-    <xsl:include href="cite_variables.xsl"/>
-    <xsl:include href="cite_templates.xsl"/>
+    <xsl:include href="cc_cite_header.xsl"/>
+    <xsl:include href="cc_cite_variables.xsl"/>
+    <xsl:include href="cc_cite_templates.xsl"/>
 
     <xsl:output method="html" omit-xml-declaration="yes"/>
 
@@ -57,7 +57,7 @@
                                             </xsl:call-template>
                                         </li>
                                     </xsl:for-each>
-                                    
+
                                     <!-- We use this stylesheet for GetVersionsOfObject, too -->
                                     <xsl:for-each select="//cite:reply//cite:version">
                                         <li>
@@ -68,8 +68,8 @@
                                             </xsl:call-template>
                                         </li>
                                     </xsl:for-each>
-                                    
-                                    
+
+
                                 </ul>
                                 <xsl:call-template name="cite_pagedNav">
                                     <xsl:with-param name="requestUrl">

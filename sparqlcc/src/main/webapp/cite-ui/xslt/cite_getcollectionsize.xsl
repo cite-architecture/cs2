@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:cite="http://chs.harvard.edu/xmlns/cite" 
+    xmlns:cite="http://chs.harvard.edu/xmlns/cite"
     version="1.0">
-    <xsl:include href="cite_header.xsl"/>
-    <xsl:include href="cite_variables.xsl"/>
-    <xsl:include href="cite_templates.xsl"/>
-    
+    <xsl:include href="cc_cite_header.xsl"/>
+    <xsl:include href="cc_cite_variables.xsl"/>
+    <xsl:include href="cc_cite_templates.xsl"/>
+
     <xsl:output method="html" omit-xml-declaration="yes"/>
-    
-    
+
+
     <xsl:template match="/">
         <html>
             <head>
@@ -34,7 +34,7 @@
                         <xsl:when test="//cite:CITEError">
                             <xsl:call-template name="cite_error"/>
                         </xsl:when>
-                        
+
                         <xsl:otherwise>
                             <div class="reply">
                                 <p>Size: <span class="cite_replyData"><xsl:value-of select="//cite:count"/></span> </p>
@@ -47,8 +47,8 @@
                             <xsl:call-template name="cite_requestData"/>
                         </xsl:otherwise>
                     </xsl:choose>
-                   
-                    
+
+
                 </article>
                 <footer>
                     <xsl:call-template name="cite_footer"/>
@@ -56,7 +56,7 @@
             </body>
         </html>
     </xsl:template>
-    
-       
+
+
 
 </xsl:stylesheet>
