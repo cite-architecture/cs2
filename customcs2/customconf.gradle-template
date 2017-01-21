@@ -1,8 +1,40 @@
+
 project.ext {
 
-  customTokens = [
-    "projectName": "Name for your custom project",
-    "customVersion": "demo version"
+  cs2Tokens = [
+
+    "contextPath" : "/cs2",
+
+    // common:
+    "tripleserver" : "http://localhost:3030/ds/sparql",
+    "cs2version" : "cs2 release 1.0",
+    "iipserv" : "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi",
+
+    "projectLabel" : "CITE Services",
+
+    "header" : "<p>CITE Services</p>",
+
+    "footer" :  """<p><a href="http://cite-architecture.github.io">More about the CITE Architecture and the CITE service suite.</a> The CITE-Servlet is developed by Christopher Blackwell and Neel Smith, and licensed under the <a href="gpl-3.0.txt">GPL, version 3</a>.</p>""",
+
+
+    "cchome" : "cchome",
+    "ccapi" : "collections",
+
+    "ctshome" : "ctshome",
+    "ctsapi": "texts",
+
+    "imghome" : "imghome",
+    "imgapi": "images",
+    "icturl" : "ict.html?urn=",
+
+    "thumbsize" : "300",
+    "bigimage": "1000",
+    "moostylesheet" : "cite_remoteiip",
+
+
+    "demoCtsUrn" : "urn:cts:greekLit:tlg5026.msA:1.1"
+
   ]
+
 
 }

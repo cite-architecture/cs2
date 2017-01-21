@@ -32,6 +32,9 @@ gretty {
   contextPath = cs2Tokens["contextPath"]
 
   initParameter("tripleserver", cs2Tokens["tripleserver"])
+  initParameter("baseUrl", cs2Tokens["imgapi"])
+	initParameter("iipsrv", cs2Tokens["iipserv"])
+	initParameter("moostylesheet",cs2Tokens["moostylesheet"])
   initParameter("version",cs2Tokens["cs2version"])
 
   overlay ':sparqlcts'
@@ -49,6 +52,10 @@ gretty {
       filter ReplaceTokens, tokens: cs2Tokens
     }
     filesMatching '**/*.xsl', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
+    filesMatching '**/*.js', { FileCopyDetails fileDetails ->
       logger.warn 'File filtered: {}', fileDetails.path
       filter ReplaceTokens, tokens: cs2Tokens
     }

@@ -2,6 +2,7 @@
 project.ext {
 
   cs2Tokens = [
+    "contextPath" : "/citecollections",
     // common:
     "tripleserver" : "http://localhost:3030/ds/sparql",
     "cs2version" : "cs2 release 1.0",

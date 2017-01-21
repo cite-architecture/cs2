@@ -1,6 +1,7 @@
 
 project.ext {
 
+
   cs2Tokens = [
     "contextPath" : "/citeimg",
 
@@ -19,8 +20,10 @@ project.ext {
 
     "cchome" : "cchome",
     "ccapi" : "http://www.homermultitext.org/hmt-digital/collections",
+
     "ctshome": "ctshome",
     "ctsapi": "http://www.homermultitext.org/hmt-digital/texts",
+    
     "imgapi": "images",
     "imghome": "imghome",
     "icturl" : "ict.html?urn=",

@@ -10,7 +10,6 @@ project.ext {
     "cs2version" : "cs2 release 1.0",
     "iipserv" : "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi",
 
-
     "projectLabel" : "CITE Services",
 
     "header" : "<p>CITE Services</p>",
@@ -26,6 +25,7 @@ project.ext {
 
     "imghome" : "imghome",
     "imgapi": "images",
+    "icturl" : "ict.html?urn=",
 
     "thumbsize" : "300",
     "bigimage": "1000",

@@ -82,7 +82,7 @@ imgIntegration.doFirst {
 
 gretty {
   initParameter("tripleserver", cs2Tokens["tripleserver"])
-  initParameter("baseUrl", cs2Tokens["imgapi"] + "?")
+  initParameter("baseUrl", cs2Tokens["imgapi"])
 	initParameter("iipsrv", cs2Tokens["iipsrv"])
 	initParameter("moostylesheet",cs2Tokens["moostylesheet"])
   initParameter("version",cs2Tokens["cs2version"])

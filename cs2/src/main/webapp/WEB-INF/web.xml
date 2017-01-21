@@ -46,15 +46,15 @@
 
 
 
-        <servlet-mapping>
-            <servlet-name>GroovyServlet</servlet-name>
-            <url-pattern>/@imgapi@</url-pattern>
-        </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GroovyServlet</servlet-name>
+        <url-pattern>/@imgapi@</url-pattern>
+    </servlet-mapping>
 
-        <servlet-mapping>
-            <servlet-name>GroovyServlet</servlet-name>
-            <url-pattern>/@imghome@</url-pattern>
-        </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GroovyServlet</servlet-name>
+        <url-pattern>/@imghome@</url-pattern>
+    </servlet-mapping>
 
     <welcome-file-list>
         <welcome-file>root</welcome-file>
