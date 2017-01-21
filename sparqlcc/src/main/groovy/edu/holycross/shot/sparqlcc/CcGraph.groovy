@@ -178,21 +178,6 @@ class CcGraph {
 	}
 
 
-  /** returns 'true' if an object identified by a cite urn is a member of an ordered collection.
-  * @param Cite2Urn
-  * @returns boolean
-  */
-  boolean isordered(Cite2Urn urn)
-  throws Exception {
-      String collectionUrnStr = urn.reduceToCollectionVersion()
-      Cite2Urn collectionUrn = new Cite2Urn(collectionUrnStr)
-      String qs = QueryBuilder.isOrderedQuery(collectionUrn)
-      String reply = sparql.getSparqlReply("application/json", qs)
-      JsonSlurper slurper = new groovy.json.JsonSlurper()
-      def parsedReply = slurper.parseText(reply)
-      return parsedReply.boolean == true
-  }
-
 
   /** Returns the Cite2Urn for the previous item in an ordered collection
   * @param Cite2Urn

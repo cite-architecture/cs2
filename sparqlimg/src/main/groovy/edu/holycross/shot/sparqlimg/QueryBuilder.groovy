@@ -2,7 +2,7 @@ package edu.holycross.shot.sparqlimg
 
 // strip off RoI? on all queries?
 
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 
 
 /** A class using knowledge of the CHS Image extension to generate appropriate
@@ -31,10 +31,10 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
     }
 
 		/** Generates a Sparql query for versions of an object
-		* @param CiteUrn
+		* @param Cite2Urn
 		* @returns String
 		*/
-		String resolveVersionQuery(CiteUrn urn){
+		String resolveVersionQuery(Cite2Urn urn){
 			String queryString = prefix
 			queryString += """
 			select ?v where {
@@ -54,7 +54,7 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
 		 """
 		}
 
-    String binaryPathQuery(CiteUrn img) {
+    String binaryPathQuery(Cite2Urn img) {
 
         return """${prefix}
 
@@ -65,7 +65,7 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
          """
     }
 
-    String getRightsProp(CiteUrn img) {
+    String getRightsProp(Cite2Urn img) {
         return """${prefix}
        SELECT ?prop WHERE {
         <${img}> cite:belongsTo ?collection .
@@ -74,7 +74,7 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
         """
     }
 
-    String getCaptionProp(CiteUrn img) {
+    String getCaptionProp(Cite2Urn img) {
         return """${prefix}
        SELECT ?prop WHERE {
         <${img}> cite:belongsTo ?collection .
@@ -83,7 +83,7 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
         """
     }
 
-    String getImageInfo(CiteUrn img, String captionVerb, String rightsVerb) {
+    String getImageInfo(Cite2Urn img, String captionVerb, String rightsVerb) {
         return """${prefix}
        SELECT ?caption ?license WHERE {
         <${img}> ${captionVerb} ?caption .
@@ -104,7 +104,7 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
          """
      }
 
-    String getGroupInfo (CiteUrn group) {
+    String getGroupInfo (Cite2Urn group) {
         return """${prefix}
         SELECT ?archv ?desc ?path (COUNT(?img) AS ?num) WHERE {
         ?archv rdf:type cite:ImageArchive .

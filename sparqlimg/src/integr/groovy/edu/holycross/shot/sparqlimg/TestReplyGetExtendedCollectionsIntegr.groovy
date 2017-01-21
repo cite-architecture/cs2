@@ -5,7 +5,7 @@ import org.junit.Test
 import org.custommonkey.xmlunit.*
 
 import edu.holycross.shot.sparqlimg.CiteImage
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -33,7 +33,7 @@ class TestReplyGetExtendedCollectionsIntegr extends GroovyTestCase {
 <request>
 </request>
 <reply>
-<collection urn="urn:cite:hmt:vaimg"/>
+<collection urn="urn:cite2:hmt:vaimg.v1:"/>
 </reply>
 </GetExtendedCollections>
 """
@@ -62,7 +62,7 @@ class TestReplyGetExtendedCollectionsIntegr extends GroovyTestCase {
 <request>
 </request>
 <reply>
-<collection urn="urn:cite:hmt:vaimg"/>
+<collection urn="urn:cite2:hmt:vaimg.v1:"/>
 </reply>
 </GetExtendedCollections>
 """

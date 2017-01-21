@@ -4,7 +4,7 @@ import static org.junit.Assert.*
 import org.junit.Test
 
 import edu.holycross.shot.sparqlimg.CiteImage
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -23,7 +23,7 @@ class TestTestIntegr extends GroovyTestCase {
 
   @Test
   void testGetCaptionPropIntegr(){
-    CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1")
+    Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg.v1:VA327RN_0497")
     Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		assert cimg.getCaptionProp(urn.toString()) == "citedata:vaimg_Label"

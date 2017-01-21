@@ -4,7 +4,7 @@ import static org.junit.Assert.*
 import org.junit.Test
 
 import edu.holycross.shot.sparqlimg.CiteImage
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -19,29 +19,29 @@ class TestResolveVersionsIntegr extends GroovyTestCase {
 	@Test
 	void testResolveVersion1(){
 
-		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497")
+		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg:VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
-		CiteUrn resolvedUrn = cimg.resolveVersion(urn)
-			assert resolvedUrn.toString() == "urn:cite:hmt:vaimg.VA327RN_0497.v1"
+		Cite2Urn resolvedUrn = cimg.resolveVersion(urn)
+			assert resolvedUrn.toString() == "urn:cite2:hmt:vaimg.v1:VA327RN_0497"
 	}
 
 	@Test
 	void testResolveVersion2(){
-		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1")
+		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg.v1:VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
-		CiteUrn resolvedUrn = cimg.resolveVersion(urn)
-		assert resolvedUrn.toString() == "urn:cite:hmt:vaimg.VA327RN_0497.v1"
+		Cite2Urn resolvedUrn = cimg.resolveVersion(urn)
+		assert resolvedUrn.toString() == "urn:cite2:hmt:vaimg.v1:VA327RN_0497"
 	}
 
 	@Test
 	void testResolveVersion3(){
-		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497-VA327VN_0498")
+		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg:VA327RN_0497-VA327VN_0498")
 		Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		shouldFail{
-			CiteUrn resolvedUrn = cimg.resolveVersion(urn)
+			Cite2Urn resolvedUrn = cimg.resolveVersion(urn)
 		}
 	}
 
