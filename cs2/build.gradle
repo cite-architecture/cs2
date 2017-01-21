@@ -29,6 +29,7 @@ gretty {
   initParameter("version",cs2Tokens["cs2version"])
 
   overlay ':sparqlcts'
+  overlay ':sparqlcc'
 
   webappCopy {
     // Enable filtering on all xml files in WEB-INF
