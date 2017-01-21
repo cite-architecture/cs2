@@ -34,5 +34,5 @@ gretty {
       filter ReplaceTokens, tokens: customTokens
     }
   }
-  overlay ':sparqlcts'
+  overlay ':cs2'
 }
