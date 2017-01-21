@@ -1,7 +1,7 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
-if (file("customconf.gradle").exists()) {
-  apply from: "customconf.gradle"
+if (hasProperty("custom")) {
+  apply from: new File(custom)
 } else {
   apply from: "customconf.gradle-template"
 }
@@ -33,18 +33,23 @@ repositories {
 }
 
 gretty {
+  contextPath = cs2Tokens["contextPath"]
+
+  initParameter("tripleserver", cs2Tokens["tripleserver"])
+  initParameter("version",cs2Tokens["cs2version"])
+
   webappCopy {
     filesMatching '*', { FileCopyDetails fileDetails ->
       logger.warn 'File filtered: {}', fileDetails.path
-      filter ReplaceTokens, tokens: customTokens
+      filter ReplaceTokens, tokens: cs2Tokens
     }
     filesMatching '**/*.xml', { FileCopyDetails fileDetails ->
       logger.warn 'File filtered: {}', fileDetails.path
-      filter ReplaceTokens, tokens: customTokens
+      filter ReplaceTokens, tokens: cs2Tokens
     }
     filesMatching '**/*.xsl', { FileCopyDetails fileDetails ->
       logger.warn 'File filtered: {}', fileDetails.path
-      filter ReplaceTokens, tokens: customTokens
+      filter ReplaceTokens, tokens: cs2Tokens
     }
   }
   overlay ':cs2'
