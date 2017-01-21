@@ -80,7 +80,7 @@ gretty {
       logger.warn 'File filtered: {}', fileDetails.path
       filter ReplaceTokens, tokens: ctsTokens
     }
-    filesMatching '**/*.xslt', { FileCopyDetails fileDetails ->
+    filesMatching '**/*.xsl', { FileCopyDetails fileDetails ->
       logger.warn 'File filtered: {}', fileDetails.path
       filter ReplaceTokens, tokens: ctsTokens
     }
