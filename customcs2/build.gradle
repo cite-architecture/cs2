@@ -32,6 +32,13 @@ repositories {
   // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
 }
 
+
+task installSource(type: Copy) {
+  from(sourceDirectory)
+  into ("src/main/webapp")
+  filter(ReplaceTokens, tokens: cs2Tokens)
+}
+
 gretty {
   contextPath = cs2Tokens["contextPath"]
 
