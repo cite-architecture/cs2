@@ -1,6 +1,6 @@
 package edu.holycross.shot.sparqlimg
 
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 import groovy.json.JsonSlurper
@@ -43,100 +43,129 @@ class CiteImage {
         this.qb = new QueryBuilder()
     }
 
-		/** Returns a valid version for an Object-level CITE Urn.
-	  * @param CiteUrn Can be range. Throws exception if the param is a collection-level URN
-	  * @returns CiteUrn (version-level)
-	  */
-	  CiteUrn resolveVersion(CiteUrn urn)
-	  throws Exception {
-	  	  Object returnObject
+  /** Returns a valid version for an Object-level CITE Urn.
+	* Throws exception if there is not versioned collection that contains the
+	* identified object.
+  * @param Cite2Urn Can be range.
+  * @returns Cite2Urn
+  */
+	Cite2Urn resolveVersion(Cite2Urn urn)
+	throws Exception {
+		Cite2Urn returnUrn
 
-	 	  String tempUrnString = ""
-		  // Handle ranges: Be sure both sides have a version, and the same version
-		  if ( urn.isRange() ){
-				throw new Exception("SparqlImg: Range URNs are not valid parameters for CITE Image Extension requests.")
-		  } else {
-		  // Handle single objects
-			  tempUrnString = versionForObject(urn)
-		  }
+		if (urn.hasCollectionVersion()){
+			returnUrn = urn
+		} else{
+			if (urn.isRange()){
+				Cite2Urn collUrn = urn.reduceToCollection()
+				ArrayList vfc = versionsForCollection(collUrn)
+				if (vfc.size() > 0){
+					Cite2Urn testUrn
+					vfc.each{ curn ->
+							testUrn = new Cite2Urn("${curn}${urn.objectId_1}-${urn.objectId_2}")
+							if (objectExists(testUrn)){
+									returnUrn = testUrn
+							} else {
+								throw new Exception("CiteImage, resolveVersion: No versions of  ${urn} exist in data.")
+							}
+					}
 
-		  if ( tempUrnString == ""){
-				returnObject = null
-		  } else {
-				try {
-					returnObject = new CiteUrn(tempUrnString)
-				} catch (Exception e ) {
-					returnObject = null
+				} else {
+					throw new Exception("CiteImage, resolveVersion: No versions of collection ${urn.reduceToCollection()} exist in data.")
 				}
-		  }
-		  return returnObject
 
-	  }
+			} else {
 
-	  /** Performs a query to find a valid version for an object-level URN
-	  * @param CiteUrn Throws exceptions if param is collection-level or a range.
-	  * @returns CiteUrn (version-level) May return null if there is not a version present in the data
-	  */
-	  CiteUrn versionForObject(CiteUrn urn)
-	  throws Exception {
-	    String tempUrnString = ""
-	    Object returnObject = null
+				if (urn.hasObjectId()){
+					ArrayList vfo = versionsForObject(urn)
+					if (vfo.size() > 0){
+						returnUrn = vfo[0]
+					} else {
+						throw new Exception("CiteImage,, resolveVersion: No versions of collection ${urn.reduceToCollection()} contain an object identified as ${urn}")
+					}
+				} else { // it is a collection-level URN
+					returnUrn = versionsForCollection(urn)[0]
+				}
+			}
+		}
 
-	    if ( urn.isRange() ) {
-	      throw new Exception( "CiteImg: versionForObject: ${urn.toString()} cannot be a range.")
-	    }
-	    if ( !(urn.hasObjectId()) ) {
-	      throw new Exception( "CiteImg: versionForObject: ${urn.toString()} cannot be a collection-level urn.")
-	    }
-	    if ( !(urn.hasVersion()) && urn.hasExtendedRef() ) {
-	      throw new Exception( "CiteImg: versionForObject: ${urn.toString()} cannot have an extendedRef without a version identifier.")
-	    }
-	    if ( urn.hasVersion() ){
-	      tempUrnString = urn.toString()
-	      } else {
-	        String queryString = qb.resolveVersionQuery(urn)
-	        String reply = sparql.getSparqlReply("application/json", queryString)
+		return returnUrn
+	}
 
-	        JsonSlurper slurper = new groovy.json.JsonSlurper()
-	        def parsedReply = slurper.parseText(reply)
-	        parsedReply.results.bindings.each { bndng ->
-	          if (bndng.v) {
-	            tempUrnString = bndng.v?.value
-	          }
-	        }
+	/** Performs a query to find all valid versioned collections given a Cite2Urn (at any level)
+	* @param Cite2Urn
+	* @returns ArrayList of Cite2Urns at the collection-version level
+	*/
+	ArrayList versionsForCollection(Cite2Urn urn)
+	throws Exception {
+		String tempUrnString = ""
+		def versionArray = []
+		Cite2Urn collUrn = urn.reduceToCollection()
+		Cite2Urn tempUrn
 
-	      }
+    String qs = QueryBuilder.getVersionsForCollectionQuery(collUrn)
+    String reply = sparql.getSparqlReply("application/json", qs)
+    JsonSlurper slurper = new groovy.json.JsonSlurper()
+    def parsedReply = slurper.parseText(reply)
+      parsedReply.results.bindings.each { bndng ->
+        if (bndng.cv) {
+					try {
+	          tempUrn = new Cite2Urn(bndng.cv?.value)
+					} catch (Exception e){
+						throw new Exception("CCGraph, versionsForCollection. Could not turn ${bndng.cv?.value} into a Cite2 URN: ${e}")
+					}
+					versionArray << tempUrn
+        }
+      }
 
-	      if ( tempUrnString == ""){
-	        returnObject = null
-	        } else {
-	          try {
-	            returnObject = new CiteUrn(tempUrnString)
-	            } catch (Exception e ) {
-	              returnObject = null
-	            }
-	          }
+		return versionArray
+	}
 
-	          return returnObject
-	        }
+	/** Performs a query to find a all valid versioned collection that contain an object-ID
+	* @param Cite2Urn
+	* @returns ArrayList of Cite2Urns
+	*/
+	ArrayList versionsForObject(Cite2Urn urn)
+	throws Exception {
+		ArrayList vfo = []
+		Cite2Urn collUrn
+		Cite2Urn testUrn
+		if ( !(urn.hasObjectId())){
+			throw new Exception("CcGraph, versionsForObject: ${urn} does not have an object id.")
+		} else {
+			String objStr = urn.getObjectId()
+			collUrn = urn.reduceToCollection()
+			ArrayList collVersions = versionsForCollection(collUrn)
+			if (collVersions.size() < 1){
+				throw new Exception("CcGraph, versionsForObject: ${collUrn} is not represented in this data by any version.")
+			} else {
+				collVersions.each{ cv ->
+						testUrn = new Cite2Urn("${cv}${objStr}")
+						if (objectExists(testUrn)){
+							vfo << testUrn
+						}
+				}
 
-	  /** Returns 'true' if an object identified by a Cite URN is a member of an ordered collection.
-	  * @param CiteUrn
-	  * @returns Boolean
-	  */
-	  Boolean isOrdered(CiteUrn urn)
-	  throws Exception {
-	      String collectionUrnStr = urn.reduceToCollection()
-	      CiteUrn collectionUrn = new CiteUrn(collectionUrnStr)
-	      String qs = QueryBuilder.isOrderedQuery(collectionUrn)
-	      String reply = sparql.getSparqlReply("application/json", qs)
-	      JsonSlurper slurper = new groovy.json.JsonSlurper()
-	      def parsedReply = slurper.parseText(reply)
-	      //System.err.println qs
-	      //System.err.println parsedReply
-	      //System.err.println "${urn} >> ${collectionUrn}"
-	      return parsedReply.boolean == true
-	  }
+			}
+
+		}
+
+		return vfo
+	}
+
+  /** Returns 'true' if an object identified by a Cite URN is a member of an ordered collection.
+  * @param CiteUrn
+  * @returns Boolean
+  */
+  Boolean isOrdered(Cite2Urn urn)
+  throws Exception {
+      Cite2Urn collectionUrn = resolveVersion(urn).reduceToCollectionVersion()
+      String qs = QueryBuilder.isOrderedQuery(collectionUrn)
+      String reply = sparql.getSparqlReply("application/json", qs)
+      JsonSlurper slurper = new groovy.json.JsonSlurper()
+      def parsedReply = slurper.parseText(reply)
+      return parsedReply.boolean == true
+  }
 
     /**
     * Composes a String validating against the .rng schema for the GetCaption reply.
@@ -145,8 +174,8 @@ class CiteImage {
     */
     String getCaptionReply(String urnStr)
     throws Exception {
-        CiteUrn urn = new CiteUrn(urnStr)
-        CiteUrn baseUrn = new CiteUrn("urn:cite:${urn.getNs()}:${urn.getCollection()}.${urn.getObjectId()}")
+        Cite2Urn urn = new Cite2Urn(urnStr)
+        Cite2Urn baseUrn = urn.reduceToObject()
         return getCaptionReply(baseUrn)
     }
 
@@ -156,14 +185,15 @@ class CiteImage {
     * @param urn URN of the image.
     * @returns A valid reply to the CiteImage GetCaption request.
     */
-    String getCaptionReply(CiteUrn urn) {
-			CiteUrn resolvedUrn = resolveVersion(urn)
-        String rightsVerb = getRightsProp(urn.toString())
-        String captionVerb = getCaptionProp(urn.toString())
-			CiteUrn baseUrn = new CiteUrn("urn:cite:${resolvedUrn.getNs()}:${resolvedUrn.getCollection()}.${resolvedUrn.getObjectId()}.${resolvedUrn.getObjectVersion()}")
+    String getCaptionReply(Cite2Urn urn) {
+			Cite2Urn resolvedUrn = resolveVersion(urn).reduceToObject()
+        String rightsVerb = getRightsProp(resolvedUrn.toString())
+        String captionVerb = getCaptionProp(resolvedUrn.toString())
+			Cite2Urn baseUrn = urn.reduceToObject()
         StringBuffer reply = new StringBuffer("<GetCaption xmlns='http://chs.harvard.edu/xmlns/citeimg'>\n")
         reply.append("<request>\n<urn>${urn}</urn>\n<resolvedUrn>${resolvedUrn}</resolvedUrn>\n</request>\n<reply>\n")
-        String q = qb.getImageInfo(baseUrn, captionVerb, rightsVerb)
+        String q = qb.getImageInfo(resolvedUrn, captionVerb, rightsVerb)
+				System.err.println("------ qs ----\n${q}\n-------")
 	if (debug > 0) {
 	  System.err.println "CiteImage: query = ${q}"
 	}
@@ -186,8 +216,8 @@ class CiteImage {
     */
     String getRightsProp(String urnStr)
     throws Exception {
-        CiteUrn urn = new CiteUrn(urnStr)
-		CiteUrn baseUrn = new CiteUrn("urn:cite:${urn.getNs()}:${urn.getCollection()}.${urn.getObjectId()}")
+        Cite2Urn urn = new Cite2Urn(urnStr)
+				Cite2Urn baseUrn = resolveVersion(urn).reduceToObject()
         String rightsPropReply =  sparql.getSparqlReply("application/json", qb.getRightsProp(baseUrn))
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(rightsPropReply)
@@ -208,8 +238,8 @@ class CiteImage {
     */
     String getCaptionProp(String urnStr)
     throws Exception {
-        CiteUrn urn = new CiteUrn(urnStr)
-		CiteUrn baseUrn = new CiteUrn("urn:cite:${urn.getNs()}:${urn.getCollection()}.${urn.getObjectId()}")
+        Cite2Urn urn = new Cite2Urn(urnStr)
+				Cite2Urn baseUrn = resolveVersion(urn).reduceToObject()
         String captionPropReply =  sparql.getSparqlReply("application/json", qb.getCaptionProp(baseUrn))
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(captionPropReply)
@@ -229,8 +259,8 @@ class CiteImage {
     */
     String getRightsReply(String urnStr)
     throws Exception {
-        CiteUrn urn = new CiteUrn(urnStr)
-		CiteUrn baseUrn = new CiteUrn("urn:cite:${urn.getNs()}:${urn.getCollection()}.${urn.getObjectId()}")
+        Cite2Urn urn = new Cite2Urn(urnStr)
+				Cite2Urn baseUrn = urn.reduceToObject()
         return getRightsReply(baseUrn)
     }
 
@@ -239,11 +269,11 @@ class CiteImage {
 		* @param urn URN of the image.
 		* @returns A valid reply to the CiteImage GetRights request.
 		*/
-		String getRightsReply(CiteUrn urn){
-			CiteUrn resolvedUrn = resolveVersion(urn)
+		String getRightsReply(Cite2Urn urn){
+			Cite2Urn resolvedUrn = resolveVersion(urn)
 			String rightsVerb = getRightsProp(urn.toString())
 			String captionVerb = getCaptionProp(urn.toString())
-			CiteUrn baseUrn = new CiteUrn("urn:cite:${resolvedUrn.getNs()}:${resolvedUrn.getCollection()}.${resolvedUrn.getObjectId()}.${resolvedUrn.getObjectVersion()}")
+			Cite2Urn baseUrn = resolvedUrn.reduceToObject()
 
 			StringBuffer reply = new StringBuffer("<GetRights xmlns='http://chs.harvard.edu/xmlns/citeimg'>\n")
 
@@ -273,7 +303,7 @@ class CiteImage {
     */
     String getBinaryRedirect(String urnStr)
     throws Exception {
-        CiteUrn urn = new CiteUrn(urnStr)
+        Cite2Urn urn = new Cite2Urn(urnStr)
         return getBinaryRedirect(urn)
     }
 
@@ -283,15 +313,16 @@ class CiteImage {
     * @param urnStr URN, as a String, of the image.
     * @returns A String value with a valid URN to a binary image.
     */
-    String getBinaryRedirect(CiteUrn urn) {
-        String pathReply =  sparql.getSparqlReply("application/json", qb.binaryPathQuery(urn))
+    String getBinaryRedirect(Cite2Urn urn) {
+				Cite2Urn resolvedUrn = resolveVersion(urn).reduceToObject()
+        String pathReply =  sparql.getSparqlReply("application/json", qb.binaryPathQuery(resolvedUrn))
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(pathReply)
         String path = ""
         parsedReply.results.bindings.each { b ->
             path = b.path.value
         }
-        return "${iipsrv}?OBJ=IIP,1.0&FIF=${path}/${urn.getObjectId()}.tif"
+        return "${iipsrv}?OBJ=IIP,1.0&FIF=${path}/${resolvedUrn.getObjectId()}.tif"
     }
 
 		String getExtendedCollectionsReply(String extensionString){
@@ -315,10 +346,10 @@ class CiteImage {
 
 		}
 
-    String getIIPMooViewerReply(CiteUrn urn) {
+    String getIIPMooViewerReply(Cite2Urn urn) {
         String roi = urn.getExtendedRef()
-			CiteUrn resolvedUrn = resolveVersion(urn)
-			CiteUrn baseUrn = new CiteUrn("urn:cite:${resolvedUrn.getNs()}:${resolvedUrn.getCollection()}.${resolvedUrn.getObjectId()}.${resolvedUrn.getObjectVersion()}")
+			Cite2Urn resolvedUrn = resolveVersion(urn)
+			Cite2Urn baseUrn = resolvedUrn.reduceToObject()
         String license
         String caption
         String path
@@ -357,9 +388,9 @@ class CiteImage {
 
 
 
-    String getImagePlusReply(CiteUrn urn) {
-			CiteUrn resolvedUrn = resolveVersion(urn)
-			CiteUrn baseUrn = new CiteUrn("urn:cite:${resolvedUrn.getNs()}:${resolvedUrn.getCollection()}.${resolvedUrn.getObjectId()}.${resolvedUrn.getObjectVersion()}")
+    String getImagePlusReply(Cite2Urn urn) {
+			Cite2Urn resolvedUrn = resolveVersion(urn)
+			Cite2Urn baseUrn = resolvedUrn.reduceToObject()
         String binaryUrl = "${baseUrl}request=GetBinaryImage&amp;urn=${resolvedUrn}"
         String zoomableUrl =  "${baseUrl}request=GetIIPMooViewer&amp;urn=${resolvedUrn}"
 
@@ -402,6 +433,50 @@ class CiteImage {
     }
 
 
+  /** returns 'true' if an object identified by a cite urn is present in the dataset;
+	* for a range, returns 'true' if the beginning- and ending-objects are present.
+  * @param cite2urn
+  * @returns boolean
+  */
+  boolean objectExists(Cite2Urn urn)
+		throws Exception{
+			Boolean returnValue
+			String qs
+			String reply
+			JsonSlurper slurper
+			def parsedReply
+
+			if ( !(urn.hasObjectId())){
+				throw new Exception("CiteImage, objectExists: ${urn} does not identify an object.")
+			}
+			Cite2Urn testUrn = urn.reduceToObject()
+			if (testUrn.isRange()){
+				Cite2Urn beginUrn = testUrn.getRangeBegin()
+	      qs = QueryBuilder.getObjectExistsQuery(beginUrn)
+	      reply = sparql.getSparqlReply("application/json", qs)
+	      slurper = new groovy.json.JsonSlurper()
+	      parsedReply = slurper.parseText(reply)
+	      returnValue =  parsedReply.boolean == true
+
+				Cite2Urn endUrn = testUrn.getRangeEnd()
+	      qs = QueryBuilder.getObjectExistsQuery(endUrn)
+	      reply = sparql.getSparqlReply("application/json", qs)
+	      slurper = new groovy.json.JsonSlurper()
+	      parsedReply = slurper.parseText(reply)
+	      returnValue =  ( returnValue && (parsedReply.boolean == true))
+
+			} else {
+
+	      qs = QueryBuilder.getObjectExistsQuery(testUrn)
+	      reply = sparql.getSparqlReply("application/json", qs)
+	      slurper = new groovy.json.JsonSlurper()
+	      parsedReply = slurper.parseText(reply)
+	      returnValue =  parsedReply.boolean == true
+
+			}
+
+			return returnValue
+	}
 
 
 }

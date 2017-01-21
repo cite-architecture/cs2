@@ -5,7 +5,7 @@ import org.junit.Test
 import org.custommonkey.xmlunit.*
 
 import edu.holycross.shot.sparqlimg.CiteImage
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -23,7 +23,7 @@ class TestReplyGetIIPMooViewerIntegr extends GroovyTestCase {
 		XMLUnit.setNormalizeWhitespace(true)
 		//XMLUnit.setIgnoreWhitespace(true)
 
-		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497")
+		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg:VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String replyString = cimg.getIIPMooViewerReply(urn)
@@ -31,9 +31,9 @@ class TestReplyGetIIPMooViewerIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetIIPMooViewer  xmlns='http://chs.harvard.edu/xmlns/citeimg'>
 <request>
-<urn>urn:cite:hmt:vaimg.VA327RN_0497</urn>
-<resolvedUrn>urn:cite:hmt:vaimg.VA327RN_0497.v1</resolvedUrn>
-<baseUrn>urn:cite:hmt:vaimg.VA327RN_0497.v1</baseUrn>
+<urn>urn:cite2:hmt:vaimg:VA327RN_0497</urn>
+<resolvedUrn>urn:cite2:hmt:vaimg.v1:VA327RN_0497</resolvedUrn>
+<baseUrn>urn:cite2:hmt:vaimg.v1:VA327RN_0497</baseUrn>
 <roi>null</roi>
 </request>
 <reply><serverUrl val='http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi'/>
@@ -59,7 +59,7 @@ class TestReplyGetIIPMooViewerIntegr extends GroovyTestCase {
 		XMLUnit.setNormalizeWhitespace(true)
 		//XMLUnit.setIgnoreWhitespace(true)
 
-		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1")
+		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg.v1:VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String replyString = cimg.getIIPMooViewerReply(urn)
@@ -67,9 +67,9 @@ class TestReplyGetIIPMooViewerIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetIIPMooViewer  xmlns='http://chs.harvard.edu/xmlns/citeimg'>
 <request>
-<urn>urn:cite:hmt:vaimg.VA327RN_0497.v1</urn>
-<resolvedUrn>urn:cite:hmt:vaimg.VA327RN_0497.v1</resolvedUrn>
-<baseUrn>urn:cite:hmt:vaimg.VA327RN_0497.v1</baseUrn>
+<urn>urn:cite2:hmt:vaimg.v1:VA327RN_0497</urn>
+<resolvedUrn>urn:cite2:hmt:vaimg.v1:VA327RN_0497</resolvedUrn>
+<baseUrn>urn:cite2:hmt:vaimg.v1:VA327RN_0497</baseUrn>
 <roi>null</roi>
 </request>
 <reply><serverUrl val='http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi'/>
@@ -95,7 +95,7 @@ class TestReplyGetIIPMooViewerIntegr extends GroovyTestCase {
 		XMLUnit.setNormalizeWhitespace(true)
 		//XMLUnit.setIgnoreWhitespace(true)
 
-		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1@0.25,0.25,0.25,0.25")
+		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg.v1:VA327RN_0497@0.25,0.25,0.25,0.25")
 		Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String replyString = cimg.getIIPMooViewerReply(urn)
@@ -103,9 +103,9 @@ class TestReplyGetIIPMooViewerIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetIIPMooViewer  xmlns='http://chs.harvard.edu/xmlns/citeimg'>
 <request>
-<urn>urn:cite:hmt:vaimg.VA327RN_0497.v1@0.25,0.25,0.25,0.25</urn>
-<resolvedUrn>urn:cite:hmt:vaimg.VA327RN_0497.v1@0.25,0.25,0.25,0.25</resolvedUrn>
-<baseUrn>urn:cite:hmt:vaimg.VA327RN_0497.v1</baseUrn>
+<urn>urn:cite2:hmt:vaimg.v1:VA327RN_0497@0.25,0.25,0.25,0.25</urn>
+<resolvedUrn>urn:cite2:hmt:vaimg.v1:VA327RN_0497@0.25,0.25,0.25,0.25</resolvedUrn>
+<baseUrn>urn:cite2:hmt:vaimg.v1:VA327RN_0497</baseUrn>
 <roi>0.25,0.25,0.25,0.25</roi>
 </request>
 <reply><serverUrl val='http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi'/>

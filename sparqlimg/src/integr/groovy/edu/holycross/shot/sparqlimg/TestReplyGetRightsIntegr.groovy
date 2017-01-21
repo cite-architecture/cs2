@@ -5,7 +5,7 @@ import org.junit.Test
 import org.custommonkey.xmlunit.*
 
 import edu.holycross.shot.sparqlimg.CiteImage
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -23,7 +23,7 @@ class TestReplyGetRightsIntegr extends GroovyTestCase {
 		XMLUnit.setNormalizeWhitespace(true)
 		//XMLUnit.setIgnoreWhitespace(true)
 
-		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497")
+		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg:VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String replyString = cimg.getRightsReply(urn)
@@ -31,8 +31,8 @@ class TestReplyGetRightsIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetRights xmlns='http://chs.harvard.edu/xmlns/citeimg'>
 <request>
-<urn>urn:cite:hmt:vaimg.VA327RN_0497</urn>
-<resolvedUrn>urn:cite:hmt:vaimg.VA327RN_0497.v1</resolvedUrn>
+<urn>urn:cite2:hmt:vaimg:VA327RN_0497</urn>
+<resolvedUrn>urn:cite2:hmt:vaimg.v1:VA327RN_0497</resolvedUrn>
 </request>
 <reply>
 <rights>This image was derived from an original ©2007, Biblioteca Nazionale Marciana, Venezie, Italia. The derivative image is ©2010, Center for Hellenic Studies. Original and derivative are licensed under the Creative Commons Attribution-Noncommercial-Share Alike 3.0 License. The CHS/Marciana Imaging Project was directed by David Jacobs of the British Library.</rights>
@@ -55,7 +55,7 @@ class TestReplyGetRightsIntegr extends GroovyTestCase {
 		XMLUnit.setNormalizeWhitespace(true)
 		//XMLUnit.setIgnoreWhitespace(true)
 
-		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1")
+		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg.v1:VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String replyString = cimg.getRightsReply(urn)
@@ -63,8 +63,8 @@ class TestReplyGetRightsIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetRights xmlns='http://chs.harvard.edu/xmlns/citeimg'>
 <request>
-<urn>urn:cite:hmt:vaimg.VA327RN_0497.v1</urn>
-<resolvedUrn>urn:cite:hmt:vaimg.VA327RN_0497.v1</resolvedUrn>
+<urn>urn:cite2:hmt:vaimg.v1:VA327RN_0497</urn>
+<resolvedUrn>urn:cite2:hmt:vaimg.v1:VA327RN_0497</resolvedUrn>
 </request>
 <reply>
 <rights>This image was derived from an original ©2007, Biblioteca Nazionale Marciana, Venezie, Italia. The derivative image is ©2010, Center for Hellenic Studies. Original and derivative are licensed under the Creative Commons Attribution-Noncommercial-Share Alike 3.0 License. The CHS/Marciana Imaging Project was directed by David Jacobs of the British Library.</rights>

@@ -1,6 +1,6 @@
 import edu.holycross.shot.sparqlimg.*
 import edu.harvard.chs.cite.CtsUrn
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 
 String responseType = request.getParameter("type")
 if ( (responseType == "") || (responseType == null)){
@@ -47,9 +47,9 @@ if(req == "GetExtendedCollections"){
 } else {
 	// guarantee that URN parameter is syntactically valid
 	done = false
-	CiteUrn urn
+	Cite2Urn urn
 	try {
-    urn = new CiteUrn(urnStr)
+    urn = new Cite2Urn(urnStr)
 	} catch (Exception e) {
 		errorNum = 1
 		if (stylesheet != null){
@@ -66,7 +66,7 @@ if(req == "GetExtendedCollections"){
 
 
 if (!done) {
-	  CiteUrn urn = new CiteUrn(urnStr)
+	  Cite2Urn urn = new Cite2Urn(urnStr)
     switch(req) {
         case "GetCaption":
 						if (stylesheet != null){
@@ -107,8 +107,8 @@ if (!done) {
             } catch (Exception) {
                 // stick with default
             }
-						CiteUrn resolvedUrn = cimg.resolveVersion(urn)
-            CiteUrn queryUrn = new CiteUrn ("urn:cite:${resolvedUrn.getNs()}:${resolvedUrn.getCollection()}.${resolvedUrn.getObjectId()}.${resolvedUrn.getObjectVersion()}")
+						Cite2Urn resolvedUrn = cimg.resolveVersion(urn)
+            Cite2Urn queryUrn = resolvedUrn.reduceToObject()
             String redirectAddress = cimg.getBinaryRedirect(queryUrn) + "&RGN=${subRef}&WID=${w}&CVT=JPEG"
             System.err.println "REDIRECT TO ${redirectAddress}"
             response.sendRedirect(redirectAddress)

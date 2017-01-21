@@ -5,7 +5,7 @@ import org.junit.Test
 import org.custommonkey.xmlunit.*
 
 import edu.holycross.shot.sparqlimg.CiteImage
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 import edu.harvard.chs.cite.CtsUrn
 import edu.holycross.shot.prestochango.*
 
@@ -19,7 +19,7 @@ class TestGetPropertiesIntegr extends GroovyTestCase {
 
 	@Test
 	void testGetCaptionProp(){
-		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1")
+		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg.v1:VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String expectedPropName = "citedata:vaimg_Label"
@@ -28,7 +28,7 @@ class TestGetPropertiesIntegr extends GroovyTestCase {
 
 	@Test
 	void testGetCaptionPropUnversioned(){
-		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497")
+		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg:VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String expectedPropName = "citedata:vaimg_Label"
@@ -38,7 +38,7 @@ class TestGetPropertiesIntegr extends GroovyTestCase {
 
 	@Test
 	void testGetRightsProp(){
-		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497.v1")
+		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg.v1:VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String expectedPropName = "citedata:vaimg_Rights"
@@ -47,7 +47,7 @@ class TestGetPropertiesIntegr extends GroovyTestCase {
 
 	@Test
 	void testGetRightsPropUnversioned(){
-		CiteUrn urn = new CiteUrn("urn:cite:hmt:vaimg.VA327RN_0497")
+		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg:VA327RN_0497")
 		Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
 		String expectedPropName = "citedata:vaimg_Rights"

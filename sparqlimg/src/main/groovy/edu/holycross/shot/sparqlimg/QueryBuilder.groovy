@@ -2,7 +2,7 @@ package edu.holycross.shot.sparqlimg
 
 // strip off RoI? on all queries?
 
-import edu.harvard.chs.cite.CiteUrn
+import edu.harvard.chs.cite.Cite2Urn
 
 
 /** A class using knowledge of the CHS Image extension to generate appropriate
@@ -10,7 +10,7 @@ import edu.harvard.chs.cite.CiteUrn
 */
 class QueryBuilder {
 
-    String prefix = """
+static String prefix = """
 PREFIX cts:        <http://www.homermultitext.org/cts/rdf/>
 PREFIX cite:        <http://www.homermultitext.org/cite/rdf/>
 PREFIX hmt:        <http://www.homermultitext.org/hmt/rdf/>
@@ -31,10 +31,10 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
     }
 
 		/** Generates a Sparql query for versions of an object
-		* @param CiteUrn
+		* @param Cite2Urn
 		* @returns String
 		*/
-		String resolveVersionQuery(CiteUrn urn){
+		String resolveVersionQuery(Cite2Urn urn){
 			String queryString = prefix
 			queryString += """
 			select ?v where {
@@ -54,7 +54,38 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
 		 """
 		}
 
-    String binaryPathQuery(CiteUrn img) {
+  /** Generates a Sparql query for testing whether a Cite2 object-level URN
+  * is represented in the data
+  * @param Cite2Urn
+  * @returns String
+  */
+  static String getObjectExistsQuery(Cite2Urn urn) {
+    String queryString = prefix
+    queryString += """
+    ask {
+      <${urn}> cite:belongsTo ?cv .
+    }
+    """
+    return queryString
+  }
+
+		/** Generates a Sparql query for finding every version of an identified
+	  * collection
+	  * @param Cite2Urn must be a collection-level urn
+	  * @returns String
+	  */
+	  /* Using ?urn at the top and in the nested SELECT cuts 30% off execution time, for some reason */
+	  static String getVersionsForCollectionQuery(Cite2Urn urn) {
+	    String queryString = prefix
+	    queryString += """
+	    select ?cv where {
+	      <${urn}> cite:hasVersion ?cv .
+	    }
+	    """
+	    return queryString
+	  }
+
+    String binaryPathQuery(Cite2Urn img) {
 
         return """${prefix}
 
@@ -65,7 +96,7 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
          """
     }
 
-    String getRightsProp(CiteUrn img) {
+    String getRightsProp(Cite2Urn img) {
         return """${prefix}
        SELECT ?prop WHERE {
         <${img}> cite:belongsTo ?collection .
@@ -74,7 +105,7 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
         """
     }
 
-    String getCaptionProp(CiteUrn img) {
+    String getCaptionProp(Cite2Urn img) {
         return """${prefix}
        SELECT ?prop WHERE {
         <${img}> cite:belongsTo ?collection .
@@ -83,7 +114,7 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
         """
     }
 
-    String getImageInfo(CiteUrn img, String captionVerb, String rightsVerb) {
+    String getImageInfo(Cite2Urn img, String captionVerb, String rightsVerb) {
         return """${prefix}
        SELECT ?caption ?license WHERE {
         <${img}> ${captionVerb} ?caption .
@@ -104,7 +135,7 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
          """
      }
 
-    String getGroupInfo (CiteUrn group) {
+    String getGroupInfo (Cite2Urn group) {
         return """${prefix}
         SELECT ?archv ?desc ?path (COUNT(?img) AS ?num) WHERE {
         ?archv rdf:type cite:ImageArchive .

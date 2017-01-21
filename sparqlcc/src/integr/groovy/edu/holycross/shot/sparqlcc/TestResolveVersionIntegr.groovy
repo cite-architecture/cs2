@@ -113,4 +113,15 @@ class TestResolveVersionIntegr extends GroovyTestCase {
 		}
 	}
 
+	// Range URN with one part not in data. Should fail
+	@Test
+	void testResolveVersion10() {
+		Sparql sparql = new Sparql(baseUrl)
+		CcGraph cc = new CcGraph(sparql)
+	  Cite2Urn urn =  new Cite2Urn("urn:cite2:hmt:vaimg:VA085RN_0086-VA089RN_XXXX")
+
+		shouldFail{
+			assert cc.resolveVersion(urn).toString() == "urn:cite2:hmt:vaimg.v1:VA085RN_0086-VA089RN_XXXX"
+		}
+	}
 }
