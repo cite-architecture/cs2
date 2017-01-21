@@ -69,24 +69,16 @@ ctsIntegration.doFirst {
 
 
 gretty {
-  initParameter("tripleserver", "http://localhost:8080/fuseki/cts/query")
-  initParameter("version","cs2 pre-release 1.0")
+  initParameter("tripleserver", ctsTokens['tripleserver'])
+  initParameter("version",ctsTokens['cs2version'])
   webappCopy {
-    // Enable filtering on all xml files in WEB-INF
-    filesMatching 'WEB-INF/web.xml', { FileCopyDetails fileDetails ->
+    filesMatching '*', { FileCopyDetails fileDetails ->
       logger.warn 'File filtered: {}', fileDetails.path
-      filter ReplaceTokens, tokens: [
-        'tripleserver' : tripleserver
-      ]
+      filter ReplaceTokens, tokens: ctsTokens
     }
-
-    filesMatching 'home', { FileCopyDetails fileDetails ->
+    filesMatching '**/*.xml', { FileCopyDetails fileDetails ->
       logger.warn 'File filtered: {}', fileDetails.path
-      filter ReplaceTokens, tokens: [
-        'demoUrn' : demoUrn,
-        'tripleserver' : tripleserver
-      ]
+      filter ReplaceTokens, tokens: ctsTokens
     }
-
   }
 }

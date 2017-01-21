@@ -1,5 +1,12 @@
 
 project.ext {
-  demoUrn = "urn:cts:greekLit:tlg0012.tlg001.fuPers:1.1-1.10"
-  tripleserver = "http://localhost:3030/ds/sparql"
+
+  ctsTokens = [
+    "tripleserver" : "http://localhost:3030/ds/sparql",
+    "cs2version" : "cs2 release 1.0",
+    "ctshome" : "ctshome",
+    "demoCtsUrn" : "urn:cts:greekLit:tlg5026.msA:1.1"
+  ]
+
+
 }
