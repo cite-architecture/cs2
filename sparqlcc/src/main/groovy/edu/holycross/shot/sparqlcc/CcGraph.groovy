@@ -46,6 +46,8 @@ class CcGraph {
 							testUrn = new Cite2Urn("${curn}${urn.objectId_1}-${urn.objectId_2}")
 							if (objectExists(testUrn)){
 									returnUrn = testUrn
+							} else {
+								throw new Exception("CcGraph, resolveVersion: No versions of  ${urn} exist in data.")
 							}
 					}
 

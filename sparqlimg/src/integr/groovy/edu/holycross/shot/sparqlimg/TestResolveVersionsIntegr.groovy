@@ -40,9 +40,23 @@ class TestResolveVersionsIntegr extends GroovyTestCase {
 		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg:VA327RN_0497-VA327VN_0498")
 		Sparql sparql = new Sparql(baseUrl)
 		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
-		shouldFail{
 			Cite2Urn resolvedUrn = cimg.resolveVersion(urn)
-		}
+			// second part of range not in data
+			//shouldFail{
+				assert resolvedUrn.toString() == "urn:cite2:hmt:vaimg.v1:VA327RN_0497-VA327VN_0498"
+			//}
+	}
+
+	@Test
+	void testResolveVersion4(){
+		Cite2Urn urn = new Cite2Urn("urn:cite2:hmt:vaimg:VA327VN_0498")
+		Sparql sparql = new Sparql(baseUrl)
+		CiteImage cimg = new CiteImage(sparql,iipserv,serviceUrl)
+		Cite2Urn resolvedUrn = cimg.resolveVersion(urn)
+		// not in data
+		//shouldFail{
+			assert resolvedUrn.toString() == "urn:cite2:hmt:vaimg.v1:VA327VN_0498"
+		//}
 	}
 
 

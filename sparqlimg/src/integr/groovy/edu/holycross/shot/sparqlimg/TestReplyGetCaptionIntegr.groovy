@@ -32,7 +32,7 @@ class TestReplyGetCaptionIntegr extends GroovyTestCase {
     String expectedXml = """
 <GetCaption xmlns='http://chs.harvard.edu/xmlns/citeimg'>
 <request>
-<urn>urn:cite2:hmt:vaimg.VA327RN_0497</urn>
+<urn>urn:cite2:hmt:vaimg:VA327RN_0497</urn>
 <resolvedUrn>urn:cite2:hmt:vaimg.v1:VA327RN_0497</resolvedUrn>
 </request>
 <reply>
