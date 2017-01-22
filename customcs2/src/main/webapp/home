@@ -7,7 +7,7 @@ import edu.harvard.chs.cite.CtsUrn
 
 html.html {
 	head {
-		title("CITE service quite")
+		title("CITE service suite")
 			link(href : "cts-ui/css/cts-core.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
 
 	}
@@ -37,15 +37,15 @@ html.html {
         mkp.yield("This is version ")
         code("@customVersion@")
         mkp.yield(" of '@projectName@', ")
-        mkp.yield(" hosting an implementation of Canonical Text Services (CTS).")
+        mkp.yield(" hosting an implementation of CITE services.")
       }
 
 				footer{
 					p {
-						a(href :"http://cite-architecture.github.io", "More about the CITE Architecture and the CTS protocol.")
+						a(href :"http://cite-architecture.github.io", "More about the CITE Architecture.")
 					}
 					p {
-						code("sparqlcts")
+						code("cs2")
 							mkp.yield (" is licensed under the terms of the ")
 							a(href : "gpl-3.0.txt", "GPL, version 3.")
 					}
