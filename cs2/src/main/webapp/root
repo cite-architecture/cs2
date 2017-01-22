@@ -39,10 +39,10 @@ html.html {
 
 				footer{
 					p {
-						a(href :"http://cite-architecture.github.io", "More about the CITE Architecture and the CTS protocol.")
+						a(href :"http://cite-architecture.github.io", "More about the CITE Architecture.")
 					}
 					p {
-						code("sparqlcts")
+						code("cs2")
 							mkp.yield (" is licensed under the terms of the ")
 							a(href : "gpl-3.0.txt", "GPL, version 3.")
 					}
