@@ -23,8 +23,14 @@ Alternatively, as with the `cs2` subproject, you can instead set the full path t
 
 ### Adding custom content
 
-In addition to customizing settings, you can run or build a servlet with your customized content in the `customcs2` subproject.  The `customcts2` subproject relies on a configuration file that has the same `cs2Tokens` map as `cs2`, but also includes a `sourceDirectory` property
+In addition to customizing settings, you can run or build a servlet with your customized content in the `customcs2` subproject.  The `customcs2` subproject relies on a configuration file that has the same `cs2Tokens` map as `cs2`, but also includes a `sourceDirectory` property identifying a directory with content to add to your servlet.
 
-Like this:
+Before using a gretty task to run or build a servlet, first run the `installSource` task with a `custom` property identifying  your configuration file, to copy all custom content to `customcs2/src/main/web`, e.g.,
 
     gradle -Pcustom=/Path/to/conf/file.gradle installSource
+
+
+Then use the same `custom` property with any gradle task, e.g.,
+
+
+    gradle -Pcustom=/Path/to/conf/file.gradle war
