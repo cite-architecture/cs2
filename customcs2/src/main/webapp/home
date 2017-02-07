@@ -7,7 +7,7 @@ import edu.harvard.chs.cite.CtsUrn
 
 html.html {
 	head {
-		title("CITE service suite")
+		title("Furman University’s CITE service suite")
 			link(href : "cts-ui/css/cts-core.css", rel : "stylesheet", title : "CSS for CTS", type : "text/css")
 
 	}

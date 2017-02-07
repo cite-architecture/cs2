@@ -13,6 +13,9 @@ project.ext {
     "cs2version" : "cs2 release 1.0",
     "iipserv" : "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi",
 
+		"defaultCCInventory" : "collections.xml",
+		"defaultCTSInventory" : "inventory.xml",
+
     "projectLabel" : "CITE Services",
 
     "header" : "<p>CITE Services</p>",
