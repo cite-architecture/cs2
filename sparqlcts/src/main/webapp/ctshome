@@ -3,6 +3,7 @@ import edu.harvard.chs.cite.CtsUrn
 
 def demoUrnStr = "@demoCtsUrn@"
 CtsUrn demoUrn = new CtsUrn(demoUrnStr)
+String baseUrl = context.getInitParameter('tripleserver')
 
 
 html.html {
@@ -67,6 +68,8 @@ html.html {
 						code("sparqlcts")
 							mkp.yield (" is licensed under the terms of the ")
 							a(href : "gpl-3.0.txt", "GPL, version 3.")
+						mkp.yield( " Using tripleserver at: ${baseUrl} ")
+						
 					}
 				}
 		}
