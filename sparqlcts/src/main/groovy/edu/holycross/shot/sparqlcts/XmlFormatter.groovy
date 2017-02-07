@@ -5,9 +5,9 @@ import edu.harvard.chs.cite.CtsUrn
 
 
 /**
-* An abstract class providing static methods for working with XPath expressions and 
-* XPath templates for citation. Methods of this class can compose XML strings 
-* for the opening and closing elements of well-formed XML corresponding 
+* An abstract class providing static methods for working with XPath expressions and
+* XPath templates for citation. Methods of this class can compose XML strings
+* for the opening and closing elements of well-formed XML corresponding
 * to given XPath expressions and templates.
 */
 class XmlFormatter {
@@ -44,8 +44,8 @@ class XmlFormatter {
   static String trimAncestors(String xpAncestor, String xpt, Integer limit) {
 	  StringBuffer formatted = new StringBuffer()
 	  def pathParts = xpAncestor.split(/\//)
-	  def citeIndex = citationIndices(xpt) 
-	  def limitIndex = citeIndex[limit-1] //  
+	  def citeIndex = citationIndices(xpt)
+	  def limitIndex = citeIndex[limit-1] //
 	  // pathMax, because we are not closing ALL the hierarchy, just the bits that need closing.
 	  def pathMax = citeIndex[citeIndex.size() - 2]
 	  for (i in pathMax .. limitIndex) {
@@ -74,7 +74,7 @@ class XmlFormatter {
 
 
   /**
-   * Converts XPath filter expressions to attribute tags for an XML document. 
+   * Converts XPath filter expressions to attribute tags for an XML document.
    * E.g., an expression like "div[@n = '1']" becomes "div n='1'".
    * @param xpStr The XPath expression to convert.
    * @returns A String with XML corresponding to the given XPath expression.
@@ -90,11 +90,11 @@ class XmlFormatter {
       returnStr = "${elName} ${attrs}"
     }
     return returnStr
-  }	
+  }
 
 
   /** Removes all filter expressions from an XPath String.
-   * @param xpStr An XPath expression, as a String, from which 
+   * @param xpStr An XPath expression, as a String, from which
    * to remove all filter expressions.
    * @returns An XPath String with no filter expressions.
    */
@@ -103,7 +103,7 @@ class XmlFormatter {
     return xpStr.replaceAll(/\[[^\]]+\]/, emptyStr)
   }
 
-  
+
   /** Indexes which elements in the hierarchy of an XPath are
    * citation templates.
    * @param citationTemplate The XPath template to examine.
@@ -119,7 +119,7 @@ class XmlFormatter {
       if (templateParts[i] =~ /\?/) {
 	startCounting = true
       }
-      if (startCounting){ 
+      if (startCounting){
 	citationIndexes.add(i)
       }
     }
@@ -130,7 +130,7 @@ class XmlFormatter {
    * Finds a 1-origin count of the deepest citation level at which two XPath statements
    * differ in their values for a citation scheme modelled in an XPath template.
    * The resulting value can then be used to trim wrapping XML markup to appropriate
-   * depth to create well-formed XML. The two XPaths must be of the same depth.  
+   * depth to create well-formed XML. The two XPaths must be of the same depth.
    * A value of 0 means the two XPaths have identical citation values.
    * Examples: XPaths corresponding to these citations would result in:
    *       citation 1     citation 2      result
@@ -144,7 +144,7 @@ class XmlFormatter {
    * @param xp1 The first XPath to compare.
    * @param xp2 The second XPath to compare.
    * @param xpTemplate An XPath template
-   * @returns 0 for identical paths, otherwise an integer indicating the 
+   * @returns 0 for identical paths, otherwise an integer indicating the
    * level where they differ.
    * @throws Exception if two XPaths have different number of levels.
    */
@@ -163,7 +163,7 @@ class XmlFormatter {
 		  Integer firstIndex = citeIndex[0].toInteger()
 		  // If there is only one citation level, they will match all the way to the end no matter what…
 		  if (citeIndex.size() == 1){
-		     differingLevel = -1	  
+		     differingLevel = -1
 		  } else { // we need to learn at what point they differ…
 			  Integer lastIndex = citeIndex[citeIndex.size() - 2].toInteger() // -2 because we are ignoring the leaf-node element.
 
@@ -185,7 +185,7 @@ class XmlFormatter {
 			  // report level as 1-origin array:
 			  return differingLevel + 1
 	  }
-  
+
   /**
    * Converts an XPath expression for the ancestors of a node
    * to the closing XML markup of that node in its XML serialization,
@@ -214,13 +214,13 @@ class XmlFormatter {
     if (limit > citationElements.size()) {
       throw new Exception("XmlFormatter:trimClose: ${limit} levels requested, but only ${citationElements.size()} citation elements in this scheme.")
     }
-    
+
 	// pathMax is because we are not closing the whoe hierarchy up to the root node, but only the ones that need closing.
 	Integer pathMax = citationElements[citationElements.size() - 2]
     // limit - 1 because values of citationElements are 1-origin,
     // but we're working with 0-origin arrays
     Integer firstIndex = citationElements[limit - 1].toInteger()
-    
+
     //for (i in firstIndex .. pathMax )  {
     for (i in pathMax .. firstIndex )  {
       formatted.append("</" + stripFilters(templateParts[i]) + ">")
@@ -228,7 +228,7 @@ class XmlFormatter {
     return formatted.toString()
   }
 
-	/**  Crazy complicated invokating on XmlFormatter, to 
+	/**  Crazy complicated invokating on XmlFormatter, to
 	* ensure a well-formed XML fragment. Highly implementation-specific.
 	* Fragile as hell. Don't mess withis lightly.
 	 * @returns String
@@ -251,7 +251,7 @@ class XmlFormatter {
 			String currentWrapper = leafNodes[0]['typeExtras']['anc']
 			// We need to grab this, because when texts have different sections with different depths,
 			// we can't count on the next section having the same structure as the previous one.
-			String currentXpt = "" 
+			String currentXpt = ""
 			String currentNext = ""
 			def citeDiffLevel = 0
 			String tempText = ""
@@ -260,7 +260,7 @@ class XmlFormatter {
 
 			leafNodes.each { b ->
 				if (b['typeExtras']['nxt'] != currentNext){
-					
+
 					currentNext = b['typeExtras']['nxt']
 					if ((b['typeExtras']['anc'] != currentWrapper)||(firstNode)) {
 						citeDiffLevel = findDifferingCitationLevel(b['typeExtras']['anc'], currentWrapper, b['typeExtras']['xpt'])
@@ -281,11 +281,11 @@ class XmlFormatter {
 						currentXpt = b['typeExtras']['xpt']
 					}
                     if (b['rangeNode']['textContent']) {
-						//Here we are going to wrap the leaf-node in an element, 
+						//Here we are going to wrap the leaf-node in an element,
 						//with the URN as an attribute
-					    tempUrn = new CtsUrn("${b['rangeNode']['nodeUrn']}")
+						tempUrn = new CtsUrn("${b['rangeNode']['nodeUrn']}")
 						tempText = """<cts:node xmlns:cts="http://chs.harvard.edu/xmlns/cts" urn="${b['rangeNode']['nodeUrn']}" passage="${tempUrn.passageComponent}">${b['rangeNode']['textContent']}</cts:node>"""
-						
+
 						//passageString.append(b.txt?.value)
 						passageString.append(tempText)
                     }
@@ -294,13 +294,30 @@ class XmlFormatter {
 				passageString.append(closeAncestors(currentWrapper))
 
 		} else {
+			String tempText = ""
+			String tempPassage = ""
+			String oldPassage = ""
 			leafNodes.each { b ->
-				passageString.append("${b['rangeNode']['textContent']}\n\n")
+						//Here we are going to wrap the leaf-node in an element,
+						//with the URN as an attribute
+						tempUrn = new CtsUrn("${b['rangeNode']['nodeUrn']}")
+
+						// Let's stick the parent-urn in the cts:node element, because it might be useful
+						Integer citationDepth = tempUrn.getCitationDepth()
+						String parentString = tempUrn.trimPassage(citationDepth - 1)
+						CtsUrn parentUrn = new CtsUrn(parentString)
+						String parent = parentUrn.passageComponent
+
+						tempText = """\n<cts:node xmlns:cts="http://chs.harvard.edu/xmlns/cts" urn="${b['rangeNode']['nodeUrn']}" parent="${parent}" passage="${tempUrn.passageComponent}">${b['rangeNode']['textContent']}</cts:node>\n"""
+
+						//passageString.append(b.txt?.value)
+						passageString.append(tempText)
+//				passageString.append("${b['rangeNode']['textContent']}\n\n")
 			}
 		}
-	
-		return passageString	
+
+		return passageString
 
     }
-  
+
 }
