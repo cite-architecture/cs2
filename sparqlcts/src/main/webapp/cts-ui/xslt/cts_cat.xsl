@@ -202,11 +202,24 @@
 			<xsl:choose>
 
 				<xsl:when test="tei:w">
-					<xsl:attribute name="class">cts_node cts_inline</xsl:attribute>
+					<xsl:choose>
+						<xsl:when test="preceding-sibling::*[1]/@parent != ./@parent ">
+							<xsl:attribute name="class">cts_node_newline cts_node</xsl:attribute>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:attribute name="class">cts_node cts_inline</xsl:attribute>
+						</xsl:otherwise>
+					</xsl:choose>
 				</xsl:when>
-				
 				<xsl:when test="string-length(string(.)) &lt; 20">
-					<xsl:attribute name="class">cts_node cts_inline</xsl:attribute>
+					<xsl:choose>
+						<xsl:when test="preceding-sibling::*[1]/@parent != ./@parent ">
+							<xsl:attribute name="class">cts_node_newline cts_node</xsl:attribute>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:attribute name="class">cts_node cts_inline</xsl:attribute>
+						</xsl:otherwise>
+					</xsl:choose>
 				</xsl:when>
 
 				<xsl:otherwise>
