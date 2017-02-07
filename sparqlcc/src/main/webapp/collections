@@ -95,7 +95,7 @@ if (!done) {
 
 
 String getCapsReply() {
-    String inv = "inventory.xml"
+    String inv = "colections.xml"
     if (request.getParameter("inv")) {
         inv = request.getParameter("inv")
     }

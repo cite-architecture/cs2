@@ -40,6 +40,8 @@ html.html {
 					input (type : "hidden", name : "request", value : "GetCapabilities")
 						input (type : "hidden", name : "stylesheet", value : "cite_capabilities")
 						input (type : "submit", value : "GetCapabilities" )
+						label(for:"inventoryField", "Collection Inventory")
+						input (type : "text", name : "inv", value : "@defaultCCInventory@", size: "40", id:"inventoryField" )
 				}
 
 			h2("View an object with GetObjectPlus")

@@ -8,6 +8,8 @@ project.ext {
     "cs2version" : "cs2 release 1.0",
     "iipserv" : "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi",
 
+		"defaultCCInventory" : "collections.xml",
+
 
     "projectLabel" : "CITE Collection Services",
 
