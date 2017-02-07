@@ -171,13 +171,19 @@
 
 	<!-- Special!! Identify leaf-nodes -->
 	<xsl:template match="cts:node">
+		<xsl:if test="preceding-sibling::*[1]/@parent != ./@parent ">
+			<span style="display: block; width: 100%; margin-top: 0.5em; margin-bottom: 0.5em;"/>
+		</xsl:if>
 		<xsl:element name="mark">
 			<xsl:choose>
 
 				<xsl:when test="tei:w">
 					<xsl:attribute name="class">cts_node cts_inline</xsl:attribute>
 				</xsl:when>
-
+				<xsl:when test="string-length(string(.)) &lt; 20">
+					<xsl:attribute name="class">cts_node cts_inline</xsl:attribute>
+				</xsl:when>
+				
 				<xsl:otherwise>
 					<xsl:attribute name="class">cts_node cts_block</xsl:attribute>
 				</xsl:otherwise>
