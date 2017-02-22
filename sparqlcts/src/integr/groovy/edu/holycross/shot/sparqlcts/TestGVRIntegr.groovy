@@ -50,7 +50,7 @@ class TestGVRIntegr extends GroovyTestCase {
     ArrayList actualGVR = graph.getValidReff(urn)
 	assert actualGVR.size() == numRefs
   }
-  
+
   @Test
   void testGVR_overload3() {
     CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:")
@@ -75,7 +75,7 @@ class TestGVRIntegr extends GroovyTestCase {
     ArrayList expectedGVR = []
 	expectedGVR << urn.toString()
     ArrayList actualGVR = graph.getValidReff(urn.toString())
-	assert expectedGVR == actualGVR 
+	assert expectedGVR == actualGVR
   }
 
   @Test
@@ -84,7 +84,7 @@ class TestGVRIntegr extends GroovyTestCase {
     ArrayList expectedGVR = []
 	expectedGVR << "urn:cts:greekLit:tlg0012.tlg001.testAllen:1.1"
     ArrayList actualGVR = graph.getValidReff(urn.toString())
-	assert expectedGVR == actualGVR 
+	assert expectedGVR == actualGVR
   }
 
   @Test
@@ -125,8 +125,8 @@ void testGVR_container2() {
 }
 
 @Test
-void testGVR_translation1() {
-  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0016.tlg001.engTest:")
+void testGVR_notional() {
+  CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0016.tlg001:")
   ArrayList expectedGVR = []
   Integer numRefs = 3
   ArrayList actualGVR = graph.getValidReff(urn,1)
