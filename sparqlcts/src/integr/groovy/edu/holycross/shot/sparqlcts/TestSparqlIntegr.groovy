@@ -11,9 +11,9 @@ class TestSparqlIntegr extends GroovyTestCase {
 
   String baseUrl = "http://localhost:8080/fuseki/ctsTest/query"
   String verbQuery = "SELECT DISTINCT ?v WHERE {?s ?v ?o . } "
-  Integer expectedNumberVerbs = 21 
+  Integer expectedNumberVerbs = 64 
 
-  
+
   @Test
   void testSetup() {
     Sparql sparql = new Sparql(baseUrl)
@@ -28,5 +28,5 @@ class TestSparqlIntegr extends GroovyTestCase {
     }
     assert verbList.size() == expectedNumberVerbs
   }
-  
+
 }

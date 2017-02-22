@@ -14,7 +14,7 @@ static String prefix = """
 PREFIX cts:        <http://www.homermultitext.org/cts/rdf/>
 PREFIX cite:        <http://www.homermultitext.org/cite/rdf/>
 PREFIX hmt:        <http://www.homermultitext.org/hmt/rdf/>
-PREFIX citedata:        <http://www.homermultitext.org/citedata/>
+PREFIX citedata:        <http://www.homermultitext.org/hmt/citedata/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -90,8 +90,14 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
         return """${prefix}
 
         SELECT ?path WHERE {
-           <${img}> cite:belongsTo ?coll .
-           ?coll hmt:path ?path .
+        <${img}> cite:belongsTo ?version .
+				?version cite:isVersionOf ?collection .
+				optional{
+           ?collection hmt:path ?path .
+				 }
+				 optional {
+					 ?version hmt:path ?path .
+				 }
          }
          """
     }
@@ -99,18 +105,32 @@ PREFIX orca: <http://www.homermultitext.org/orca/rdf/>
     String getRightsProp(Cite2Urn img) {
         return """${prefix}
        SELECT ?prop WHERE {
-        <${img}> cite:belongsTo ?collection .
-        ?collection hmt:imageRightsProperty ?prop .
+				 optional {
+		        <${img}> cite:belongsTo ?version .
+						?version cite:isVersionOf ?collection .
+		        ?collection hmt:imageRightsProperty ?prop .
+					}
+				 optional {
+		        <${img}> cite:belongsTo ?version .
+		        ?version hmt:imageRightsProperty ?prop .
+					}
         }
         """
     }
 
     String getCaptionProp(Cite2Urn img) {
         return """${prefix}
-       SELECT ?prop WHERE {
-        <${img}> cite:belongsTo ?collection .
-        ?collection hmt:imageCaptionProperty ?prop .
-        }
+				SELECT ?prop WHERE {
+ 				 optional {
+ 		        <${img}> cite:belongsTo ?version .
+ 						?version cite:isVersionOf ?collection .
+ 		        ?collection hmt:imageCaptionProperty ?prop .
+ 					}
+ 				 optional {
+ 		        <${img}> cite:belongsTo ?version .
+ 		        ?version hmt:imageCaptionProperty ?prop .
+ 					}
+         }
         """
     }
 

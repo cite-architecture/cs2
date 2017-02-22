@@ -29,7 +29,7 @@ class TestGetPropertiesForObjectIntegr extends GroovyTestCase {
     assert props["Codex"] == "urn:cite2:hmt:codices:msA"
     assert props["Folio"] == "urn:cite2:hmt:msA:13r"
     assert props["Label"] == "Page area of folio 13r"
-    assert props["ImageRoI"] == "urn:cite2:hmt:vaimg.v1:VA013RN-0014@0.0675,0.0892,0.795,0.8638"
+    assert props["ImageRoI"] == "urn:cite2:hmt:vaimg.v1:VA013RN-0014%400.0675%2C0.0892%2C0.795%2C0.8638" // url encoded! Problem?
 
   }
 

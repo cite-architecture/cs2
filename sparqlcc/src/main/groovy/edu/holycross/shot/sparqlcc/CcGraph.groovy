@@ -808,10 +808,11 @@ class CcGraph {
     def propNames = []
     String collectionName = objUrn.collection
     collProps.each { cp ->
-      verbsList << "http://www.homermultitext.org/citedata/${collectionName}_${cp.propertyName}"
+      verbsList << "http://www.homermultitext.org/hmt/citedata/${collectionName}_${cp.propertyName}"
       propNames << cp.propertyName
     }
     String qs = QueryBuilder.getPropertiesForObjectQuery(objUrn,verbsList,propNames )
+		System.err.println(qs)
     String reply = sparql.getSparqlReply("application/json", qs)
     JsonSlurper slurper = new groovy.json.JsonSlurper()
     def parsedReply = slurper.parseText(reply)

@@ -72,7 +72,7 @@
             <div class="cite_serviceLinks">
                 <p>
                     <xsl:element name="a">
-                        <xsl:attribute name="href"><xsl:value-of select="$serviceUrl"/><xsl:value-of select="$getValidReffUrl"/><xsl:value-of select="@urn"/></xsl:attribute>
+                        <xsl:attribute name="href"><xsl:value-of select="$getValidReffUrl"/><xsl:value-of select="@urn"/></xsl:attribute>
                         See all valid citations for collection <code><xsl:value-of select="@urn"/></code>.
                     </xsl:element>
                 </p>

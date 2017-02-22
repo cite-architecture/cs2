@@ -15,11 +15,15 @@ if (responseType == "json"){
 response.setContentType(contentType)
 response.setHeader( "Access-Control-Allow-Origin", "*")
 
-String baseUrl = context.getInitParameter('baseUrl') + "?"
-String tripleserver = context.getInitParameter('tripleserver')
-String iipsrv = context.getInitParameter('iipsrv')
+// String baseUrl = context.getInitParameter('baseUrl') + "?"
+String baseUrl = "@imgapi@?"
+//String tripleserver = context.getInitParameter('tripleserver')
+String tripleserver = "@tripleserver@"
+//String iipsrv = context.getInitParameter('iipsrv')
+String iipsrv = "@iipserv@"
 String servletVersion = context.getInitParameter('version')
-String preferredMooStylesheet = context.getInitParameter('moostylesheet')
+//String preferredMooStylesheet = context.getInitParameter('moostylesheet')
+String preferredMooStylesheet = "@moostylesheet@"
 
 Sparql sparql = new Sparql(tripleserver)
 //System.err.println("USING BASEURL VALUE " + baseUrl)

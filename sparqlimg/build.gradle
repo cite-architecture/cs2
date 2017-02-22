@@ -75,6 +75,7 @@ task imgIntegration(type: Test, dependsOn: 'test') {
   testClassesDir = sourceSets.integr.output.classesDir
   classpath = sourceSets.integr.runtimeClasspath
 }
+
 imgIntegration.doFirst {
   System.out.println "Running CiteImg integration tests now...."
 }
@@ -83,8 +84,8 @@ imgIntegration.doFirst {
 gretty {
   initParameter("tripleserver", cs2Tokens["tripleserver"])
   initParameter("baseUrl", cs2Tokens["imgapi"])
-	initParameter("iipsrv", cs2Tokens["iipsrv"])
-	initParameter("moostylesheet",cs2Tokens["moostylesheet"])
+  initParameter("iipsrv", cs2Tokens["iipsrv"])
+  initParameter("moostylesheet",cs2Tokens["moostylesheet"])
   initParameter("version",cs2Tokens["cs2version"])
   webappCopy {
     filesMatching '*', { FileCopyDetails fileDetails ->
