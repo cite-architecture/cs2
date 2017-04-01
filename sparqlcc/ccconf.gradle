@@ -25,7 +25,7 @@ project.ext {
 
     "thumbsize" : "300",
 
-    "demoCtsUrn" : "urn:cts:greekLit:tlg5026.msA:1.1"
+    "demoCtsUrn" : "urn:cts:greekLit:tlg0012.tlg001.fuPers:1.1"
   ]
 
 

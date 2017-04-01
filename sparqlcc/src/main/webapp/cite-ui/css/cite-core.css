@@ -268,20 +268,21 @@ table.cite_objectTable tr:nth-child(odd) {
 
 @media screen and (min-width: 1200px) /* Big Desktop */ {
 	body {
+		/*
 		background-image: url(cite-logo.png);
 		background-repeat: no-repeat;
 		background-position: left 1000px top 10px;
-	}
-	header {
-		width: 930px;
+		*/
 	}
 }
 
 @media screen and (min-width: 980px) and (max-width: 1199px) /* Desktop */ {
 	body {
+		/*
 		background-image: url(cite-logo.png);
 		background-repeat: no-repeat;
 		background-position: right 40px top 10px;
+		*/
 	}
 	article {
 		margin-right: 200px;
@@ -293,9 +294,11 @@ table.cite_objectTable tr:nth-child(odd) {
 
 @media screen  and (max-width: 979px) /* Tablet */ {
   body {
+	  /*
 		background-image: url(cite-logo-small.png);
 		background-repeat: no-repeat;
 		background-position: right 40px top 10px;
+		*/
   }
 	header {
 		margin-right: 100px;
@@ -311,9 +314,11 @@ table.cite_objectTable tr:nth-child(odd) {
 
 @media screen and (max-width: 500px) /* Mobile */ {
   body {
+	  /*
 		background-image: url(cite-logo-small.png);
 		background-repeat: no-repeat;
 		background-position: right 40px top 10px;
+		*/
   }
 	header {
 		margin-right: 100px;

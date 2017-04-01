@@ -29,7 +29,7 @@ class TestGetUrnListIntegr extends GroovyTestCase {
 	println "expectedList[0] class = ${expectedList[0].getClass()}"
 	println "answerList[0] class = ${answerList[0].getClass()}"
     assert expectedList[0].toString() == answerList[0].toString()
-    
+
   }
 
   @Test
@@ -45,7 +45,7 @@ class TestGetUrnListIntegr extends GroovyTestCase {
 	println "expectedList[0] class = ${expectedList[0].getClass()}"
 	println "answerList[0] class = ${answerList[0].getClass()}"
     assert expectedList[0].toString() == answerList[0].toString()
-    
+
   }
 
   @Test
@@ -67,7 +67,7 @@ class TestGetUrnListIntegr extends GroovyTestCase {
     assert expectedList[0].toString() == answerList[0].toString()
     assert expectedList[1].toString() == answerList[1].toString()
     assert expectedList[2].toString() == answerList[2].toString()
-    
+
   }
 
    @Test
@@ -89,7 +89,7 @@ class TestGetUrnListIntegr extends GroovyTestCase {
     assert expectedList[0].toString() == answerList[0].toString()
     assert expectedList[1].toString() == answerList[1].toString()
     assert expectedList[2].toString() == answerList[2].toString()
-    
+
   }
 
 
@@ -121,7 +121,7 @@ class TestGetUrnListIntegr extends GroovyTestCase {
     assert answerList.size() == 15
     assert answerList[0].toString() == answerUrn1.toString()
     assert answerList[14].toString() == answerUrn2.toString()
-    
+
   }
 
   @Test
@@ -136,7 +136,7 @@ class TestGetUrnListIntegr extends GroovyTestCase {
     assert answerList.size() == 15
     assert answerList[0].toString() == answerUrn1.toString()
     assert answerList[14].toString() == answerUrn2.toString()
-    
+
   }
 
   @Test
@@ -147,11 +147,11 @@ class TestGetUrnListIntegr extends GroovyTestCase {
 
     ArrayList answerList = []
     answerList = graph.getUrnList(urn)
-    
+
     assert answerList.size() == 11
     assert answerList[0].toString() == answerUrn1.toString()
     assert answerList[10].toString() == answerUrn2.toString()
-    
+
   }
 
   @Test
@@ -173,8 +173,50 @@ class TestGetUrnListIntegr extends GroovyTestCase {
     assert expectedList[0].toString() == answerList[0].toString()
     assert expectedList[1].toString() == answerList[1].toString()
     assert expectedList[2].toString() == answerList[2].toString()
-    
+
   }
+
+
+	@Test
+	void testAdditional1() {
+		CtsUrn urn = new CtsUrn("urn:cts:croala:kunicr.ilias.croala_ohco2:1.1-1.2")
+		CtsUrn answerUrn1 = new CtsUrn("urn:cts:croala:kunicr.ilias.croala_ohco2:1.1")
+		CtsUrn answerUrn2 = new CtsUrn("urn:cts:croala:kunicr.ilias.croala_ohco2:1.2")
+
+		ArrayList expectedList = []
+		expectedList.add(answerUrn1)
+		expectedList.add(answerUrn2)
+		ArrayList answerList = []
+		answerList = graph.getUrnList(urn)
+
+		assert expectedList.size() == 2
+		assert answerList.size() == 2
+		assert expectedList[0].toString() == answerList[0].toString()
+		assert expectedList[1].toString() == answerList[1].toString()
+
+	}
+
+	@Test
+	void testAdditional2() {
+		CtsUrn urn = new CtsUrn("urn:cts:croala:kunicr.ilias.croala_ohco2:1.head-1.2")
+		CtsUrn answerUrn1 = new CtsUrn("urn:cts:croala:kunicr.ilias.croala_ohco2:1.head")
+		CtsUrn answerUrn2 = new CtsUrn("urn:cts:croala:kunicr.ilias.croala_ohco2:1.1")
+		CtsUrn answerUrn3 = new CtsUrn("urn:cts:croala:kunicr.ilias.croala_ohco2:1.2")
+
+		ArrayList expectedList = []
+		expectedList.add(answerUrn1)
+		expectedList.add(answerUrn2)
+		expectedList.add(answerUrn3)
+		ArrayList answerList = []
+		answerList = graph.getUrnList(urn)
+
+		assert expectedList.size() == 3
+		assert answerList.size() == 3
+		assert expectedList[0].toString() == answerList[0].toString()
+		assert expectedList[1].toString() == answerList[1].toString()
+		assert expectedList[2].toString() == answerList[2].toString()
+
+	}
 
 
 }

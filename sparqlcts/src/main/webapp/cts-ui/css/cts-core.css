@@ -60,7 +60,7 @@ body {
   padding: 0.5em;
   color: #676767;
   background-color: #fff;
-  padding: 2em; 
+  padding: 2em;
   max-width: 1200px;
 }
 
@@ -75,17 +75,17 @@ header, footer, nav {
 
 header {
   border-bottom: 1px solid #aaa;
-  padding-bottom: 0.5em; 
+  padding-bottom: 0.5em;
 }
 
 
 footer {
   border-top: 1px solid #aaa;
-  padding-top: 0.5em; 
+  padding-top: 0.5em;
   }
 
 article, header, footer, nav {
-  
+
 }
 
 
@@ -94,7 +94,7 @@ h1, h2, h3 {
   font-family: Helvetica, sans-serif;
   font-weight: 500;
   color: navy;
-  line-height: 1.1em; 
+  line-height: 1.1em;
   padding-top: 1.5em;
   padding-bottom: 0.5em;
   max-width: 900px;
@@ -122,11 +122,11 @@ p, ul, ol {
   margin: 0.5em 0 0.5em 0; }
 
 ul, ol {
-  margin-left: 1.5em; 
+  margin-left: 1.5em;
 }
 
   ul li, ol li {
-    margin: 0.5em 0 0.5em 0; 
+    margin: 0.5em 0 0.5em 0;
 }
 
 ul {
@@ -165,20 +165,21 @@ code {
 
 @media screen and (min-width: 1200px) /* Big Desktop */ {
 	body {
+		/*
 		background-image: url(cts-badge.png);
 		background-repeat: no-repeat;
 		background-position: left 1000px top 10px;
-	}
-	header {
-		width: 930px;
+		*/
 	}
 }
 
 @media screen and (min-width: 980px) and (max-width: 1199px) /* Desktop */ {
 	body {
+		/*
 		background-image: url(cts-badge.png);
 		background-repeat: no-repeat;
 		background-position: right 40px top 10px;
+		*/
 	}
 	article {
 		margin-right: 200px;
@@ -190,9 +191,11 @@ code {
 
 @media screen  and (max-width: 979px) /* Tablet */ {
   body {
+	  /*
 		background-image: url(cts-badge-small.png);
 		background-repeat: no-repeat;
 		background-position: right 40px top 10px;
+		*/
   }
 	header {
 		margin-right: 100px;
@@ -208,9 +211,11 @@ code {
 
 @media screen and (max-width: 500px) /* Mobile */ {
   body {
+	  /*
 		background-image: url(cts-badge-small.png);
 		background-repeat: no-repeat;
 		background-position: right 40px top 10px;
+		*/
   }
 	header {
 		margin-right: 100px;
@@ -224,6 +229,3 @@ code {
   }
 }
 /*# sourceMappingURL=cts-core.css.map */
-
-
-

@@ -10,7 +10,10 @@ Add any content you like to the `src/main/webapp` directory, and when you use an
 gretty tasks include:
 
 - `gradle appRun`: runs your servlet
-- `gradle war`: builds a `.war` file you can add to your own servlet container
+- `gradle assemble`: builds a `.war` file you can add to your own servlet container
+
+**N.b.: It is not `gradle war`, but `gradle assemble` that builds the correct `.war` file!!**
+
 
 
 ## Configuration

@@ -83,6 +83,7 @@ class CtsGraph {
 						typeExtras['xmlnsabbr'] = b.xmlnsabbr?.value
 					} else {
 						typeExtras['type'] = "unknown"
+						typeExtras['nxt'] = b.nxt?.value
 					}
 					Map tempMap = [ 'rangeNode':rn, 'typeExtras':typeExtras ]
 					responseList.add(tempMap)
@@ -93,6 +94,8 @@ class CtsGraph {
 		if (urn.isRange()){
 			CtsUrn urn1 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
 			CtsUrn urn2 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")
+			System.err.println("\n-------------------------\n")
+			System.err.println("${urn1} :: ${urn2}")
 
             if (isLeafNode(urn1)) {
            	     startAtStr =  getSequence(urn1)
@@ -106,33 +109,39 @@ class CtsGraph {
 				endAtStr = getLastSequence(urn2)
 			}
 			// error check these…
-		    int1 = startAtStr.toInteger()
+	    int1 = startAtStr.toInteger()
 			int2 = endAtStr.toInteger()
+			System.err.println("${int1} :: ${int2}")
 
 
 			listUrnsQuery = QueryBuilder.getRangeNodesQuery(int1, int2, "${urn.getUrnWithoutPassage()}")
             ctsReply =  sparql.getSparqlReply("application/json", listUrnsQuery)
             def slurper = new groovy.json.JsonSlurper()
             def parsedReply = slurper.parseText(ctsReply)
+						System.err.println(parsedReply.toString())
 
-            parsedReply.results.bindings.each { b ->
-                if (b.ref) {
-					RangeNode rn = new RangeNode(new CtsUrn(b.ref?.value),b.t?.value)
-					def typeExtras = [:]
-					if (b.anc){
-						typeExtras['type'] = "xml"
-						typeExtras['anc'] = b.anc?.value
-						typeExtras['xpt'] = b.xpt?.value
-						typeExtras['nxt'] = b.nxt?.value
-						typeExtras['xmlns'] = b.xmlns?.value
-						typeExtras['xmlnsabbr'] = b.xmlnsabbr?.value
-					} else {
-						typeExtras['type'] = "unknown"
-					}
-					Map tempMap = [ 'rangeNode':rn, 'typeExtras':typeExtras ]
-					responseList.add(tempMap)
-                }
-            }
+						parsedReply.results.bindings.each { b ->
+							if (b.ref) {
+								RangeNode rn = new RangeNode(new CtsUrn(b.ref?.value),b.t?.value)
+								def typeExtras = [:]
+								if (b.anc){
+									typeExtras['type'] = "xml"
+									typeExtras['anc'] = b.anc?.value
+									typeExtras['xpt'] = b.xpt?.value
+									typeExtras['nxt'] = b.nxt?.value
+									typeExtras['xmlns'] = b.xmlns?.value
+									typeExtras['xmlnsabbr'] = b.xmlnsabbr?.value
+									} else {
+										typeExtras['type'] = "unknown"
+										typeExtras['xmlns'] = ""
+										typeExtras['nxt'] = b.nxt?.value
+									}
+									Map tempMap = [ 'rangeNode':rn, 'typeExtras':typeExtras ]
+									System.err.println(tempMap.toString())
+									responseList.add(tempMap)
+								} else {
+								}
+							}
 
 		} else { // must be containing element
 
