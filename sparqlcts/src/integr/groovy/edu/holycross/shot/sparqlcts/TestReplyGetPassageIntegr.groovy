@@ -126,4 +126,30 @@ class TestReplyGetPassageIntegr extends GroovyTestCase {
 		println testReply
 	}
 
+	@Test
+	void testGP2Col(){
+
+  CtsUrn urn1 = new CtsUrn("urn:cts:croala:kunicr.ilias.croala_ohco2:1.head")
+  CtsUrn urn2 = new CtsUrn("urn:cts:croala:kunicr.ilias.croala_ohco2:1.10")
+  CtsUrn urnRange = new CtsUrn("urn:cts:croala:kunicr.ilias.croala_ohco2:1.head-1.10")
+
+		String testReply = reply.getPassageToXML(urn1)
+
+		assert testReply
+		println "-----------------------------------------"
+		println testReply
+
+		testReply = reply.getPassageToXML(urn2)
+
+		assert testReply
+		println "-----------------------------------------"
+		println testReply
+
+		testReply = reply.getPassageToXML(urnRange)
+
+		assert testReply
+		println "-----------------------------------------"
+		println testReply
+
+	}
 }

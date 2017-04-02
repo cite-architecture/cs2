@@ -8,7 +8,7 @@ import edu.harvard.chs.cite.CtsUrn
 //import edu.holycross.shot.citeservlet.Sparql
 //import edu.holycross.shot.sparqlcts.CtsGraph
 
-/** Tests GPP request on a range URN where one is a 
+/** Tests GPP request on a range URN where one is a
  * leaf, and one is a container
  */
 class TestGppMixedIntegr extends GroovyTestCase {
@@ -19,7 +19,7 @@ class TestGppMixedIntegr extends GroovyTestCase {
 
   CtsUrn urn = new CtsUrn("urn:cts:greekLit:tlg0012.tlg001.testAllen:1.10-2")
 
-  
+
   @Test
   void testContainer() {
     //Ohco2Node onode = graph.getLeafNodeObject(urn)
@@ -27,5 +27,6 @@ class TestGppMixedIntegr extends GroovyTestCase {
   }
 
 
-  
+
+
 }

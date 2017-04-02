@@ -457,7 +457,10 @@ class QueryBuilder {
 			  	?container cts:contains ?urn.
 				?container cts:citationDepth ${level} .
 			  	bind (?container as ?ref).
-			  }
+			  } union {
+				 ?urn cts:hasTextContent ?throwaway .
+					bind (?urn as ?ref).
+				 }
 
 			  FILTER (?s >= "${startCount}"^^xsd:integer) .
 			  FILTER (?s <= "${endCount}"^^xsd:integer) .

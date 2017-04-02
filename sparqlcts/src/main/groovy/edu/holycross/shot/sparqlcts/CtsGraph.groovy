@@ -84,6 +84,8 @@ class CtsGraph {
 					} else {
 						typeExtras['type'] = "unknown"
 						typeExtras['nxt'] = b.nxt?.value
+						typeExtras['xmlns'] = ""
+						typeExtras['xmlnsabbr'] = ""
 					}
 					Map tempMap = [ 'rangeNode':rn, 'typeExtras':typeExtras ]
 					responseList.add(tempMap)
@@ -94,8 +96,6 @@ class CtsGraph {
 		if (urn.isRange()){
 			CtsUrn urn1 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeBegin()}")
 			CtsUrn urn2 = new CtsUrn("${urn.getUrnWithoutPassage()}${urn.getRangeEnd()}")
-			System.err.println("\n-------------------------\n")
-			System.err.println("${urn1} :: ${urn2}")
 
             if (isLeafNode(urn1)) {
            	     startAtStr =  getSequence(urn1)
@@ -111,14 +111,12 @@ class CtsGraph {
 			// error check these…
 	    int1 = startAtStr.toInteger()
 			int2 = endAtStr.toInteger()
-			System.err.println("${int1} :: ${int2}")
 
 
 			listUrnsQuery = QueryBuilder.getRangeNodesQuery(int1, int2, "${urn.getUrnWithoutPassage()}")
             ctsReply =  sparql.getSparqlReply("application/json", listUrnsQuery)
             def slurper = new groovy.json.JsonSlurper()
             def parsedReply = slurper.parseText(ctsReply)
-						System.err.println(parsedReply.toString())
 
 						parsedReply.results.bindings.each { b ->
 							if (b.ref) {
@@ -137,7 +135,6 @@ class CtsGraph {
 										typeExtras['nxt'] = b.nxt?.value
 									}
 									Map tempMap = [ 'rangeNode':rn, 'typeExtras':typeExtras ]
-									System.err.println(tempMap.toString())
 									responseList.add(tempMap)
 								} else {
 								}
@@ -940,6 +937,10 @@ class CtsGraph {
         def slurper = new groovy.json.JsonSlurper()
         def parsedReply = slurper.parseText(fillReply)
 		if (parsedReply.results.bindings.size() < 2){
+			System.err.println("query:")
+			System.err.println(fillVRQuery)
+			System.err.println("results:")
+			System.err.println(parsedReply.toString)
 			throw new Exception ("invalid urn")
 		} else {
 				parsedReply.results.bindings.each { b ->

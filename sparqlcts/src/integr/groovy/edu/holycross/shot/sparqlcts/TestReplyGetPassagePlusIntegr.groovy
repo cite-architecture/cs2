@@ -26,7 +26,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 
 	assert testReply
 	//println new JsonBuilder(testReply).toPrettyString()
-    
+
   }
 
   @Test
@@ -38,7 +38,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 
 	assert testReply
 	//println testReply
-    
+
   }
 
   @Test
@@ -50,7 +50,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 
 	assert testReply
 	println testReply
-    
+
   }
 
 
@@ -62,7 +62,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 
 	assert testReply
 	//println testReply
-    
+
   }
 
   @Test
@@ -73,7 +73,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 
 	assert testReply
 	//println testReply
-    
+
   }
 
   @Test
@@ -84,7 +84,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 
 	assert testReply
 	//println testReply
-    
+
   }
 
 
@@ -96,7 +96,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 
 	assert testReply
 	//println testReply
-    
+
   }
 
   @Test
@@ -107,7 +107,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 
 	assert testReply
 	//println testReply
-    
+
   }
 
   @Test
@@ -118,7 +118,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 
 	assert testReply
 	//println testReply
-    
+
   }
 
   @Test
@@ -129,7 +129,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 
 	assert testReply
 	//println testReply
-    
+
   }
 
   @Test
@@ -140,7 +140,7 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 
 	assert testReply
 	//println testReply
-    
+
   }
 
   @Test
@@ -153,4 +153,37 @@ class TestReplyGetPassagePlusIntegr extends GroovyTestCase {
 	println testReply
   }
 
+	@Test
+	void testGPP2Col(){
+
+  CtsUrn urn1 = new CtsUrn("urn:cts:croala:kunicr.ilias.croala_ohco2:1.head")
+  CtsUrn urn2 = new CtsUrn("urn:cts:croala:kunicr.ilias.croala_ohco2:1.10")
+  CtsUrn urnRange1 = new CtsUrn("urn:cts:croala:kunicr.ilias.croala_ohco2:1.head-1.10")
+  CtsUrn urnRange2 = new CtsUrn("urn:cts:croala:kunicr.ilias.croala_ohco2:1.10-1.13")
+
+		String testReply = reply.getPassagePlusToXML(urn1)
+
+		assert testReply
+		println "-----------------------------------------"
+		println testReply
+
+		testReply = reply.getPassagePlusToXML(urn2)
+
+		assert testReply
+		println "-----------------------------------------"
+		println testReply
+
+		testReply = reply.getPassagePlusToXML(urnRange1)
+
+		assert testReply
+		println "-----------------------------------------"
+		println testReply
+
+		testReply = reply.getPassagePlusToXML(urnRange2)
+
+		assert testReply
+		println "-----------------------------------------"
+		println testReply
+
+}
 }
