@@ -549,7 +549,7 @@ class CcGraph {
           String ts2
           ts1 = parsedReply.results.bindings[0].name.value.toString()
           ts2 = ts1.substring(ts1.lastIndexOf("/") + 1)
-          pName = ts2.tokenize("_")[1]
+          pName = ts2.tokenize("_")[-1]
         } else {
           throw new Exception( "CcGraph.getCollectionIdProp: ${urn.toString()}. Failed to get property name.")
         }
@@ -596,7 +596,7 @@ class CcGraph {
       String ts2
       ts1 = parsedReply.results.bindings[0].name.value.toString()
       ts2 = ts1.substring(ts1.lastIndexOf("/") + 1)
-      pName = ts2.tokenize("_")[1]
+      pName = ts2.tokenize("_")[-1]
     } else {
       throw new Exception( "CcGraph.getCollectionLabelProp: ${urn.toString()}. Failed to get property name.")
     }
@@ -645,7 +645,7 @@ class CcGraph {
           String ts2
           ts1 = parsedReply.results.bindings[0].name.value.toString()
           ts2 = ts1.substring(ts1.lastIndexOf("/") + 1)
-          nameString = ts2.tokenize("_")[1]
+          nameString = ts2.tokenize("_")[-1]
         } else {
           throw new Exception( "CcGraph.getCollectionOrderedByProp: ${urn.toString()}. Could not get name.")
         }
@@ -730,7 +730,7 @@ class CcGraph {
       // get just the property name
       ts1 = pp.property.value
       ts2 = ts1.substring(ts1.lastIndexOf("/") + 1)
-      tempMap['property'] = ts2.tokenize("_")[1]
+      tempMap['property'] = ts2.tokenize("_")[-1]
       tempMap['type'] = pp.type.value
       tempMap['label'] = pp.label.value
       CitePropertyType thisType

@@ -96,6 +96,10 @@ gretty {
       logger.warn 'File filtered: {}', fileDetails.path
       filter ReplaceTokens, tokens: cs2Tokens
     }
+    filesMatching '**/*', { FileCopyDetails fileDetails ->
+      logger.warn 'File filtered: {}', fileDetails.path
+      filter ReplaceTokens, tokens: cs2Tokens
+    }
     filesMatching '**/*.xml', { FileCopyDetails fileDetails ->
       logger.warn 'File filtered: {}', fileDetails.path
       filter ReplaceTokens, tokens: cs2Tokens

@@ -289,4 +289,29 @@ class TestReplyGetObjectIntegr extends GroovyTestCase {
 		  assert xmlDiff.identical()
   }
 
+  @Test
+  void testGetOrcaObject1(){
+    // set up XMLUnit
+		XMLUnit.setNormalizeWhitespace(true)
+		//XMLUnit.setIgnoreWhitespace(true)
+
+    //Set up params
+    String reqString = "GetObject"
+    Cite2Urn reqUrn = new Cite2Urn("urn:cite2:fufolio:PlutPericles_SyntaxTokens_ORCA.v1:4")
+
+
+    def reqParams = [:]
+    reqParams['urn'] = reqUrn.toString()
+    reqParams['request'] = reqString
+
+    String replyString =  cc.formatXmlReply(reqString,reqUrn,reqParams)
+    System.err.println("----")
+    System.err.println(replyString)
+    System.err.println("----")
+
+		assert false
+
+	}
+
+
 }

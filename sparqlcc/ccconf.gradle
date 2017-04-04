@@ -4,7 +4,8 @@ project.ext {
   cs2Tokens = [
     "contextPath" : "/citecollections",
     // common:
-    "tripleserver" : "http://localhost:3030/ds/sparql",
+    //"tripleserver" : "http://localhost:8080/fuseki/ds/query",
+    "tripleserver" : "http://localhost:3030/ds/query",
     "cs2version" : "cs2 release 1.0",
     "iipserv" : "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi",
 
