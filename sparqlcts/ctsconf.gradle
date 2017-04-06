@@ -5,7 +5,7 @@ project.ext {
     "contextPath" : "/cts",
     // common:
     //"tripleserver" : "http://localhost:3030/ds/sparql",
-    "tripleserver" : "http://localhost:8080/cts/sparql",
+    "tripleserver" : "http://localhost:8080/fuseki/ds/query",
     "cs2version" : "cs2 release 1.0",
 
     "projectLabel" : "CITE Services",

@@ -817,7 +817,7 @@ class CcGraph {
     JsonSlurper slurper = new groovy.json.JsonSlurper()
     def parsedReply = slurper.parseText(reply)
     parsedReply.results.bindings[0].each{ bb ->
-        propMap["${bb.key}"] = bb.value.value
+        propMap["${bb.key}"] = URLDecoder.decode(bb.value.value)
     }
     return propMap
 
@@ -1271,8 +1271,24 @@ String xmlFormatObject(CiteCollectionObject cco){
   String replyString = ""
   replyString += """<citeObject urn="${cco.urn.toString()}">\n"""
   cco.objectProperties.each{ op ->
-    String propType = ""
-    replyString += """<citeProperty name="${op['key']}" label="${cco.collection.propertyForName(op['key']).label}" type="${xmlTranslatePropertyType("${cco.collection.getPropertyType(op['key'])}")}">"""
+
+    String propType = "${xmlTranslatePropertyType("${cco.collection.getPropertyType(op['key'])}")}"
+		String extensions = ""
+		if (propType == "Cite2Urn"){
+				try {
+				ArrayList extArray = 	getCollectionExtensions(new Cite2Urn(op['value']))
+				if (extArray.size() > 0){
+					extArray.each{ ee -> extensions += "${ee} " }
+				}
+			} catch (Exception e){
+				extensions = ""
+			}
+		}
+
+    replyString += """<citeProperty name="${op['key']}" label="${cco.collection.propertyForName(op['key']).label}" type="${propType}" """
+		if (extensions != ""){ replyString += """ extendedBy="${extensions}" """ }
+		replyString += """>"""
+
     replyString += """${op['value']}</citeProperty>\n"""
   }
 

@@ -5,7 +5,7 @@ ext {
 	  "cite" : "3.+",
 	  "prestochango" : "3.+",
       //"groovy": "[2.3,)", // This is correct, but need lower version for gretty
-      "groovy": "2.4.1",
+      "groovy": "2.4.+",
 
       "commonsio" : "1.4",
       "icu4j" : "3.4.4",

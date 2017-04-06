@@ -6,7 +6,7 @@ project.ext {
     "contextPath" : "/cs2",
 
     // common:
-    "tripleserver" : "http://localhost:3030/ds/sparql",
+    "tripleserver" : "http://localhost:3030/ds/query",
     "cs2version" : "cs2 release 1.0",
     "iipserv" : "http://beta.hpcc.uh.edu/fcgi-bin/iipsrv.fcgi",
 
@@ -16,6 +16,7 @@ project.ext {
 
     "footer" :  """<p><a href="http://cite-architecture.github.io">More about the CITE Architecture and the CITE service suite.</a> The CITE-Servlet is developed by Christopher Blackwell and Neel Smith, and licensed under the <a href="gpl-3.0.txt">GPL, version 3</a>.</p>""",
 
+		"defaultCCInventory" : "collections.xml",
 
     "cchome" : "cchome",
     "ccapi" : "collections",

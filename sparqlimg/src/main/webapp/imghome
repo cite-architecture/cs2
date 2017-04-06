@@ -4,6 +4,7 @@ String demoUrnStr = "urn:cite2:hmt:vaimg.v1:VA024RN_0025"
 String demoUrnWRoi = "urn:cite2:hmt:vaimg.v1:VA024RN_0025@0.251,0.4459,0.217,0.048"
 String sampleWidth = "1000"
 Cite2Urn demoUrn = new Cite2Urn(demoUrnStr)
+String baseUrl = context.getInitParameter('tripleserver')
 
 
 html.html {
@@ -88,9 +89,10 @@ html.html {
 						a(href :"http://cite-architecture.github.io", "More about the CITE Architecture and the CTS protocol.")
 					}
 					p {
-						code("sparqlimg")
+						code("sparqlcc")
 							mkp.yield (" is licensed under the terms of the ")
 							a(href : "gpl-3.0.txt", "GPL, version 3.")
+						  mkp.yield( " Using tripleserver at: ${baseUrl} ")
 					}
 				}
 		}

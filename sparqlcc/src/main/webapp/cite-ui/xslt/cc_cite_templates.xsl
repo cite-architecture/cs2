@@ -140,7 +140,7 @@
                         <xsl:element name="td">
                             <xsl:attribute name="class">cite_propertyValueCell cite_<xsl:value-of select="current()/@type"/></xsl:attribute>
                             <xsl:choose>
-                                <xsl:when test="current()/@type = 'ctsurn'">
+                                <xsl:when test="current()/@type = 'CtsUrn'">
                                     <xsl:element name="a">
                                         <xsl:attribute name="href">
                                             <xsl:value-of select="$ctsUrl"/><xsl:value-of select="current()"/>
@@ -148,13 +148,40 @@
                                         <xsl:apply-templates select="current()"/>
                                     </xsl:element>
                                 </xsl:when>
-                                <xsl:when test="current()/@type = 'citeurn'">
+                                <xsl:when test="current()/@type = 'CiteUrn'">
                                     <xsl:element name="a">
                                         <xsl:attribute name="href">
                                             <xsl:value-of select="$getObjectUrl"/><xsl:value-of select="current()"/>
                                         </xsl:attribute>
                                         <xsl:apply-templates select="current()"/>
                                     </xsl:element>
+                                </xsl:when>
+                                <xsl:when test="current()/@type = 'Cite2Urn'">
+																	<xsl:choose>
+																		<xsl:when test="contains(current()/@extendedBy, 'CiteImage')">
+																			<xsl:value-of select="current()"/><br/>
+					                            <xsl:element name="a">
+					                                <xsl:attribute name="href"><xsl:value-of select="$imgLinkUrl"/><xsl:value-of select="current()"/></xsl:attribute>
+
+					                            <xsl:element name="img">
+					                                <xsl:attribute name="src"><xsl:value-of select="$imgThumbUrl"/><xsl:value-of select="current()"/></xsl:attribute>
+					                            </xsl:element>
+					                            </xsl:element>
+					                            <br/>
+					                            <xsl:element name="a">
+					                                <xsl:attribute name="href"><xsl:value-of select="$imgICTUrl"/><xsl:value-of select="current()"/></xsl:attribute>
+					                                Cite and quote this image.
+					                            </xsl:element>
+																		</xsl:when>
+																		<xsl:otherwise>
+	                                    <xsl:element name="a">
+	                                        <xsl:attribute name="href">
+	                                            <xsl:value-of select="$getObjectUrl"/><xsl:value-of select="current()"/>
+	                                        </xsl:attribute>
+	                                        <xsl:apply-templates select="current()"/>
+	                                    </xsl:element>
+																	</xsl:otherwise>
+																		</xsl:choose>
                                 </xsl:when>
                                 <xsl:otherwise> <xsl:apply-templates select="current()"/></xsl:otherwise>
                             </xsl:choose>

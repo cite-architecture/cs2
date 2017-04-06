@@ -98,7 +98,7 @@ class TestReplyGetObjectPlusIntegr extends GroovyTestCase {
 </cite:request>
 <cite:reply>
     <citeObject urn="urn:cite2:hmt:vaimg.v1:VA082RN_0083">
-        <citeProperty name="Image" label="Image URN" type="Cite2Urn">urn:cite2:hmt:vaimg.v1:VA082RN_0083</citeProperty>
+        <citeProperty name="Image" label="Image URN" extendedBy="http://www.homermultitext.org/cite/rdf/CiteImage " type="Cite2Urn">urn:cite2:hmt:vaimg.v1:VA082RN_0083</citeProperty>
         <citeProperty name="Label" label="Caption" type="string">Venetus A: Marcianus Graecus Z. 454 (= 822).  Photograph in natural light, folio 82, recto.</citeProperty>
         <citeProperty name="Rights" label="Rights" type="string">This image was derived from an original ©2007, Biblioteca Nazionale Marciana, Venezie, Italia. The derivative image is ÔøΩ2010, Center for Hellenic Studies. Original and derivative are licensed under the Creative Commons Attribution-Noncommercial-Share Alike 3.0 License. The CHS/Marciana Imaging Project was directed by David Jacobs of the British Library.</citeProperty>
         <extension>http://www.homermultitext.org/cite/rdf/CiteImage</extension>

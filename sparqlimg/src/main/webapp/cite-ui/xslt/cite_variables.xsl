@@ -9,7 +9,7 @@
     <xsl:variable name="serviceUrl">@imgapi@</xsl:variable>
     <xsl:variable name="ccUrl">@ccapi@</xsl:variable>
 
-    <xsl:variable name="getPagedUrl">@imgapi@?request=GetValidReff&amp;safemode=on&amp;stylesheet=cite_getvalidreff&amp;offset=1&amp;limit=20&amp;urn=</xsl:variable>
+    <xsl:variable name="getPagedUrl">@ccapi@?request=GetValidReff&amp;safemode=on&amp;stylesheet=cite_getvalidreff&amp;offset=1&amp;limit=20&amp;urn=</xsl:variable>
    <xsl:variable name="projectLabel">CITE Image Extension</xsl:variable>
 
     <xsl:variable name="ictUrl">@icturl@</xsl:variable>

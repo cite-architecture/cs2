@@ -7,10 +7,10 @@
     <!-- CITE CC -->
 
     <xsl:variable name="serviceUrl">@tripleserver@</xsl:variable>
-    <xsl:variable name="getObjectUrl">/@ccapi@?request=GetObjectPlus&amp;stylesheet=cite_getobject&amp;urn=</xsl:variable>
+    <xsl:variable name="getObjectUrl">@ccapi@?request=GetObjectPlus&amp;stylesheet=cite_getobject&amp;urn=</xsl:variable>
     <xsl:variable name="imgThumbUrl">@imgapi@?request=GetBinaryImage&amp;w=100&amp;urn=</xsl:variable>
     <xsl:variable name="imgLinkUrl">@imgapi@?request=GetImagePlus&amp;stylesheet=cite_getimageplus&amp;urn=</xsl:variable>
-    <xsl:variable name="imgICTUrl">@imgapi@/ict.html?urn=</xsl:variable>
+    <xsl:variable name="imgICTUrl">ict.html?urn=</xsl:variable>
     <xsl:variable name="ctsUrl">@ctsapi@?request=GetPassagePlus&amp;stylesheet=cts_passage&amp;urn=</xsl:variable>
 
 

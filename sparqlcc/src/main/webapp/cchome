@@ -5,6 +5,7 @@ def demoUrnStr = "urn:cite2:hmt:venAsign.v1:5"
 def demoRangeUrnStr = "urn:cite2:hmt:venAsign.v1:1-10"
 def demoCollectionUrnStr = "urn:cite2:hmt:venAsign:"
 def demoUrnStrVersions = "urn:cite2:hmt:pageroi:5"
+String baseUrl = context.getInitParameter('tripleserver')
 
 Cite2Urn demoUrn = new Cite2Urn(demoUrnStr)
 
@@ -159,7 +160,17 @@ html.html {
 						mkp.yield("This is equivalent to querying for ‘GetValidReff’ on a single object’s URN.")
 				}
 
-				footer{}
+				footer{
+					p {
+						a(href :"http://cite-architecture.github.io", "More about the CITE Architecture and the CTS protocol.")
+					}
+					p {
+						code("sparqlcc")
+							mkp.yield (" is licensed under the terms of the ")
+							a(href : "gpl-3.0.txt", "GPL, version 3.")
+						  mkp.yield( " Using tripleserver at: ${baseUrl} ")
+					}
+				}
 		}
 	}
 }
